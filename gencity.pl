@@ -43,9 +43,12 @@ sub build_city{
     $city=generate_city_ethics($city);
 # - generate gov't type                           check
     $city=set_govt_type($city);
-# - generate gov't type                           check
-#    $city=select_landmark($city);
-#Time
+# - generate landmark                             check
+    $city=set_landmark($city);
+# - generate time                                 check
+    $city=set_time($city);
+# - generate laws                                 check
+    $city=set_laws($city);
 #taverns
 #laws
 # - generate religions(weighted by race)
@@ -55,6 +58,40 @@ sub build_city{
 # - generate map
     return $city;
 }
+
+sub set_laws {
+    my ($city)=@_;
+    $city->{'laws'}={};
+    for my $facet (qw( enforcement trial punishment) ) {
+        $city->{'laws'}->{$facet}=rand_from_array(@{ $xml_data->{'laws'}->{$facet}->{'option'}})->{'content'};
+    }
+    return $city;
+}
+
+sub set_time{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $time=rand_from_array(@{ $xml_data->{'time'}->{'option'}});
+    print Dumper $time;
+    $city->{'time'}=$time;
+    return $city;
+}
+
+sub rand_from_array {
+    my (@array)=@_;
+    my $index=int(rand(scalar @array));
+    return $array[$index];
+}
+
+sub set_landmark{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $landmark=roll_from_array($roll, $xml_data->{'landmarks'}->{'option'});
+    $city->{'landmark'}=$landmark->{'content'};
+    return $city;
+}
+
+
 
 sub set_govt_type{
     my ($city)=@_;
@@ -143,7 +180,7 @@ sub generate_pop_counts{
 sub generate_pop_type{
     my ($city)=@_;
     my $roll= &d(100);
-    my $poptype=select_from_array($roll, $xml_data->{'poptypes'}->{'population'});
+    my $poptype=roll_from_array($roll, $xml_data->{'poptypes'}->{'population'});
     $city->{'poptype'}=$poptype->{'type'};
     $city->{'races'}= $poptype->{'option'};
     return $city;
@@ -173,7 +210,7 @@ sub generate_city_ethics{
 sub set_city_size{
     my ($city)=@_;
     my $roll= &d(100);
-    my $citysize=select_from_array($roll, $xml_data->{'citysize'}->{'city'});
+    my $citysize=roll_from_array($roll, $xml_data->{'citysize'}->{'city'});
     $city->{'size'}          = $citysize->{'size'};
     $city->{'gplimit'}       = $citysize->{'gplimit'};
     $city->{'population'}    = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'}  );
@@ -185,7 +222,7 @@ sub set_city_size{
 sub set_city_type{
     my ($city)=@_;
     my $roll= &d(100);
-    my $citytype=select_from_array($roll, $xml_data->{'citytype'}->{'city'});
+    my $citytype=roll_from_array($roll, $xml_data->{'citytype'}->{'city'});
     $city->{'base_pop'}    = $citytype->{'base_pop'};
     $city->{'type'}        = $citytype->{'type'};
     $city->{'description'} = $citytype->{'content'};
@@ -217,7 +254,7 @@ sub generate_city_name{
 # Presuming $items is an array of xml object with 
 # a min and max property, select the one that $roll 
 # best fits.
-sub select_from_array{
+sub roll_from_array{
     my ($roll,$items)=@_;
     my $selected_item=$items->[0];
     for my $item (@$items){

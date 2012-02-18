@@ -187,10 +187,12 @@
     <govt type="cult leader"/>
 </govtypes>
 <landmarks>
-        <option min="40" max="50">cliff       </option>
-        <option min="51" max="60">lighthouse  </option>
-        <option min="61" max="70">rivermouth  </option>
-        <option min="71" max="90">beach       </option>
+        <option min="1"  max="40" >none</option>
+        <option min="41" max="50" >cliff</option>
+        <option min="51" max="60" >lighthouse</option>
+        <option min="61" max="70" >river</option>
+        <option min="71" max="80" >rivermouth</option>
+        <option min="81" max="90" >beach</option>
         <option min="91" max="100">jagged rocks</option>
 </landmarks>
 
@@ -217,13 +219,13 @@
         <option>Death worshiping</option>
         <option>Dragon worshiping</option>
         <option>Undead worshiping</option>
-        <option>god worshiping</option>
-        <option>beast worshiping</option>
+        <option>God worshiping</option>
+        <option>Beast worshiping</option>
     </cult>
     <cult  parent_chance="10" name="chaotic">
-        <option>violence worshiping</option>
-        <option>chaos worshiping</option>
-        <option>god worshiping</option>
+        <option>Violence worshiping</option>
+        <option>Chaos worshiping</option>
+        <option>God worshiping</option>
     </cult>
     <cult  parent_chance="10" name="good">
         <option>god worshiping</option>
