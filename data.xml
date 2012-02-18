@@ -3,17 +3,55 @@
 <data>
 <debug >1</debug>
 
-<moral>
-    <option min="1"   max="33"  >evil</option>
-    <option min="34"  max="66"  >neutral</option>
-    <option min="67"  max="100" >good</option>
-</moral>
+<citysize>
+    <city size="Commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
+    <city size="Settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
+    <city size="Hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="Village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
+    <city size="Small Town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="Town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="Large Town"   min="70"  max="79"  size_modifier="+3"   minpop="3501"   maxpop="5000"   gplimit="5000"/>     
+    <city size="Small City"   min="80"  max="89"  size_modifier="+6"   minpop="5001"   maxpop="8000"   gplimit="8000"/>     
+    <city size="City"         min="90"  max="94"  size_modifier="+4"   minpop="8001"   maxpop="15000"  gplimit="15000"/>    
+    <city size="Large City"   min="95"  max="99"  size_modifier="+6"   minpop="15001"  maxpop="25000"  gplimit="25000"/>    
+    <city size="Capitol"      min="100" max="100" size_modifier="+12"  minpop="25001"  maxpop="50000"  gplimit="50000"/>    
+</citysize>
 
-<order>
-    <option min="1"   max="33"  >chaotic</option>
-    <option min="34"  max="66"  >neutral</option>
-    <option min="67"  max="100" >lawful</option>
-</order>
+<citytype>
+    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal city</city>
+    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal city with one monsterous race</city>
+    <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous city</city>
+    <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous city with one basic race</city>
+    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >open city</city>
+</citytype>
+
+<poptypes>
+	<population type="Secluded" min='1' max='35' >
+	    <option percent="98" />
+	    <option percent="1" />
+	</population>
+	<population type="Split" min='35' max='65' >
+	    <option percent="49" />
+	    <option percent="48" />
+	    <option percent="2" />
+	</population>
+	<population type="Assimilated" min='66' max='85' >
+	    <option percent="70" />
+	    <option percent="16" />
+	    <option percent="8" />
+	    <option percent="3" />
+	    <option percent="2" />
+	</population>
+	<population type="Unified" min='86' max='100' >
+	    <option percent="35" />
+	    <option percent="29" />
+	    <option percent="19" />
+	    <option percent="11" />
+	    <option percent="3" />
+	    <option percent="1" />
+	    <option percent="1" />
+	</population>
+</poptypes>
 
 <races>
     <race type="basic"   moral_mod="0"   magic_mod="0"  order_mod="5"  >Human</race>
@@ -40,143 +78,18 @@
 	<race type="monster" moral_mod="-10" magic_mod="10" order_mod="-10" >Drow</race>
 </races>
 
-<time>
-    <option time="06:00" public_modifier="0"  bar_mod="0"  >daybreak</option>
-    <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4"  >noon</option>
-    <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
-    <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
-    <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
-    <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10" >after dark</option>
-    <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
-    <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
-    <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
-</time>
+<moral>
+    <option min="1"   max="33"  >evil</option>
+    <option min="34"  max="66"  >neutral</option>
+    <option min="67"  max="100" >good</option>
+</moral>
 
-<citysize>
-    <city size="Commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
-    <city size="Settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
-    <city size="Hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="Village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
-    <city size="Small Town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="Town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
-    <city size="Large Town"   min="70"  max="79"  size_modifier="+3"   minpop="3501"   maxpop="5000"   gplimit="5000"/>     
-    <city size="Small City"   min="80"  max="89"  size_modifier="+6"   minpop="5001"   maxpop="8000"   gplimit="8000"/>     
-    <city size="City"         min="90"  max="94"  size_modifier="+4"   minpop="8001"   maxpop="15000"  gplimit="15000"/>    
-    <city size="Large City"   min="95"  max="99"  size_modifier="+6"   minpop="15001"  maxpop="25000"  gplimit="25000"/>    
-    <city size="Capitol"      min="100" max="100" size_modifier="+12"  minpop="25001"  maxpop="50000"  gplimit="50000"/>    
-</citysize>
+<order>
+    <option min="1"   max="33"  >chaotic</option>
+    <option min="34"  max="66"  >neutral</option>
+    <option min="67"  max="100" >lawful</option>
+</order>
 
-<citytype>
-    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal city</city>
-    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal city with one monsterous race</city>
-    <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous city</city>
-    <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous city with one basic race</city>
-    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >open city</city>
-</citytype>
-
-
-
-<taverns>
-    <names>
-        <adj>
-            <option>Drunken</option>    
-            <option>Angry</option>    
-            <option>Green</option>    
-            <option>Black</option>    
-            <option>White</option>    
-            <option>Blue</option>    
-            <option>Wet</option>    
-            <option>Ugly</option>    
-            <option>Prancing</option>    
-            <option>Hungry</option>    
-            <option>Empty</option>    
-            <option>Salty</option>    
-            <option>Greasy</option>    
-            <option>Broken</option>    
-        </adj>
-        <noun>
-		    <option>Dragon</option>    
-		    <option>Maiden</option>    
-		    <option>Wench</option>    
-		    <option>Bucket</option>    
-		    <option>Dog</option>    
-		    <option>Frog</option>    
-		    <option>Bag</option>    
-		    <option>Crate</option>    
-		    <option>Monkey</option>    
-		    <option>Princess</option>    
-		    <option>Pony</option>    
-		    <option>Giant</option>    
-		    <option>Urchin</option>    
-        </noun>
-        <trailer chance="30">
-            <option>Saloon</option>
-            <option>Inn</option>
-            <option>Bar</option>
-            <option>Tavern</option>
-            <option>Alehouse</option>
-            <option>Roadhouse</option>
-            <option>Taproom</option>
-        </trailer>
-    </names>
-    <size cost_mod="2"  pop_mod="1" >small</size>
-    <size cost_mod="0"  pop_mod="2" >regular</size>
-    <size cost_mod="-2" pop_mod="4" >large</size>
-    <condition cost_mod="-3">filthy</condition>
-    <condition cost_mod="-2">Dirty</condition>
-    <condition cost_mod="-0">decent</condition>
-    <condition cost_mod="2" >upscale</condition>
-    <violence >
-        <option>ignored</option>
-        <option>loser thrown out</option>
-        <option>not tolerated</option>
-    </violence>
-    <class>
-        <option cost_mod="-4">poor</option>
-        <option cost_mod="-2">low</option>
-        <option cost_mod="-0">middle</option>
-        <option cost_mod="2" >high</option>
-        <option cost_mod="4" >rich</option>
-    </class>
-    <legal>
-        <option> Law harasses</option>
-        <option> Law ignores</option>
-        <option> Law accepts bribes</option>
-        <option> Law protects</option>
-    </legal>
-    <entertainment limit="2">
-        <whores> </whores>
-        <gambling> 
-            <option>Poker</option>
-            <option>Craps</option>
-            <option>Blackjack</option>
-            <option>Dice</option>
-        </gambling>
-    </entertainment>
-</taverns>
-<laws>
-   <enforcement>
-        <option>is loose</option>
-        <option>is strict</option>
-        <option>can be bribed</option>
-   </enforcement>
-   <punishment>
-        <option>Fines</option>
-        <option>Community Service</option>
-        <option>Eye for an Eye</option>
-        <option>Mob Rule</option>
-        <option>Hard Labor</option>
-   </punishment>
-   <trial>
-        <option> no trial</option>
-        <option> magistrate</option>
-        <option> council</option>
-        <option> jurors</option>
-   </trial>   
-
-</laws>
 <govtypes>
     <govt type="council"/>
     <govt type="ruling wizard"/>
@@ -186,302 +99,6 @@
     <govt type="clergy"/>
     <govt type="cult leader"/>
 </govtypes>
-
-<blackmarket>
-    <guild parent_chance="62" name="Thieves" >
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-    </guild>
-    <guild parent_chance="30" name="Mages">
-        <option>powerhungry</option>
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-        <option>chaotic</option>
-    </guild>
-    <guild parent_chance="10" name="Assassin"/>
-    <guild parent_chance="30" name="Adventurers">
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-    </guild>
-    <cult  parent_chance="20" name="evil">
-        <option>Death worshiping</option>
-        <option>Dragon worshiping</option>
-        <option>Undead worshiping</option>
-        <option>God worshiping</option>
-        <option>Beast worshiping</option>
-    </cult>
-    <cult  parent_chance="10" name="chaotic">
-        <option>Violence worshiping</option>
-        <option>Chaos worshiping</option>
-        <option>God worshiping</option>
-    </cult>
-    <cult  parent_chance="10" name="good">
-        <option>god worshiping</option>
-        <option>dragon worshiping</option>
-    </cult>
-    <trade parent_chance="30" name="magicitems">
-        <option>powerful</option>
-        <option>dangerous</option>
-        <option>evil</option>
-        <option>intelligent</option>
-        <option>expensive</option>
-        <option>trinkets</option>
-    </trade>
-    <trade parent_chance="20" name="slaves">
-        <option>sex</option>
-        <option>labor</option>
-        <option>gladiator</option>
-    </trade>
-    <trade parent_chance="40" name="food">
-        <option>rare</option>
-        <option>spices</option>
-    </trade>
-    <trade parent_chance="40" name="gems">
-        <option>money laundering</option>
-        <option>stolen goods</option>
-        <option>magical components</option>
-    </trade>
-    <trade parent_chance="40" name="art">
-        <option>stolen</option>
-        <option>rare</option>
-    </trade>
-
-</blackmarket>
-<secondarypower>
-    <plot>Openly assists</plot>
-    <plot>Openly denounces</plot>
-    <plot>quietly denounces</plot>
-    <plot>quietly assists</plot>
-    
-    <power type="dragon">
-        <subplot> secretly wishes to enslave the city</subplot>
-        <subplot> secretly watches out for the common man</subplot>
-        <subplot> secretly despises the current leader</subplot>
-        <subplot> secretly agrees with the current leader</subplot>
-    </power>
-    <power type="wizard">
-        <subplot> secretly attempts to attain immortality</subplot>
-        <subplot> secretly watches out for the common man</subplot>
-        <subplot> secretly despises the current leader</subplot>
-        <subplot> secretly agrees with the current leader</subplot>
-    </power>
-    <power type="Merchant guild">
-        <subplot> secretly attempts to buy influence</subplot>
-        <subplot> secretly attempts to sell influence</subplot>
-        <subplot> secretly push for war with trade adversary</subplot>
-        <subplot> secretly push to open trade with adversary</subplot>
-    </power>
-    <power type="elected representatives">
-        <subplot> secretly uses position for personal gain</subplot>
-        <subplot> is secretly power hungry</subplot>
-    </power>
-    <power type="advisor">
-        <subplot> secretly pulls strings for personal gain</subplot>
-        <subplot> secretly blackmails leading power</subplot>
-        <subplot></subplot>
-    </power>
-    <power type="prophet">
-        <subplot> attempting to lead religious revolution</subplot>
-        <subplot> denies legitimacy of leading power </subplot>
-        <subplot> calls for genocide of a minority </subplot>
-    </power>
-    <power type="thieves guild">
-        <subplot> moving to assert black market dominance</subplot>
-        <subplot> secretly backs leading power for leiniency</subplot>
-    </power>
-    <power type="Ex-Blacksmith">
-        <subplot> secretly plots to overthrow the corrupt leadership for personal gain</subplot>
-        <subplot> is being blackmailed by a guild</subplot>
-        <subplot> is pulling strings with a trade adversary</subplot>
-    </power>
-    <power type="barbarian">
-        <subplot> plots to start war with adversarys city</subplot>
-        <subplot> is being manipulated by the denizens of the city whore house</subplot>
-        <subplot> rules whatever he can with a violent and iron fist</subplot>
-    </power>
-    <power type="recluse">
-        <subplot> pulls strings for personal gain</subplot>
-        <subplot> is really a feind in disguise</subplot>
-        <subplot> is really a angel in disguise</subplot>
-        <subplot> is a feind that secretly looks out for the good of the common man</subplot>
-        <subplot> is an angel that seeks to enslave the common man</subplot>
-    </power>
-</secondarypower>
-
-
-<behavioraltraits>
-    <trait type="Accusatory"        > </trait>
-    <trait type="Apologetic"        > </trait>
-    <trait type="Attentive"         > </trait>
-    <trait type="Authoritarian"     > </trait>
-    <trait type="Avuncular"         > </trait>
-    <trait type="Battle-ready"      > </trait>
-    <trait type="Beligerent"        > </trait>
-    <trait type="Blinkered"         > </trait>
-    <trait type="Boastful"		    > </trait>
-    <trait type="Cautious"		    > </trait>
-    <trait type="Chatty"		    > </trait>
-    <trait type="Chronicler"	    > </trait>
-    <trait type="Clumsy"		    > </trait>
-    <trait type="Conspirational"    > </trait>
-    <trait type="Contrarian"	    > </trait>
-    <trait type="Cowed"		        > </trait>
-    <trait type="Deluded"		    > </trait>
-    <trait type="Despises Locals"   > </trait>
-    <trait type="Drunkard"		    > </trait>
-    <trait type="Easily offended"	> </trait>
-    <trait type="Efficient"		    > </trait>
-    <trait type="Egotistical"		> </trait>
-    <trait type="Embittered"		> </trait>
-    <trait type="Ensorcelled"		> </trait>
-    <trait type="Exhausted"		    > </trait>
-    <trait type="Fashion Concious"	> </trait>
-    <trait type="Fatalistic"		> </trait>
-    <trait type="Flirtatious"		> </trait>
-    <trait type="Forbidding"		> </trait>
-    <trait type="Forgetful"		    > </trait>
-    <trait type="Giddy"		        > </trait>
-    <trait type="Glutton"		    > </trait>
-    <trait type="Gosipy"		    > </trait>
-    <trait type="Greedy"		    > </trait>
-    <trait type="Gregarious"		> </trait>
-    <trait type="Grieving"		    > </trait>
-    <trait type="Guarded"		    > </trait>
-    <trait type="Guilty"		    > </trait>
-    <trait type="Harried"		    > </trait>
-    <trait type="Healthy"		    > </trait>
-    <trait type="Helpful"		    > </trait>
-    <trait type="Hero-worshi[ing"	> </trait>
-    <trait type="Homesick"		    > </trait>
-    <trait type="Idealistic"		> </trait>
-    <trait type="Impatient"		    > </trait>
-    <trait type="Importunate"		> </trait>
-    <trait type="Imposter"		    > </trait>
-    <trait type="Insecure"		    > </trait>
-    <trait type="Intimidating"		> </trait>
-    <trait type="Jaded"		        > </trait>
-    <trait type="Jester"		    > </trait>
-    <trait type="Jolly"		        > </trait>
-    <trait type="Laconic"		    > </trait>
-    <trait type="Lonely"		    > </trait>
-    <trait type="Loud"		        > </trait>
-    <trait type="Lovelorn"		    > </trait>
-    <trait type="Loal"		        > </trait>
-    <trait type="Machiavellian"		> </trait>
-    <trait type="Matchmaker"		> </trait>
-    <trait type="Melancholy"		> </trait>
-    <trait type="Mocking"		    > </trait>
-    <trait type="Mopey"		        > </trait>
-    <trait type="Nervous"		    > </trait>
-    <trait type="Nihilistic"		> </trait>
-    <trait type="Nosy"		        > </trait>
-    <trait type="Oracular"		    > </trait>
-    <trait type="Outlandish"		> </trait>
-    <trait type="Pacifistic"		> </trait>
-    <trait type="Patriotic"		    > </trait>
-    <trait type="Patronizing"		> </trait>
-    <trait type="Picayune"		    > </trait>
-    <trait type="Pious"		        > </trait>
-    <trait type="Prejudiced"		> </trait>
-    <trait type="Public spirited"	> </trait>
-    <trait type="Puckish"		    > </trait>
-    <trait type="Pugnacious"		> </trait>
-    <trait type="Quiet"		        > </trait>
-    <trait type="Revellious"		> </trait>
-    <trait type="Resentful"		    > </trait>
-    <trait type="Scattered"		    > </trait>
-    <trait type="Self-obsessed"		> </trait>
-    <trait type="Servile"		    > </trait>
-    <trait type="Shifty"		    > </trait>
-    <trait type="Sick"		        > </trait>
-    <trait type="Skeptical"		    > </trait>
-    <trait type="Smitten"		    > </trait>
-    <trait type="Smug"		        > </trait>
-    <trait type="Solemn"		    > </trait>
-    <trait type="Spiteful"		    > </trait>
-    <trait type="Territorial"		> </trait>
-    <trait type="Thick"		        > </trait>
-    <trait type="Treasure-seeking"	> </trait>
-    <trait type="Trivial"		    > </trait>
-    <trait type="Trusting"		    > </trait>
-    <trait type="Unreliable"		> </trait>
-    <trait type="Vengeful"		    > </trait>
-    <trait type="Violent"		    > </trait>
-    <trait type="Gambler"		    > </trait>
-    <trait type="Worrywart"		    > </trait>
-    <trait type="Xenophobic"		> </trait>
-
-</behavioraltraits>
-
-<orderalignment >
-    <option name="chaotic" min='1' max='33'>
-		<adjective>unreliable</adjective>
-		<adjective>irresponsible</adjective>
-		<adjective>questionable</adjective>
-		<adjective>unpredictable</adjective>
-		<adjective>deranged</adjective>
-		<adjective>incoherent</adjective>
-		<adjective>vague</adjective>
-    </option>
-    <option name="neutral" min='34' max='66'>
-		<adjective>bystanding</adjective>
-		<adjective>detached</adjective>
-		<adjective>non-participating</adjective>
-		<adjective>non-conformist</adjective>
-		<adjective>unflappable</adjective>
-    </option>
-    <option name="lawful" min='67' max='100'>
-		<adjective>reliable</adjective>
-		<adjective>dependable</adjective>
-		<adjective>sure</adjective>
-		<adjective>legitimized</adjective>
-		<adjective>official</adjective>
-		<adjective>organized</adjective>
-		<adjective>dutiful</adjective>
-		<adjective>honorable</adjective>
-    </option>
-</orderalignment>
-<moralalignment >
-    <option name="evil" min='1' max='33'>
-        <adjective>untrustworthy</adjective>
-        <adjective>mean</adjective>
-        <adjective>venomous</adjective>
-        <adjective>corrupt</adjective>
-        <adjective>repungent</adjective>
-        <adjective>unpleasant</adjective>
-        <adjective>opportunistic</adjective>
-        <adjective>villianous</adjective>
-        <adjective>nefarious</adjective>
-    </option>
-    <option name="neutral" min='34' max='66'>
-        <adjective>unconcerned</adjective>
-        <adjective>undecided</adjective>
-        <adjective>uncomitted</adjective>
-        <adjective>cold</adjective>
-        <adjective>indifferent</adjective>
-    </option>
-    <option name="good" min='67' max='100'>
-        <adjective>well meaning</adjective>
-        <adjective>trustworty</adjective>
-        <adjective>nice</adjective>
-        <adjective>ethical</adjective>
-        <adjective>honest</adjective>
-        <adjective>praise-worthy</adjective>
-        <adjective>virtuous</adjective>
-    </option>
-</moralalignment>
-
-<landmarkdesc chance="50">
-	<option>nondescript</option>
-	<option>curious</option>
-	<option>small</option>
-	<option>large</option>
-	<option>huge</option>
-	<option>massive</option>
-</landmarkdesc>
 
 <locations>
     <location description="On the coast">
@@ -557,61 +174,7 @@
     </location>
 </locations>
 
-
-
-<classes>
-    <class name="Commoner"      min="0"  max="23"  max_level="4d4" />
-    <class name="Expert"        min="24" max="35"  max_level="3d4" />
-    <class name="Warrior"       min="36" max="43"  max_level="2d4" />
-    <class name="Rogue"         min="44" max="49"  max_level="1d8" />
-    <class name="Barbarian"     min="50" max="52"  max_level="1d4" />
-    <class name="Monk"          min="53" max="55"  max_level="1d4" />
-    <class name="Bard"          min="56" max="59"  max_level="1d6" />
-    <class name="Cleric"        min="60" max="65"  max_level="1d6" />
-    <class name="Druid"         min="66" max="69"  max_level="1d6" />
-    <class name="Fighter"       min="70" max="77"  max_level="1d8" />
-    <class name="Adept"         min="78" max="83"  max_level="1d6" />
-    <class name="Sorcorer"      min="84" max="87"  max_level="1d4" />
-    <class name="Wizard"        min="88" max="91"  max_level="1d4" />
-    <class name="Aristocrat"    min="92" max="95"  max_level="1d4" />
-    <class name="Paladin"       min="96" max="97"  max_level="1d3" />
-    <class name="Ranger"        min="98" max="99"  max_level="1d3" />
-</classes>
-<poptypes>
-
-	<population type="Secluded" min='1' max='35' >
-	    <option percent="98" />
-	    <option percent="1" />
-	</population>
-	<population type="Split" min='35' max='65' >
-	    <option percent="49" />
-	    <option percent="48" />
-	    <option percent="2" />
-	</population>
-	<population type="Assimilated" min='66' max='85' >
-	    <option percent="70" />
-	    <option percent="16" />
-	    <option percent="8" />
-	    <option percent="3" />
-	    <option percent="2" />
-	</population>
-	<population type="Unified" min='86' max='100' >
-	    <option percent="35" />
-	    <option percent="29" />
-	    <option percent="19" />
-	    <option percent="11" />
-	    <option percent="3" />
-	    <option percent="1" />
-	    <option percent="1" />
-	</population>
-</poptypes>
-
 <weather>
-<!--
-The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind. 
-(It's <precip> when you approach( and thundering <thunder>).)
-(Cloud cover is <clouds>.)
--->
     <forecast>
         <option>clear</option>
         <option>overcast</option>
@@ -667,7 +230,6 @@ The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind.
 	        <type>raining medium (walnut size) </type>
 	        <type>raining large (orange size) </type>
 	    </option>
-	    
     </precip>
     <thunder chance='20'> 
         <option>in the distance</option>
@@ -681,55 +243,41 @@ The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind.
         <option>overcast</option>
     </clouds>
 </weather>
-<events chance="65" limit="2">
-<!-- 
 
-Upon entering the city, you find <type><event>.
--->
-    <festival>
-            <option>a religious</option>
-            <option>a trade</option>
-    </festival>
-    <celebration>
-            <option>a birthday</option> 
-            <option>a wedding</option> 
-            <option>a new year</option> 
-            <option>a holiday</option> 
-    </celebration>
-    
-    <trial>
-            <option>a murder</option>
-            <option>a witch</option>
-            <option>a spy</option>
-            <option>a briggand</option>
-            <option>a thief</option>
-    </trial>
-    <war>
-            <option>preparations for</option>
-            <option>on ongoing</option>
-            <option>the aftermath of a</option> 
-    </war>
-    <raid>
-            <option> the midst of a</option>
-            <option> the aftermath of a</option>
-    </raid>
-    <hunt>
-            <option> lost child</option>
-            <option> wandering monster</option>
-            <option> escaped prisoner</option>
-            <option> food</option>
-    </hunt>
-    <disaster>
-            <option>tornado</option>
-            <option>flood</option>
-            <option>earthquake</option>
-            <option>massive storm</option>
-            <option>tarrasque</option>
-            <option>drought</option>
-    </disaster>
+<time>
+    <option time="06:00" public_modifier="0"  bar_mod="0"  >daybreak</option>
+    <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
+    <option time="12:00" public_modifier="4"  bar_mod="4"  >noon</option>
+    <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
+    <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
+    <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
+    <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
+    <option time="10:00" public_modifier="-1" bar_mod="10" >after dark</option>
+    <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
+    <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
+    <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
+</time>
 
-</events>
-
+<laws>
+   <enforcement>
+        <option>is loose</option>
+        <option>is strict</option>
+        <option>can be bribed</option>
+   </enforcement>
+   <punishment>
+        <option>Fines</option>
+        <option>Community Service</option>
+        <option>Eye for an Eye</option>
+        <option>Mob Rule</option>
+        <option>Hard Labor</option>
+   </punishment>
+   <trial>
+        <option> no trial</option>
+        <option> magistrate</option>
+        <option> council</option>
+        <option> jurors</option>
+   </trial>   
+</laws>
 
 <prefix chance="20">
 	<word>Alta </word>
@@ -1232,6 +780,456 @@ Upon entering the city, you find <type><event>.
 </trailer>
 
 
+<!--  ###########################################################################  -->
+<!--  ###########################################################################  -->
+<!--  ###########################################################################  -->
+
+<taverns>
+    <names>
+        <adj>
+            <option>Drunken</option>    
+            <option>Angry</option>    
+            <option>Green</option>    
+            <option>Black</option>    
+            <option>White</option>    
+            <option>Blue</option>    
+            <option>Wet</option>    
+            <option>Ugly</option>    
+            <option>Prancing</option>    
+            <option>Hungry</option>    
+            <option>Empty</option>    
+            <option>Salty</option>    
+            <option>Greasy</option>    
+            <option>Broken</option>    
+        </adj>
+        <noun>
+		    <option>Dragon</option>    
+		    <option>Maiden</option>    
+		    <option>Wench</option>    
+		    <option>Bucket</option>    
+		    <option>Dog</option>    
+		    <option>Frog</option>    
+		    <option>Bag</option>    
+		    <option>Crate</option>    
+		    <option>Monkey</option>    
+		    <option>Princess</option>    
+		    <option>Pony</option>    
+		    <option>Giant</option>    
+		    <option>Urchin</option>    
+        </noun>
+        <trailer chance="30">
+            <option>Saloon</option>
+            <option>Inn</option>
+            <option>Bar</option>
+            <option>Tavern</option>
+            <option>Alehouse</option>
+            <option>Roadhouse</option>
+            <option>Taproom</option>
+        </trailer>
+    </names>
+    <size cost_mod="2"  pop_mod="1" >small</size>
+    <size cost_mod="0"  pop_mod="2" >regular</size>
+    <size cost_mod="-2" pop_mod="4" >large</size>
+    <condition cost_mod="-3">filthy</condition>
+    <condition cost_mod="-2">Dirty</condition>
+    <condition cost_mod="-0">decent</condition>
+    <condition cost_mod="2" >upscale</condition>
+    <violence >
+        <option>ignored</option>
+        <option>loser thrown out</option>
+        <option>not tolerated</option>
+    </violence>
+    <class>
+        <option cost_mod="-4">poor</option>
+        <option cost_mod="-2">low</option>
+        <option cost_mod="-0">middle</option>
+        <option cost_mod="2" >high</option>
+        <option cost_mod="4" >rich</option>
+    </class>
+    <legal>
+        <option> Law harasses</option>
+        <option> Law ignores</option>
+        <option> Law accepts bribes</option>
+        <option> Law protects</option>
+    </legal>
+    <entertainment limit="2">
+        <whores> </whores>
+        <gambling> 
+            <option>Poker</option>
+            <option>Craps</option>
+            <option>Blackjack</option>
+            <option>Dice</option>
+        </gambling>
+    </entertainment>
+</taverns>
+
+<blackmarket>
+    <guild parent_chance="62" name="Thieves" >
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </guild>
+    <guild parent_chance="30" name="Mages">
+        <option>powerhungry</option>
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+        <option>chaotic</option>
+    </guild>
+    <guild parent_chance="10" name="Assassin"/>
+    <guild parent_chance="30" name="Adventurers">
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </guild>
+    <cult  parent_chance="20" name="evil">
+        <option>Death worshiping</option>
+        <option>Dragon worshiping</option>
+        <option>Undead worshiping</option>
+        <option>God worshiping</option>
+        <option>Beast worshiping</option>
+    </cult>
+    <cult  parent_chance="10" name="chaotic">
+        <option>Violence worshiping</option>
+        <option>Chaos worshiping</option>
+        <option>God worshiping</option>
+    </cult>
+    <cult  parent_chance="10" name="good">
+        <option>god worshiping</option>
+        <option>dragon worshiping</option>
+    </cult>
+    <trade parent_chance="30" name="magicitems">
+        <option>powerful</option>
+        <option>dangerous</option>
+        <option>evil</option>
+        <option>intelligent</option>
+        <option>expensive</option>
+        <option>trinkets</option>
+    </trade>
+    <trade parent_chance="20" name="slaves">
+        <option>sex</option>
+        <option>labor</option>
+        <option>gladiator</option>
+    </trade>
+    <trade parent_chance="40" name="food">
+        <option>rare</option>
+        <option>spices</option>
+    </trade>
+    <trade parent_chance="40" name="gems">
+        <option>money laundering</option>
+        <option>stolen goods</option>
+        <option>magical components</option>
+    </trade>
+    <trade parent_chance="40" name="art">
+        <option>stolen</option>
+        <option>rare</option>
+    </trade>
+
+</blackmarket>
+<secondarypower>
+    <plot>Openly assists</plot>
+    <plot>Openly denounces</plot>
+    <plot>quietly denounces</plot>
+    <plot>quietly assists</plot>
+    
+    <power type="dragon">
+        <subplot> secretly wishes to enslave the city</subplot>
+        <subplot> secretly watches out for the common man</subplot>
+        <subplot> secretly despises the current leader</subplot>
+        <subplot> secretly agrees with the current leader</subplot>
+    </power>
+    <power type="wizard">
+        <subplot> secretly attempts to attain immortality</subplot>
+        <subplot> secretly watches out for the common man</subplot>
+        <subplot> secretly despises the current leader</subplot>
+        <subplot> secretly agrees with the current leader</subplot>
+    </power>
+    <power type="Merchant guild">
+        <subplot> secretly attempts to buy influence</subplot>
+        <subplot> secretly attempts to sell influence</subplot>
+        <subplot> secretly push for war with trade adversary</subplot>
+        <subplot> secretly push to open trade with adversary</subplot>
+    </power>
+    <power type="elected representatives">
+        <subplot> secretly uses position for personal gain</subplot>
+        <subplot> is secretly power hungry</subplot>
+    </power>
+    <power type="advisor">
+        <subplot> secretly pulls strings for personal gain</subplot>
+        <subplot> secretly blackmails leading power</subplot>
+        <subplot></subplot>
+    </power>
+    <power type="prophet">
+        <subplot> attempting to lead religious revolution</subplot>
+        <subplot> denies legitimacy of leading power </subplot>
+        <subplot> calls for genocide of a minority </subplot>
+    </power>
+    <power type="thieves guild">
+        <subplot> moving to assert black market dominance</subplot>
+        <subplot> secretly backs leading power for leiniency</subplot>
+    </power>
+    <power type="Ex-Blacksmith">
+        <subplot> secretly plots to overthrow the corrupt leadership for personal gain</subplot>
+        <subplot> is being blackmailed by a guild</subplot>
+        <subplot> is pulling strings with a trade adversary</subplot>
+    </power>
+    <power type="barbarian">
+        <subplot> plots to start war with adversarys city</subplot>
+        <subplot> is being manipulated by the denizens of the city whore house</subplot>
+        <subplot> rules whatever he can with a violent and iron fist</subplot>
+    </power>
+    <power type="recluse">
+        <subplot> pulls strings for personal gain</subplot>
+        <subplot> is really a feind in disguise</subplot>
+        <subplot> is really a angel in disguise</subplot>
+        <subplot> is a feind that secretly looks out for the good of the common man</subplot>
+        <subplot> is an angel that seeks to enslave the common man</subplot>
+    </power>
+</secondarypower>
+
+
+<behavioraltraits>
+    <trait type="Accusatory"        > </trait>
+    <trait type="Apologetic"        > </trait>
+    <trait type="Attentive"         > </trait>
+    <trait type="Authoritarian"     > </trait>
+    <trait type="Avuncular"         > </trait>
+    <trait type="Battle-ready"      > </trait>
+    <trait type="Beligerent"        > </trait>
+    <trait type="Blinkered"         > </trait>
+    <trait type="Boastful"		    > </trait>
+    <trait type="Cautious"		    > </trait>
+    <trait type="Chatty"		    > </trait>
+    <trait type="Chronicler"	    > </trait>
+    <trait type="Clumsy"		    > </trait>
+    <trait type="Conspirational"    > </trait>
+    <trait type="Contrarian"	    > </trait>
+    <trait type="Cowed"		        > </trait>
+    <trait type="Deluded"		    > </trait>
+    <trait type="Despises Locals"   > </trait>
+    <trait type="Drunkard"		    > </trait>
+    <trait type="Easily offended"	> </trait>
+    <trait type="Efficient"		    > </trait>
+    <trait type="Egotistical"		> </trait>
+    <trait type="Embittered"		> </trait>
+    <trait type="Ensorcelled"		> </trait>
+    <trait type="Exhausted"		    > </trait>
+    <trait type="Fashion Concious"	> </trait>
+    <trait type="Fatalistic"		> </trait>
+    <trait type="Flirtatious"		> </trait>
+    <trait type="Forbidding"		> </trait>
+    <trait type="Forgetful"		    > </trait>
+    <trait type="Giddy"		        > </trait>
+    <trait type="Glutton"		    > </trait>
+    <trait type="Gosipy"		    > </trait>
+    <trait type="Greedy"		    > </trait>
+    <trait type="Gregarious"		> </trait>
+    <trait type="Grieving"		    > </trait>
+    <trait type="Guarded"		    > </trait>
+    <trait type="Guilty"		    > </trait>
+    <trait type="Harried"		    > </trait>
+    <trait type="Healthy"		    > </trait>
+    <trait type="Helpful"		    > </trait>
+    <trait type="Hero-worshi[ing"	> </trait>
+    <trait type="Homesick"		    > </trait>
+    <trait type="Idealistic"		> </trait>
+    <trait type="Impatient"		    > </trait>
+    <trait type="Importunate"		> </trait>
+    <trait type="Imposter"		    > </trait>
+    <trait type="Insecure"		    > </trait>
+    <trait type="Intimidating"		> </trait>
+    <trait type="Jaded"		        > </trait>
+    <trait type="Jester"		    > </trait>
+    <trait type="Jolly"		        > </trait>
+    <trait type="Laconic"		    > </trait>
+    <trait type="Lonely"		    > </trait>
+    <trait type="Loud"		        > </trait>
+    <trait type="Lovelorn"		    > </trait>
+    <trait type="Loal"		        > </trait>
+    <trait type="Machiavellian"		> </trait>
+    <trait type="Matchmaker"		> </trait>
+    <trait type="Melancholy"		> </trait>
+    <trait type="Mocking"		    > </trait>
+    <trait type="Mopey"		        > </trait>
+    <trait type="Nervous"		    > </trait>
+    <trait type="Nihilistic"		> </trait>
+    <trait type="Nosy"		        > </trait>
+    <trait type="Oracular"		    > </trait>
+    <trait type="Outlandish"		> </trait>
+    <trait type="Pacifistic"		> </trait>
+    <trait type="Patriotic"		    > </trait>
+    <trait type="Patronizing"		> </trait>
+    <trait type="Picayune"		    > </trait>
+    <trait type="Pious"		        > </trait>
+    <trait type="Prejudiced"		> </trait>
+    <trait type="Public spirited"	> </trait>
+    <trait type="Puckish"		    > </trait>
+    <trait type="Pugnacious"		> </trait>
+    <trait type="Quiet"		        > </trait>
+    <trait type="Revellious"		> </trait>
+    <trait type="Resentful"		    > </trait>
+    <trait type="Scattered"		    > </trait>
+    <trait type="Self-obsessed"		> </trait>
+    <trait type="Servile"		    > </trait>
+    <trait type="Shifty"		    > </trait>
+    <trait type="Sick"		        > </trait>
+    <trait type="Skeptical"		    > </trait>
+    <trait type="Smitten"		    > </trait>
+    <trait type="Smug"		        > </trait>
+    <trait type="Solemn"		    > </trait>
+    <trait type="Spiteful"		    > </trait>
+    <trait type="Territorial"		> </trait>
+    <trait type="Thick"		        > </trait>
+    <trait type="Treasure-seeking"	> </trait>
+    <trait type="Trivial"		    > </trait>
+    <trait type="Trusting"		    > </trait>
+    <trait type="Unreliable"		> </trait>
+    <trait type="Vengeful"		    > </trait>
+    <trait type="Violent"		    > </trait>
+    <trait type="Gambler"		    > </trait>
+    <trait type="Worrywart"		    > </trait>
+    <trait type="Xenophobic"		> </trait>
+
+</behavioraltraits>
+
+<orderalignment >
+    <option name="chaotic" min='1' max='33'>
+		<adjective>unreliable</adjective>
+		<adjective>irresponsible</adjective>
+		<adjective>questionable</adjective>
+		<adjective>unpredictable</adjective>
+		<adjective>deranged</adjective>
+		<adjective>incoherent</adjective>
+		<adjective>vague</adjective>
+    </option>
+    <option name="neutral" min='34' max='66'>
+		<adjective>bystanding</adjective>
+		<adjective>detached</adjective>
+		<adjective>non-participating</adjective>
+		<adjective>non-conformist</adjective>
+		<adjective>unflappable</adjective>
+    </option>
+    <option name="lawful" min='67' max='100'>
+		<adjective>reliable</adjective>
+		<adjective>dependable</adjective>
+		<adjective>sure</adjective>
+		<adjective>legitimized</adjective>
+		<adjective>official</adjective>
+		<adjective>organized</adjective>
+		<adjective>dutiful</adjective>
+		<adjective>honorable</adjective>
+    </option>
+</orderalignment>
+<moralalignment >
+    <option name="evil" min='1' max='33'>
+        <adjective>untrustworthy</adjective>
+        <adjective>mean</adjective>
+        <adjective>venomous</adjective>
+        <adjective>corrupt</adjective>
+        <adjective>repungent</adjective>
+        <adjective>unpleasant</adjective>
+        <adjective>opportunistic</adjective>
+        <adjective>villianous</adjective>
+        <adjective>nefarious</adjective>
+    </option>
+    <option name="neutral" min='34' max='66'>
+        <adjective>unconcerned</adjective>
+        <adjective>undecided</adjective>
+        <adjective>uncomitted</adjective>
+        <adjective>cold</adjective>
+        <adjective>indifferent</adjective>
+    </option>
+    <option name="good" min='67' max='100'>
+        <adjective>well meaning</adjective>
+        <adjective>trustworty</adjective>
+        <adjective>nice</adjective>
+        <adjective>ethical</adjective>
+        <adjective>honest</adjective>
+        <adjective>praise-worthy</adjective>
+        <adjective>virtuous</adjective>
+    </option>
+</moralalignment>
+
+<landmarkdesc chance="50">
+	<option>nondescript</option>
+	<option>curious</option>
+	<option>small</option>
+	<option>large</option>
+	<option>huge</option>
+	<option>massive</option>
+</landmarkdesc>
+
+
+
+<classes>
+    <class name="Commoner"      min="0"  max="23"  max_level="4d4" />
+    <class name="Expert"        min="24" max="35"  max_level="3d4" />
+    <class name="Warrior"       min="36" max="43"  max_level="2d4" />
+    <class name="Rogue"         min="44" max="49"  max_level="1d8" />
+    <class name="Barbarian"     min="50" max="52"  max_level="1d4" />
+    <class name="Monk"          min="53" max="55"  max_level="1d4" />
+    <class name="Bard"          min="56" max="59"  max_level="1d6" />
+    <class name="Cleric"        min="60" max="65"  max_level="1d6" />
+    <class name="Druid"         min="66" max="69"  max_level="1d6" />
+    <class name="Fighter"       min="70" max="77"  max_level="1d8" />
+    <class name="Adept"         min="78" max="83"  max_level="1d6" />
+    <class name="Sorcorer"      min="84" max="87"  max_level="1d4" />
+    <class name="Wizard"        min="88" max="91"  max_level="1d4" />
+    <class name="Aristocrat"    min="92" max="95"  max_level="1d4" />
+    <class name="Paladin"       min="96" max="97"  max_level="1d3" />
+    <class name="Ranger"        min="98" max="99"  max_level="1d3" />
+</classes>
+<events chance="65" limit="2">
+<!-- 
+
+Upon entering the city, you find <type><event>.
+-->
+    <event name="festival">
+            <option>a religious</option>
+            <option>a trade</option>
+    </event>
+    <event name="celebration">
+            <option>a birthday</option> 
+            <option>a wedding</option> 
+            <option>a new year</option> 
+            <option>a holiday</option> 
+    </event>
+    
+    <event name="trial">
+            <option>a murder</option>
+            <option>a witch</option>
+            <option>a spy</option>
+            <option>a briggand</option>
+            <option>a thief</option>
+    </event>
+    <event name="war">
+            <option>preparations for</option>
+            <option>on ongoing</option>
+            <option>the aftermath of a</option> 
+    </event>
+    <event name="raid">
+            <option> the midst of a</option>
+            <option> the aftermath of a</option>
+    </event>
+    <event name="hunt">
+            <option> lost child</option>
+            <option> wandering monster</option>
+            <option> escaped prisoner</option>
+            <option> food</option>
+    </event>
+    <event name="disaster">
+            <option>tornado</option>
+            <option>flood</option>
+            <option>earthquake</option>
+            <option>massive storm</option>
+            <option>tarrasque</option>
+            <option>drought</option>
+    </event>
+
+</events>
+
+
+
 
 <housing>
     <house_type name="small hut" value="5gp" max="5" />
@@ -1240,7 +1238,6 @@ Upon entering the city, you find <type><event>.
     <house_type name="small poor house" value="20gp" max="6" />
     <house_type name="medium poor house" value="40gp" max="8" />
     <house_type name="large poor house" value="60gp" max="12" />
-
 
 </housing>
 </data>
