@@ -3,67 +3,78 @@
 <data>
 <debug >1</debug>
 
-<races>
-<!-- modifiers:  good <34, evil >67;lawful <34, chaotic >67       
-     positive mod pushes population towards lawful or good
-     negative mod pushes population towards chaotic or evil
--->
-    <race type="basic" moral_mod="0"  order_mod="5"  >Human</race>
-	<race type="basic" moral_mod="5"  order_mod="0"  >Halfling</race>
-	<race type="basic" moral_mod="5"  order_mod="-5" >Elf</race>
-	<race type="basic" moral_mod="5"  order_mod="5"  >Dwarf</race>
-	<race type="basic" moral_mod="5"  order_mod="5"  >Gnome</race>
-    
-	<race type="basic" moral_mod="5"   order_mod="-1"  >Half-elf</race>
-	<race type="basic" moral_mod="-2"  order_mod="-2"  >Half-orc</race>
-	<race type="basic" moral_mod="0"   order_mod="-5"  >Gullydwarf</race>
+<moral>
+    <option min="1"   max="33"  >evil</option>
+    <option min="34"  max="66"  >neutral</option>
+    <option min="67"  max="100" >good</option>
+</moral>
 
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Goblin</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Orc</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Ogre</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Bugbear</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Hobgoblin</race>
-	<race type="monster" moral_mod="0"   order_mod="0"    >Lizardfolk</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Kobold</race>
-	<race type="monster" moral_mod="0"   order_mod="-5"   >Minotaur</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Troglodyte</race>
-	<race type="monster" moral_mod="-5"  order_mod="-5"   >Lycanthropes</race>
-	<race type="monster" moral_mod="-5"  order_mod="10"   >Mindflayer</race>
-	<race type="monster" moral_mod="-10" order_mod="-10"  >Drow</race>
+<order>
+    <option min="1"   max="33"  >chaotic</option>
+    <option min="34"  max="66"  >neutral</option>
+    <option min="67"  max="100" >lawful</option>
+</order>
+
+<races>
+    <race type="basic"   moral_mod="0"   magic_mod="0"  order_mod="5"  >Human</race>
+	<race type="basic"   moral_mod="5"   magic_mod="-3" order_mod="0"  >Halfling</race>
+	<race type="basic"   moral_mod="5"   magic_mod="5"  order_mod="-5" >Elf</race>
+	<race type="basic"   moral_mod="5"   magic_mod="-5" order_mod="5"  >Dwarf</race>
+	<race type="basic"   moral_mod="5"   magic_mod="3"  order_mod="5"  >Gnome</race>
+    
+	<race type="basic"   moral_mod="5"   magic_mod="0"  order_mod="-1"  >Half-elf</race>
+	<race type="basic"   moral_mod="-2"  magic_mod="-3" order_mod="-2"  >Half-orc</race>
+	<race type="basic"   moral_mod="0"   magic_mod="-5" order_mod="-5"  >Gullydwarf</race>
+
+	<race type="monster" moral_mod="-5"  magic_mod="+1" order_mod="-5"  >Goblin</race>
+	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Orc</race>
+	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Ogre</race>
+	<race type="monster" moral_mod="-5"  magic_mod="-2" order_mod="-5"  >Bugbear</race>
+	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Hobgoblin</race>
+	<race type="monster" moral_mod="0"   magic_mod="0"  order_mod="0"   >Lizardfolk</race>
+	<race type="monster" moral_mod="-5"  magic_mod="1"  order_mod="-5"  >Kobold</race>
+	<race type="monster" moral_mod="0"   magic_mod="-4" order_mod="-5"  >Minotaur</race>
+	<race type="monster" moral_mod="-5"  magic_mod="0"  order_mod="-5"  >Troglodyte</race>
+	<race type="monster" moral_mod="-5"  magic_mod="0"  order_mod="-5"  >Lycanthropes</race>
+	<race type="monster" moral_mod="-5"  magic_mod="5"  order_mod="10"  >Mindflayer</race>
+	<race type="monster" moral_mod="-10" magic_mod="10" order_mod="-10" >Drow</race>
 </races>
 
 <time>
-    <option time="06:00" public_modifier="0"  bar_mod="0" >daybreak</option>
-    <option time="10:00" public_modifier="2"  bar_mod="2" >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4" >noon</option>
+    <option time="06:00" public_modifier="0"  bar_mod="0"  >daybreak</option>
+    <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
+    <option time="12:00" public_modifier="4"  bar_mod="4"  >noon</option>
     <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
     <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
     <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
     <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10"  >after dark</option>
+    <option time="10:00" public_modifier="-1" bar_mod="10" >after dark</option>
     <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
     <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
     <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
 </time>
 
-<cities>
-    <city size="Commune"    modifier="-5"   min="1"   max="4"   minpop="11"     maxpop="20"     gplimit="50"/>          
-    <city size="Settlement" modifier="-4"   min="5"   max="9"   minpop="21"     maxpop="100"    gplimit="100"/>         
-    <city size="Hamlet"     modifier="-3"   min="10"  max="29"  minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="Village"    modifier="-2"   min="30"  max="44"  minpop="501"    maxpop="1000"   gplimit="1000"/>     
-    <city size="Small Town" modifier="-1"   min="45"  max="59"  minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="Town"       modifier="0"    min="60"  max="69"  minpop="1501"   maxpop="3500"   gplimit="3500"/>     
-    <city size="Large Town" modifier="+3"   min="70"  max="79"  minpop="3501"   maxpop="5000"   gplimit="5000"/>     
-    <city size="Small City" modifier="+6"   min="80"  max="89"  minpop="5001"   maxpop="8000"   gplimit="8000"/>     
-    <city size="City"       modifier="+4"   min="90"  max="94"  minpop="8001"   maxpop="15000"  gplimit="15000"/>    
-    <city size="Large City" modifier="+6"   min="95"  max="99"  minpop="15001"  maxpop="25000"  gplimit="25000"/>    
-    <city size="Capitol"    modifier="+12"  min="100" max="100" minpop="25001"  maxpop="50000"  gplimit="50000"/>    
-</cities>
+<citysize>
+    <city size="Commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
+    <city size="Settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
+    <city size="Hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="Village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
+    <city size="Small Town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="Town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="Large Town"   min="70"  max="79"  size_modifier="+3"   minpop="3501"   maxpop="5000"   gplimit="5000"/>     
+    <city size="Small City"   min="80"  max="89"  size_modifier="+6"   minpop="5001"   maxpop="8000"   gplimit="8000"/>     
+    <city size="City"         min="90"  max="94"  size_modifier="+4"   minpop="8001"   maxpop="15000"  gplimit="15000"/>    
+    <city size="Large City"   min="95"  max="99"  size_modifier="+6"   minpop="15001"  maxpop="25000"  gplimit="25000"/>    
+    <city size="Capitol"      min="100" max="100" size_modifier="+12"  minpop="25001"  maxpop="50000"  gplimit="50000"/>    
+</citysize>
 
-<citytype type="basic"      min="1" max="10"   base_pop="basic"                    >normal city</citytype>
-<citytype type="basic+1"    min="11" max="80"  base_pop="basic"   add_other="true" >fairly normal city with one monsterous race</citytype>
-<citytype type="monsterous" min="81" max="95"  base_pop="monster"                  >monsterous city</citytype>
-<citytype type="random"     min="96" max="100" base_pop=""                         >open city</citytype>
+<citytype>
+    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal city</city>
+    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal city with one monsterous race</city>
+    <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous city</city>
+    <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous city with one basic race</city>
+    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >open city</city>
+</citytype>
 
 
 
@@ -175,15 +186,15 @@
     <govt type="clergy"/>
     <govt type="cult leader"/>
 </govtypes>
-<blackmarket ><!--
-<location>On the coast
-        <landmarks chance="10">cliff</landmarks>
-        <landmarks chance="10">lighthouse</landmarks>
-        <landmarks chance="10">rivermouth</landmarks>
-        <landmarks chance="20">beach</landmarks>
-        <landmarks chance="10">jagged rocks</landmarks>
-</location>-->
+<landmarks>
+        <option min="40" max="50">cliff       </option>
+        <option min="51" max="60">lighthouse  </option>
+        <option min="61" max="70">rivermouth  </option>
+        <option min="71" max="90">beach       </option>
+        <option min="91" max="100">jagged rocks</option>
+</landmarks>
 
+<blackmarket>
     <guild parent_chance="62" name="Thieves" >
         <option>good</option>
         <option>neutral</option>
@@ -574,31 +585,31 @@
 </classes>
 <poptypes>
 
-	<pop type="Secluded" minpop="11">
-	    <percentage>98</percentage>
-	    <percentage>1</percentage>
-	</pop>
-	<pop type="Split" minpop="11">
-	    <percentage>49</percentage>
-	    <percentage>48</percentage>
-	    <percentage>2</percentage>
-	</pop>
-	<pop type="Assimilated" minpop="20">
-	    <percentage>70</percentage> 
-	    <percentage>16</percentage>
-	    <percentage>8</percentage>
-	    <percentage>3</percentage>
-	    <percentage>2</percentage>
-	</pop>
-	<pop type="Unified" minpop="30" >
-	    <percentage>35</percentage> 
-	    <percentage>29</percentage> 
-	    <percentage>19</percentage> 
-	    <percentage>11</percentage> 
-	    <percentage>3</percentage>  
-	    <percentage>1</percentage>  
-	    <percentage>1</percentage>  
-	</pop>
+	<population type="Secluded" min='1' max='35' >
+	    <option percent="98" />
+	    <option percent="1" />
+	</population>
+	<population type="Split" min='35' max='65' >
+	    <option percent="49" />
+	    <option percent="48" />
+	    <option percent="2" />
+	</population>
+	<population type="Assimilated" min='66' max='85' >
+	    <option percent="70" />
+	    <option percent="16" />
+	    <option percent="8" />
+	    <option percent="3" />
+	    <option percent="2" />
+	</population>
+	<population type="Unified" min='86' max='100' >
+	    <option percent="35" />
+	    <option percent="29" />
+	    <option percent="19" />
+	    <option percent="11" />
+	    <option percent="3" />
+	    <option percent="1" />
+	    <option percent="1" />
+	</population>
 </poptypes>
 
 <weather>
@@ -727,24 +738,24 @@ Upon entering the city, you find <type><event>.
 
 
 <prefix chance="20">
-	<word>Alta</word>
-	<word>Bad</word>
-	<word>Big</word>
-	<word>East</word>
-	<word>Grand</word>
-	<word>Great</word>
-	<word>Holy</word>
-	<word>Lower</word>
-	<word>Mount</word>
-	<word>New</word>
-	<word>North</word>
-	<word>Old</word>
-	<word>Port</word>
-	<word>Saint</word>
-	<word>San</word>
-	<word>South</word>
-	<word>Upper</word>
-	<word>West</word>
+	<word>Alta </word>
+	<word>Bad </word>
+	<word>Big </word>
+	<word>East </word>
+	<word>Grand </word>
+	<word>Great </word>
+	<word>Holy </word>
+	<word>Lower </word>
+	<word>Mount </word>
+	<word>New </word>
+	<word>North </word>
+	<word>Old </word>
+	<word>Port </word>
+	<word>Saint </word>
+	<word>San </word>
+	<word>South </word>
+	<word>Upper </word>
+	<word>West </word>
 </prefix>
 
 <root>
@@ -1191,39 +1202,39 @@ Upon entering the city, you find <type><event>.
 	<word>wood</word>
 </suffix>
 <trailer chance="20">
-	<word>Acres</word>
-	<word>Bay</word>
-	<word>Bend</word>
-	<word>Bluff</word>
-	<word>Branch</word>
-	<word>Center</word>
-	<word>City</word>
-	<word>Creek</word>
-	<word>Crest</word>
-	<word>Gate</word>
-	<word>Falls</word>
-	<word>Ferry</word>
-	<word>Green</word>
-	<word>Grove</word>
-	<word>Heights</word>
-	<word>Hold</word>
-	<word>Junction</word>
-	<word>Keep</word>
-	<word>Lock</word>
-	<word>Mills</word>
-	<word>Mound</word>
-	<word>Park</word>
-	<word>Pines</word>
-	<word>Point</word>
-	<word>Rapids</word>
-	<word>Ridge</word>
-	<word>River</word>
-	<word>Rock</word>
-	<word>Springs</word>
-	<word>Stone</word>
-	<word>Town</word>
-	<word>Vista</word>
-	<word>Vernon</word>
+	<word> Acres</word>
+	<word> Bay</word>
+	<word> Bend</word>
+	<word> Bluff</word>
+	<word> Branch</word>
+	<word> Center</word>
+	<word> City</word>
+	<word> Creek</word>
+	<word> Crest</word>
+	<word> Gate</word>
+	<word> Falls</word>
+	<word> Ferry</word>
+	<word> Green</word>
+	<word> Grove</word>
+	<word> Heights</word>
+	<word> Hold</word>
+	<word> Junction</word>
+	<word> Keep</word>
+	<word> Lock</word>
+	<word> Mills</word>
+	<word> Mound</word>
+	<word> Park</word>
+	<word> Pines</word>
+	<word> Point</word>
+	<word> Rapids</word>
+	<word> Ridge</word>
+	<word> River</word>
+	<word> Rock</word>
+	<word> Springs</word>
+	<word> Stone</word>
+	<word> Town</word>
+	<word> Vista</word>
+	<word> Vernon</word>
 </trailer>
 
 

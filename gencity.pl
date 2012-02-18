@@ -1,39 +1,250 @@
 #!/usr/bin/perl -w
-# This code is a cluster fuck.
 #
 use strict;
 use Data::Dumper;
 use XML::Simple;
-
+use List::Util 'shuffle';
+use POSIX;
 my $xml = new XML::Simple;
 
-my $xml_data = $xml->XMLin(   "data.xml", ForceContent => 1, ForceArray  =>[]  );
+our $xml_data = $xml->XMLin(   "data.xml", ForceContent => 1, ForceArray  =>[]  );
 
 
+my $city= build_city();
+
+print Dumper $city;
+
+
+exit;
+
+####################################################################
+####################################################################
+####################################################################
+####################################################################
+
+
+sub build_city{
+    my $city;
 #Steps for generating a random city
+
 # - Generate a size                               check
+    $city=set_city_size($city);
+# - Generate a type                               check
+    $city=set_city_type($city);
 # - Generate a name                               check
+    $city=generate_city_name($city);
 # - Generate a pop_type                           check
-# - Generate races                                check
-# - generate city pop-breakdown                   check
-# - generate magic disposition
-# - generate Magic level (weighted for mages & dispostion)
-# - generate city alignment
-# - generate gov't type
+    $city=generate_pop_type($city);
+# - Generate pop counts                           check
+    $city=generate_pop_counts($city);
+# - Generate assign races                         check
+    $city=assign_races($city);
+# - Generate ethics                               check
+    $city=generate_city_ethics($city);
+# - generate gov't type                           check
+    $city=set_govt_type($city);
+# - generate gov't type                           check
+#    $city=select_landmark($city);
+#Time
+#taverns
+#laws
 # - generate religions(weighted by race)
 # - generate terrain
 # - generate street condition
 # - generate natural resources
 # - generate map
+    return $city;
+}
 
+sub set_govt_type{
+    my ($city)=@_;
+    my @govtypes=@{$xml_data->{'govtypes'}->{'govt'}};
+    $city->{'govtype'}=  $govtypes[ &d(scalar @govtypes)-1]->{'type'};
+    return $city;
+}
+
+sub assign_races{
+    my ($city)=@_;
+    my $base_pop=$city->{'base_pop'};
+    my @available_races=get_races($base_pop);
+
+    my @races;
+
+    for my $race ( @{ $city->{'races'} }  ){
+        my $newrace= pop(@available_races);
+        $race= add_race_features($race,$newrace);
+        push @races, $race;
+    }
+
+    if ( $city->{'add_other'} eq 'true' ){
+        my $newrace=get_other_race($base_pop);
+        my $replace_race=&d(scalar @races )-1;
+        $races[$replace_race]=add_race_features($races[$replace_race],$newrace);
+    }
+
+    $city->{'races'}=\@races;
+
+    return $city;
+}
+
+sub add_race_features{
+    my ($race,$newrace)=@_;
+    $race->{'name'}=$newrace->{'content'};
+    $race->{'order_mod'}=$newrace->{'order_mod'};
+    $race->{'moral_mod'}=$newrace->{'moral_mod'};
+    $race->{'magic_mod'}=$newrace->{'magic_mod'};
+    $race->{'type'}=$newrace->{'type'};
+    return $race;
+}
+
+
+sub get_other_race{
+    my ($type)=@_;
+    my @races;
+    for my $race (shuffle @{ $xml_data->{'races'}->{'race'} } ){
+        if ($race->{'type'} ne $type){
+            return $race;
+        }
+    }
+}
+sub get_races {
+    my ($type,)=@_;
+    my @races;
+    for my $race (@{ $xml_data->{'races'}->{'race'} } ){
+        if (  $race->{'type'} eq $type     or      $type eq 'mixed'  ){
+            push @races, $race;
+        }
+    }
+    return shuffle @races;
+}
+
+sub generate_pop_counts{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $population=$city->{'population'};
+    my $newpop=0;
+    my @races;
+    for my $race ( reverse @{ $city->{'races'} }){
+        $race->{'count'}=ceil($population*$race->{'percent'}/100);
+        $newpop+=$race->{'count'};
+        push @races, $race;
+    }
+    $city->{'population'}=$newpop;
+    $city->{'races'}=\@races;
+    my @newraces;
+    for my $race ( @{ $city->{'races'} }  ){
+        $race->{'percent'}=int($race->{'count'}/$newpop*1000)/10;
+        push @newraces, $race;
+    }
+    $city->{'races'}=\@newraces;
+    return $city;
+}
+
+sub generate_pop_type{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $poptype=select_from_array($roll, $xml_data->{'poptypes'}->{'population'});
+    $city->{'poptype'}=$poptype->{'type'};
+    $city->{'races'}= $poptype->{'option'};
+    return $city;
+}
+
+sub generate_city_ethics{
+    my ($city)=@_;
+    $city->{'moral'}=&d(100);
+    $city->{'order'}=&d(100);
+    $city->{'magic'}=&d(100);
+    for my $race ( @{$city->{'races'}} ){
+        $city->{'moral'} += $race->{'moral_mod'};
+        $city->{'order'} += $race->{'order_mod'};
+        $city->{'magic'} += $race->{'magic_mod'};
+    }
+    if ($city->{'moral'} < 1   ){$city->{'moral'}=1;  }
+    if ($city->{'moral'} > 100 ){$city->{'moral'}=100;}
+    if ($city->{'order'} < 1   ){$city->{'order'}=1;  }
+    if ($city->{'order'} > 100 ){$city->{'order'}=100;}
+    if ($city->{'magic'} < 1   ){$city->{'magic'}=1;  }
+    if ($city->{'magic'} > 100 ){$city->{'magic'}=100;}
+    return $city;
+}
+
+
+
+sub set_city_size{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $citysize=select_from_array($roll, $xml_data->{'citysize'}->{'city'});
+    $city->{'size'}          = $citysize->{'size'};
+    $city->{'gplimit'}       = $citysize->{'gplimit'};
+    $city->{'population'}    = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'}  );
+    $city->{'size_modifier'} = $citysize->{'size_modifier'};
+    
+    return $city;
+}
+
+sub set_city_type{
+    my ($city)=@_;
+    my $roll= &d(100);
+    my $citytype=select_from_array($roll, $xml_data->{'citytype'}->{'city'});
+    $city->{'base_pop'}    = $citytype->{'base_pop'};
+    $city->{'type'}        = $citytype->{'type'};
+    $city->{'description'} = $citytype->{'content'};
+    $city->{'add_other'} = $citytype->{'add_other'};
+    return $city;
+}
+
+#####################################
+# Generate a City Name
+# There is the prefix, the root, the suffix and the trailer
+sub generate_city_name{
+    my ($city)=@_;
+    my $cityname;
+    for my $partname ( qw( prefix root suffix trailer )  ){
+        my $part=$xml_data->{$partname};
+
+        # If no chance is set, or d100 is greater than the chance, add the part.
+        if ( !defined $part->{'chance'} or $part->{'chance'} > &d(100) ){
+            my @words=@{  $part->{'word'}  };
+            my $wordcount=scalar(@words);
+            
+            $cityname.=  @words[  &d($wordcount)  ]->{'content'};
+        }
+    }
+    $city->{'name'}=$cityname;
+    return $city;
+}
+#######################################################
+# Presuming $items is an array of xml object with 
+# a min and max property, select the one that $roll 
+# best fits.
+sub select_from_array{
+    my ($roll,$items)=@_;
+    my $selected_item=$items->[0];
+    for my $item (@$items){
+        if (  $item->{'min'} <= $roll  and  $item->{'max'} >= $roll  ){
+            $selected_item=$item;
+            last;
+        }
+    }
+    return $selected_item;
+}
+
+sub d{
+#    d as in 1d6
+    my ($die)=@_;
+    return int(rand($die));
+}
+
+
+####################################################################
+####################################################################
 
 
 # This will be our city datastructure.
-my $city=&generate_city_type();
+#my $city=&generate_city_type();
 
 
 # generate a city name...
-$city->{'name'}= generate_city_name();
 
 # calculate population size
 my $population=int rand($city->{'maxpop'} - $city->{'minpop'})+$city->{'minpop'};
@@ -54,8 +265,6 @@ my $city_type=&d(100);
 
 # break down percentages of races in the city.
 my $pop_breakdown=&generate_population($poptype,$city,$city_type);
-$city->{'moral'}=&d(100);
-$city->{'order'}=&d(100);
 
 $city=&racial_ethic_skew($city,$poptype);
 
@@ -100,175 +309,6 @@ sub generate_govtype{
 #    return Dumper($xml_data->{'govtypes'}) ;
 }
 
-
-
-
-
-sub determine_city_type{
-    my ($val)=@_;
-    my $type;
-    # bad coding on my part here- these values are hardcoded 
-    # here and in generate_population().
-    if ($val<70){
-        $type="a normal";
-    }elsif($val<80){
-        $type="a fairly normal";
-    }elsif($val<95){
-        $type="a monsterous";
-    }else{
-        $type="an open";
-    }
-    return $type;
-}
-
-sub moral_type{
-    use vars qw ($xml_data);
-    my ($val)=@_;
-    if ($val < $xml_data->{'moralalignment'}->{'neutralmin'}){
-        return "evil";
-    }elsif($val > $xml_data->{'moralalignment'}->{'neutralmax'}){
-        return "good";
-    }else{
-        return "neutral";
-    }
-}
-sub order_type{
-    use vars qw ($xml_data);
-    my ($val)=@_;
-    if ($val < $xml_data->{'orderalignment'}->{'neutralmin'}){
-        return "chaotic";
-    }elsif($val > $xml_data->{'orderalignment'}->{'neutralmax'}){
-        return "lawful";
-    }else{
-        return "neutral";
-    }
-}
-
-
-
-sub generate_population{
-    use vars qw ( $xml_data );
-    my ($poptype,$city,$city_type)=@_;
-    my $num_of_races=scalar(@{$poptype->{'percentage'}});
-    
-    my @basic_races;
-    my @uncommon_races;
-    my @monster_races;
-    for my $race (@{$xml_data->{'races'}{'race'}}){
-        if ($race->{'type'} eq 'basic'){
-            push @basic_races,$race;
-        }
-    }
-    for my $race (@{$xml_data->{'races'}{'race'}}){
-        if ($race->{'type'} eq 'uncommon'){
-            push @uncommon_races,$race;
-        }
-    }
-    for my $race (@{$xml_data->{'races'}{'race'}}){
-        if ($race->{'type'} eq 'monster'){
-            push @monster_races,$race;
-        }
-    }
-
-#    print "pop rand is $city_type\n"; 
-    if ($city_type < 70){# normal basic city
-    #-------------------------------
-        print "a basic city\n";
-#        print "tabulate common races\n";
-        for (my $i=0; $i<2; $i++) {
-        
-            my $temp_race=$basic_races[ int(rand(@basic_races))  ];
-            
-            $poptype->{'percentage'}[$i]->{'race'}=$temp_race;
-#            print "selected common race: $temp_race->{'content'}\n";
-            @basic_races = grep( {$temp_race ne $_}  @basic_races); 
-        }
-
-#        print "tabulate uncommon races\n";
-#        print "=====================\n";
-        
-        push (@basic_races,@uncommon_races);
-#        print "races left:\n";
-#        print Dumper(@basic_races);
-        
-        for (my $i=0; $i<$num_of_races-2; $i++) {
-            my $temp_race=$basic_races[ int(rand(@basic_races))  ];
-#            print "selected uncommon race: $temp_race->{'content'}\n";
-            
-            $poptype->{'percentage'}[$i+2]->{'race'}=$temp_race;
-            @basic_races = grep( {$temp_race ne $_}  @basic_races); 
-        }
-#       print Dumper($poptype);
-#       exit;
-       
-    }elsif($city_type < 80){# one monster race
-     #------------------------------
-        print "a basic city plus one monster\n";
-#        print "tabulate common races\n";
-        for (my $i=0; $i<2; $i++) {
-        
-            my $temp_race=$basic_races[ int(rand(@basic_races))  ];
-            
-            $poptype->{'percentage'}[$i]->{'race'}=$temp_race;
-            @basic_races = grep( {$temp_race ne $_}  @basic_races); 
-        }
-
-#        print "tabulate uncommon races\n";
-        
-        push @basic_races,@uncommon_races;
-        for (my $i=0; $i<$num_of_races-3; $i++) {
-            my $temp_race=$basic_races[ int(rand(@basic_races))  ];
-            
-            $poptype->{'percentage'}[$i+2]->{'race'}=$temp_race;
-            @basic_races = grep( {$temp_race ne $_}  @basic_races); 
-        }
-
-        $poptype->{'percentage'}[@{$poptype->{'percentage'}}-1]->{'race'}=$monster_races[int rand (@monster_races)];
-     
-    
-    }elsif($city_type < 95){#monster city
-     #------------------------------
-        print "a monster city \n";
-        for (my $i=0; $i<$num_of_races; $i++) {
-            my $temp_race=$monster_races[int rand (@monster_races)];
-            $poptype->{'percentage'}[$i]->{'race'}=$temp_race;
-            @monster_races = grep( {$temp_race ne $_}  @monster_races); 
-        }
-    
-    }else{ # completely random
-     #------------------------------
-        print "a random city \n";
-        my @all_races=( @basic_races, @monster_races);
-#        print "tabulate common races\n";
-        for (my $i=0; $i<2; $i++) {
-        
-            my $temp_race=$all_races[ int(rand(@all_races))  ];
-#            print "selected common race: ".$temp_race->{'content'}."\n";
-            $poptype->{'percentage'}[$i]->{'race'}=$temp_race;
-            @all_races = grep( {$temp_race ne $_}  @all_races); 
-        }
-
-#        print "tabulate uncommon races\n";
-        
-        push @all_races,@uncommon_races;
-        for (my $i=0; $i<$num_of_races-2; $i++) {
-            my $temp_race=$all_races[ int(rand(@all_races))  ];
-#            print "selected common race: $temp_race->{'content'}\n";
-            
-            $poptype->{'percentage'}[$i+2]->{'race'}=$temp_race;
-            @all_races = grep( {$temp_race ne $_}  @all_races); 
-        }
-
-    }
-
-#########################
-# calculate city alignment drift
-
-
-    return $poptype;
-#    exit;
-}
-
 sub racial_ethic_skew{
     my ($city,$poptype)=@_;
     for my $race (@{ $poptype->{'percentage'} }){
@@ -281,48 +321,10 @@ sub racial_ethic_skew{
 }
 
 
-sub d{
-#    d as in 1d6
-    my ($die)=@_;
-    return int(rand($die));
-}
-
-
-
-sub generate_city_name{
-    #####################################
-    # Generate a City Name
-    # There is the prefix, the root, the suffix and the trailer
-    # 
-    use vars qw ( $xml_data );
-    my $cityname="";
-    if ($xml_data->{'prefix'}->{'chance'} > &d(100)){
-        $cityname.= $xml_data->{'prefix'}->{'word'}[  &d(scalar(@{  $xml_data->{'prefix'}->{'word'}  }))    ]->{'content'}." ";
-    }
-    $cityname.= $xml_data->{'root'}->{'word'}[  &d(scalar(@{  $xml_data->{'root'}->{'word'}  }) )]->{'content'};
-    $cityname.= $xml_data->{'suffix'}->{'word'}[ &d(scalar(@{  $xml_data->{'suffix'}->{'word'}  }) )]->{'content'};
-    if ($xml_data->{'trailer'}->{'chance'} > &d(100)){
-        $cityname.= " ".$xml_data->{'trailer'}->{'word'}[    &d(scalar(@{  $xml_data->{'trailer'}->{'word'}  }) )]->{'content'};
-    }
-
-    return $cityname;
-}
 
 
 
 
 
-sub generate_city_type{
-    # TODO: there has to be a cleaner way to implement this...
-    use vars qw ( $xml_data );
-    my $city_type_roll= &d(100);
-    my $city;
-    for my $citytype (@{ $xml_data->{'cities'}->{'city'} }){
-        if (    $citytype->{'min'} <=  $city_type_roll   and    $citytype->{'max'} >= $city_type_roll  ){
-            $city=$citytype;
-            last;
-        }
-    }
-    return $city;
 
-}
+
