@@ -43,22 +43,47 @@ sub build_city{
     $city=generate_city_ethics($city);
 # - generate gov't type                           check
     $city=set_govt_type($city);
-# - generate landmark                             check
-    $city=set_landmark($city);
+# - generate location                             check
+    $city=set_location($city);
+# - generate weather                             check
+    $city=set_weather($city);
 # - generate time                                 check
     $city=set_time($city);
 # - generate laws                                 check
     $city=set_laws($city);
 #taverns
-#laws
 # - generate religions(weighted by race)
-# - generate terrain
 # - generate street condition
 # - generate natural resources
 # - generate map
     return $city;
 }
+sub set_weather{
+    my ($city)=@_;
+    $city->{'weather'}={};
+    if ($city->{'location'} ne 'Underground'){
+        $city->{'weather'}->{'forecast'}=rand_from_array(@{ $xml_data->{'weather'}->{'forecast'}->{'option'} } )->{'content'};
+        $city->{'weather'}->{'clouds'}=rand_from_array(@{ $xml_data->{'weather'}->{'clouds'}->{'option'} } )->{'content'};
+        if (&d(100) < $xml_data->{'weather'}->{'precip'}->{'chance'}){
+            my $precip=rand_from_array(@{ $xml_data->{'weather'}->{'precip'}->{'option'} } );
+            if ( defined $precip->{'type'} ){
+                $city->{'weather'}->{'precip'}=rand_from_array(@{ $precip->{'type'} } )->{'content'};
+            }
+            $city->{'weather'}->{'precip'}.=$precip->{'description'};
+        }
+        if (&d(100) < $xml_data->{'weather'}->{'thunder'}->{'chance'}){
+            $city->{'weather'}->{'thunder'}=rand_from_array(@{ $xml_data->{'weather'}->{'thunder'}->{'option'} } )->{'content'};
+        }
+    }
+    for my $facet (qw( temp air wind) ) {
+        $city->{'weather'}->{$facet}=rand_from_array(@{ $xml_data->{'weather'}->{$facet}->{'option'} } )->{'content'};
+    }
+print Dumper $city;
+exit;
 
+
+    return $city;
+}
 sub set_laws {
     my ($city)=@_;
     $city->{'laws'}={};
@@ -77,26 +102,35 @@ sub set_time{
     return $city;
 }
 
+sub set_location{
+    my ($city)=@_;
+    my $location= rand_from_array(@{ $xml_data->{'locations'}->{'location'}});
+    print Dumper $location;
+    $city->{'location'}=$location->{'description'};
+    $city->{'landmarks'}=set_landmarks($location);
+    return $city;
+}
+
+sub set_landmarks{
+    my($location)=@_;
+    my @landmarks;
+    foreach my $landmark (@{$location->{landmarks}}){
+        if (&d(100) < $landmark->{'chance'} ){
+            push @landmarks, $landmark->{'content'}
+        }
+    }
+    return \@landmarks;
+}
 sub rand_from_array {
     my (@array)=@_;
     my $index=int(rand(scalar @array));
     return $array[$index];
 }
 
-sub set_landmark{
-    my ($city)=@_;
-    my $roll= &d(100);
-    my $landmark=roll_from_array($roll, $xml_data->{'landmarks'}->{'option'});
-    $city->{'landmark'}=$landmark->{'content'};
-    return $city;
-}
-
-
 
 sub set_govt_type{
     my ($city)=@_;
-    my @govtypes=@{$xml_data->{'govtypes'}->{'govt'}};
-    $city->{'govtype'}=  $govtypes[ &d(scalar @govtypes)-1]->{'type'};
+    $city->{'govtype'}= rand_from_array(@{$xml_data->{'govtypes'}->{'govt'}});
     return $city;
 }
 

@@ -186,15 +186,6 @@
     <govt type="clergy"/>
     <govt type="cult leader"/>
 </govtypes>
-<landmarks>
-        <option min="1"  max="40" >none</option>
-        <option min="41" max="50" >cliff</option>
-        <option min="51" max="60" >lighthouse</option>
-        <option min="61" max="70" >river</option>
-        <option min="71" max="80" >rivermouth</option>
-        <option min="81" max="90" >beach</option>
-        <option min="91" max="100">jagged rocks</option>
-</landmarks>
 
 <blackmarket>
     <guild parent_chance="62" name="Thieves" >
@@ -425,8 +416,24 @@
 
 </behavioraltraits>
 
-<orderalignment neutralmin="34" neutralmax="67">
-    <descriptor name="lawful">
+<orderalignment >
+    <option name="chaotic" min='1' max='33'>
+		<adjective>unreliable</adjective>
+		<adjective>irresponsible</adjective>
+		<adjective>questionable</adjective>
+		<adjective>unpredictable</adjective>
+		<adjective>deranged</adjective>
+		<adjective>incoherent</adjective>
+		<adjective>vague</adjective>
+    </option>
+    <option name="neutral" min='34' max='66'>
+		<adjective>bystanding</adjective>
+		<adjective>detached</adjective>
+		<adjective>non-participating</adjective>
+		<adjective>non-conformist</adjective>
+		<adjective>unflappable</adjective>
+    </option>
+    <option name="lawful" min='67' max='100'>
 		<adjective>reliable</adjective>
 		<adjective>dependable</adjective>
 		<adjective>sure</adjective>
@@ -435,42 +442,10 @@
 		<adjective>organized</adjective>
 		<adjective>dutiful</adjective>
 		<adjective>honorable</adjective>
-    </descriptor>
-    <descriptor name="neutral">
-		<adjective>bystanding</adjective>
-		<adjective>detached</adjective>
-		<adjective>non-participating</adjective>
-		<adjective>non-conformist</adjective>
-		<adjective>unflappable</adjective>
-    </descriptor>
-    <descriptor name="chaotic">
-		<adjective>unreliable</adjective>
-		<adjective>irresponsible</adjective>
-		<adjective>questionable</adjective>
-		<adjective>unpredictable</adjective>
-		<adjective>deranged</adjective>
-		<adjective>incoherent</adjective>
-		<adjective>vague</adjective>
-    </descriptor>
+    </option>
 </orderalignment>
-<moralalignment neutralmin="34" neutralmax="67">
-    <descriptor name="good">
-        <adjective>well meaning</adjective>
-        <adjective>trustworty</adjective>
-        <adjective>nice</adjective>
-        <adjective>ethical</adjective>
-        <adjective>honest</adjective>
-        <adjective>praise-worthy</adjective>
-        <adjective>virtuous</adjective>
-    </descriptor>
-    <descriptor name="neutral">
-        <adjective>unconcerned</adjective>
-        <adjective>undecided</adjective>
-        <adjective>uncomitted</adjective>
-        <adjective>cold</adjective>
-        <adjective>indifferent</adjective>
-    </descriptor>
-    <descriptor name="evil">
+<moralalignment >
+    <option name="evil" min='1' max='33'>
         <adjective>untrustworthy</adjective>
         <adjective>mean</adjective>
         <adjective>venomous</adjective>
@@ -480,7 +455,23 @@
         <adjective>opportunistic</adjective>
         <adjective>villianous</adjective>
         <adjective>nefarious</adjective>
-    </descriptor>
+    </option>
+    <option name="neutral" min='34' max='66'>
+        <adjective>unconcerned</adjective>
+        <adjective>undecided</adjective>
+        <adjective>uncomitted</adjective>
+        <adjective>cold</adjective>
+        <adjective>indifferent</adjective>
+    </option>
+    <option name="good" min='67' max='100'>
+        <adjective>well meaning</adjective>
+        <adjective>trustworty</adjective>
+        <adjective>nice</adjective>
+        <adjective>ethical</adjective>
+        <adjective>honest</adjective>
+        <adjective>praise-worthy</adjective>
+        <adjective>virtuous</adjective>
+    </option>
 </moralalignment>
 
 <landmarkdesc chance="50">
@@ -492,19 +483,20 @@
 	<option>massive</option>
 </landmarkdesc>
 
-
-<location>On the coast
+<locations>
+    <location description="On the coast">
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">lighthouse</landmarks>
+        <landmarks chance="10">river</landmarks>
         <landmarks chance="10">rivermouth</landmarks>
         <landmarks chance="20">beach</landmarks>
         <landmarks chance="10">jagged rocks</landmarks>
-</location>
-<location>Near a river
+    </location>
+    <location description="Near a river">
         <landmarks chance="10">marsh</landmarks>
         <landmarks chance="10">irrigation ditches</landmarks>
-</location>
-<location>On a hill
+    </location>
+    <location description="On a hill">
         <landmarks chance="20">rocky outcroppings</landmarks>
         <landmarks chance="10">stand of trees</landmarks>
         <landmarks chance="10">river</landmarks>
@@ -513,24 +505,24 @@
         <landmarks chance="10">plains</landmarks>
         <landmarks chance="10">crossroads</landmarks>
         <landmarks chance="10">mountain range</landmarks>
-</location>
-<location>in a basin
+    </location>
+    <location description="in a basin">
         <landmarks chance="20">stream</landmarks>
         <landmarks chance="10">overlooking cliffs</landmarks>
         <landmarks chance="10">boulders</landmarks>
         <landmarks chance="10">orchard</landmarks>
-</location>
-<location>On a Plateau
+    </location>
+    <location description="On a Plateau">
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="20">jagged cliffs</landmarks>
-</location>
-<location>In the mountains
+    </location>
+    <location description="In the mountains">
         <landmarks chance="10">valley</landmarks>
         <landmarks chance="10">summit</landmarks>
         <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">frostline</landmarks>
-</location>
-<location weather="none">Underground
+    </location>
+    <location description="Underground">
         <landmarks chance="10">underground lake</landmarks>
         <landmarks chance="10">waterfall</landmarks>
         <landmarks chance="10">stream</landmarks>
@@ -538,8 +530,8 @@
         <landmarks chance="10">cavern</landmarks>
         <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">faultline</landmarks>
-</location>
-<location>In the Plains
+    </location>
+    <location description="In the Plains">
         <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">sea</landmarks>
         <landmarks chance="10">ocean</landmarks>
@@ -549,21 +541,21 @@
         <landmarks chance="10">swamp</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">farmland</landmarks>
-</location>
-<location>In the Desert
+    </location>
+    <location description="In the Desert">
         <landmarks chance="10">oasis</landmarks>
         <landmarks chance="10">sand dunes</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">stone formations</landmarks>
-</location>
-<location>In the forest
+    </location>
+    <location description="In the forest">
         <landmarks chance="10">oak grove</landmarks>
         <landmarks chance="10">spruce grove</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">caves</landmarks>
         <landmarks chance="10">clearing</landmarks>
-</location>
-
+    </location>
+</locations>
 
 
 
@@ -620,11 +612,11 @@ The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind.
 (It's <precip> when you approach( and thundering <thunder>).)
 (Cloud cover is <clouds>.)
 -->
-    <forcast chance="20">
+    <forecast>
         <option>clear</option>
         <option>overcast</option>
         <option>stormy</option>
-    </forcast>
+    </forecast>
 
     <temp>
 	    <option>freezing</option>
@@ -654,30 +646,30 @@ The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind.
     </wind>
 
     <precip chance="65"> 
-	    <option>sprinkling</option>
-	    <option>misty</option>
-	    <option>foggy
+	    <option description="sprinkling"></option>
+	    <option description="misty"></option>
+	    <option description="foggy">
 	        <type> </type>
-	        <type>lightly</type>
-	        <type>moderately</type>
-	        <type>heavily</type>
+	        <type>lightly </type>
+	        <type>moderately </type>
+	        <type>heavily </type>
 	    </option>
-	    <option>raining
+	    <option description="raining">
 	        <type></type>
-	        <type>lightly</type>
-	        <type>moderately</type>
-	        <type>heavily</type>
+	        <type>lightly </type>
+	        <type>moderately </type>
+	        <type>heavily </type>
 	    </option>
-	    <option>downpouring</option>
-	    <option>sleet</option>
-	    <option>hail
-	        <type>raining small (pea size)</type>
-	        <type>raining medium (walnut size)</type>
-	        <type>raining large (orange size)</type>
+	    <option description="downpouring"></option>
+	    <option description="sleet"></option>
+	    <option description="hail">
+	        <type>raining small (pea size) </type>
+	        <type>raining medium (walnut size) </type>
+	        <type>raining large (orange size) </type>
 	    </option>
 	    
     </precip>
-    <thunder> 
+    <thunder chance='20'> 
         <option>in the distance</option>
         <option>nearby</option>
         <option>and lighting</option>
