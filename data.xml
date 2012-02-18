@@ -779,6 +779,49 @@
 	<word> Vernon</word>
 </trailer>
 
+<events chance="65" limit="2">
+    <event type="festival">
+        <option>a religious </option>
+        <option>a trade </option>
+    </event>
+    <event type="celebration">
+        <option>a birthday </option> 
+        <option>a wedding </option> 
+        <option>a new year </option> 
+        <option>a holiday </option> 
+        <option>a victory </option> 
+    </event>
+    <event type="trial">
+        <option>a murder </option>
+        <option>a witch </option>
+        <option>a spy </option>
+        <option>a briggand </option>
+        <option>a thief </option>
+    </event>
+    <event type="war">
+        <option>preparations for </option>
+        <option>on ongoing </option>
+        <option>the aftermath of a </option> 
+    </event>
+    <event type="raid">
+        <option>the midst of a </option>
+        <option>the aftermath of a </option>
+    </event>
+    <event type="hunt">
+        <option>lost child </option>
+        <option>wandering monster </option>
+        <option>escaped prisoner </option>
+        <option>food </option>
+    </event>
+    <event type="disaster">
+        <option>tornado </option>
+        <option>flood </option>
+        <option>earthquake </option>
+        <option>massive storm </option>
+        <option>tarrasque </option>
+        <option>drought </option>
+    </event>
+</events>
 
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
@@ -863,69 +906,69 @@
     </entertainment>
 </taverns>
 
-<blackmarket>
-    <guild parent_chance="62" name="Thieves" >
+<markets>
+    <option type="guild" chance="62" marketname="Thieves" secret="100">
         <option>good</option>
         <option>neutral</option>
         <option>evil</option>
-    </guild>
-    <guild parent_chance="30" name="Mages">
+    </option>
+    <option type="guild" chance="30" marketname="Mages" secret="10">
         <option>powerhungry</option>
         <option>good</option>
         <option>neutral</option>
         <option>evil</option>
         <option>chaotic</option>
-    </guild>
-    <guild parent_chance="10" name="Assassin"/>
-    <guild parent_chance="30" name="Adventurers">
+    </option>
+    <option type="guild" chance="10" marketname="Assassin" secret="100"/>
+    <option type="guild" chance="30" marketname="Adventurers" secret="50">
         <option>good</option>
         <option>neutral</option>
         <option>evil</option>
-    </guild>
-    <cult  parent_chance="20" name="evil">
+    </option>
+    <option type="cult"  chance="20" marketname="evil" secret="80">
         <option>Death worshiping</option>
         <option>Dragon worshiping</option>
         <option>Undead worshiping</option>
         <option>God worshiping</option>
         <option>Beast worshiping</option>
-    </cult>
-    <cult  parent_chance="10" name="chaotic">
+    </option>
+    <option type="cult"  chance="10" marketname="chaotic" secret="90">
         <option>Violence worshiping</option>
         <option>Chaos worshiping</option>
         <option>God worshiping</option>
-    </cult>
-    <cult  parent_chance="10" name="good">
+    </option>
+    <option type="cult"  chance="10" marketname="good" secret="80">
         <option>god worshiping</option>
         <option>dragon worshiping</option>
-    </cult>
-    <trade parent_chance="30" name="magicitems">
+    </option>
+    <option type="trade" chance="30" marketname="magic items" secret="60">
         <option>powerful</option>
         <option>dangerous</option>
         <option>evil</option>
         <option>intelligent</option>
         <option>expensive</option>
         <option>trinkets</option>
-    </trade>
-    <trade parent_chance="20" name="slaves">
+    </option>
+    <option type="trade" chance="20" marketname="slaves" secret="70">
         <option>sex</option>
         <option>labor</option>
         <option>gladiator</option>
-    </trade>
-    <trade parent_chance="40" name="food">
+    </option>
+    <option type="trade" chance="40" marketname="food" secret="10">
         <option>rare</option>
         <option>spices</option>
-    </trade>
-    <trade parent_chance="40" name="gems">
+    </option>
+    <option type="trade" chance="40" marketname="gem" secret="20">
         <option>money laundering</option>
         <option>stolen goods</option>
         <option>magical components</option>
-    </trade>
-    <trade parent_chance="40" name="art">
+    </option>
+    <option type="trade" chance="40" marketname="art" secret="100">
         <option>stolen</option>
         <option>rare</option>
-    </trade>
+    </option>
+</markets>
 
-</blackmarket>
 <secondarypower>
     <plot>Openly assists</plot>
     <plot>Openly denounces</plot>
@@ -1179,54 +1222,6 @@
     <class name="Paladin"       min="96" max="97"  max_level="1d3" />
     <class name="Ranger"        min="98" max="99"  max_level="1d3" />
 </classes>
-<events chance="65" limit="2">
-<!-- 
-
-Upon entering the city, you find <type><event>.
--->
-    <event name="festival">
-            <option>a religious</option>
-            <option>a trade</option>
-    </event>
-    <event name="celebration">
-            <option>a birthday</option> 
-            <option>a wedding</option> 
-            <option>a new year</option> 
-            <option>a holiday</option> 
-    </event>
-    
-    <event name="trial">
-            <option>a murder</option>
-            <option>a witch</option>
-            <option>a spy</option>
-            <option>a briggand</option>
-            <option>a thief</option>
-    </event>
-    <event name="war">
-            <option>preparations for</option>
-            <option>on ongoing</option>
-            <option>the aftermath of a</option> 
-    </event>
-    <event name="raid">
-            <option> the midst of a</option>
-            <option> the aftermath of a</option>
-    </event>
-    <event name="hunt">
-            <option> lost child</option>
-            <option> wandering monster</option>
-            <option> escaped prisoner</option>
-            <option> food</option>
-    </event>
-    <event name="disaster">
-            <option>tornado</option>
-            <option>flood</option>
-            <option>earthquake</option>
-            <option>massive storm</option>
-            <option>tarrasque</option>
-            <option>drought</option>
-    </event>
-
-</events>
 
 
 
