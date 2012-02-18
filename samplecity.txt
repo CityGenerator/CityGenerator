@@ -1,0 +1,70 @@
+
+
+Willis is a Capitol with a population of 26463. The population is integrated
+with the following statistics:
+    36% humans 
+    25% gnomes
+    15% halflings
+    10% dwarves
+     7% elves
+     3% half-elf
+     2% half-orc
+     
+     Government
+     The city is ruled by a lawful good Prince (100,100). The population
+     itself is neutral good (66,85). The secondary power in the city is a
+     neutral good wizard who openly assists the leading power.
+
+     Underground:
+     The underground has little sway in the city. it consists of a black
+     market and a thieves guild.
+
+     Race relations:
+     Descrimination is heavily discouraged. Humans are the most populace race,
+     but hold no special power. Half-orcs are a minority, but are not openly
+     descriminated. Slavery is illegal for residents.
+    
+     Location:
+     Willis is a port city, and a major trade route between 6 cities.
+     cities. It is bordered by the Squshwoods to the north, the Sea of Alltrae 
+     to the east, the mountains of Warren in the East and the Spiney Mountains 
+     and Great Forest in the south.
+
+     Economy:
+     Willis has a thriving economy since it is on a major traderoute. They
+     produce a steady supply of trade goods and magic items to the surrounding
+     areas.  There is one large market that is open to the public.
+
+     Entertainment:
+     The hub of entertainment in Willis is a large arena. There are several
+     Inns. Brothels are frowned upon, but do exist.
+
+     Religion: The City only allows religions of good, lawful, neutral or
+     chaotic alignment, and is home to the following  churches: pelor,
+     herbyr, deneir, mystra, tempus and oghma.  There are reports of the
+     following underground churches: bane, talos, hextor.
+
+     Neighbors:
+        - Grunin is a dwarvern city to the north. They are allies in war and
+        trade partners. They welcome visitors.
+        - Felnt is a gnomish town to the southeast.  Felnt is isolated and
+          does not trade much. They are neutral towards visitors.
+        - Vine Ring Forest is an elven village to the southeast. They are 
+          isolated and do not trade much. They are openly hostile to visitors.
+        - Q'al Tahn is a kender village to the southeast. They are allies in 
+          war, but do not trade much. They welcome visitors.
+        - Morten is a small human town to the south. They are allies in war
+          and trading partners. They welcome visitors.
+
+
+On approach:
+
+    Weather Conditions: warm, sunny. Rained yesterday.
+
+    Events: A Trade festival appears to be in full swing
+
+
+
+
+
+          

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<!-- WARNING! this file is auto-generated. any non-tag additions (such as comments) will be
+     lost if you place them here. DO NOT COMMENT OUT LINES!!! -->
+
+<city_base name="Taldun" population="561">
+  <blackmarket name="guild">
+    <Adventurers>good</Adventurers>
+    <Mages>powerhungry</Mages>
+    <Thieves>neutral</Thieves>
+  </blackmarket>
+  <location>On a Plateau
+          </location>
+  <populationtype minpop="20" type="Assimilated">
+    <percentage count="394">70.23<race moral_mod="0" order_mod="5" type="basic">Human</race>
+    </percentage>
+    <percentage count="90">16.04<race moral_mod="5" order_mod="5" type="basic">Gnome</race>
+    </percentage>
+    <percentage count="45">8.02<race moral_mod="-5" order_mod="-5" type="monster">Lycanthropes</race>
+    </percentage>
+    <percentage count="16">2.85<race moral_mod="-2" order_mod="-2" type="basic">Half-orc</race>
+    </percentage>
+    <percentage count="11">1.96<race moral_mod="5" order_mod="5" type="basic">Dwarf</race>
+    </percentage>
+  </populationtype>
+  <size gplimit="1000" max="44" maxpop="1000" min="30" minpop="501" modifier="-2" size="Village" />
+  <taverns pop_count="11">
+    <class cost_mod="4">rich</class>
+    <condition cost_mod="-0">decent</condition>
+    <entertainment name="gambling">Blackjack</entertainment>
+    <legal> Law harasses</legal>
+    <names name="adj">Ugly</names>
+    <names name="noun">Wench</names>
+    <names name="trailer">Roadhouse</names>
+    <pop_breakdown count="1" percentage="9" race="Human" />
+    <pop_breakdown count="3" percentage="27.2" race="Gnome" />
+    <pop_breakdown count="2" percentage="18.1" race="Lycanthropes" />
+    <pop_breakdown count="2" percentage="18.1" race="Half-orc" />
+    <pop_breakdown count="3" percentage="27.2" race="Dwarf" />
+    <size cost_mod="0" pop_mod="2">regular</size>
+    <violence>loser thrown out</violence>
+  </taverns>
+  <time bar_mod="0" public_modifier="-2" time="04:00">early morning</time>
+  <type add_other="true" base_pop="basic" max="80" min="11" type="basic+1">fairly normal city with one monsterous race</type>
+  <weather name="air">thin</weather>
+  <weather name="clouds">dark</weather>
+  <weather name="temp">mild</weather>
+  <weather name="thunder">and lighting</weather>
+  <weather name="wind">strong</weather>
+</city_base>
+<!-- last saved 1329520999-->

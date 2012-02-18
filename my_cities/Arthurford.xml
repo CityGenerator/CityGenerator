@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<!-- WARNING! this file is auto-generated. any non-tag additions (such as comments) will be
+     lost if you place them here. DO NOT COMMENT OUT LINES!!! -->
+
+<city_base name="Arthurford" population="330">
+  <blackmarket name="cult">
+    <good>dragon worshiping</good>
+  </blackmarket>
+  <blackmarket name="guild">
+    <Adventurers>evil</Adventurers>
+  </blackmarket>
+  <blackmarket name="trade">
+    <food>rare</food>
+  </blackmarket>
+  <events name="disaster">flood</events>
+  <events name="raid"> the aftermath of a</events>
+  <location>In the Desert
+          </location>
+  <populationtype minpop="11" type="Secluded">
+    <percentage count="324">98.18<race moral_mod="5" order_mod="5" type="basic">Gnome</race>
+    </percentage>
+    <percentage count="3">0.9<race moral_mod="-10" order_mod="-10" type="monster">Drow</race>
+    </percentage>
+  </populationtype>
+  <size gplimit="500" max="29" maxpop="500" min="10" minpop="101" modifier="-3" size="Hamlet" />
+  <taverns pop_count="25">
+    <class cost_mod="-0">middle</class>
+    <condition cost_mod="2">upscale</condition>
+    <entertainment></entertainment>
+    <legal> Law harasses</legal>
+    <names name="adj">Broken</names>
+    <names name="noun">Maiden</names>
+    <pop_breakdown count="4" percentage="16" race="Gnome" />
+    <pop_breakdown count="21" percentage="84" race="Drow" />
+    <size cost_mod="0" pop_mod="2">regular</size>
+    <violence>not tolerated</violence>
+  </taverns>
+  <time bar_mod="8" public_modifier="0" time="08:00">nightfall</time>
+  <type add_other="true" base_pop="basic" max="80" min="11" type="basic+1">fairly normal city with one monsterous race</type>
+  <weather name="air">fresh</weather>
+  <weather name="clouds">thick</weather>
+  <weather name="temp">warm</weather>
+  <weather name="thunder">and lighting</weather>
+  <weather name="wind">soft</weather>
+</city_base>
+<!-- last saved 1329520903-->

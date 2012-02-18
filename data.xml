@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+<debug >1</debug>
+
+<races>
+<!-- modifiers:  good <34, evil >67;lawful <34, chaotic >67       
+     positive mod pushes population towards lawful or good
+     negative mod pushes population towards chaotic or evil
+-->
+    <race type="basic" moral_mod="0"  order_mod="5"  >Human</race>
+	<race type="basic" moral_mod="5"  order_mod="0"  >Halfling</race>
+	<race type="basic" moral_mod="5"  order_mod="-5" >Elf</race>
+	<race type="basic" moral_mod="5"  order_mod="5"  >Dwarf</race>
+	<race type="basic" moral_mod="5"  order_mod="5"  >Gnome</race>
+    
+	<race type="basic" moral_mod="5"   order_mod="-1"  >Half-elf</race>
+	<race type="basic" moral_mod="-2"  order_mod="-2"  >Half-orc</race>
+	<race type="basic" moral_mod="0"   order_mod="-5"  >Gullydwarf</race>
+
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Goblin</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Orc</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Ogre</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Bugbear</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Hobgoblin</race>
+	<race type="monster" moral_mod="0"   order_mod="0"    >Lizardfolk</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Kobold</race>
+	<race type="monster" moral_mod="0"   order_mod="-5"   >Minotaur</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Troglodyte</race>
+	<race type="monster" moral_mod="-5"  order_mod="-5"   >Lycanthropes</race>
+	<race type="monster" moral_mod="-5"  order_mod="10"   >Mindflayer</race>
+	<race type="monster" moral_mod="-10" order_mod="-10"  >Drow</race>
+</races>
+
+<time>
+    <option time="06:00" public_modifier="0"  bar_mod="0" >daybreak</option>
+    <option time="10:00" public_modifier="2"  bar_mod="2" >mid-morning</option>
+    <option time="12:00" public_modifier="4"  bar_mod="4" >noon</option>
+    <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
+    <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
+    <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
+    <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
+    <option time="10:00" public_modifier="-1" bar_mod="10"  >after dark</option>
+    <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
+    <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
+    <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
+</time>
+
+<cities>
+    <city size="Commune"    modifier="-5"   min="1"   max="4"   minpop="11"     maxpop="20"     gplimit="50"/>          
+    <city size="Settlement" modifier="-4"   min="5"   max="9"   minpop="21"     maxpop="100"    gplimit="100"/>         
+    <city size="Hamlet"     modifier="-3"   min="10"  max="29"  minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="Village"    modifier="-2"   min="30"  max="44"  minpop="501"    maxpop="1000"   gplimit="1000"/>     
+    <city size="Small Town" modifier="-1"   min="45"  max="59"  minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="Town"       modifier="0"    min="60"  max="69"  minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="Large Town" modifier="+3"   min="70"  max="79"  minpop="3501"   maxpop="5000"   gplimit="5000"/>     
+    <city size="Small City" modifier="+6"   min="80"  max="89"  minpop="5001"   maxpop="8000"   gplimit="8000"/>     
+    <city size="City"       modifier="+4"   min="90"  max="94"  minpop="8001"   maxpop="15000"  gplimit="15000"/>    
+    <city size="Large City" modifier="+6"   min="95"  max="99"  minpop="15001"  maxpop="25000"  gplimit="25000"/>    
+    <city size="Capitol"    modifier="+12"  min="100" max="100" minpop="25001"  maxpop="50000"  gplimit="50000"/>    
+</cities>
+
+<citytype type="basic"      min="1" max="10"   base_pop="basic"                    >normal city</citytype>
+<citytype type="basic+1"    min="11" max="80"  base_pop="basic"   add_other="true" >fairly normal city with one monsterous race</citytype>
+<citytype type="monsterous" min="81" max="95"  base_pop="monster"                  >monsterous city</citytype>
+<citytype type="random"     min="96" max="100" base_pop=""                         >open city</citytype>
+
+
+
+<taverns>
+    <names>
+        <adj>
+            <option>Drunken</option>    
+            <option>Angry</option>    
+            <option>Green</option>    
+            <option>Black</option>    
+            <option>White</option>    
+            <option>Blue</option>    
+            <option>Wet</option>    
+            <option>Ugly</option>    
+            <option>Prancing</option>    
+            <option>Hungry</option>    
+            <option>Empty</option>    
+            <option>Salty</option>    
+            <option>Greasy</option>    
+            <option>Broken</option>    
+        </adj>
+        <noun>
+		    <option>Dragon</option>    
+		    <option>Maiden</option>    
+		    <option>Wench</option>    
+		    <option>Bucket</option>    
+		    <option>Dog</option>    
+		    <option>Frog</option>    
+		    <option>Bag</option>    
+		    <option>Crate</option>    
+		    <option>Monkey</option>    
+		    <option>Princess</option>    
+		    <option>Pony</option>    
+		    <option>Giant</option>    
+		    <option>Urchin</option>    
+        </noun>
+        <trailer chance="30">
+            <option>Saloon</option>
+            <option>Inn</option>
+            <option>Bar</option>
+            <option>Tavern</option>
+            <option>Alehouse</option>
+            <option>Roadhouse</option>
+            <option>Taproom</option>
+        </trailer>
+    </names>
+    <size cost_mod="2"  pop_mod="1" >small</size>
+    <size cost_mod="0"  pop_mod="2" >regular</size>
+    <size cost_mod="-2" pop_mod="4" >large</size>
+    <condition cost_mod="-3">filthy</condition>
+    <condition cost_mod="-2">Dirty</condition>
+    <condition cost_mod="-0">decent</condition>
+    <condition cost_mod="2" >upscale</condition>
+    <violence >
+        <option>ignored</option>
+        <option>loser thrown out</option>
+        <option>not tolerated</option>
+    </violence>
+    <class>
+        <option cost_mod="-4">poor</option>
+        <option cost_mod="-2">low</option>
+        <option cost_mod="-0">middle</option>
+        <option cost_mod="2" >high</option>
+        <option cost_mod="4" >rich</option>
+    </class>
+    <legal>
+        <option> Law harasses</option>
+        <option> Law ignores</option>
+        <option> Law accepts bribes</option>
+        <option> Law protects</option>
+    </legal>
+    <entertainment limit="2">
+        <whores> </whores>
+        <gambling> 
+            <option>Poker</option>
+            <option>Craps</option>
+            <option>Blackjack</option>
+            <option>Dice</option>
+        </gambling>
+    </entertainment>
+</taverns>
+<laws>
+   <enforcement>
+        <option>is loose</option>
+        <option>is strict</option>
+        <option>can be bribed</option>
+   </enforcement>
+   <punishment>
+        <option>Fines</option>
+        <option>Community Service</option>
+        <option>Eye for an Eye</option>
+        <option>Mob Rule</option>
+        <option>Hard Labor</option>
+   </punishment>
+   <trial>
+        <option> no trial</option>
+        <option> magistrate</option>
+        <option> council</option>
+        <option> jurors</option>
+   </trial>   
+
+</laws>
+<govtypes>
+    <govt type="council"/>
+    <govt type="ruling wizard"/>
+    <govt type="despot"/>
+    <govt type="royalty"/>
+    <govt type="dictator"/>
+    <govt type="clergy"/>
+    <govt type="cult leader"/>
+</govtypes>
+<blackmarket ><!--
+<location>On the coast
+        <landmarks chance="10">cliff</landmarks>
+        <landmarks chance="10">lighthouse</landmarks>
+        <landmarks chance="10">rivermouth</landmarks>
+        <landmarks chance="20">beach</landmarks>
+        <landmarks chance="10">jagged rocks</landmarks>
+</location>-->
+
+    <guild parent_chance="62" name="Thieves" >
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </guild>
+    <guild parent_chance="30" name="Mages">
+        <option>powerhungry</option>
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+        <option>chaotic</option>
+    </guild>
+    <guild parent_chance="10" name="Assassin"/>
+    <guild parent_chance="30" name="Adventurers">
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </guild>
+    <cult  parent_chance="20" name="evil">
+        <option>Death worshiping</option>
+        <option>Dragon worshiping</option>
+        <option>Undead worshiping</option>
+        <option>god worshiping</option>
+        <option>beast worshiping</option>
+    </cult>
+    <cult  parent_chance="10" name="chaotic">
+        <option>violence worshiping</option>
+        <option>chaos worshiping</option>
+        <option>god worshiping</option>
+    </cult>
+    <cult  parent_chance="10" name="good">
+        <option>god worshiping</option>
+        <option>dragon worshiping</option>
+    </cult>
+    <trade parent_chance="30" name="magicitems">
+        <option>powerful</option>
+        <option>dangerous</option>
+        <option>evil</option>
+        <option>intelligent</option>
+        <option>expensive</option>
+        <option>trinkets</option>
+    </trade>
+    <trade parent_chance="20" name="slaves">
+        <option>sex</option>
+        <option>labor</option>
+        <option>gladiator</option>
+    </trade>
+    <trade parent_chance="40" name="food">
+        <option>rare</option>
+        <option>spices</option>
+    </trade>
+    <trade parent_chance="40" name="gems">
+        <option>money laundering</option>
+        <option>stolen goods</option>
+        <option>magical components</option>
+    </trade>
+    <trade parent_chance="40" name="art">
+        <option>stolen</option>
+        <option>rare</option>
+    </trade>
+
+</blackmarket>
+<secondarypower>
+    <plot>Openly assists</plot>
+    <plot>Openly denounces</plot>
+    <plot>quietly denounces</plot>
+    <plot>quietly assists</plot>
+    
+    <power type="dragon">
+        <subplot> secretly wishes to enslave the city</subplot>
+        <subplot> secretly watches out for the common man</subplot>
+        <subplot> secretly despises the current leader</subplot>
+        <subplot> secretly agrees with the current leader</subplot>
+    </power>
+    <power type="wizard">
+        <subplot> secretly attempts to attain immortality</subplot>
+        <subplot> secretly watches out for the common man</subplot>
+        <subplot> secretly despises the current leader</subplot>
+        <subplot> secretly agrees with the current leader</subplot>
+    </power>
+    <power type="Merchant guild">
+        <subplot> secretly attempts to buy influence</subplot>
+        <subplot> secretly attempts to sell influence</subplot>
+        <subplot> secretly push for war with trade adversary</subplot>
+        <subplot> secretly push to open trade with adversary</subplot>
+    </power>
+    <power type="elected representatives">
+        <subplot> secretly uses position for personal gain</subplot>
+        <subplot> is secretly power hungry</subplot>
+    </power>
+    <power type="advisor">
+        <subplot> secretly pulls strings for personal gain</subplot>
+        <subplot> secretly blackmails leading power</subplot>
+        <subplot></subplot>
+    </power>
+    <power type="prophet">
+        <subplot> attempting to lead religious revolution</subplot>
+        <subplot> denies legitimacy of leading power </subplot>
+        <subplot> calls for genocide of a minority </subplot>
+    </power>
+    <power type="thieves guild">
+        <subplot> moving to assert black market dominance</subplot>
+        <subplot> secretly backs leading power for leiniency</subplot>
+    </power>
+    <power type="Ex-Blacksmith">
+        <subplot> secretly plots to overthrow the corrupt leadership for personal gain</subplot>
+        <subplot> is being blackmailed by a guild</subplot>
+        <subplot> is pulling strings with a trade adversary</subplot>
+    </power>
+    <power type="barbarian">
+        <subplot> plots to start war with adversarys city</subplot>
+        <subplot> is being manipulated by the denizens of the city whore house</subplot>
+        <subplot> rules whatever he can with a violent and iron fist</subplot>
+    </power>
+    <power type="recluse">
+        <subplot> pulls strings for personal gain</subplot>
+        <subplot> is really a feind in disguise</subplot>
+        <subplot> is really a angel in disguise</subplot>
+        <subplot> is a feind that secretly looks out for the good of the common man</subplot>
+        <subplot> is an angel that seeks to enslave the common man</subplot>
+    </power>
+</secondarypower>
+
+
+<behavioraltraits>
+    <trait type="Accusatory"        > </trait>
+    <trait type="Apologetic"        > </trait>
+    <trait type="Attentive"         > </trait>
+    <trait type="Authoritarian"     > </trait>
+    <trait type="Avuncular"         > </trait>
+    <trait type="Battle-ready"      > </trait>
+    <trait type="Beligerent"        > </trait>
+    <trait type="Blinkered"         > </trait>
+    <trait type="Boastful"		    > </trait>
+    <trait type="Cautious"		    > </trait>
+    <trait type="Chatty"		    > </trait>
+    <trait type="Chronicler"	    > </trait>
+    <trait type="Clumsy"		    > </trait>
+    <trait type="Conspirational"    > </trait>
+    <trait type="Contrarian"	    > </trait>
+    <trait type="Cowed"		        > </trait>
+    <trait type="Deluded"		    > </trait>
+    <trait type="Despises Locals"   > </trait>
+    <trait type="Drunkard"		    > </trait>
+    <trait type="Easily offended"	> </trait>
+    <trait type="Efficient"		    > </trait>
+    <trait type="Egotistical"		> </trait>
+    <trait type="Embittered"		> </trait>
+    <trait type="Ensorcelled"		> </trait>
+    <trait type="Exhausted"		    > </trait>
+    <trait type="Fashion Concious"	> </trait>
+    <trait type="Fatalistic"		> </trait>
+    <trait type="Flirtatious"		> </trait>
+    <trait type="Forbidding"		> </trait>
+    <trait type="Forgetful"		    > </trait>
+    <trait type="Giddy"		        > </trait>
+    <trait type="Glutton"		    > </trait>
+    <trait type="Gosipy"		    > </trait>
+    <trait type="Greedy"		    > </trait>
+    <trait type="Gregarious"		> </trait>
+    <trait type="Grieving"		    > </trait>
+    <trait type="Guarded"		    > </trait>
+    <trait type="Guilty"		    > </trait>
+    <trait type="Harried"		    > </trait>
+    <trait type="Healthy"		    > </trait>
+    <trait type="Helpful"		    > </trait>
+    <trait type="Hero-worshi[ing"	> </trait>
+    <trait type="Homesick"		    > </trait>
+    <trait type="Idealistic"		> </trait>
+    <trait type="Impatient"		    > </trait>
+    <trait type="Importunate"		> </trait>
+    <trait type="Imposter"		    > </trait>
+    <trait type="Insecure"		    > </trait>
+    <trait type="Intimidating"		> </trait>
+    <trait type="Jaded"		        > </trait>
+    <trait type="Jester"		    > </trait>
+    <trait type="Jolly"		        > </trait>
+    <trait type="Laconic"		    > </trait>
+    <trait type="Lonely"		    > </trait>
+    <trait type="Loud"		        > </trait>
+    <trait type="Lovelorn"		    > </trait>
+    <trait type="Loal"		        > </trait>
+    <trait type="Machiavellian"		> </trait>
+    <trait type="Matchmaker"		> </trait>
+    <trait type="Melancholy"		> </trait>
+    <trait type="Mocking"		    > </trait>
+    <trait type="Mopey"		        > </trait>
+    <trait type="Nervous"		    > </trait>
+    <trait type="Nihilistic"		> </trait>
+    <trait type="Nosy"		        > </trait>
+    <trait type="Oracular"		    > </trait>
+    <trait type="Outlandish"		> </trait>
+    <trait type="Pacifistic"		> </trait>
+    <trait type="Patriotic"		    > </trait>
+    <trait type="Patronizing"		> </trait>
+    <trait type="Picayune"		    > </trait>
+    <trait type="Pious"		        > </trait>
+    <trait type="Prejudiced"		> </trait>
+    <trait type="Public spirited"	> </trait>
+    <trait type="Puckish"		    > </trait>
+    <trait type="Pugnacious"		> </trait>
+    <trait type="Quiet"		        > </trait>
+    <trait type="Revellious"		> </trait>
+    <trait type="Resentful"		    > </trait>
+    <trait type="Scattered"		    > </trait>
+    <trait type="Self-obsessed"		> </trait>
+    <trait type="Servile"		    > </trait>
+    <trait type="Shifty"		    > </trait>
+    <trait type="Sick"		        > </trait>
+    <trait type="Skeptical"		    > </trait>
+    <trait type="Smitten"		    > </trait>
+    <trait type="Smug"		        > </trait>
+    <trait type="Solemn"		    > </trait>
+    <trait type="Spiteful"		    > </trait>
+    <trait type="Territorial"		> </trait>
+    <trait type="Thick"		        > </trait>
+    <trait type="Treasure-seeking"	> </trait>
+    <trait type="Trivial"		    > </trait>
+    <trait type="Trusting"		    > </trait>
+    <trait type="Unreliable"		> </trait>
+    <trait type="Vengeful"		    > </trait>
+    <trait type="Violent"		    > </trait>
+    <trait type="Gambler"		    > </trait>
+    <trait type="Worrywart"		    > </trait>
+    <trait type="Xenophobic"		> </trait>
+
+</behavioraltraits>
+
+<orderalignment neutralmin="34" neutralmax="67">
+    <descriptor name="lawful">
+		<adjective>reliable</adjective>
+		<adjective>dependable</adjective>
+		<adjective>sure</adjective>
+		<adjective>legitimized</adjective>
+		<adjective>official</adjective>
+		<adjective>organized</adjective>
+		<adjective>dutiful</adjective>
+		<adjective>honorable</adjective>
+    </descriptor>
+    <descriptor name="neutral">
+		<adjective>bystanding</adjective>
+		<adjective>detached</adjective>
+		<adjective>non-participating</adjective>
+		<adjective>non-conformist</adjective>
+		<adjective>unflappable</adjective>
+    </descriptor>
+    <descriptor name="chaotic">
+		<adjective>unreliable</adjective>
+		<adjective>irresponsible</adjective>
+		<adjective>questionable</adjective>
+		<adjective>unpredictable</adjective>
+		<adjective>deranged</adjective>
+		<adjective>incoherent</adjective>
+		<adjective>vague</adjective>
+    </descriptor>
+</orderalignment>
+<moralalignment neutralmin="34" neutralmax="67">
+    <descriptor name="good">
+        <adjective>well meaning</adjective>
+        <adjective>trustworty</adjective>
+        <adjective>nice</adjective>
+        <adjective>ethical</adjective>
+        <adjective>honest</adjective>
+        <adjective>praise-worthy</adjective>
+        <adjective>virtuous</adjective>
+    </descriptor>
+    <descriptor name="neutral">
+        <adjective>unconcerned</adjective>
+        <adjective>undecided</adjective>
+        <adjective>uncomitted</adjective>
+        <adjective>cold</adjective>
+        <adjective>indifferent</adjective>
+    </descriptor>
+    <descriptor name="evil">
+        <adjective>untrustworthy</adjective>
+        <adjective>mean</adjective>
+        <adjective>venomous</adjective>
+        <adjective>corrupt</adjective>
+        <adjective>repungent</adjective>
+        <adjective>unpleasant</adjective>
+        <adjective>opportunistic</adjective>
+        <adjective>villianous</adjective>
+        <adjective>nefarious</adjective>
+    </descriptor>
+</moralalignment>
+
+<landmarkdesc chance="50">
+	<option>nondescript</option>
+	<option>curious</option>
+	<option>small</option>
+	<option>large</option>
+	<option>huge</option>
+	<option>massive</option>
+</landmarkdesc>
+
+
+<location>On the coast
+        <landmarks chance="10">cliff</landmarks>
+        <landmarks chance="10">lighthouse</landmarks>
+        <landmarks chance="10">rivermouth</landmarks>
+        <landmarks chance="20">beach</landmarks>
+        <landmarks chance="10">jagged rocks</landmarks>
+</location>
+<location>Near a river
+        <landmarks chance="10">marsh</landmarks>
+        <landmarks chance="10">irrigation ditches</landmarks>
+</location>
+<location>On a hill
+        <landmarks chance="20">rocky outcroppings</landmarks>
+        <landmarks chance="10">stand of trees</landmarks>
+        <landmarks chance="10">river</landmarks>
+        <landmarks chance="10">pond</landmarks>
+        <landmarks chance="10">lake</landmarks>
+        <landmarks chance="10">plains</landmarks>
+        <landmarks chance="10">crossroads</landmarks>
+        <landmarks chance="10">mountain range</landmarks>
+</location>
+<location>in a basin
+        <landmarks chance="20">stream</landmarks>
+        <landmarks chance="10">overlooking cliffs</landmarks>
+        <landmarks chance="10">boulders</landmarks>
+        <landmarks chance="10">orchard</landmarks>
+</location>
+<location>On a Plateau
+        <landmarks chance="10">cliff</landmarks>
+        <landmarks chance="20">jagged cliffs</landmarks>
+</location>
+<location>In the mountains
+        <landmarks chance="10">valley</landmarks>
+        <landmarks chance="10">summit</landmarks>
+        <landmarks chance="10">forest</landmarks>
+        <landmarks chance="10">frostline</landmarks>
+</location>
+<location weather="none">Underground
+        <landmarks chance="10">underground lake</landmarks>
+        <landmarks chance="10">waterfall</landmarks>
+        <landmarks chance="10">stream</landmarks>
+        <landmarks chance="10">lava pit</landmarks>
+        <landmarks chance="10">cavern</landmarks>
+        <landmarks chance="10">gysers</landmarks>
+        <landmarks chance="10">faultline</landmarks>
+</location>
+<location>In the Plains
+        <landmarks chance="10">lake</landmarks>
+        <landmarks chance="10">sea</landmarks>
+        <landmarks chance="10">ocean</landmarks>
+        <landmarks chance="10">forest</landmarks>
+        <landmarks chance="10">crossroad</landmarks>
+        <landmarks chance="10">bog</landmarks>
+        <landmarks chance="10">swamp</landmarks>
+        <landmarks chance="10">rocky outcropping</landmarks>
+        <landmarks chance="10">farmland</landmarks>
+</location>
+<location>In the Desert
+        <landmarks chance="10">oasis</landmarks>
+        <landmarks chance="10">sand dunes</landmarks>
+        <landmarks chance="10">rocky outcropping</landmarks>
+        <landmarks chance="10">stone formations</landmarks>
+</location>
+<location>In the forest
+        <landmarks chance="10">oak grove</landmarks>
+        <landmarks chance="10">spruce grove</landmarks>
+        <landmarks chance="10">rocky outcropping</landmarks>
+        <landmarks chance="10">caves</landmarks>
+        <landmarks chance="10">clearing</landmarks>
+</location>
+
+
+
+
+<classes>
+    <class name="Commoner"      min="0"  max="23"  max_level="4d4" />
+    <class name="Expert"        min="24" max="35"  max_level="3d4" />
+    <class name="Warrior"       min="36" max="43"  max_level="2d4" />
+    <class name="Rogue"         min="44" max="49"  max_level="1d8" />
+    <class name="Barbarian"     min="50" max="52"  max_level="1d4" />
+    <class name="Monk"          min="53" max="55"  max_level="1d4" />
+    <class name="Bard"          min="56" max="59"  max_level="1d6" />
+    <class name="Cleric"        min="60" max="65"  max_level="1d6" />
+    <class name="Druid"         min="66" max="69"  max_level="1d6" />
+    <class name="Fighter"       min="70" max="77"  max_level="1d8" />
+    <class name="Adept"         min="78" max="83"  max_level="1d6" />
+    <class name="Sorcorer"      min="84" max="87"  max_level="1d4" />
+    <class name="Wizard"        min="88" max="91"  max_level="1d4" />
+    <class name="Aristocrat"    min="92" max="95"  max_level="1d4" />
+    <class name="Paladin"       min="96" max="97"  max_level="1d3" />
+    <class name="Ranger"        min="98" max="99"  max_level="1d3" />
+</classes>
+<poptypes>
+
+	<pop type="Secluded" minpop="11">
+	    <percentage>98</percentage>
+	    <percentage>1</percentage>
+	</pop>
+	<pop type="Split" minpop="11">
+	    <percentage>49</percentage>
+	    <percentage>48</percentage>
+	    <percentage>2</percentage>
+	</pop>
+	<pop type="Assimilated" minpop="20">
+	    <percentage>70</percentage> 
+	    <percentage>16</percentage>
+	    <percentage>8</percentage>
+	    <percentage>3</percentage>
+	    <percentage>2</percentage>
+	</pop>
+	<pop type="Unified" minpop="30" >
+	    <percentage>35</percentage> 
+	    <percentage>29</percentage> 
+	    <percentage>19</percentage> 
+	    <percentage>11</percentage> 
+	    <percentage>3</percentage>  
+	    <percentage>1</percentage>  
+	    <percentage>1</percentage>  
+	</pop>
+</poptypes>
+
+<weather>
+<!--
+The day is <temp>( and <forcast>). The air is <air>,  with a <wind> wind. 
+(It's <precip> when you approach( and thundering <thunder>).)
+(Cloud cover is <clouds>.)
+-->
+    <forcast chance="20">
+        <option>clear</option>
+        <option>overcast</option>
+        <option>stormy</option>
+    </forcast>
+
+    <temp>
+	    <option>freezing</option>
+	    <option>cold</option>
+	    <option>chilly</option>
+	    <option>cool</option>
+	    <option>mild</option>
+	    <option>nice</option>
+	    <option>warm</option>
+	    <option>hot</option>
+	    <option>unbearably hot</option>
+    </temp>
+
+    <air>
+        <option>fresh</option>
+        <option>thin</option>
+        <option>thick</option>
+        <option>humid</option>
+    </air>
+    <wind>
+        <option>breezy</option>
+        <option>dead</option>
+        <option>soft</option>
+        <option>heavy</option>
+        <option>strong</option>
+        <option>incredibly strong</option>
+    </wind>
+
+    <precip chance="65"> 
+	    <option>sprinkling</option>
+	    <option>misty</option>
+	    <option>foggy
+	        <type> </type>
+	        <type>lightly</type>
+	        <type>moderately</type>
+	        <type>heavily</type>
+	    </option>
+	    <option>raining
+	        <type></type>
+	        <type>lightly</type>
+	        <type>moderately</type>
+	        <type>heavily</type>
+	    </option>
+	    <option>downpouring</option>
+	    <option>sleet</option>
+	    <option>hail
+	        <type>raining small (pea size)</type>
+	        <type>raining medium (walnut size)</type>
+	        <type>raining large (orange size)</type>
+	    </option>
+	    
+    </precip>
+    <thunder> 
+        <option>in the distance</option>
+        <option>nearby</option>
+        <option>and lighting</option>
+    </thunder>
+    <clouds>
+        <option>light</option>
+        <option>thick</option>
+        <option>dark</option>
+        <option>overcast</option>
+    </clouds>
+</weather>
+<events chance="65" limit="2">
+<!-- 
+
+Upon entering the city, you find <type><event>.
+-->
+    <festival>
+            <option>a religious</option>
+            <option>a trade</option>
+    </festival>
+    <celebration>
+            <option>a birthday</option> 
+            <option>a wedding</option> 
+            <option>a new year</option> 
+            <option>a holiday</option> 
+    </celebration>
+    
+    <trial>
+            <option>a murder</option>
+            <option>a witch</option>
+            <option>a spy</option>
+            <option>a briggand</option>
+            <option>a thief</option>
+    </trial>
+    <war>
+            <option>preparations for</option>
+            <option>on ongoing</option>
+            <option>the aftermath of a</option> 
+    </war>
+    <raid>
+            <option> the midst of a</option>
+            <option> the aftermath of a</option>
+    </raid>
+    <hunt>
+            <option> lost child</option>
+            <option> wandering monster</option>
+            <option> escaped prisoner</option>
+            <option> food</option>
+    </hunt>
+    <disaster>
+            <option>tornado</option>
+            <option>flood</option>
+            <option>earthquake</option>
+            <option>massive storm</option>
+            <option>tarrasque</option>
+            <option>drought</option>
+    </disaster>
+
+</events>
+
+
+<prefix chance="20">
+	<word>Alta</word>
+	<word>Bad</word>
+	<word>Big</word>
+	<word>East</word>
+	<word>Grand</word>
+	<word>Great</word>
+	<word>Holy</word>
+	<word>Lower</word>
+	<word>Mount</word>
+	<word>New</word>
+	<word>North</word>
+	<word>Old</word>
+	<word>Port</word>
+	<word>Saint</word>
+	<word>San</word>
+	<word>South</word>
+	<word>Upper</word>
+	<word>West</word>
+</prefix>
+
+<root>
+	<word>Ack</word>
+	<word>Ad</word>
+	<word>Ail</word>
+	<word>Ains</word>
+	<word>Air</word>
+	<word>Alb</word>
+	<word>Alex</word>
+	<word>Allen</word>
+	<word>Alten</word>
+	<word>Ama</word>
+	<word>And</word>
+	<word>Ani</word>
+	<word>Arch</word>
+	<word>Arthur</word>
+	<word>Ash</word>
+	<word>At</word>
+	<word>Bad</word>
+	<word>Baden</word>
+	<word>Bag</word>
+	<word>Bald</word>
+	<word>Ball</word>
+	<word>Ban</word>
+	<word>Bank</word>
+	<word>Barn</word>
+	<word>Bat</word>
+	<word>Battle</word>
+	<word>Bax</word>
+	<word>Bay</word>
+	<word>Bed</word>
+	<word>Belle</word>
+	<word>Ben</word>
+	<word>Ber</word>
+	<word>Betten</word>
+	<word>Birm</word>
+	<word>Blade</word>
+	<word>Blair</word>
+	<word>Blake</word>
+	<word>Blanch</word>
+	<word>Block</word>
+	<word>Bloom</word>
+	<word>Blud</word>
+	<word>Bona</word>
+	<word>Bond</word>
+	<word>Boom</word>
+	<word>Boon</word>
+	<word>Box</word>
+	<word>Brad</word>
+	<word>Bran</word>
+	<word>Bray</word>
+	<word>Bridge</word>
+	<word>Brun</word>
+	<word>Buck</word>
+	<word>Buff</word>
+	<word>Burl</word>
+	<word>Burt</word>
+	<word>By</word>
+	<word>Cal</word>
+	<word>Cala</word>
+	<word>Call</word>
+	<word>Calle</word>
+	<word>Callen</word>
+	<word>Cam</word>
+	<word>Car</word>
+	<word>Carb</word>
+	<word>Carl</word>
+	<word>Carp</word>
+	<word>Carrol</word>
+	<word>Carson</word>
+	<word>Cart</word>
+	<word>Cast</word>
+	<word>Cedar</word>
+	<word>Center</word>
+	<word>Central</word>
+	<word>Char</word>
+	<word>Chats</word>
+	<word>Clar</word>
+	<word>Clark</word>
+	<word>Clay</word>
+	<word>Clear</word>
+	<word>Cleg</word>
+	<word>Clem</word>
+	<word>Clint</word>
+	<word>Clive</word>
+	<word>Coll</word>
+	<word>Con</word>
+	<word>Coon</word>
+	<word>Cooper</word>
+	<word>Cop</word>
+	<word>Copper</word>
+	<word>Cor</word>
+	<word>Coral</word>
+	<word>Corn</word>
+	<word>Cory</word>
+	<word>Craig</word>
+	<word>Cran</word>
+	<word>Craw</word>
+	<word>Crest</word>
+	<word>Cry</word>
+	<word>Crystal</word>
+	<word>Cumber</word>
+	<word>Curl</word>
+	<word>Cush</word>
+	<word>Cyl</word>
+	<word>Dak</word>
+	<word>Dal</word>
+	<word>Dan</word>
+	<word>Dark</word>
+	<word>Dav</word>
+	<word>Davis</word>
+	<word>Daw</word>
+	<word>Day</word>
+	<word>Dec</word>
+	<word>Decor</word>
+	<word>Ded</word>
+	<word>Deed</word>
+	<word>Def</word>
+	<word>Deep</word>
+	<word>Del</word>
+	<word>Dela</word>
+	<word>Delph</word>
+	<word>Dem</word>
+	<word>Den</word>
+	<word>Der</word>
+	<word>Des</word>
+	<word>Derm</word>
+	<word>Dex</word>
+	<word>Diag</word>
+	<word>Dick</word>
+	<word>Dik</word>
+	<word>Dix</word>
+	<word>Dol</word>
+	<word>Don</word>
+	<word>Dona</word>
+	<word>Donnell</word>
+	<word>Doon</word>
+	<word>Dorn</word>
+	<word>Dow</word>
+	<word>Down</word>
+	<word>Drake</word>
+	<word>Dub</word>
+	<word>Dum</word>
+	<word>Dun </word>
+	<word>Dunk</word>
+	<word>Dur</word>
+	<word>Durin</word>
+	<word>Durk</word>
+	<word>Durl</word>
+	<word>Dush</word>
+	<word>Dusk</word>
+	<word>Eagle</word>
+	<word>Ear</word>
+	<word>Earl</word>
+	<word>Early</word>
+	<word>East</word>
+	<word>Eben</word>
+	<word>Eddy</word>
+	<word>Eden</word>
+	<word>Edg</word>
+	<word>Edge</word>
+	<word>Edmond</word>
+	<word>Eg</word>
+	<word>Eisen</word>
+	<word>Elber</word>
+	<word>Elder</word>
+	<word>Eldon</word>
+	<word>Eldor</word>
+	<word>Elk</word>
+	<word>Ells</word>
+	<word>Elma</word>
+	<word>Emer</word>
+	<word>En</word>
+	<word>Evans</word>
+	<word>Fair</word>
+	<word>Falk</word>
+	<word>Far</word>
+	<word>Farl</word>
+	<word>Farm</word>
+	<word>Fay</word>
+	<word>Feld</word>
+	<word>Fen</word>
+	<word>Fer</word>
+	<word>Fern</word>
+	<word>Fin</word>
+	<word>Flem</word>
+	<word>Floyd</word>
+	<word>Fon</word>
+	<word>For</word>
+	<word>Font</word>
+	<word>Frank</word>
+	<word>Fre</word>
+	<word>Fred</word>
+	<word>Fruit</word>
+	<word>Fuz</word>
+	<word>Gala</word>
+	<word>Gales</word>
+	<word>Galt</word>
+	<word>Gan</word>
+	<word>Gar</word>
+	<word>Garb</word>
+	<word>Gard</word>
+	<word>Garden</word>
+	<word>Garn</word>
+	<word>Gaur</word>
+	<word>Gav</word>
+	<word>Gaven</word>
+	<word>Gen</word>
+	<word>Geo</word>
+	<word>Ger</word>
+	<word>Gib</word>
+	<word>Gil</word>
+	<word>Gilb</word>
+	<word>Gill</word>
+	<word>Glad</word>
+	<word>Glen</word>
+	<word>Glid</word>
+	<word>Gold</word>
+	<word>Good</word>
+	<word>Goose</word>
+	<word>Graf</word>
+	<word>Graft</word>
+	<word>Grand</word>
+	<word>Grant</word>
+	<word>Gray</word>
+	<word>Green</word>
+	<word>Grin</word>
+	<word>Gris</word>
+	<word>Grove</word>
+	<word>Grun</word>
+	<word>Grundy</word>
+	<word>Guern</word>
+	<word>Gull</word>
+	<word>Gurn</word>
+	<word>Guth</word>
+	<word>Gutten</word>
+	<word>Hal</word>
+	<word>Hall</word>
+	<word>Ham</word>
+	<word>Hamb</word>
+	<word>Han</word>
+	<word>Har</word>
+	<word>Harper</word>
+	<word>Harris</word>
+	<word>Hart</word>
+	<word>Hast</word>
+	<word>Haver</word>
+	<word>Haw</word>
+	<word>Hawk</word>
+	<word>Hay</word>
+	<word>Hayes</word>
+	<word>Hazel</word>
+	<word>Hia</word>
+	<word>Hill</word>
+	<word>Hins</word>
+	<word>Holl</word>
+	<word>Hols</word>
+	<word>Hop</word>
+	<word>Horn</word>
+	<word>Hosp</word>
+	<word>Hough</word>
+	<word>Hub</word>
+	<word>Hubb</word>
+	<word>Hud</word>
+	<word>Hull</word>
+	<word>Humber</word>
+	<word>Hux</word>
+	<word>Ice</word>
+	<word>Ida</word>
+	<word>Imo</word>
+	<word>In</word>
+	<word>Ind</word>
+	<word>Inn</word>
+	<word>Io</word>
+	<word>Ire</word>
+	<word>Iron</word>
+	<word>Jack</word>
+	<word>Jam</word>
+	<word>Jan</word>
+	<word>Janes</word>
+	<word>Jeffer</word>
+	<word>Jes</word>
+	<word>Jew</word>
+	<word>John</word>
+	<word>Joll</word>
+	<word>Jones</word>
+	<word>Kal</word>
+	<word>Kam</word>
+	<word>Kan</word>
+	<word>Kel</word>
+	<word>Keller</word>
+	<word>Ken</word>
+	<word>Kens</word>
+	<word>Kent</word>
+	<word>Keo</word>
+	<word>Kes</word>
+	<word>Key</word>
+	<word>Kim</word>
+	<word>Kin</word>
+	<word>King</word>
+	<word>Kirk</word>
+	<word>Kir</word>
+	<word>Klem</word>
+	<word>Knox</word>
+	<word>La</word>
+	<word>Lab</word>
+	<word>Lac</word>
+	<word>Lad</word>
+	<word>Lak</word>
+	<word>Lake</word>
+	<word>Lam</word>
+	<word>Lamb</word>
+	<word>Land</word>
+	<word>Lane</word>
+	<word>Lans</word>
+	<word>Lar</word>
+	<word>Larch</word>
+	<word>Larra</word>
+	<word>Laur</word>
+	<word>Laurel</word>
+	<word>Lauren</word>
+	<word>Law</word>
+	<word>Le</word>
+	<word>Led</word>
+	<word>Len</word>
+	<word>Lend</word>
+	<word>Les</word>
+	<word>Lest</word>
+	<word>Let</word>
+	<word>Lett</word>
+	<word>Lew</word>
+	<word>Lewis</word>
+	<word>Lib</word>
+	<word>Liber</word>
+	<word>Liberty</word>
+	<word>Lid</word>
+	<word>Lidd</word>
+	<word>Lidder</word>
+	<word>Lim</word>
+	<word>Limb</word>
+	<word>Lime</word>
+	<word></word>
+	<word>Lin</word>
+	<word>Llope</word>
+	<word>Mickle</word>
+	<word>Mid</word>
+	<word>Mill</word>
+	<word>Quan</word>
+	<word>Regen</word>
+	<word>Sals</word>
+	<word>Silver</word>
+	<word>Star</word>
+	<word>Steel</word>
+	<word>Stone</word>
+	<word>Tal</word>
+	<word>Tan</word>
+	<word>Thistle</word>
+	<word>Vinter</word>
+	<word>Wad</word>
+	<word>War</word>
+	<word>Ward</word>
+	<word>White</word>
+	<word>Wissel</word>
+	<word>Wolf</word>
+	<word>Yellow</word>
+	<word>Zeal</word>
+</root>
+<suffix>
+	<word>ains</word>
+	<word>ald</word>
+	<word>ana</word>
+	<word>ari</word>
+	<word>ax</word>
+	<word>ary</word>
+	<word>bar</word>
+	<word>ber</word>
+	<word>berg</word>
+	<word>bert</word>
+	<word>bin</word>
+	<word>bon</word>
+	<word>bor</word>
+	<word>bova</word>
+	<word>bridge</word>
+	<word>burg</word>
+	<word>creek</word>
+	<word>dale</word>
+	<word>dar</word>
+	<word>def</word>
+	<word>den</word>
+	<word>dew</word>
+	<word>dine</word>
+	<word>dorf</word>
+	<word>duk</word>
+	<word>dun</word>
+	<word>ers</word>
+	<word>esti</word>
+	<word>falls</word>
+	<word>field</word>
+	<word>ford</word>
+	<word>fun</word>
+	<word>get</word>
+	<word>glade</word>
+	<word>hall</word>
+	<word>head</word>
+	<word>holt</word>
+	<word>lag</word>
+	<word>land</word>
+	<word>landing</word>
+	<word>lia</word>
+	<word>mead</word>
+	<word>mer</word>
+	<word>more</word>
+	<word>mouth</word>
+	<word>na</word>
+	<word>nac</word>
+	<word>nan</word>
+	<word>now</word>
+	<word>ny</word>
+	<word>ovka</word>
+	<word>par</word>
+	<word>pool</word>
+	<word>post</word>
+	<word>rard</word>
+	<word>ridge</word>
+	<word>run</word>
+	<word>ron</word>
+	<word>shall</word>
+	<word>ski</word>
+	<word>stein</word>
+	<word>sti</word>
+	<word>stone</word>
+	<word>tle</word>
+	<word>ton</word>
+	<word>top</word>
+	<word>tow</word>
+	<word>vale</word>
+	<word>ville</word>
+	<word>vista</word>
+	<word>vita</word>
+	<word>wall</word>
+	<word>water</word>
+	<word>well</word>
+	<word>wood</word>
+</suffix>
+<trailer chance="20">
+	<word>Acres</word>
+	<word>Bay</word>
+	<word>Bend</word>
+	<word>Bluff</word>
+	<word>Branch</word>
+	<word>Center</word>
+	<word>City</word>
+	<word>Creek</word>
+	<word>Crest</word>
+	<word>Gate</word>
+	<word>Falls</word>
+	<word>Ferry</word>
+	<word>Green</word>
+	<word>Grove</word>
+	<word>Heights</word>
+	<word>Hold</word>
+	<word>Junction</word>
+	<word>Keep</word>
+	<word>Lock</word>
+	<word>Mills</word>
+	<word>Mound</word>
+	<word>Park</word>
+	<word>Pines</word>
+	<word>Point</word>
+	<word>Rapids</word>
+	<word>Ridge</word>
+	<word>River</word>
+	<word>Rock</word>
+	<word>Springs</word>
+	<word>Stone</word>
+	<word>Town</word>
+	<word>Vista</word>
+	<word>Vernon</word>
+</trailer>
+
+
+
+<housing>
+    <house_type name="small hut" value="5gp" max="5" />
+    <house_type name="medium hut" value="9gp" max="10" />
+    <house_type name="large hut" value="12gp" max="15" />
+    <house_type name="small poor house" value="20gp" max="6" />
+    <house_type name="medium poor house" value="40gp" max="8" />
+    <house_type name="large poor house" value="60gp" max="12" />
+
+
+</housing>
+</data>
