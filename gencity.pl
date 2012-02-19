@@ -416,28 +416,47 @@ sub d {
 ####################################################################
 ####################################################################
 
-sub describe_city{
+sub print_markets_and_landmarks{
     my ($city)=@_;
-    my $events= join "\n    * ",@{$city->{'events'}};
-    my $markets='';
+    my $places='';
+    if (defined $city->{markets} or defined $city->{'landmarks'}){
+        $places="\nWithin the city and the surrounding areas, you'll find:\n";
+    }
 
     if (defined $city->{markets}){
-        $markets="\nWithin the city and the surrounding areas, you'll find:\n";
         for my $market ( @{$city->{'markets'}}){
-            $markets.=sprintf "    * %s %s\n", $market->{'name'}, $market->{'secret'} ;
-        }
-        for my $landmark ( @{$city->{'landmarks'}}){
-            $markets.=sprintf "    * a %s\n", $landmark;
+            $places.=sprintf "    * %s %s\n", $market->{'name'}, $market->{'secret'} ;
         }
     }
+    if ( defined $city->{'landmarks'}){
+        for my $landmark ( @{$city->{'landmarks'}}){
+            $places.=sprintf "    * a %s\n", $landmark;
+        }
+    }
+    return $places;
+}
+sub print_precip{
+    my ($city)=@_;
     my $precip='';
     if ( defined $city->{'weather'}->{'precip'} ){
         $precip="It is ".$city->{'weather'}->{'precip'}.".\n";
     }
-    my $thunder='';
     if ( defined $city->{'weather'}->{'thunder'} ){
         $precip="There is thunder ".$city->{'weather'}->{'thunder'}.".\n";
     }
+    return $precip;
+}
+#######################################################
+# Pass in a $city structure, and print out a wonderful
+# wall of text describing the city, sorta like a mad lib
+sub describe_city{
+    my ($city)=@_;
+    my $events= join "\n    * ",@{$city->{'events'}};
+
+    my $markets=print_markets_and_landmarks($city);
+
+    my $precip=print_precip($city);
+
     my $population='';
     for my $race (reverse sort {$a->{'count'} <=> $b->{'count'}}  @{$city->{'races'}}){
         $population.=sprintf "    * %5d  %13s ( %4s%%)\n",$race->{'count'}, $race->{'name'}, $race->{'percent'};
@@ -472,29 +491,4 @@ EOF
 ;
 
 }
-
-
-#Still Garbage
-############################################
-##  Work out the pretty formatting for the
-##  output
-#
-#print "\n\n\t=========  ".$city->{'name'}."  =========\n";
-#print Dumper($city);
-#print "\n\t".$city->{'name'}." is ". &determine_city_type($city_type)." ".$city->{'type'}." with a population of around $population.\n";
-#print "\tThe ".$city->{'type'}." population is ".$poptype->{'type'}.", with the following breakdown:\n";
-#for my $percentage (@{$pop_breakdown->{'percentage'}}){
-#    print "\t\t".int(($percentage->{'content'}/100)*$population+1)."\t(".$percentage->{'content'}."%)\t".$percentage->{'race'}->{'content'}."\n";
-#}
-#print "\tMorals:\n";
-#print "\tThe city is ruled by a ";
-#if (&order_type($city->{'order'}) eq &moral_type($city->{'moral'})){
-#    print "true neutral";
-#}else{
-#    print &order_type($city->{'order'})." ".&moral_type($city->{'moral'});
-#}
-#print " ".$city->{'govtype'}." (".$city->{'order'}.",".$city->{'moral'}.").\n";
-#
-#print "\n\n";
-#exit;
 
