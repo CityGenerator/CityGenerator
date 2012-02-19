@@ -92,7 +92,7 @@
 
 <govtypes>
     <govt type="a council"/>
-    <govt type="a ruling wizard"/>
+    <govt type="a powerful wizard"/>
     <govt type="a despot"/>
     <govt type="royalty"/>
     <govt type="a dictator"/>
@@ -845,7 +845,10 @@
         <option>evil</option>
         <option>chaotic</option>
     </option>
-    <option type="guild" chance="10" marketname="Assassin" secret="100"/>
+    <option type="guild" chance="10" marketname="Assassins" secret="100">
+        <option>neutral</option>
+        <option>evil</option>
+    </option>
     <option type="guild" chance="30" marketname="Adventurers" secret="50">
         <option>good</option>
         <option>neutral</option>

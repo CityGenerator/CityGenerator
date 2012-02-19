@@ -16,12 +16,14 @@ our $xml_data = $xml->XMLin( "data.xml", ForceContent => 1, ForceArray => [] );
 
 
 my $city = build_city();
-my $city_description= describe_city($city);
+
+print Dumper $city;
 
 open OUT, '>', 'my_cities/'.$city->{'name'}.'.xml';
 print OUT $xml->XMLout($city);
 close OUT;
-print Dumper $city;
+
+my $city_description= describe_city($city);
 
 exit;
 
@@ -89,7 +91,8 @@ sub generate_markets {
                 $newmarket->{'secret'}='';
             }
             if ( &d(100) > 50 ){
-                $newmarket->{'name'}= rand_from_array(@{$market->{'option'}})->{'content'}.' '.$newmarket->{'name'};
+                my $marketoption=rand_from_array(@{$market->{'option'}});
+                $newmarket->{'name'}= $marketoption->{'content'}.' '.$newmarket->{'name'};
             }
             push @markets, $newmarket;
         }
@@ -437,7 +440,12 @@ sub describe_city{
     }
     my $population='';
     for my $race (reverse sort {$a->{'count'} <=> $b->{'count'}}  @{$city->{'races'}}){
-        $population.=sprintf "    * %5d  %13s ( %4s\%)\n",$race->{'count'}, $race->{'name'},$race->{'percent'};
+        $population.=sprintf "    * %5d  %13s ( %4s%%)\n",$race->{'count'}, $race->{'name'}, $race->{'percent'};
+    }
+
+    my $clouds='';
+    if ( defined $city->{'weather'}->{'clouds'} ){
+        $clouds="the clouds are ".$city->{'weather'}->{'clouds'}.",";
     }
 
 print <<EOF
@@ -450,7 +458,7 @@ although there is a $city->{'secondarypower'}->{'power'} that $city->{'secondary
 while secretly $city->{'secondarypower'}->{'subplot'}.
 $markets
 You arrive at the city around $city->{'time'}->{'content'}, where the air is $city->{'weather'}->{'air'},
-the clouds are $city->{'weather'}->{'clouds'}, the wind is $city->{'weather'}->{'wind'}, and the temp is $city->{'weather'}->{'temp'}.
+$clouds the wind is $city->{'weather'}->{'wind'}, and the temp is $city->{'weather'}->{'temp'}.
 $precip
 Upon arrival, you see:
     * $events
