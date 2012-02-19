@@ -16,9 +16,12 @@ our $xml_data = $xml->XMLin( "data.xml", ForceContent => 1, ForceArray => [] );
 
 
 my $city = build_city();
+my $city_description= describe_city($city);
 
+open OUT, '>', 'my_cities/'.$city->{'name'}.'.xml';
+print OUT $xml->XMLout($city);
+close OUT;
 print Dumper $city;
-
 
 exit;
 
@@ -49,6 +52,8 @@ sub build_city {
     $city = generate_city_ethics($city);
 # - generate gov't type
     $city = set_govt_type($city);
+# - generate secondary powers
+    $city = generate_secondary_power($city);
 # - generate location
     $city = set_location($city);
 # - generate weather
@@ -68,7 +73,8 @@ sub build_city {
 # - generate natural resources
 # - generate map
     return $city;
-} ## end sub build_city
+}
+
 
 sub generate_markets {
     my ($city) = @_;
@@ -78,9 +84,9 @@ sub generate_markets {
             my $newmarket->{'type'}=$market->{'type'};
             $newmarket->{'name'}=$market->{'marketname'}.' '.$market->{'type'};
             if ( &d(100) <$market->{'secret'} ){
-                $newmarket->{'secret'}='true';
+                $newmarket->{'secret'}='(secret)';
             }else{
-                $newmarket->{'secret'}='false';
+                $newmarket->{'secret'}='';
             }
             if ( &d(100) > 50 ){
                 $newmarket->{'name'}= rand_from_array(@{$market->{'option'}})->{'content'}.' '.$newmarket->{'name'};
@@ -197,17 +203,32 @@ sub set_landmarks {
     my @landmarks;
     foreach my $landmark ( @{ $location->{landmarks} } ) {
         if ( &d(100) < $landmark->{'chance'} ) {
-            push @landmarks, $landmark->{'content'};
+            my $landmarkname=$landmark->{'content'};
+            if ( &d(100) < $xml_data->{'locations'}->{'landmarkdesc'}->{'chance'} ){
+                my @landmarkdesc=@{ $xml_data->{'locations'}->{'landmarkdesc'}->{'option'} };
+                $landmarkname = rand_from_array( @landmarkdesc )->{'content'}.' '.$landmarkname;
+            }
+            push @landmarks, $landmarkname;
         }
     }
     return \@landmarks;
 } ## end sub set_landmarks
+
 sub rand_from_array {
     my (@array) = @_;
     my $index = int( rand( scalar @array ) );
     return $array[$index];
 }
 
+sub generate_secondary_power {
+    my ($city) = @_;
+    $city->{'secondarypower'}={};
+    $city->{'secondarypower'}->{'plot'} = rand_from_array( @{ $xml_data->{'secondarypower'}->{'plot'} } )->{'content'};
+    my $power = rand_from_array( @{ $xml_data->{'secondarypower'}->{'power'} } );
+    $city->{'secondarypower'}->{'power'} = $power->{'type'};
+    $city->{'secondarypower'}->{'subplot'} = rand_from_array( @{ $power->{'subplot'} } )->{'content'};
+    return $city;
+}
 
 sub set_govt_type {
     my ($city) = @_;
@@ -233,7 +254,7 @@ sub assign_races {
         my $replace_race = &d( scalar @races ) - 1;
         $races[$replace_race] = add_race_features( $races[$replace_race], $newrace );
     }
-
+    delete $city->{'add_other'};
     $city->{'races'} = \@races;
 
     return $city;
@@ -391,6 +412,59 @@ sub d {
 
 ####################################################################
 ####################################################################
+
+sub describe_city{
+    my ($city)=@_;
+    my $events= join "\n    * ",@{$city->{'events'}};
+    my $markets='';
+
+    if (defined $city->{markets}){
+        $markets="\nWithin the city and the surrounding areas, you'll find:\n";
+        for my $market ( @{$city->{'markets'}}){
+            $markets.=sprintf "    * %s %s\n", $market->{'name'}, $market->{'secret'} ;
+        }
+        for my $landmark ( @{$city->{'landmarks'}}){
+            $markets.=sprintf "    * a %s\n", $landmark;
+        }
+    }
+    my $precip='';
+    if ( defined $city->{'weather'}->{'precip'} ){
+        $precip="It is ".$city->{'weather'}->{'precip'}.".\n";
+    }
+    my $thunder='';
+    if ( defined $city->{'weather'}->{'thunder'} ){
+        $precip="There is thunder ".$city->{'weather'}->{'thunder'}.".\n";
+    }
+    my $population='';
+    for my $race (reverse sort {$a->{'count'} <=> $b->{'count'}}  @{$city->{'races'}}){
+        $population.=sprintf "    * %5d  %13s ( %4s\%)\n",$race->{'count'}, $race->{'name'},$race->{'percent'};
+    }
+
+print <<EOF
+
+========== $city->{'name'} ==========
+
+$city->{'name'} is a $city->{'description'} of around $city->{'population'}.
+Located $city->{'location'}, this $city->{'poptype'} $city->{'size'} is ruled by $city->{'govtype'}->{'type'},
+although there is a $city->{'secondarypower'}->{'power'} that $city->{'secondarypower'}->{'plot'} the leadership, 
+while secretly $city->{'secondarypower'}->{'subplot'}.
+$markets
+You arrive at the city around $city->{'time'}->{'content'}, where the air is $city->{'weather'}->{'air'},
+the clouds are $city->{'weather'}->{'clouds'}, the wind is $city->{'weather'}->{'wind'}, and the temp is $city->{'weather'}->{'temp'}.
+$precip
+Upon arrival, you see:
+    * $events
+
+Law enforcement $city->{'laws'}->{'enforcement'}, punishments are mainly $city->{'laws'}->{'punishment'},
+and convictions are $city->{'laws'}->{'trial'}.
+
+Populations is broken down as follows:
+$population
+EOF
+;
+
+}
+
 
 #Still Garbage
 ############################################

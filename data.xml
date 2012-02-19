@@ -18,31 +18,31 @@
 </citysize>
 
 <citytype>
-    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal city</city>
-    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal city with one monsterous race</city>
-    <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous city</city>
-    <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous city with one basic race</city>
-    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >open city</city>
+    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal population</city>
+    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monsterous race)</city>
+    <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous population</city>
+    <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous population (with one common race)</city>
+    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</city>
 </citytype>
 
 <poptypes>
-	<population type="Secluded" min='1' max='35' >
+	<population type="secluded" min='1' max='35' >
 	    <option percent="98" />
 	    <option percent="1" />
 	</population>
-	<population type="Split" min='35' max='65' >
+	<population type="split" min='35' max='65' >
 	    <option percent="49" />
 	    <option percent="48" />
 	    <option percent="2" />
 	</population>
-	<population type="Assimilated" min='66' max='85' >
+	<population type="assimilated" min='66' max='85' >
 	    <option percent="70" />
 	    <option percent="16" />
 	    <option percent="8" />
 	    <option percent="3" />
 	    <option percent="2" />
 	</population>
-	<population type="Unified" min='86' max='100' >
+	<population type="unified" min='86' max='100' >
 	    <option percent="35" />
 	    <option percent="29" />
 	    <option percent="19" />
@@ -91,55 +91,63 @@
 </order>
 
 <govtypes>
-    <govt type="council"/>
-    <govt type="ruling wizard"/>
-    <govt type="despot"/>
+    <govt type="a council"/>
+    <govt type="a ruling wizard"/>
+    <govt type="a despot"/>
     <govt type="royalty"/>
-    <govt type="dictator"/>
-    <govt type="clergy"/>
-    <govt type="cult leader"/>
+    <govt type="a dictator"/>
+    <govt type="the clergy"/>
+    <govt type="a cult leader"/>
 </govtypes>
 
 <locations>
-    <location description="On the coast">
+    <landmarkdesc chance="50">
+    	<option>nondescript</option>
+    	<option>curious</option>
+    	<option>small</option>
+    	<option>large</option>
+    	<option>huge</option>
+    	<option>massive</option>
+    </landmarkdesc>
+    <location description="on the coast">
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">lighthouse</landmarks>
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">rivermouth</landmarks>
         <landmarks chance="20">beach</landmarks>
-        <landmarks chance="10">jagged rocks</landmarks>
+        <landmarks chance="10">jagged outcropping of rock</landmarks>
     </location>
-    <location description="Near a river">
+    <location description="near a river">
         <landmarks chance="10">marsh</landmarks>
-        <landmarks chance="10">irrigation ditches</landmarks>
+        <landmarks chance="10">drainage ditch</landmarks>
     </location>
-    <location description="On a hill">
-        <landmarks chance="20">rocky outcroppings</landmarks>
+    <location description="on a hill">
+        <landmarks chance="20">rocky outcropping</landmarks>
         <landmarks chance="10">stand of trees</landmarks>
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">pond</landmarks>
         <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">plains</landmarks>
-        <landmarks chance="10">crossroads</landmarks>
+        <landmarks chance="10">plain</landmarks>
+        <landmarks chance="10">crossroad</landmarks>
         <landmarks chance="10">mountain range</landmarks>
     </location>
     <location description="in a basin">
         <landmarks chance="20">stream</landmarks>
-        <landmarks chance="10">overlooking cliffs</landmarks>
-        <landmarks chance="10">boulders</landmarks>
-        <landmarks chance="10">orchard</landmarks>
-    </location>
-    <location description="On a Plateau">
         <landmarks chance="10">cliff</landmarks>
-        <landmarks chance="20">jagged cliffs</landmarks>
+        <landmarks chance="10">boulder</landmarks>
+        <landmarks chance="10">fruit orchard</landmarks>
     </location>
-    <location description="In the mountains">
+    <location description="on a plateau">
+        <landmarks chance="10">cliff</landmarks>
+        <landmarks chance="20">jagged cliff</landmarks>
+    </location>
+    <location description="in the mountains">
         <landmarks chance="10">valley</landmarks>
         <landmarks chance="10">summit</landmarks>
         <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">frostline</landmarks>
     </location>
-    <location description="Underground">
+    <location description="underground">
         <landmarks chance="10">underground lake</landmarks>
         <landmarks chance="10">waterfall</landmarks>
         <landmarks chance="10">stream</landmarks>
@@ -148,10 +156,10 @@
         <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">faultline</landmarks>
     </location>
-    <location description="In the Plains">
+    <location description="in the plains">
         <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">sea</landmarks>
-        <landmarks chance="10">ocean</landmarks>
+        <landmarks chance="10">blue ocean</landmarks>
         <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">crossroad</landmarks>
         <landmarks chance="10">bog</landmarks>
@@ -159,14 +167,15 @@
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">farmland</landmarks>
     </location>
-    <location description="In the Desert">
-        <landmarks chance="10">oasis</landmarks>
-        <landmarks chance="10">sand dunes</landmarks>
+    <location description="in the desert">
+        <landmarks chance="10">wonderful oasis</landmarks>
+        <landmarks chance="10">sea of sand dunes</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
-        <landmarks chance="10">stone formations</landmarks>
+        <landmarks chance="10">stone formation</landmarks>
     </location>
-    <location description="In the forest">
-        <landmarks chance="10">oak grove</landmarks>
+    <location description="in the forest">
+        <landmarks chance="10">red oak grove</landmarks>
+        <landmarks chance="10">sequoia grove</landmarks>
         <landmarks chance="10">spruce grove</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">caves</landmarks>
@@ -224,7 +233,7 @@
 	        <type>heavily </type>
 	    </option>
 	    <option description="downpouring"></option>
-	    <option description="sleet"></option>
+	    <option description="sleeting"></option>
 	    <option description="hail">
 	        <type>raining small (pea size) </type>
 	        <type>raining medium (walnut size) </type>
@@ -265,17 +274,17 @@
         <option>can be bribed</option>
    </enforcement>
    <punishment>
-        <option>Fines</option>
-        <option>Community Service</option>
-        <option>Eye for an Eye</option>
-        <option>Mob Rule</option>
-        <option>Hard Labor</option>
+        <option>fines</option>
+        <option>community service</option>
+        <option>eye for an eye</option>
+        <option>hard labor</option>
    </punishment>
    <trial>
-        <option> no trial</option>
-        <option> magistrate</option>
-        <option> council</option>
-        <option> jurors</option>
+        <option>done without trial</option>
+        <option>sentenced by a magistrate</option>
+        <option>sentenced by a council</option>
+        <option>sentenced by jurors</option>
+        <option>handled by mob rule</option>
    </trial>   
 </laws>
 
@@ -823,6 +832,133 @@
     </event>
 </events>
 
+<markets>
+    <option type="guild" chance="62" marketname="Thieves" secret="100">
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </option>
+    <option type="guild" chance="30" marketname="Mages" secret="10">
+        <option>powerhungry</option>
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+        <option>chaotic</option>
+    </option>
+    <option type="guild" chance="10" marketname="Assassin" secret="100"/>
+    <option type="guild" chance="30" marketname="Adventurers" secret="50">
+        <option>good</option>
+        <option>neutral</option>
+        <option>evil</option>
+    </option>
+    <option type="cult"  chance="20" marketname="evil" secret="80">
+        <option>Death worshiping</option>
+        <option>Dragon worshiping</option>
+        <option>Undead worshiping</option>
+        <option>God worshiping</option>
+        <option>Beast worshiping</option>
+    </option>
+    <option type="cult"  chance="10" marketname="chaotic" secret="90">
+        <option>Violence worshiping</option>
+        <option>Chaos worshiping</option>
+        <option>God worshiping</option>
+    </option>
+    <option type="cult"  chance="10" marketname="good" secret="80">
+        <option>god worshiping</option>
+        <option>dragon worshiping</option>
+    </option>
+    <option type="trade" chance="30" marketname="magic items" secret="60">
+        <option>powerful</option>
+        <option>dangerous</option>
+        <option>evil</option>
+        <option>intelligent</option>
+        <option>expensive</option>
+        <option>trinkets</option>
+    </option>
+    <option type="trade" chance="20" marketname="slaves" secret="70">
+        <option>sex</option>
+        <option>labor</option>
+        <option>gladiator</option>
+    </option>
+    <option type="trade" chance="40" marketname="food" secret="10">
+        <option>rare</option>
+        <option>spices</option>
+    </option>
+    <option type="trade" chance="40" marketname="gem" secret="20">
+        <option>money laundering</option>
+        <option>stolen goods</option>
+        <option>magical components</option>
+    </option>
+    <option type="trade" chance="40" marketname="art" secret="100">
+        <option>stolen</option>
+        <option>rare</option>
+    </option>
+</markets>
+
+
+<secondarypower>
+    <plot>openly assists</plot>
+    <plot>openly denounces</plot>
+    <plot>quietly denounces</plot>
+    <plot>quietly assists</plot>
+    
+    <power type="dragon">
+        <subplot>wishing to enslave the city</subplot>
+        <subplot>watching out for the common man</subplot>
+        <subplot>despising the current leader</subplot>
+        <subplot>agreeing with the current leader</subplot>
+    </power>
+    <power type="wizard">
+        <subplot>attempting to attain immortality</subplot>
+        <subplot>watching out for the common man</subplot>
+        <subplot>despising the current leader</subplot>
+        <subplot>agreeing with the current leader</subplot>
+    </power>
+    <power type="Merchant guild">
+        <subplot>attempting to buy influence</subplot>
+        <subplot>attempting to sell influence</subplot>
+        <subplot>pushing for war with trade adversary</subplot>
+        <subplot>pushing to open trade with adversary</subplot>
+    </power>
+    <power type="elected representatives">
+        <subplot>using position for personal gain</subplot>
+        <subplot>ammassing power</subplot>
+    </power>
+    <power type="advisor">
+        <subplot>pulling strings for personal gain</subplot>
+        <subplot>blackmailing the government</subplot>
+        <subplot>working for enemies</subplot>
+    </power>
+    <power type="prophet">
+        <subplot>attempting to lead religious revolution</subplot>
+        <subplot>denying legitimacy of leading power</subplot>
+        <subplot>calling for genocide of a minority</subplot>
+    </power>
+    <power type="thieves guild">
+        <subplot>moving to assert black market dominance</subplot>
+        <subplot>backing leading power for leiniency</subplot>
+    </power>
+    <power type="Ex-Blacksmith">
+        <subplot>plotting to overthrow the corrupt leadership for personal gain</subplot>
+        <subplot>being blackmailed by a guild</subplot>
+        <subplot>pulling strings with a trade adversary</subplot>
+    </power>
+    <power type="barbarian">
+        <subplot>plotting to start war with another nation</subplot>
+        <subplot>being manipulated by the denizens of the city whore house</subplot>
+        <subplot>wishing to rule with a violent, iron fist</subplot>
+    </power>
+    <power type="recluse">
+        <subplot>pulling strings for personal gain</subplot>
+        <subplot>a feind in disguise</subplot>
+        <subplot>a angel in disguise</subplot>
+        <subplot>a dragon in disguise</subplot>
+        <subplot>a god in disguise</subplot>
+        <subplot>a feind that secretly looks out for the good of the common man</subplot>
+        <subplot>an angel that seeks to enslave the common man</subplot>
+    </power>
+</secondarypower>
+
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
@@ -896,7 +1032,7 @@
         <option> Law protects</option>
     </legal>
     <entertainment limit="2">
-        <whores> </whores>
+        <whores/>
         <gambling> 
             <option>Poker</option>
             <option>Craps</option>
@@ -906,129 +1042,6 @@
     </entertainment>
 </taverns>
 
-<markets>
-    <option type="guild" chance="62" marketname="Thieves" secret="100">
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-    </option>
-    <option type="guild" chance="30" marketname="Mages" secret="10">
-        <option>powerhungry</option>
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-        <option>chaotic</option>
-    </option>
-    <option type="guild" chance="10" marketname="Assassin" secret="100"/>
-    <option type="guild" chance="30" marketname="Adventurers" secret="50">
-        <option>good</option>
-        <option>neutral</option>
-        <option>evil</option>
-    </option>
-    <option type="cult"  chance="20" marketname="evil" secret="80">
-        <option>Death worshiping</option>
-        <option>Dragon worshiping</option>
-        <option>Undead worshiping</option>
-        <option>God worshiping</option>
-        <option>Beast worshiping</option>
-    </option>
-    <option type="cult"  chance="10" marketname="chaotic" secret="90">
-        <option>Violence worshiping</option>
-        <option>Chaos worshiping</option>
-        <option>God worshiping</option>
-    </option>
-    <option type="cult"  chance="10" marketname="good" secret="80">
-        <option>god worshiping</option>
-        <option>dragon worshiping</option>
-    </option>
-    <option type="trade" chance="30" marketname="magic items" secret="60">
-        <option>powerful</option>
-        <option>dangerous</option>
-        <option>evil</option>
-        <option>intelligent</option>
-        <option>expensive</option>
-        <option>trinkets</option>
-    </option>
-    <option type="trade" chance="20" marketname="slaves" secret="70">
-        <option>sex</option>
-        <option>labor</option>
-        <option>gladiator</option>
-    </option>
-    <option type="trade" chance="40" marketname="food" secret="10">
-        <option>rare</option>
-        <option>spices</option>
-    </option>
-    <option type="trade" chance="40" marketname="gem" secret="20">
-        <option>money laundering</option>
-        <option>stolen goods</option>
-        <option>magical components</option>
-    </option>
-    <option type="trade" chance="40" marketname="art" secret="100">
-        <option>stolen</option>
-        <option>rare</option>
-    </option>
-</markets>
-
-<secondarypower>
-    <plot>Openly assists</plot>
-    <plot>Openly denounces</plot>
-    <plot>quietly denounces</plot>
-    <plot>quietly assists</plot>
-    
-    <power type="dragon">
-        <subplot> secretly wishes to enslave the city</subplot>
-        <subplot> secretly watches out for the common man</subplot>
-        <subplot> secretly despises the current leader</subplot>
-        <subplot> secretly agrees with the current leader</subplot>
-    </power>
-    <power type="wizard">
-        <subplot> secretly attempts to attain immortality</subplot>
-        <subplot> secretly watches out for the common man</subplot>
-        <subplot> secretly despises the current leader</subplot>
-        <subplot> secretly agrees with the current leader</subplot>
-    </power>
-    <power type="Merchant guild">
-        <subplot> secretly attempts to buy influence</subplot>
-        <subplot> secretly attempts to sell influence</subplot>
-        <subplot> secretly push for war with trade adversary</subplot>
-        <subplot> secretly push to open trade with adversary</subplot>
-    </power>
-    <power type="elected representatives">
-        <subplot> secretly uses position for personal gain</subplot>
-        <subplot> is secretly power hungry</subplot>
-    </power>
-    <power type="advisor">
-        <subplot> secretly pulls strings for personal gain</subplot>
-        <subplot> secretly blackmails leading power</subplot>
-        <subplot></subplot>
-    </power>
-    <power type="prophet">
-        <subplot> attempting to lead religious revolution</subplot>
-        <subplot> denies legitimacy of leading power </subplot>
-        <subplot> calls for genocide of a minority </subplot>
-    </power>
-    <power type="thieves guild">
-        <subplot> moving to assert black market dominance</subplot>
-        <subplot> secretly backs leading power for leiniency</subplot>
-    </power>
-    <power type="Ex-Blacksmith">
-        <subplot> secretly plots to overthrow the corrupt leadership for personal gain</subplot>
-        <subplot> is being blackmailed by a guild</subplot>
-        <subplot> is pulling strings with a trade adversary</subplot>
-    </power>
-    <power type="barbarian">
-        <subplot> plots to start war with adversarys city</subplot>
-        <subplot> is being manipulated by the denizens of the city whore house</subplot>
-        <subplot> rules whatever he can with a violent and iron fist</subplot>
-    </power>
-    <power type="recluse">
-        <subplot> pulls strings for personal gain</subplot>
-        <subplot> is really a feind in disguise</subplot>
-        <subplot> is really a angel in disguise</subplot>
-        <subplot> is a feind that secretly looks out for the good of the common man</subplot>
-        <subplot> is an angel that seeks to enslave the common man</subplot>
-    </power>
-</secondarypower>
 
 
 <behavioraltraits>
@@ -1193,14 +1206,6 @@
     </option>
 </moralalignment>
 
-<landmarkdesc chance="50">
-	<option>nondescript</option>
-	<option>curious</option>
-	<option>small</option>
-	<option>large</option>
-	<option>huge</option>
-	<option>massive</option>
-</landmarkdesc>
 
 
 
@@ -1223,9 +1228,6 @@
     <class name="Ranger"        min="98" max="99"  max_level="1d3" />
 </classes>
 
-
-
-
 <housing>
     <house_type name="small hut" value="5gp" max="5" />
     <house_type name="medium hut" value="9gp" max="10" />
@@ -1233,6 +1235,6 @@
     <house_type name="small poor house" value="20gp" max="6" />
     <house_type name="medium poor house" value="40gp" max="8" />
     <house_type name="large poor house" value="60gp" max="12" />
-
 </housing>
+
 </data>
