@@ -27,9 +27,8 @@ our $xml_data = $xml->XMLin( "data.xml", ForceContent => 1, ForceArray => [] );
 
 my $city = build_city();
 
-print Dumper $city;
-
-open OUT, '>', 'my_cities/'.$city->{'name'}.'.xml';
+my $filename='my_cities/'.$city->{'name'}.'.xml';
+open OUT, ">", $filename;
 print OUT $xml->XMLout($city);
 close OUT;
 
@@ -108,12 +107,6 @@ sub generate_districts{
 
 sub generate_buildings{
     my ($city) = @_;
-    $city->{'population'}=41;
-    $city->{'size_modifier'}=-4;
-    $city->{'population'}=3500;
-    $city->{'size_modifier'}=0;
-#    $city->{'population'}=50000;
-#    $city->{'size_modifier'}=12;
     my $pop=$city->{'population'};
     
     $city->{'housing'}={};
@@ -142,7 +135,7 @@ sub generate_buildings{
                                              };
         $city->{'business'}->{'total'}+=$city->{'business'}->{$businessname}->{'count'};
     }
-    print Dumper $city;
+    #print Dumper $city;
     return $city;
 }
 

@@ -2,34 +2,60 @@ This will be an import of an app I wrote several years ago. It needs a rewrite.
 
 Sample output:
 
-========== Lewismore ==========
+./gencity.pl --seed=718120
 
-Lewismore is a fairly normal population (with one monsterous race) of around 883.
-Located near a river, this assimilated Village is ruled by the clergy,
-although there is a recluse that quietly assists the leadership, 
-while secretly a dragon in disguise.
+========== Gullhead Hold (718120)==========
+
+Gullhead Hold is a fairly normal population (with one monsterous race) of around 3845.
+Located near a river, this unified large town is ruled by a dictator,
+although there is a recluse that quietly denounces the leadership, 
+while secretly a angel in disguise.
 
 Within the city and the surrounding areas, you'll find:
-    * Thieves guild (secret)
-    * chaotic Mages guild 
-    * food trade 
-    * a huge marsh
+    * expensive magic items trade (secret)
+    * slaves trade (secret)
+    * rare food trade 
+    * stolen art trade (secret)
+    * a drainage ditch
 
-You arrive at the city around mid-day, where the air is thick,
-the clouds are dark, the wind is dead, and the temp is nice.
-There is thunder and lighting.
+You arrive at the city around dead of night, where the clouds are dark, the air is humid 
+and the wind is breezy. It is misty.
 
-Upon arrival, you see:
-    * preparations for war
-    * a religious festival
 
-Law enforcement is loose, punishments are mainly hard labor,
+Upon arrival, around 12 citizens are wandering the mild large town. You see:
+    * a victory celebration
+    * the aftermath of a raid
+
+Law enforcement can be bribed, punishments are mainly eye for an eye,
 and convictions are sentenced by a magistrate.
 
+Economy:
+ The economy is strong. Magic is rare. Education is low.
+ This is an economically isolated area with few travelers. You can find the following businesses:
+     0 alchemist           3 baker               3 carpenter      
+     4 fishers             3 graveyard           4 inn            
+     3 jeweler             2 library             0 magic store    
+     4 mason               3 messenger           2 official       
+     3 school              3 shipwright          3 shipyard       
+     3 slaughterhouse      5 smith               3 stables        
+     4 tanner              5 tavern              3 theatre        
+ 
+
+Housing:
+  Abandoned:   29     Average:    265   
+  Poor:        58     Elite:        7   
+
+
+Districts:
+  2 industry      1 military      2 prison      
+  1 racial        1 wealthy     
+
 Populations is broken down as follows:
-    *   623   Lycanthropes ( 70.5%)
-    *   143       Half-elf ( 16.1%)
-    *    72            Elf (  8.1%)
-    *    27     Gullydwarf (    3%)
-    *    18       Half-orc (    2%)
+    *  1359            Elf ( 35.3%)
+    *  1126       Half-orc ( 29.2%)
+    *   738     Lizardfolk ( 19.1%)
+    *   427       Halfling ( 11.1%)
+    *   117     Gullydwarf (    3%)
+    *    39          Gnome (    1%)
+    *    39       Half-elf (    1%)
 
