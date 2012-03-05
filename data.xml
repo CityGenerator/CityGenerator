@@ -4,18 +4,53 @@
 <debug >1</debug>
 
 <citysize>
-    <city size="Commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
-    <city size="Settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
-    <city size="Hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="Village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
-    <city size="Small Town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="Town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
-    <city size="Large Town"   min="70"  max="79"  size_modifier="+3"   minpop="3501"   maxpop="5000"   gplimit="5000"/>     
-    <city size="Small City"   min="80"  max="89"  size_modifier="+6"   minpop="5001"   maxpop="8000"   gplimit="8000"/>     
-    <city size="City"         min="90"  max="94"  size_modifier="+4"   minpop="8001"   maxpop="15000"  gplimit="15000"/>    
-    <city size="Large City"   min="95"  max="99"  size_modifier="+6"   minpop="15001"  maxpop="25000"  gplimit="25000"/>    
-    <city size="Capitol"      min="100" max="100" size_modifier="+12"  minpop="25001"  maxpop="50000"  gplimit="50000"/>    
+    <city size="commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
+    <city size="settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
+    <city size="hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
+    <city size="small town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="large town"   min="70"  max="79"  size_modifier="2"    minpop="3501"   maxpop="5000"   gplimit="5000"/>     
+    <city size="small city"   min="80"  max="89"  size_modifier="4"    minpop="5001"   maxpop="8000"   gplimit="8000"/>     
+    <city size="city"         min="90"  max="94"  size_modifier="6"    minpop="8001"   maxpop="15000"  gplimit="15000"/>    
+    <city size="large city"   min="95"  max="99"  size_modifier="8"    minpop="15001"  maxpop="25000"  gplimit="25000"/>    
+    <city size="capitol"      min="100" max="100" size_modifier="12"   minpop="25001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
+
+
+<resources>
+    Timber
+    Petroleum
+    Natural Gas
+    Fruits
+    Wax (tree wax)
+    Produce
+    Grains
+</resources>
+<buildings>
+    <building percent='5' type='authority' >official</building>
+    <building percent='6' type='authority' >graveyard</building>
+    <building percent='4' type='economy' >carpenter</building>
+    <building percent='5' type='economy' >mason</building>
+    <building percent='4' type='economy' >slaughterhouse</building>
+    <building percent='5' type='economy' >tanner</building>
+    <building percent='5' type='economy' >fishers</building>
+    <building percent='8' type='economy' >smith</building>
+    <building percent='4' type='economy' >baker</building>
+    <building percent='4' type='economy' >jeweler</building>
+    <building percent='4' type='economy' >messenger</building>
+    <building percent='7' type='economy' >tavern</building>
+    <building percent='4' type='economy' >theatre</building>
+    <building percent='5' type='education' >school</building>
+    <building percent='4' type='education' >library</building>
+    <building percent='3' type='magic' >alchemist</building>
+    <building percent='3' type='magic' >magic store</building>
+    <building percent='4' type='travel' >shipwright</building>
+    <building percent='4' type='travel' >shipyard</building>
+    <building percent='7' type='travel' >inn</building>
+    <building percent='5' type='travel' >stables</building>
+</buildings>
+
 
 <citytype>
     <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal population</city>
@@ -24,7 +59,33 @@
     <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous population (with one common race)</city>
     <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</city>
 </citytype>
+<districts>
+    <option type="civic"/>
+    <option type="embassy"/>
+    <option type="wealthy"/>
+    <option type="middle class"/>
+    <option type="racial"/>
+    <option type="fine shops"/>
+    <option type="arena"/>
+    <option type="poor"/>
+    <option type="slums"/>
+    <option type="warehouse"/>
+    <option type="industry"/>
+    <option type="trade"/>
+    <option type="professional"/>
+    <option type="shops"/>
+    <option type="market"/>
+    <option type="prison"/>
+    <option type="education"/>
+    <option type="military"/>
+</districts>
 
+<popdensity>
+    <option type="sparse"  feetpercapita="5000"/>
+    <option type="light"   feetpercapita="3000"/>
+    <option type="average" feetpercapita="1500"/>
+    <option type="dense"   feetpercapita="1000"/>
+</popdensity>
 <poptypes>
 	<population type="secluded" min='1' max='35' >
 	    <option percent="98" />
@@ -54,28 +115,28 @@
 </poptypes>
 
 <races>
-    <race type="basic"   moral_mod="0"   magic_mod="0"  order_mod="5"  >Human</race>
-	<race type="basic"   moral_mod="5"   magic_mod="-3" order_mod="0"  >Halfling</race>
-	<race type="basic"   moral_mod="5"   magic_mod="5"  order_mod="-5" >Elf</race>
-	<race type="basic"   moral_mod="5"   magic_mod="-5" order_mod="5"  >Dwarf</race>
-	<race type="basic"   moral_mod="5"   magic_mod="3"  order_mod="5"  >Gnome</race>
-    
-	<race type="basic"   moral_mod="5"   magic_mod="0"  order_mod="-1"  >Half-elf</race>
-	<race type="basic"   moral_mod="-2"  magic_mod="-3" order_mod="-2"  >Half-orc</race>
-	<race type="basic"   moral_mod="0"   magic_mod="-5" order_mod="-5"  >Gullydwarf</race>
-
-	<race type="monster" moral_mod="-5"  magic_mod="+1" order_mod="-5"  >Goblin</race>
-	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Orc</race>
-	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Ogre</race>
-	<race type="monster" moral_mod="-5"  magic_mod="-2" order_mod="-5"  >Bugbear</race>
-	<race type="monster" moral_mod="-5"  magic_mod="-1" order_mod="-5"  >Hobgoblin</race>
-	<race type="monster" moral_mod="0"   magic_mod="0"  order_mod="0"   >Lizardfolk</race>
-	<race type="monster" moral_mod="-5"  magic_mod="1"  order_mod="-5"  >Kobold</race>
-	<race type="monster" moral_mod="0"   magic_mod="-4" order_mod="-5"  >Minotaur</race>
-	<race type="monster" moral_mod="-5"  magic_mod="0"  order_mod="-5"  >Troglodyte</race>
-	<race type="monster" moral_mod="-5"  magic_mod="0"  order_mod="-5"  >Lycanthropes</race>
-	<race type="monster" moral_mod="-5"  magic_mod="5"  order_mod="10"  >Mindflayer</race>
-	<race type="monster" moral_mod="-10" magic_mod="10" order_mod="-10" >Drow</race>
+    <race type="basic"   moral="0"   order="5"   magic="0"  authority='1'  economy='1'  education='2'  travel='2' >Human</race>
+	<race type="basic"   moral="5"   order="0"   magic="-1" authority='-1' economy='1'  education='1'  travel='1' >Halfling</race>
+	<race type="basic"   moral="5"   order="-5"  magic="3"  authority='-1' economy='1'  education='2'  travel='0' >Elf</race>
+	<race type="basic"   moral="5"   order="5"   magic="-2" authority='2'  economy='1'  education='0'  travel='-2'>Dwarf</race>
+	<race type="basic"   moral="5"   order="5"   magic="2"  authority='-1' economy='1'  education='1'  travel='-1' >Gnome</race>
+                                                            
+	<race type="basic"   moral="5"   order="-1"  magic="0"  authority='-1' economy='0'  education='1'  travel='3' >Half-elf</race>
+	<race type="basic"   moral="-2"  order="-2"  magic="-2" authority='-1' economy='-1' education='-2' travel='1' >Half-orc</race>
+	<race type="basic"   moral="0"   order="-5"  magic="-3" authority='-1' economy='-3' education='-3' travel='-1'>Gullydwarf</race>
+                                                            
+	<race type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' travel='2' >Goblin</race>
+	<race type="monster" moral="-5"  order="-5"  magic="-1" authority='-4' economy='-3' education='-3' travel='2' >Orc</race>
+	<race type="monster" moral="-5"  order="-5"  magic="-1" authority='-2' economy='-2' education='-2' travel='-1'>Ogre</race>
+	<race type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' travel='0' >Bugbear</race>
+	<race type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' travel='0' >Hobgoblin</race>
+	<race type="monster" moral="0"   order="0"   magic="0"  authority='-3' economy='-2' education='-3' travel='0' >Lizardfolk</race>
+	<race type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' travel='1' >Kobold</race>
+	<race type="monster" moral="0"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' travel='2' >Minotaur</race>
+	<race type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-3' education='-3' travel='0' >Troglodyte</race>
+	<race type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-1' education='0'  travel='1' >Lycanthropes</race>
+	<race type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  travel='-3'>Mindflayer</race>
+	<race type="monster" moral="-10" order="-10" magic="4"  authority='3'  economy='0'  education='3'  travel='-3'>Drow</race>
 </races>
 
 <moral>
@@ -191,15 +252,15 @@
     </forecast>
 
     <temp>
-	    <option>freezing</option>
-	    <option>cold</option>
-	    <option>chilly</option>
-	    <option>cool</option>
-	    <option>mild</option>
-	    <option>nice</option>
-	    <option>warm</option>
-	    <option>hot</option>
-	    <option>unbearably hot</option>
+	    <option modifier="0.10" >freezing</option>
+	    <option modifier="0.20" >cold</option>
+	    <option modifier="0.40" >chilly</option>
+	    <option modifier="0.80" >cool</option>
+	    <option modifier="0.90" >mild</option>
+	    <option modifier="1.00" >nice</option>
+	    <option modifier="1.10" >warm</option>
+	    <option modifier="0.90" >hot</option>
+	    <option modifier="0.50" >unbearably hot</option>
     </temp>
 
     <air>

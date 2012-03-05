@@ -6,10 +6,20 @@
 ####################################################################
 use strict;
 use Data::Dumper;
+use Getopt::Long qw( :config auto_help );
 use XML::Simple;
 use List::Util 'shuffle';
 use POSIX;
 
+#TODO city exports
+our $seed;
+GetOptions( 'seed=i' => \$seed );
+if (defined $seed){
+    srand($seed);   
+}else{
+    $seed=int rand(1000000);
+    srand($seed);
+}
 
 my $xml = new XML::Simple;
 our $xml_data = $xml->XMLin( "data.xml", ForceContent => 1, ForceArray => [] );
@@ -34,8 +44,8 @@ exit;
 
 
 sub build_city {
-    my $city;
-
+    my $city={'seed'=>$seed};
+    
 #Steps for generating a random city
 
 # - Generate a size
@@ -68,12 +78,104 @@ sub build_city {
     $city = generate_events($city);
 # - generate blackmarkets
     $city = generate_markets($city);
-
+# - generate street condition
+    $city=generate_streets($city);
+# - generate buildings
+    $city=generate_buildings($city);
+# - Generate Districts
+    $city=generate_districts($city);
+    
 #taverns
 # - generate religions(weighted by race)
-# - generate street condition
-# - generate natural resources
 # - generate map
+    return $city;
+}
+sub generate_districts{
+    my ($city) = @_;
+    my $districtcount=5 + $city->{'size_modifier'};
+    $city->{'districts'}={};
+    for (my $i=0; $i<$districtcount ; $i++){
+        my $district=rand_from_array(@{$xml_data->{'districts'}->{'option'}});
+        if (defined $city->{'districts'}->{$district->{'type'}}){
+            $city->{'districts'}->{$district->{'type'}}+=1;
+        }else{
+            $city->{'districts'}->{$district->{'type'}}=1;
+        }
+    }
+    return $city;
+}
+
+
+sub generate_buildings{
+    my ($city) = @_;
+    $city->{'population'}=41;
+    $city->{'size_modifier'}=-4;
+    $city->{'population'}=3500;
+    $city->{'size_modifier'}=0;
+#    $city->{'population'}=50000;
+#    $city->{'size_modifier'}=12;
+    my $pop=$city->{'population'};
+    
+    $city->{'housing'}={};
+    $city->{'housing'}->{'average'}     = floor($pop*.69/10);
+    $city->{'housing'}->{'poor'}        = ceil ($pop*.30/20);
+    $city->{'housing'}->{'elite'}       = floor($pop*.01/5);
+    $city->{'housing'}->{'total'}       = $city->{'housing'}->{'average'} + $city->{'housing'}->{'poor'} + $city->{'housing'}->{'elite'};
+    $city->{'housing'}->{'abandoned'}   = floor($city->{'housing'}->{'total'} *(10-$city->{'economy'} )/100 );
+
+    $city->{'business'}={  'total'=>0  };
+
+    my $businessestimate=($city->{'population'}/10)-$city->{'housing'}->{'total'};
+
+    for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
+        my $businessname=$business->{'content'};
+        my $businesspercent=$business->{'percent'}+$city->{$business->{'type'}};
+        if ($businesspercent <0){ $businesspercent=0; }
+        if ($businesspercent >10){ $businesspercent=10; }
+
+        my $businesscount=ceil $businessestimate*($businesspercent)/100;
+        $city->{'business'}->{$businessname}={ 
+                                                'origpercent'=>$business->{'percent'},
+                                                'racepercent'=>$city->{$business->{'type'}},
+                                                'percent' =>$businesspercent,
+                                                'count'=> $businesscount,
+                                             };
+        $city->{'business'}->{'total'}+=$city->{'business'}->{$businessname}->{'count'};
+    }
+    print Dumper $city;
+    return $city;
+}
+
+
+sub generate_streets{
+    my ($city) = @_;
+    my $pop=$city->{'population'};
+    my $timemodifier=$city->{'time'}->{'public_modifier'};
+    my $sizemodifier=$city->{'size_modifier'};
+
+    my $visiblepop=ceil($pop/(10+$sizemodifier) );
+
+    if ($timemodifier >0){
+        $visiblepop=$visiblepop*$timemodifier;
+    }elsif ($timemodifier <0){
+        $visiblepop=ceil sqrt($visiblepop/abs($timemodifier))+abs($timemodifier);
+        if ($sizemodifier >0){
+            $visiblepop*=$sizemodifier;
+        }
+    }
+  
+    if (defined $city->{'weather'}->{'precip'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    if (defined $city->{'weather'}->{'thunder'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    $visiblepop=ceil($visiblepop*$city->{'weather'}->{'temp'}->{'modifier'});
+
+    $city->{'visible population'}=$visiblepop;
+ 
+    
+# Determine population out on the streets= populatio
     return $city;
 }
 
@@ -136,7 +238,7 @@ sub set_weather {
     } ## end if ( $city->{'location'...})
     for my $facet (qw( temp air wind)) {
         $city->{'weather'}->{$facet}
-            = rand_from_array( @{ $xml_data->{'weather'}->{$facet}->{'option'} } )->{'content'};
+            = rand_from_array( @{ $xml_data->{'weather'}->{$facet}->{'option'} } );
     }
     return $city;
 } ## end sub set_weather
@@ -266,9 +368,13 @@ sub assign_races {
 sub add_race_features {
     my ( $race, $newrace ) = @_;
     $race->{'name'}      = $newrace->{'content'};
-    $race->{'order_mod'} = $newrace->{'order_mod'};
-    $race->{'moral_mod'} = $newrace->{'moral_mod'};
-    $race->{'magic_mod'} = $newrace->{'magic_mod'};
+    $race->{'order'}     = $newrace->{'order'};
+    $race->{'moral'}     = $newrace->{'moral'};
+    $race->{'magic'}     = $newrace->{'magic'}; 
+    $race->{'authority'} = $newrace->{'authority'};
+    $race->{'economy'}   = $newrace->{'economy'};
+    $race->{'education'} = $newrace->{'education'};
+    $race->{'travel'}    = $newrace->{'travel'};
     $race->{'type'}      = $newrace->{'type'};
     return $race;
 } ## end sub add_race_features
@@ -321,7 +427,9 @@ sub generate_pop_type {
     my ($city) = @_;
     my $roll = &d(100);
     my $poptype = roll_from_array( $roll, $xml_data->{'poptypes'}->{'population'} );
+    my $popdensity = rand_from_array( @{$xml_data->{'popdensity'}->{'option'} });
     $city->{'poptype'} = $poptype->{'type'};
+    $city->{'popdensity'} = $popdensity;
     $city->{'races'}   = $poptype->{'option'};
     return $city;
 } ## end sub generate_pop_type
@@ -330,18 +438,34 @@ sub generate_city_ethics {
     my ($city) = @_;
     $city->{'moral'} = &d(100);
     $city->{'order'} = &d(100);
-    $city->{'magic'} = &d(100);
+    $city->{'magic'}    =&d(4)-2;
+    $city->{'authority'}=&d(4)-2;
+    $city->{'economy'}  =&d(4)-2;
+    $city->{'education'}=&d(4)-2;
+    $city->{'travel'}   =&d(4)-2;
     for my $race ( @{ $city->{'races'} } ) {
-        $city->{'moral'} += $race->{'moral_mod'};
-        $city->{'order'} += $race->{'order_mod'};
-        $city->{'magic'} += $race->{'magic_mod'};
+        $city->{'moral'} += $race->{'moral'};
+        $city->{'order'} += $race->{'order'};
+        $city->{'magic'} += $race->{'magic'};
+        $race->{'authority'} += $race->{'authority'};
+        $race->{'economy'}   += $race->{'economy'};
+        $race->{'education'} += $race->{'education'};
+        $race->{'travel'}    += $race->{'travel'};
     }
-    if ( $city->{'moral'} < 1 )   { $city->{'moral'} = 1; }
-    if ( $city->{'moral'} > 100 ) { $city->{'moral'} = 100; }
-    if ( $city->{'order'} < 1 )   { $city->{'order'} = 1; }
-    if ( $city->{'order'} > 100 ) { $city->{'order'} = 100; }
-    if ( $city->{'magic'} < 1 )   { $city->{'magic'} = 1; }
-    if ( $city->{'magic'} > 100 ) { $city->{'magic'} = 100; }
+    if ( $city->{'moral'} <   1 )    { $city->{'moral'} =   1; }
+    if ( $city->{'moral'} > 100 )    { $city->{'moral'} = 100; }
+    if ( $city->{'order'} <   1 )    { $city->{'order'} =   1; }
+    if ( $city->{'order'} > 100 )    { $city->{'order'} = 100; }
+    if ( $city->{'magic'}     < -5 ) { $city->{'magic'}      = -5; }
+    if ( $city->{'magic'}     >  5 ) { $city->{'magic'}      =  5; }
+    if ( $city->{'authority'} < -5 ) { $city->{'authority'}  = -5; }
+    if ( $city->{'authority'} >  5 ) { $city->{'authority'}  =  5; }
+    if ( $city->{'economy'}   < -5 ) { $city->{'economy'}    = -5; }
+    if ( $city->{'economy'}   >  5 ) { $city->{'economy'}    =  5; }
+    if ( $city->{'education'} < -5 ) { $city->{'education'}  = -5; }
+    if ( $city->{'education'} >  5 ) { $city->{'education'}  =  5; }
+    if ( $city->{'travel'}    < -5 ) { $city->{'travel'}     = -5; }
+    if ( $city->{'travel'}    >  5 ) { $city->{'travel'}     =  5; }
     return $city;
 } ## end sub generate_city_ethics
 
@@ -466,24 +590,30 @@ sub describe_city{
     if ( defined $city->{'weather'}->{'clouds'} ){
         $clouds="the clouds are ".$city->{'weather'}->{'clouds'}.",";
     }
+    my $economy=print_economy($city);
+    my $housing=print_housing($city);
+    my $districts=print_districts($city);
 
 print <<EOF
 
-========== $city->{'name'} ==========
+========== $city->{'name'} ($city->{'seed'})==========
 
 $city->{'name'} is a $city->{'description'} of around $city->{'population'}.
 Located $city->{'location'}, this $city->{'poptype'} $city->{'size'} is ruled by $city->{'govtype'}->{'type'},
 although there is a $city->{'secondarypower'}->{'power'} that $city->{'secondarypower'}->{'plot'} the leadership, 
 while secretly $city->{'secondarypower'}->{'subplot'}.
 $markets
-You arrive at the city around $city->{'time'}->{'content'}, where the air is $city->{'weather'}->{'air'},
-$clouds the wind is $city->{'weather'}->{'wind'}, and the temp is $city->{'weather'}->{'temp'}.
-$precip
-Upon arrival, you see:
+You arrive at the city around $city->{'time'}->{'content'}, where $clouds the air is $city->{'weather'}->{'air'}->{'content'} 
+and the wind is $city->{'weather'}->{'wind'}->{'content'}. $precip
+
+Upon arrival, around $city->{'visible population'} citizens are wandering the $city->{'weather'}->{'temp'}->{'content'} $city->{'size'}. You see:
     * $events
 
 Law enforcement $city->{'laws'}->{'enforcement'}, punishments are mainly $city->{'laws'}->{'punishment'},
 and convictions are $city->{'laws'}->{'trial'}.
+$economy 
+$housing
+$districts
 
 Populations is broken down as follows:
 $population
@@ -492,3 +622,84 @@ EOF
 
 }
 
+sub print_districts{
+    my ($city)=@_;
+    my $districts="\nDistricts:\n";
+    my $loop=0;
+    for my $district (sort keys %{ $city->{'districts'}}  ){
+        $districts.=sprintf " %2s %-12s",$city->{'districts'}->{$district},$district;
+        if ($loop++ %3 == 2){$districts.="\n";}
+    }
+
+    return $districts;
+}
+
+sub print_housing{
+    my ($city)=@_;
+    my $housing="\nHousing:\n";
+    $housing.=sprintf "  Abandoned: %4s   ",  $city->{'housing'}->{'abandoned'};
+    $housing.=sprintf "  Average:   %4s   \n",  $city->{'housing'}->{'average'};
+    $housing.=sprintf "  Poor:      %4s   ",$city->{'housing'}->{'poor'};
+    $housing.=sprintf "  Elite:     %4s   \n",  $city->{'housing'}->{'elite'};
+
+    return $housing;
+}
+sub print_economy{
+    my ($city)=@_;
+    my $econ="\nEconomy:\n The economy is ";
+    if ($city->{'economy'} >0){ $econ.='strong. ';
+    }elsif ($city->{'economy'} <0){ $econ.='weak. ';
+    }else { $econ.='stable. ';    }
+    $econ.="Magic is ";
+    if ($city->{'magic'} >0){ $econ.='plentiful. ';
+    }elsif ($city->{'magic'} <0){ $econ.='rare. ';
+    }else { $econ.=' somewhat common. ';    }
+    $econ.="Education is ";
+    if ($city->{'education'} >0){ $econ.="high.\n ";
+    }elsif ($city->{'education'} <0){ $econ.="low.\n ";
+    }else { $econ.="somewhat common.\n ";    }
+    if ($city->{'travel'} >0){ $econ.='This is a trade hub with many travelers. ';
+    }elsif ($city->{'education'} <0){ $econ.='This is an economically isolated area with few travelers. ';}
+
+    $econ.="You can find the following businesses:\n";
+    my $businesstypes=$city->{'business'};
+    my $loop=0;
+    for my $businessname (sort keys  %$businesstypes  ){
+        if ($businessname ne 'total'){
+            $econ.=sprintf "  %4s %-15s",$businesstypes->{$businessname}->{'count'},$businessname;
+        }
+        if ($loop++ %3 == 2){$econ.="\n";}
+    }
+    return $econ;
+}
+
+# Note that this function is purely for testing purposes.
+sub test_visible_pop{
+    my $sizes={
+               -5 =>20,                -2 =>1000,
+                0 =>3500,               2 =>5000,
+                4 =>8000,               6 =>15000,
+               12 =>50000,
+                };
+    
+    printf " %10s %10s | %10s %10s %10s %10s %10s %10s %10s %10s %10s \n", 'population','size_mod',-4,-3,-2,-1,0,1,2,3,4 ;
+    print "-" x 125 ."\n";
+    for my $size (sort {$a <=> $b} keys %$sizes ){
+        $city->{'size_modifier'}=$size;
+        $city->{'population'}=$sizes->{$size};
+        print_pop_info($city);
+        for my $time (qw/ -4 -3 -2 -1 0 1 2 3 4 / ){
+            $city->{'time'}->{'public_modifier'}=$time;
+            $city = generate_streets($city);
+            printf " %10s",$city->{'visible population'},
+        }
+        print "\n"
+    }
+    exit;
+
+}
+# Note that this function is purely for testing purposes.
+sub print_pop_info{
+    my ($city) = @_;
+    printf " %10s %10s |", $city->{'population'}, $city->{'size_modifier'};
+}
