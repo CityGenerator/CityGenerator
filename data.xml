@@ -29,32 +29,33 @@
 </resources>
 <buildings>
     <building percent='5' type='authority' >official</building>
-    <building percent='6' type='authority' >graveyard</building>
+    <building percent='5' type='authority' >graveyard</building>
+    <building percent='5' type='authority' >priest</building>
     <building percent='4' type='economy' >carpenter</building>
     <building percent='5' type='economy' >mason</building>
     <building percent='4' type='economy' >slaughterhouse</building>
     <building percent='5' type='economy' >tanner</building>
     <building percent='5' type='economy' >fishers</building>
-    <building percent='8' type='economy' >smith</building>
+    <building percent='6' type='economy' >smith</building>
     <building percent='4' type='economy' >baker</building>
     <building percent='4' type='economy' >jeweler</building>
     <building percent='4' type='economy' >messenger</building>
-    <building percent='7' type='economy' >tavern</building>
+    <building percent='6' type='economy' >tavern</building>
     <building percent='4' type='economy' >theatre</building>
     <building percent='5' type='education' >school</building>
     <building percent='4' type='education' >library</building>
     <building percent='3' type='magic' >alchemist</building>
     <building percent='3' type='magic' >magic store</building>
     <building percent='4' type='travel' >shipwright</building>
-    <building percent='4' type='travel' >shipyard</building>
+    <building percent='3' type='travel' >shipyard</building>
     <building percent='7' type='travel' >inn</building>
     <building percent='5' type='travel' >stables</building>
 </buildings>
 
 
 <citytype>
-    <city type="basic"        min="1"   max="40"  base_pop="basic"   add_other="false" >normal population</city>
-    <city type="basic+1"      min="41"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monsterous race)</city>
+    <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</city>
+    <city type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monsterous race)</city>
     <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous population</city>
     <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous population (with one common race)</city>
     <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</city>
@@ -91,12 +92,18 @@
 	    <option percent="98" />
 	    <option percent="1" />
 	</population>
-	<population type="split" min='35' max='65' >
+	<population type="split" min='35' max='50' >
 	    <option percent="49" />
 	    <option percent="48" />
 	    <option percent="2" />
 	</population>
-	<population type="assimilated" min='66' max='85' >
+	<population type="quartered" min='51' max='70' >
+	    <option percent="27" />
+	    <option percent="26" />
+	    <option percent="23" />
+	    <option percent="23" />
+	</population>
+	<population type="assimilated" min='71' max='85' >
 	    <option percent="70" />
 	    <option percent="16" />
 	    <option percent="8" />

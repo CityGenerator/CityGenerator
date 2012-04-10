@@ -13,7 +13,15 @@ use POSIX;
 
 #TODO city exports
 our $seed;
-GetOptions( 'seed=i' => \$seed );
+my $options;
+GetOptions( 
+    'seed=i'        => \$seed, 
+    'population=i'  => \$options->{'population'},   'magic=i'    => \$options->{'magic'},
+    'order=i'       => \$options->{'order'},        'moral=i'    => \$options->{'moral'},
+    'districts=i'   => \$options->{'districts'},    'authority=i'=> \$options->{'authority'},
+    'economy=i'     => \$options->{'economy'},      'education=i'=> \$options->{'education'},
+    'travel=i'      => \$options->{'travel'} );
+
 if (defined $seed){
     srand($seed);   
 }else{
@@ -629,12 +637,13 @@ sub print_districts{
 
 sub print_housing{
     my ($city)=@_;
+    my $housingcount=$city->{'housing'}->{'abandoned'}+$city->{'housing'}->{'average'}+$city->{'housing'}->{'poor'}+$city->{'housing'}->{'elite'};
     my $housing="\nHousing:\n";
     $housing.=sprintf "  Abandoned: %4s   ",  $city->{'housing'}->{'abandoned'};
     $housing.=sprintf "  Average:   %4s   \n",  $city->{'housing'}->{'average'};
     $housing.=sprintf "  Poor:      %4s   ",$city->{'housing'}->{'poor'};
     $housing.=sprintf "  Elite:     %4s   \n",  $city->{'housing'}->{'elite'};
-
+    $housing.="$housingcount total\n";
     return $housing;
 }
 sub print_economy{
@@ -656,13 +665,17 @@ sub print_economy{
 
     $econ.="You can find the following businesses:\n";
     my $businesstypes=$city->{'business'};
+    my $businesscount=0;
     my $loop=0;
     for my $businessname (sort keys  %$businesstypes  ){
         if ($businessname ne 'total'){
             $econ.=sprintf "  %4s %-15s",$businesstypes->{$businessname}->{'count'},$businessname;
+            $businesscount+=$businesstypes->{$businessname}->{'count'};
         }
         if ($loop++ %3 == 2){$econ.="\n";}
     }
+    chomp $econ;
+    $econ.="\n $businesscount total\n";
     return $econ;
 }
 
