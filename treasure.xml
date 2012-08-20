@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--Level   d%  coins   d%  Goods d%    d%  Items-->
+<!-- This is based off the entries in the 3.5e PHB and DMG; If I have crossed any lines, from "using statistics" to infringement, please let me know. -->
+<treasure>
+	<level name="1">
+	    <coin>
+			<option min="1" max="14" ></option>            
+			<option min="15" max="29"  multiplier="1000" dice="1" die="6">cp</option>  
+			<option min="30" max="52"  multiplier="100"  dice="1" die="8">sp</option>   
+			<option min="53" max="95"  multiplier="10"   dice="2" die="8">gp</option>    
+			<option min="90" max="100" multiplier="10"   dice="1" die="4">pp</option>    
+	    </coin>
+	    <goods>
+			<option min="1" max="90"></option>
+			<option min="91" max="95">gems</option>
+			<option min="96" max="100">art</option>
+	    </goods>
+	    <items>
+			<option min="1" max="71"></option>
+			<option min="72" max="95">mundane</option>
+			<option min="96" max="100">minor</option>
+	    </items>
+	</level>
+	<level name="2"> 
+	    <coin>
+			<option min="1" max="13" ></option>            
+			<option min="14" max="23"  multiplier="1000" dice="1" die="10">cp</option> 
+			<option min="24" max="43"  multiplier="100"  dice="2" die="10">sp</option>  
+			<option min="44" max="95"  multiplier="10"   dice="4" die="10">gp</option>   
+			<option min="96" max="100" multiplier="10"   dice="2" die="8" >pp</option>  
+	    </coin>
+	    <goods>
+			<option min="1" max="81"></option>
+			<option min="82" max="95"  dice="1" die="3">gems</option>
+			<option min="96" max="100" dice="1" die="3">art</option>
+	    </goods>
+	    <items>
+			<option min="1" max="49"></option>
+			<option min="50" max="85">mundane</option>
+			<option min="86" max="100">minor</option>
+	    </items>
+	</level>
+	<level name="3">
+	    <coin>
+			<option min="1" max="11"  unit=""></option>            
+			<option min="12" max="21"   multiplier="1000" dice="2" die="10">cp</option> 
+			<option min="22" max="41"   multiplier="100"  dice="4" die="8" >sp</option>   
+			<option min="42" max="95"   multiplier="100"  dice="1" die="4" >gp</option>   
+			<option min="96" max="100"  multiplier="10"   dice="1" die="10">pp</option>   
+	    </coin>
+	    <goods>
+			<option min="1" max="77"></option>
+			<option min="78" max="95"  dice="1" die="3">gems</option>
+			<option min="96" max="100" dice="1" die="3">art</option>
+	    </goods>
+	    <items>
+			<option min="1" max="49"></option>
+			<option min="50" max="79" dice="1" die="3">mundane</option>
+			<option min="80" max="100">minor</option>
+	    </items>
+	</level>
+	<level name="4">
+	    <coin>
+			<option min="1"  max="11" ></option>            
+			<option min="12" max="21"   multiplier="1000" dice="3" die="10">cp</option> 
+			<option min="22" max="41"   multiplier="1000" dice="4" die="12">sp</option> 
+			<option min="42" max="95"   multiplier="100"  dice="1" die="6" >gp</option>   
+			<option min="96" max="100"  multiplier="10"   dice="1" die="8" >pp</option>   
+	    </coin>
+	    <goods>
+			<option min="1"  max="70"></option>
+			<option min="71" max="95"  dice="1" die="4">gems</option>
+			<option min="96" max="100" dice="1" die="3">art</option>
+	    </goods>
+	    <items>
+			<option min="1"  max="42"></option>
+			<option min="43" max="62"  dice="1" die="4">mundane</option>
+			<option min="63" max="100" dice="1" die="3">minor</option>
+	    </items>
+	 
+	</level>
+	<level name="5">
+	    <coin>
+			<option min="1"  max="10" ></option>            
+			<option min="11" max="19"   multiplier="10000" dice="1" die="4" >cp</option> 
+			<option min="20" max="38"   multiplier="1000"  dice="1" die="6" >sp</option>  
+			<option min="39" max="95"   multiplier="100"   dice="1" die="8" >gp</option>   
+			<option min="96" max="100"  multiplier="10"    dice="1" die="10">pp</option>   
+	    </coin>
+	    <goods>
+			<option min="1"  max="60"></option>
+			<option min="61" max="95"  dice="1" die="4">gems</option>
+			<option min="96" max="100" dice="1" die="4">art</option>
+	    </goods>
+	    <items>
+			<option min="1"  max="57"></option>
+			<option min="58" max="67"  dice="1" die="4">mundane</option>
+			<option min="68" max="100" dice="1" die="3">minor</option>
+	    </items>
+	</level>
+	<level name="6">
+	    <coin>
+			<option min="1"  max="10" ></option>            
+			<option min="11" max="18"   multiplier="1000" dice="1" die="6" >cp</option>  
+			<option min="19" max="37"   multiplier="1000" dice="1" die="8" >sp</option>  
+			<option min="38" max="95"   multiplier="100"  dice="1" die="10">gp</option>  
+			<option min="96" max="100"  multiplier="10"   dice="1" die="12">pp</option>   
+	    </coin>
+	    <goods>
+			<option min="1"  max="56"></option>
+			<option min="57" max="92"  dice="1" die="4" >gems</option>
+			<option min="93" max="100" dice="1" die="3" >art</option>
+	    </goods>              
+	    <items>
+			<option min="1"   max="54"></option>
+			<option min="55"  max="59" dice="1" die="4">mundane</option>
+			<option min="60"  max="99" dice="1" die="3">minor</option>
+			<option min="100" max="100">medium</option>
+	    </items>
+	</level>                       
+	<level name="test">
+	    <coin>
+			<option min="1"  max="10" ></option>            
+			<option min="11" max="18"   multiplier="1000" dice="1" die="6" >cp</option>  
+			<option min="19" max="37"   multiplier="1000" dice="1" die="8" >sp</option> 
+			<option min="38" max="95"   multiplier="100"  dice="1" die="10">gp</option>  
+			<option min="96" max="100"  multiplier="10"   dice="1" die="12">pp</option>  
+	    </coin>
+	    <goods>
+			<option min="1"  max="56"></option>
+			<option min="57" max="92"  dice="1" die="1">gems</option>
+			<option min="93" max="100" dice="1" die="1">art</option>
+	    </goods>
+	    <items>
+			<option min="1"   max="54"  dice="3" die="1">minor</option>
+			<option min="55"  max="59"  dice="3" die="1">minor</option>
+			<option min="60"  max="99"  dice="3" die="1">minor</option>
+			<option min="100" max="100" dice="3" die="1">minor</option>
+	    </items>
+	</level>                       
+    <mundane>
+       
+		<option min="1" max="17" category_name="items">
+            <condition min="1"  max="5"   multiplier="1.05">perfect</condition>
+            <condition min="6"  max="20"  multiplier=".90" >good</condition>
+            <condition min="21" max="50"  multiplier=".75" >decent</condition>
+            <condition min="51" max="70"  multiplier=".5"  >poor</condition>
+            <condition min="70" max="95"  multiplier=".25" >horrible</condition>
+            <condition min="96" max="100" multiplier=".05" >ruined</condition>
+            <category category_name="adventuring gear">
+				<type value="2"   unit="gp">Backpack, empty</type>
+				<type value="2"   unit="gp">Barrel, empty</type>
+				<type value="4"   unit="sp">Basket empty</type>
+				<type value="1"   unit="sp">Bedroll</type>
+				<type value="1"   unit="gp">Bell</type>
+				<type value="5"   unit="sp">Blanket, winter</type>
+				<type value="5"   unit="gp">Block and tackle</type>
+				<type value="2"   unit="gp">Bottle, wine, glass</type>
+				<type value="5"   unit="sp">Bucket, empty</type>
+				<type value="1"   unit="gp">Caltrops</type>
+				<type value="1"   unit="cp">Candle</type>
+				<type value="1"   unit="sp">Canvas (sq yd)</type>
+				<type value="1"   unit="gp">Case, Map or scroll</type>
+				<type value="30"  unit="gp">Chain (10 ft)</type>
+				<type value="1"   unit="cp">Chalk (1 piece)</type>
+				<type value="2"   unit="gp">Chest, Empty</type>
+				<type value="2"   unit="gp">Crowbar</type>
+				<type value="1"   unit="cp">Firewood (per day)</type>
+				<type value="1"   unit="sp">Fishhook</type>
+				<type value="4"   unit="gp">Fishing Net, 25 sq ft</type>
+				<type value="3"   unit="cp">Flask, empty</type>
+				<type value="1"   unit="gp">Flint and steel</type>
+				<type value="1"   unit="gp">Grappling hook</type>
+				<type value="5"   unit="sp">Hammer</type>
+				<type value="8"   unit="gp">Ink (1oz vial</type>
+				<type value="1"   unit="sp">Inkpen</type>
+				<type value="3"   unit="cp">Jug, clay</type>
+				<type value="5"   unit="cp">Ladder, 10 ft</type>
+				<type value="1"   unit="sp">Lamp common</type>
+				<type value="12"  unit="gp">Lamp, Bullseye</type>
+				<type value="7"   unit="gp">Lamp, hooded</type>
+                
+				<type value="20"   unit="gp">Lock, Very Simple</type>
+				<type value="40"   unit="gp">Lock, average</type>
+				<type value="80"   unit="gp">Lock, good</type>
+				<type value="150"  unit="gp">Lock, amazing</type>
+				<type value="15"   unit="gp">Manacles</type>
+				<type value="50"   unit="gp">Manacles, Masterwork</type>
+				<type value="10"   unit="gp">Mirror, Small Steel</type>
+				<type value="2"    unit="cp">Mug/Tankard, clay</type>
+				<type value="1"    unit="sp">Oil, 1pt flask</type>
+				<type value="4"    unit="sp">Paper (sheet)</type>
+				<type value="2"    unit="sp">Parchment (sheet)</type>
+				<type value="3"    unit="gp">Pick, Miners</type>
+				<type value="2"    unit="cp">Pitcher, clay</type>
+				<type value="1"    unit="sp">Piton</type>
+				<type value="2"    unit="sp">Pole, 10 ft</type>
+				<type value="5"    unit="sp">Pot, iron</type>
+				<type value="1"    unit="gp">pouch, belt (empty)</type>
+				<type value="10"   unit="gp">Ram, portable</type>
+				<type value="5"    unit="sp">Rations, trail (per day)</type>
+				<type value="1"    unit="gp">Rope, Hemp (50 ft)</type>
+				<type value="10"   unit="gp">Rope, Silk (50 ft)</type>
+				<type value="1"    unit="sp">Sack (empty)</type>
+				<type value="1"    unit="gp">Sealing Wax</type>
+				<type value="5"    unit="sp">Sewing Needle</type>
+				<type value="8"    unit="sp">Signal Whistle</type>
+				<type value="5"    unit="gp">Signet ring</type>
+				<type value="1"    unit="gp">Sledge</type>
+				<type value="5"    unit="sp">Soap (per lb)</type>
+				<type value="2"    unit="gp">Spade or shovel</type>
+				<type value="1000" unit="gp">Spyglass</type>
+				<type value="10"   unit="gp">Tent</type>
+				<type value="1"    unit="cp">Torch</type>
+				<type value="1"    unit="gp">Vial, ink or potion</type>
+				<type value="1"    unit="gp">Waterskin</type>
+				<type value="2"    unit="cp">Whetstone</type>
+                
+            </category>
+            <category category_name="special substances and items">
+          		<type dice="2" die="4" value="10"  unit="gp">acid flasks</type>
+        		<type dice="1" die="4" value="20"  unit="gp">alchemists fire flasks</type>
+        		<type dice="1" die="4" value="50"  unit="gp">antitoxin stones</type>
+        		<type                  value="110" unit="gp">everburning torch</type>
+        		<type dice="1" die="4" value="25"  unit="gp">holy water flasks</type>
+        		<type dice="1" die="4" value="20"  unit="gp">smokesticks sticks</type>
+        		<type dice="1" die="4" value="2"   unit="gp">Sunrod</type>
+        		<type dice="1" die="4" value="50"  unit="gp">tanglefoot bags</type>
+        		<type dice="1" die="4" value="30"  unit="gp">thunderstones</type>
+        		<type dice="1" die="4" value="1"   unit="gp">tinderwig</type>
+                
+            </category>
+            <category category_name="Tools and Skill Kits">
+        		<type value="500"                       unit="gp">Alchemist's Lab</type>
+        		<type value="5"   masterwork_chance="5" unit="gp">Artisan's tools</type>
+        		<type value="80"                        unit="gp">Climber's kit</type>
+        		<type value="50"                        unit="gp">Disguise kit</type>
+        		<type value="50"                        unit="gp">Healer's kit</type>
+        		<type value="0"                          unit="gp">Holly and Mistletoe</type>
+        		<type value="1"                         unit="gp">Holy Symbol, wooden</type>
+        		<type value="25"                        unit="gp">Holy Symbol, silver</type>
+        		<type value="25"                        unit="gp">Hourglass</type>
+        		<type value="100"                       unit="gp">Magnifying glass</type>
+        		<type value="5"   masterwork_chance="5" unit="gp">Musical Instrument, common</type>
+        		<type value="2"                         unit="gp">Scale, Merchant's</type>
+        		<type value="5"                         unit="gp">Spell component pouch</type>
+        		<type value="15"                        unit="gp">Spellbook, wizard's (blank)</type>
+        		<type value="100" masterwork_chance="5" unit="gp">Thieve's tools</type>
+        		<type value="50"                        unit="gp">Tool, Masterwork</type>
+        		<type value="1000"                      unit="gp">Waterclock</type>
+                
+            </category>
+            <category category_name="clothing">
+        		<type value="1"   unit="gp">Artisan's outfit</type>
+        		<type value="5"   unit="gp">Cleric's vestments</type>
+        		<type value="8"   unit="gp">Cold weather outfit</type>
+        		<type value="30"  unit="gp">Courtier's outfit</type>
+        		<type value="3"   unit="gp">Entertainer's outfit</type>
+        		<type value="10"  unit="gp">Explorer's outfit</type>
+        		<type value="5"   unit="gp">Monk's outfit</type>
+        		<type value="75"  unit="gp">Noble's outfit</type>
+        		<type value="1"   unit="sp">Peasant's outft</type>
+        		<type value="200" unit="gp">Royal outfit</type>
+        		<type value="5"   unit="gp">Scholar's outfit</type>
+        		<type value="1"   unit="gp">Traveler's outfit</type>
+            
+            </category>
+        </option>
+		<option min="18" max="50" category_name="armor" >
+            <size min="1"  max="10">small</size>
+            <size min="11" max="95">medium</size>
+            <size min="96" max="100">large</size>
+            <category category_name="light" masterwork_mod="150">
+    		    <type value="5"    masterwork_chance="5" unit="gp">padded</type>
+        		<type value="10"   masterwork_chance="5" unit="gp">leather</type>
+        		<type value="25"   masterwork_chance="5" unit="gp">studded leather</type>
+        		<type value="100"  masterwork_chance="5" unit="gp">chain shirt</type>
+            </category>
+            <category category_name="medium" masterwork_mod="150">
+    		    <type value="15"   masterwork_chance="5" unit="gp">hide</type>
+        		<type value="50"   masterwork_chance="5" unit="gp">scale mail</type>
+        		<type value="150"  masterwork_chance="5" unit="gp">chainmail</type>
+    	    	<type value="200"  masterwork_chance="5" unit="gp">breastplate</type>
+            </category>
+            <category category_name="heavy" masterwork_mod="150">
+        		<type value="200"  masterwork_chance="5" unit="gp">splint</type>
+        		<type value="250"  masterwork_chance="5" unit="gp">banded mail</type>
+        		<type value="600"  masterwork_chance="5" unit="gp">half plate</type>
+        		<type value="1500" masterwork_chance="5" unit="gp">full plate</type>
+            </category>
+            <category category_name="shield" masterwork_mod="150">
+        		<type value="15" masterwork_chance="5" unit="gp">buckler</type>
+        		<type value="3"  masterwork_chance="5" unit="gp">light wooden shield</type>
+        		<type value="9"  masterwork_chance="5" unit="gp">light steel shield</type>
+        		<type value="7"  masterwork_chance="5" unit="gp">heavy wooden shield</type>
+        		<type value="20" masterwork_chance="5" unit="gp">Heavy steel shield</type>
+        		<type value="30" masterwork_chance="5" unit="gp">Tower shield</type>
+            </category>
+        </option>
+		<option min="51" max="83" category_name="weapons">
+        
+            <category category_name="simple" masterwork_mod="300">
+				<type value="2"  masterwork_chance="5" unit="gp">Gauntlet</type>
+				<type value="2"  masterwork_chance="5" unit="gp">Dagger</type>
+				<type value="2"  masterwork_chance="5" unit="gp">Dagger, Punching</type>
+				<type value="5"  masterwork_chance="5" unit="gp">Gauntlet, Spiked</type>
+				<type value="5"  masterwork_chance="5" unit="gp">Mace, light</type>
+				<type value="6"  masterwork_chance="5" unit="gp">Sickle</type>
+				<type value="0"  masterwork_chance="5" unit="gp">Club</type>
+				<type value="12" masterwork_chance="5" unit="gp">Mace, Heavy</type>
+				<type value="8"  masterwork_chance="5" unit="gp">Morningstar</type>
+				<type value="1"  masterwork_chance="5" unit="gp">Shortspear</type>
+				<type value="5"  masterwork_chance="5" unit="gp">Longspear</type>
+				<type value="0"  masterwork_chance="5" unit="gp">Quarterstaff</type>
+				<type value="2"  masterwork_chance="5" unit="gp">Spear</type>
+				<type value="35" masterwork_chance="5" unit="gp">Crossbow, light</type>
+				<type value="50" masterwork_chance="5" unit="gp">Crossbow, heavy</type>
+				<type value="5"  masterwork_chance="5" unit="sp">Dart</type>
+				<type value="1"  masterwork_chance="5" unit="gp">Javelin</type>
+				<type value="0"  masterwork_chance="5" unit="gp">Sling</type>
+            </category>
+            <category category_name="Martial" masterwork_mod="300">
+				<type value="8"   masterwork_chance="5" unit="gp">Axe, throwing</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Hammer, light</type>
+				<type value="6"   masterwork_chance="5" unit="gp">Handake</type>
+				<type value="8"   masterwork_chance="5" unit="gp">Kukri</type>
+				<type value="4"   masterwork_chance="5" unit="gp">Pick, light</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Sap</type>
+				<type value="0"   masterwork_chance="5" unit="gp">Shield, light</type>
+				<type value="0"   masterwork_chance="5" unit="gp">Spiked Armor</type>
+				<type value="0"   masterwork_chance="5" unit="gp">Spiked Shield, Light</type>
+				<type value="10"  masterwork_chance="5" unit="gp">Short Sword</type>
+                
+				<type value="10"  masterwork_chance="5" unit="gp">Battleaxe</type>
+				<type value="8"   masterwork_chance="5" unit="gp">Flail</type>
+				<type value="15"  masterwork_chance="5" unit="gp">Long Sword</type>
+				<type value="8"   masterwork_chance="5" unit="gp">Pick, Heavy</type>
+				<type value="20"  masterwork_chance="5" unit="gp">Rapier</type>
+				<type value="15"  masterwork_chance="5" unit="gp">Scimitar</type>
+				<type value="0"    masterwork_chance="5" unit="gp">Shield, Heavy</type>
+				<type value="0"    masterwork_chance="5" unit="gp">Spiked Shield, heavy</type>
+				<type value="15"  masterwork_chance="5" unit="gp">Trident</type>
+				<type value="12"  masterwork_chance="5" unit="gp">Warhammer</type>
+                
+				<type value="75"   masterwork_chance="5" unit="gp">Falchion</type>
+				<type value="8"    masterwork_chance="5" unit="gp">Glaive</type>
+				<type value="20"   masterwork_chance="5" unit="gp">Greataxe</type>
+				<type value="5"    masterwork_chance="5" unit="gp">Greatclub</type>
+				<type value="15"   masterwork_chance="5" unit="gp">Flail, heavy</type>
+				<type value="50"   masterwork_chance="5" unit="gp">Greatsword</type>
+				<type value="9"    masterwork_chance="5" unit="gp">Guisarme</type>
+				<type value="10"   masterwork_chance="5" unit="gp">Halberd</type>
+				<type value="10"   masterwork_chance="5" unit="gp">Lance</type>
+				<type value="10"   masterwork_chance="5" unit="gp">Ranseur</type>
+				<type value="18"   masterwork_chance="5" unit="gp">Scythe</type>
+				<type value="75"   masterwork_chance="5" unit="gp">Longbow</type>
+				<type value="100"  masterwork_chance="5" unit="gp">Longbow, Composite</type>
+				<type value="30"   masterwork_chance="5" unit="gp">Shortbow</type>
+				<type value="75"   masterwork_chance="5" unit="gp">Shortbow, Composite</type>
+            </category>
+            <category category_name="ammunution" masterwork_mod="6"> 
+				<type value="1"    masterwork_chance="5" unit="gp">Arrows (20)</type>
+				<type value="1"  masterwork_chance="5" unit="gp">Crossbow Bolts (10)</type>
+				<type value="1"  masterwork_chance="5" unit="sp">Sling Bullets (10)</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Bolts (hand) (10)</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Bolts (light repeating) (5)</type>
+            </category>
+            <category category_name="Exotic" masterwork_mod="300">
+				<type value="2"   masterwork_chance="5" unit="gp">Kama</type>
+				<type value="2"   masterwork_chance="5" unit="gp">Nunchaku</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Sai</type>
+				<type value="3"   masterwork_chance="5" unit="gp">Siangham</type>
+				<type value="35"  masterwork_chance="5" unit="gp">Bastard Sword</type>
+				<type value="30"  masterwork_chance="5" unit="gp">Waraxe, Dwarven</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Whip</type>
+				<type value="60"  masterwork_chance="5" unit="gp">Axe, orc double</type>
+				<type value="25"  masterwork_chance="5" unit="gp">Chain, Spiked</type>
+				<type value="90"  masterwork_chance="5" unit="gp">Flail, Dire</type>
+				<type value="20"  masterwork_chance="5" unit="gp">Hammer, Gnome hooked</type>
+				<type value="100" masterwork_chance="5" unit="gp">Sword, two bladed</type>
+				<type value="50"  masterwork_chance="5" unit="gp">Urgrosh, dwarven</type>
+				<type value="5"   masterwork_chance="5" unit="gp">Bolas</type>
+				<type value="100" masterwork_chance="5" unit="gp">Crossbow, hand</type>
+				<type value="400" masterwork_chance="5" unit="gp">Crossbow, repeating heavy</type>
+				<type value="250" masterwork_chance="5" unit="gp">Crossbow, repeating light</type>
+				<type value="20"  masterwork_chance="5" unit="gp">Net</type>
+				<type value="1"   masterwork_chance="5" unit="gp">Shuriken (5)</type>
+            
+            </category>
+            
+            
+        
+        </option>
+    </mundane>
+    <minor>
+            <option min="1"   max="104"    category_name="armor and shields" >
+                <category min="1"  max="60"  bonus="1" category_name="shield">+2 shield</category>
+                <category min="61" max="80"  bonus="1" category_name="armor" >+2 armor</category>
+                <category min="81" max="85"  bonus="2" category_name="shield">+2 shield</category>
+                <category min="86" max="87"  bonus="2" category_name="armor" >+2 armor</category>
+                <category min="88" max="89"  category_name="Specific armor">
+                    <type min="1"  max="50"  value="1100" >Mithral Shirt</type>
+                    <type min="51" max="80"  value="3300" >Dragonhide Plate</type>
+                    <type min="81" max="100" value="4150" >Elven Chain</type>
+                </category>
+                <category min="90" max="91"  category_name="Specific shield">
+                    <type min="1"  max="30"  value="205"  >Darkwood Buckler</type>
+                    <type min="31" max="80"  value="257"  >Darkwood Shield</type>
+                    <type min="81" max="95"  value="1020" >Mithral Heavy Shield</type>
+                    <type min="96" max="100" value="3153" >Caster's Shield</type>
+                    
+                </category>
+                <category min="92" max="96" category_name="Armor">
+                    <type min="1"   max="25"  value_mod="2700" >Glamered</type>
+                    <type min="26"  max="32"  value_mod="1000" >Light Fortification</type>
+                    <type min="33"  max="52"  value_mod="3750" >Slick</type>
+                    <type min="53"  max="72"  value_mod="3750" >Shadow</type>
+                    <type min="73"  max="92"  value_mod="3750" >Silent Moves</type>
+                    <type min="93"  max="96"  value_mod="4000" >Spell Resistance (13)</type>
+                    <type min="97"  max="97"  value_mod="15000" >Improved Slick</type>
+                    <type min="98"  max="98"  value_mod="15000" >Improved Shadow</type>
+                    <type min="99"  max="99"  value_mod="15000" >Improved Silent Moves</type>
+                    <type min="100" max="100" value_mod="" >Roll again Twice</type>
+                </category>
+                <category min="96" max="100" category_name="shield">
+                    <type min="1"   max="20"  value_mod="1000" >Arrow Catching</type>
+                    <type min="21"  max="40"  value_mod="1000" >Bashing</type>
+                    <type min="41"  max="50"  value_mod="1000" >Blinding</type>
+                    <type min="51"  max="75"  value_mod="1000" >Light Fortification</type>
+                    <type min="76"  max="82"  value_mod="4000" >Arrow Deflection</type>
+                    <type min="83"  max="97"  value_mod="4000" >Animated</type>
+                    <type min="98"  max="99"  value_mod="4000" >Spell Resistance (13)</type>
+                    <type min="100" max="100" value_mod="4000" >Roll again Twice</type>
+                </category>
+            
+            </option>
+<!--            <option min="5"   max="9"   category_name="Weapons" >
+            
+            </option>
+            <option min="10"  max="44"  category_name="Potions" >        </option>
+            <option min="45"  max="46"  category_name="Rings" >          </option>
+            <option min="47"  max="81"  category_name="Scrolls" >        </option>
+            <option min="82"  max="91"  category_name="Wands" >          </option>
+            <option min="92"  max="100" category_name="Wonderous Items" ></option>
+-->
+            
+    </minor>
+    <art>
+        <condition min="1"  max="10"   multiplier="1.05">perfect</condition>
+        <condition min="11" max="20"   multiplier=".90" >good</condition>
+        <condition min="21" max="55"   multiplier=".75" >decent</condition>
+        <condition min="56" max="85"   multiplier=".25" >poor</condition>
+        <condition min="86" max="95"   multiplier=".10" >horrible</condition>
+        <condition min="96" max="100"  multiplier=".05" >ruined</condition>
+        <option min="1"  max="10"  dice="1" die="10" multiplier="10" unit="gp">
+            <type>Silver ewer</type>
+            <type>Carved bone statuette</type>
+            <type>Carved ivory statuette</type>
+            <type>finely wrought small gold bracelet</type>
+        </option>
+        <option min="11" max="25"  dice="3" die="6" multiplier="10" unit="gp">
+            <type>Cloth of gold vestments</type>
+            <type>Black velvet mask with numerous citrines</type>
+            <type>Silver Chalice with lapis lazuli gems</type>
+        </option>
+        <option min="26" max="40"  dice="1" die="6" multiplier="100" unit="gp">
+            <type>Large well done tapestry</type>
+            <type>Brass mug with jade inlays</type>
+        </option>
+        <option min="41"  max="50"  dice="1" die="10" multiplier="100" unit="gp">
+            <type>Silver comb with moonstones</type>
+            <type>Silver plated steel longsword with jet jewel in hilt</type>
+        </option>
+        <option min="51"  max="60"  dice="2" die="6" multiplier="100" unit="gp">
+            <type>Carved harp of exotic wood with ivory inlay and zircon gems</type>
+            <type>solid gold idol (10 lbs)</type>
+        </option>
+        <option min="61"  max="70"  dice="3" die="6" multiplier="100" unit="gp">
+            <type>Gold dragon comb with red garnet eye</type>
+            <type>gold and topaz bottle stopper cork</type>
+            <type>cerimonial electrum dagger with a star ruby in the pommel</type>
+        </option>
+        <option min="71"  max="80"  dice="4" die="6" multiplier="100" unit="gp">
+            <type>Eyepatch with mock eye of sapphire and moonstone</type>
+            <type>fire opal pendant on a fine gold chain</type>
+            <type>old masterpiece painting</type>
+        </option>
+        <option min="81"  max="85"  dice="5" die="6" multiplier="100" unit="gp">
+            <type>Embroidered silk and velvet mantle with numerous moonstones</type>
+            <type>Sapphire pendant on gold chain</type>
+        </option>
+        <option min="86"  max="90"  dice="1" die="4" multiplier="1000" unit="gp">
+            <type>Embroidered and bejeweled glove</type>
+            <type>jeweled anklet</type>
+            <type>gold music box</type>
+        </option>
+        <option min="91"  max="95"  dice="1" die="6" multiplier="1000" unit="gp">
+            <type>Golden circlet with four aquamarines</type>
+            <type>a string of small pink pearls</type>
+        </option>
+        <option min="96"  max="99"  dice="2" die="4" multiplier="1000" unit="gp">
+            <type>jeweled gold crown</type>
+            <type>jeweled electrum ring</type>
+        </option>
+        <option min="100"  max="100"  dice="2" die="6" multiplier="1000" unit="gp">
+            <type>Gold and ruby ring</type>
+            <type>Ruby Fark Squirrel Statue</type>
+            <type>gold cup set with emeralds</type>
+        </option>
+    </art>
+    <gems>
+		<option min="1" max="25" dice="4" die="4" unit="gp"> 
+			<type>banded agate</type>
+			<type>eye agate</type>
+			<type>moss agate</type>
+			<type>azurite</type>
+			<type>blue quartz</type>
+			<type>hematite</type> 
+			<type>lapis lazuli</type>
+			<type>malachite</type>
+			<type>obsidian</type>
+			<type>rhodochrosite</type>
+			<type>tiger eye turquoise</type>
+			<type>freshwater (irregular) pearl</type>
+        </option>
+		<option min="26" max="50" dice="2" die="4" multiplier="10" unit="gp">
+			<type>bloodoption</type>
+			<type>carnelian</type>
+			<type>chalcedony</type>
+			<type>chrysoprase</type>
+			<type>citrine</type>
+			<type>iolite</type>
+			<type>jasper</type>
+			<type>moonoption</type>
+			<type>onyx</type>
+			<type>peridot</type>
+			<type>rock crystal (clear quartz)</type>
+			<type>sard</type>
+			<type>sardonyx</type>
+			<type>rose quartz</type>
+			<type>smoky quartz</type>
+			<type>star rose quartz</type>
+			<type>zircon</type>
+        </option>
+		<option min="51" max="70" dice="4" die="4" multiplier="10" unit="gp">
+			<type>amber</type>
+			<type>amethyst</type>
+			<type>chrysoberyl</type>
+			<type>coral</type>
+			<type>red garnet</type>
+			<type>brown-green garnet</type>
+			<type>jade</type>
+			<type>jet</type>
+			<type>white pearl</type>
+			<type>golden pearl</type>
+			<type>pink pearl</type>
+			<type>silver pearl</type>
+			<type>red spinel</type>
+			<type>red-brown spinel</type>
+			<type>deep green spinel</type>
+			<type>tourmaline</type>
+        </option>
+		<option min="71" max="90" dice="2" die="4" multiplier="100" unit="gp">
+			<type>alexandrite</type>
+			<type>aquamarine</type>
+			<type>violet garnet</type>
+			<type>black pearl</type>
+			<type>deep blue spinel</type>
+			<type>golden yellow topaz</type>
+        </option>
+		<option min="91" max="99" dice="4" die="4" multiplier="100" unit="gp">
+			<type>emerald</type>
+			<type>white opal</type>
+			<type>black opal</type>
+			<type>fire opal</type>
+			<type>blue sapphire</type>
+			<type>fiery yellow corundum</type>
+			<type>rich purple corundum</type>
+			<type>blue star sapphire</type>
+			<type>black star sapphire</type>
+			<type>star ruby</type>
+        </option>
+		<option min="100" max="100" dice="2" die="4" multiplier="1000" unit="gp">
+			<type>clearest bright green emerald</type>
+			<type>blue-white diamond</type>
+			<type>canary diamond</type>
+			<type>pink diamond</type>
+			<type>brown diamond</type>
+			<type>blue diamond</type>
+			<type>jacinth</type>
+        </option>
+    </gems>
+    
+</treasure>
