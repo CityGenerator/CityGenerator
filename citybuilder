@@ -20,7 +20,9 @@ srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 
-
+#TODO break out crime/law enforcement into it's own section
+#imprisonment rates can range from 0.7% US to 0.1%
+#TODO look into passing rand_from_array a pointer.
 
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
@@ -235,16 +237,148 @@ sub assign_races {
     }
     # If the base_pop has an "off" race, add it.
     if ( $city->{'add_other'} eq 'true' ) {
-        my $newrace      = get_other_race($base_pop);
-        my $replace_race = &d( scalar @races ) - 1;
-        $races[$replace_race] = add_race_features( $races[$replace_race], $newrace );
+        my $newrace              = get_other_race($base_pop);
+        my $replace_race_id      = &d( scalar @races ) - 1;
+        $races[$replace_race_id] = add_race_features( $races[$replace_race_id], $newrace );
     }
     #replace race percentages with full race breakdowns.
     $city->{'races'} = \@races;
 } ## end sub assign_races
 
 
+#####################################################
+#
+# Generate City Ethics - This was originally intended
+# for morals and order (classic alignment), but I've 
+# expanded it to include other scales, such as 
+# determining if the city is a trade hub, etc. 
+# TODO: Why are the other scales no 1-100?
+#
+#####################################################
+sub generate_city_ethics {
+    $city->{'moral'} = &d(100);
+    $city->{'order'} = &d(100);
 
+    foreach my $scale (qw/ magic authority economy education travel / ){
+        $city->{$scale}    =&d(4)-2;
+    }
+
+    for my $race ( @{ $city->{'races'} } ) {
+        $city->{'moral'} += $race->{'moral'};
+        $city->{'order'} += $race->{'order'};
+        foreach my $scale (qw/ magic authority economy education travel / ){
+            $city->{$scale} += $race->{$scale};
+        }
+    }
+    if ( $city->{'moral'} <   1 )    { $city->{'moral'} =   1; }
+    if ( $city->{'moral'} > 100 )    { $city->{'moral'} = 100; }
+    if ( $city->{'order'} <   1 )    { $city->{'order'} =   1; }
+    if ( $city->{'order'} > 100 )    { $city->{'order'} = 100; }
+
+    foreach my $scale (qw/ magic authority economy education travel / ){
+        if ( $city->{$scale}     < -5 ) { $city->{$scale}      = -5; }
+        if ( $city->{$scale}     >  5 ) { $city->{$scale}      =  5; }
+    }
+
+} ## end sub generate_city_ethics
+
+
+#####################################################
+#
+# set Government Type - fairly simple, just
+# select a type of govt from the list.
+#
+#####################################################
+sub set_govt_type {
+    my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
+    $city->{'govtype'} = rand_from_array( @{ $govttypelist } );
+}
+
+
+#####################################################
+#
+# Generate Secondary Power - select a plot, a power
+# and a subplot.
+#
+#####################################################
+sub generate_secondary_power {
+    $city->{'secondarypower'}={};
+
+    # select a plot
+    my $plotlist=$xml_data->{'secondarypower'}->{'plot'};
+    $city->{'secondarypower'}->{'plot'} = rand_from_array( @{ $plotlist } )->{'content'};
+
+    #select a power and a related subplot.
+    my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
+    my $power = rand_from_array( @{ $powerlist} );
+    $city->{'secondarypower'}->{'power'} = rand_from_array( @{ $powerlist} )->{'type'};
+    $city->{'secondarypower'}->{'subplot'} = rand_from_array( @{ $power->{'subplot'} } )->{'content'};
+}
+
+#####################################################
+#
+# Set Location - select a location and choose any
+# applicable landmarks.
+#
+#####################################################
+sub set_location {
+
+    my $locationlist=$xml_data->{'locations'}->{'location'} ;
+    my $location = rand_from_array( @{ $locationlist } );
+
+    $city->{'location'}  = $location->{'description'};
+    $city->{'landmarks'} = set_landmarks($location);
+}
+
+#####################################################
+#
+# Set Weather - As long as the location is above
+# ground, set the forcast, clouds, precip and thunder.
+# For all environments, loop through air, wind, and
+# temperature and set them.
+#
+#####################################################
+sub set_weather {
+    $city->{'weather'} = {};
+    #We don't need these underground...
+    if ( $city->{'location'} ne 'Underground' ) {
+         set_forecast();
+         set_clouds();
+         set_precip();
+         set_thunder();
+    }
+
+    for my $facet (qw( temp air wind)) {
+        # my god xml::simple is ugly.
+        my $facetlist=$xml_data->{'weather'}->{$facet}->{'option'};
+        $city->{'weather'}->{$facet} = rand_from_array( @{ $facetlist } );
+    }
+}
+
+#####################################################
+#
+# Set Laws - Laws have three facets- enforcement, 
+# trial and punishment. Select these from arrays.
+#
+#####################################################
+
+sub set_laws {
+    $city->{'laws'} = {};
+    for my $facet (qw( enforcement trial punishment )) {
+        my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
+        $city->{'laws'}->{$facet} = rand_from_array( @{ $facetlist } )->{'content'};
+    }
+}
+
+#####################################################
+#
+# Set time - Set the time of day that you show up.
+#
+#####################################################
+sub set_time {
+    my $timelist=$xml_data->{'time'}->{'option'};
+    $city->{'time'} = rand_from_array( @{ $timelist } );
+}
 
 
 
@@ -258,7 +392,7 @@ sub generate_districts{
     my $districtcount=5 + $city->{'size_modifier'};
     $city->{'districts'}={};
     for (my $i=0; $i<$districtcount ; $i++){
-        my $district=rand_from_array(@{$xml_data->{'districts'}->{'option'}});
+       my $district=rand_from_array(@{$xml_data->{'districts'}->{'option'}});
         if (defined $city->{'districts'}->{$district->{'type'}}){
             $city->{'districts'}->{$district->{'type'}}+=1;
         }else{
@@ -367,25 +501,6 @@ sub generate_events {
 
 } ## end sub generate_events
 
-sub set_weather {
-    $city->{'weather'} = {};
-    if ( $city->{'location'} ne 'Underground' ) {
-
-         set_forecast();
-
-         set_clouds();
-
-         set_precip();
-
-         set_thunder();
-
-    } ## end if ( $city->{'location'...})
-    for my $facet (qw( temp air wind)) {
-        $city->{'weather'}->{$facet}
-            = rand_from_array( @{ $xml_data->{'weather'}->{$facet}->{'option'} } );
-    }
-} ## end sub set_weather
-
 sub set_forecast {
     my @forecasttypes = @{ $xml_data->{'weather'}->{'forecast'}->{'option'} };
     $city->{'weather'}->{'forecast'} = rand_from_array(@forecasttypes)->{'content'};
@@ -413,25 +528,6 @@ sub set_precip {
     } ## end if ( &d(100) < $xml_data...)
 } ## end sub set_precip
 
-sub set_laws {
-    $city->{'laws'} = {};
-    for my $facet (qw( enforcement trial punishment)) {
-        $city->{'laws'}->{$facet} = rand_from_array( @{ $xml_data->{'laws'}->{$facet}->{'option'} } )->{'content'};
-    }
-} ## end sub set_laws
-
-sub set_time {
-    my $roll   = &d(100);
-    my $time   = rand_from_array( @{ $xml_data->{'time'}->{'option'} } );
-    $city->{'time'} = $time;
-} ## end sub set_time
-
-sub set_location {
-    my $location = rand_from_array( @{ $xml_data->{'locations'}->{'location'} } );
-    $city->{'location'}  = $location->{'description'};
-    $city->{'landmarks'} = set_landmarks($location);
-} ## end sub set_location
-
 sub set_landmarks {
     my ($location) = @_;
     my @landmarks;
@@ -452,18 +548,6 @@ sub rand_from_array {
     my (@array) = @_;
     my $index = int( rand( scalar @array ) );
     return $array[$index];
-}
-
-sub generate_secondary_power {
-    $city->{'secondarypower'}={};
-    $city->{'secondarypower'}->{'plot'} = rand_from_array( @{ $xml_data->{'secondarypower'}->{'plot'} } )->{'content'};
-    my $power = rand_from_array( @{ $xml_data->{'secondarypower'}->{'power'} } );
-    $city->{'secondarypower'}->{'power'} = $power->{'type'};
-    $city->{'secondarypower'}->{'subplot'} = rand_from_array( @{ $power->{'subplot'} } )->{'content'};
-}
-
-sub set_govt_type {
-    $city->{'govtype'} = rand_from_array( @{ $xml_data->{'govtypes'}->{'govt'} } );
 }
 
 sub add_race_features {
@@ -501,39 +585,6 @@ sub get_races {
     }
     return shuffle @races;
 } ## end sub get_races
-
-sub generate_city_ethics {
-    $city->{'moral'} = &d(100);
-    $city->{'order'} = &d(100);
-    $city->{'magic'}    =&d(4)-2;
-    $city->{'authority'}=&d(4)-2;
-    $city->{'economy'}  =&d(4)-2;
-    $city->{'education'}=&d(4)-2;
-    $city->{'travel'}   =&d(4)-2;
-    for my $race ( @{ $city->{'races'} } ) {
-        $city->{'moral'} += $race->{'moral'};
-        $city->{'order'} += $race->{'order'};
-        $city->{'magic'} += $race->{'magic'};
-        $race->{'authority'} += $race->{'authority'};
-        $race->{'economy'}   += $race->{'economy'};
-        $race->{'education'} += $race->{'education'};
-        $race->{'travel'}    += $race->{'travel'};
-    }
-    if ( $city->{'moral'} <   1 )    { $city->{'moral'} =   1; }
-    if ( $city->{'moral'} > 100 )    { $city->{'moral'} = 100; }
-    if ( $city->{'order'} <   1 )    { $city->{'order'} =   1; }
-    if ( $city->{'order'} > 100 )    { $city->{'order'} = 100; }
-    if ( $city->{'magic'}     < -5 ) { $city->{'magic'}      = -5; }
-    if ( $city->{'magic'}     >  5 ) { $city->{'magic'}      =  5; }
-    if ( $city->{'authority'} < -5 ) { $city->{'authority'}  = -5; }
-    if ( $city->{'authority'} >  5 ) { $city->{'authority'}  =  5; }
-    if ( $city->{'economy'}   < -5 ) { $city->{'economy'}    = -5; }
-    if ( $city->{'economy'}   >  5 ) { $city->{'economy'}    =  5; }
-    if ( $city->{'education'} < -5 ) { $city->{'education'}  = -5; }
-    if ( $city->{'education'} >  5 ) { $city->{'education'}  =  5; }
-    if ( $city->{'travel'}    < -5 ) { $city->{'travel'}     = -5; }
-    if ( $city->{'travel'}    >  5 ) { $city->{'travel'}     =  5; }
-} ## end sub generate_city_ethics
 
 
 
@@ -658,7 +709,7 @@ return <<EOF
                         $events
                         </p>
                     </section>
-
+                    <h2>Crime</h2>
                     <p>Law enforcement $city->{'laws'}->{'enforcement'}, punishments are mainly $city->{'laws'}->{'punishment'},
                     and convictions are $city->{'laws'}->{'trial'}.</p>
                     $economy 
