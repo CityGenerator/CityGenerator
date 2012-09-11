@@ -355,6 +355,7 @@ sub set_weather {
     }
 }
 
+
 #####################################################
 #
 # Set Laws - Laws have three facets- enforcement, 
@@ -370,6 +371,7 @@ sub set_laws {
     }
 }
 
+
 #####################################################
 #
 # Set time - Set the time of day that you show up.
@@ -378,6 +380,33 @@ sub set_laws {
 sub set_time {
     my $timelist=$xml_data->{'time'}->{'option'};
     $city->{'time'} = rand_from_array( @{ $timelist } );
+}
+
+
+#####################################################
+#
+# Generate Events - I don't like this method. It's 
+# sloppy and ugly and smells bad. FIXME.
+# should the size of the town affect the number of events?
+# willis with a population of 35k may have more than the
+# hard-coded config limit of 2.
+#
+#####################################################
+sub generate_events {
+    my $event_chance=$xml_data->{'events'}->{'chance'};
+    my $limit=$xml_data->{'events'}->{'limit'};
+    $city->{'events'}=[];
+    my @events;
+
+    for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
+        if ($limit > 0 and &d(100) < $event_chance ){
+            my $eventname=$event->{'type'};
+            my $desc = rand_from_array( @{ $event->{'option'} } )->{'content'};
+            push @{$city->{'events'}}, $desc.$eventname;
+            $limit--;
+        }
+    }
+
 }
 
 
@@ -483,23 +512,6 @@ sub generate_markets {
     }
     $city->{'markets'}=\@markets;
 }
-
-sub generate_events {
-    my $event_chance=$xml_data->{'events'}->{'chance'};
-    my $limit=$xml_data->{'events'}->{'limit'};
-    $city->{'events'}=[];
-    my @events;
-
-    for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
-        if ($limit > 0 and &d(100) < $event_chance ){
-            my $eventname=$event->{'type'};
-            my $desc = rand_from_array( @{ $event->{'option'} } )->{'content'};
-            push @{$city->{'events'}}, $desc.$eventname;
-            $limit--;
-        }
-    }
-
-} ## end sub generate_events
 
 sub set_forecast {
     my @forecasttypes = @{ $xml_data->{'weather'}->{'forecast'}->{'option'} };

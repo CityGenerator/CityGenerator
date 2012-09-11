@@ -1300,6 +1300,11 @@
 </classes>
 
 <housing>
+    <quality name="average" percent="69" density="10"/>
+    <quality name="poor"    percent="30" density="20" required='true'/>
+    <quality name="elite"   percent="1"  density="5"/>
+
+
     <house_type name="small hut" value="5gp" max="5" />
     <house_type name="medium hut" value="9gp" max="10" />
     <house_type name="large hut" value="12gp" max="15" />
