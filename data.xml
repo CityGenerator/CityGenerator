@@ -19,6 +19,10 @@
 
 
 <resources>
+    Alcohol
+    Books
+    Cattle
+    Cheese
     Timber
     Petroleum
     Natural Gas
@@ -31,25 +35,26 @@
     <building percent='5' type='authority' >official</building>
     <building percent='5' type='authority' >graveyard</building>
     <building percent='5' type='authority' >priest</building>
-    <building percent='4' type='economy' >carpenter</building>
-    <building percent='5' type='economy' >mason</building>
-    <building percent='4' type='economy' >slaughterhouse</building>
-    <building percent='5' type='economy' >tanner</building>
-    <building percent='5' type='economy' >fishers</building>
-    <building percent='6' type='economy' >smith</building>
-    <building percent='4' type='economy' >baker</building>
-    <building percent='4' type='economy' >jeweler</building>
-    <building percent='4' type='economy' >messenger</building>
-    <building percent='6' type='economy' >tavern</building>
-    <building percent='4' type='economy' >theatre</building>
+    <building percent='4' type='economy'   >carpenter</building>
+    <building percent='4' type='economy'   >mason</building>
+    <building percent='4' type='economy'   >slaughterhouse</building>
+    <building percent='5' type='economy'   >tanner</building>
+    <building percent='5' type='economy'   >fishers</building>
+    <building percent='6' type='economy'   >smith</building>
+    <building percent='4' type='economy'   >baker</building>
+    <building percent='4' type='economy'   >jeweler</building>
+    <building percent='3' type='economy'   >messenger</building>
+    <building percent='6' type='economy'   >tavern</building>
+    <building percent='4' type='economy'   >theatre</building>
+    <building percent='3' type='economy'   >brothel</building>
     <building percent='5' type='education' >school</building>
     <building percent='4' type='education' >library</building>
-    <building percent='3' type='magic' >alchemist</building>
-    <building percent='3' type='magic' >magic store</building>
-    <building percent='4' type='travel' >shipwright</building>
-    <building percent='3' type='travel' >shipyard</building>
-    <building percent='7' type='travel' >inn</building>
-    <building percent='5' type='travel' >stables</building>
+    <building percent='3' type='magic'     >alchemist</building>
+    <building percent='3' type='magic'     >magic store</building>
+    <building percent='4' type='travel'    >shipwright</building>
+    <building percent='3' type='travel'    >shipyard</building>
+    <building percent='7' type='travel'    >inn</building>
+    <building percent='4' type='travel'    >stables</building>
 </buildings>
 
 
@@ -993,7 +998,7 @@
     </power>
     <power type="elected representatives">
         <subplot>using position for personal gain</subplot>
-        <subplot>ammassing power</subplot>
+        <subplot>amassing power</subplot>
     </power>
     <power type="advisor">
         <subplot>pulling strings for personal gain</subplot>
@@ -1021,8 +1026,8 @@
     </power>
     <power type="recluse">
         <subplot>pulling strings for personal gain</subplot>
-        <subplot>a feind in disguise</subplot>
-        <subplot>a angel in disguise</subplot>
+        <subplot>a fiend in disguise</subplot>
+        <subplot>an angel in disguise</subplot>
         <subplot>a dragon in disguise</subplot>
         <subplot>a god in disguise</subplot>
         <subplot>a feind that secretly looks out for the good of the common man</subplot>

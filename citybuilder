@@ -23,7 +23,8 @@ our $city={'seed'=>$seed};
 #TODO break out crime/law enforcement into it's own section
 #imprisonment rates can range from 0.7% US to 0.1%
 #TODO look into passing rand_from_array a pointer.
-
+#TODO roads out of town
+#city wall
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
@@ -93,8 +94,10 @@ sub build_city {
     # - generate street condition
     generate_streets();
 
-    # - generate buildings
-    generate_buildings();
+    # - generate housing
+    generate_housing();
+    # - generate businesses
+    generate_businesses();
 
     # - Generate Districts
     generate_districts();
@@ -409,6 +412,162 @@ sub generate_events {
 
 }
 
+#####################################################
+#
+# Generate Markets - select some markets according
+# to their chance of appearance modified by city size.
+# FIXME current method doesn't allow multiple 
+# markets- i.e. you can't have two thieves guilds.
+#
+#####################################################
+
+sub generate_markets {
+    my @markets;
+    for my $market (@{ $xml_data->{'markets'}->{'option'} } ){
+        my $chance_of_market= $market->{'chance'} +  $city->{'size_modifier'};
+
+        if (&d(100) < $chance_of_market){
+            my $newmarket->{'type'}=$market->{'type'};
+            $newmarket->{'name'}=$market->{'marketname'}.' '.$market->{'type'};
+
+            if ( &d(100) <$market->{'secret'} ){
+                $newmarket->{'secret'}='(secret)';
+            }else{
+                $newmarket->{'secret'}='';
+            }
+
+            if ( &d(100) > 50 ){
+                my $marketoption=rand_from_array(@{$market->{'option'}});
+                $newmarket->{'name'}= $marketoption->{'content'}.' '.$newmarket->{'name'};
+            }
+            push @markets, $newmarket;
+        }
+    }
+    $city->{'markets'}=\@markets;
+}
+
+
+#####################################################
+#
+# Generate Streets - create the street conditions 
+# when you arrive, specifically how much of the
+# population is in the streets, adjusted for weather,
+# city size and time.
+#
+#####################################################
+
+sub generate_streets{
+    my $pop=$city->{'population'};
+    my $timemodifier=$city->{'time'}->{'public_modifier'};
+    my $sizemodifier=$city->{'size_modifier'};
+
+    # baseline visiblepop is 1/(10+ size modifier) of the population
+    my $visiblepop=ceil($pop/(10+$sizemodifier) );
+
+    if ($timemodifier >0){
+        $visiblepop=$visiblepop*$timemodifier;
+    }elsif ($timemodifier <0){
+        # fancy calculation to make less people at night and more in the day
+        # I don't remember how this worked out so well.
+        $visiblepop=ceil sqrt($visiblepop/abs($timemodifier))+abs($timemodifier);
+        if ($sizemodifier >0){
+            $visiblepop*=$sizemodifier;
+        }
+    }
+
+    # If it's raining/snowing/etc, cut the population in half  
+    if (defined $city->{'weather'}->{'precip'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    # If it's thundering, cut the population in half again
+    if (defined $city->{'weather'}->{'thunder'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    # Finally, if it's not nice out, cut the population even further.
+    $visiblepop=ceil($visiblepop*$city->{'weather'}->{'temp'}->{'modifier'});
+
+    $city->{'visible population'}=$visiblepop;
+ 
+}
+
+
+#####################################################
+#
+# Generate hoousing - generate houses for each type.
+#
+#####################################################
+sub generate_housing {
+    $city->{'housing'}={};
+
+    my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
+
+    foreach my $housingquality ( @qualitylist ){
+
+        my $housingtype= $xml_data->{'housing'}->{'quality'}->{$housingquality};
+
+        # fractional housecount total, but you can't have .3 of a house...        
+        my $housecount= $city->{'population'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
+
+        # to ensure minimal housing, we require poor housing via ceil, so we always have 1.
+        if (defined $housingtype->{'required'}){
+            $city->{'housing'}->{$housingquality}        = ceil ($housecount); # ceil used because we want at least 1 poor house
+        }else{
+            $city->{'housing'}->{$housingquality}        = floor ($housecount);
+        }
+
+    }
+    $city->{'housing'}->{'total'}       = $city->{'housing'}->{'average'} + $city->{'housing'}->{'poor'} + $city->{'housing'}->{'elite'};
+    # Calculate abandoned by finding 10% of total and adjusting it by economy conditions (+/-5%)
+    $city->{'housing'}->{'abandoned'}   = floor($city->{'housing'}->{'total'} *(10-$city->{'economy'} )/100 );
+
+}
+
+#####################################################
+#
+# Generate businesses - figure out which buildings to
+# create.
+# TODO: this is a failure. the proportions are all
+# off. See cityid=132875 where 13 people own 1 house
+# and 21 businesses.
+#
+#####################################################
+sub generate_businesses{
+
+
+    $city->{'business'}={  'total'=>0  };
+    
+    # 1/10th of the city population, minus all the housing... not sure how that worked out.
+    my $businessestimate=($city->{'population'}/10)-$city->{'housing'}->{'total'};
+
+    # look through each building type
+    for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
+
+        my $businessname=$business->{'content'};
+
+        # Business percent stands for percentage of total businesses that are of this type.
+        # Make sure to add in any city-wide bias calculated from races.
+        # # i.e. education low for orcs, high for drow
+        my $businesspercent=$business->{'percent'}+$city->{$business->{'type'}};
+
+        # make sure not to let any business drift over 10% or under 0.
+        if ($businesspercent <0){ $businesspercent=0; }
+        if ($businesspercent >10){ $businesspercent=10; }
+
+        # Get a final count of the business
+        my $businesscount=ceil $businessestimate*($businesspercent)/100;
+
+        # Store these factors for each business
+        $city->{'business'}->{$businessname}={ 
+                                                'origpercent'=>$business->{'percent'},
+                                                'racepercent'=>$city->{$business->{'type'}},
+                                                'percent' =>$businesspercent,
+                                                'count'=> $businesscount,
+                                             };
+        # Increment the total business count.
+        $city->{'business'}->{'total'}+=$city->{'business'}->{$businessname}->{'count'};
+    }
+}
+
 
 
 #===================================================================
@@ -431,87 +590,6 @@ sub generate_districts{
 }
 
 
-sub generate_buildings{
-    my $pop=$city->{'population'};
-    
-    $city->{'housing'}={};
-    $city->{'housing'}->{'average'}     = floor($pop*.69/10);
-    $city->{'housing'}->{'poor'}        = ceil ($pop*.30/20);
-    $city->{'housing'}->{'elite'}       = floor($pop*.01/5);
-    $city->{'housing'}->{'total'}       = $city->{'housing'}->{'average'} + $city->{'housing'}->{'poor'} + $city->{'housing'}->{'elite'};
-    $city->{'housing'}->{'abandoned'}   = floor($city->{'housing'}->{'total'} *(10-$city->{'economy'} )/100 );
-
-    $city->{'business'}={  'total'=>0  };
-
-    my $businessestimate=($city->{'population'}/10)-$city->{'housing'}->{'total'};
-
-    for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
-        my $businessname=$business->{'content'};
-        my $businesspercent=$business->{'percent'}+$city->{$business->{'type'}};
-        if ($businesspercent <0){ $businesspercent=0; }
-        if ($businesspercent >10){ $businesspercent=10; }
-
-        my $businesscount=ceil $businessestimate*($businesspercent)/100;
-        $city->{'business'}->{$businessname}={ 
-                                                'origpercent'=>$business->{'percent'},
-                                                'racepercent'=>$city->{$business->{'type'}},
-                                                'percent' =>$businesspercent,
-                                                'count'=> $businesscount,
-                                             };
-        $city->{'business'}->{'total'}+=$city->{'business'}->{$businessname}->{'count'};
-    }
-}
-
-
-sub generate_streets{
-    my $pop=$city->{'population'};
-    my $timemodifier=$city->{'time'}->{'public_modifier'};
-    my $sizemodifier=$city->{'size_modifier'};
-
-    my $visiblepop=ceil($pop/(10+$sizemodifier) );
-
-    if ($timemodifier >0){
-        $visiblepop=$visiblepop*$timemodifier;
-    }elsif ($timemodifier <0){
-        $visiblepop=ceil sqrt($visiblepop/abs($timemodifier))+abs($timemodifier);
-        if ($sizemodifier >0){
-            $visiblepop*=$sizemodifier;
-        }
-    }
-  
-    if (defined $city->{'weather'}->{'precip'} ) {
-        $visiblepop=ceil($visiblepop/2);
-    }
-    if (defined $city->{'weather'}->{'thunder'} ) {
-        $visiblepop=ceil($visiblepop/2);
-    }
-    $visiblepop=ceil($visiblepop*$city->{'weather'}->{'temp'}->{'modifier'});
-
-    $city->{'visible population'}=$visiblepop;
- 
-}
-
-
-sub generate_markets {
-    my @markets;
-    for my $market (@{ $xml_data->{'markets'}->{'option'} } ){
-        if (&d(100) < $market->{'chance'}){
-            my $newmarket->{'type'}=$market->{'type'};
-            $newmarket->{'name'}=$market->{'marketname'}.' '.$market->{'type'};
-            if ( &d(100) <$market->{'secret'} ){
-                $newmarket->{'secret'}='(secret)';
-            }else{
-                $newmarket->{'secret'}='';
-            }
-            if ( &d(100) > 50 ){
-                my $marketoption=rand_from_array(@{$market->{'option'}});
-                $newmarket->{'name'}= $marketoption->{'content'}.' '.$newmarket->{'name'};
-            }
-            push @markets, $newmarket;
-        }
-    }
-    $city->{'markets'}=\@markets;
-}
 
 sub set_forecast {
     my @forecasttypes = @{ $xml_data->{'weather'}->{'forecast'}->{'option'} };
