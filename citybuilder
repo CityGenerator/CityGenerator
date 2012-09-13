@@ -24,19 +24,40 @@ our $city={'seed'=>$seed};
 #imprisonment rates can range from 0.7% US to 0.1%
 #TODO look into passing rand_from_array a pointer.
 #TODO roads out of town
-#city wall
+#TODO calculate children as a % of the population
+#TODO calculate maturity/age of town
+#TODO city wall
+
+
+
+
+
+
+
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
 build_city();
-
-
 #########################################################################
 # Now that $city is fleshed out, we can print it..
 #########################################################################
 print $q->header;
 print describe_city();
+
+exit;
+
+
+
+
+
+
+
+
+
+
+
+
 #########################################################################
 #########################################################################
 #########################################################################
@@ -493,7 +514,7 @@ sub generate_streets{
 
 #####################################################
 #
-# Generate hoousing - generate houses for each type.
+# Generate housing - generate houses for each type.
 #
 #####################################################
 sub generate_housing {
@@ -524,48 +545,83 @@ sub generate_housing {
 
 #####################################################
 #
-# Generate businesses - figure out which buildings to
-# create.
-# TODO: this is a failure. the proportions are all
-# off. See cityid=132875 where 13 people own 1 house
-# and 21 businesses.
-#
+# Generate businesses - much better results. This
+# needs refactoring and commenting.
+# 
 #####################################################
 sub generate_businesses{
 
 
     $city->{'business'}={  'total'=>0  };
-    
-    # 1/10th of the city population, minus all the housing... not sure how that worked out.
-    my $businessestimate=($city->{'population'}/10)-$city->{'housing'}->{'total'};
+   
+    #5.5-10.5%  of the population runs a business, depending on the economy
+    my $businessestimate=floor($city->{'population'}*(10+($city->{'economy'}))/100 );
+    $city->{'business'}={ 'estimate'=>$businessestimate };
 
-    # look through each building type
+    # separate each business into priorities
+    my $businesspriorities={};
+
+    # Loop throuch each type of building
     for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
+        #Note that we're sortiny by priority.
+        my $priority= $business->{'priority'};
+        if (!defined $businesspriorities->{$priority}){
+            $businesspriorities->{$priority}=[];
+        }
 
-        my $businessname=$business->{'content'};
+        #we want to 
+        
+        while ( $business->{'weight'} >0 ){
+            my %business2=%$business;
+            push @{$businesspriorities->{$priority}}, \%business2;
 
-        # Business percent stands for percentage of total businesses that are of this type.
-        # Make sure to add in any city-wide bias calculated from races.
-        # # i.e. education low for orcs, high for drow
-        my $businesspercent=$business->{'percent'}+$city->{$business->{'type'}};
-
-        # make sure not to let any business drift over 10% or under 0.
-        if ($businesspercent <0){ $businesspercent=0; }
-        if ($businesspercent >10){ $businesspercent=10; }
-
-        # Get a final count of the business
-        my $businesscount=ceil $businessestimate*($businesspercent)/100;
-
-        # Store these factors for each business
-        $city->{'business'}->{$businessname}={ 
-                                                'origpercent'=>$business->{'percent'},
-                                                'racepercent'=>$city->{$business->{'type'}},
-                                                'percent' =>$businesspercent,
-                                                'count'=> $businesscount,
-                                             };
-        # Increment the total business count.
-        $city->{'business'}->{'total'}+=$city->{'business'}->{$businessname}->{'count'};
+            $business->{'weight'}=$business->{'weight'}-1;
+        }
     }
+    my %junkpriority=%$businesspriorities;
+    my @weightedbusinesses;
+    foreach my $priority (sort { $a <=> $b } keys %junkpriority){
+        push @weightedbusinesses, @{$junkpriority{$priority}};
+        while ($city->{'business'}->{'estimate'}>0) {
+            if (@{$junkpriority{$priority}} >=1){
+                my @businesses=shuffle @{$junkpriority{$priority}};
+                my $newbusiness=pop @businesses;
+                if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+                    $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1} ;
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'perbuilding'}=$newbusiness->{'perbuilding'};
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
+                }else{
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+                }
+                $city->{'business'}->{'estimate'}--;
+                $junkpriority{$priority}=\@businesses;
+            }else{
+                last;
+            }
+        }
+    }
+    @weightedbusinesses=shuffle @weightedbusinesses;
+    while ($city->{'business'}->{'estimate'}>0) {
+
+        @weightedbusinesses=shuffle @weightedbusinesses;
+        my $newbusiness=$weightedbusinesses[0];
+        if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+            $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
+        }else{
+            $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+        }
+ 
+        $city->{'business'}->{'estimate'}--;
+    }
+        delete $city->{'business'}->{'estimate'};
+    
+    foreach my $businessname (keys %{$city->{'business'}}){
+#        print Dumper $city->{'business'}->{$businessname};
+        $city->{'business'}->{$businessname}->{'count'}=ceil( $city->{'business'}->{$businessname}->{'specialists'} /$city->{'business'}->{$businessname}->{'perbuilding'});
+    }
+
+
 }
 
 
@@ -860,16 +916,18 @@ sub print_economy{
     $econ.="You can find the following businesses:<ul id='businesses'>\n";
     my $businesstypes=$city->{'business'};
     my $businesscount=0;
+    my $specialistcount=0;
     my $loop=0;
     for my $businessname (sort keys  %$businesstypes  ){
-        if ($businessname ne 'total'){
-            $econ.=sprintf "<li>  %4s %-15s</li>\n",$businesstypes->{$businessname}->{'count'},$businessname;
+        if ($businessname ne 'total' ){
+            $econ.=sprintf "<li>  %4s %-15s (%s specialists)</li>\n",$businesstypes->{$businessname}->{'count'},$businessname,$businesstypes->{$businessname}->{'specialists'} ;
             $businesscount+=$businesstypes->{$businessname}->{'count'};
+            $specialistcount+=$businesstypes->{$businessname}->{'specialists'};
         }
         if ($loop++ %3 == 2){$econ.="\n";}
     }
     chomp $econ;
-    $econ.="</ul>\n $businesscount total\n";
+    $econ.="</ul>\n $businesscount total ($specialistcount specialists)\n";
     return $econ;
 }
 
