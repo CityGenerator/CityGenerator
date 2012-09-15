@@ -3,7 +3,7 @@
 use strict;
 use CGI;
 use Data::Dumper;
-use List::Util 'shuffle';
+use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use XML::Simple;
 
@@ -27,7 +27,7 @@ our $city={'seed'=>$seed};
 #TODO calculate children as a % of the population
 #TODO calculate maturity/age of town
 #TODO city wall
-
+#TODO travelers
 
 
 
@@ -119,6 +119,15 @@ sub build_city {
     generate_housing();
     # - generate businesses
     generate_businesses();
+
+    # - generate resources
+    generate_resources();
+
+    # - generate walls
+    #generate_walls();
+
+    # - generate streets
+    #generate_streets();
 
     # - Generate Districts
     generate_districts();
@@ -555,7 +564,7 @@ sub generate_businesses{
     $city->{'business'}={  'total'=>0  };
    
     #5.5-10.5%  of the population runs a business, depending on the economy
-    my $businessestimate=floor($city->{'population'}*(10+($city->{'economy'}))/100 );
+    my $businessestimate=floor($city->{'population'}*(15+($city->{'economy'}+$city->{'size_modifier'} ))/100 );
     $city->{'business'}={ 'estimate'=>$businessestimate };
 
     # separate each business into priorities
@@ -624,6 +633,18 @@ sub generate_businesses{
 
 }
 
+sub generate_resources{
+    #ensure that the resource count is at most 10 and at least 0
+    my $resource_count=min( max($city->{'size_modifier'}+$city->{'economy'}, 0),10) ; 
+    #shift from 0-10 to 2-12
+    $resource_count = int( rand( $resource_count ))+2;
+    $city->{'resources'}=[];
+    while ($resource_count-- > 0 ){
+        my $resource=rand_from_array(@{$xml_data->{'resources'}->{'resource'}});
+        push @{ $city->{'resources'} }, $resource;
+    }
+
+}
 
 
 #===================================================================
@@ -897,7 +918,7 @@ sub print_housing{
     $housing.="</ul>$housingcount total\n";
     return $housing;
 }
-sub print_economy{
+sub print_economy{ #fuck you ugly code, go die in a woodchipper.
     my $econ="<h2>Economy:</h2> The economy is ";
     if ($city->{'economy'} >0){ $econ.='strong. ';
     }elsif ($city->{'economy'} <0){ $econ.='weak. ';
@@ -906,12 +927,15 @@ sub print_economy{
     if ($city->{'magic'} >0){ $econ.='plentiful. ';
     }elsif ($city->{'magic'} <0){ $econ.='rare. ';
     }else { $econ.=' somewhat common. ';    }
+
     $econ.="Education is ";
     if ($city->{'education'} >0){ $econ.="high.\n ";
     }elsif ($city->{'education'} <0){ $econ.="low.\n ";
     }else { $econ.="somewhat common.\n ";    }
     if ($city->{'travel'} >0){ $econ.='This is a trade hub with many travelers. ';
     }elsif ($city->{'education'} <0){ $econ.='This is an economically isolated area with few travelers. ';}
+
+    $econ.=print_resources();
 
     $econ.="You can find the following businesses:<ul id='businesses'>\n";
     my $businesstypes=$city->{'business'};
@@ -931,6 +955,18 @@ sub print_economy{
     return $econ;
 }
 
+
+sub print_resources{
+    my $resources="\n<p>".$city->{'name'}." is known for:</p><ul>\n";
+        foreach my $resource (@{$city->{'resources'} }){
+            $resources.=sprintf "<li>%s </li>\n",parse_object($resource);
+
+        }
+
+    $resources.="</ul>\n";
+    return $resources;
+}
+
 sub set_seed{
 
     if (defined $q->param('cityid') and  $q->param('cityid')=~/(\d+)/){
@@ -938,4 +974,61 @@ sub set_seed{
     }else{
         return int rand(1000000);
     }
+}
+
+#####################################################
+#
+# Parse Object - a horribly named subroutine to parse
+# out and randomly select the parts.
+#
+#####################################################
+sub parse_object {
+    my ($object)=@_;
+    my @word;
+    # We currently only care about 4 parts
+    foreach my $part (qw/ pre root post trailer/){
+
+        # Make sure that the part exists for this object.
+        if(defined $object->{$part}){
+            
+            # If the object is an array, we're going to shuffle
+            # the array and select one of the elements.
+            if ( ref($object->{$part}) eq 'ARRAY'){
+                # Shuffle the array and pop one element off
+                my @parts=shuffle( @{$object->{$part}});
+                my $newpart=pop(@parts);
+
+                # make sure the element has content;
+                # ignore it if it doesn't.
+                if (defined $newpart->{'content'}){
+                    # If no chance is defined, add it to the list.
+                    if (!defined $newpart->{'chance'}){
+                        push @word, $newpart->{'content'};
+
+                    # If chance is defined, compare it to
+                    # the roll, and add it to the list.
+                    } elsif(defined $newpart->{'chance'} and &d(100) <= $newpart->{'chance'} ) {
+                        push @word, $newpart->{'content'};
+                    }
+                }
+            # If the object is a Hash, we presume that there's only one choice
+            } elsif ( ref($object->{$part}) eq 'HASH'  and $object->{$part}->{'content'}){
+                
+                # rename for easier handling
+                my $newpart=$object->{$part};
+                
+                # If no chance is defined, add it to the list.
+                if (!defined $newpart->{'chance'}){
+                    push @word, $newpart->{'content'};
+
+                # If chance is defined, compare it to
+                # the roll, and add it to the list.
+                } elsif(defined $newpart->{'chance'} and &d(100) <= $newpart->{'chance'} ) {
+                    push @word, $newpart->{'content'};
+                }
+            }
+        }
+    }
+    # string it all together and return it.
+    return join " ", @word;
 }

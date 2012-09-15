@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <data>
-<debug >1</debug>
 
 <citysize>
     <city size="commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
@@ -17,119 +16,441 @@
     <city size="capitol"      min="100" max="100" size_modifier="12"   minpop="25001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
 
-
 <resources>
-    Alcohol
-    gold
-    iron
-    Books
-    Cattle
-    Cheese
-    Timber
-    Petroleum
-    Natural Gas
-    Fruits
-    Wax (tree wax)
-    Produce
-    Grains
+    <resource type="beaches">
+        <pre>pristine</pre>
+        <pre>plentiful</pre>
+        <pre>ruined</pre>
+        <root>yellow</root>
+        <root>red</root>
+        <root>white</root>
+        <root>black</root>
+        <root></root>
+        <post>sandy beaches</post>
+    </resource>
+    <resource type="wildlife">
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>endangered</pre>
+        <pre>unique</pre>
+        <root>woodland</root>
+        <root>aquatic</root>
+        <root>marine</root>
+        <root></root>
+        <post>wildlife</post>
+    </resource>
+    <resource types="foods">
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>endangered</pre>
+        <pre>unique</pre>
+        <root>cocoa bean</root>
+        <root>basil</root>
+        <root>carrot</root>
+        <root>catnip</root>
+        <root>cauliflower</root>
+        <root>celery</root>
+        <root>fruit</root>
+        <root>garlic</root>
+        <root>okra</root>
+        <root>parsley</root>
+        <root>peanuts</root>
+        <root>peas</root>
+        <root>rye</root>
+        <root>squash</root>
+        <root>zucchini</root>
+        <root>brussels sprouts</root>
+        <root>cotton</root>
+        <root>coconut</root>
+        <root>grain</root>
+        <root>oat</root>
+        <root>pumice</root>
+        <root>rice</root>
+        <root>seaweed/kelp</root>
+        <root>sugarcane</root>
+        <root>sunflower</root>
+        <root>fruit</root>
+        <root>vegetable</root>
+        <post>fields</post>
+        <post>crops</post>
+    </resource>
+    <resource type="metals">
+        <pre>plentiful</pre>
+        <pre>crucial</pre>
+        <pre>abandoned</pre>
+        <root>copper</root>
+        <root>gold</root>
+        <root>iron</root>
+        <root>lead</root>
+        <root>rootcious metal</root>
+        <root>nickel</root>
+        <root>platinum</root>
+        <root>silver</root>
+        <root>tin</root>
+        <root>titanium</root>
+        <root>zinc</root>
+        <root>nonferrous metal</root>
+        <post>works</post>
+        <post>smithing</post>
+        <post>ore</post>
+        <post>deposits</post>
+        <post>mines</post>
+    </resource>
+    <resource type="gem">
+        <pre>plentiful</pre>
+        <pre>crucial</pre>
+        <pre>long-abandoned</pre>
+        <root>diamond</root>
+        <root>emerald</root>
+        <root>ruby</root>
+        <root>saphire</root>
+        <root>feldspar</root>
+        <root>fluorspar</root>
+        <root>gem</root>
+        <root>gemstone</root>
+        <root>semiprecious stone</root>
+        <root>precious stone</root>
+        <root>pyrite</root>
+        <root>quartz</root>
+        <post>cutting</post>
+        <post>deposits</post>
+        <post>mines</post>
+    </resource>
+    <resource type="minerals">
+        <pre>plentiful</pre>
+        <pre>crucial</pre>
+        <pre>abandoned</pre>
+
+        <root>graphite</root>
+        <root>bauxite</root>
+        <root>chalk</root>
+        <root>guano</root>
+        <root>gypsum</root>
+        <root>hard coal</root>
+        <root>magnesium</root>
+        <root>manganese</root>
+        <root>peat</root>
+        <root>potash</root>
+        <root>salt</root>
+        <root>soda ash</root>
+        <root>soft coal</root>
+        <root>sulfur</root>
+        <root>talc</root>
+        <root>rare earth element</root>
+        <root>rock salt</root>
+        <root>minor minerals</root>
+        <root>calcified seaweed</root>
+
+        <post>mines</post>
+        <post>deposits</post>
+    </resource>
+
+    <resource type='harvests'>
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>endangered</pre>
+        <pre>unique</pre>
+        <root>crab</root>
+        <root>crayfish</root>
+        <root>finfish</root>
+        <root>lobster</root>
+        <root>octopi</root>
+        <root>pearls</root>
+        <root>rubber</root>
+        <root>shrimp</root>
+        <root>squid</root>
+        <root>spiny lobster</root>
+
+        <post>harvests</post>
+    </resource>
+
+    <resource type='herd animals'>
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>unique</pre>
+
+        <root>cattle</root>
+        <root>goat</root>
+        <root>sheep</root>
+        <root>seal</root>
+        <root>llama</root>
+        <root>horse</root>
+
+        <post>herds</post>
+    </resource>
+
+    <resource type='wood'>
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>endangered</pre>
+        <pre>unique</pre>
+
+        <root>hardwood</root>
+        <root>softwood</root>
+        <root>oak</root>
+        <root>pine</root>
+        <root>mahogany</root>
+        <root>cork</root>
+        <root>rare wood</root>
+        <root>cinnamon</root>
+        <root>coffee</root>
+        <root>cork</root>
+        <root>miro</root>
+        <root>willow</root>
+
+        <post>trees</post>
+        <post>forests</post>
+        <post>lumbermills</post>
+        <post>woodworkers</post>
+    </resource>
+
+    <resource type="quarries">
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>unique</pre>
+
+        <root>granite</root>
+        <root>gravel and sand</root>
+        <root>building stone</root>
+        <root>gravel</root>
+        <root>limestone</root>
+        <root>marble</root>
+        <root>slate</root>
+        <root></root>
+
+        <post>mines</post>
+        <post>quarries</post>
+    </resource>
+
+    <resource type="locales">
+        <pre></pre>
+        <pre>nearby</pre>
+        <pre>renowned</pre>
+        <pre>famous</pre>
+        <pre>amazing</pre>
+
+        <root>glaciers</root>
+        <root>deepwater harbors</root>
+        <root>freshwater lakes</root>
+        <root>saltwater lakes</root>
+        <root>bays</root>
+        <root>beaches</root>
+        <root>forests</root>
+        <root>waterfalls</root>
+        <root>volcanoes</root>
+        <root>icebergs</root>
+        <root>costal areas</root>
+        <root>freshwater marshes</root>
+        <root>saltwater marshes</root>
+        <root>agricultural lands</root>
+        <root>arable lands</root>
+        <root>grazing lands</root>
+        <root>mineral springs</root>
+        <root>geothermal vents</root>
+        <root>deepwater ports</root>
+        <root>tar sands</root>
+        <root>coral reefs</root>
+
+    </resource>
+
+    <resource type="professionals">
+        <root>cheesemakers</root>
+        <root>bookmakers</root>
+        <root>weavers</root>
+        <root>smiths</root>
+        <root>whalers</root>
+        <root>fishers</root>
+        <root>loggers</root>
+        <root>artists</root>
+        <root>alchemists</root>
+        <root>apothecaries</root>
+        <root>armorers</root>
+        <root>bounty hunters</root>
+        <root>bakers</root>
+        <root>blacksmiths</root>
+        <root>brewers</root>
+        <root>brothels</root>
+        <root>chandlers</root>
+        <root>church</root>
+        <root>cobblers</root>
+        <root>engineers</root>
+        <root>entertainers</root>
+        <root>glassblowers</root>
+        <root>healers</root>
+        <root>laborers</root>
+        <root>leatherworkers</root>
+        <root>library</root>
+        <root>lumbermill</root>
+        <root>masons</root>
+        <root>merchants</root>
+        <root>millers</root>
+        <root>physicians</root>
+        <root>potters</root>
+        <root>sages</root>
+        <root>scribes</root>
+        <root>specialty smiths</root>
+        <root>tailors</root>
+        <root>temples</root>
+        <root>vintners</root>
+        <root>weaponsmiths</root>
+        <root>weaver</root>
+        <root>woodworkers</root>
+    </resource>
+
+    <resource type="product">
+        <pre>plentiful</pre>
+        <pre>now scarce</pre>
+        <pre>unique</pre>
+
+        <root>marbles</root>
+        <root>pottery</root>
+        <root>construction materials</root>
+        <root>petroleum jelly</root>
+        <root>palm oils</root>
+        <root>wax</root>
+        <root>mineral water</root>
+    </resource>
+
 </resources>
-<walls></walls>
+
+<streets>
+    <pre>rough</pre>
+    <pre>broken</pre>
+    <pre>well-maintained</pre>
+
+    <root>dirt</root>
+    <root>cobblestone</root>
+
+    <post>grid pattern</post>
+    <post>random mesh pattern</post>
+    <post>organic pattern</post>
+    <post>wheel and spoke pattern</post>
+</streets>
+
+<walls>
+    <pre></pre>
+    <pre>low</pre>
+    <pre>high</pre>
+    <pre>fortified</pre>
+    <pre>thick</pre>
+    <pre>massive</pre>
+
+    <root>wood</root>
+    <root>stone</root>
+
+    <post>embankment</post>
+    <post>barricade</post>
+    <post>barrier</post>
+    <post>bulwark</post>
+    <post>fence</post>
+    <post>fortification</post>
+    <post>palisade </post>
+    <post>partition</post>
+    <post>rampart</post>
+    <post>stockade</post>
+    <post>enclosure</post>
+    <post>wall</post>
+</walls>
+
+
 <specialties>
-mining
-logging
+    <specialty>farming</specialty>
+    <specialty>military</specialty>
+    <specialty>mining</specialty>
+    <specialty>logging</specialty>
 </specialties>
 
 <buildings>
 
-    <building weight='1' priority='10' perbuilding='2'>alchemist</building>
-    <building weight='1' priority='10' perbuilding='3'>almshouse</building>
-    <building weight='1' priority='8'  perbuilding='2'>apothecary</building>
-    <building weight='2' priority='3'  perbuilding='3'>armorer</building>
-    <building weight='2' priority='10' perbuilding='5'>assassin/bounty hunter</building>
-    <building weight='1' priority='10' perbuilding='2'>astrologer</building>
-    <building weight='2' priority='4'  perbuilding='4'>baker</building>
+    <building weight='1' priority='10' perbuilding='2' >alchemist</building>
+    <building weight='1' priority='10' perbuilding='3' >almshouse</building>
+    <building weight='1' priority='8'  perbuilding='2' >apothecary</building>
+    <building weight='2' priority='3'  perbuilding='3' >armorer</building>
+    <building weight='2' priority='10' perbuilding='5' >assassin/bounty hunter</building>
+    <building weight='1' priority='10' perbuilding='2' >astrologer</building>
+    <building weight='2' priority='4'  perbuilding='4' >baker</building>
     <building weight='1' priority='4'  perbuilding='10'>banker</building>
     <building weight='2' priority='5'  perbuilding='3' >barber</building>
     <building weight='1' priority='5'  perbuilding='20'>barracks</building>
-    <building weight='1' priority='10' perbuilding='4'>barrister</building>
-    <building weight='2' priority='2'  perbuilding='3'>blacksmith</building>
-    <building weight='1' priority='10' perbuilding='3'>boat for hire</building>
-    <building weight='1' priority='9'  perbuilding='2'>bookseller</building>
-    <building weight='1' priority='3'  perbuilding='4'>bowyer</building>
-    <building weight='1' priority='5'  perbuilding='5'>brewer</building>
+    <building weight='1' priority='10' perbuilding='4' >barrister</building>
+    <building weight='2' priority='2'  perbuilding='3' >blacksmith</building>
+    <building weight='1' priority='10' perbuilding='3' >boat for hire</building>
+    <building weight='1' priority='9'  perbuilding='2' >bookseller</building>
+    <building weight='1' priority='3'  perbuilding='4' >bowyer</building>
+    <building weight='1' priority='5'  perbuilding='5' >brewer</building>
     <building weight='2' priority='4'  perbuilding='10'>brothel</building>
-    <building weight='2' priority='2'  perbuilding='5'>butcher</building>
+    <building weight='2' priority='2'  perbuilding='5' >butcher</building>
     <building weight='1' priority='7'  perbuilding='10'>carpenter</building>
-    <building weight='1' priority='6'  perbuilding='4'>cartwright</building>
+    <building weight='1' priority='6'  perbuilding='4' >cartwright</building>
     <building weight='1' priority='10' perbuilding='50'>castle</building>
-    <building weight='1' priority='10' perbuilding='2'>chandler</building>
-    <building weight='1' priority='7'  perbuilding='3'>cheesemaker</building>
-    <building weight='3' priority='3'  perbuilding='6'>church</building>
-    <building weight='1' priority='7'  perbuilding='2'>cobbler</building>
-    <building weight='1' priority='5'  perbuilding='4'>cooper</building>
-    <building weight='1' priority='10' perbuilding='6'>dyer</building>
-    <building weight='1' priority='10' perbuilding='7'>engineer</building>
-    <building weight='1' priority='10' perbuilding='6'>entertainer</building>
-    <building weight='1' priority='8'  perbuilding='3'>fishmonger</building>
+    <building weight='1' priority='10' perbuilding='2' >chandler</building>
+    <building weight='1' priority='7'  perbuilding='3' >cheesemaker</building>
+    <building weight='3' priority='3'  perbuilding='6' >church</building>
+    <building weight='1' priority='7'  perbuilding='2' >cobbler</building>
+    <building weight='1' priority='5'  perbuilding='4' >cooper</building>
+    <building weight='1' priority='10' perbuilding='6' >dyer</building>
+    <building weight='1' priority='10' perbuilding='7' >engineer</building>
+    <building weight='1' priority='10' perbuilding='6' >entertainer</building>
+    <building weight='1' priority='8'  perbuilding='3' >fishmonger</building>
     <building weight='1' priority='5'  perbuilding='20'>fortress</building>
-    <building weight='1' priority='7'  perbuilding='3'>furrier</building>
-    <building weight='1' priority='9'  perbuilding='6'>glassblower</building>
+    <building weight='1' priority='7'  perbuilding='3' >furrier</building>
+    <building weight='1' priority='9'  perbuilding='6' >glassblower</building>
     <building weight='1' priority='1'  perbuilding='10'>graveyard</building>
-    <building weight='1' priority='6'  perbuilding='4'>grocer</building>
-    <building weight='1' priority='5'  perbuilding='3'>healer</building>
-    <building weight='1' priority='6'  perbuilding='4'>herbalist</building>
-    <building weight='1' priority='10' perbuilding='8'>hostel</building>
-    <building weight='2' priority='4'  perbuilding='4'>inn</building>
+    <building weight='1' priority='6'  perbuilding='4' >grocer</building>
+    <building weight='1' priority='5'  perbuilding='3' >healer</building>
+    <building weight='1' priority='6'  perbuilding='4' >herbalist</building>
+    <building weight='1' priority='10' perbuilding='8' >hostel</building>
+    <building weight='2' priority='4'  perbuilding='4' >inn</building>
     <building weight='1' priority='10' perbuilding='10'>interpreter</building>
     <building weight='1' priority='10' perbuilding='10'>jailhouse</building>
-    <building weight='1' priority='8'  perbuilding='4'>jeweler</building>
+    <building weight='1' priority='8'  perbuilding='4' >jeweler</building>
     <building weight='3' priority='6'  perbuilding='10'>laborer</building>
-    <building weight='2' priority='3'  perbuilding='4'>leatherworker</building>
-    <building weight='1' priority='7'  perbuilding='4'>library</building>
-    <building weight='1' priority='10' perbuilding='4'>locksmith</building>
+    <building weight='2' priority='3'  perbuilding='4' >leatherworker</building>
+    <building weight='1' priority='7'  perbuilding='4' >library</building>
+    <building weight='1' priority='10' perbuilding='4' >locksmith</building>
     <building weight='1' priority='10' perbuilding='10'>lumbermill</building>
-    <building weight='1' priority='6'  perbuilding='2'>magic store</building>
+    <building weight='1' priority='6'  perbuilding='2' >magic store</building>
     <building weight='1' priority='3'  perbuilding='10'>mason</building>
     <building weight='1' priority='2'  perbuilding='10'>merchant</building>
-    <building weight='1' priority='10' perbuilding='5'>messenger</building>
-    <building weight='1' priority='1'  perbuilding='6'>miller</building>
-    <building weight='1' priority='10' perbuilding='3'>navigator</building>
-    <building weight='2' priority='3'  perbuilding='5'>official</building>
-    <building weight='1' priority='7'  perbuilding='4'>orphanage</building>
-    <building weight='1' priority='4'  perbuilding='4'>physician</building>
-    <building weight='1' priority='10' perbuilding='3'>porter</building>
-    <building weight='1' priority='6'  perbuilding='4'>potter</building>
-    <building weight='1' priority='10' perbuilding='2'>provisioner</building>
-    <building weight='1' priority='10' perbuilding='4'>rare crafts and trades</building>
-    <building weight='1' priority='10' perbuilding='4'>saddler</building>
-    <building weight='1' priority='3'  perbuilding='2'>sage</building>
-    <building weight='1' priority='5'  perbuilding='4'>school</building>
+    <building weight='1' priority='10' perbuilding='5' >messenger</building>
+    <building weight='1' priority='1'  perbuilding='6' >miller</building>
+    <building weight='1' priority='10' perbuilding='3' >navigator</building>
+    <building weight='2' priority='3'  perbuilding='5' >official</building>
+    <building weight='1' priority='7'  perbuilding='4' >orphanage</building>
+    <building weight='1' priority='4'  perbuilding='4' >physician</building>
+    <building weight='1' priority='10' perbuilding='3' >porter</building>
+    <building weight='1' priority='6'  perbuilding='4' >potter</building>
+    <building weight='1' priority='10' perbuilding='2' >provisioner</building>
+    <building weight='1' priority='10' perbuilding='4' >rare crafts and trades</building>
+    <building weight='1' priority='10' perbuilding='4' >saddler</building>
+    <building weight='1' priority='3'  perbuilding='2' >sage</building>
+    <building weight='1' priority='5'  perbuilding='4' >school</building>
     <building weight='1' priority='6'  perbuilding='10'>scribe</building>
     <building weight='1' priority='10' perbuilding='20'>shipyard</building>
-    <building weight='1' priority='10' perbuilding='8'>shrine</building>
-    <building weight='2' priority='1'  perbuilding='4'>smith</building>
-    <building weight='1' priority='10' perbuilding='3'>specialty smith</building>
-    <building weight='1' priority='5'  perbuilding='4'>stable</building>
-    <building weight='1' priority='7'  perbuilding='6'>tailor/seamstress</building>
-    <building weight='1' priority='4'  perbuilding='3'>tanner</building>
-    <building weight='1' priority='4'  perbuilding='3'>tavern</building>
-    <building weight='2' priority='2'  perbuilding='4'>tavern/inn</building>
+    <building weight='1' priority='10' perbuilding='8' >shrine</building>
+    <building weight='2' priority='1'  perbuilding='4' >smith</building>
+    <building weight='1' priority='10' perbuilding='3' >specialty smith</building>
+    <building weight='1' priority='5'  perbuilding='4' >stable</building>
+    <building weight='1' priority='7'  perbuilding='6' >tailor/seamstress</building>
+    <building weight='1' priority='4'  perbuilding='3' >tanner</building>
+    <building weight='1' priority='4'  perbuilding='3' >tavern</building>
+    <building weight='2' priority='2'  perbuilding='4' >tavern/inn</building>
     <building weight='1' priority='10' perbuilding='10'>teamster</building>
     <building weight='1' priority='10' perbuilding='10'>temple</building>
     <building weight='1' priority='10' perbuilding='10'>theatre</building>
-    <building weight='1' priority='10' perbuilding='3'>tilemaker</building>
-    <building weight='1' priority='10' perbuilding='3'>trader</building>
-    <building weight='1' priority='10' perbuilding='4'>transportation</building>
+    <building weight='1' priority='10' perbuilding='3' >tilemaker</building>
+    <building weight='1' priority='10' perbuilding='3' >trader</building>
+    <building weight='1' priority='10' perbuilding='4' >transportation</building>
     <building weight='1' priority='10' perbuilding='20'>university</building>
-    <building weight='1' priority='10' perbuilding='6'>vintner</building>
-    <building weight='1' priority='10' perbuilding='4'>wagon yard</building>
-    <building weight='2' priority='6'  perbuilding='2'>warehouse</building>
-    <building weight='1' priority='6'  perbuilding='4'>weaponsmith</building>
-    <building weight='1' priority='5'  perbuilding='4'>weaver</building>
-    <building weight='1' priority='5'  perbuilding='3'>woodworker</building>
+    <building weight='1' priority='10' perbuilding='6' >vintner</building>
+    <building weight='1' priority='10' perbuilding='4' >wagon yard</building>
+    <building weight='2' priority='6'  perbuilding='2' >warehouse</building>
+    <building weight='1' priority='6'  perbuilding='4' >weaponsmith</building>
+    <building weight='1' priority='5'  perbuilding='4' >weaver</building>
+    <building weight='1' priority='5'  perbuilding='3' >woodworker</building>
 
 
-    <building weight='2'  priority='10' perbuilding='10' >misc.</building>
+    <building weight='10'  priority='10' perbuilding='10' >misc.</building>
 </buildings>
 
 
@@ -977,6 +1298,8 @@ logging
         <option>earthquake </option>
         <option>massive storm </option>
         <option>tarrasque </option>
+        <option>genocide </option>
+        <option>riots </option>
         <option>drought </option>
     </event>
 </events>
