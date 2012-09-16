@@ -1,0 +1,436 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use CGI;
+use Data::Dumper;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use XML::Simple;
+
+my $xml = new XML::Simple;
+
+###########################################################
+# Yes, this is sloppy. I am aware, but it's also unique.
+# Unique, Ubiquitous Singletons.
+
+our $q = CGI->new;
+our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
+our $seed=set_seed();
+srand $seed;
+# This is our city object- it can and will be exported to xml eventually, so keep it clean.
+our $city={'seed'=>$seed};
+
+#TODO break out crime/law enforcement into it's own section
+#imprisonment rates can range from 0.7% US to 0.1%
+#TODO look into passing rand_from_array a pointer.
+#TODO roads out of town
+#TODO calculate children as a % of the population
+#TODO calculate maturity/age of town
+#TODO city wall
+#TODO travelers
+
+#########################################################################
+# First thing we need to do is establish a city skeleton of information,
+# then fill it in as needed by each subsection of the sample text.
+#########################################################################
+build_city();
+print Dumper $city;
+#########################################################################
+# Now that $city is fleshed out, we can print it..
+#########################################################################
+
+#if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+#    print $q->header( 'text/xml' );
+#    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+#    print XMLout($city);
+#}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
+#    print $q->header( 'text/xml' );
+#    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+#    print XMLout($xml_data);
+#
+#}else {
+#
+#    print $q->header;
+#    #print describe_city();
+#    print describe_city();
+#}
+#exit;
+
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+
+sub build_city {
+    $city={'seed'=>$seed};
+
+    # - Generate a name
+    generate_city_name();
+
+    # - Generate a size
+    set_city_size();
+
+    # - Generate a type
+    set_city_type();
+
+    # - Generate a pop_type
+    generate_pop_type();
+
+    # - Generate assign races
+    assign_races();
+
+    # - Generate pop counts
+    generate_pop_counts();
+}
+
+
+
+
+###############################################################################
+#
+# generate_population_counts - for each race percentage. After getting 
+# population counts, recalulate total population, then final percentages.
+# note that actual races are not yet associated.
+#
+###############################################################################
+sub generate_pop_counts {
+    my $population = $city->{'population'};
+    my $newpop     = 0;
+    my @races;
+    my @newraces;
+
+    # Loop through each race percentage, and get a rough count based
+    # on population total
+    for my $race ( sort @{ $city->{'races'} } ) {
+        $race->{'count'} = ceil( $population * $race->{'percent'} / 100 );
+        $newpop += $race->{'count'};
+        push @races, $race;
+    }
+
+    # Add up all of the rough counts to create a final population total
+    $city->{'population'} = $newpop;
+    $city->{'races'}      = \@races;
+
+    # Loop through the races a second time, recalulating percentages.
+    for my $race ( sort @{ $city->{'races'} } ) {
+        $race->{'percent'} = int( $race->{'count'} / $newpop * 1000 ) / 10;
+        push @newraces, $race;
+    }
+    $city->{'races'} = \@newraces;
+}
+
+
+###############################################################################
+#
+# Assign races. This consists of 
+#   * looking at the base population type to gather available base races 
+#   * looping through the race percentages and assigning an available race
+#   * adding an "off race" if applicable.
+#   * adding 1% other    
+#
+###############################################################################
+sub assign_races {
+    my $base_pop        = $city->{'base_pop'};
+    my @races;
+
+
+    # Get all of the available race options
+    my @available_races = get_races($base_pop);
+
+    # for each race percentage on the city,
+    # add assign a race and add it to the list.
+    for my $racepercentage ( @{ $city->{'races'} } ) {
+        my $newrace = pop(@available_races);
+        push @races, add_race_features( $racepercentage, $newrace );
+    }
+
+
+    # If the base_pop has an "off" race, add it.
+    if ( $city->{'add_other'} eq 'true' ) {
+        my $newrace              = get_other_race($base_pop);
+        my $replace_race_id      = &d( scalar @races ) - 1;
+        $races[$replace_race_id] = add_race_features( $races[$replace_race_id], $newrace );
+    }
+
+    # add the last percent of "others" because mrsassypants didn't grok that
+    # things added up to 99% for a reason.
+    push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
+
+
+    #replace race percentages with full race breakdowns.
+    $city->{'races'} = \@races;
+}
+
+
+###############################################################################
+#
+# add_race_features - copy the features over for a given races. Effectively
+# merges percent onto the race.
+#
+###############################################################################
+
+sub add_race_features {
+    my ( $race, $newrace ) = @_;
+    $race->{'name'}      = $newrace->{'content'};
+    $race->{'order'}     = $newrace->{'order'};
+    $race->{'moral'}     = $newrace->{'moral'};
+    $race->{'magic'}     = $newrace->{'magic'};
+    $race->{'authority'} = $newrace->{'auth'};
+    $race->{'economy'}   = $newrace->{'econ'};
+    $race->{'education'} = $newrace->{'edu'};
+    $race->{'travel'}    = $newrace->{'travel'};
+    $race->{'type'}      = $newrace->{'type'};
+
+    if (defined $race->{'dominant'} ){
+        $city->{'dominant_race'}  =  $newrace->{'content'};
+    }
+    return $race;
+}
+
+
+
+###############################################################################
+#
+# get races - get the races that match the given population type.
+# If the type is mixed, add the race as long as it's not an other race.
+#
+###############################################################################
+
+sub get_races {
+    my ( $type ) = @_;
+    my @races;
+    for my $race ( @{ $xml_data->{'races'}->{'race'} } ) {
+        if (   ($race->{'type'} eq $type)  or   (($type eq 'mixed') and  ($race->{'type'} ne 'other')) ) {
+            push @races, $race;
+        }
+    }
+    return shuffle @races;
+} 
+
+###############################################################################
+#
+# get_other_race - get the races that doesn't match the given population type.
+# make sure to exclude other.
+#
+###############################################################################
+
+sub get_other_race {
+    my ($type) = @_;
+    my @races;
+    for my $race ( shuffle @{ $xml_data->{'races'}->{'race'} } ) {
+        if ( $race->{'type'} ne $type  and   ($race->{'type'} ne 'other') ) {
+            return $race;
+        }
+    }
+} 
+
+###############################################################################
+#
+# Generate a Population Type, then populate the population type, population 
+# density, and a list of unassigned race percentages.
+#
+###############################################################################
+sub generate_pop_type {
+    my $poptype     = roll_from_array( &d(100), $xml_data->{'poptypes'}->{'population'} );
+    my $popdensity  = rand_from_array( @{$xml_data->{'popdensity'}->{'option'} });
+
+    $city->{'popdensity'}   = $popdensity;
+    $city->{'poptype'}      = $poptype->{'type'};
+    $city->{'races'}        = $poptype->{'option'};
+}
+
+
+
+###############################################################################
+#
+# generate_city_name - This consists of the pre,
+# the root, the post and the trailer.
+#
+###############################################################################
+sub generate_city_name {
+    my $nameobject = parse_object($xml_data->{'cityname'});
+    $city->{'nameobj'} = $nameobject;
+    $city->{'name'}="";
+
+    if (defined $nameobject->{'pre'}){
+        $city->{'name'}=$nameobject->{'pre'}." ";
+    }
+
+    $city->{'name'}.=$nameobject->{'root'}.$nameobject->{'post'};
+
+    if (defined $nameobject->{'trailer'}){
+        $city->{'name'}.=" ".$nameobject->{'trailer'};
+    }
+
+}
+
+
+###############################################################################
+#
+# set_city_type - Find the type of city by selecting it from the citytype list,
+# Then populate the base population, type, description and whether 
+# or not it's a mixed city.
+#
+###############################################################################
+sub set_city_type {
+    my $citytypelist=$xml_data->{'citytype'}->{'city'};
+    my $citytype = roll_from_array( &d(100), $citytypelist );
+
+    $city->{'base_pop'}    = $citytype->{'base_pop'};
+    $city->{'type'}        = $citytype->{'type'};
+    $city->{'description'} = $citytype->{'content'};
+    $city->{'add_other'}   = $citytype->{'add_other'};
+}
+
+
+###############################################################################
+#
+# set_city_size - Find the size of the city by selecting from the citysize 
+# list, then populate the size, gp limit, population, and size modifier.
+#
+###############################################################################
+sub set_city_size {
+    my $citysizelist=$xml_data->{'citysize'}->{'city'} ;
+    my $citysize = roll_from_array( &d(100), $citysizelist );
+
+    $city->{'size'}          = $citysize->{'size'};
+    $city->{'gplimit'}       = $citysize->{'gplimit'};
+    $city->{'population'}    = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'} );
+    $city->{'size_modifier'} = $citysize->{'size_modifier'};
+}
+
+#######################################################################################################################
+################                                                                                       ################
+################                            These are more generic functions                           ################
+################                                                                                       ################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+
+###############################################################################
+#
+# set_seed - check the parameters for cityID and set the seed accordingly.
+# This is what allows us to return to previously generated hosts.
+#
+###############################################################################
+sub set_seed{
+    if (defined $q->param('cityid') and  $q->param('cityid')=~/(\d+)/){
+        return $1;
+    }else{
+        return int rand(1000000);
+    }
+}
+
+
+###############################################################################
+#
+# rand_from_array - select a random item from an array.
+#
+###############################################################################
+sub rand_from_array {
+    my (@array) = @_;
+    my $index = int( rand( scalar @array ) );
+    return $array[$index];
+}
+
+###############################################################################
+#
+# roll_from_array - When passed a roll and a list of items, check the
+# min and max properties of each and select the one that $roll best fits
+# otherwise use the first item.
+# 
+###############################################################################
+sub roll_from_array {
+    my ( $roll, $items ) = @_;
+    my $selected_item = $items->[0];
+    for my $item (@$items) {
+        if ( $item->{'min'} <= $roll and $item->{'max'} >= $roll ) {
+            $selected_item = $item;
+            last;
+        }
+    }
+    return $selected_item;
+}
+
+###############################################################################
+#
+# d - this serves the function of rolling a dice- a d6, d10, etc.
+#
+###############################################################################
+sub d {
+    my ($die) = @_;
+    # d as in 1d6
+    return int( rand($die) );
+}
+
+#####################################################
+#
+# Parse Object - a horribly named subroutine to parse
+# out and randomly select the parts.
+#
+#####################################################
+sub parse_object {
+    my ($object)=@_;
+    my $newobj= { 'list'=>[]};
+    # We currently only care about 4 parts
+    foreach my $part (qw/ pre root post trailer/){
+
+        # Make sure that the part exists for this object.
+        if(defined $object->{$part}){
+
+            # If the object is an array, we're going to shuffle
+            # the array and select one of the elements.
+            if ( ref($object->{$part}) eq 'ARRAY'){
+                # Shuffle the array and pop one element off
+                my @parts=shuffle( @{$object->{$part}});
+                my $newpart=pop(@parts);
+
+                # make sure the element has content;
+                # ignore it if it doesn't.
+                if (defined $newpart->{'content'}){
+                    # If no chance is defined, add it to the list.
+                    if (!defined $object->{$part.'_chance'}){
+                        push @{$newobj->{'list'}}, $newpart->{'content'};
+                        $newobj->{$part}=$newpart->{'content'};
+
+                    # If chance is defined, compare it to
+                    # the roll, and add it to the list.
+                    } elsif(defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'} ) {
+                        push @{$newobj->{'list'}}, $newpart->{'content'};
+                        $newobj->{$part}=$newpart->{'content'};
+                    }
+                }
+            # If the object is a Hash, we presume that there's only one choice
+            } elsif ( ref($object->{$part}) eq 'HASH'  and $object->{$part}->{'content'}){
+
+                # rename for easier handling
+                my $newpart=$object->{$part};
+
+                # If no chance is defined, add it to the list.
+                if (!defined $object->{$part.'_chance'}){
+                    push @{$newobj->{'list'}}, $newpart->{'content'};
+                    $newobj->{$part}=$newpart->{'content'};
+
+                # If chance is defined, compare it to
+                # the roll, and add it to the list.
+                } elsif(defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'} ) {
+                    push @{$newobj->{'list'}}, $newpart->{'content'};
+                    $newobj->{$part}=$newpart->{'content'};
+                }
+            }
+        }
+    }
+    $newobj->{'content'}=join " ", @{$newobj->{'list'}};
+    delete $newobj->{'list'};
+    # return the slimmed down version
+    return $newobj;
+}
+
+
+
