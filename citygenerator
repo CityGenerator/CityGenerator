@@ -71,6 +71,93 @@ sub build_city {
     # - Generate a name
     generate_city_name();
 
+    #select city type and population:
+    generate_city_core();
+
+    #generate govt and beliefs
+    generate_city_credence();
+
+    # generate physical traits
+    generate_physical_traits();
+
+}
+
+
+###############################################################################
+#
+# generate_physical_traits - Generate the location, size, support area, 
+# landmarks, 
+# 
+#
+###############################################################################
+sub generate_physical_traits {
+#    generate_location();
+#    generate_landmarks();
+#    generate_size();
+#    generate_support_area();
+#    generate_districts();
+#    generate_streets();
+#    generate_walls();
+#    generate_roads();
+
+}
+
+###############################################################################
+#
+# generate_city_credence - select government, ethics, tolerance, etc.
+#
+###############################################################################
+sub generate_city_credence{
+
+    # - set govt type
+    set_govt_type();
+
+    # - Generate ethics
+    generate_city_ethics();
+
+    # - Generate beliefs
+    generate_city_beliefs();
+
+    # - generate laws
+    set_laws();
+
+    #generate imprisonment rate
+    generate_imprisonment_rate();
+}
+
+###############################################################################
+#
+# generate_imprisonment_rate - city size, authority, order and education
+# determine what percentage of the city is in jail. 0.05% to  01.815%
+#
+###############################################################################
+
+sub generate_imprisonment_rate{
+    # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
+    # high authority means more in jail
+    # low education means more in jail
+    # larger city means more in jail
+    # higher order means more in jail
+    $city->{'imprisonment'}={};
+    $city->{'imprisonment'}->{'percent'} = (((15 + $city->{'authority'} - $city->{'education'}  +$city->{'size_modifier'} )/5) +1 )*($city->{'order'}+50)/100 /10 ;
+
+    #calculate out the actual prison population in whole numbers
+    $city->{'imprisonment'}->{'population'}= ceil( $city->{'imprisonment'}->{'percent'}/100 * $city->{'population'});
+
+    #recalulate to make the percent accurate with the population
+    $city->{'imprisonment'}->{'percent'}= int($city->{'imprisonment'}->{'population'}/$city->{'population'}*1000)/10;
+
+
+}
+
+
+###############################################################################
+#
+# generate_city_core - select the size, type, population, races and population
+# breakdown. This is the core of the city stats, everything else is icing.
+#
+###############################################################################
+sub generate_city_core{
     # - Generate a size
     set_city_size();
 
@@ -85,10 +172,159 @@ sub build_city {
 
     # - Generate pop counts
     generate_pop_counts();
+
+    # - generate city age
+    generate_city_age();
+    
+    # - generate children %
+    generate_children();
 }
 
 
 
+###############################################################################
+#
+# generate_children - set the percentage of the population that are children, 
+# modified by the age of the city
+#
+###############################################################################
+sub generate_children {
+
+    $city->{'children'}={};
+    #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
+    # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
+    $city->{'children'}->{'percent'}= 20 + &d(15) +  $city->{'cityage'}->{'agemod'};
+
+    #calculate out the actual child population in whole numbers
+    $city->{'children'}->{'population'}= floor( $city->{'children'}->{'percent'}/100 * $city->{'population'});
+
+    #recalulate to make the percent accurate with the population
+    $city->{'children'}->{'percent'}= int($city->{'children'}->{'population'}/$city->{'population'}*1000)/10;
+
+}
+
+
+###############################################################################
+#
+# generate_city_age - a simple selector
+#
+###############################################################################
+sub generate_city_age {
+    my $agelist=$xml_data->{'cityages'}->{'cityage'};
+
+    $city->{'cityage'}= rand_from_array( @{ $agelist } );
+}
+
+
+###############################################################################
+#
+# Generate Secondary Power - select a plot, a power and a subplot.
+#
+###############################################################################
+sub generate_secondary_power {
+    $city->{'secondarypower'}={};
+
+    # select a plot
+    my $plotlist=$xml_data->{'secondarypower'}->{'plot'};
+    $city->{'secondarypower'}->{'plot'} = rand_from_array( @{ $plotlist } )->{'content'};
+
+    #select a power and a related subplot.
+    my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
+    my $power = rand_from_array( @{ $powerlist} );
+    $city->{'secondarypower'}->{'power'} = rand_from_array( @{ $powerlist} )->{'type'};
+    $city->{'secondarypower'}->{'subplot'} = rand_from_array( @{ $power->{'subplot'} } )->{'content'};
+}
+
+
+###############################################################################
+#
+# set_govt_type - fairly simple; select a type of govt from the list.
+#
+###############################################################################
+sub set_govt_type {
+    my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
+    $city->{'govtype'} = rand_from_array( @{ $govttypelist } );
+
+    my $descriptorlist=$xml_data->{'govtypes'}->{'descriptor'} ;
+    print Dumper $descriptorlist;
+    my $descriptor = rand_from_array( @{ $descriptorlist } );
+    $city->{'govtype'}->{'descriptor'}=$descriptor->{'content'};
+
+    # add random element + govtype base approvalmod + descriptor approval + authority mod
+    $city->{'govtype'}->{'approvalmod'}    =&d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $descriptor->{'approvalmod'} +  $city->{'authority'};
+
+    # ensure it falls in the proper range
+    $city->{'govtype'}->{'approvalmod'}=max(-5, min(5,  $city->{'govtype'}->{'approvalmod'}   ) );
+
+    $city->{'govtype'}->{'religion'}=&d(4)-2 +  $city->{'govtype'}->{'religion'} ; 
+
+}
+
+
+
+###############################################################################
+#
+# Set Laws - Laws have three facets- enforcement, trial and punishment. 
+# Select these from arrays.
+#
+###############################################################################
+
+sub set_laws {
+    $city->{'laws'} = {};
+    for my $facet (qw( enforcement trial punishment )) {
+        my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
+        $city->{'laws'}->{$facet} = rand_from_array( @{ $facetlist } )->{'content'};
+    }
+}
+
+
+
+###############################################################################
+#
+# generate_city_ethics - Intended for morals and order (classic alignment).
+#
+###############################################################################
+sub generate_city_ethics {
+    $city->{'moral'} = &d(100);
+    $city->{'order'} = &d(100);
+
+    # adjust all modifiers for each race
+    for my $race ( @{ $city->{'races'} } ) {
+        $city->{'moral'} += $race->{'moral'};
+        $city->{'order'} += $race->{'order'};
+    }
+
+    # Use min/max to ensure that we fall in the proper ranges when all is said and done        
+    $city->{'moral'}=max(1, min(100, $city->{'moral'} ) );
+    $city->{'order'}=max(1, min(100, $city->{'order'} ) );
+
+}
+###############################################################################
+#
+# generate_city_beliefs - This includes other scales, such as determining if 
+# the city is a trade hub, etc. 
+#
+###############################################################################
+sub generate_city_beliefs {
+
+    # set the baseline random modifier
+    foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
+        $city->{$scale}    =&d(4)-2;
+    }
+
+    # adjust all modifiers for each race
+    for my $race ( @{ $city->{'races'} } ) {
+        foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
+            $city->{$scale} += $race->{$scale};
+        }
+    }
+
+    # Use min/max to ensure that we fall in the proper ranges when all is said and done        
+    foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
+        $city->{$scale}=max(-5, min(5, $city->{$scale} ) );
+    }
+
+}
 
 ###############################################################################
 #
@@ -183,6 +419,7 @@ sub add_race_features {
     $race->{'economy'}   = $newrace->{'econ'};
     $race->{'education'} = $newrace->{'edu'};
     $race->{'travel'}    = $newrace->{'travel'};
+    $race->{'tolerance'}    = $newrace->{'toler'};
     $race->{'type'}      = $newrace->{'type'};
 
     if (defined $race->{'dominant'} ){
