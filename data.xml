@@ -601,20 +601,20 @@
     	<option>huge</option>
     	<option>massive</option>
     </landmarkdesc>
-    <location description="on the coast">
-        <landmarks chance="10">cliff</landmarks>
+    <location description="on the coast" port_chance='100'>
+        <landmarks chance="12">cliff</landmarks>
         <landmarks chance="10">lighthouse</landmarks>
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">rivermouth</landmarks>
         <landmarks chance="20">beach</landmarks>
         <landmarks chance="10">jagged outcropping of rock</landmarks>
     </location>
-    <location description="near a river">
+    <location description="near a river" port_chance='50'>
         <landmarks chance="10">marsh</landmarks>
         <landmarks chance="10">drainage ditch</landmarks>
     </location>
-    <location description="on a hill">
-        <landmarks chance="20">rocky outcropping</landmarks>
+    <location description="on a hill" port_chance='25'>
+        <landmarks chance="22">rocky outcropping</landmarks>
         <landmarks chance="10">stand of trees</landmarks>
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">pond</landmarks>
@@ -623,23 +623,26 @@
         <landmarks chance="10">crossroad</landmarks>
         <landmarks chance="10">mountain range</landmarks>
     </location>
-    <location description="in a basin">
-        <landmarks chance="20">stream</landmarks>
+    <location description="in a basin" port_chance='5'>
+        <landmarks chance="10">stream</landmarks>
+        <landmarks chance="10">river</landmarks>
+        <landmarks chance="10">pond</landmarks>
+        <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">boulder</landmarks>
         <landmarks chance="10">fruit orchard</landmarks>
     </location>
-    <location description="on a plateau">
+    <location description="on a plateau" port_chance='0'>
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="20">jagged cliff</landmarks>
     </location>
-    <location description="in the mountains">
+    <location description="in the mountains" port_chance='0'>
         <landmarks chance="10">valley</landmarks>
         <landmarks chance="10">summit</landmarks>
         <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">frostline</landmarks>
     </location>
-    <location description="underground">
+    <location description="underground" port_chance='0'>
         <landmarks chance="10">underground lake</landmarks>
         <landmarks chance="10">waterfall</landmarks>
         <landmarks chance="10">stream</landmarks>
@@ -648,7 +651,7 @@
         <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">faultline</landmarks>
     </location>
-    <location description="in the plains">
+    <location description="in the plains" port_chance='10'>
         <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">sea</landmarks>
         <landmarks chance="10">blue ocean</landmarks>
@@ -659,13 +662,14 @@
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">farmland</landmarks>
     </location>
-    <location description="in the desert">
+    <location description="in the desert" port_chance='0'>
         <landmarks chance="10">wonderful oasis</landmarks>
         <landmarks chance="10">sea of sand dunes</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">stone formation</landmarks>
     </location>
-    <location description="in the forest">
+    <location description="in the forest" port_chance='5'>
+        <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">red oak grove</landmarks>
         <landmarks chance="10">sequoia grove</landmarks>
         <landmarks chance="10">spruce grove</landmarks>
@@ -781,24 +785,24 @@
 </laws>
 
 <cityname pre_chance="20" trailer_chance="20">
-	<pre>Alta </pre>
-	<pre>Bad </pre>
-	<pre>Big </pre>
-	<pre>East </pre>
-	<pre>Grand </pre>
-	<pre>Great </pre>
-	<pre>Holy </pre>
-	<pre>Lower </pre>
-	<pre>Mount </pre>
-	<pre>New </pre>
-	<pre>North </pre>
-	<pre>Old </pre>
-	<pre>Port </pre>
-	<pre>Saint </pre>
-	<pre>San </pre>
-	<pre>South </pre>
-	<pre>Upper </pre>
-	<pre>West </pre>
+	<pre>Alta</pre>
+	<pre>Bad</pre>
+	<pre>Big</pre>
+	<pre>East</pre>
+	<pre>Grand</pre>
+	<pre>Great</pre>
+	<pre>Holy</pre>
+	<pre>Lower</pre>
+	<pre>Mount</pre>
+	<pre>New</pre>
+	<pre>North</pre>
+	<pre>Old</pre>
+	<pre>Port</pre>
+	<pre>Saint</pre>
+	<pre>San</pre>
+	<pre>South</pre>
+	<pre>Upper</pre>
+	<pre>West</pre>
 
 	<root>Ack</root>
 	<root>Ad</root>
@@ -1721,8 +1725,8 @@
 </classes>
 
 <housing>
-    <quality name="average" percent="69" density="10"/>
     <quality name="poor"    percent="30" density="20" required='true'/>
+    <quality name="average" percent="69" density="10"/>
     <quality name="elite"   percent="1"  density="5"/>
 
 

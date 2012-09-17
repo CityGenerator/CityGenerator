@@ -91,10 +91,10 @@ sub build_city {
 #
 ###############################################################################
 sub generate_physical_traits {
-#    generate_location();
-#    generate_landmarks();
-#    generate_size();
-#    generate_support_area();
+    generate_location();
+    generate_housing();
+    generate_area();
+    generate_support_area();
 #    generate_districts();
 #    generate_streets();
 #    generate_walls();
@@ -104,19 +104,105 @@ sub generate_physical_traits {
 
 ###############################################################################
 #
+# generate_support_area - using population size, determine the size of the
+# area needed to support the city. results is in square miles.
+#
+###############################################################################
+sub generate_support_area {
+    # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
+    # a good economy,education, magic and law increases production by  5+5+50+5 36%
+    $city->{'supportarea'}=   int($city->{'population'}/ ( 180 + $city->{'economy'} + $city->{'education'} + ($city->{'magic'}+5)*5 +$city->{'order'})*100)/100;
+
+}
+
+
+###############################################################################
+#
+# generate_area - using population size and density, determine the size of 
+# the city. results is in hectares.
+#
+###############################################################################
+sub generate_area {
+    # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
+    $city->{'area'}=   int( $city->{'population'}*( $city->{'popdensity'}->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
+
+}
+
+###############################################################################
+#
+# generate_housing - generate the types of housing and how much there is.
+#
+###############################################################################
+sub generate_housing {
+    $city->{'housing'}={};
+
+    my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
+
+    foreach my $housingquality ( @qualitylist ){
+
+        my $housingtype= $xml_data->{'housing'}->{'quality'}->{$housingquality};
+
+        # fractional housecount total, but you can't have .3 of a house...        
+        my $housecount= $city->{'population'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
+
+        # to ensure minimal housing, we require poor housing via ceil, so we always have 1.
+        if (defined $housingtype->{'required'}){
+            $city->{'housing'}->{$housingquality}        = ceil ($housecount); # ceil used because we want at least 1 poor house
+        }else{
+            $city->{'housing'}->{$housingquality}        = floor ($housecount);
+        }
+        $city->{'housing'}->{'total'}+=$city->{'housing'}->{$housingquality}
+
+    }
+
+
+    # Calculate abandoned by finding 10% of total and adjusting it by economy conditions (+/-5%)
+    $city->{'housing'}->{'abandoned'}   = floor($city->{'housing'}->{'total'} *(10-$city->{'economy'} )/100 );
+
+}
+
+
+###############################################################################
+#
+# generate_location - select the location we wish to use and any landmarks.
+#
+###############################################################################
+
+
+sub generate_location {
+    $city->{'location'} = { 'landmarks'=>[]  };
+    my $locationlist=$xml_data->{'locations'}->{'location'};
+
+    my $location = rand_from_array( @{ $locationlist } );
+    $city->{'location'}->{'name'}=$location->{'description'};
+    $city->{'location'}->{'port'}= ( &d(100) <= $location->{'port_chance'}  );
+
+    foreach my $landmark (shuffle @{$location->{'landmarks'}}){
+        if (&d(100) <= $landmark->{'chance'}){
+            push @{$city->{'location'}->{'landmarks'}},  $landmark->{'content'};
+        }
+    }
+}
+
+
+
+
+###############################################################################
+#
 # generate_city_credence - select government, ethics, tolerance, etc.
 #
 ###############################################################################
 sub generate_city_credence{
 
-    # - set govt type
-    set_govt_type();
 
     # - Generate ethics
     generate_city_ethics();
 
     # - Generate beliefs
     generate_city_beliefs();
+
+    # - set govt type
+    set_govt_type();
 
     # - generate laws
     set_laws();
@@ -246,12 +332,11 @@ sub set_govt_type {
     $city->{'govtype'} = rand_from_array( @{ $govttypelist } );
 
     my $descriptorlist=$xml_data->{'govtypes'}->{'descriptor'} ;
-    print Dumper $descriptorlist;
     my $descriptor = rand_from_array( @{ $descriptorlist } );
     $city->{'govtype'}->{'descriptor'}=$descriptor->{'content'};
 
     # add random element + govtype base approvalmod + descriptor approval + authority mod
-    $city->{'govtype'}->{'approvalmod'}    =&d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $descriptor->{'approvalmod'} +  $city->{'authority'};
+    $city->{'govtype'}->{'approvalmod'}    = &d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $descriptor->{'approvalmod'} +  $city->{'authority'};
 
     # ensure it falls in the proper range
     $city->{'govtype'}->{'approvalmod'}=max(-5, min(5,  $city->{'govtype'}->{'approvalmod'}   ) );
