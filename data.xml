@@ -318,15 +318,30 @@
 <streets>
     <pre>rough</pre>
     <pre>broken</pre>
+    <pre>pristine</pre>
+    <pre>irregular</pre>
+    <pre>smooth</pre>
+    <pre>bumpy</pre>
+    <pre>crude</pre>
+    <pre>even</pre>
     <pre>well-maintained</pre>
+    <pre>filthy</pre>
+    <pre>muddy</pre>
 
     <root>dirt</root>
     <root>cobblestone</root>
 
-    <post>grid pattern</post>
-    <post>random mesh pattern</post>
-    <post>organic pattern</post>
-    <post>wheel and spoke pattern</post>
+    <post>in a grid pattern</post>
+    <post>in a ray pattern</post>
+    <post>in a contour-forming pattern</post>
+    <post>in an irregular pattern</post>
+    <post>in a random mesh pattern</post>
+    <post>in an organic pattern</post>
+    <post>in a fragmented parallel pattern</post>
+    <post>in a looped pattern</post>
+    <post>in a warped parallel pattern</post>
+    <post>in a linear pattern</post>
+    <post>in a wheel and spoke pattern</post>
 </streets>
 
 <walls>
@@ -364,94 +379,94 @@
 
 <buildings>
 
-    <building weight='1' priority='10' perbuilding='2' >alchemist</building>
-    <building weight='1' priority='10' perbuilding='3' >almshouse</building>
-    <building weight='1' priority='8'  perbuilding='2' >apothecary</building>
-    <building weight='2' priority='3'  perbuilding='3' >armorer</building>
-    <building weight='2' priority='10' perbuilding='5' >assassin/bounty hunter</building>
-    <building weight='1' priority='10' perbuilding='2' >astrologer</building>
-    <building weight='2' priority='4'  perbuilding='4' >baker</building>
-    <building weight='1' priority='4'  perbuilding='10'>banker</building>
-    <building weight='2' priority='5'  perbuilding='3' >barber</building>
-    <building weight='1' priority='5'  perbuilding='20'>barracks</building>
-    <building weight='1' priority='10' perbuilding='4' >barrister</building>
-    <building weight='2' priority='2'  perbuilding='3' >blacksmith</building>
-    <building weight='1' priority='10' perbuilding='3' >boat for hire</building>
-    <building weight='1' priority='9'  perbuilding='2' >bookseller</building>
-    <building weight='1' priority='3'  perbuilding='4' >bowyer</building>
-    <building weight='1' priority='5'  perbuilding='5' >brewer</building>
-    <building weight='2' priority='4'  perbuilding='10'>brothel</building>
-    <building weight='2' priority='2'  perbuilding='5' >butcher</building>
-    <building weight='1' priority='7'  perbuilding='10'>carpenter</building>
-    <building weight='1' priority='6'  perbuilding='4' >cartwright</building>
-    <building weight='1' priority='10' perbuilding='50'>castle</building>
-    <building weight='1' priority='10' perbuilding='2' >chandler</building>
-    <building weight='1' priority='7'  perbuilding='3' >cheesemaker</building>
-    <building weight='3' priority='3'  perbuilding='6' >church</building>
-    <building weight='1' priority='7'  perbuilding='2' >cobbler</building>
-    <building weight='1' priority='5'  perbuilding='4' >cooper</building>
-    <building weight='1' priority='10' perbuilding='6' >dyer</building>
-    <building weight='1' priority='10' perbuilding='7' >engineer</building>
-    <building weight='1' priority='10' perbuilding='6' >entertainer</building>
-    <building weight='1' priority='8'  perbuilding='3' >fishmonger</building>
-    <building weight='1' priority='5'  perbuilding='20'>fortress</building>
-    <building weight='1' priority='7'  perbuilding='3' >furrier</building>
-    <building weight='1' priority='9'  perbuilding='6' >glassblower</building>
-    <building weight='1' priority='1'  perbuilding='10'>graveyard</building>
-    <building weight='1' priority='6'  perbuilding='4' >grocer</building>
-    <building weight='1' priority='5'  perbuilding='3' >healer</building>
-    <building weight='1' priority='6'  perbuilding='4' >herbalist</building>
-    <building weight='1' priority='10' perbuilding='8' >hostel</building>
-    <building weight='2' priority='4'  perbuilding='4' >inn</building>
-    <building weight='1' priority='10' perbuilding='10'>interpreter</building>
-    <building weight='1' priority='10' perbuilding='10'>jailhouse</building>
-    <building weight='1' priority='8'  perbuilding='4' >jeweler</building>
-    <building weight='3' priority='6'  perbuilding='10'>laborer</building>
-    <building weight='2' priority='3'  perbuilding='4' >leatherworker</building>
-    <building weight='1' priority='7'  perbuilding='4' >library</building>
-    <building weight='1' priority='10' perbuilding='4' >locksmith</building>
-    <building weight='1' priority='10' perbuilding='10'>lumbermill</building>
-    <building weight='1' priority='6'  perbuilding='2' >magic store</building>
-    <building weight='1' priority='3'  perbuilding='10'>mason</building>
-    <building weight='1' priority='2'  perbuilding='10'>merchant</building>
-    <building weight='1' priority='10' perbuilding='5' >messenger</building>
-    <building weight='1' priority='1'  perbuilding='6' >miller</building>
-    <building weight='1' priority='10' perbuilding='3' >navigator</building>
-    <building weight='2' priority='3'  perbuilding='5' >official</building>
-    <building weight='1' priority='7'  perbuilding='4' >orphanage</building>
-    <building weight='1' priority='4'  perbuilding='4' >physician</building>
-    <building weight='1' priority='10' perbuilding='3' >porter</building>
-    <building weight='1' priority='6'  perbuilding='4' >potter</building>
-    <building weight='1' priority='10' perbuilding='2' >provisioner</building>
-    <building weight='1' priority='10' perbuilding='4' >rare crafts and trades</building>
-    <building weight='1' priority='10' perbuilding='4' >saddler</building>
-    <building weight='1' priority='3'  perbuilding='2' >sage</building>
-    <building weight='1' priority='5'  perbuilding='4' >school</building>
-    <building weight='1' priority='6'  perbuilding='10'>scribe</building>
-    <building weight='1' priority='10' perbuilding='20'>shipyard</building>
-    <building weight='1' priority='10' perbuilding='8' >shrine</building>
-    <building weight='2' priority='1'  perbuilding='4' >smith</building>
-    <building weight='1' priority='10' perbuilding='3' >specialty smith</building>
-    <building weight='1' priority='5'  perbuilding='4' >stable</building>
-    <building weight='1' priority='7'  perbuilding='6' >tailor/seamstress</building>
-    <building weight='1' priority='4'  perbuilding='3' >tanner</building>
-    <building weight='1' priority='4'  perbuilding='3' >tavern</building>
-    <building weight='2' priority='2'  perbuilding='4' >tavern/inn</building>
-    <building weight='1' priority='10' perbuilding='10'>teamster</building>
-    <building weight='1' priority='10' perbuilding='10'>temple</building>
-    <building weight='1' priority='10' perbuilding='10'>theatre</building>
-    <building weight='1' priority='10' perbuilding='3' >tilemaker</building>
-    <building weight='1' priority='10' perbuilding='3' >trader</building>
-    <building weight='1' priority='10' perbuilding='4' >transportation</building>
-    <building weight='1' priority='10' perbuilding='20'>university</building>
-    <building weight='1' priority='10' perbuilding='6' >vintner</building>
-    <building weight='1' priority='10' perbuilding='4' >wagon yard</building>
-    <building weight='2' priority='6'  perbuilding='2' >warehouse</building>
-    <building weight='1' priority='6'  perbuilding='4' >weaponsmith</building>
-    <building weight='1' priority='5'  perbuilding='4' >weaver</building>
-    <building weight='1' priority='5'  perbuilding='3' >woodworker</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fine shops">alchemist</building>
+    <building weight='1' priority='10' perbuilding='3'  district="poor">almshouse</building>
+    <building weight='1' priority='8'  perbuilding='2'  district="fine shops">apothecary</building>
+    <building weight='2' priority='3'  perbuilding='3'  district="trade">armorer</building>
+    <building weight='2' priority='10' perbuilding='5'  district="trade">assassin/bounty hunter</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fine shops">astrologer</building>
+    <building weight='2' priority='4'  perbuilding='4'  district="trade">baker</building>
+    <building weight='1' priority='4'  perbuilding='10' district="professional">banker</building>
+    <building weight='2' priority='5'  perbuilding='3'  district="professional">barber</building>
+    <building weight='1' priority='5'  perbuilding='20' district="military">barracks</building>
+    <building weight='1' priority='10' perbuilding='4'  district="civic">barrister</building>
+    <building weight='2' priority='2'  perbuilding='3'  district="professional,trade">blacksmith</building>
+    <building weight='1' priority='10' perbuilding='3'  district="port">boat for hire</building>
+    <building weight='1' priority='9'  perbuilding='2'  district="fine shops">bookseller</building>
+    <building weight='1' priority='3'  perbuilding='4'  district="trade">bowyer</building>
+    <building weight='1' priority='5'  perbuilding='5'  district="trade">brewer</building>
+    <building weight='2' priority='4'  perbuilding='10' district="poor">brothel</building>
+    <building weight='2' priority='2'  perbuilding='5'  district="trade">butcher</building>
+    <building weight='1' priority='7'  perbuilding='10' district="trade">carpenter</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">cartwright</building>
+    <building weight='1' priority='10' perbuilding='50' district="wealthy">castle</building>
+    <building weight='1' priority='10' perbuilding='2'  district="trade">chandler</building>
+    <building weight='1' priority='7'  perbuilding='3'  district="trade">cheesemaker</building>
+    <building weight='3' priority='3'  perbuilding='6'  district="mercy">church</building>
+    <building weight='1' priority='7'  perbuilding='2'  district="shops">cobbler</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">cooper</building>
+    <building weight='1' priority='10' perbuilding='6'  district="trade">dyer</building>
+    <building weight='1' priority='10' perbuilding='7'  district="professional">engineer</building>
+    <building weight='1' priority='10' perbuilding='6'  district="professional">entertainer</building>
+    <building weight='1' priority='8'  perbuilding='3'  district="market">fishmonger</building>
+    <building weight='1' priority='5'  perbuilding='20' district="civic">fortress</building>
+    <building weight='1' priority='7'  perbuilding='3'  district="trade">furrier</building>
+    <building weight='1' priority='9'  perbuilding='6'  district="trade">glassblower</building>
+    <building weight='1' priority='1'  perbuilding='10' district="civic">graveyard</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="market">grocer</building>
+    <building weight='1' priority='5'  perbuilding='3'  district="mercy">healer</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="shops">herbalist</building>
+    <building weight='1' priority='10' perbuilding='8'  district="embassy">hostel</building>
+    <building weight='2' priority='4'  perbuilding='4'  district="shops">inn</building>
+    <building weight='1' priority='10' perbuilding='10' district="embassy">interpreter</building>
+    <building weight='1' priority='10' perbuilding='10' district="civic">jailhouse</building>
+    <building weight='1' priority='8'  perbuilding='4'  district="fine shops">jeweler</building>
+    <building weight='3' priority='6'  perbuilding='10' district="industry">laborer</building>
+    <building weight='2' priority='3'  perbuilding='4'  district="trade">leatherworker</building>
+    <building weight='1' priority='7'  perbuilding='4'  district="education">library</building>
+    <building weight='1' priority='10' perbuilding='4'  district="professional">locksmith</building>
+    <building weight='1' priority='10' perbuilding='10' district="industry">lumbermill</building>
+    <building weight='1' priority='6'  perbuilding='2'  district="shops">magic store</building>
+    <building weight='1' priority='3'  perbuilding='10' district="industry">mason</building>
+    <building weight='1' priority='2'  perbuilding='10' district="market">merchant</building>
+    <building weight='1' priority='10' perbuilding='5'  district="embassy">messenger</building>
+    <building weight='1' priority='1'  perbuilding='6'  district="trade">miller</building>
+    <building weight='1' priority='10' perbuilding='3'  district="professional">navigator</building>
+    <building weight='2' priority='3'  perbuilding='5'  district="civic">official</building>
+    <building weight='1' priority='7'  perbuilding='4'  district="mercy">orphanage</building>
+    <building weight='1' priority='4'  perbuilding='4'  district="mercy">physician</building>
+    <building weight='1' priority='10' perbuilding='3'  district="professional">porter</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">potter</building>
+    <building weight='1' priority='10' perbuilding='2'  district="market">provisioner</building>
+    <building weight='1' priority='10' perbuilding='4'  district="market">rare crafts and trades</building>
+    <building weight='1' priority='10' perbuilding='4'  district="trade">saddler</building>
+    <building weight='1' priority='3'  perbuilding='2'  district="professional">sage</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="educational">school</building>
+    <building weight='1' priority='6'  perbuilding='10' district="professional">scribe</building>
+    <building weight='1' priority='10' perbuilding='20' district="port">shipyard</building>
+    <building weight='1' priority='10' perbuilding='8'  district="mercy">shrine</building>
+    <building weight='2' priority='1'  perbuilding='4'  district="trade">smith</building>
+    <building weight='1' priority='10' perbuilding='3'  district="fine shops">specialty smith</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">stable</building>
+    <building weight='1' priority='7'  perbuilding='6'  district="professional">tailor/seamstress</building>
+    <building weight='1' priority='4'  perbuilding='3'  district="trade">tanner</building>
+    <building weight='1' priority='4'  perbuilding='3'  district="market">tavern</building>
+    <building weight='2' priority='2'  perbuilding='4'  district="">tavern/inn</building>
+    <building weight='1' priority='10' perbuilding='10' district="professional">teamster</building>
+    <building weight='1' priority='10' perbuilding='10' district="mercy">temple</building>
+    <building weight='1' priority='10' perbuilding='10' district="entertainment">theatre</building>
+    <building weight='1' priority='10' perbuilding='3'  district="industry">tilemaker</building>
+    <building weight='1' priority='10' perbuilding='3'  district="market">trader</building>
+    <building weight='1' priority='10' perbuilding='4'  district="industrial">transportation</building>
+    <building weight='1' priority='10' perbuilding='20' district="education">university</building>
+    <building weight='1' priority='10' perbuilding='6'  district="trade">vintner</building>
+    <building weight='1' priority='10' perbuilding='4'  district="industrial">wagon yard</building>
+    <building weight='2' priority='6'  perbuilding='2'  district="industrial">warehouse</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">weaponsmith</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">weaver</building>
+    <building weight='1' priority='5'  perbuilding='3'  district="trade">woodworker</building>
 
-    <building weight='10'  priority='10' perbuilding='10' >misc.</building>
+    <building weight='10' priority='10' perbuilding='10' district="">misc.</building>
 </buildings>
 
 
@@ -463,25 +478,28 @@
     <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</city>
 </citytype>
 <districts>
-    <option type="civic"/>
-    <option type="embassy"/>
-    <option type="wealthy"/>
-    <option type="middle class"/>
-    <option type="racial"/>
-    <option type="fine shops"/>
-    <option type="arena"/>
-    <option type="poor"/>
-    <option type="slums"/>
-    <option type="warehouse"/>
-    <option type="industry"/>
-    <option type="trade"/>
-    <option type="professional"/>
-    <option type="shops"/>
-    <option type="market"/>
-    <option type="prison"/>
-    <option type="education"/>
-    <option type="military"/>
+    <district name="civic"        chance='12' stat="authority"/>
+    <district name="embassy"      chance='5'  stat="travel" />
+    <district name="wealthy"      chance='34' stat="economy" />
+    <district name="middle class" chance='30' stat="economy" />
+    <district name="racial"       chance='10' stat="tolerance" />
+    <district name="fine shops"   chance='5'  stat="economy" />
+    <district name="arena"        chance='5'  stat="education" />
+    <district name="poor"         chance='30' stat="economy" />
+    <district name="slums"        chance='10' stat="economy" />
+    <district name="warehouse"    chance='5'  stat="economy" />
+    <district name="industry"     chance='5'  stat="economy" />
+    <district name="trade"        chance='32'  stat="economy" />
+    <district name="professional" chance='30' stat="economy" />
+    <district name="shops"        chance='20' stat="economy" />
+    <district name="market"       chance='70' stat="economy" />
+    <district name="prison"       chance='7'  stat="authority" />
+    <district name="education"    chance='5'  stat="education" />
+    <district name="military"     chance='5'  stat="authority" />
+    <district name="mercy"        chance='20' stat="tolerance" />
+    <district name="port"         chance='0'  stat="travel" />
 </districts>
+    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3' >Human</race>
 
 <popdensity>
     <option type="sparse"  feetpercapita="5000"/>
@@ -490,63 +508,63 @@
     <option type="dense"   feetpercapita="1000"/>
 </popdensity>
 <poptypes>
-	<population type="secluded" min='1' max='35' haspest='5' >
-	    <option percent="98" dominant='true'/>
-	    <option percent="1" />
-	</population>
-	<population type="split" min='35' max='50' haspest='10' >
-	    <option percent="49" />
-	    <option percent="48" />
-	    <option percent="2" />
-	</population>
-	<population type="quartered" min='51' max='70' haspest='30'>
-	    <option percent="27" />
-	    <option percent="26" />
-	    <option percent="23" />
-	    <option percent="23" />
-	</population>
-	<population type="assimilated" min='71' max='85' haspest='50' >
-	    <option percent="70" dominant='true' />
-	    <option percent="16" />
-	    <option percent="8" />
-	    <option percent="3" />
-	    <option percent="2" />
-	</population>
-	<population type="unified" min='86' max='100' haspest='70'>
-	    <option percent="35" />
-	    <option percent="29" />
-	    <option percent="19" />
-	    <option percent="11" />
-	    <option percent="3" />
-	    <option percent="2" />
-	</population>
+    <population type="secluded" min='1' max='35' haspest='5' >
+        <option percent="98" dominant='true'/>
+        <option percent="1" />
+    </population>
+    <population type="split" min='35' max='50' haspest='10' >
+        <option percent="49" />
+        <option percent="48" />
+        <option percent="2" />
+    </population>
+    <population type="quartered" min='51' max='70' haspest='30'>
+        <option percent="27" />
+        <option percent="26" />
+        <option percent="23" />
+        <option percent="23" />
+    </population>
+    <population type="assimilated" min='71' max='85' haspest='50' >
+        <option percent="70" dominant='true' />
+        <option percent="16" />
+        <option percent="8" />
+        <option percent="3" />
+        <option percent="2" />
+    </population>
+    <population type="unified" min='86' max='100' haspest='70'>
+        <option percent="35" />
+        <option percent="29" />
+        <option percent="19" />
+        <option percent="11" />
+        <option percent="3" />
+        <option percent="2" />
+    </population>
 </poptypes>
 
 <races>
     <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3' >Human</race>
-	<race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1' >Elf</race>
-	<race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1' >Dwarf</race>
-	<race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3' >Gnome</race>
-	<race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3' >Halfling</race>
-	<race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5' >Half-elf</race>
-	<race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2' >Half-orc</race>
-	<race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Gullydwarf</race>
+    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1' >Elf</race>
+    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1' >Dwarf</race>
+    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3' >Gnome</race>
+    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3' >Halfling</race>
+    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5' >Half-elf</race>
+    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2' >Half-orc</race>
+    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Gullydwarf</race>
 
     <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2' >other</race>
 
-	<race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1' >Kobold</race>
-	<race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1'>Deep Dwarf</race>
-	<race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1' >Goblin</race>
-	<race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1'>Orc</race>
-	<race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0' >Ogre</race>
-	<race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Bugbear</race>
-	<race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Hobgoblin</race>
-	<race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2'>Lizardfolk</race>
-	<race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5'>Minotaur</race>
-	<race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1' >Troglodyte</race>
-	<race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0' >Lycanthropes</race>
-	<race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5'>Mindflayer</race>
-	<race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5'>Drow</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1' >Kobold</race>
+    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1'>Deep Dwarf</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1' >Goblin</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1'>Orc</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0' >Ogre</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Bugbear</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Hobgoblin</race>
+    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2'>Lizardfolk</race>
+    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5'>Minotaur</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1' >Troglodyte</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0' >Lycanthropes</race>
+    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5'>Mindflayer</race>
+    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5'>Drow</race>
 </races>
 
 <moral>
@@ -594,12 +612,12 @@
 
 <locations>
     <landmarkdesc chance="50">
-    	<option>nondescript</option>
-    	<option>curious</option>
-    	<option>small</option>
-    	<option>large</option>
-    	<option>huge</option>
-    	<option>massive</option>
+        <option>nondescript</option>
+        <option>curious</option>
+        <option>small</option>
+        <option>large</option>
+        <option>huge</option>
+        <option>massive</option>
     </landmarkdesc>
     <location description="on the coast" port_chance='100'>
         <landmarks chance="12">cliff</landmarks>
@@ -687,15 +705,15 @@
     </forecast>
 
     <temp>
-	    <option modifier="0.10" >freezing</option>
-	    <option modifier="0.20" >cold</option>
-	    <option modifier="0.40" >chilly</option>
-	    <option modifier="0.80" >cool</option>
-	    <option modifier="0.90" >mild</option>
-	    <option modifier="1.00" >nice</option>
-	    <option modifier="1.10" >warm</option>
-	    <option modifier="0.90" >hot</option>
-	    <option modifier="0.50" >unbearably hot</option>
+        <option modifier="0.10" >freezing</option>
+        <option modifier="0.20" >cold</option>
+        <option modifier="0.40" >chilly</option>
+        <option modifier="0.80" >cool</option>
+        <option modifier="0.90" >mild</option>
+        <option modifier="1.00" >nice</option>
+        <option modifier="1.10" >warm</option>
+        <option modifier="0.90" >hot</option>
+        <option modifier="0.50" >unbearably hot</option>
     </temp>
 
     <air>
@@ -714,27 +732,27 @@
     </wind>
 
     <precip chance="65"> 
-	    <option description="sprinkling"></option>
-	    <option description="misty"></option>
-	    <option description="foggy">
-	        <type> </type>
-	        <type>lightly </type>
-	        <type>moderately </type>
-	        <type>heavily </type>
-	    </option>
-	    <option description="raining">
-	        <type></type>
-	        <type>lightly </type>
-	        <type>moderately </type>
-	        <type>heavily </type>
-	    </option>
-	    <option description="downpouring"></option>
-	    <option description="sleeting"></option>
-	    <option description="hail">
-	        <type>raining small (pea size) </type>
-	        <type>raining medium (walnut size) </type>
-	        <type>raining large (orange size) </type>
-	    </option>
+        <option description="sprinkling"></option>
+        <option description="misty"></option>
+        <option description="foggy">
+            <type> </type>
+            <type>lightly </type>
+            <type>moderately </type>
+            <type>heavily </type>
+        </option>
+        <option description="raining">
+            <type></type>
+            <type>lightly </type>
+            <type>moderately </type>
+            <type>heavily </type>
+        </option>
+        <option description="downpouring"></option>
+        <option description="sleeting"></option>
+        <option description="hail">
+            <type>raining small (pea size) </type>
+            <type>raining medium (walnut size) </type>
+            <type>raining large (orange size) </type>
+        </option>
     </precip>
     <thunder chance='20'> 
         <option>in the distance</option>
@@ -785,498 +803,498 @@
 </laws>
 
 <cityname pre_chance="20" trailer_chance="20">
-	<pre>Alta</pre>
-	<pre>Bad</pre>
-	<pre>Big</pre>
-	<pre>East</pre>
-	<pre>Grand</pre>
-	<pre>Great</pre>
-	<pre>Holy</pre>
-	<pre>Lower</pre>
-	<pre>Mount</pre>
-	<pre>New</pre>
-	<pre>North</pre>
-	<pre>Old</pre>
-	<pre>Port</pre>
-	<pre>Saint</pre>
-	<pre>San</pre>
-	<pre>South</pre>
-	<pre>Upper</pre>
-	<pre>West</pre>
+    <pre>Alta</pre>
+    <pre>Bad</pre>
+    <pre>Big</pre>
+    <pre>East</pre>
+    <pre>Grand</pre>
+    <pre>Great</pre>
+    <pre>Holy</pre>
+    <pre>Lower</pre>
+    <pre>Mount</pre>
+    <pre>New</pre>
+    <pre>North</pre>
+    <pre>Old</pre>
+    <pre>Port</pre>
+    <pre>Saint</pre>
+    <pre>San</pre>
+    <pre>South</pre>
+    <pre>Upper</pre>
+    <pre>West</pre>
 
-	<root>Ack</root>
-	<root>Ad</root>
-	<root>Ail</root>
-	<root>Ains</root>
-	<root>Air</root>
-	<root>Alb</root>
-	<root>Alex</root>
-	<root>Allen</root>
-	<root>Alten</root>
-	<root>Ama</root>
-	<root>And</root>
-	<root>Ani</root>
-	<root>Arch</root>
-	<root>Arthur</root>
-	<root>Ash</root>
-	<root>At</root>
-	<root>Bad</root>
-	<root>Baden</root>
-	<root>Bag</root>
-	<root>Bald</root>
-	<root>Ball</root>
-	<root>Ban</root>
-	<root>Bank</root>
-	<root>Barn</root>
-	<root>Bat</root>
-	<root>Battle</root>
-	<root>Bax</root>
-	<root>Bay</root>
-	<root>Bed</root>
-	<root>Belle</root>
-	<root>Ben</root>
-	<root>Ber</root>
-	<root>Betten</root>
-	<root>Birm</root>
-	<root>Blade</root>
-	<root>Blair</root>
-	<root>Blake</root>
-	<root>Blanch</root>
-	<root>Block</root>
-	<root>Bloom</root>
-	<root>Blud</root>
-	<root>Bona</root>
-	<root>Bond</root>
-	<root>Boom</root>
-	<root>Boon</root>
-	<root>Box</root>
-	<root>Brad</root>
-	<root>Bran</root>
-	<root>Bray</root>
-	<root>Bridge</root>
-	<root>Brun</root>
-	<root>Buck</root>
-	<root>Buff</root>
-	<root>Burl</root>
-	<root>Burt</root>
-	<root>By</root>
-	<root>Cal</root>
-	<root>Cala</root>
-	<root>Call</root>
-	<root>Calle</root>
-	<root>Callen</root>
-	<root>Cam</root>
-	<root>Car</root>
-	<root>Carb</root>
-	<root>Carl</root>
-	<root>Carp</root>
-	<root>Carrol</root>
-	<root>Carson</root>
-	<root>Cart</root>
-	<root>Cast</root>
-	<root>Cedar</root>
-	<root>Center</root>
-	<root>Central</root>
-	<root>Char</root>
-	<root>Chats</root>
-	<root>Clar</root>
-	<root>Clark</root>
-	<root>Clay</root>
-	<root>Clear</root>
-	<root>Cleg</root>
-	<root>Clem</root>
-	<root>Clint</root>
-	<root>Clive</root>
-	<root>Coll</root>
-	<root>Con</root>
-	<root>Coon</root>
-	<root>Cooper</root>
-	<root>Cop</root>
-	<root>Copper</root>
-	<root>Cor</root>
-	<root>Coral</root>
-	<root>Corn</root>
-	<root>Cory</root>
-	<root>Craig</root>
-	<root>Cran</root>
-	<root>Craw</root>
-	<root>Crest</root>
-	<root>Cry</root>
-	<root>Crystal</root>
-	<root>Cumber</root>
-	<root>Curl</root>
-	<root>Cush</root>
-	<root>Cyl</root>
-	<root>Dak</root>
-	<root>Dal</root>
-	<root>Dan</root>
-	<root>Dark</root>
-	<root>Dav</root>
-	<root>Davis</root>
-	<root>Daw</root>
-	<root>Day</root>
-	<root>Dec</root>
-	<root>Decor</root>
-	<root>Ded</root>
-	<root>Deed</root>
-	<root>Def</root>
-	<root>Deep</root>
-	<root>Del</root>
-	<root>Dela</root>
-	<root>Delph</root>
-	<root>Dem</root>
-	<root>Den</root>
-	<root>Der</root>
-	<root>Des</root>
-	<root>Derm</root>
-	<root>Dex</root>
-	<root>Diag</root>
-	<root>Dick</root>
-	<root>Dik</root>
-	<root>Dix</root>
-	<root>Dol</root>
-	<root>Don</root>
-	<root>Dona</root>
-	<root>Donnell</root>
-	<root>Doon</root>
-	<root>Dorn</root>
-	<root>Dow</root>
-	<root>Down</root>
-	<root>Drake</root>
-	<root>Dub</root>
-	<root>Dum</root>
-	<root>Dun </root>
-	<root>Dunk</root>
-	<root>Dur</root>
-	<root>Durin</root>
-	<root>Durk</root>
-	<root>Durl</root>
-	<root>Dush</root>
-	<root>Dusk</root>
-	<root>Eagle</root>
-	<root>Ear</root>
-	<root>Earl</root>
-	<root>Early</root>
-	<root>East</root>
-	<root>Eben</root>
-	<root>Eddy</root>
-	<root>Eden</root>
-	<root>Edg</root>
-	<root>Edge</root>
-	<root>Edmond</root>
-	<root>Eg</root>
-	<root>Eisen</root>
-	<root>Elber</root>
-	<root>Elder</root>
-	<root>Eldon</root>
-	<root>Eldor</root>
-	<root>Elk</root>
-	<root>Ells</root>
-	<root>Elma</root>
-	<root>Emer</root>
-	<root>En</root>
-	<root>Evans</root>
-	<root>Fair</root>
-	<root>Falk</root>
-	<root>Far</root>
-	<root>Farl</root>
-	<root>Farm</root>
-	<root>Fay</root>
-	<root>Feld</root>
-	<root>Fen</root>
-	<root>Fer</root>
-	<root>Fern</root>
-	<root>Fin</root>
-	<root>Flem</root>
-	<root>Floyd</root>
-	<root>Fon</root>
-	<root>For</root>
-	<root>Font</root>
-	<root>Frank</root>
-	<root>Fre</root>
-	<root>Fred</root>
-	<root>Fruit</root>
-	<root>Fuz</root>
-	<root>Gala</root>
-	<root>Gales</root>
-	<root>Galt</root>
-	<root>Gan</root>
-	<root>Gar</root>
-	<root>Garb</root>
-	<root>Gard</root>
-	<root>Garden</root>
-	<root>Garn</root>
-	<root>Gaur</root>
-	<root>Gav</root>
-	<root>Gaven</root>
-	<root>Gen</root>
-	<root>Geo</root>
-	<root>Ger</root>
-	<root>Gib</root>
-	<root>Gil</root>
-	<root>Gilb</root>
-	<root>Gill</root>
-	<root>Glad</root>
-	<root>Glen</root>
-	<root>Glid</root>
-	<root>Gold</root>
-	<root>Good</root>
-	<root>Goose</root>
-	<root>Graf</root>
-	<root>Graft</root>
-	<root>Grand</root>
-	<root>Grant</root>
-	<root>Gray</root>
-	<root>Green</root>
-	<root>Grin</root>
-	<root>Gris</root>
-	<root>Grove</root>
-	<root>Grun</root>
-	<root>Grundy</root>
-	<root>Guern</root>
-	<root>Gull</root>
-	<root>Gurn</root>
-	<root>Guth</root>
-	<root>Gutten</root>
-	<root>Hal</root>
-	<root>Hall</root>
-	<root>Ham</root>
-	<root>Hamb</root>
-	<root>Han</root>
-	<root>Har</root>
-	<root>Harper</root>
-	<root>Harris</root>
-	<root>Hart</root>
-	<root>Hast</root>
-	<root>Haver</root>
-	<root>Haw</root>
-	<root>Hawk</root>
-	<root>Hay</root>
-	<root>Hayes</root>
-	<root>Hazel</root>
-	<root>Hia</root>
-	<root>Hill</root>
-	<root>Hins</root>
-	<root>Holl</root>
-	<root>Hols</root>
-	<root>Hop</root>
-	<root>Horn</root>
-	<root>Hosp</root>
-	<root>Hough</root>
-	<root>Hub</root>
-	<root>Hubb</root>
-	<root>Hud</root>
-	<root>Hull</root>
-	<root>Humber</root>
-	<root>Hux</root>
-	<root>Ice</root>
-	<root>Ida</root>
-	<root>Imo</root>
-	<root>In</root>
-	<root>Ind</root>
-	<root>Inn</root>
-	<root>Io</root>
-	<root>Ire</root>
-	<root>Iron</root>
-	<root>Jack</root>
-	<root>Jam</root>
-	<root>Jan</root>
-	<root>Janes</root>
-	<root>Jeffer</root>
-	<root>Jes</root>
-	<root>Jew</root>
-	<root>John</root>
-	<root>Joll</root>
-	<root>Jones</root>
-	<root>Kal</root>
-	<root>Kam</root>
-	<root>Kan</root>
-	<root>Kel</root>
-	<root>Keller</root>
-	<root>Ken</root>
-	<root>Kens</root>
-	<root>Kent</root>
-	<root>Keo</root>
-	<root>Kes</root>
-	<root>Key</root>
-	<root>Kim</root>
-	<root>Kin</root>
-	<root>King</root>
-	<root>Kirk</root>
-	<root>Kir</root>
-	<root>Klem</root>
-	<root>Knox</root>
-	<root>La</root>
-	<root>Lab</root>
-	<root>Lac</root>
-	<root>Lad</root>
-	<root>Lak</root>
-	<root>Lake</root>
-	<root>Lam</root>
-	<root>Lamb</root>
-	<root>Land</root>
-	<root>Lane</root>
-	<root>Lans</root>
-	<root>Lar</root>
-	<root>Larch</root>
-	<root>Larra</root>
-	<root>Laur</root>
-	<root>Laurel</root>
-	<root>Lauren</root>
-	<root>Law</root>
-	<root>Le</root>
-	<root>Led</root>
-	<root>Len</root>
-	<root>Lend</root>
-	<root>Les</root>
-	<root>Lest</root>
-	<root>Let</root>
-	<root>Lett</root>
-	<root>Lew</root>
-	<root>Lewis</root>
-	<root>Lib</root>
-	<root>Liber</root>
-	<root>Liberty</root>
-	<root>Lid</root>
-	<root>Lidd</root>
-	<root>Lidder</root>
-	<root>Lim</root>
-	<root>Limb</root>
-	<root>Lime</root>
-	<root></root>
-	<root>Lin</root>
-	<root>Llope</root>
-	<root>Mickle</root>
-	<root>Mid</root>
-	<root>Mill</root>
-	<root>Quan</root>
-	<root>Regen</root>
-	<root>Sals</root>
-	<root>Silver</root>
-	<root>Star</root>
-	<root>Steel</root>
-	<root>Stone</root>
-	<root>Tal</root>
-	<root>Tan</root>
-	<root>Thistle</root>
-	<root>Vinter</root>
-	<root>Wad</root>
-	<root>War</root>
-	<root>Ward</root>
-	<root>White</root>
-	<root>Wissel</root>
-	<root>Wolf</root>
-	<root>Yellow</root>
-	<root>Zeal</root>
+    <root>Ack</root>
+    <root>Ad</root>
+    <root>Ail</root>
+    <root>Ains</root>
+    <root>Air</root>
+    <root>Alb</root>
+    <root>Alex</root>
+    <root>Allen</root>
+    <root>Alten</root>
+    <root>Ama</root>
+    <root>And</root>
+    <root>Ani</root>
+    <root>Arch</root>
+    <root>Arthur</root>
+    <root>Ash</root>
+    <root>At</root>
+    <root>Bad</root>
+    <root>Baden</root>
+    <root>Bag</root>
+    <root>Bald</root>
+    <root>Ball</root>
+    <root>Ban</root>
+    <root>Bank</root>
+    <root>Barn</root>
+    <root>Bat</root>
+    <root>Battle</root>
+    <root>Bax</root>
+    <root>Bay</root>
+    <root>Bed</root>
+    <root>Belle</root>
+    <root>Ben</root>
+    <root>Ber</root>
+    <root>Betten</root>
+    <root>Birm</root>
+    <root>Blade</root>
+    <root>Blair</root>
+    <root>Blake</root>
+    <root>Blanch</root>
+    <root>Block</root>
+    <root>Bloom</root>
+    <root>Blud</root>
+    <root>Bona</root>
+    <root>Bond</root>
+    <root>Boom</root>
+    <root>Boon</root>
+    <root>Box</root>
+    <root>Brad</root>
+    <root>Bran</root>
+    <root>Bray</root>
+    <root>Bridge</root>
+    <root>Brun</root>
+    <root>Buck</root>
+    <root>Buff</root>
+    <root>Burl</root>
+    <root>Burt</root>
+    <root>By</root>
+    <root>Cal</root>
+    <root>Cala</root>
+    <root>Call</root>
+    <root>Calle</root>
+    <root>Callen</root>
+    <root>Cam</root>
+    <root>Car</root>
+    <root>Carb</root>
+    <root>Carl</root>
+    <root>Carp</root>
+    <root>Carrol</root>
+    <root>Carson</root>
+    <root>Cart</root>
+    <root>Cast</root>
+    <root>Cedar</root>
+    <root>Center</root>
+    <root>Central</root>
+    <root>Char</root>
+    <root>Chats</root>
+    <root>Clar</root>
+    <root>Clark</root>
+    <root>Clay</root>
+    <root>Clear</root>
+    <root>Cleg</root>
+    <root>Clem</root>
+    <root>Clint</root>
+    <root>Clive</root>
+    <root>Coll</root>
+    <root>Con</root>
+    <root>Coon</root>
+    <root>Cooper</root>
+    <root>Cop</root>
+    <root>Copper</root>
+    <root>Cor</root>
+    <root>Coral</root>
+    <root>Corn</root>
+    <root>Cory</root>
+    <root>Craig</root>
+    <root>Cran</root>
+    <root>Craw</root>
+    <root>Crest</root>
+    <root>Cry</root>
+    <root>Crystal</root>
+    <root>Cumber</root>
+    <root>Curl</root>
+    <root>Cush</root>
+    <root>Cyl</root>
+    <root>Dak</root>
+    <root>Dal</root>
+    <root>Dan</root>
+    <root>Dark</root>
+    <root>Dav</root>
+    <root>Davis</root>
+    <root>Daw</root>
+    <root>Day</root>
+    <root>Dec</root>
+    <root>Decor</root>
+    <root>Ded</root>
+    <root>Deed</root>
+    <root>Def</root>
+    <root>Deep</root>
+    <root>Del</root>
+    <root>Dela</root>
+    <root>Delph</root>
+    <root>Dem</root>
+    <root>Den</root>
+    <root>Der</root>
+    <root>Des</root>
+    <root>Derm</root>
+    <root>Dex</root>
+    <root>Diag</root>
+    <root>Dick</root>
+    <root>Dik</root>
+    <root>Dix</root>
+    <root>Dol</root>
+    <root>Don</root>
+    <root>Dona</root>
+    <root>Donnell</root>
+    <root>Doon</root>
+    <root>Dorn</root>
+    <root>Dow</root>
+    <root>Down</root>
+    <root>Drake</root>
+    <root>Dub</root>
+    <root>Dum</root>
+    <root>Dun </root>
+    <root>Dunk</root>
+    <root>Dur</root>
+    <root>Durin</root>
+    <root>Durk</root>
+    <root>Durl</root>
+    <root>Dush</root>
+    <root>Dusk</root>
+    <root>Eagle</root>
+    <root>Ear</root>
+    <root>Earl</root>
+    <root>Early</root>
+    <root>East</root>
+    <root>Eben</root>
+    <root>Eddy</root>
+    <root>Eden</root>
+    <root>Edg</root>
+    <root>Edge</root>
+    <root>Edmond</root>
+    <root>Eg</root>
+    <root>Eisen</root>
+    <root>Elber</root>
+    <root>Elder</root>
+    <root>Eldon</root>
+    <root>Eldor</root>
+    <root>Elk</root>
+    <root>Ells</root>
+    <root>Elma</root>
+    <root>Emer</root>
+    <root>En</root>
+    <root>Evans</root>
+    <root>Fair</root>
+    <root>Falk</root>
+    <root>Far</root>
+    <root>Farl</root>
+    <root>Farm</root>
+    <root>Fay</root>
+    <root>Feld</root>
+    <root>Fen</root>
+    <root>Fer</root>
+    <root>Fern</root>
+    <root>Fin</root>
+    <root>Flem</root>
+    <root>Floyd</root>
+    <root>Fon</root>
+    <root>For</root>
+    <root>Font</root>
+    <root>Frank</root>
+    <root>Fre</root>
+    <root>Fred</root>
+    <root>Fruit</root>
+    <root>Fuz</root>
+    <root>Gala</root>
+    <root>Gales</root>
+    <root>Galt</root>
+    <root>Gan</root>
+    <root>Gar</root>
+    <root>Garb</root>
+    <root>Gard</root>
+    <root>Garden</root>
+    <root>Garn</root>
+    <root>Gaur</root>
+    <root>Gav</root>
+    <root>Gaven</root>
+    <root>Gen</root>
+    <root>Geo</root>
+    <root>Ger</root>
+    <root>Gib</root>
+    <root>Gil</root>
+    <root>Gilb</root>
+    <root>Gill</root>
+    <root>Glad</root>
+    <root>Glen</root>
+    <root>Glid</root>
+    <root>Gold</root>
+    <root>Good</root>
+    <root>Goose</root>
+    <root>Graf</root>
+    <root>Graft</root>
+    <root>Grand</root>
+    <root>Grant</root>
+    <root>Gray</root>
+    <root>Green</root>
+    <root>Grin</root>
+    <root>Gris</root>
+    <root>Grove</root>
+    <root>Grun</root>
+    <root>Grundy</root>
+    <root>Guern</root>
+    <root>Gull</root>
+    <root>Gurn</root>
+    <root>Guth</root>
+    <root>Gutten</root>
+    <root>Hal</root>
+    <root>Hall</root>
+    <root>Ham</root>
+    <root>Hamb</root>
+    <root>Han</root>
+    <root>Har</root>
+    <root>Harper</root>
+    <root>Harris</root>
+    <root>Hart</root>
+    <root>Hast</root>
+    <root>Haver</root>
+    <root>Haw</root>
+    <root>Hawk</root>
+    <root>Hay</root>
+    <root>Hayes</root>
+    <root>Hazel</root>
+    <root>Hia</root>
+    <root>Hill</root>
+    <root>Hins</root>
+    <root>Holl</root>
+    <root>Hols</root>
+    <root>Hop</root>
+    <root>Horn</root>
+    <root>Hosp</root>
+    <root>Hough</root>
+    <root>Hub</root>
+    <root>Hubb</root>
+    <root>Hud</root>
+    <root>Hull</root>
+    <root>Humber</root>
+    <root>Hux</root>
+    <root>Ice</root>
+    <root>Ida</root>
+    <root>Imo</root>
+    <root>In</root>
+    <root>Ind</root>
+    <root>Inn</root>
+    <root>Io</root>
+    <root>Ire</root>
+    <root>Iron</root>
+    <root>Jack</root>
+    <root>Jam</root>
+    <root>Jan</root>
+    <root>Janes</root>
+    <root>Jeffer</root>
+    <root>Jes</root>
+    <root>Jew</root>
+    <root>John</root>
+    <root>Joll</root>
+    <root>Jones</root>
+    <root>Kal</root>
+    <root>Kam</root>
+    <root>Kan</root>
+    <root>Kel</root>
+    <root>Keller</root>
+    <root>Ken</root>
+    <root>Kens</root>
+    <root>Kent</root>
+    <root>Keo</root>
+    <root>Kes</root>
+    <root>Key</root>
+    <root>Kim</root>
+    <root>Kin</root>
+    <root>King</root>
+    <root>Kirk</root>
+    <root>Kir</root>
+    <root>Klem</root>
+    <root>Knox</root>
+    <root>La</root>
+    <root>Lab</root>
+    <root>Lac</root>
+    <root>Lad</root>
+    <root>Lak</root>
+    <root>Lake</root>
+    <root>Lam</root>
+    <root>Lamb</root>
+    <root>Land</root>
+    <root>Lane</root>
+    <root>Lans</root>
+    <root>Lar</root>
+    <root>Larch</root>
+    <root>Larra</root>
+    <root>Laur</root>
+    <root>Laurel</root>
+    <root>Lauren</root>
+    <root>Law</root>
+    <root>Le</root>
+    <root>Led</root>
+    <root>Len</root>
+    <root>Lend</root>
+    <root>Les</root>
+    <root>Lest</root>
+    <root>Let</root>
+    <root>Lett</root>
+    <root>Lew</root>
+    <root>Lewis</root>
+    <root>Lib</root>
+    <root>Liber</root>
+    <root>Liberty</root>
+    <root>Lid</root>
+    <root>Lidd</root>
+    <root>Lidder</root>
+    <root>Lim</root>
+    <root>Limb</root>
+    <root>Lime</root>
+    <root></root>
+    <root>Lin</root>
+    <root>Llope</root>
+    <root>Mickle</root>
+    <root>Mid</root>
+    <root>Mill</root>
+    <root>Quan</root>
+    <root>Regen</root>
+    <root>Sals</root>
+    <root>Silver</root>
+    <root>Star</root>
+    <root>Steel</root>
+    <root>Stone</root>
+    <root>Tal</root>
+    <root>Tan</root>
+    <root>Thistle</root>
+    <root>Vinter</root>
+    <root>Wad</root>
+    <root>War</root>
+    <root>Ward</root>
+    <root>White</root>
+    <root>Wissel</root>
+    <root>Wolf</root>
+    <root>Yellow</root>
+    <root>Zeal</root>
 
-	<post>ains</post>
-	<post>ald</post>
-	<post>ana</post>
-	<post>ari</post>
-	<post>ax</post>
-	<post>ary</post>
-	<post>bar</post>
-	<post>ber</post>
-	<post>berg</post>
-	<post>bert</post>
-	<post>bin</post>
-	<post>bon</post>
-	<post>bor</post>
-	<post>bova</post>
-	<post>bridge</post>
-	<post>burg</post>
-	<post>creek</post>
-	<post>dale</post>
-	<post>dar</post>
-	<post>def</post>
-	<post>den</post>
-	<post>dew</post>
-	<post>dine</post>
-	<post>dorf</post>
-	<post>duk</post>
-	<post>dun</post>
-	<post>ers</post>
-	<post>esti</post>
-	<post>falls</post>
-	<post>field</post>
-	<post>ford</post>
-	<post>fun</post>
-	<post>get</post>
-	<post>glade</post>
-	<post>hall</post>
-	<post>head</post>
-	<post>holt</post>
-	<post>lag</post>
-	<post>land</post>
-	<post>landing</post>
-	<post>lia</post>
-	<post>mead</post>
-	<post>mer</post>
-	<post>more</post>
-	<post>mouth</post>
-	<post>na</post>
-	<post>nac</post>
-	<post>nan</post>
-	<post>now</post>
-	<post>ny</post>
-	<post>ovka</post>
-	<post>par</post>
-	<post>pool</post>
-	<post>post</post>
-	<post>rard</post>
-	<post>ridge</post>
-	<post>run</post>
-	<post>ron</post>
-	<post>shall</post>
-	<post>ski</post>
-	<post>stein</post>
-	<post>sti</post>
-	<post>stone</post>
-	<post>tle</post>
-	<post>ton</post>
-	<post>top</post>
-	<post>tow</post>
-	<post>vale</post>
-	<post>ville</post>
-	<post>vista</post>
-	<post>vita</post>
-	<post>wall</post>
-	<post>water</post>
-	<post>well</post>
-	<post>wood</post>
-	<trailer>Acres</trailer>
-	<trailer>Bay</trailer>
-	<trailer>Bend</trailer>
-	<trailer>Bluff</trailer>
-	<trailer>Branch</trailer>
-	<trailer>Center</trailer>
-	<trailer>City</trailer>
-	<trailer>Creek</trailer>
-	<trailer>Crest</trailer>
-	<trailer>Gate</trailer>
-	<trailer>Falls</trailer>
-	<trailer>Ferry</trailer>
-	<trailer>Green</trailer>
-	<trailer>Grove</trailer>
-	<trailer>Heights</trailer>
-	<trailer>Hold</trailer>
-	<trailer>Junction</trailer>
-	<trailer>Keep</trailer>
-	<trailer>Lock</trailer>
-	<trailer>Mills</trailer>
-	<trailer>Mound</trailer>
-	<trailer>Park</trailer>
-	<trailer>Pines</trailer>
-	<trailer>Point</trailer>
-	<trailer>Rapids</trailer>
-	<trailer>Ridge</trailer>
-	<trailer>River</trailer>
-	<trailer>Rock</trailer>
-	<trailer>Springs</trailer>
-	<trailer>Stone</trailer>
-	<trailer>Town</trailer>
-	<trailer>Vista</trailer>
-	<trailer>Vernon</trailer>
+    <post>ains</post>
+    <post>ald</post>
+    <post>ana</post>
+    <post>ari</post>
+    <post>ax</post>
+    <post>ary</post>
+    <post>bar</post>
+    <post>ber</post>
+    <post>berg</post>
+    <post>bert</post>
+    <post>bin</post>
+    <post>bon</post>
+    <post>bor</post>
+    <post>bova</post>
+    <post>bridge</post>
+    <post>burg</post>
+    <post>creek</post>
+    <post>dale</post>
+    <post>dar</post>
+    <post>def</post>
+    <post>den</post>
+    <post>dew</post>
+    <post>dine</post>
+    <post>dorf</post>
+    <post>duk</post>
+    <post>dun</post>
+    <post>ers</post>
+    <post>esti</post>
+    <post>falls</post>
+    <post>field</post>
+    <post>ford</post>
+    <post>fun</post>
+    <post>get</post>
+    <post>glade</post>
+    <post>hall</post>
+    <post>head</post>
+    <post>holt</post>
+    <post>lag</post>
+    <post>land</post>
+    <post>landing</post>
+    <post>lia</post>
+    <post>mead</post>
+    <post>mer</post>
+    <post>more</post>
+    <post>mouth</post>
+    <post>na</post>
+    <post>nac</post>
+    <post>nan</post>
+    <post>now</post>
+    <post>ny</post>
+    <post>ovka</post>
+    <post>par</post>
+    <post>pool</post>
+    <post>post</post>
+    <post>rard</post>
+    <post>ridge</post>
+    <post>run</post>
+    <post>ron</post>
+    <post>shall</post>
+    <post>ski</post>
+    <post>stein</post>
+    <post>sti</post>
+    <post>stone</post>
+    <post>tle</post>
+    <post>ton</post>
+    <post>top</post>
+    <post>tow</post>
+    <post>vale</post>
+    <post>ville</post>
+    <post>vista</post>
+    <post>vita</post>
+    <post>wall</post>
+    <post>water</post>
+    <post>well</post>
+    <post>wood</post>
+    <trailer>Acres</trailer>
+    <trailer>Bay</trailer>
+    <trailer>Bend</trailer>
+    <trailer>Bluff</trailer>
+    <trailer>Branch</trailer>
+    <trailer>Center</trailer>
+    <trailer>City</trailer>
+    <trailer>Creek</trailer>
+    <trailer>Crest</trailer>
+    <trailer>Gate</trailer>
+    <trailer>Falls</trailer>
+    <trailer>Ferry</trailer>
+    <trailer>Green</trailer>
+    <trailer>Grove</trailer>
+    <trailer>Heights</trailer>
+    <trailer>Hold</trailer>
+    <trailer>Junction</trailer>
+    <trailer>Keep</trailer>
+    <trailer>Lock</trailer>
+    <trailer>Mills</trailer>
+    <trailer>Mound</trailer>
+    <trailer>Park</trailer>
+    <trailer>Pines</trailer>
+    <trailer>Point</trailer>
+    <trailer>Rapids</trailer>
+    <trailer>Ridge</trailer>
+    <trailer>River</trailer>
+    <trailer>Rock</trailer>
+    <trailer>Springs</trailer>
+    <trailer>Stone</trailer>
+    <trailer>Town</trailer>
+    <trailer>Vista</trailer>
+    <trailer>Vernon</trailer>
 </cityname>
 
 <events chance="65" limit="2">
@@ -1459,217 +1477,203 @@
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
 
-<taverns>
-    <names>
-        <adj>
-            <option>Drunken</option>    
-            <option>Angry</option>    
-            <option>Green</option>    
-            <option>Black</option>    
-            <option>White</option>    
-            <option>Blue</option>    
-            <option>Wet</option>    
-            <option>Ugly</option>    
-            <option>Prancing</option>    
-            <option>Hungry</option>    
-            <option>Empty</option>    
-            <option>Salty</option>    
-            <option>Greasy</option>    
-            <option>Broken</option>    
-        </adj>
-        <noun>
-		    <option>Dragon</option>    
-		    <option>Maiden</option>    
-		    <option>Wench</option>    
-		    <option>Bucket</option>    
-		    <option>Dog</option>    
-		    <option>Frog</option>    
-		    <option>Bag</option>    
-		    <option>Crate</option>    
-		    <option>Monkey</option>    
-		    <option>Princess</option>    
-		    <option>Pony</option>    
-		    <option>Giant</option>    
-		    <option>Urchin</option>    
-        </noun>
-        <trailer chance="30">
-            <option>Saloon</option>
-            <option>Inn</option>
-            <option>Bar</option>
-            <option>Tavern</option>
-            <option>Alehouse</option>
-            <option>Roadhouse</option>
-            <option>Taproom</option>
-        </trailer>
-    </names>
+<taverns trailer_chance="30" >
+    <pre>Drunken</pre>
+    <pre>Angry</pre>
+    <pre>Green</pre>
+    <pre>Black</pre>
+    <pre>White</pre>
+    <pre>Blue</pre>
+    <pre>Wet</pre>
+    <pre>Ugly</pre>
+    <pre>Prancing</pre>
+    <pre>Hungry</pre>
+    <pre>Empty</pre>
+    <pre>Salty</pre>
+    <pre>Greasy</pre>
+    <pre>Broken</pre>
+
+    <root>Dragon</root>
+    <root>Maiden</root>
+    <root>Wench</root>
+    <root>Bucket</root>
+    <root>Dog</root>
+    <root>Frog</root>
+    <root>Bag</root>
+    <root>Crate</root>
+    <root>Monkey</root>
+    <root>Princess</root>
+    <root>Pony</root>
+    <root>Giant</root>
+    <root>Urchin</root>
+
+    <trailer>Saloon</trailer>
+    <trailer>Inn</trailer>
+    <trailer>Bar</trailer>
+    <trailer>Tavern</trailer>
+    <trailer>Alehouse</trailer>
+    <trailer>Roadhouse</trailer>
+    <trailer>Taproom</trailer>
+
     <size cost_mod="2"  pop_mod="1" >small</size>
     <size cost_mod="0"  pop_mod="2" >regular</size>
     <size cost_mod="-2" pop_mod="4" >large</size>
     <condition cost_mod="-3">filthy</condition>
     <condition cost_mod="-2">Dirty</condition>
     <condition cost_mod="-0">decent</condition>
-    <condition cost_mod="2" >upscale</condition>
-    <violence >
-        <option>ignored</option>
-        <option>loser thrown out</option>
-        <option>not tolerated</option>
-    </violence>
-    <class>
-        <option cost_mod="-4">poor</option>
-        <option cost_mod="-2">low</option>
-        <option cost_mod="-0">middle</option>
-        <option cost_mod="2" >high</option>
-        <option cost_mod="4" >rich</option>
-    </class>
-    <legal>
-        <option> Law harasses</option>
-        <option> Law ignores</option>
-        <option> Law accepts bribes</option>
-        <option> Law protects</option>
-    </legal>
+    <condition cost_mod="4" >upscale</condition>
+    <class cost_mod="-4">poor</class>
+    <class cost_mod="-2">low</class>
+    <class cost_mod="0" >middle</class>
+    <class cost_mod="2" >high</class>
+    <class cost_mod="4" >wealthy</class>
+    <violence >ignored</violence>
+    <violence >loser thrown out</violence>
+    <violence >not tolerated</violence>
+    <legal>Law harasses</legal>
+    <legal>Law ignores</legal>
+    <legal>Law accepts bribes</legal>
+    <legal>Law protects</legal>
     <entertainment limit="2">
-        <whores/>
-        <gambling> 
+        <option>whores</option>
             <option>Poker</option>
             <option>Craps</option>
             <option>Blackjack</option>
             <option>Dice</option>
-        </gambling>
     </entertainment>
 </taverns>
 
 
 
 <behavioraltraits>
-    <trait type="Accusatory"        > </trait>
-    <trait type="Apologetic"        > </trait>
-    <trait type="Attentive"         > </trait>
-    <trait type="Authoritarian"     > </trait>
-    <trait type="Avuncular"         > </trait>
-    <trait type="Battle-ready"      > </trait>
-    <trait type="Beligerent"        > </trait>
-    <trait type="Blinkered"         > </trait>
-    <trait type="Boastful"		    > </trait>
-    <trait type="Cautious"		    > </trait>
-    <trait type="Chatty"		    > </trait>
-    <trait type="Chronicler"	    > </trait>
-    <trait type="Clumsy"		    > </trait>
-    <trait type="Conspirational"    > </trait>
-    <trait type="Contrarian"	    > </trait>
-    <trait type="Cowed"		        > </trait>
-    <trait type="Deluded"		    > </trait>
-    <trait type="Despises Locals"   > </trait>
-    <trait type="Drunkard"		    > </trait>
-    <trait type="Easily offended"	> </trait>
-    <trait type="Efficient"		    > </trait>
-    <trait type="Egotistical"		> </trait>
-    <trait type="Embittered"		> </trait>
-    <trait type="Ensorcelled"		> </trait>
-    <trait type="Exhausted"		    > </trait>
-    <trait type="Fashion Concious"	> </trait>
-    <trait type="Fatalistic"		> </trait>
-    <trait type="Flirtatious"		> </trait>
-    <trait type="Forbidding"		> </trait>
-    <trait type="Forgetful"		    > </trait>
-    <trait type="Giddy"		        > </trait>
-    <trait type="Glutton"		    > </trait>
-    <trait type="Gosipy"		    > </trait>
-    <trait type="Greedy"		    > </trait>
-    <trait type="Gregarious"		> </trait>
-    <trait type="Grieving"		    > </trait>
-    <trait type="Guarded"		    > </trait>
-    <trait type="Guilty"		    > </trait>
-    <trait type="Harried"		    > </trait>
-    <trait type="Healthy"		    > </trait>
-    <trait type="Helpful"		    > </trait>
-    <trait type="Hero-worshi[ing"	> </trait>
-    <trait type="Homesick"		    > </trait>
-    <trait type="Idealistic"		> </trait>
-    <trait type="Impatient"		    > </trait>
-    <trait type="Importunate"		> </trait>
-    <trait type="Imposter"		    > </trait>
-    <trait type="Insecure"		    > </trait>
-    <trait type="Intimidating"		> </trait>
-    <trait type="Jaded"		        > </trait>
-    <trait type="Jester"		    > </trait>
-    <trait type="Jolly"		        > </trait>
-    <trait type="Laconic"		    > </trait>
-    <trait type="Lonely"		    > </trait>
-    <trait type="Loud"		        > </trait>
-    <trait type="Lovelorn"		    > </trait>
-    <trait type="Loal"		        > </trait>
-    <trait type="Machiavellian"		> </trait>
-    <trait type="Matchmaker"		> </trait>
-    <trait type="Melancholy"		> </trait>
-    <trait type="Mocking"		    > </trait>
-    <trait type="Mopey"		        > </trait>
-    <trait type="Nervous"		    > </trait>
-    <trait type="Nihilistic"		> </trait>
-    <trait type="Nosy"		        > </trait>
-    <trait type="Oracular"		    > </trait>
-    <trait type="Outlandish"		> </trait>
-    <trait type="Pacifistic"		> </trait>
-    <trait type="Patriotic"		    > </trait>
-    <trait type="Patronizing"		> </trait>
-    <trait type="Picayune"		    > </trait>
-    <trait type="Pious"		        > </trait>
-    <trait type="Prejudiced"		> </trait>
-    <trait type="Public spirited"	> </trait>
-    <trait type="Puckish"		    > </trait>
-    <trait type="Pugnacious"		> </trait>
-    <trait type="Quiet"		        > </trait>
-    <trait type="Revellious"		> </trait>
-    <trait type="Resentful"		    > </trait>
-    <trait type="Scattered"		    > </trait>
-    <trait type="Self-obsessed"		> </trait>
-    <trait type="Servile"		    > </trait>
-    <trait type="Shifty"		    > </trait>
-    <trait type="Sick"		        > </trait>
-    <trait type="Skeptical"		    > </trait>
-    <trait type="Smitten"		    > </trait>
-    <trait type="Smug"		        > </trait>
-    <trait type="Solemn"		    > </trait>
-    <trait type="Spiteful"		    > </trait>
-    <trait type="Territorial"		> </trait>
-    <trait type="Thick"		        > </trait>
-    <trait type="Treasure-seeking"	> </trait>
-    <trait type="Trivial"		    > </trait>
-    <trait type="Trusting"		    > </trait>
-    <trait type="Unreliable"		> </trait>
-    <trait type="Vengeful"		    > </trait>
-    <trait type="Violent"		    > </trait>
-    <trait type="Gambler"		    > </trait>
-    <trait type="Worrywart"		    > </trait>
-    <trait type="Xenophobic"		> </trait>
+    <trait type="accusatory"        > </trait>
+    <trait type="apologetic"        > </trait>
+    <trait type="attentive"         > </trait>
+    <trait type="authoritarian"     > </trait>
+    <trait type="avuncular"         > </trait>
+    <trait type="battle-ready"      > </trait>
+    <trait type="beligerent"        > </trait>
+    <trait type="blinkered"         > </trait>
+    <trait type="boastful"          > </trait>
+    <trait type="cautious"          > </trait>
+    <trait type="chatty"            > </trait>
+    <trait type="clumsy"            > </trait>
+    <trait type="conspirational"    > </trait>
+    <trait type="contrarian"        > </trait>
+    <trait type="cowed"             > </trait>
+    <trait type="deluded"           > </trait>
+    <trait type="to despise Locals" > </trait>
+    <trait type="a drunkard"        > </trait>
+    <trait type="easily offended"   > </trait>
+    <trait type="efficient"         > </trait>
+    <trait type="egotistical"       > </trait>
+    <trait type="embittered"        > </trait>
+    <trait type="ensorcelled"       > </trait>
+    <trait type="exhausted"         > </trait>
+    <trait type="fashion concious"  > </trait>
+    <trait type="fatalistic"        > </trait>
+    <trait type="flirtatious"       > </trait>
+    <trait type="forbidding"        > </trait>
+    <trait type="forgetful"         > </trait>
+    <trait type="giddy"             > </trait>
+    <trait type="gluttonous"        > </trait>
+    <trait type="gosipy"            > </trait>
+    <trait type="greedy"            > </trait>
+    <trait type="gregarious"        > </trait>
+    <trait type="grieving"          > </trait>
+    <trait type="guarded"           > </trait>
+    <trait type="guilty"            > </trait>
+    <trait type="harried"           > </trait>
+    <trait type="healthy"           > </trait>
+    <trait type="helpful"           > </trait>
+    <trait type="hero-worshipping"  > </trait>
+    <trait type="homesick"          > </trait>
+    <trait type="idealistic"        > </trait>
+    <trait type="impatient"         > </trait>
+    <trait type="importunate"       > </trait>
+    <trait type="an imposter"       > </trait>
+    <trait type="insecure"          > </trait>
+    <trait type="intimidating"      > </trait>
+    <trait type="intimidated"       > </trait>
+    <trait type="jaded"             > </trait>
+    <trait type="jesterly"          > </trait>
+    <trait type="jolly"             > </trait>
+    <trait type="laconic"           > </trait>
+    <trait type="lonely"            > </trait>
+    <trait type="loud"              > </trait>
+    <trait type="lovelorn"          > </trait>
+    <trait type="machiavellian"     > </trait>
+    <trait type="a matchmaker"      > </trait>
+    <trait type="melancholy"        > </trait>
+    <trait type="mocking"           > </trait>
+    <trait type="mopey"             > </trait>
+    <trait type="nervous"           > </trait>
+    <trait type="nihilistic"        > </trait>
+    <trait type="nosy"              > </trait>
+    <trait type="oracular"          > </trait>
+    <trait type="outlandish"        > </trait>
+    <trait type="pacifistic"        > </trait>
+    <trait type="patriotic"         > </trait>
+    <trait type="patronizing"       > </trait>
+    <trait type="picayune"          > </trait>
+    <trait type="pious"             > </trait>
+    <trait type="prejudiced"        > </trait>
+    <trait type="public spirited"   > </trait>
+    <trait type="puckish"           > </trait>
+    <trait type="pugnacious"        > </trait>
+    <trait type="quiet"             > </trait>
+    <trait type="revellious"        > </trait>
+    <trait type="resentful"         > </trait>
+    <trait type="scattered"         > </trait>
+    <trait type="self-obsessed"     > </trait>
+    <trait type="servile"           > </trait>
+    <trait type="shifty"            > </trait>
+    <trait type="sick"              > </trait>
+    <trait type="skeptical"         > </trait>
+    <trait type="smitten"           > </trait>
+    <trait type="smug"              > </trait>
+    <trait type="solemn"            > </trait>
+    <trait type="spiteful"          > </trait>
+    <trait type="territorial"       > </trait>
+    <trait type="thick"             > </trait>
+    <trait type="treasure-obsessed" > </trait>
+    <trait type="trivial"           > </trait>
+    <trait type="trusting"          > </trait>
+    <trait type="unreliable"        > </trait>
+    <trait type="vengeful"          > </trait>
+    <trait type="violent"           > </trait>
+    <trait type="a gambler"         > </trait>
+    <trait type="a worrywart"       > </trait>
+    <trait type="xenophobic"        > </trait>
 
 </behavioraltraits>
 
 <orderalignment >
     <option name="chaotic" min='1' max='33'>
-		<adjective>unreliable</adjective>
-		<adjective>irresponsible</adjective>
-		<adjective>questionable</adjective>
-		<adjective>unpredictable</adjective>
-		<adjective>deranged</adjective>
-		<adjective>incoherent</adjective>
-		<adjective>vague</adjective>
+        <adjective>unreliable</adjective>
+        <adjective>irresponsible</adjective>
+        <adjective>questionable</adjective>
+        <adjective>unpredictable</adjective>
+        <adjective>deranged</adjective>
+        <adjective>incoherent</adjective>
+        <adjective>vague</adjective>
     </option>
     <option name="neutral" min='34' max='66'>
-		<adjective>bystanding</adjective>
-		<adjective>detached</adjective>
-		<adjective>non-participating</adjective>
-		<adjective>non-conformist</adjective>
-		<adjective>unflappable</adjective>
+        <adjective>bystanding</adjective>
+        <adjective>detached</adjective>
+        <adjective>non-participating</adjective>
+        <adjective>non-conformist</adjective>
+        <adjective>unflappable</adjective>
     </option>
     <option name="lawful" min='67' max='100'>
-		<adjective>reliable</adjective>
-		<adjective>dependable</adjective>
-		<adjective>sure</adjective>
-		<adjective>legitimized</adjective>
-		<adjective>official</adjective>
-		<adjective>organized</adjective>
-		<adjective>dutiful</adjective>
-		<adjective>honorable</adjective>
+        <adjective>reliable</adjective>
+        <adjective>dependable</adjective>
+        <adjective>sure</adjective>
+        <adjective>legitimized</adjective>
+        <adjective>official</adjective>
+        <adjective>organized</adjective>
+        <adjective>dutiful</adjective>
+        <adjective>honorable</adjective>
     </option>
 </orderalignment>
 <moralalignment >
@@ -1721,13 +1725,13 @@
     <class name="Wizard"        min="88" max="91"  max_level="1d4" />
     <class name="Aristocrat"    min="92" max="95"  max_level="1d4" />
     <class name="Paladin"       min="96" max="97"  max_level="1d3" />
-    <class name="Ranger"        min="98" max="99"  max_level="1d3" />
+    <class name="Ranger"        min="99" max="99"  max_level="1d3" />
 </classes>
 
 <housing>
     <quality name="poor"    percent="30" density="20" required='true'/>
     <quality name="average" percent="69" density="10"/>
-    <quality name="elite"   percent="1"  density="5"/>
+    <quality name="wealthy"   percent="1"  density="5"/>
 
 
     <house_type type="small hut" value="5gp" max="5" />

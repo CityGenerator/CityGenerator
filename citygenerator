@@ -13,6 +13,12 @@ my $xml = new XML::Simple;
 # Yes, this is sloppy. I am aware, but it's also unique.
 # Unique, Ubiquitous Singletons.
 
+
+
+
+
+
+
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $seed=set_seed();
@@ -20,29 +26,22 @@ srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 
-#TODO break out crime/law enforcement into it's own section
-#imprisonment rates can range from 0.7% US to 0.1%
-#TODO look into passing rand_from_array a pointer.
-#TODO roads out of town
-#TODO calculate children as a % of the population
-#TODO calculate maturity/age of town
-#TODO city wall
 #TODO travelers
+
 
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
 build_city();
-print Dumper $city;
 #########################################################################
 # Now that $city is fleshed out, we can print it..
 #########################################################################
 
 #if (defined $q->param('type') and $q->param('type') eq 'xml' ){
-#    print $q->header( 'text/xml' );
-#    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-#    print XMLout($city);
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($city);
 #}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
 #    print $q->header( 'text/xml' );
 #    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
@@ -80,14 +79,189 @@ sub build_city {
     # generate physical traits
     generate_physical_traits();
 
+    generate_economics();
+
 }
+
+###############################################################################
+#
+# generate_economics - generate various markets, organizations and resources
+#
+###############################################################################
+sub generate_economics {
+    generate_markets();
+    generate_resources();
+    generate_taverns();
+    generate_travelers();
+
+}
+
+###############################################################################
+#
+# generate_travelers - generate a few travelers
+#
+###############################################################################
+sub generate_travelers{
+    my $travelercount= int( ( 7 +  $city->{'size_modifier'} )/2);
+    $city->{'travelers'}=[];
+    while ($travelercount-- ){
+        #TODO switch to roll_from_array
+        my $travelerclass= rand_from_array( [ keys %{$xml_data->{'classes'}->{'class'}}] );
+        my $traveler=$xml_data->{'classes'}->{'class'}->{$travelerclass};
+        $traveler->{'class'}=$travelerclass;
+        $traveler->{'level'}= min( 20 ,max(1, &d($traveler->{'max_level'}) + &d( $city->{'size_modifier'} )) ) ;
+    
+        push @{$city->{'travelers'}}, $traveler;
+
+    }
+
+}
+
+###############################################################################
+#
+# generate_taverns - generate a few taverns;
+#
+###############################################################################
+
+sub generate_taverns{
+    my $taverncount=max(5,  $city->{'business'}->{'tavern'}->{'count'} + $city->{'business'}->{'tavern/inn'}->{'count'});
+    $city->{'taverns'}=[];
+    while ($taverncount-- > 0){
+        my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
+        $tavern->{'cost'}=$city->{'economy'};
+        $tavern->{'population'}=0;
+
+        $tavern->{'size'}=rand_from_array( $xml_data->{'taverns'}->{'size'}   );
+        $tavern->{'cost'}+=$tavern->{'size'}->{'cost_mod'};
+        $tavern->{'population'}+=$tavern->{'size'}->{'pop_mod'};
+        $tavern->{'size'}=$tavern->{'size'}->{'content'};
+
+        $tavern->{'condition'}=rand_from_array( $xml_data->{'taverns'}->{'condition'}   );
+        $tavern->{'cost'}+=$tavern->{'condition'}->{'cost_mod'};
+        $tavern->{'condition'}=$tavern->{'condition'}->{'content'};
+
+        $tavern->{'class'}=rand_from_array( $xml_data->{'taverns'}->{'class'}   );
+        $tavern->{'cost'}+=$tavern->{'class'}->{'cost_mod'};
+        $tavern->{'class'}=$tavern->{'class'}->{'content'};
+
+        $tavern->{'violence'}=rand_from_array( $xml_data->{'taverns'}->{'violence'}   )->{'content'};
+        $tavern->{'legal'}=rand_from_array( $xml_data->{'taverns'}->{'legal'}   )->{'content'};
+
+        $tavern->{'bartender'}=generate_bartender();
+
+        push @{$city->{'taverns'}}, $tavern;
+    }
+
+}
+
+###############################################################################
+#
+# generate_bartender - generate a bartender
+#
+###############################################################################
+sub generate_bartender{
+
+    my $bartender;
+    $bartender->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
+    my @races=get_races(   $city->{'base_pop'}    );
+    $bartender->{'race'}= pop(@races)->{'content'} ;
+    $bartender->{'level'}= min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) ) ;
+
+    return $bartender;
+
+
+}
+
+###############################################################################
+#
+# generate_resources - select resources modified by city size.
+#
+###############################################################################
+
+sub generate_resources{
+    #ensure that the resource count is at most 10 and at least 0
+    my $resource_count=min( max($city->{'size_modifier'}+$city->{'economy'}, 0),10) ;
+
+    #shift from 0-10 to 2-12
+    $resource_count = int( rand( $resource_count ))+2;
+
+    $city->{'resources'}=[];
+    while ($resource_count-- > 0 ){
+        my $resource=rand_from_array($xml_data->{'resources'}->{'resource'});
+        push @{ $city->{'resources'} }, parse_object($resource);
+    }
+
+}
+
+
+###############################################################################
+#
+# generate_markets - select some markets according to their chance of 
+# appearance modified by city size.
+#
+###############################################################################
+sub generate_markets {
+
+    $city->{'markets'}=[];
+
+    # minimum of 2 markets, max of size modifier(9)
+    my $marketcount= max(2, &d( int(7 + $city->{'size_modifier'})/2     ));
+
+
+    # loop through the marketcount to randomly select markets
+    # this allows us to get "duplicates""
+    while ( $marketcount > 0 ){
+
+        # get a shuffled list of markets
+        my @markets=shuffle @{ $xml_data->{'markets'}->{'option'} };
+
+        #pop a single market off
+        my $market = pop  @markets ;
+
+        # modify the chance of the market by the size modifier
+        my $chance_of_market= $market->{'chance'} +  $city->{'size_modifier'};
+
+        # if we succeed, decrement the marketcount and push the market to 
+        # our queue
+        if (&d(100) <= $chance_of_market){
+            $marketcount--;
+            my $newmarket={ 
+                                'type'=> $market->{'type'}, 
+                                'name'=> $market->{'marketname'}.' '.$market->{'type'}
+                            };
+            # set market secret
+            if ( &d(100) <$market->{'secret'} ){
+                $newmarket->{'secret'}='(secret)';
+            }else{
+                $newmarket->{'secret'}='';
+            }
+
+            # select market detail
+            if ( &d(100) > 50 ){
+                my $marketoption=rand_from_array($market->{'option'});
+                $newmarket->{'name'}= $marketoption->{'content'}.' '.$newmarket->{'name'};
+            }
+
+            # push it to the queue
+            push @{$city->{'markets'}}, $newmarket;
+
+       } 
+
+    }
+
+}
+
+
+
+
+
+
 
 
 ###############################################################################
 #
 # generate_physical_traits - Generate the location, size, support area, 
 # landmarks, 
-# 
 #
 ###############################################################################
 sub generate_physical_traits {
@@ -95,12 +269,156 @@ sub generate_physical_traits {
     generate_housing();
     generate_area();
     generate_support_area();
-#    generate_districts();
-#    generate_streets();
-#    generate_walls();
-#    generate_roads();
+    generate_businesses();
+    generate_districts();
+    generate_streets();
+    generate_walls();
 
 }
+
+
+
+###############################################################################
+#
+# generate_walls - Determine information about the streets. 
+#
+###############################################################################
+sub generate_walls {
+    $city->{'walls'}=parse_object($xml_data->{'walls'});
+    $city->{'walls'}->{'height'}= 8 +&d(10) + $city->{'size_modifier'};
+}
+
+###############################################################################
+#
+# generate_streets - Determine information about the streets. 
+#
+###############################################################################
+sub generate_streets {
+    $city->{'streets'}=parse_object($xml_data->{'streets'});
+
+    $city->{'streets'}->{'mainroads'}=max(0,   int(($city->{'travel'}+$city->{'economy'})/3)  );
+    $city->{'streets'}->{'roads'}=max(1,   int(($city->{'travel'}+$city->{'economy'})/3) + $city->{'streets'}->{'mainroads'}  );
+
+
+}
+###############################################################################
+#
+# generate_districts - using population size and professionals, determine
+# the most likely districts.
+#
+###############################################################################
+sub generate_districts {
+
+    $city->{'districts'}=[];
+
+    if ( $city->{'location'}->{'port'}  ) {
+        $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
+    }
+
+    # use the number of specialists to influence the chance of a district showing up
+    foreach my $business (@{$city->{'buildings'}}){
+        my $district=$city->{'business'}->{$business->{'content'}}->{'district'};
+        $xml_data->{'districts'}->{'district'}->{$district}->{'chance'}+= $city->{'business'}->{$business->{'content'}}->{'specialists'} ;
+    }
+    # select a number of districts using the size modifier of the city.
+    # larger city means more districts, generally speaking.
+    my $districtcount= 4 + int($city->{'size_modifier'}/2)+&d(8);
+    
+    # shuffle the list of districts, 
+    foreach my $districtname (shuffle keys %{$xml_data->{'districts'}->{'district'}}){
+        my $district=$xml_data->{'districts'}->{'district'}->{$districtname};
+
+        my $districtchance=$district->{'chance'}  + $city->{'size_modifier'}*2 + $city->{$district->{'stat'}};
+
+        if (&d(100) <= $districtchance    and     $districtcount >0 ){
+            push @{$city->{'districts'}}, $districtname;
+            $districtcount--;
+        }
+    }
+
+}
+
+###############################################################################
+#
+# generate_business - using population size and professionals, determine
+# the most likely districts.
+#
+###############################################################################
+sub generate_businesses{
+
+    $city->{'business'}={  'total'=>0  };
+
+    #5.5-10.5%  of the population runs a business, depending on the economy
+    my $businessestimate=floor($city->{'population'}*(15+($city->{'economy'}+$city->{'size_modifier'} ))/100 );
+    $city->{'business'}={ 'estimate'=>$businessestimate };
+
+    # separate each business into priorities
+    my $businesspriorities={};
+
+    # Loop throuch each type of building
+    for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
+        #Note that we're sortiny by priority.
+        my $priority= $business->{'priority'};
+        if (!defined $businesspriorities->{$priority}){
+            $businesspriorities->{$priority}=[];
+        }
+
+        #we want to flesh this out according to weight.        
+        while ( $business->{'weight'} >0 ){
+            my %business2=%$business;
+            push @{$businesspriorities->{$priority}}, \%business2;
+
+            $business->{'weight'}=$business->{'weight'}-1;
+        }
+    }
+    my %junkpriority=%$businesspriorities;
+    my @weightedbusinesses;
+    foreach my $priority (sort { $a <=> $b } keys %junkpriority){
+        push @weightedbusinesses, @{$junkpriority{$priority}};
+        while ($city->{'business'}->{'estimate'}>0) {
+            if (@{$junkpriority{$priority}} >=1){
+                my @businesses=shuffle @{$junkpriority{$priority}};
+                my $newbusiness=pop @businesses;
+                if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+                    $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1} ;
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'perbuilding'}=$newbusiness->{'perbuilding'};
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
+                }else{
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+                }
+                $city->{'business'}->{'estimate'}--;
+                $junkpriority{$priority}=\@businesses;
+            }else{
+                last;
+            }
+        }
+    }
+    @weightedbusinesses=shuffle @weightedbusinesses;
+    while ($city->{'business'}->{'estimate'}>0) {
+
+        @weightedbusinesses=shuffle @weightedbusinesses;
+        my $newbusiness=$weightedbusinesses[0];
+        if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+            print Dumper $newbusiness->{'district'};
+            $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
+        }else{
+            $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+            $city->{'business'}->{$newbusiness->{'content'}}->{'district'}=$newbusiness->{'district'};
+        }
+ 
+        $city->{'business'}->{'estimate'}--;
+    }
+        delete $city->{'business'}->{'estimate'};
+    
+    foreach my $businessname (keys %{$city->{'business'}}){
+#        print Dumper $city->{'business'}->{$businessname};
+        $city->{'business'}->{$businessname}->{'count'}=ceil( $city->{'business'}->{$businessname}->{'specialists'} /$city->{'business'}->{$businessname}->{'perbuilding'});
+    }
+
+
+}
+
 
 ###############################################################################
 #
@@ -138,11 +456,15 @@ sub generate_housing {
 
     my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
 
+    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*3);
+    $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*2);
+    $xml_data->{'housing'}->{'quality'}->{'wealthy'}->{'percent'}+=$city->{'economy'};
+
     foreach my $housingquality ( @qualitylist ){
 
         my $housingtype= $xml_data->{'housing'}->{'quality'}->{$housingquality};
 
-        # fractional housecount total, but you can't have .3 of a house...        
+        # fractional housecount total, but you can't have .3 of a house... 
         my $housecount= $city->{'population'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
 
         # to ensure minimal housing, we require poor housing via ceil, so we always have 1.
@@ -173,7 +495,7 @@ sub generate_location {
     $city->{'location'} = { 'landmarks'=>[]  };
     my $locationlist=$xml_data->{'locations'}->{'location'};
 
-    my $location = rand_from_array( @{ $locationlist } );
+    my $location = rand_from_array(  $locationlist  );
     $city->{'location'}->{'name'}=$location->{'description'};
     $city->{'location'}->{'port'}= ( &d(100) <= $location->{'port_chance'}  );
 
@@ -298,7 +620,7 @@ sub generate_children {
 sub generate_city_age {
     my $agelist=$xml_data->{'cityages'}->{'cityage'};
 
-    $city->{'cityage'}= rand_from_array( @{ $agelist } );
+    $city->{'cityage'}= rand_from_array(  $agelist  );
 }
 
 
@@ -312,13 +634,13 @@ sub generate_secondary_power {
 
     # select a plot
     my $plotlist=$xml_data->{'secondarypower'}->{'plot'};
-    $city->{'secondarypower'}->{'plot'} = rand_from_array( @{ $plotlist } )->{'content'};
+    $city->{'secondarypower'}->{'plot'} = rand_from_array( $plotlist )->{'content'};
 
     #select a power and a related subplot.
     my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
-    my $power = rand_from_array( @{ $powerlist} );
-    $city->{'secondarypower'}->{'power'} = rand_from_array( @{ $powerlist} )->{'type'};
-    $city->{'secondarypower'}->{'subplot'} = rand_from_array( @{ $power->{'subplot'} } )->{'content'};
+    my $power = rand_from_array(  $powerlist );
+    $city->{'secondarypower'}->{'power'} = rand_from_array(  $powerlist )->{'type'};
+    $city->{'secondarypower'}->{'subplot'} = rand_from_array(  $power->{'subplot'}  )->{'content'};
 }
 
 
@@ -329,10 +651,10 @@ sub generate_secondary_power {
 ###############################################################################
 sub set_govt_type {
     my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
-    $city->{'govtype'} = rand_from_array( @{ $govttypelist } );
+    $city->{'govtype'} = rand_from_array(  $govttypelist  );
 
     my $descriptorlist=$xml_data->{'govtypes'}->{'descriptor'} ;
-    my $descriptor = rand_from_array( @{ $descriptorlist } );
+    my $descriptor = rand_from_array(  $descriptorlist  );
     $city->{'govtype'}->{'descriptor'}=$descriptor->{'content'};
 
     # add random element + govtype base approvalmod + descriptor approval + authority mod
@@ -358,7 +680,7 @@ sub set_laws {
     $city->{'laws'} = {};
     for my $facet (qw( enforcement trial punishment )) {
         my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
-        $city->{'laws'}->{$facet} = rand_from_array( @{ $facetlist } )->{'content'};
+        $city->{'laws'}->{$facet} = rand_from_array(  $facetlist  )->{'content'};
     }
 }
 
@@ -558,7 +880,7 @@ sub get_other_race {
 ###############################################################################
 sub generate_pop_type {
     my $poptype     = roll_from_array( &d(100), $xml_data->{'poptypes'}->{'population'} );
-    my $popdensity  = rand_from_array( @{$xml_data->{'popdensity'}->{'option'} });
+    my $popdensity  = rand_from_array( $xml_data->{'popdensity'}->{'option'} );
 
     $city->{'popdensity'}   = $popdensity;
     $city->{'poptype'}      = $poptype->{'type'};
@@ -656,9 +978,9 @@ sub set_seed{
 #
 ###############################################################################
 sub rand_from_array {
-    my (@array) = @_;
-    my $index = int( rand( scalar @array ) );
-    return $array[$index];
+    my ($array) = @_;
+    my $index = int( rand( scalar @{ $array} ) );
+    return $array->[$index];
 }
 
 ###############################################################################
@@ -688,7 +1010,19 @@ sub roll_from_array {
 sub d {
     my ($die) = @_;
     # d as in 1d6
-    return int( rand($die) );
+    if ($die =~/^\d+$/){
+        return int( rand($die) );
+    }elsif ($die=~/^(\d+)d(\d+)$/){
+        my $dicecount=$1;
+        my $die=$2;
+        my $total=0;
+        while ($dicecount-- >0){
+            $total+=&d($die);
+        }
+        return $total;
+    }else{
+        return 1;
+    }
 }
 
 #####################################################
