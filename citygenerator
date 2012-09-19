@@ -754,9 +754,8 @@ sub generate_housing {
 
     my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
 
-    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*3);
+    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*2);
     $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*2);
-    $xml_data->{'housing'}->{'quality'}->{'wealthy'}->{'percent'}+=$city->{'economy'};
 
     foreach my $housingquality ( @qualitylist ){
 
