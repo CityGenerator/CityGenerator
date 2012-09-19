@@ -328,8 +328,10 @@
     <pre>filthy</pre>
     <pre>muddy</pre>
 
-    <root>dirt</root>
-    <root>cobblestone</root>
+    <root>dirt roads</root>
+    <root>dirt tracks</root>
+    <root>cobblestone streets</root>
+    <root>cobblestone paths</root>
 
     <post>in a grid pattern</post>
     <post>in a ray pattern</post>
@@ -344,7 +346,7 @@
     <post>in a wheel and spoke pattern</post>
 </streets>
 
-<walls>
+<walls chance='10' >
     <pre></pre>
     <pre>low</pre>
     <pre>high</pre>
@@ -468,8 +470,6 @@
 
     <building weight='10' priority='10' perbuilding='10' district="">misc.</building>
 </buildings>
-
-
 <citytype>
     <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</city>
     <city type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monsterous race)</city>
@@ -495,17 +495,16 @@
     <district name="market"       chance='70' stat="economy" />
     <district name="prison"       chance='7'  stat="authority" />
     <district name="education"    chance='5'  stat="education" />
-    <district name="military"     chance='5'  stat="authority" />
+    <district name="military"     chance='7'  stat="authority" />
     <district name="mercy"        chance='20' stat="tolerance" />
     <district name="port"         chance='0'  stat="travel" />
 </districts>
-    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3' >Human</race>
 
 <popdensity>
-    <option type="sparse"  feetpercapita="5000"/>
-    <option type="light"   feetpercapita="3000"/>
-    <option type="average" feetpercapita="1500"/>
-    <option type="dense"   feetpercapita="1000"/>
+    <option type="sparsely" feetpercapita="5000"/>
+    <option type="lightly"  feetpercapita="3000"/>
+    <option type="average"  feetpercapita="1500"/>
+    <option type="densly"   feetpercapita="1000"/>
 </popdensity>
 <poptypes>
     <population type="secluded" min='1' max='35' haspest='5' >
@@ -627,6 +626,26 @@
         <landmarks chance="20">beach</landmarks>
         <landmarks chance="10">jagged outcropping of rock</landmarks>
     </location>
+    <location description="near a canal" port_chance='90'>
+    </location>
+    <location description="on a cape" port_chance='90'>
+    </location>
+    <location description="near a reservoir" port_chance='60'>
+    </location>
+    <location description="on a delta" port_chance='900'>
+    </location>
+    <location description="peninsula" port_chance='90'>
+    </location>
+    <location description="in an oasis" port_chance='0'>
+    </location>
+    <location description="near a strait" port_chance='70'>
+    </location>
+    <location description="in a valley" port_chance='10'>
+    </location>
+    <location description="near a wetland" port_chance='10'>
+    </location>
+    <location description="on an archipelago" port_chance='100'>
+    </location>
     <location description="near a river" port_chance='50'>
         <landmarks chance="10">marsh</landmarks>
         <landmarks chance="10">drainage ditch</landmarks>
@@ -696,7 +715,22 @@
         <landmarks chance="10">clearing</landmarks>
     </location>
 </locations>
-
+<direction>
+    <option>northwest</option>
+    <option>north</option>
+    <option>northeast</option>
+    <option>east</option>
+    <option>southeast</option>
+    <option>south</option>
+    <option>southwest</option>
+    <option>south</option>
+</direction>
+<cityshape>TODO
+    <option>circular</option>
+    <option>square</option>
+    <option>pear</option>
+    <option>rectangular</option>
+</cityshape>
 <weather>
     <forecast>
         <option>clear</option>
@@ -1161,7 +1195,6 @@
     <root>Lim</root>
     <root>Limb</root>
     <root>Lime</root>
-    <root></root>
     <root>Lin</root>
     <root>Llope</root>
     <root>Mickle</root>
@@ -1706,8 +1739,48 @@
     </option>
 </moralalignment>
 
+<economy>
+    <option type="positive" min='2' max='5'>
+        <adjective>vibrant</adjective>
+        <adjective>healthy</adjective>
+        <adjective>good</adjective>
+        <adjective>growing</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>stable</adjective>
+        <adjective>pleasant</adjective>
+        <adjective>stoic</adjective>
+    </option>
+    <option type="negative" min='-5' max='-2'>
+        <adjective>weak</adjective>
+        <adjective>failing</adjective>
+        <adjective>crumbling</adjective>
+    </option>
+</economy>
 
-<climate></climate>
+<topography>
+    <region>mountainous</region>
+    <region>hilly</region>
+    <region>flat</region>
+    <region>glacial</region>
+    <region>sandy</region>
+</topography>
+
+<neighbor>
+    <relation>has an alliance with</relation>
+    <relation>has a neutral relationship with</relation>
+    <relation>is wary of </relation>
+    <relation>is cautious of</relation>
+    <relation>is watchful of</relation>
+    <relation>is distrustful of</relation>
+    <relation>is cordial to </relation>
+    <relation>is friendly with</relation>
+    <relation>is at war with</relation>
+    <relation>is embargoing</relation>
+    <relation>is allied with</relation>
+    <relation>is ready for war with</relation>
+    <relation>is oblivious of</relation>
+</neighbor>
 
 <classes>
     <class name="Commoner"      min="0"  max="23"  max_level="4d4" />

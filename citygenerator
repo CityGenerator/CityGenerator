@@ -25,7 +25,6 @@ our $seed=set_seed();
 srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
-
 #TODO travelers
 
 
@@ -38,22 +37,22 @@ build_city();
 # Now that $city is fleshed out, we can print it..
 #########################################################################
 
-#if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
     print XMLout($city);
-#}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
-#    print $q->header( 'text/xml' );
-#    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-#    print XMLout($xml_data);
-#
-#}else {
-#
-#    print $q->header;
-#    #print describe_city();
-#    print describe_city();
-#}
-#exit;
+}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($xml_data);
+
+}else {
+
+    print $q->header;
+    #print describe_city();
+    print describe_city();
+}
+exit;
 
 
 #######################################################################################################################
@@ -62,13 +61,257 @@ build_city();
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
+
+sub describe_city {
+  my $style=print_style(); 
+  my $content="        <!DOCTYPE html> 
+        <html>
+            <head>
+                <title>City Generator: $city->{'name'} </title>
+            </head>
+            $style
+            <body>
+";
+  $content.=describe_summary();
+  $content.=describe_geography();
+  $content.=describe_cityscape();
+
+}
+#print <<EOF
+
+
+
+sub describe_summary {
+    if ($city->{'dominant_race'}){$city->{'dominant_race'}=", which is overwhelmingly ".$city->{'dominant_race'}; }else{$city->{'dominant_race'}=""}
+    my $content="
+                    <header>
+                        <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
+                        <sub><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  </sub>
+                        <h2>Summary</h2>
+                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'} of around $city->{'population'}$city->{'dominant_race'}.</p>
+                    </header>";
+}
+sub describe_geography {
+    my $landmarks= print_landmarks();
+    my $neighbors= print_neighbors();
+    my $port= ( $city->{'location'}->{'port'} ) ? ' and is a port town' : '';
+    my $content="
+                    <section>
+                        <h2>Geography</h2>
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} square mile region. $landmarks The surrounding region is $city->{'topography'}. $neighbors
+
+                    </section>
+";
+}
+sub describe_port {
+    if   ( $city->{'location'}->{'port'} ){
+        return " There is a port on the ".$city->{'location'}->{'portdirection'}." side of the city.";
+    }
+
+}
+sub describe_walls {
+    if   ( $city->{'walls'}->{'content'} eq 'none'){
+        return " No walls currently surround the city."
+    }else{
+        return " Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall.";
+    }
+    
+}
+sub describe_roads {
+    return " The city is lined with ". $city->{'streets'}->{ 'content'}.".";
+}
+sub describe_districts {
+    return "<ul><li>".join('</li><li>',@{ $city->{'districts'}})."</li></ul>";
+}
+sub describe_housing {
+    my @housing;
+    foreach my $key (keys %{$city->{'housing'}}){
+        if ($key ne "total"){
+            push @housing, "$key: ".$city->{'housing'}->{$key};
+        }
+    }
+    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes";
+}
+sub describe_businesses {
+    my @businesses;
+    #return Dumper $city->{'business'};
+    foreach my $key (sort keys %{$city->{'business'}}){
+        my $business=$city->{'business'}->{$key};
+        push @businesses, $business->{'count'}." ".$key." ($business->{'specialists'} specialists)";
+    }
+    return "<ul><li>".join('</li><li>',@businesses)."</li></ul>";
+}
+sub describe_cityscape {
+    my $port=describe_port();
+    my $walls=describe_walls();
+    my $roads=describe_roads();
+    my $districts=describe_districts();
+    my $housing=describe_housing();
+    my $businesses=describe_businesses();
+     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
+     $city->{'streets'}->{'roads'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
+    my $content="
+                    <section>
+                        <h2>Cityscape</h2>
+                        <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} are major.$port$walls$roads</p>
+                        <h3>Districts</h3>
+                            The city contains the following Districts:$districts
+                        <h3>Housing</h3>
+                            The city contains the following housing:$housing
+                        <h3>Businesses</h3>
+                            You can find the following businesses:$businesses
+                    </section>
+";
+}
+
+###############################################################################
+#
+# print_neighbors - return the neighbors in an easy-to-display sentence.
+#
+###############################################################################
+sub print_neighbors {
+#    print "$seed\n";
+    my $neighbors=$city->{'neighbors'};
+    if(ref($neighbors) eq 'ARRAY'){
+        if (scalar(@$neighbors) eq 1 ){
+            return "<a href='?cityid=$neighbors->[0]->{'id'}'> $neighbors->[0]->{'name'}</a> is a neighbor. ";
+        
+        }elsif(scalar(@$neighbors) >1 ){
+       #     print Dumper @$neighbors;
+            my $lastneighbor=pop(@{$neighbors});
+            my $content="Neighboring cities include ";
+            foreach my $neighbor (@{$neighbors}){
+                $content.="<a href='?cityid=$neighbor->{'id'}'> $neighbor->{'name'}</a>, ";
+            }
+            $content.=" and <a href='?cityid=$lastneighbor->{'id'}'> $lastneighbor->{'name'}</a>. ";
+
+            return $content; 
+        }else{
+            return "";
+        }
+    }
+}
+###############################################################################
+#
+# print_landmarks - return the landmarks in an easy-to-display sentence.
+#
+###############################################################################
+sub print_landmarks {
+    my $landmarks=$city->{'location'}->{'landmarks'};
+#    print Dumper $city->{'location'} ;
+    if(ref($landmarks) eq 'ARRAY'){
+        if (scalar(@$landmarks) eq 1 ){
+            return "A nearby ".$landmarks->[0]." is a local landmark.";
+        
+        }elsif(scalar(@$landmarks) >1 ){
+#            @$landmarks=map {$_->{'content'}}  @$landmarks;
+#            print Dumper @$landmarks;
+            my $landmarklist=" and ".(pop(@{$landmarks}));
+            return "Local landmarks include a ".join(', ', @{$landmarks}) . $landmarklist .".";
+        }else{
+            return "";
+        }
+    }
+}
+
+
+#
+#
+#Government
+#It is ruled by the clergy, although there is a prophet that quietly assists the leadership while secretly working for enemies. The population does not approve of the clergy [but is powerless to break free].Freedom of religion is oppressed, and magic use is legal and common. 
+#
+#Relations with the neighboring cities is  _______, [(especially/except) for _______ which is _____]. It is trying to maintain sovernity from $id+1, which is 50 miles away and much larger, which the general population supports.
+#
+#Crime in the city is prevalent. The law is poorly enforced by a sheriff. Punishments are mainly community service, and convictions are sentenced by jurors. Capital punishment is common
+#
+#Population
+#The population is broken down as follows:
+#
+#    1848 Troglodyte ( 98.9%)
+#    19 Mindflayer ( 1%)
+#____ [and ______] are treated as equals by _______. ______ looks down upon ________. There has been no history of racial violence. 20% of the trogladyte population belong to a violent religious sect.
+#
+#
+#Economy:
+#The economy is strong. Magic is somewhat common. Education is low. This is an economically isolated area with few travelers.
+#
+#Galeshead Ridge is known for:
+#
+#    nearby bays
+#    crucial bauxite deposits
+#
+#
+#
+#--------------------------------------------
+#Local Info
+#
+#Within the city and the surrounding areas, you'll find:
+#
+#    Thieves guild (secret)
+#    Adventurers guild (secret)
+#
+#Current Events
+#
+#You arrive at the city around mid-day, The the clouds are overcast, the air is thin and the wind is heavy. It is unusually hot. There is thunder and lighting.
+#
+#Upon arrival, around 38 citizens are wandering the chilly town. You see:
+#
+#    the aftermath of a war
+#    the midst of a raid
+#
+#
+#
+#EOF
+#;
+
+
+
+
+
+
+###############################################################################
+#
+# print_style - a simple style to make lists pretty.
+#
+###############################################################################
+sub print_style{
+
+    return "
+        <style type='text/css'>
+            body{
+                background-color:#44aa44;
+                width:800px;
+                padding:5px;
+                margin:auto;
+            }
+            ul{   
+                -moz-column-width:222px;
+                -webkit-column-width:222px ;
+            } 
+        </style>\n";
+}
+
+
+
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+
+
+
+
 
 
 sub build_city {
     $city={'seed'=>$seed};
 
     # - Generate a name
-    generate_city_name();
+    $city->{'name'}=generate_city_name();
 
     #select city type and population:
     generate_city_core();
@@ -93,7 +336,18 @@ sub generate_economics {
     generate_resources();
     generate_taverns();
     generate_travelers();
+    generate_economic_description();
+}
 
+###############################################################################
+#
+# generate_travelers - generate a few travelers
+#
+###############################################################################
+sub generate_economic_description {
+    my $econtype     = roll_from_array( $city->{'economy'}, $xml_data->{'economy'}->{'option'} );
+    my $adjective     = rand_from_array( $econtype->{'adjective'} )->{'content'};
+    $city->{'economydescription'}=$adjective;
 }
 
 ###############################################################################
@@ -124,7 +378,7 @@ sub generate_travelers{
 ###############################################################################
 
 sub generate_taverns{
-    my $taverncount=max(5,  $city->{'business'}->{'tavern'}->{'count'} + $city->{'business'}->{'tavern/inn'}->{'count'});
+    my $taverncount=max(5,  ($city->{'business'}->{'tavern'}->{'count'}||0) + ($city->{'business'}->{'tavern/inn'}->{'count'}||0));
     $city->{'taverns'}=[];
     while ($taverncount-- > 0){
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
@@ -273,9 +527,39 @@ sub generate_physical_traits {
     generate_districts();
     generate_streets();
     generate_walls();
-
+    generate_neighbors();
+    generate_topography();
 }
 
+###############################################################################
+#
+# generate_topography - Determine information about the neighbors. 
+#
+###############################################################################
+sub generate_topography {
+    $city->{'topography'}=rand_from_array($xml_data->{'topography'}->{'region'})->{'content'};
+}
+
+###############################################################################
+#
+# generate_neighbors - Determine information about the neighbors. 
+#
+###############################################################################
+sub generate_neighbors {
+    my $neighbortotal=1+&d(3);
+    $city->{'neighbors'}=[];
+    my $neighborcount=-int($neighbortotal/2)-1;
+    while($neighborcount< ceil($neighbortotal/2)+1){
+        my $newseed=$seed+$neighborcount ;
+        if ($newseed != $seed){
+            srand( $newseed );
+            my $neighbor->{'id'}=($newseed   );
+            $neighbor->{'name'}=generate_city_name();
+            push @{$city->{'neighbors'}}, $neighbor;
+        }
+        $neighborcount++;
+    }
+}
 
 
 ###############################################################################
@@ -284,8 +568,14 @@ sub generate_physical_traits {
 #
 ###############################################################################
 sub generate_walls {
-    $city->{'walls'}=parse_object($xml_data->{'walls'});
-    $city->{'walls'}->{'height'}= 8 +&d(10) + $city->{'size_modifier'};
+    my $roll=&d(20)+ $city->{'size_modifier'} ;
+    if( $xml_data->{'walls'}->{'chance'}< $roll){
+        $city->{'walls'}=parse_object($xml_data->{'walls'});
+        $city->{'walls'}->{'height'}= 8 +&d(10) + $city->{'size_modifier'};
+    }else{
+        $city->{'walls'}->{'content'}="none";
+        $city->{'walls'}->{'height'}=0;
+    }
 }
 
 ###############################################################################
@@ -400,7 +690,7 @@ sub generate_businesses{
         @weightedbusinesses=shuffle @weightedbusinesses;
         my $newbusiness=$weightedbusinesses[0];
         if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
-            print Dumper $newbusiness->{'district'};
+            #print Dumper $newbusiness->{'district'};
             $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
         }else{
             $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
@@ -498,10 +788,15 @@ sub generate_location {
     my $location = rand_from_array(  $locationlist  );
     $city->{'location'}->{'name'}=$location->{'description'};
     $city->{'location'}->{'port'}= ( &d(100) <= $location->{'port_chance'}  );
-
+    if ($city->{'location'}->{'port'}){
+        $city->{'location'}->{'portdirection'}=rand_from_array($xml_data->{'direction'}->{'option'})->{'content'};
+    }
+    #why 20? to give us a better chance of getting one.
+    my $landmarkmod=20;
     foreach my $landmark (shuffle @{$location->{'landmarks'}}){
-        if (&d(100) <= $landmark->{'chance'}){
+        if (&d(100) <= $landmark->{'chance'}+$landmarkmod){
             push @{$city->{'location'}->{'landmarks'}},  $landmark->{'content'};
+            $landmarkmod-=5;
         }
     }
 }
@@ -898,18 +1193,16 @@ sub generate_pop_type {
 sub generate_city_name {
     my $nameobject = parse_object($xml_data->{'cityname'});
     $city->{'nameobj'} = $nameobject;
-    $city->{'name'}="";
+    my $name="";
 
     if (defined $nameobject->{'pre'}){
-        $city->{'name'}=$nameobject->{'pre'}." ";
+        $name=$nameobject->{'pre'}." ";
     }
-
-    $city->{'name'}.=$nameobject->{'root'}.$nameobject->{'post'};
-
+    $name.=$nameobject->{'root'}.$nameobject->{'post'};
     if (defined $nameobject->{'trailer'}){
-        $city->{'name'}.=" ".$nameobject->{'trailer'};
+        $name.=" ".$nameobject->{'trailer'};
     }
-
+    return $name;
 }
 
 
@@ -1036,7 +1329,6 @@ sub parse_object {
     my $newobj= { 'list'=>[]};
     # We currently only care about 4 parts
     foreach my $part (qw/ pre root post trailer/){
-
         # Make sure that the part exists for this object.
         if(defined $object->{$part}){
 
