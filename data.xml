@@ -1467,7 +1467,7 @@
         <subplot>pushing for war with trade adversary</subplot>
         <subplot>pushing to open trade with adversary</subplot>
     </power>
-    <power type="an elected representatives" subplot_chance="50">
+    <power type="an elected representative" subplot_chance="50">
         <subplot>using position for personal gain</subplot>
         <subplot>amassing power</subplot>
     </power>
