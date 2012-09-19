@@ -42,9 +42,23 @@ build_city();
 #########################################################################
 # Now that $city is fleshed out, we can print it..
 #########################################################################
-print $q->header;
-print describe_city();
 
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' ); 
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($city);
+}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
+    print $q->header( 'text/xml' ); 
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($xml_data);
+
+}else {
+
+    print $q->header;
+    #print describe_city();
+    print describe_city2();
+}
 exit;
 
 
@@ -85,6 +99,8 @@ sub build_city {
     # - Generate assign races
     assign_races();
 
+
+
     # - Generate ethics
     generate_city_ethics();
 
@@ -93,45 +109,44 @@ sub build_city {
 
     # - generate secondary powers
     generate_secondary_power();
+    # - generate laws
+    set_laws();
+
+    # - determine tolerance
+    
 
     # - generate location
     set_location();
 
-    # - generate weather
-    set_weather();
-
-    # - generate time
-    set_time();
-
-    # - generate laws
-    set_laws();
-
-    # - generate events
-    generate_events();
-
-    # - generate blackmarkets
-    generate_markets();
-
     # - generate street condition
     generate_streets();
+
+
+    # - Generate Districts
+    generate_districts();
+    # - generate walls
+    #generate_walls();
 
     # - generate housing
     generate_housing();
     # - generate businesses
     generate_businesses();
 
+    # - generate blackmarkets
+    generate_markets();
+
     # - generate resources
     generate_resources();
+ 
+    # - generate weather
+    set_weather();
 
-    # - generate walls
-    #generate_walls();
+    # - generate time
+    set_time();
 
-    # - generate streets
-    #generate_streets();
-
-    # - Generate Districts
-    generate_districts();
-    
+    # - generate events
+    generate_events();
+    #TODO Generate travellers
 # TODO
 # - taverns
 # - generate religions(weighted by race)
@@ -220,7 +235,6 @@ sub generate_pop_type {
 #
 #####################################################
 sub generate_pop_counts {
-    my $roll       = &d(100);
     my $population = $city->{'population'};
     my $newpop     = 0;
     my @races;
@@ -516,7 +530,7 @@ sub generate_streets{
     # Finally, if it's not nice out, cut the population even further.
     $visiblepop=ceil($visiblepop*$city->{'weather'}->{'temp'}->{'modifier'});
 
-    $city->{'visible population'}=$visiblepop;
+    $city->{'visiblepopulation'}=$visiblepop;
  
 }
 
@@ -641,7 +655,7 @@ sub generate_resources{
     $city->{'resources'}=[];
     while ($resource_count-- > 0 ){
         my $resource=rand_from_array(@{$xml_data->{'resources'}->{'resource'}});
-        push @{ $city->{'resources'} }, $resource;
+        push @{ $city->{'resources'} }, parse_object($resource);
     }
 
 }
@@ -818,6 +832,132 @@ sub print_precip{
     }
     return $precip;
 }
+
+
+
+# Note farmland can support 30-120 people per square mile
+#TODO growth speed
+sub describe_city2{
+    my $style = print_style();
+    my $header = print_header();
+    my $geography = print_geography();
+    my $cityscape = print_cityscape();
+    my $government = print_government();
+    my $population = print_population();
+    my $economy = print_economy();
+    my $currentevents = print_currentevents();
+    return "
+        <!DOCTYPE html> 
+        <html>
+            <head>
+                <title>City Generator: $city->{'name'} </title>
+            </head>
+            $style
+            <body style='background-color:#44aa44;width:600px;padding:5px;margin:auto;'>
+            $header
+            $geography
+            $cityscape
+            $government
+            $population
+            $economy
+            $currentevents
+            </body>
+        </html>";
+}
+sub get_dominant_race{
+
+    return "foo";
+}
+
+sub print_header{
+    my $dominant_race=get_dominant_race();
+    return  "
+                    <header>
+                        <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
+                        <sub><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  </sub>
+                        <h2>Summary</h2>
+                        <p><b>$city->{'name'}</b> is a $city->{'economy description'} $city->{'description'} of around $city->{'population'}$dominant_race</p>
+                    </header>
+
+    ";
+}
+sub print_geography{
+    return "";
+#                    <section id='geography'>
+#                        <h2>geography</h2>
+#                        <p>This $city->{'poptype'} is located $city->{'location'}. The City proper is $city->{'area'} square miles and is supported by a $city->{'support_area'} square mile region. $landmarks $climate $topography $neighbors
+#                    </section>
+#";
+}
+
+sub print_cityscape{
+    return "";
+#                    <section id='cityscape'>
+#                        <h2>Cityscape</h2>
+#                        $roads $harbor $wall $streets
+#                        $districts
+#                        $housing
+#                        $businesses
+#                    </section>
+#";
+}
+sub print_government{
+    return "";
+#                    <section id='government'>
+#                        <h2>Government</h2>
+#                        <p>$city->{'govtype'}->{'type'} rules the city, however there is a $city->{'secondarypower'}->{'power'} that $city->{'secondarypower'}->{'plot'} the leadership while secretly $city->{'secondarypower'}->{'subplot'}. The population does $city->{'govtype'}->{'approval'} of $city->{'govtype'}->{'type'}.</p>
+#                        <p>Relations with neighboring cities is $city->{'neighbors'}->{'relations'}. $religion $magicuse $sovernity
+#
+#                        $crime $enforcer $enforcement $punishment
+#                    </section>
+#
+#        ";
+}
+sub print_population{
+    return "";
+#                    <section id='population'>
+#                        <h2>Population</h2>
+#                        The population is broken down as follows:
+#                        $population
+#                        
+#                        $minority_race are treated $city->{'race'}->{'relations'} by $dominant_race. $superiority_complex $violence $religousgroup $ethnicgroup
+#                    </section>
+#";
+}
+sub print_economy{
+    return "";
+#                    <section id='economy'>
+#                        <h2>Economy</h2>
+#                        <p>The economy is $city->{'economy'}->{'descriptor'} Magic is $city->{'economy'}->{'descriptor'}. Education is $city->{'education'}->{'descriptor'}. This is an economically $city->{'economy'}->{'trade'} with $city->{'economy'}->{'travelers'}.</p>
+#                        <p>$city->{'name'} is known for:
+#                        $resources
+#                        <p>Within the city and surrounding areas, you'll find</p>
+#                            $arkets
+#                    </section>
+#";
+}
+sub print_currentevents{
+    print "";
+#                    <section id='currentevents'>
+#                        <h2>Current Events</h2>
+#                        <p>You arrive at the city around $city->{'time'}->{'content'}, where $clouds the air is $city->{'weather'}->{'air'}->{'content'} 
+#                            and the wind is $city->{'weather'}->{'wind'}->{'content'}. $temp $precip</p>
+#                        <p>Upon arrival, around $city->{'visiblepopulation'} citizens are wandering the $city->{'size'}. You see:
+#                        $events
+#                        </p>
+#            
+#                    </section>
+#";
+}
+
+
+
+
+
+
+
+
+
 #######################################################
 # Pass in a $city structure, and print out a wonderful
 # wall of text describing the city, sorta like a mad lib
@@ -840,27 +980,20 @@ sub describe_city{
     my $economy=print_economy();
     my $housing=print_housing();
     my $districts=print_districts();
-
+    my $style=print_style();
 return <<EOF
         <!DOCTYPE html> 
         <html>
             <head>
                 <title>City Generator: $city->{'name'} </title>
             </head>
-            <style type='text/css'>
-                ul{   
-                    -moz-column-width:245px;
-                    -webkit-column-width:245px ;
-                } 
-                #businesses ul{
-                    width:600px;
-                    -moz-column-width:150px;
-                    -webkit-column-width:150px ;
-                }
-            </style>
+            $style
             <body style='background-color:#44aa44;width:600px;padding:5px;margin:auto;'>
+
                     <header>
                         <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
+                        <sub><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>  </sub>
+                        <sub><a href='?cityid=$city->{'seed'}&type=source'>source data</a>  </sub>
                         <p><b>$city->{'name'}</b> is a $city->{'description'} of around $city->{'population'}.</p>
                     </header>
 
@@ -872,7 +1005,7 @@ return <<EOF
                         <h2> Current Events</h2>
                         <p>You arrive at the city around $city->{'time'}->{'content'}, where $clouds the air is $city->{'weather'}->{'air'}->{'content'} 
                             and the wind is $city->{'weather'}->{'wind'}->{'content'}. $precip</p>
-                        <p>Upon arrival, around  $city->{'visible population'} citizens are wandering the $city->{'weather'}->{'temp'}->{'content'} $city->{'size'}. You see:
+                        <p>Upon arrival, around  $city->{'visiblepopulation'} citizens are wandering the $city->{'weather'}->{'temp'}->{'content'} $city->{'size'}. You see:
                         $events
                         </p>
                     </section>
@@ -918,48 +1051,48 @@ sub print_housing{
     $housing.="</ul>$housingcount total\n";
     return $housing;
 }
-sub print_economy{ #fuck you ugly code, go die in a woodchipper.
-    my $econ="<h2>Economy:</h2> The economy is ";
-    if ($city->{'economy'} >0){ $econ.='strong. ';
-    }elsif ($city->{'economy'} <0){ $econ.='weak. ';
-    }else { $econ.='stable. ';    }
-    $econ.="Magic is ";
-    if ($city->{'magic'} >0){ $econ.='plentiful. ';
-    }elsif ($city->{'magic'} <0){ $econ.='rare. ';
-    }else { $econ.=' somewhat common. ';    }
-
-    $econ.="Education is ";
-    if ($city->{'education'} >0){ $econ.="high.\n ";
-    }elsif ($city->{'education'} <0){ $econ.="low.\n ";
-    }else { $econ.="somewhat common.\n ";    }
-    if ($city->{'travel'} >0){ $econ.='This is a trade hub with many travelers. ';
-    }elsif ($city->{'education'} <0){ $econ.='This is an economically isolated area with few travelers. ';}
-
-    $econ.=print_resources();
-
-    $econ.="You can find the following businesses:<ul id='businesses'>\n";
-    my $businesstypes=$city->{'business'};
-    my $businesscount=0;
-    my $specialistcount=0;
-    my $loop=0;
-    for my $businessname (sort keys  %$businesstypes  ){
-        if ($businessname ne 'total' ){
-            $econ.=sprintf "<li>  %4s %-15s (%s specialists)</li>\n",$businesstypes->{$businessname}->{'count'},$businessname,$businesstypes->{$businessname}->{'specialists'} ;
-            $businesscount+=$businesstypes->{$businessname}->{'count'};
-            $specialistcount+=$businesstypes->{$businessname}->{'specialists'};
-        }
-        if ($loop++ %3 == 2){$econ.="\n";}
-    }
-    chomp $econ;
-    $econ.="</ul>\n $businesscount total ($specialistcount specialists)\n";
-    return $econ;
-}
-
+#sub print_economy{ #fuck you ugly code, go die in a woodchipper.
+#    my $econ="<h2>Economy:</h2> The economy is ";
+#    if ($city->{'economy'} >0){ $econ.='strong. ';
+#    }elsif ($city->{'economy'} <0){ $econ.='weak. ';
+#    }else { $econ.='stable. ';    }
+#    $econ.="Magic is ";
+#    if ($city->{'magic'} >0){ $econ.='plentiful. ';
+#    }elsif ($city->{'magic'} <0){ $econ.='rare. ';
+#    }else { $econ.=' somewhat common. ';    }
+#
+#    $econ.="Education is ";
+#    if ($city->{'education'} >0){ $econ.="high.\n ";
+#    }elsif ($city->{'education'} <0){ $econ.="low.\n ";
+#    }else { $econ.="somewhat common.\n ";    }
+#    if ($city->{'travel'} >0){ $econ.='This is a trade hub with many travelers. ';
+#    }elsif ($city->{'education'} <0){ $econ.='This is an economically isolated area with few travelers. ';}
+#
+#    $econ.=print_resources();
+#
+#    $econ.="You can find the following businesses:<ul id='businesses'>\n";
+#    my $businesstypes=$city->{'business'};
+#    my $businesscount=0;
+#    my $specialistcount=0;
+#    my $loop=0;
+#    for my $businessname (sort keys  %$businesstypes  ){
+#        if ($businessname ne 'total' ){
+#            $econ.=sprintf "<li>  %4s %-15s (%s specialists)</li>\n",$businesstypes->{$businessname}->{'count'},$businessname,$businesstypes->{$businessname}->{'specialists'} ;
+#            $businesscount+=$businesstypes->{$businessname}->{'count'};
+#            $specialistcount+=$businesstypes->{$businessname}->{'specialists'};
+#        }
+#        if ($loop++ %3 == 2){$econ.="\n";}
+#    }
+#    chomp $econ;
+#    $econ.="</ul>\n $businesscount total ($specialistcount specialists)\n";
+#    return $econ;
+#}
+#
 
 sub print_resources{
     my $resources="\n<p>".$city->{'name'}." is known for:</p><ul>\n";
         foreach my $resource (@{$city->{'resources'} }){
-            $resources.=sprintf "<li>%s </li>\n",parse_object($resource);
+            $resources.=sprintf "<li>%s </li>\n",$resource->{'content'};
 
         }
 
@@ -984,7 +1117,7 @@ sub set_seed{
 #####################################################
 sub parse_object {
     my ($object)=@_;
-    my @word;
+    my $newobj= { 'list'=>[]};
     # We currently only care about 4 parts
     foreach my $part (qw/ pre root post trailer/){
 
@@ -1003,12 +1136,14 @@ sub parse_object {
                 if (defined $newpart->{'content'}){
                     # If no chance is defined, add it to the list.
                     if (!defined $newpart->{'chance'}){
-                        push @word, $newpart->{'content'};
+                        push @{$newobj->{'list'}}, $newpart->{'content'};
+                        $newobj->{$part}=$newpart->{'content'};
 
                     # If chance is defined, compare it to
                     # the roll, and add it to the list.
                     } elsif(defined $newpart->{'chance'} and &d(100) <= $newpart->{'chance'} ) {
-                        push @word, $newpart->{'content'};
+                        push @{$newobj->{'list'}}, $newpart->{'content'};
+                        $newobj->{$part}=$newpart->{'content'};
                     }
                 }
             # If the object is a Hash, we presume that there's only one choice
@@ -1019,16 +1154,92 @@ sub parse_object {
                 
                 # If no chance is defined, add it to the list.
                 if (!defined $newpart->{'chance'}){
-                    push @word, $newpart->{'content'};
+                    push @{$newobj->{'list'}}, $newpart->{'content'};
+                    $newobj->{$part}=$newpart->{'content'};
 
                 # If chance is defined, compare it to
                 # the roll, and add it to the list.
                 } elsif(defined $newpart->{'chance'} and &d(100) <= $newpart->{'chance'} ) {
-                    push @word, $newpart->{'content'};
+                    push @{$newobj->{'list'}}, $newpart->{'content'};
+                    $newobj->{$part}=$newpart->{'content'};
                 }
             }
         }
     }
-    # string it all together and return it.
-    return join " ", @word;
+    $newobj->{'content'}=join " ", @{$newobj->{'list'}};
+    delete $newobj->{'list'};
+    # return the slimmed down version
+    return $newobj;
 }
+
+
+sub print_style{
+
+    return "
+        <style type='text/css'>
+            ul{   
+                -moz-column-width:245px;
+                -webkit-column-width:245px ;
+            } 
+            #businesses ul{
+                width:600px;
+                -moz-column-width:150px;
+                -webkit-column-width:150px ;
+            }
+        </style>\n";
+}
+#Summary
+#Name, size, type, location
+#    
+#2 Geography
+#    Locations
+#    Scope
+#    Climate
+#    Regions
+#    landmarks
+#    Topography
+#-------------
+#3 Cityscape
+#
+#    Neighborhoods/districts/division
+#    Parks
+#    Beaches
+#    Architecture
+#    Fortifications
+#    roads
+#    Public transportation
+#    Harbour
+#-----------
+#    2 Government
+#        Local government
+#        crime
+#        National government
+#6 Law and government
+#    6.1 Federal representation
+#    6.2 Capital punishment
+#    6.3 Politics
+#    7.2 Crime
+#---------
+#Demographics
+#    Population
+#    Racial and ancestral makeup
+#    Religion
+#    Ethnic groups
+#-------------
+#5 Economy
+#    Tourism
+#-------------
+#-------------
+#7 Education
+#    Colleges and universities
+#    Primary and secondary schools
+#    Tertiary education
+#    Private schools
+#
+#-------------
+#4 Culture and contemporary life
+#------
+#    11 Notable residents
+#----------
+#    Current Events
+#
