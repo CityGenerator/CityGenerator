@@ -149,11 +149,12 @@ sub describe_cityscape {
     my $housing=describe_housing();
     my $businesses=describe_businesses();
      $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
+     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 1 ? "1 is": $city->{'streets'}->{'roads'}." are";
      $city->{'streets'}->{'roads'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
     my $content="
                     <section>
                         <h2>Cityscape</h2>
-                        <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} are major.$port$walls$roads</p>
+                        <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} major.$port$walls$roads</p>
                         <h3>Districts</h3>
                             The city contains the following Districts:$districts
                         <h3>Housing</h3>
@@ -378,7 +379,14 @@ sub generate_travelers{
 ###############################################################################
 
 sub generate_taverns{
-    my $taverncount=max(5,  ($city->{'business'}->{'tavern'}->{'count'}||0) + ($city->{'business'}->{'tavern/inn'}->{'count'}||0));
+    my $taverncount=0;
+    if (defined $city->{'business'}->{'tavern'}){
+        $taverncount+=$city->{'business'}->{'tavern'}->{'count'};
+    }
+    if (defined $city->{'business'}->{'tavern/inn'}){
+        $taverncount+=$city->{'business'}->{'tavern/inn'}->{'count'};
+    }
+    $taverncount=max(5,  $taverncount);
     $city->{'taverns'}=[];
     while ($taverncount-- > 0){
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
