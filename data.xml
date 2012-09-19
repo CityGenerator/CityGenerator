@@ -381,20 +381,20 @@
 
 <buildings>
 
-    <building weight='1' priority='10' perbuilding='2'  district="fine shops">alchemist</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fineshops">alchemist</building>
     <building weight='1' priority='10' perbuilding='3'  district="poor">almshouse</building>
-    <building weight='1' priority='8'  perbuilding='2'  district="fine shops">apothecary</building>
+    <building weight='1' priority='8'  perbuilding='2'  district="fineshops">apothecary</building>
     <building weight='2' priority='3'  perbuilding='3'  district="trade">armorer</building>
     <building weight='2' priority='10' perbuilding='5'  district="trade">assassin/bounty hunter</building>
-    <building weight='1' priority='10' perbuilding='2'  district="fine shops">astrologer</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fineshops">astrologer</building>
     <building weight='2' priority='4'  perbuilding='4'  district="trade">baker</building>
     <building weight='1' priority='4'  perbuilding='10' district="professional">banker</building>
     <building weight='2' priority='5'  perbuilding='3'  district="professional">barber</building>
     <building weight='1' priority='5'  perbuilding='20' district="military">barracks</building>
     <building weight='1' priority='10' perbuilding='4'  district="civic">barrister</building>
-    <building weight='2' priority='2'  perbuilding='3'  district="professional,trade">blacksmith</building>
+    <building weight='2' priority='2'  perbuilding='3'  district="trade">blacksmith</building>
     <building weight='1' priority='10' perbuilding='3'  district="port">boat for hire</building>
-    <building weight='1' priority='9'  perbuilding='2'  district="fine shops">bookseller</building>
+    <building weight='1' priority='9'  perbuilding='2'  district="fineshops">bookseller</building>
     <building weight='1' priority='3'  perbuilding='4'  district="trade">bowyer</building>
     <building weight='1' priority='5'  perbuilding='5'  district="trade">brewer</building>
     <building weight='2' priority='4'  perbuilding='10' district="poor">brothel</building>
@@ -422,7 +422,7 @@
     <building weight='2' priority='4'  perbuilding='4'  district="shops">inn</building>
     <building weight='1' priority='10' perbuilding='10' district="embassy">interpreter</building>
     <building weight='1' priority='10' perbuilding='10' district="civic">jailhouse</building>
-    <building weight='1' priority='8'  perbuilding='4'  district="fine shops">jeweler</building>
+    <building weight='1' priority='8'  perbuilding='4'  district="fineshops">jeweler</building>
     <building weight='3' priority='6'  perbuilding='10' district="industry">laborer</building>
     <building weight='2' priority='3'  perbuilding='4'  district="trade">leatherworker</building>
     <building weight='1' priority='7'  perbuilding='4'  district="education">library</building>
@@ -448,7 +448,7 @@
     <building weight='1' priority='10' perbuilding='20' district="port">shipyard</building>
     <building weight='1' priority='10' perbuilding='8'  district="mercy">shrine</building>
     <building weight='2' priority='1'  perbuilding='4'  district="trade">smith</building>
-    <building weight='1' priority='10' perbuilding='3'  district="fine shops">specialty smith</building>
+    <building weight='1' priority='10' perbuilding='3'  district="fineshops">specialty smith</building>
     <building weight='1' priority='5'  perbuilding='4'  district="trade">stable</building>
     <building weight='1' priority='7'  perbuilding='6'  district="professional">tailor/seamstress</building>
     <building weight='1' priority='4'  perbuilding='3'  district="trade">tanner</building>
@@ -481,9 +481,9 @@
     <district name="civic"        chance='12' stat="authority"/>
     <district name="embassy"      chance='5'  stat="travel" />
     <district name="wealthy"      chance='34' stat="economy" />
-    <district name="middle class" chance='30' stat="economy" />
+    <district name="middleclass"  chance='30' stat="economy" />
     <district name="racial"       chance='10' stat="tolerance" />
-    <district name="fine shops"   chance='5'  stat="economy" />
+    <district name="fineshops "   chance='5'  stat="economy" />
     <district name="arena"        chance='5'  stat="education" />
     <district name="poor"         chance='30' stat="economy" />
     <district name="slums"        chance='10' stat="economy" />

@@ -133,7 +133,7 @@ sub describe_government{
     my $content="
                     <section>
                         <h2>Government</h2>
-                        <p>$city->{'name'} is ruled by $city->{'govtype'}->{'descriptor'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>;
+                        <p>$city->{'name'} is ruled by $city->{'govtype'}->{'descriptor'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>
 
                         <h3>Diplomatic Ties</h3>
                         <p>$city->{'name'} has the following diplomatic relations:</p>
