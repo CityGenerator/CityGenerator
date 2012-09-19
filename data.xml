@@ -1449,53 +1449,57 @@
     <plot>quietly denounces</plot>
     <plot>quietly assists</plot>
     
-    <power type="dragon" subplot_chance="50">
+    <power type="a dragon" subplot_chance="50">
         <subplot>wishing to enslave the city</subplot>
         <subplot>watching out for the common man</subplot>
         <subplot>despising the current leader</subplot>
         <subplot>agreeing with the current leader</subplot>
     </power>
-    <power type="wizard" subplot_chance="50">
+    <power type="a wizard" subplot_chance="50">
         <subplot>attempting to attain immortality</subplot>
         <subplot>watching out for the common man</subplot>
         <subplot>despising the current leader</subplot>
         <subplot>agreeing with the current leader</subplot>
     </power>
-    <power type="Merchant guild" subplot_chance="50">
+    <power type="a merchant guild" subplot_chance="50">
         <subplot>attempting to buy influence</subplot>
         <subplot>attempting to sell influence</subplot>
         <subplot>pushing for war with trade adversary</subplot>
         <subplot>pushing to open trade with adversary</subplot>
     </power>
-    <power type="elected representatives" subplot_chance="50">
+    <power type="an elected representatives" subplot_chance="50">
         <subplot>using position for personal gain</subplot>
         <subplot>amassing power</subplot>
     </power>
-    <power type="advisor" subplot_chance="50">
+    <power type="an advisor" subplot_chance="50">
         <subplot>pulling strings for personal gain</subplot>
         <subplot>blackmailing the government</subplot>
         <subplot>working for enemies</subplot>
     </power>
-    <power type="prophet" subplot_chance="50">
+    <power type="a prophet" subplot_chance="50">
         <subplot>attempting to lead religious revolution</subplot>
         <subplot>denying legitimacy of leading power</subplot>
         <subplot>calling for genocide of a minority</subplot>
     </power>
-    <power type="thieves guild" subplot_chance="50">
+    <power type="a thieves guild" subplot_chance="50">
         <subplot>moving to assert black market dominance</subplot>
         <subplot>backing leading power for leiniency</subplot>
     </power>
-    <power type="Ex-Blacksmith" subplot_chance="50">
+    <power type="traveler" subplot_chance="50">
+        <subplot>looking to bring justice</subplot>
+        <subplot>looking to overthrow the government</subplot>
+    </power>
+    <power type="an ex-blacksmith" subplot_chance="50">
         <subplot>plotting to overthrow the corrupt leadership for personal gain</subplot>
         <subplot>being blackmailed by a guild</subplot>
         <subplot>pulling strings with a trade adversary</subplot>
     </power>
-    <power type="barbarian" subplot_chance="50">
+    <power type="a barbarian" subplot_chance="50">
         <subplot>plotting to start war with another nation</subplot>
         <subplot>being manipulated by the denizens of the city whore house</subplot>
         <subplot>wishing to rule with a violent, iron fist</subplot>
     </power>
-    <power type="recluse" subplot_chance="50">
+    <power type="a recluse" subplot_chance="50">
         <subplot>pulling strings for personal gain</subplot>
         <subplot>a fiend in disguise</subplot>
         <subplot>an angel in disguise</subplot>
@@ -1767,13 +1771,13 @@
 </topography>
 
 <neighbor>
-    <relation>has an alliance with</relation>
     <relation>has a neutral relationship with</relation>
+    <relation>has strained relations with</relation>
     <relation>is wary of </relation>
     <relation>is cautious of</relation>
     <relation>is watchful of</relation>
     <relation>is distrustful of</relation>
-    <relation>is cordial to </relation>
+    <relation>is cordial towards </relation>
     <relation>is friendly with</relation>
     <relation>is at war with</relation>
     <relation>is embargoing</relation>

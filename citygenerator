@@ -41,6 +41,9 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
     print XMLout($city);
+}elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $city;
 }elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
@@ -75,10 +78,72 @@ sub describe_city {
   $content.=describe_summary();
   $content.=describe_geography();
   $content.=describe_cityscape();
+  $content.=describe_government();
 
 }
 #print <<EOF
+sub describe_secondarypower{
+    my $content=" Within the city, there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
+    if(defined $city->{'secondarypower'}->{'subplot'} ){
+        $content.=" while secretly ".$city->{'secondarypower'}->{'subplot'};
+    }
+    return $content.".";
+}
+sub describe_approval{
+    if ($city->{'govtype'}->{'approvalmod'} <-1){
+        return "does not approve of"
+    }elsif ($city->{'govtype'}->{'approvalmod'} >1){
+        return "approves of"
+    }else{
+        return "is indifferent towards"
+    }
+}
+sub describe_freedom{
+    if ($city->{'govtype'}->{'religion'} <-1){
+        return "oppressed"
+    }elsif ($city->{'govtype'}->{'religion'} >1){
+        return "welcomed"
+    }else{
+        return "neither oppressed nor supported"
+    }
+}
+sub describe_magic{
+    if ($city->{'magic'} <-1){
+        return "verboten."
+    }elsif ($city->{'magic'} >1){
+        return "legal and common"
+    }else{
+        return "looked upon with suspicion"
+    }
+}
+sub describe_relations {
+    my @relations;
+#print Dumper $city->{'neighbors'} ; 
+    foreach my $neighbor (  @{$city->{'neighbors'}}  ){
+        push @relations, $neighbor->{'relation'}." ".$neighbor->{'name'};
+    }
+    return "<ul><li>".join('</li><li>',@relations)."</li></ul>";
+}
+sub describe_government{
+    my $secondarypower=describe_secondarypower();
+    my $approval=describe_approval();
+    my $freedom=describe_freedom();
+    my $magic=describe_magic();
+    my $relations=describe_relations();
+    my $content="
+                    <section>
+                        <h2>Government</h2>
+                        <p>$city->{'name'} is ruled by $city->{'govtype'}->{'descriptor'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>;
 
+                        <h3>Diplomatic Ties</h3>
+                        <p>$city->{'name'} has the following diplomatic relations:</p>
+                        $relations
+
+                    </section>
+";
+
+
+}
 
 
 sub describe_summary {
@@ -121,7 +186,14 @@ sub describe_roads {
     return " The city is lined with ". $city->{'streets'}->{ 'content'}.".";
 }
 sub describe_districts {
-    return "<ul><li>".join('</li><li>',@{ $city->{'districts'}})."</li></ul>";
+    my $content="
+                <h3>Districts</h3>";
+    if (scalar(@{ $city->{'districts'}})>0){
+         $content.="                   The city contains the following Districts:";
+        return $content."<ul><li>".join('</li><li>',@{ $city->{'districts'}})."</li></ul>";
+    }else{
+        return $content."The city contains no districts.";
+    }
 }
 sub describe_housing {
     my @housing;
@@ -155,8 +227,7 @@ sub describe_cityscape {
                     <section>
                         <h2>Cityscape</h2>
                         <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} major.$port$walls$roads</p>
-                        <h3>Districts</h3>
-                            The city contains the following Districts:$districts
+                        $districts
                         <h3>Housing</h3>
                             The city contains the following housing:$housing
                         <h3>Businesses</h3>
@@ -179,9 +250,10 @@ sub print_neighbors {
         
         }elsif(scalar(@$neighbors) >1 ){
        #     print Dumper @$neighbors;
-            my $lastneighbor=pop(@{$neighbors});
+            my @neighborlist=@$neighbors;
+            my $lastneighbor=pop(@neighborlist);
             my $content="Neighboring cities include ";
-            foreach my $neighbor (@{$neighbors}){
+            foreach my $neighbor (@neighborlist){
                 $content.="<a href='?cityid=$neighbor->{'id'}'> $neighbor->{'name'}</a>, ";
             }
             $content.=" and <a href='?cityid=$lastneighbor->{'id'}'> $lastneighbor->{'name'}</a>. ";
@@ -216,15 +288,6 @@ sub print_landmarks {
 }
 
 
-#
-#
-#Government
-#It is ruled by the clergy, although there is a prophet that quietly assists the leadership while secretly working for enemies. The population does not approve of the clergy [but is powerless to break free].Freedom of religion is oppressed, and magic use is legal and common. 
-#
-#Relations with the neighboring cities is  _______, [(especially/except) for _______ which is _____]. It is trying to maintain sovernity from $id+1, which is 50 miles away and much larger, which the general population supports.
-#
-#Crime in the city is prevalent. The law is poorly enforced by a sheriff. Punishments are mainly community service, and convictions are sentenced by jurors. Capital punishment is common
-#
 #Population
 #The population is broken down as follows:
 #
@@ -563,6 +626,7 @@ sub generate_neighbors {
             srand( $newseed );
             my $neighbor->{'id'}=($newseed   );
             $neighbor->{'name'}=generate_city_name();
+            $neighbor->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
             push @{$city->{'neighbors'}}, $neighbor;
         }
         $neighborcount++;
@@ -828,6 +892,9 @@ sub generate_city_credence{
     # - set govt type
     set_govt_type();
 
+    # - generate seconday power
+    generate_secondary_power();
+
     # - generate laws
     set_laws();
 
@@ -942,7 +1009,9 @@ sub generate_secondary_power {
     my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
     my $power = rand_from_array(  $powerlist );
     $city->{'secondarypower'}->{'power'} = rand_from_array(  $powerlist )->{'type'};
-    $city->{'secondarypower'}->{'subplot'} = rand_from_array(  $power->{'subplot'}  )->{'content'};
+    if ( &d(100) <= $power->{'subplot_chance'} ){
+        $city->{'secondarypower'}->{'subplot'} = rand_from_array(  $power->{'subplot'}  )->{'content'};
+    }
 }
 
 
