@@ -44,6 +44,8 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
+}elsif (defined $q->param('type') and $q->param('type') eq 'debug' ){
+    describe_city();
 }elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
@@ -66,24 +68,185 @@ exit;
 #######################################################################################################################
 
 sub describe_city {
-  my $style=print_style(); 
-  my $content="        <!DOCTYPE html> 
+    my $style=print_style(); 
+    my $content="        <!DOCTYPE html> 
         <html>
             <head>
                 <title>City Generator: $city->{'name'} </title>
-            </head>
             $style
+            </head>
             <body>
 ";
-  $content.=describe_summary();
-  $content.=describe_geography();
-  $content.=describe_cityscape();
-  $content.=describe_government();
+    $content.=describe_summary();
+    $content.=describe_geography();
+    $content.=describe_cityscape();
+    $content.=describe_government();
+    $content.=describe_population();
+    $content.=describe_economy();
+    $content.=describe_current_events();
+    $content.="
+            <footer>
+                
+                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
+                <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>
+            </footer>
+            </body>
+        </html>
+"
+}
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+sub describe_precipitation {
+    if (defined $city->{'weather'}->{'precip'}){
+        return "and ".$city->{'weather'}->{'precip'};
+    }else{
+        return "";
+    }
+}
+sub describe_thunder {
+    if (defined $city->{'weather'}->{'thunder'}){
+        return "There is Thunder ".$city->{'weather'}->{'precip'}.".";
+    }else{
+        return "";
+    }
+}
+
+sub describe_events{
+    return "<ul class='two-column'><li>".join('</li><li>',@{$city->{'events'}})."</li></ul>";
 
 }
-#print <<EOF
+
+sub describe_current_events{
+    my $precipitation=describe_precipitation();
+    my $thunder=describe_thunder();
+    my $events=describe_events();
+    my $content="
+                    <section id='currentevents'>
+                        <h2>Current Events</h2>
+                        <p>You arrive around $city->{'time'}->{'content'}, and can find $city->{'visiblepopulation'} citizens wandering the town.</p>
+                        <h3>Weather</h3>
+                        <p>The sky is $city->{'weather'}->{'clouds'}, the air is $city->{'weather'}->{'air'}, and the wind is $city->{'weather'}->{'wind'}. The temperature is $city->{'weather'}->{'temp'}$precipitation.$thunder</p>
+                        <h3>Events</h3>
+                        <p>Approaching the city, you can find the following events:</p>
+                         $events
+                    </section>
+";
+
+}
+
+
+
+
+#######################################################################################################################
+#######################################################################################################################
+sub describe_populations{
+    my @populations;
+    foreach my $race ( reverse sort {$a->{'percent'} <=> $b->{'percent'}} @{$city->{'races'}}  ){
+        push @populations, "$race->{'count'} $race->{'name'} ($race->{'percent'}%)";
+    }
+    return "<ul><li>".join('</li><li>',@populations)."</li></ul>";
+
+
+}
+
+sub describe_race_relations{
+    my $content="";
+    my $racecount=scalar(@{$city->{'races'}}) -1;
+    my @races= shuffle @{$city->{'races'}};
+    my $instigator= pop @races;
+    my @relations;
+    while ($racecount-- > 0 and  scalar(@races) >0){
+        my $victim= pop @races;
+        push @relations, "The $instigator->{'name'} population $instigator->{'tolerancedescription'} the $victim->{'name'} population.\n";
+        unshift @races, $instigator;
+        $instigator=$victim;
+
+    }
+    $content.="<p>Relations between races are varied by individuals, but in general:</p>";
+    $content.= "<ul class='one-column'>\n<li>".join("</li>\n<li>",@relations)."</li>\n</ul>\n";
+    return $content;
+}
+
+sub describe_population{
+    my $populations=describe_populations();
+    my $racerelations=describe_race_relations();
+    my $content="
+                    <section id='population'>
+                        <h2>Population</h2>
+                        <p>$city->{'name'} is a $city->{'poptype'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown:</p>
+                        $populations
+                        <h3>Race Relations</h3>
+                        $racerelations 
+                    </section>
+";
+
+}
+#######################################################################################################################
+#######################################################################################################################
+
+sub describe_resources {
+    my @resources;
+    #return Dumper $city->{'resource'};
+    foreach my $resource (sort {$a->{'content'} cmp $b->{'content'}} @{$city->{'resources'}}){
+        push @resources, $resource->{'content'};
+    }
+    return "<ul><li>".join('</li><li>',@resources)."</li></ul>";
+}
+sub describe_taverns {
+    my @taverns;
+    foreach my $tavern (sort {$a->{'name'} cmp $b->{'name'}} @{$city->{'taverns'}}){
+        push @taverns, describe_tavern($tavern);
+    }
+    my $content="";
+    if  (scalar(@taverns) >0 ){
+        $content.="<p>Taverns are often central gathering places for the citizens. You can find the following Taverns:</p>\n";
+        $content.="<ul class='one-column'><li>".join('</li><li>',@taverns)."</li></ul>";
+    }else{
+        $content.="<p>There are no taverns in this town.</p>\n";
+    }
+    return $content;
+}
+sub describe_tavern{
+    my ($tavern)=@_;
+    return "<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'} that seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. ";
+}
+
+sub describe_localinfo{
+    my $content="";
+    my @localmarket;
+    foreach my $market (  @{$city->{'markets'}}  ){
+        push @localmarket, $market->{'name'};
+    }
+    return "<ul class='one-column'><li>".join('</li><li>',@localmarket)."</li></ul>";
+    return $content;
+}
+sub describe_economy{
+    my $resources=describe_resources();
+    my $taverns=describe_taverns();
+    my $localinfo=describe_localinfo();
+    my $content="
+                    <section id='economy'>
+                        <h2>Economy</h2>
+                        <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.
+                        <h3>Resources</h3>
+                            <p>$city->{'name'} is know for the following:</p>$resources
+                        <h3>Taverns</h3>
+                            $taverns
+                        <h3>Local Info</h3>
+                         <p>If one were to dig around enough, they could uncover the following:</p>
+                        $localinfo 
+                    </section>
+";
+
+}
+
+#######################################################################################################################
+
 sub describe_secondarypower{
-    my $content=" Within the city, there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
+    my $content=" Within the city there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
     if(defined $city->{'secondarypower'}->{'subplot'} ){
         $content.=" while secretly ".$city->{'secondarypower'}->{'subplot'};
     }
@@ -109,7 +272,7 @@ sub describe_freedom{
 }
 sub describe_magic{
     if ($city->{'magic'} <-1){
-        return "verboten."
+        return "verboten"
     }elsif ($city->{'magic'} >1){
         return "legal and common"
     }else{
@@ -122,7 +285,7 @@ sub describe_relations {
     foreach my $neighbor (  @{$city->{'neighbors'}}  ){
         push @relations, $neighbor->{'relation'}." ".$neighbor->{'name'};
     }
-    return "<ul><li>".join('</li><li>',@relations)."</li></ul>";
+    return "<ul class='two-column'><li>".join('</li><li>',@relations)."</li></ul>";
 }
 sub describe_government{
     my $secondarypower=describe_secondarypower();
@@ -131,14 +294,15 @@ sub describe_government{
     my $magic=describe_magic();
     my $relations=describe_relations();
     my $content="
-                    <section>
+                    <section id='government'>
                         <h2>Government</h2>
                         <p>$city->{'name'} is ruled by $city->{'govtype'}->{'descriptor'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>
 
                         <h3>Diplomatic Ties</h3>
                         <p>$city->{'name'} has the following diplomatic relations:</p>
                         $relations
-
+                        <h3>Crime and Punishment</h3>
+                        <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'imprisonment'}->{'percent'}% of the population ($city->{'imprisonment'}->{'population'} adult[s]).</p>
                     </section>
 ";
 
@@ -151,7 +315,6 @@ sub describe_summary {
     my $content="
                     <header>
                         <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
-                        <sub><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  </sub>
                         <h2>Summary</h2>
                         <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'} of around $city->{'population'}$city->{'dominant_race'}.</p>
                     </header>";
@@ -161,10 +324,9 @@ sub describe_geography {
     my $neighbors= print_neighbors();
     my $port= ( $city->{'location'}->{'port'} ) ? ' and is a port town' : '';
     my $content="
-                    <section>
+                    <section id='geography'>
                         <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} square mile region. $landmarks The surrounding region is $city->{'topography'}. $neighbors
-
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} square mile region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
                     </section>
 ";
 }
@@ -198,11 +360,11 @@ sub describe_districts {
 sub describe_housing {
     my @housing;
     foreach my $key (keys %{$city->{'housing'}}){
-        if ($key ne "total"){
+        if ($key ne "total" and $key ne "abandoned"){
             push @housing, "$key: ".$city->{'housing'}->{$key};
         }
     }
-    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes";
+    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.";
 }
 sub describe_businesses {
     my @businesses;
@@ -221,10 +383,10 @@ sub describe_cityscape {
     my $housing=describe_housing();
     my $businesses=describe_businesses();
      $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 1 ? "1 is": $city->{'streets'}->{'roads'}." are";
+     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} eq "1" ? "1 is": $city->{'streets'}->{'mainroads'}." are";
      $city->{'streets'}->{'roads'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
     my $content="
-                    <section>
+                    <section id='cityscpae'>
                         <h2>Cityscape</h2>
                         <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} major.$port$walls$roads</p>
                         $districts
@@ -344,13 +506,27 @@ sub print_style{
         <style type='text/css'>
             body{
                 background-color:#44aa44;
-                width:800px;
+            }
+            section, header{
                 padding:5px;
+                width:800px;
                 margin:auto;
+            
             }
             ul{   
                 -moz-column-width:222px;
                 -webkit-column-width:222px ;
+            } 
+            .one-column {
+                -moz-column-width:800px;
+                -webkit-column-width:800px ;
+            } 
+            .one-column li {
+                padding-bottom:5px;
+            } 
+            .two-column ul{
+                -moz-column-width:250px;
+                -webkit-column-width:250px ;
             } 
         </style>\n";
 }
@@ -388,7 +564,124 @@ sub build_city {
 
     generate_economics();
 
+    generate_current_events();
+
 }
+
+###############################################################################
+#
+# generate_current_events - generate weather conditions, visible population,
+# and ongoing events.
+#
+###############################################################################
+sub generate_current_events {
+    generate_time();
+    generate_weather();
+    generate_visible_population();
+    generate_events();
+}
+
+
+###############################################################################
+#
+# generate_events - determine what is going on in the city currently.
+#
+###############################################################################
+sub generate_events {
+    my $event_chance=$xml_data->{'events'}->{'chance'};
+    my $limit=max(2, $city->{'size_modifier'}/2);
+    $city->{'eventslimit'}=$limit;
+    $city->{'events'}=[];
+    my @events;
+
+    for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
+        if ($limit > 0 ){
+            my $eventname=$event->{'type'};
+            my $desc = rand_from_array(  $event->{'option'}  )->{'content'};
+            push @{$city->{'events'}}, $desc.$eventname;
+            $limit--;
+        }
+    }
+
+}
+
+
+###############################################################################
+#
+# generate_visible_population - determine what percentage of the population is
+# out and about.
+#
+###############################################################################
+sub generate_visible_population {
+
+    my $pop=$city->{'population'};
+    my $timemodifier=$city->{'time'}->{'public_modifier'};
+    my $sizemodifier=$city->{'size_modifier'};
+
+    # baseline visiblepop is 1/(10+ size modifier) of the population
+    my $visiblepop=ceil($pop/(10+$sizemodifier) );
+
+    if ($timemodifier >0){
+        $visiblepop=$visiblepop*$timemodifier;
+    }elsif ($timemodifier <0){
+        # fancy calculation to make less people at night and more in the day
+        # I don't remember how this worked out so well.
+        $visiblepop=ceil sqrt($visiblepop/abs($timemodifier))+abs($timemodifier);
+        if ($sizemodifier >0){
+            $visiblepop*=$sizemodifier;
+        }
+    }
+
+    # If it's raining/snowing/etc, cut the population in half
+    if (defined $city->{'weather'}->{'precip'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    # If it's thundering, cut the population in half again
+    if (defined $city->{'weather'}->{'thunder'} ) {
+        $visiblepop=ceil($visiblepop/2);
+    }
+    # Finally, if it's not nice out, cut the population even further.
+    $visiblepop=ceil($visiblepop*$city->{'weather'}->{'tempmodifier'});
+
+    $city->{'visiblepopulation'}=$visiblepop;
+}
+###############################################################################
+#
+# generate_weather - set the weather, which determines visible population
+#
+###############################################################################
+sub generate_weather {
+    $city->{'weather'} ={};
+    $city->{'weather'}->{'forecast'} = rand_from_array( $xml_data->{'weather'}->{'forecast'}->{'option'} )->{'content'};
+    my $temp = rand_from_array( $xml_data->{'weather'}->{'temp'}->{'option'} );
+    $city->{'weather'}->{'tempmodifier'}=$temp->{'modifier'};
+    $city->{'weather'}->{'temp'}=$temp->{'content'};
+
+    $city->{'weather'}->{'air'} = rand_from_array( $xml_data->{'weather'}->{'air'}->{'option'} )->{'content'};
+    $city->{'weather'}->{'wind'} = rand_from_array( $xml_data->{'weather'}->{'wind'}->{'option'} )->{'content'};
+    $city->{'weather'}->{'clouds'} = rand_from_array( $xml_data->{'weather'}->{'clouds'}->{'option'} )->{'content'};
+    if (&d(100) <= $xml_data->{'weather'}->{'thunder'}->{'chance'}){
+        $city->{'weather'}->{'thunder'} = rand_from_array( $xml_data->{'weather'}->{'thunder'}->{'option'} )->{'content'};
+    }
+    if (&d(100) <= $xml_data->{'weather'}->{'precip'}->{'chance'}){
+        my $precip = rand_from_array( $xml_data->{'weather'}->{'precip'}->{'option'} );
+        $city->{'weather'}->{'precip'}= $precip->{'description'};
+        if (defined $precip->{'type'} ){
+            $city->{'weather'}->{'precip'} = rand_from_array( $precip->{'type'} )->{'content'} . $city->{'weather'}->{'precip'} ;
+
+        }
+    }
+}
+
+###############################################################################
+#
+# generate_time - set the current time, which determines visible population
+#
+###############################################################################
+sub generate_time {
+    $city->{'time'} = rand_from_array( $xml_data->{'time'}->{'option'} );
+}
+
 
 ###############################################################################
 #
@@ -401,11 +694,34 @@ sub generate_economics {
     generate_taverns();
     generate_travelers();
     generate_economic_description();
+    generate_education_description();
+    generate_magic_description();
+}
+###############################################################################
+#
+# generate_education_description - generate the economic description
+#
+###############################################################################
+sub generate_education_description {
+    my $educationtype     = roll_from_array( $city->{'education'}, $xml_data->{'education'}->{'option'} );
+    my $adjective     = rand_from_array( $educationtype->{'adjective'} )->{'content'};
+    $city->{'educationdescription'}=$adjective;
 }
 
 ###############################################################################
 #
-# generate_travelers - generate a few travelers
+# generate_magic_description - generate the economic description
+#
+###############################################################################
+sub generate_magic_description {
+    my $magictype     = roll_from_array( $city->{'magic'}, $xml_data->{'magic'}->{'option'} );
+    my $adjective     = rand_from_array( $magictype->{'adjective'} )->{'content'};
+    $city->{'magicdescription'}=$adjective;
+}
+
+###############################################################################
+#
+# generate_economic_description - generate the economic description
 #
 ###############################################################################
 sub generate_economic_description {
@@ -449,7 +765,7 @@ sub generate_taverns{
     if (defined $city->{'business'}->{'tavern/inn'}){
         $taverncount+=$city->{'business'}->{'tavern/inn'}->{'count'};
     }
-    $taverncount=max(5,  $taverncount);
+    $taverncount=min(5 ,  $taverncount);
     $city->{'taverns'}=[];
     while ($taverncount-- > 0){
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
@@ -465,13 +781,14 @@ sub generate_taverns{
         $tavern->{'cost'}+=$tavern->{'condition'}->{'cost_mod'};
         $tavern->{'condition'}=$tavern->{'condition'}->{'content'};
 
-        $tavern->{'class'}=rand_from_array( $xml_data->{'taverns'}->{'class'}   );
-        $tavern->{'cost'}+=$tavern->{'class'}->{'cost_mod'};
+        $tavern->{'class'}=roll_from_array( &d(100),$xml_data->{'taverns'}->{'class'}   );
+        $tavern->{'cost'}+=max(-5,min(5,$tavern->{'class'}->{'cost_mod'}));
         $tavern->{'class'}=$tavern->{'class'}->{'content'};
 
         $tavern->{'violence'}=rand_from_array( $xml_data->{'taverns'}->{'violence'}   )->{'content'};
         $tavern->{'legal'}=rand_from_array( $xml_data->{'taverns'}->{'legal'}   )->{'content'};
 
+        $tavern->{'costdescription'}=roll_from_array( $tavern->{'cost'}, $xml_data->{'taverns'}->{'cost'}   )->{'content'};
         $tavern->{'bartender'}=generate_bartender();
 
         push @{$city->{'taverns'}}, $tavern;
@@ -556,7 +873,7 @@ sub generate_markets {
                             };
             # set market secret
             if ( &d(100) <$market->{'secret'} ){
-                $newmarket->{'secret'}='(secret)';
+                $newmarket->{'secret'}='secret ';
             }else{
                 $newmarket->{'secret'}='';
             }
@@ -564,7 +881,7 @@ sub generate_markets {
             # select market detail
             if ( &d(100) > 50 ){
                 my $marketoption=rand_from_array($market->{'option'});
-                $newmarket->{'name'}= $marketoption->{'content'}.' '.$newmarket->{'name'};
+                $newmarket->{'name'}=  $newmarket->{'secret'}. $marketoption->{'content'}.' '.$newmarket->{'name'};
             }
 
             # push it to the queue
@@ -897,9 +1214,24 @@ sub generate_city_credence{
 
     # - generate laws
     set_laws();
+    
+    # - generate crime
+    generate_crime();
 
     #generate imprisonment rate
     generate_imprisonment_rate();
+}
+
+
+sub generate_crime{
+    #higher means more crime
+    # random -education + authority averaged with reversed morality.
+    # low morality= high reversed morality, which raises the average
+    my $crime_roll= int((&d(100) + $city->{'education'} - $city->{'authority'} + ( 100 - $city->{'moral'}) )/2);
+
+    $city->{'crime'}= roll_from_array($crime_roll, $xml_data->{'crime'}->{'option'});
+    $city->{'crime'}->{'roll'}=$crime_roll;
+
 }
 
 ###############################################################################
@@ -1049,7 +1381,7 @@ sub set_govt_type {
 
 sub set_laws {
     $city->{'laws'} = {};
-    for my $facet (qw( enforcement trial punishment )) {
+    for my $facet (qw( enforcement trial punishment enforcer commoncrime)) {
         my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
         $city->{'laws'}->{$facet} = rand_from_array(  $facetlist  )->{'content'};
     }
@@ -1174,6 +1506,11 @@ sub assign_races {
     # things added up to 99% for a reason.
     push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
 
+    for my $race ( @races ) {
+        my $roll= &d(20) + $race->{'tolerance'} ;
+        my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerance'}->{'option'} );
+        $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
+    }
 
     #replace race percentages with full race breakdowns.
     $city->{'races'} = \@races;

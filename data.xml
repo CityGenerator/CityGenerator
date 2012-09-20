@@ -15,8 +15,6 @@
     <city size="large city"   min="95"  max="99"  size_modifier="8"    minpop="15001"  maxpop="25000"  gplimit="25000"/>    
     <city size="capitol"      min="100" max="100" size_modifier="12"   minpop="25001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
-<tolerance>
-</tolerance>
 
 <resources>
     <resource type="beaches">
@@ -424,7 +422,9 @@
     <building weight='1' priority='10' perbuilding='10' district="civic">jailhouse</building>
     <building weight='1' priority='8'  perbuilding='4'  district="fineshops">jeweler</building>
     <building weight='3' priority='6'  perbuilding='10' district="industry">laborer</building>
+    <building weight='1' priority='8'  perbuilding='20' district="trade">mercenary</building>
     <building weight='2' priority='3'  perbuilding='4'  district="trade">leatherworker</building>
+    <building weight='10' priority='2' perbuilding='4'  district="official">law enforcement</building>
     <building weight='1' priority='7'  perbuilding='4'  district="education">library</building>
     <building weight='1' priority='10' perbuilding='4'  district="professional">locksmith</building>
     <building weight='1' priority='10' perbuilding='10' district="industry">lumbermill</building>
@@ -744,7 +744,7 @@
         <option modifier="0.40" >chilly</option>
         <option modifier="0.80" >cool</option>
         <option modifier="0.90" >mild</option>
-        <option modifier="1.00" >nice</option>
+        <option modifier="1.00" >pleasant</option>
         <option modifier="1.10" >warm</option>
         <option modifier="0.90" >hot</option>
         <option modifier="0.50" >unbearably hot</option>
@@ -791,7 +791,7 @@
     <thunder chance='20'> 
         <option>in the distance</option>
         <option>nearby</option>
-        <option>and lighting</option>
+        <option>and lighting approaching</option>
     </thunder>
     <clouds>
         <option>light</option>
@@ -816,25 +816,55 @@
 </time>
 
 <laws>
-   <enforcement>
-        <option>is loose</option>
-        <option>is strict</option>
-        <option>can be bribed</option>
-   </enforcement>
-   <punishment>
+    <enforcer>
+        <option>city guard</option>
+        <option>city watch</option>
+        <option>neighborhood watch</option>
+        <option>mob</option>
+        <option>sheriff</option>
+    </enforcer>
+    <enforcement>
+        <option>but are loosely enforced</option>
+        <option>and are strictly enforced</option>
+        <option>but are rarely enforced</option>
+        <option>who can be bribed</option>
+    </enforcement>
+    <punishment>
         <option>fines</option>
         <option>community service</option>
-        <option>eye for an eye</option>
+        <option>an eye for an eye</option>
         <option>hard labor</option>
-   </punishment>
-   <trial>
-        <option>done without trial</option>
-        <option>sentenced by a magistrate</option>
-        <option>sentenced by a council</option>
-        <option>sentenced by jurors</option>
-        <option>handled by mob rule</option>
-   </trial>   
+        <option>stoning</option>
+        <option>torture</option>
+        <option>execution</option>
+        <option>maiming</option>
+        <option>indentured servitude</option>
+    </punishment>
+    <commoncrime>
+        <option>petty theft</option>
+        <option>fraud</option>
+        <option>murder</option>
+        <option>domestic disturbance</option>
+        <option>treason</option>
+    </commoncrime>
+    <trial>
+        <option>without trial</option>
+        <option>by a kangaroo court</option>
+        <option>by a magistrate</option>
+        <option>by a council</option>
+        <option>by jurors</option>
+        <option>by mob rule</option>
+    </trial>   
 </laws>
+
+<crime>
+    <option min="1"   max="10">unheard of</option>
+    <option min="11"  max="30">rare</option>
+    <option min="31"  max="50">unusual</option>
+    <option min="51"  max="70">occasional</option>
+    <option min="71"  max="90">common</option>
+    <option min="91"  max="100">rampant</option>
+</crime>
 
 <cityname pre_chance="20" trailer_chance="20">
     <pre>Alta</pre>
@@ -1330,7 +1360,7 @@
     <trailer>Vernon</trailer>
 </cityname>
 
-<events chance="65" limit="2">
+<events>
     <event type="festival">
         <option>a religious </option>
         <option>a trade </option>
@@ -1556,21 +1586,22 @@
     <size cost_mod="0"  pop_mod="2" >regular</size>
     <size cost_mod="-2" pop_mod="4" >large</size>
     <condition cost_mod="-3">filthy</condition>
-    <condition cost_mod="-2">Dirty</condition>
+    <condition cost_mod="-2">dirty</condition>
     <condition cost_mod="-0">decent</condition>
     <condition cost_mod="4" >upscale</condition>
-    <class cost_mod="-4">poor</class>
-    <class cost_mod="-2">low</class>
-    <class cost_mod="0" >middle</class>
-    <class cost_mod="2" >high</class>
-    <class cost_mod="4" >wealthy</class>
-    <violence >ignored</violence>
-    <violence >loser thrown out</violence>
-    <violence >not tolerated</violence>
-    <legal>Law harasses</legal>
-    <legal>Law ignores</legal>
-    <legal>Law accepts bribes</legal>
-    <legal>Law protects</legal>
+    <class cost_mod="-4" min='1'  max='25'  >poor</class>
+    <class cost_mod="-2" min='26' max='45'  >low-class</class>
+    <class cost_mod="0"  min='46' max='85'  >middle-class</class>
+    <class cost_mod="2"  min='86' max='95'  >high-class</class>
+    <class cost_mod="4"  min='96' max='100' >wealthy</class>
+    <violence >ignoring it</violence>
+    <violence >throwing the loser out</violence>
+    <violence >swift justice</violence>
+    <violence >calling the city watch</violence>
+    <legal>harasses</legal>
+    <legal>ignores</legal>
+    <legal>accepts bribes from</legal>
+    <legal>protects</legal>
     <entertainment limit="2">
         <option>whores</option>
             <option>Poker</option>
@@ -1578,6 +1609,11 @@
             <option>Blackjack</option>
             <option>Dice</option>
     </entertainment>
+    <cost min='-5' max='-4'>insanely cheap</cost>
+    <cost min='-3' max='-2'>well priced</cost>
+    <cost min='-1' max='1'>reasonably priced</cost>
+    <cost min='2' max='3'>somewhat expensive</cost>
+    <cost min='4' max='5'>insanely expensive</cost>
 </taverns>
 
 
@@ -1748,19 +1784,85 @@
         <adjective>vibrant</adjective>
         <adjective>healthy</adjective>
         <adjective>good</adjective>
+        <adjective>flourishing</adjective>
+        <adjective>lively</adjective>
         <adjective>growing</adjective>
     </option>
     <option type="neutral" min='-1' max='1'>
         <adjective>stable</adjective>
-        <adjective>pleasant</adjective>
-        <adjective>stoic</adjective>
+        <adjective>insulated</adjective>
+        <adjective>calm</adjective>
+        <adjective>unwavering</adjective>
+        <adjective>resiliant</adjective>
+        <adjective>steadfast</adjective>
+        <adjective>steady</adjective>
     </option>
     <option type="negative" min='-5' max='-2'>
         <adjective>weak</adjective>
         <adjective>failing</adjective>
+        <adjective>shakey</adjective>
+        <adjective>uncertain</adjective>
         <adjective>crumbling</adjective>
+        <adjective>isolated</adjective>
     </option>
 </economy>
+<tolerance>
+    <option type="positive" min='16' max='25'>
+        <adjective>is accepting of</adjective>
+        <adjective>accepts</adjective>
+        <adjective>loves</adjective>
+    </option>
+    <option type="neutral" min='5' max='15'>
+        <adjective>is neutral towards</adjective>
+        <adjective>ignores</adjective>
+    </option>
+    <option type="negative" min='-5' max='4'>
+        <adjective>is critical of</adjective>
+        <adjective>despises</adjective>
+        <adjective>hates</adjective>
+    </option>
+</tolerance>
+<education>
+    <option type="positive" min='2' max='5'>
+        <adjective>high</adjective>
+        <adjective>expected</adjective>
+        <adjective>enforced</adjective>
+        <adjective>flourishing</adjective>
+        <adjective>growing</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>instutionalized</adjective>
+        <adjective>middling</adjective>
+        <adjective>mediocre</adjective>
+        <adjective>allowed, but not enforced</adjective>
+    </option>
+    <option type="negative" min='-5' max='-2'>
+        <adjective>mocked</adjective>
+        <adjective>low</adjective>
+        <adjective>poor</adjective>
+        <adjective>rare</adjective>
+    </option>
+</education>
+<magic>
+    <option type="positive" min='2' max='5'>
+        <adjective>common</adjective>
+        <adjective>plentiful</adjective>
+        <adjective>accepted</adjective>
+        <adjective>flourishing</adjective>
+        <adjective>growing</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>instutionalized</adjective>
+        <adjective>rare but accepted</adjective>
+        <adjective>isolated</adjective>
+        <adjective>allowed</adjective>
+    </option>
+    <option type="negative" min='-5' max='-2'>
+        <adjective>not a factor</adjective>
+        <adjective>rarely used</adjective>
+        <adjective>rare</adjective>
+    </option>
+</magic>
 
 <topography>
     <region>mountainous</region>
@@ -1769,17 +1871,18 @@
     <region>glacial</region>
     <region>sandy</region>
 </topography>
-
 <neighbor>
     <relation>has a neutral relationship with</relation>
     <relation>has strained relations with</relation>
     <relation>is wary of </relation>
     <relation>is cautious of</relation>
+    <relation>is in a trade war with</relation>
     <relation>is watchful of</relation>
     <relation>is distrustful of</relation>
     <relation>is cordial towards </relation>
     <relation>is friendly with</relation>
     <relation>is at war with</relation>
+    <relation>is on the verge of war with</relation>
     <relation>is embargoing</relation>
     <relation>is allied with</relation>
     <relation>is ready for war with</relation>
