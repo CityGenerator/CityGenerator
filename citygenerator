@@ -12,21 +12,15 @@ my $xml = new XML::Simple;
 ###########################################################
 # Yes, this is sloppy. I am aware, but it's also unique.
 # Unique, Ubiquitous Singletons.
-
-
-
-
-
-
-
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $seed=set_seed();
 srand $seed;
+
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 #TODO travelers
-
+#TODO add moral and order descriptors to the population.
 
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
@@ -101,14 +95,14 @@ sub describe_city {
 #######################################################################################################################
 sub describe_precipitation {
     if (defined $city->{'weather'}->{'precip'}){
-        return "and ".$city->{'weather'}->{'precip'};
+        return " and ".$city->{'weather'}->{'precip'};
     }else{
         return "";
     }
 }
 sub describe_thunder {
     if (defined $city->{'weather'}->{'thunder'}){
-        return "There is Thunder ".$city->{'weather'}->{'precip'}.".";
+        return $city->{'weather'}->{'thunder'};
     }else{
         return "";
     }
@@ -128,7 +122,7 @@ sub describe_current_events{
                         <h2>Current Events</h2>
                         <p>You arrive around $city->{'time'}->{'content'}, and can find $city->{'visiblepopulation'} citizens wandering the town.</p>
                         <h3>Weather</h3>
-                        <p>The sky is $city->{'weather'}->{'clouds'}, the air is $city->{'weather'}->{'air'}, and the wind is $city->{'weather'}->{'wind'}. The temperature is $city->{'weather'}->{'temp'}$precipitation.$thunder</p>
+                        <p>The sky is $city->{'weather'}->{'clouds'}, the air is $city->{'weather'}->{'air'}, and the wind is $city->{'weather'}->{'wind'}. The temperature is $city->{'weather'}->{'temp'}$precipitation. $thunder</p>
                         <h3>Events</h3>
                         <p>Approaching the city, you can find the following events:</p>
                          $events
@@ -176,7 +170,7 @@ sub describe_population{
     my $content="
                     <section id='population'>
                         <h2>Population</h2>
-                        <p>$city->{'name'} is a $city->{'poptype'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown:</p>
+                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
                         $populations
                         <h3>Race Relations</h3>
                         $racerelations 
@@ -197,8 +191,11 @@ sub describe_resources {
 }
 sub describe_taverns {
     my @taverns;
+    my $tavernpoptotal=0;
     foreach my $tavern (sort {$a->{'name'} cmp $b->{'name'}} @{$city->{'taverns'}}){
-        push @taverns, describe_tavern($tavern);
+        my $tavernstring;
+        ($tavernstring,$tavernpoptotal) = describe_tavern($tavern,$tavernpoptotal);
+        push @taverns, $tavernstring;
     }
     my $content="";
     if  (scalar(@taverns) >0 ){
@@ -210,8 +207,16 @@ sub describe_taverns {
     return $content;
 }
 sub describe_tavern{
-    my ($tavern)=@_;
-    return "<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'} that seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. ";
+    my ($tavern,$tavernpoptotal)=@_;
+    #max =d(12+4 )+10=26
+    my $tavernmod= &d($city->{'size_modifier'}+$tavern->{'population'})*2 + $city->{'time'}->{'bar_mod'}  ;
+
+    my $tavernpop=max(0,  min(  int($city->{'population'}/2),   $tavernmod  )  );
+    if ($tavernpoptotal+$tavernpop <= int($city->{'population'}/2)){
+        $tavern->{'pop_count'}= $tavernpop;
+        $tavernpoptotal+=$tavernpop;
+    }
+    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'} that seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
 }
 
 sub describe_localinfo{
@@ -232,7 +237,7 @@ sub describe_economy{
                         <h2>Economy</h2>
                         <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.
                         <h3>Resources</h3>
-                            <p>$city->{'name'} is know for the following:</p>$resources
+                            <p>$city->{'name'} is known for the following:</p>$resources
                         <h3>Taverns</h3>
                             $taverns
                         <h3>Local Info</h3>
@@ -305,13 +310,11 @@ sub describe_government{
                         <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'imprisonment'}->{'percent'}% of the population ($city->{'imprisonment'}->{'population'} adult[s]).</p>
                     </section>
 ";
-
-
 }
 
 
 sub describe_summary {
-    if ($city->{'dominant_race'}){$city->{'dominant_race'}=", which is overwhelmingly ".$city->{'dominant_race'}; }else{$city->{'dominant_race'}=""}
+    if ($city->{'dominant_race'}){$city->{'dominant_race'}=" which is overwhelmingly ".$city->{'dominant_race'}; }else{$city->{'dominant_race'}=""}
     my $content="
                     <header>
                         <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
@@ -703,7 +706,7 @@ sub generate_economics {
 #
 ###############################################################################
 sub generate_education_description {
-    my $educationtype     = roll_from_array( $city->{'education'}, $xml_data->{'education'}->{'option'} );
+    my $educationtype     = roll_from_array( $city->{'education'}, $xml_data->{'educationalignment'}->{'option'} );
     my $adjective     = rand_from_array( $educationtype->{'adjective'} )->{'content'};
     $city->{'educationdescription'}=$adjective;
 }
@@ -714,7 +717,7 @@ sub generate_education_description {
 #
 ###############################################################################
 sub generate_magic_description {
-    my $magictype     = roll_from_array( $city->{'magic'}, $xml_data->{'magic'}->{'option'} );
+    my $magictype     = roll_from_array( $city->{'magic'}, $xml_data->{'magicalignment'}->{'option'} );
     my $adjective     = rand_from_array( $magictype->{'adjective'} )->{'content'};
     $city->{'magicdescription'}=$adjective;
 }
@@ -725,7 +728,7 @@ sub generate_magic_description {
 #
 ###############################################################################
 sub generate_economic_description {
-    my $econtype     = roll_from_array( $city->{'economy'}, $xml_data->{'economy'}->{'option'} );
+    my $econtype     = roll_from_array( $city->{'economy'}, $xml_data->{'economyalignment'}->{'option'} );
     my $adjective     = rand_from_array( $econtype->{'adjective'} )->{'content'};
     $city->{'economydescription'}=$adjective;
 }
@@ -1395,19 +1398,18 @@ sub set_laws {
 #
 ###############################################################################
 sub generate_city_ethics {
-    $city->{'moral'} = &d(100);
-    $city->{'order'} = &d(100);
-
-    # adjust all modifiers for each race
-    for my $race ( @{ $city->{'races'} } ) {
-        $city->{'moral'} += $race->{'moral'};
-        $city->{'order'} += $race->{'order'};
+    foreach my $mod ( qw/ moral order/ ) {
+        $city->{$mod} = &d(100);
+        # adjust all modifiers for each race
+        for my $race ( @{ $city->{'races'} } ) {
+            $city->{$mod} += $race->{$mod};
+        }
+        # Use min/max to ensure that we fall in the proper ranges when all is said and done        
+        $city->{$mod}=max(1, min(100, $city->{$mod} ) );
+        # choose a description
+        my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
+        $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
     }
-
-    # Use min/max to ensure that we fall in the proper ranges when all is said and done        
-    $city->{'moral'}=max(1, min(100, $city->{'moral'} ) );
-    $city->{'order'}=max(1, min(100, $city->{'order'} ) );
-
 }
 ###############################################################################
 #
@@ -1418,21 +1420,19 @@ sub generate_city_ethics {
 sub generate_city_beliefs {
 
     # set the baseline random modifier
-    foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
-        $city->{$scale}    =&d(4)-2;
-    }
-
-    # adjust all modifiers for each race
-    for my $race ( @{ $city->{'races'} } ) {
-        foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
-            $city->{$scale} += $race->{$scale};
+    foreach my $mod (qw/ magic authority economy education travel tolerance/ ){
+        $city->{$mod} =&d(4)-2;
+        # adjust all modifiers for each race
+        for my $race ( @{ $city->{'races'} } ) {
+            $city->{$mod} += $race->{$mod};
         }
+
+        # Use min/max to ensure that we fall in the proper ranges when all is said and done        
+        $city->{$mod} = max(-5, min(5, $city->{$mod} ) );
+        my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
+        $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
     }
 
-    # Use min/max to ensure that we fall in the proper ranges when all is said and done        
-    foreach my $scale (qw/ magic authority economy education travel tolerance/ ){
-        $city->{$scale}=max(-5, min(5, $city->{$scale} ) );
-    }
 
 }
 
@@ -1507,8 +1507,8 @@ sub assign_races {
     push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
 
     for my $race ( @races ) {
-        my $roll= &d(20) + $race->{'tolerance'} ;
-        my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerance'}->{'option'} );
+        my $roll= &d(10)-5 + $race->{'tolerance'} ;
+        my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerancealignment'}->{'option'} );
         $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
     }
 
@@ -1608,8 +1608,8 @@ sub generate_city_name {
     $city->{'nameobj'} = $nameobject;
     my $name="";
 
-    if (defined $nameobject->{'pre'}){
-        $name=$nameobject->{'pre'}." ";
+    if (defined $nameobject->{'title'}){
+        $name=$nameobject->{'title'}." ";
     }
     $name.=$nameobject->{'root'}.$nameobject->{'post'};
     if (defined $nameobject->{'trailer'}){
@@ -1700,9 +1700,24 @@ sub roll_from_array {
     my ( $roll, $items ) = @_;
     my $selected_item = $items->[0];
     for my $item (@$items) {
-        if ( $item->{'min'} <= $roll and $item->{'max'} >= $roll ) {
-            $selected_item = $item;
-            last;
+        if (defined $item->{'min'} and defined $item->{'max'} ){
+            if ( $item->{'min'} <= $roll and $item->{'max'} >= $roll ) {
+                $selected_item = $item;
+                last;
+            }
+        }elsif ( defined $item->{'min'}   and ! defined $item->{'max'} ){
+            if ( $item->{'min'} <= $roll ) {
+                $selected_item = $item;
+                last;
+            }
+        }elsif ( ! defined $item->{'min'} and   defined $item->{'max'} ){
+            if ( $item->{'max'} >= $roll ) {
+                $selected_item = $item;
+                last;
+            }
+        }elsif ( ! defined $item->{'min'} and !  defined $item->{'max'} ){
+                $selected_item = $item;
+                last;
         }
     }
     return $selected_item;
@@ -1741,7 +1756,7 @@ sub parse_object {
     my ($object)=@_;
     my $newobj= { 'list'=>[]};
     # We currently only care about 4 parts
-    foreach my $part (qw/ pre root post trailer/){
+    foreach my $part (qw/title pre root post trailer/){
         # Make sure that the part exists for this object.
         if(defined $object->{$part}){
 

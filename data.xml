@@ -507,7 +507,7 @@
     <option type="densly"   feetpercapita="1000"/>
 </popdensity>
 <poptypes>
-    <population type="secluded" min='1' max='35' haspest='5' >
+    <population type="isolated" min='1' max='35' haspest='5' >
         <option percent="98" dominant='true'/>
         <option percent="1" />
     </population>
@@ -547,7 +547,7 @@
     <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3' >Halfling</race>
     <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5' >Half-elf</race>
     <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2' >Half-orc</race>
-    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Gullydwarf</race>
+    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Half-dwarf</race>
 
     <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2' >other</race>
 
@@ -789,13 +789,17 @@
         </option>
     </precip>
     <thunder chance='20'> 
-        <option>in the distance</option>
-        <option>nearby</option>
-        <option>and lighting approaching</option>
+        <option>There is thunder in the distance.</option>
+        <option>There is thunder nearby.</option>
+        <option>There is thunder overhead.</option>
+        <option>Thunder rumbles in the distance.</option>
+        <option>Thunder and lighting approach.</option>
+        <option>There is powerful storm approaching.</option>
+        <option>Lightning lights the sky.</option>
     </thunder>
     <clouds>
-        <option>light</option>
-        <option>thick</option>
+        <option>lightly cloudy</option>
+        <option>cloudly</option>
         <option>dark</option>
         <option>overcast</option>
     </clouds>
@@ -866,25 +870,25 @@
     <option min="91"  max="100">rampant</option>
 </crime>
 
-<cityname pre_chance="20" trailer_chance="20">
-    <pre>Alta</pre>
-    <pre>Bad</pre>
-    <pre>Big</pre>
-    <pre>East</pre>
-    <pre>Grand</pre>
-    <pre>Great</pre>
-    <pre>Holy</pre>
-    <pre>Lower</pre>
-    <pre>Mount</pre>
-    <pre>New</pre>
-    <pre>North</pre>
-    <pre>Old</pre>
-    <pre>Port</pre>
-    <pre>Saint</pre>
-    <pre>San</pre>
-    <pre>South</pre>
-    <pre>Upper</pre>
-    <pre>West</pre>
+<cityname title_chance="20" trailer_chance="20">
+    <title>Alta</title>
+    <title>Bad</title>
+    <title>Big</title>
+    <title>East</title>
+    <title>Grand</title>
+    <title>Great</title>
+    <title>Holy</title>
+    <title>Lower</title>
+    <title>Mount</title>
+    <title>New</title>
+    <title>North</title>
+    <title>Old</title>
+    <title>Port</title>
+    <title>Saint</title>
+    <title>San</title>
+    <title>South</title>
+    <title>Upper</title>
+    <title>West</title>
 
     <root>Ack</root>
     <root>Ad</root>
@@ -1583,7 +1587,7 @@
     <trailer>Taproom</trailer>
 
     <size cost_mod="2"  pop_mod="1" >small</size>
-    <size cost_mod="0"  pop_mod="2" >regular</size>
+    <size cost_mod="0"  pop_mod="2" >average</size>
     <size cost_mod="-2" pop_mod="4" >large</size>
     <condition cost_mod="-3">filthy</condition>
     <condition cost_mod="-2">dirty</condition>
@@ -1722,7 +1726,7 @@
 </behavioraltraits>
 
 <orderalignment >
-    <option name="chaotic" min='1' max='33'>
+    <option type="chaotic" min='1' max='33'>
         <adjective>unreliable</adjective>
         <adjective>irresponsible</adjective>
         <adjective>questionable</adjective>
@@ -1731,26 +1735,25 @@
         <adjective>incoherent</adjective>
         <adjective>vague</adjective>
     </option>
-    <option name="neutral" min='34' max='66'>
+    <option type="neutral" min='34' max='66'>
         <adjective>bystanding</adjective>
         <adjective>detached</adjective>
         <adjective>non-participating</adjective>
         <adjective>non-conformist</adjective>
         <adjective>unflappable</adjective>
     </option>
-    <option name="lawful" min='67' max='100'>
+    <option type="lawful" min='67' max='100'>
         <adjective>reliable</adjective>
         <adjective>dependable</adjective>
         <adjective>sure</adjective>
         <adjective>legitimized</adjective>
-        <adjective>official</adjective>
         <adjective>organized</adjective>
         <adjective>dutiful</adjective>
         <adjective>honorable</adjective>
     </option>
 </orderalignment>
 <moralalignment >
-    <option name="evil" min='1' max='33'>
+    <option type="evil" min='1' max='33'>
         <adjective>untrustworthy</adjective>
         <adjective>mean</adjective>
         <adjective>venomous</adjective>
@@ -1761,14 +1764,14 @@
         <adjective>villianous</adjective>
         <adjective>nefarious</adjective>
     </option>
-    <option name="neutral" min='34' max='66'>
+    <option type="neutral" min='34' max='66'>
         <adjective>unconcerned</adjective>
         <adjective>undecided</adjective>
         <adjective>uncomitted</adjective>
         <adjective>cold</adjective>
         <adjective>indifferent</adjective>
     </option>
-    <option name="good" min='67' max='100'>
+    <option type="good" min='67' >
         <adjective>well meaning</adjective>
         <adjective>trustworty</adjective>
         <adjective>nice</adjective>
@@ -1779,8 +1782,8 @@
     </option>
 </moralalignment>
 
-<economy>
-    <option type="positive" min='2' max='5'>
+<economyalignment>
+    <option type="positive" min='2'    >
         <adjective>vibrant</adjective>
         <adjective>healthy</adjective>
         <adjective>good</adjective>
@@ -1797,33 +1800,60 @@
         <adjective>steadfast</adjective>
         <adjective>steady</adjective>
     </option>
-    <option type="negative" min='-5' max='-2'>
+    <option type="negative"      max='-2'>
         <adjective>weak</adjective>
         <adjective>failing</adjective>
         <adjective>shakey</adjective>
         <adjective>uncertain</adjective>
         <adjective>crumbling</adjective>
-        <adjective>isolated</adjective>
     </option>
-</economy>
-<tolerance>
-    <option type="positive" min='16' max='25'>
+</economyalignment>
+<tolerancealignment>
+    <option type="positive" min='2' >
         <adjective>is accepting of</adjective>
         <adjective>accepts</adjective>
         <adjective>loves</adjective>
     </option>
-    <option type="neutral" min='5' max='15'>
+    <option type="neutral" min='-1' max='1'>
         <adjective>is neutral towards</adjective>
         <adjective>ignores</adjective>
     </option>
-    <option type="negative" min='-5' max='4'>
+    <option type="negative"  max='-2'>
         <adjective>is critical of</adjective>
         <adjective>despises</adjective>
         <adjective>hates</adjective>
     </option>
-</tolerance>
-<education>
-    <option type="positive" min='2' max='5'>
+</tolerancealignment>
+<travelalignment>
+    <option type="positive" min='2' >
+        <adjective>is a travel hub</adjective>
+        <adjective>has many travelers</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>has some travelers</adjective>
+        <adjective>has occasional travelers</adjective>
+    </option>
+    <option type="negative"  max='-2'>
+        <adjective>has few travelers</adjective>
+        <adjective>has no travelers</adjective>
+    </option>
+</travelalignment>
+<authorityalignment>
+    <option type="positive" min='2' >
+        <adjective>is very authoritarian</adjective>
+        <adjective>is very strict</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>is neutral towards</adjective>
+        <adjective>ignores</adjective>
+    </option>
+    <option type="negative"  max='-2'>
+        <adjective>is chaotic</adjective>
+        <adjective>is a mess</adjective>
+    </option>
+</authorityalignment>
+<educationalignment>
+    <option type="positive" min='2'      >
         <adjective>high</adjective>
         <adjective>expected</adjective>
         <adjective>enforced</adjective>
@@ -1836,15 +1866,15 @@
         <adjective>mediocre</adjective>
         <adjective>allowed, but not enforced</adjective>
     </option>
-    <option type="negative" min='-5' max='-2'>
+    <option type="negative"         max='-2'>
         <adjective>mocked</adjective>
         <adjective>low</adjective>
         <adjective>poor</adjective>
         <adjective>rare</adjective>
     </option>
-</education>
-<magic>
-    <option type="positive" min='2' max='5'>
+</educationalignment>
+<magicalignment>
+    <option type="positive" min='2'      >
         <adjective>common</adjective>
         <adjective>plentiful</adjective>
         <adjective>accepted</adjective>
@@ -1854,15 +1884,14 @@
     <option type="neutral" min='-1' max='1'>
         <adjective>instutionalized</adjective>
         <adjective>rare but accepted</adjective>
-        <adjective>isolated</adjective>
         <adjective>allowed</adjective>
     </option>
-    <option type="negative" min='-5' max='-2'>
+    <option type="negative"         max='-2'>
         <adjective>not a factor</adjective>
         <adjective>rarely used</adjective>
         <adjective>rare</adjective>
     </option>
-</magic>
+</magicalignment>
 
 <topography>
     <region>mountainous</region>
