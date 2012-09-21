@@ -18,9 +18,9 @@
 
 <resources>
     <resource type="beaches">
-        <pre>pristine</pre>
-        <pre>plentiful</pre>
-        <pre>ruined</pre>
+        <title>pristine</title>
+        <title>plentiful</title>
+        <title>ruined</title>
         <root>yellow</root>
         <root>red</root>
         <root>white</root>
@@ -29,10 +29,10 @@
         <post>sandy beaches</post>
     </resource>
     <resource type="wildlife">
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>endangered</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
         <root>woodland</root>
         <root>aquatic</root>
         <root>marine</root>
@@ -40,10 +40,10 @@
         <post>wildlife</post>
     </resource>
     <resource types="foods">
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>endangered</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
         <root>cocoa bean</root>
         <root>basil</root>
         <root>carrot</root>
@@ -75,9 +75,9 @@
         <post>crops</post>
     </resource>
     <resource type="metals">
-        <pre>plentiful</pre>
-        <pre>crucial</pre>
-        <pre>abandoned</pre>
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>abandoned</title>
         <root>copper</root>
         <root>gold</root>
         <root>iron</root>
@@ -97,9 +97,9 @@
         <post>mines</post>
     </resource>
     <resource type="gem">
-        <pre>plentiful</pre>
-        <pre>crucial</pre>
-        <pre>long-abandoned</pre>
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>long-abandoned</title>
         <root>diamond</root>
         <root>emerald</root>
         <root>ruby</root>
@@ -117,9 +117,9 @@
         <post>mines</post>
     </resource>
     <resource type="minerals">
-        <pre>plentiful</pre>
-        <pre>crucial</pre>
-        <pre>abandoned</pre>
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>abandoned</title>
 
         <root>graphite</root>
         <root>bauxite</root>
@@ -146,10 +146,10 @@
     </resource>
 
     <resource type='harvests'>
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>endangered</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
         <root>crab</root>
         <root>crayfish</root>
         <root>finfish</root>
@@ -165,9 +165,9 @@
     </resource>
 
     <resource type='herd animals'>
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
 
         <root>cattle</root>
         <root>goat</root>
@@ -180,10 +180,10 @@
     </resource>
 
     <resource type='wood'>
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>endangered</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
 
         <root>hardwood</root>
         <root>softwood</root>
@@ -205,9 +205,9 @@
     </resource>
 
     <resource type="quarries">
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
 
         <root>granite</root>
         <root>gravel and sand</root>
@@ -223,11 +223,11 @@
     </resource>
 
     <resource type="locales">
-        <pre></pre>
-        <pre>nearby</pre>
-        <pre>renowned</pre>
-        <pre>famous</pre>
-        <pre>amazing</pre>
+        <title></title>
+        <title>nearby</title>
+        <title>renowned</title>
+        <title>famous</title>
+        <title>amazing</title>
 
         <root>glaciers</root>
         <root>deepwater harbors</root>
@@ -299,9 +299,9 @@
     </resource>
 
     <resource type="product">
-        <pre>plentiful</pre>
-        <pre>now scarce</pre>
-        <pre>unique</pre>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
 
         <root>marbles</root>
         <root>pottery</root>
@@ -314,17 +314,17 @@
 </resources>
 
 <streets>
-    <pre>rough</pre>
-    <pre>broken</pre>
-    <pre>pristine</pre>
-    <pre>irregular</pre>
-    <pre>smooth</pre>
-    <pre>bumpy</pre>
-    <pre>crude</pre>
-    <pre>even</pre>
-    <pre>well-maintained</pre>
-    <pre>filthy</pre>
-    <pre>muddy</pre>
+    <title>rough</title>
+    <title>broken</title>
+    <title>pristine</title>
+    <title>irregular</title>
+    <title>smooth</title>
+    <title>bumpy</title>
+    <title>crude</title>
+    <title>even</title>
+    <title>well-maintained</title>
+    <title>filthy</title>
+    <title>muddy</title>
 
     <root>dirt roads</root>
     <root>dirt tracks</root>
@@ -345,12 +345,12 @@
 </streets>
 
 <walls chance='10' >
-    <pre></pre>
-    <pre>low</pre>
-    <pre>high</pre>
-    <pre>fortified</pre>
-    <pre>thick</pre>
-    <pre>massive</pre>
+    <title></title>
+    <title>low</title>
+    <title>high</title>
+    <title>fortified</title>
+    <title>thick</title>
+    <title>massive</title>
 
     <root>wood</root>
     <root>stone</root>
@@ -870,7 +870,7 @@
     <option min="91"  max="100">rampant</option>
 </crime>
 
-<cityname title_chance="20" trailer_chance="20">
+<cityname title_chance="20" pre_chance="5" trailer_chance="20">
     <title>Alta</title>
     <title>Bad</title>
     <title>Big</title>
@@ -890,6 +890,8 @@
     <title>Upper</title>
     <title>West</title>
 
+<pre>De</pre>
+<pre>Le</pre>
     <root>Ack</root>
     <root>Ad</root>
     <root>Ail</root>

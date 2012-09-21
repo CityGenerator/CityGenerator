@@ -1611,6 +1611,9 @@ sub generate_city_name {
     if (defined $nameobject->{'title'}){
         $name=$nameobject->{'title'}." ";
     }
+    if (defined $nameobject->{'pre'}){
+        $name.=$nameobject->{'pre'};
+    }
     $name.=$nameobject->{'root'}.$nameobject->{'post'};
     if (defined $nameobject->{'trailer'}){
         $name.=" ".$nameobject->{'trailer'};

@@ -1,0 +1,51 @@
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<names>
+    <human>
+        <firstname title_chance='5' pre_chance='5' post='70'>
+            <title>Sir</title>
+            <title>Pastor</title>
+            <title>General</title>
+
+            <pre>Le</pre>
+            <pre>De</pre>
+            <pre>Da</pre>
+
+            <root>Dan</root>
+            <root>Jo</root>
+            <root>Jam</root>
+            <root>Dav</root>
+            <root>Mick</root>
+            <root>Don</root>
+
+            <post>ey</post>
+            <post>e</post>
+            <post>es</post>
+            <post>ry</post>
+            <post>ic</post>
+        </firstname>
+        <lastname>
+
+            <root>Mor</root>
+            <root>Clay</root>
+            <root>Mat</root>
+            <root>Tram</root>
+            <root>Dav</root>
+            <root>Dil</root>
+            <root>Smith</root>
+            <root>Jack</root>
+            <root>Robert</root>
+            <root>Dan</root>
+            <root>Jame</root>
+            <root>Peter</root>
+
+            <post>hews</post>
+            <post>mell</post>
+            <post>ore</post>
+            <post>sone</post>
+            <post>gan</post>
+            <post>man</post>
+        </lastname>
+    </human>
+</names>
