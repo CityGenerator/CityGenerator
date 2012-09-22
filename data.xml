@@ -23,6 +23,7 @@
         <title>pristine</title>
         <title>plentiful</title>
         <title>ruined</title>
+        <title></title>
         <root>yellow</root>
         <root>red</root>
         <root>white</root>
@@ -35,6 +36,7 @@
         <title>now scarce</title>
         <title>endangered</title>
         <title>unique</title>
+        <title></title>
         <root>woodland</root>
         <root>aquatic</root>
         <root>marine</root>

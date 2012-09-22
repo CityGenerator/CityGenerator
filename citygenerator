@@ -399,11 +399,15 @@ sub describe_businesses {
     #return Dumper $city->{'business'};
     if ( scalar (keys %{$city->{'business'}}) > 0){
         my @businesses;
+        my $buildingcount=0;
+        my $specialistcount=0;
         foreach my $key (sort keys %{$city->{'business'}}){
             my $business=$city->{'business'}->{$key};
             push @businesses, $business->{'count'}." ".$key." ($business->{'specialists'} specialists)";
+            $specialistcount+=$business->{'specialists'};
+            $buildingcount+=$business->{'count'};
         }
-        return "You can find the following businesses:<ul><li>".join('</li><li>',@businesses)."</li></ul>";
+        return "You can find the following businesses:<ul><li>".join('</li><li>',@businesses)."</li></ul><p>Total: $buildingcount buildings, $specialistcount specialists.</p>";
     }else{
         return "The city contains no businesses.";
     } 
@@ -1113,14 +1117,16 @@ sub generate_businesses{
             if (@{$junkpriority{$priority}} >=1){
                 my @businesses=shuffle @{$junkpriority{$priority}};
                 my $newbusiness=pop @businesses;
-                if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
-                    $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1} ;
-                    $city->{'business'}->{$newbusiness->{'content'}}->{'perbuilding'}=$newbusiness->{'perbuilding'};
-                    $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
-                    $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
-                    $city->{'business'}->{$newbusiness->{'content'}}->{'requires_size'}   =$newbusiness->{'requires_size'};
-                }else{
-                    $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+                if (  $city->{'size_modifier'}  >=   $newbusiness->{'requires_size'}  ){
+                    if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+                        $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1} ;
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'perbuilding'}=$newbusiness->{'perbuilding'};
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'requires_size'}   =$newbusiness->{'requires_size'};
+                    }else{
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+                    }
                 }
                 $city->{'business'}->{'estimate'}--;
                 $junkpriority{$priority}=\@businesses;
@@ -1134,7 +1140,8 @@ sub generate_businesses{
 
         @weightedbusinesses=shuffle @weightedbusinesses;
         my $newbusiness=$weightedbusinesses[0];
-        if ( $newbusiness->{'requires_size'} <= $city->{'size_modifier'} ){
+        # To show, an alchemist (0), the modifier must be 0 or greater
+        if (  $city->{'size_modifier'}  >=   $newbusiness->{'requires_size'}  ){
             if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
                 #print Dumper $newbusiness->{'district'};
                 $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
