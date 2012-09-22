@@ -798,25 +798,25 @@
         <option>Lightning lights the sky.</option>
     </thunder>
     <clouds>
-        <option>lightly cloudy</option>
-        <option>cloudly</option>
-        <option>dark</option>
-        <option>overcast</option>
+        <option>is slightly cloudy</option>
+        <option>is cloudly</option>
+        <option>is dark with clouds</option>
+        <option>is overcast</option>
     </clouds>
 </weather>
 
 <time>
-    <option time="06:00" public_modifier="0"  bar_mod="0"  >daybreak</option>
+    <option time="06:00" public_modifier="0"  bar_mod="0"  >at daybreak</option>
     <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4"  >noon</option>
-    <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
+    <option time="12:00" public_modifier="4"  bar_mod="4"  >around noon</option>
+    <option time="02:00" public_modifier="3"  bar_mod="2"  >in the afternoon</option>
     <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
-    <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
-    <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10" >after dark</option>
-    <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
-    <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
-    <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
+    <option time="06:00" public_modifier="1"  bar_mod="6"  >in the early evening</option>
+    <option time="08:00" public_modifier="0"  bar_mod="8"  >before nightfall</option>
+    <option time="10:00" public_modifier="-1" bar_mod="10" >after nightfall</option>
+    <option time="00:00" public_modifier="-3" bar_mod="8"  >at midnight</option>
+    <option time="02:00" public_modifier="-4" bar_mod="4"  >in the dead of night</option>
+    <option time="04:00" public_modifier="-2" bar_mod="0"  >before dawn</option>
 </time>
 
 <laws>
