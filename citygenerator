@@ -21,7 +21,7 @@ srand $seed;
 our $city={'seed'=>$seed};
 #TODO travelers
 #TODO add moral and order descriptors to the population.
-
+#TODO military might, fighting age etc
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
@@ -312,14 +312,26 @@ sub describe_government{
 ";
 }
 
+sub describe_district_summary {
+    my $content="";
+    if (scalar(@{ $city->{'districts'}}) == 1){
+         $content=" The city contains a single distinct district.";
+    }elsif (scalar(@{ $city->{'districts'}}) > 1){
+         $content.=" The city has ".scalar(@{ $city->{'districts'}})." distinct districts.";
+    }
+    return $content;
+
+
+}
 
 sub describe_summary {
     if ($city->{'dominant_race'}){$city->{'dominant_race'}=" which is overwhelmingly ".$city->{'dominant_race'}; }else{$city->{'dominant_race'}=""}
+    my $districts=describe_district_summary();
     my $content="
                     <header>
                         <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
                         <h2>Summary</h2>
-                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'} of around $city->{'population'}$city->{'dominant_race'}.</p>
+                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'} of around $city->{'population'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
                     </header>";
 }
 sub describe_geography {
@@ -329,7 +341,7 @@ sub describe_geography {
     my $content="
                     <section id='geography'>
                         <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} square mile region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
                     </section>
 ";
 }
@@ -370,13 +382,17 @@ sub describe_housing {
     return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.";
 }
 sub describe_businesses {
-    my @businesses;
     #return Dumper $city->{'business'};
-    foreach my $key (sort keys %{$city->{'business'}}){
-        my $business=$city->{'business'}->{$key};
-        push @businesses, $business->{'count'}." ".$key." ($business->{'specialists'} specialists)";
-    }
-    return "<ul><li>".join('</li><li>',@businesses)."</li></ul>";
+    if ( scalar (keys %{$city->{'business'}}) > 0){
+        my @businesses;
+        foreach my $key (sort keys %{$city->{'business'}}){
+            my $business=$city->{'business'}->{$key};
+            push @businesses, $business->{'count'}." ".$key." ($business->{'specialists'} specialists)";
+        }
+        return "You can find the following businesses:<ul><li>".join('</li><li>',@businesses)."</li></ul>";
+    }else{
+        return "The city contains no businesses.";
+    } 
 }
 sub describe_cityscape {
     my $port=describe_port();
@@ -396,7 +412,7 @@ sub describe_cityscape {
                         <h3>Housing</h3>
                             The city contains the following housing:$housing
                         <h3>Businesses</h3>
-                            You can find the following businesses:$businesses
+                            $businesses
                     </section>
 ";
 }
@@ -762,9 +778,6 @@ sub generate_travelers{
 
 sub generate_taverns{
     my $taverncount=0;
-    if (defined $city->{'business'}->{'tavern'}){
-        $taverncount+=$city->{'business'}->{'tavern'}->{'count'};
-    }
     if (defined $city->{'business'}->{'tavern/inn'}){
         $taverncount+=$city->{'business'}->{'tavern/inn'}->{'count'};
     }
@@ -911,6 +924,7 @@ sub generate_markets {
 ###############################################################################
 sub generate_physical_traits {
     generate_location();
+    generate_climate();
     generate_housing();
     generate_area();
     generate_support_area();
@@ -921,6 +935,16 @@ sub generate_physical_traits {
     generate_neighbors();
     generate_topography();
 }
+
+###############################################################################
+#
+# generate_climate - Determine the climate of the city
+#
+###############################################################################
+sub generate_climate {
+    $city->{'climate'}=rand_from_array($xml_data->{'climate'}->{'option'});
+}
+
 
 ###############################################################################
 #
@@ -1066,6 +1090,7 @@ sub generate_businesses{
                     $city->{'business'}->{$newbusiness->{'content'}}->{'perbuilding'}=$newbusiness->{'perbuilding'};
                     $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
                     $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'requires_size'}   =$newbusiness->{'requires_size'};
                 }else{
                     $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
                 }
@@ -1081,15 +1106,16 @@ sub generate_businesses{
 
         @weightedbusinesses=shuffle @weightedbusinesses;
         my $newbusiness=$weightedbusinesses[0];
-        if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
-            #print Dumper $newbusiness->{'district'};
-            $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
-        }else{
-            $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
-            $city->{'business'}->{$newbusiness->{'content'}}->{'district'}=$newbusiness->{'district'};
+        if ( $newbusiness->{'requires_size'} <= $city->{'size_modifier'} ){
+            if (!defined $city->{'business'}->{$newbusiness->{'content'}}){
+                #print Dumper $newbusiness->{'district'};
+                $city->{'business'}->{$newbusiness->{'content'}}={'specialists'=>1};
+            }else{
+                $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
+                    $city->{'business'}->{$newbusiness->{'content'}}->{'district'}=$newbusiness->{'district'};
+            }
+            $city->{'business'}->{'estimate'}--;
         }
- 
-        $city->{'business'}->{'estimate'}--;
     }
         delete $city->{'business'}->{'estimate'};
     
@@ -1110,10 +1136,17 @@ sub generate_businesses{
 ###############################################################################
 sub generate_support_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
+    # low fpp = successful
     # a good economy,education, magic and law increases production by  5+5+50+5 36%
-    $city->{'supportarea'}=   int($city->{'population'}/ ( 180 + $city->{'economy'} + $city->{'education'} + ($city->{'magic'}+5)*5 +$city->{'order'})*100)/100;
+    # ranges from 5+5+50+50=+110=290 to -5-5-50+0=-60 =0
+    # base+ed+econ + (order-50) + magic= 290 people per sqmile
+    # base+ed+econ + (order-50) + magic= 0 people per sqmile
+    # a desert with no economy, no education, no magic and no order can't support anyone.
 
+    my $people_per_sq_mile= $city->{'climate'}->{'pop_support'}+ $city->{'economy'} + $city->{'education'} + ($city->{'order'}-50) +  ($city->{'magic'}+5)*5 ;
+    $city->{'supportarea'}=   int($city->{'population'}/$people_per_sq_mile *100*258.999  )/100;
 }
+
 
 
 ###############################################################################
