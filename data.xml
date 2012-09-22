@@ -28,7 +28,7 @@
         <root>white</root>
         <root>black</root>
         <root></root>
-        <post>sandy beaches</post>
+        <trailer>sandy beaches</trailer>
     </resource>
     <resource type="wildlife">
         <title>plentiful</title>
@@ -39,7 +39,7 @@
         <root>aquatic</root>
         <root>marine</root>
         <root></root>
-        <post>wildlife</post>
+        <trailer>wildlife</trailer>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -73,8 +73,8 @@
         <root>sunflower</root>
         <root>fruit</root>
         <root>vegetable</root>
-        <post>fields</post>
-        <post>crops</post>
+        <trailer>fields</trailer>
+        <trailer>crops</trailer>
     </resource>
     <resource type="metals">
         <title>plentiful</title>
@@ -92,11 +92,11 @@
         <root>titanium</root>
         <root>zinc</root>
         <root>nonferrous metal</root>
-        <post>works</post>
-        <post>smithing</post>
-        <post>ore</post>
-        <post>deposits</post>
-        <post>mines</post>
+        <trailer>works</trailer>
+        <trailer>smithing</trailer>
+        <trailer>ore</trailer>
+        <trailer>deposits</trailer>
+        <trailer>mines</trailer>
     </resource>
     <resource type="gem">
         <title>plentiful</title>
@@ -114,9 +114,9 @@
         <root>precious stone</root>
         <root>pyrite</root>
         <root>quartz</root>
-        <post>cutting</post>
-        <post>deposits</post>
-        <post>mines</post>
+        <trailer>cutting</trailer>
+        <trailer>deposits</trailer>
+        <trailer>mines</trailer>
     </resource>
     <resource type="minerals">
         <title>plentiful</title>
@@ -143,8 +143,8 @@
         <root>minor minerals</root>
         <root>calcified seaweed</root>
 
-        <post>mines</post>
-        <post>deposits</post>
+        <trailer>mines</trailer>
+        <trailer>deposits</trailer>
     </resource>
 
     <resource type='harvests'>
@@ -163,7 +163,7 @@
         <root>squid</root>
         <root>spiny lobster</root>
 
-        <post>harvests</post>
+        <trailer>harvests</trailer>
     </resource>
 
     <resource type='herd animals'>
@@ -178,7 +178,7 @@
         <root>llama</root>
         <root>horse</root>
 
-        <post>herds</post>
+        <trailer>herds</trailer>
     </resource>
 
     <resource type='wood'>
@@ -200,10 +200,10 @@
         <root>miro</root>
         <root>willow</root>
 
-        <post>trees</post>
-        <post>forests</post>
-        <post>lumbermills</post>
-        <post>woodworkers</post>
+        <trailer>trees</trailer>
+        <trailer>forests</trailer>
+        <trailer>lumbermills</trailer>
+        <trailer>woodworkers</trailer>
     </resource>
 
     <resource type="quarries">
@@ -220,8 +220,8 @@
         <root>slate</root>
         <root></root>
 
-        <post>mines</post>
-        <post>quarries</post>
+        <trailer>mines</trailer>
+        <trailer>quarries</trailer>
     </resource>
 
     <resource type="locales">
@@ -333,17 +333,17 @@
     <root>cobblestone streets</root>
     <root>cobblestone paths</root>
 
-    <post>in a grid pattern</post>
-    <post>in a ray pattern</post>
-    <post>in a contour-forming pattern</post>
-    <post>in an irregular pattern</post>
-    <post>in a random mesh pattern</post>
-    <post>in an organic pattern</post>
-    <post>in a fragmented parallel pattern</post>
-    <post>in a looped pattern</post>
-    <post>in a warped parallel pattern</post>
-    <post>in a linear pattern</post>
-    <post>in a wheel and spoke pattern</post>
+    <trailer>in a grid pattern</trailer>
+    <trailer>in a ray pattern</trailer>
+    <trailer>in a contour-forming pattern</trailer>
+    <trailer>in an irregular pattern</trailer>
+    <trailer>in a random mesh pattern</trailer>
+    <trailer>in an organic pattern</trailer>
+    <trailer>in a fragmented parallel pattern</trailer>
+    <trailer>in a looped pattern</trailer>
+    <trailer>in a warped parallel pattern</trailer>
+    <trailer>in a linear pattern</trailer>
+    <trailer>in a wheel and spoke pattern</trailer>
 </streets>
 
 <walls chance='10' >
@@ -357,18 +357,18 @@
     <root>wood</root>
     <root>stone</root>
 
-    <post>embankment</post>
-    <post>barricade</post>
-    <post>barrier</post>
-    <post>bulwark</post>
-    <post>fence</post>
-    <post>fortification</post>
-    <post>palisade </post>
-    <post>partition</post>
-    <post>rampart</post>
-    <post>stockade</post>
-    <post>enclosure</post>
-    <post>wall</post>
+    <trailer>embankment</trailer>
+    <trailer>barricade</trailer>
+    <trailer>barrier</trailer>
+    <trailer>bulwark</trailer>
+    <trailer>fence</trailer>
+    <trailer>fortification</trailer>
+    <trailer>palisade </trailer>
+    <trailer>partition</trailer>
+    <trailer>rampart</trailer>
+    <trailer>stockade</trailer>
+    <trailer>enclosure</trailer>
+    <trailer>wall</trailer>
 </walls>
 
 

@@ -584,7 +584,7 @@ sub build_city {
     $city={'seed'=>$seed};
 
     # - Generate a name
-    $city->{'name'}=generate_city_name();
+    $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
 
     #select city type and population:
     generate_city_core();
@@ -995,8 +995,9 @@ sub generate_neighbors {
         my $newseed=$seed+$neighborcount ;
         if ($newseed != $seed){
             srand( $newseed );
-            my $neighbor->{'id'}=($newseed   );
-            $neighbor->{'name'}=generate_city_name();
+            my $neighbor->{'id'}=$newseed;
+            $neighbor->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
+
             $neighbor->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
             push @{$city->{'neighbors'}}, $neighbor;
         }
@@ -1654,32 +1655,6 @@ sub generate_pop_type {
     $city->{'popdensity'}   = $popdensity;
     $city->{'poptype'}      = $poptype->{'type'};
     $city->{'races'}        = $poptype->{'option'};
-}
-
-
-
-###############################################################################
-#
-# generate_city_name - This consists of the pre,
-# the root, the post and the trailer.
-#
-###############################################################################
-sub generate_city_name {
-    my $nameobject = parse_object($xml_data->{'cityname'});
-    $city->{'nameobj'} = $nameobject;
-    my $name="";
-
-    if (defined $nameobject->{'title'}){
-        $name=$nameobject->{'title'}." ";
-    }
-    if (defined $nameobject->{'pre'}){
-        $name.=$nameobject->{'pre'};
-    }
-    $name.=$nameobject->{'root'}.$nameobject->{'post'};
-    if (defined $nameobject->{'trailer'}){
-        $name.=" ".$nameobject->{'trailer'};
-    }
-    return $name;
 }
 
 
