@@ -471,7 +471,7 @@
     <building weight='10' priority='10' perbuilding='10' requires_size="-6" district="">misc.</building>
 </buildings>
 <citytype>
-    <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >population</city>
+    <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</city>
     <city type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monsterous race)</city>
     <city type="monsterous"   min="81"  max="91"  base_pop="monster" add_other="false" >monsterous population</city>
     <city type="monsterous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monsterous population (with one common race)</city>
@@ -540,30 +540,30 @@
 </poptypes>
 
 <races>
-    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3' >Human</race>
-    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1' >Elf</race>
-    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1' >Dwarf</race>
-    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3' >Gnome</race>
-    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3' >Halfling</race>
-    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5' >Half-elf</race>
-    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2' >Half-orc</race>
-    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Half-dwarf</race>
+    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  plural='Humans'>Human</race>
+    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1'  plural='Elves'>Elf</race>
+    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1'  plural='Dwarves'>Dwarf</race>
+    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3'  plural='Gnomes'>Gnome</race>
+    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3'  plural='Halflings'>Halfling</race>
+    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5'  plural='Half-elves'>Half-elf</race>
+    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2'  plural='Half-orcs'>Half-orc</race>
+    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5'  plural='Half-dwarves'>Half-dwarf</race>
 
-    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2' >other</race>
+    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2'  plural='others'>other</race>
 
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1' >Kobold</race>
-    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1'>Deep Dwarf</race>
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1' >Goblin</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1'>Orc</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0' >Ogre</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Bugbear</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Hobgoblin</race>
-    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2'>Lizardfolk</race>
-    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5'>Minotaur</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1' >Troglodyte</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0' >Lycanthropes</race>
-    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5'>Mindflayer</race>
-    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5'>Drow</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1'  plural='Kobolds'>Kobold</race>
+    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1' plural='Deep Dwarves'>Deep Dwarf</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1'  plural='Goblins'>Goblin</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1' plural='Orcs'>Orc</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0'  plural='Ogres'>Ogre</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' plural='Bugbears'>Bugbear</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' plural='Hobgoblins'>Hobgoblin</race>
+    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2' plural='Lizardfolk'>Lizardfolk</race>
+    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5' plural='Minotaurs'>Minotaur</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1'  plural='Troglodytes'>Troglodyte</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0'  plural='Lycanthropes'>Lycanthrope</race>
+    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5' plural='Mindflayers'>Mindflayer</race>
+    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' plural='Drow'>Drow</race>
 </races>
 
 <moral>
@@ -890,8 +890,9 @@
     <title>Upper</title>
     <title>West</title>
 
-<pre>De</pre>
-<pre>Le</pre>
+    <pre>De</pre>
+    <pre>Le</pre>
+
     <root>Ack</root>
     <root>Ad</root>
     <root>Ail</root>
@@ -1365,6 +1366,40 @@
     <trailer>Vista</trailer>
     <trailer>Vernon</trailer>
 </cityname>
+<realm post_chance='30' title_chance='22'>
+    <title>Greater</title>
+    <title>Lesser</title>
+    <title>Eastern</title>
+    <title>Western</title>
+    <pre>Don</pre>
+    <pre>Ber</pre>
+    <pre>Cap</pre>
+    <pre>Ful</pre>
+    <pre>Mool</pre>
+    <pre>Nill</pre>
+    <pre>Kon</pre>
+    <root>sak</root>
+    <root>bor</root>
+    <root>kil</root>
+    <root>bor</root>
+    <root>ark</root>
+    <root>lak</root>
+    <post>or</post>
+    <post>at</post>
+    <post>ep</post>
+    <post>ak</post>
+
+    <trailer>Province</trailer>
+    <trailer>District</trailer>
+    <trailer>Domain</trailer>
+    <trailer>Region</trailer>
+    <trailer>Territory</trailer>
+
+</realm>
+
+
+
+
 
 <events>
     <event type="festival">
@@ -1551,20 +1586,20 @@
 <!--  ###########################################################################  -->
 
 <taverns trailer_chance="30" >
-    <pre>Drunken</pre>
-    <pre>Angry</pre>
-    <pre>Green</pre>
-    <pre>Black</pre>
-    <pre>White</pre>
-    <pre>Blue</pre>
-    <pre>Wet</pre>
-    <pre>Ugly</pre>
-    <pre>Prancing</pre>
-    <pre>Hungry</pre>
-    <pre>Empty</pre>
-    <pre>Salty</pre>
-    <pre>Greasy</pre>
-    <pre>Broken</pre>
+    <title>Drunken</title>
+    <title>Angry</title>
+    <title>Green</title>
+    <title>Black</title>
+    <title>White</title>
+    <title>Blue</title>
+    <title>Wet</title>
+    <title>Ugly</title>
+    <title>Prancing</title>
+    <title>Hungry</title>
+    <title>Empty</title>
+    <title>Salty</title>
+    <title>Greasy</title>
+    <title>Broken</title>
 
     <root>Dragon</root>
     <root>Maiden</root>

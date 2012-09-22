@@ -337,13 +337,15 @@ sub describe_district_summary {
 }
 
 sub describe_summary {
-    if ($city->{'dominant_race'}){$city->{'dominant_race'}=" which is overwhelmingly ".$city->{'dominant_race'}; }else{$city->{'dominant_race'}=""}
+    if ($city->{'dominant_race'}){$city->{'dominant_race'}=" (which is overwhelmingly ".$city->{'dominant_race'}.")"; }else{$city->{'dominant_race'}=""}
     my $districts=describe_district_summary();
+    my $previousid=$city->{'seed'}-1;
+    my $nextid=$city->{'seed'}+1;
     my $content="
                     <header>
-                        <a href='?cityid=$city->{'seed'}'><h1> $city->{'name'} ($city->{'seed'})</h1></a>
+                       <h1><a href='?cityid=$previousid'>&lt;&lt;</a> <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a> <a href='?cityid=$nextid'>&gt;&gt;</a></h1>
                         <h2>Summary</h2>
-                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'} of around $city->{'population'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
+                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
                     </header>";
 }
 sub describe_geography {
@@ -935,6 +937,7 @@ sub generate_markets {
 #
 ###############################################################################
 sub generate_physical_traits {
+    generate_realm();
     generate_location();
     generate_climate();
     generate_housing();
@@ -946,6 +949,18 @@ sub generate_physical_traits {
     generate_walls();
     generate_neighbors();
     generate_topography();
+}
+###############################################################################
+#
+# generate_realm - Determine the realm of the city
+
+#
+###############################################################################
+sub generate_realm {
+    my $newseed=$seed-$seed%20;
+    srand $newseed;
+    $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
+    srand $seed;
 }
 
 ###############################################################################
@@ -1579,7 +1594,8 @@ sub add_race_features {
     $race->{'economy'}   = $newrace->{'econ'};
     $race->{'education'} = $newrace->{'edu'};
     $race->{'travel'}    = $newrace->{'travel'};
-    $race->{'tolerance'}    = $newrace->{'toler'};
+    $race->{'tolerance'} = $newrace->{'toler'};
+    $race->{'plural'}    = $newrace->{'plural'};
     $race->{'type'}      = $newrace->{'type'};
 
     if (defined $race->{'dominant'} ){
@@ -1802,56 +1818,47 @@ sub d {
 #####################################################
 sub parse_object {
     my ($object)=@_;
-    my $newobj= { 'list'=>[]};
+    my $newobj= { 'content'=>'' };
     # We currently only care about 4 parts
     foreach my $part (qw/title pre root post trailer/){
         # Make sure that the part exists for this object.
         if(defined $object->{$part}){
 
+            my $newpart;
             # If the object is an array, we're going to shuffle
             # the array and select one of the elements.
             if ( ref($object->{$part}) eq 'ARRAY'){
                 # Shuffle the array and pop one element off
                 my @parts=shuffle( @{$object->{$part}});
-                my $newpart=pop(@parts);
+                $newpart=pop(@parts);
 
-                # make sure the element has content;
-                # ignore it if it doesn't.
-                if (defined $newpart->{'content'}){
-                    # If no chance is defined, add it to the list.
-                    if (!defined $object->{$part.'_chance'}){
-                        push @{$newobj->{'list'}}, $newpart->{'content'};
-                        $newobj->{$part}=$newpart->{'content'};
-
-                    # If chance is defined, compare it to
-                    # the roll, and add it to the list.
-                    } elsif(defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'} ) {
-                        push @{$newobj->{'list'}}, $newpart->{'content'};
-                        $newobj->{$part}=$newpart->{'content'};
-                    }
-                }
             # If the object is a Hash, we presume that there's only one choice
             } elsif ( ref($object->{$part}) eq 'HASH'  and $object->{$part}->{'content'}){
-
                 # rename for easier handling
-                my $newpart=$object->{$part};
+                $newpart=$object->{$part};
+            }
 
-                # If no chance is defined, add it to the list.
-                if (!defined $object->{$part.'_chance'}){
-                    push @{$newobj->{'list'}}, $newpart->{'content'};
+            # make sure the element has content;
+            # ignore it if it doesn't.
+            if (defined $newpart->{'content'}){
+                if (
+                        # If no chance is defined, add it to the list.
+                        (!defined $object->{$part.'_chance'}) or
+                        # If chance is defined, compare it to
+                        # the roll, and add it to the list.
+                        (defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'}) ) {
+                    
                     $newobj->{$part}=$newpart->{'content'};
-
-                # If chance is defined, compare it to
-                # the roll, and add it to the list.
-                } elsif(defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'} ) {
-                    push @{$newobj->{'list'}}, $newpart->{'content'};
-                    $newobj->{$part}=$newpart->{'content'};
+                    if ($part eq 'title'){  
+                        $newpart->{'content'}="$newpart->{'content'} " ;
+                    }elsif ($part eq 'trailer'){  
+                        $newpart->{'content'}=" $newpart->{'content'}" ;
+                    }
+                    $newobj->{'content'}.= $newpart->{'content'};
                 }
             }
         }
     }
-    $newobj->{'content'}=join " ", @{$newobj->{'list'}};
-    delete $newobj->{'list'};
     # return the slimmed down version
     return $newobj;
 }
