@@ -14,6 +14,7 @@ my $xml = new XML::Simple;
 # Unique, Ubiquitous Singletons.
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
+our $names_data = $xml->XMLin(   "../names.xml", ForceContent => 1, ForceArray  =>[]  );
 our $seed=set_seed();
 srand $seed;
 
@@ -228,7 +229,10 @@ sub describe_tavern{
         $tavern->{'pop_count'}= $tavernpop;
         $tavernpoptotal+=$tavernpop;
     }
-    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'} that seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
+    my $name="";
+    if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
+
+    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'}$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
 }
 
 sub describe_localinfo{
@@ -395,23 +399,28 @@ sub describe_housing {
     }
     return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.";
 }
+
 sub describe_businesses {
+
     #return Dumper $city->{'business'};
-    if ( scalar (keys %{$city->{'business'}}) > 0){
+    if ( scalar( keys %{ $city->{'business'} } ) > 0 ) {
         my @businesses;
-        my $buildingcount=0;
-        my $specialistcount=0;
-        foreach my $key (sort keys %{$city->{'business'}}){
-            my $business=$city->{'business'}->{$key};
-            push @businesses, $business->{'count'}." ".$key." ($business->{'specialists'} specialists)";
-            $specialistcount+=$business->{'specialists'};
-            $buildingcount+=$business->{'count'};
-        }
-        return "You can find the following businesses:<ul><li>".join('</li><li>',@businesses)."</li></ul><p>Total: $buildingcount buildings, $specialistcount specialists.</p>";
-    }else{
+        my $buildingcount   = 0;
+        my $specialistcount = 0;
+        foreach my $key ( sort keys %{ $city->{'business'} } ) {
+            my $business = $city->{'business'}->{$key};
+            push @businesses, $business->{'count'} . " " . $key . " ($business->{'specialists'} specialists)";
+            $specialistcount += $business->{'specialists'};
+            $buildingcount   += $business->{'count'};
+        } ## end foreach my $key ( sort keys...)
+        return
+              "You can find the following businesses:<ul><li>"
+            . join( '</li><li>', @businesses )
+            . "</li></ul><p>Total: $buildingcount buildings, $specialistcount specialists.</p>";
+    } else {
         return "The city contains no businesses.";
-    } 
-}
+    }
+} ## end sub describe_businesses
 sub describe_cityscape {
     my $port=describe_port();
     my $walls=describe_walls();
@@ -580,28 +589,124 @@ sub print_style{
 
 
 
-
-
-
+###############################################################################
+#
+# build_city - This is the primary method for building a city. using $seed, 
+# generate the city name, then the core, creedence, physical traits, economy, 
+# military and current events. Once that's finished you have a fully
+# funcitonal city.
+#
+###############################################################################
 
 sub build_city {
     $city={'seed'=>$seed};
-
-    # - Generate a name
     $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
 
-    #select city type and population:
     generate_city_core();
-
-    #generate govt and beliefs
     generate_city_credence();
-
-    # generate physical traits
     generate_physical_traits();
-
     generate_economics();
-
+    generate_military();
     generate_current_events();
+
+}
+
+###############################################################################
+#
+# generate_city_core - select the size, type, population, races and population
+# breakdown. This is the core of the city stats, everything else is icing.
+#
+###############################################################################
+
+sub generate_city_core{
+    set_city_size();
+    set_city_type();
+    generate_pop_type();
+    assign_races();
+    generate_pop_counts();
+    generate_city_age();
+    generate_children();
+}
+
+###############################################################################
+#
+# generate_city_credence - select government, ethics, tolerance, etc.
+#
+###############################################################################
+
+sub generate_city_credence {
+    generate_city_ethics();
+    generate_city_beliefs();
+    set_govt_type();
+    generate_secondary_power();
+    set_laws();
+    generate_crime();
+    generate_imprisonment_rate();
+}
+
+###############################################################################
+#
+# generate_physical_traits - Generate the location, size, support area, 
+# landmarks, 
+#
+###############################################################################
+
+sub generate_physical_traits {
+    generate_realm();
+    generate_location();
+    generate_climate();
+    generate_housing();
+    generate_area();
+    generate_support_area();
+    generate_businesses();
+    generate_districts();
+    generate_streets();
+    generate_walls();
+    generate_neighbors();
+    generate_topography();
+}
+
+###############################################################################
+#
+# generate_economics - generate various markets, organizations and resources
+#
+###############################################################################
+
+sub generate_economics {
+    generate_markets();
+    generate_resources();
+    generate_taverns();
+    generate_travelers();
+    generate_economic_description();
+    generate_education_description();
+    generate_magic_description();
+}
+
+
+###############################################################################
+#
+# generate_military - generate percentage of militant population
+#
+###############################################################################
+
+sub generate_military {
+    #factors - is there a barraks district? +10%
+    # order, mil, authority, 
+    # base militaryi
+    # low order means more paramilitary
+    # high military and no authority = 1000 * ( 2 + 20 + 0  ) = 24% total
+    # high military and no authority = 1000 * ( 2 + 2 + 20 + 5  ) = 29% total
+    my $total_percent=  max( 0,( 2 + $city->{'govtype'}->{'mil_mod'}  +   ( 4 + $city->{'military'}+5)*2   +  ($city->{'authority'} )      )/100 );
+    my $total =  int ($city->{'population'} * $total_percent) ;
+    my $para_percent = (5 - $city->{'authority'});
+    
+# What 
+#military percentages 
+#Active 4.88/100 to .03/100 or none
+#Reserve 40/100 to    .02/100 or none
+#paramilitary is 3x to 1/20th of active force or none
+#total 25.89/100 to .02/100
+
 
 }
 
@@ -617,6 +722,11 @@ sub generate_current_events {
     generate_visible_population();
     generate_events();
 }
+
+
+###############################################################################
+###############################################################################
+
 
 
 ###############################################################################
@@ -720,20 +830,6 @@ sub generate_time {
 }
 
 
-###############################################################################
-#
-# generate_economics - generate various markets, organizations and resources
-#
-###############################################################################
-sub generate_economics {
-    generate_markets();
-    generate_resources();
-    generate_taverns();
-    generate_travelers();
-    generate_economic_description();
-    generate_education_description();
-    generate_magic_description();
-}
 ###############################################################################
 #
 # generate_education_description - generate the economic description
@@ -843,6 +939,23 @@ sub generate_bartender{
     $bartender->{'race'}= pop(@races)->{'content'} ;
     $bartender->{'level'}= min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) ) ;
 
+    my $race= lc $bartender->{'race'};
+
+    if (defined $names_data->{'race'}->{ $race}     ){
+        my $racenames=$names_data->{'race'}->{ $race} ;
+        if ( defined $racenames->{'firstname'} ){
+            $bartender->{'firstname'}= parse_object(    $racenames->{'firstname'}         )->{'content'};
+            $bartender->{'fullname'}=$bartender->{'firstname'};
+        }
+        if ( defined $racenames->{'lastname'} ){
+            $bartender->{'lastname'}= parse_object(    $racenames->{'lastname'}         )->{'content'};
+            $bartender->{'fullname'}=$bartender->{'lastname'};
+        }
+        if ( defined $racenames->{'firstname'}  and defined $racenames->{'lastname'} ){
+            $bartender->{'fullname'}=$bartender->{'firstname'} ." ". $bartender->{'lastname'};
+        }
+    }
+
     return $bartender;
 
 
@@ -934,26 +1047,6 @@ sub generate_markets {
 
 
 
-###############################################################################
-#
-# generate_physical_traits - Generate the location, size, support area, 
-# landmarks, 
-#
-###############################################################################
-sub generate_physical_traits {
-    generate_realm();
-    generate_location();
-    generate_climate();
-    generate_housing();
-    generate_area();
-    generate_support_area();
-    generate_businesses();
-    generate_districts();
-    generate_streets();
-    generate_walls();
-    generate_neighbors();
-    generate_topography();
-}
 ###############################################################################
 #
 # generate_realm - Determine the realm of the city
@@ -1206,8 +1299,8 @@ sub generate_housing {
 
     my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
 
-    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*2);
-    $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*2);
+    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*5);
+    $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*5);
 
     foreach my $housingquality ( @qualitylist ){
 
@@ -1226,12 +1319,10 @@ sub generate_housing {
 
     }
 
-
-    # Calculate abandoned by finding 10% of total and adjusting it by economy conditions (+/-5%)
-    $city->{'housing'}->{'abandoned'}   = floor($city->{'housing'}->{'total'} *(10-$city->{'economy'} )/100 );
+    # Calculate abandoned by finding 11% of total and adjusting it by economy conditions (+/-10%), min of 1
+    $city->{'housing'}->{'abandoned'}   = ceil($city->{'housing'}->{'total'} *(11-($city->{'economy'})*2 )/100 );
 
 }
-
 
 ###############################################################################
 #
@@ -1258,39 +1349,6 @@ sub generate_location {
             $landmarkmod-=5;
         }
     }
-}
-
-
-
-
-###############################################################################
-#
-# generate_city_credence - select government, ethics, tolerance, etc.
-#
-###############################################################################
-sub generate_city_credence{
-
-
-    # - Generate ethics
-    generate_city_ethics();
-
-    # - Generate beliefs
-    generate_city_beliefs();
-
-    # - set govt type
-    set_govt_type();
-
-    # - generate seconday power
-    generate_secondary_power();
-
-    # - generate laws
-    set_laws();
-    
-    # - generate crime
-    generate_crime();
-
-    #generate imprisonment rate
-    generate_imprisonment_rate();
 }
 
 
@@ -1330,35 +1388,6 @@ sub generate_imprisonment_rate{
 
 }
 
-
-###############################################################################
-#
-# generate_city_core - select the size, type, population, races and population
-# breakdown. This is the core of the city stats, everything else is icing.
-#
-###############################################################################
-sub generate_city_core{
-    # - Generate a size
-    set_city_size();
-
-    # - Generate a type
-    set_city_type();
-
-    # - Generate a pop_type
-    generate_pop_type();
-
-    # - Generate assign races
-    assign_races();
-
-    # - Generate pop counts
-    generate_pop_counts();
-
-    # - generate city age
-    generate_city_age();
-    
-    # - generate children %
-    generate_children();
-}
 
 
 
@@ -1439,6 +1468,8 @@ sub set_govt_type {
 
     $city->{'govtype'}->{'religion'}=&d(4)-2 +  $city->{'govtype'}->{'religion'} ; 
 
+    $city->{'govtype'}->{'mil_mod'}=  $city->{'govtype'}->{'mil_mod'} ; 
+
 }
 
 
@@ -1488,7 +1519,7 @@ sub generate_city_ethics {
 sub generate_city_beliefs {
 
     # set the baseline random modifier
-    foreach my $mod (qw/ magic authority economy education travel tolerance/ ){
+    foreach my $mod (qw/ magic authority economy education travel tolerance military / ){
         $city->{$mod} =&d(4)-2;
         # adjust all modifiers for each race
         for my $race ( @{ $city->{'races'} } ) {
@@ -1602,6 +1633,7 @@ sub add_race_features {
     $race->{'economy'}   = $newrace->{'econ'};
     $race->{'education'} = $newrace->{'edu'};
     $race->{'travel'}    = $newrace->{'travel'};
+    $race->{'military'}    = $newrace->{'mil'};
     $race->{'tolerance'} = $newrace->{'toler'};
     $race->{'plural'}    = $newrace->{'plural'};
     $race->{'type'}      = $newrace->{'type'};
@@ -1844,6 +1876,5 @@ sub parse_object {
     # return the slimmed down version
     return $newobj;
 }
-
 
 

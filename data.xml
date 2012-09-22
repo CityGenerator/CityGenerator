@@ -3,10 +3,10 @@
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-6"   minpop="11"     maxpop="100"    gplimit="100"/>         
+    <city size="settlement"    min="1"   max="10"  size_modifier="-6"   minpop="11"     maxpop="100"    gplimit="100"/>     
     <city size="hamlet"        min="11"  max="30"  size_modifier="-5"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="small village" min="31"  max="35"  size_modifier="-4"   minpop="501"    maxpop="600"    gplimit="600"/>     
-    <city size="village"       min="36"  max="40"  size_modifier="-3"   minpop="601"    maxpop="750"    gplimit="750"/>     
+    <city size="small village" min="31"  max="35"  size_modifier="-4"   minpop="501"    maxpop="600"    gplimit="600"/>    
+    <city size="village"       min="36"  max="40"  size_modifier="-3"   minpop="601"    maxpop="750"    gplimit="750"/>   
     <city size="large village" min="41"  max="45"  size_modifier="-2"   minpop="751"    maxpop="1000"   gplimit="1000"/>     
     <city size="small town"    min="46"  max="60"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
     <city size="town"          min="61"  max="70"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
@@ -542,30 +542,30 @@
 </poptypes>
 
 <races>
-    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  plural='Humans'>Human</race>
-    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1'  plural='Elves'>Elf</race>
-    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1'  plural='Dwarves'>Dwarf</race>
-    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3'  plural='Gnomes'>Gnome</race>
-    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3'  plural='Halflings'>Halfling</race>
-    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5'  plural='Half-elves'>Half-elf</race>
-    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2'  plural='Half-orcs'>Half-orc</race>
-    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5'  plural='Half-dwarves'>Half-dwarf</race>
+    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  mil='1'   plural='Humans'>Human</race>
+    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1'  mil='1'   plural='Elves'>Elf</race>
+    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1'  mil='4'   plural='Dwarves'>Dwarf</race>
+    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3'  mil='-1'  plural='Gnomes'>Gnome</race>
+    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3'  mil='-2'  plural='Halflings'>Halfling</race>
+    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5'  mil='-1'  plural='Half-elves'>Half-elf</race>
+    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2'  mil='2'   plural='Half-orcs'>Half-orc</race>
+    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5'  mil='3'   plural='Half-dwarves'>Half-dwarf</race>
 
-    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2'  plural='others'>other</race>
+    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2'  mil='0'   plural='others'>other</race>
 
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1'  plural='Kobolds'>Kobold</race>
-    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1' plural='Deep Dwarves'>Deep Dwarf</race>
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1'  plural='Goblins'>Goblin</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1' plural='Orcs'>Orc</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0'  plural='Ogres'>Ogre</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' plural='Bugbears'>Bugbear</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' plural='Hobgoblins'>Hobgoblin</race>
-    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2' plural='Lizardfolk'>Lizardfolk</race>
-    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5' plural='Minotaurs'>Minotaur</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1'  plural='Troglodytes'>Troglodyte</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0'  plural='Lycanthropes'>Lycanthrope</race>
-    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5' plural='Mindflayers'>Mindflayer</race>
-    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' plural='Drow'>Drow</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1'  mil='-3'  plural='Kobolds'>Kobold</race>
+    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1' mil='5'   plural='Deep Dwarves'>Deep Dwarf</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1'  mil='0'   plural='Goblins'>Goblin</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1' mil='2'   plural='Orcs'>Orc</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0'  mil='-4'  plural='Ogres'>Ogre</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='2'   plural='Bugbears'>Bugbear</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='-1'  plural='Hobgoblins'>Hobgoblin</race>
+    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2' mil='2'   plural='Lizardfolk'>Lizardfolk</race>
+    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5' mil='3'   plural='Minotaurs'>Minotaur</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1'  mil='-1'  plural='Troglodytes'>Troglodyte</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0'  mil='-3'  plural='Lycanthropes'>Lycanthrope</race>
+    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5' mil='-5'  plural='Mindflayers'>Mindflayer</race>
+    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' mil='2'   plural='Drow'>Drow</race>
 </races>
 
 <moral>
@@ -589,14 +589,14 @@
     <descriptor approvalmod='4' >respected</descriptor>
     <descriptor approvalmod='-4'>despised</descriptor>
     <descriptor approvalmod='5' >revered</descriptor>
-    <govt approvalmod='0'  religion='2' >council</govt>
-    <govt approvalmod='0'  religion='1' >powerful wizard</govt>
-    <govt approvalmod='-1' religion='0' >despot</govt>
-    <govt approvalmod='0'  religion='1' >baron</govt>
-    <govt approvalmod='0'  religion='0' >royalty</govt>
-    <govt approvalmod='-1' religion='-1'>dictator</govt>
-    <govt approvalmod='0'  religion='-1'>clergy</govt>
-    <govt approvalmod='1'  religion='-5'>cult leader</govt>
+    <govt approvalmod='0'  religion='2'  mil_mod='-1' >council</govt>
+    <govt approvalmod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
+    <govt approvalmod='-1' religion='0'  mil_mod='1'  >despot</govt>
+    <govt approvalmod='0'  religion='1'  mil_mod='1'  >baron</govt>
+    <govt approvalmod='0'  religion='0'  mil_mod='2'  >royalty</govt>
+    <govt approvalmod='-1' religion='-1' mil_mod='1'  >dictator</govt>
+    <govt approvalmod='0'  religion='-1' mil_mod='0'  >clergy</govt>
+    <govt approvalmod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
 </govtypes>
 
 <cityages>
@@ -1850,6 +1850,23 @@
         <adjective>crumbling</adjective>
     </option>
 </economyalignment>
+
+<militaryalignment>
+    <option type="positive" min='2' >
+        <adjective>militant</adjective>
+        <adjective>disciplined</adjective>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <adjective>not militant</adjective>
+        <adjective>laid back</adjective>
+    </option>
+    <option type="negative"  max='-2'>
+        <adjective>disorganized</adjective>
+        <adjective>anti-militant</adjective>
+        <adjective>hates</adjective>
+    </option>
+</militaryalignment>
+
 <tolerancealignment>
     <option type="positive" min='2' >
         <adjective>is accepting of</adjective>
