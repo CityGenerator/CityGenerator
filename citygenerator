@@ -315,12 +315,13 @@ sub describe_military{
         $walls="lack of defensible wall";
     }
     
-    my $content="
-                        <p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>
-                        <p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>
-";
+    my $content="<p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>";
+
+    $content.="<p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>";
+    $content.="<p>$city->{'name'} fighters are known for their use of $city->{'weapons'}->{'content'} in combat.</p>";
     return $content;
 }
+
 sub describe_government{
     my $secondarypower=describe_secondarypower();
     my $approval=describe_approval();
@@ -679,6 +680,10 @@ sub generate_military {
 ###############################################################################
 
 sub generate_favored_weapon {
+    $city->{'weapons'}={};
+    my $weaponclass=rand_from_array(    $xml_data->{'weapontypes'}->{'weapon'} );
+    $city->{'weapons'}->{'type'}   =  $weaponclass->{'type'} ;
+    $city->{'weapons'}->{'content'}=rand_from_array(    $weaponclass->{'option'} )->{'content'};
 }
 
 ###############################################################################
