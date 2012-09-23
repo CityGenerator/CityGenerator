@@ -627,6 +627,33 @@
         <landmarks chance="10">rivermouth</landmarks>
         <landmarks chance="20">beach</landmarks>
         <landmarks chance="10">jagged outcropping of rock</landmarks>
+	<landmarks chance="15">lagoon</landmarks>
+	<landmarks chance="15">delta</landmarks>
+	<landmarks chance="10">atoll</landmarks>
+	<landmarks chance="25">reef</landmarks>
+	<landmarks chance="5">glacier</landmarks>
+	<landmarks chance="5">ice sheet</landmarks>
+	<landmarks chance="20">marsh</landmarks>
+	<landmarks chance="12">dock</landmarks>
+	<landmarks chance="12">hatchery</landmarks>
+	<landmarks chance="15">cove</landmarks>
+	<landmarks chance="12">cape</landmarks>
+	<landmarks chance="5">cave</landmarks>
+	<landmarks chance="15">peninsula</landmarks>
+	<landmarks chance="10">fjord</landmarks>
+	<landmarks chance="20">dune</landmarks>
+	<landmarks chance="5">lava cave</landmarks>
+	<landmarks chance="20">mangroves</landmarks>
+	<landmarks chance="5">oyster bank</landmarks>
+	<landmarks chance="10">channel</landmarks>
+	<landmarks chance="15">inlet</landmarks>
+	<landmarks chance="10">sound</landmarks>
+	<landmarks chance="15">ridge</landmarks>
+	<landmarks chance="12">floodplain</landmarks>
+	<landmarks chance="15">bluff</landmarks>
+	<landmarks chance="10">hill</landmarks>
+	<landmarks chance="10">creek</landmarks>
+	<landmarks chance="15">shoal</landmarks>
     </location>
     <location description="near a canal" port_chance='90'>
     </location>
