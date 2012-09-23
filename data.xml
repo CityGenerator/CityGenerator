@@ -377,7 +377,7 @@
     <option min='6'  max='10'>terribly</option>
     <option min='11' max='15'>badly</option>
     <option min='16' max='20'>poorly</option>
-    <option min='21' max='25'>mediocrely</option>
+    <option min='21' max='25'>inadequately</option>
 
     <option min='26' max='35'>lightly</option>
     <option min='36' max='45'>fairly</option>
@@ -520,10 +520,10 @@
 </districts>
 
 <popdensity>
-    <option type="sparsely" feetpercapita="5000"/>
-    <option type="lightly"  feetpercapita="3000"/>
-    <option type="average"  feetpercapita="1500"/>
-    <option type="densly"   feetpercapita="1000"/>
+    <option type="sparsely"  feetpercapita="5000"/>
+    <option type="lightly"   feetpercapita="3000"/>
+    <option type="nominally" feetpercapita="1500"/>
+    <option type="densly"    feetpercapita="1000"/>
 </popdensity>
 <poptypes>
     <population type="isolated" min='1' max='35' haspest='5' >

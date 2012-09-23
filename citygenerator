@@ -21,9 +21,8 @@ srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 #TODO travelers
-#TODO military might, fighting age etc
-
-
+# favored weapons
+# racial order
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
@@ -74,7 +73,6 @@ sub describe_city {
     $content.=describe_geography();
     $content.=describe_cityscape();
     $content.=describe_government();
-    $content.=describe_military();
     $content.=describe_population();
     $content.=describe_economy();
     $content.=describe_current_events();
@@ -184,7 +182,7 @@ sub describe_population{
     my $content="
                     <section id='population'>
                         <h2>Population</h2>
-                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
+                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
                         $populations
                         <h3>Race Relations</h3>
                         $racerelations 
@@ -266,15 +264,6 @@ sub describe_economy{
 }
 
 #######################################################################################################################
-sub describe_military{
-    my $content="
-                    <section id='military'>
-                        <h2>Military</h2>
-                        <p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces. Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised.</p>
-
-                    </section>
-";
-}
 
 sub describe_secondarypower{
     my $content=" Within the city there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
@@ -318,12 +307,25 @@ sub describe_relations {
     }
     return "<ul class='two-column'><li>".join('</li><li>',@relations)."</li></ul>";
 }
+sub describe_military{
+    my $walls=$city->{'walls'}->{'content'} ;
+    if   ( $city->{'walls'}->{'content'} eq 'none'){    
+        $walls="lack of defensible wall";
+    }
+    
+    my $content="
+                        <p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>
+                        <p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>
+";
+    return $content;
+}
 sub describe_government{
     my $secondarypower=describe_secondarypower();
     my $approval=describe_approval();
     my $freedom=describe_freedom();
     my $magic=describe_magic();
     my $relations=describe_relations();
+    my $military=describe_military();
     my $content="
                     <section id='government'>
                         <h2>Government</h2>
@@ -334,6 +336,8 @@ sub describe_government{
                         $relations
                         <h3>Crime and Punishment</h3>
                         <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'imprisonment'}->{'percent'}% of the population ($city->{'imprisonment'}->{'population'} adult[s]).</p>
+                        <h3>Military</h3>
+                        $military
                     </section>
 ";
 }
@@ -656,6 +660,21 @@ sub generate_economics {
 sub generate_military {
     generate_military_stats();
     generate_fortifications();
+    generate_kingdom_troops();
+#    generate_seige();
+}
+###############################################################################
+#
+# generate_kingdom_troops - generate troops dedicated to protecting the kingdom.
+#
+###############################################################################
+
+sub generate_kingdom_troops {
+    $city->{'militarystats'}->{'kingdompercent'}=&d(4)*10 + $city->{'size_modifier'};
+    
+    $city->{'militarystats'}->{'kingdom'}       = int($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'kingdompercent'}/100);
+    $city->{'militarystats'}->{'kingdompercent'}= int($city->{'militarystats'}->{'kingdom'}/ $city->{'militarystats'}->{'active'} * 1000)/10;
+    
 }
 
 ###############################################################################
@@ -665,8 +684,6 @@ sub generate_military {
 ###############################################################################
 
 sub generate_fortifications {
-#<fortification>
-#    <option min='1'  max='5'>abysmally</option>
     my $roll;
     if ($city->{'walls'}->{'content'} eq 'none' ){
         $roll=&d(45);
@@ -698,7 +715,11 @@ sub generate_military_stats {
     $city->{'militarystats'}->{'reserve'} =  int ($city->{'population'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
     $city->{'militarystats'}->{'para'}    =  int ($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
     $city->{'militarystats'}->{'militia'} =  int ($city->{'population'} - $city->{'militarystats'}->{'inelegable_pop'} );
-    $city->{'militarystats'}->{'militiapercent'} =  int (  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
+
+    $city->{'militarystats'}->{'activepercent'}  = int (  $city->{'militarystats'}->{'active'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'reservepercent'} = int (  $city->{'militarystats'}->{'reserve'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'parapercent'}    = int (  $city->{'militarystats'}->{'para'}/$city->{'militarystats'}->{'active'} *10000  )/100;
+    $city->{'militarystats'}->{'militiapercent'} = int (  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
     
 }
 
