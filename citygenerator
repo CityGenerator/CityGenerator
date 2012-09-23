@@ -21,6 +21,8 @@ srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 #TODO travelers
+#TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
+#TODO change govtype and weapontype to use <respect> for reverence/mockery
 # favored weapons
 # racial order
 #########################################################################
@@ -661,8 +663,24 @@ sub generate_military {
     generate_military_stats();
     generate_fortifications();
     generate_kingdom_troops();
+    generate_favored_weapon();
+    #generate_watchtowers();
+
+#TODO travelers
+#TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
+# favored weapons
 #    generate_seige();
 }
+
+###############################################################################
+#
+# generate_favored_weapon - generate favored_weapon, fortifications, wars, etc
+#
+###############################################################################
+
+sub generate_favored_weapon {
+}
+
 ###############################################################################
 #
 # generate_kingdom_troops - generate troops dedicated to protecting the kingdom.
@@ -670,7 +688,7 @@ sub generate_military {
 ###############################################################################
 
 sub generate_kingdom_troops {
-    $city->{'militarystats'}->{'kingdompercent'}=&d(4)*10 + $city->{'size_modifier'};
+    $city->{'militarystats'}->{'kingdompercent'}=max(0, &d(8)*5 + $city->{'size_modifier'});
     
     $city->{'militarystats'}->{'kingdom'}       = int($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'kingdompercent'}/100);
     $city->{'militarystats'}->{'kingdompercent'}= int($city->{'militarystats'}->{'kingdom'}/ $city->{'militarystats'}->{'active'} * 1000)/10;

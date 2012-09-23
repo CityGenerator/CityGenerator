@@ -519,6 +519,94 @@
     <district name="port"         chance='0'  stat="travel" />
 </districts>
 
+
+<weapontypes> <!-- __ fighters are known/renown/mocked for their use of ____ and ____ -->
+    <techniques>
+        <option>rigid formations</option>
+        <option>frenzied fighting</option>
+        <option>phlanyx formations</option>
+        <option>guerrilla warfare</option>
+        <option>hoarde tactics</option>
+    </techniques>
+    <weapon type="axes" >
+        <option>battle axes</option>
+        <option>hand axes</option>
+        <option>greataxes</option>
+        <option>axes</option>
+        <option>unique axes</option>
+    </weapon>
+    <weapon type="bows">
+        <option>shortbows</option>
+        <option>longbows</option>
+        <option>composite bows</option>
+        <option>bows</option>
+    </weapon>
+    <weapon type="crossbows">
+        <option>heavy crossbows</option>
+        <option>light crossbows</option>
+        <option>repeating crossbows</option>
+        <option>hand crossbows</option>
+        <option>great crossbows</option>
+        <option>crossbows</option>
+    </weapon>
+    <weapon type="flails, maces and clubs">
+        <option>light flail</option>
+        <option>heavy flail</option>
+        <option>light mace</option>
+        <option>heavy mace</option>
+        <option>simple clubs</option>
+        <option>great clubs</option>
+        <option>spiked clubs</option>
+        <option>morningstars</option>
+        <option>flails, maces and clubs</option>
+    </weapon>
+    <weapon type="swords" >
+        <option>longswords</option>
+        <option>curved swords</option>
+        <option>shortswords</option>
+        <option>greatswords</option>
+        <option>bastard swords</option>
+        <option>falchionn</option>
+        <option>scimitars</option>
+        <option>swords</option>
+        <option>rapiers</option>
+        <option>butterfly swords</option>
+    </weapon>
+    <weapon type="">
+        <option>daggers</option>
+        <option>bladed gauntlets</option>
+        <option>claw bracers</option>
+        <option>stump knives</option>
+        <option>tonfas</option>
+    </weapon>
+    <weapon type="throwing">
+        <option>throwing daggers</option>
+        <option>throwing axes</option>
+        <option>throwing hammers</option>
+        <option>thrown weapons</option>
+        <option>slings weapons</option>
+        <option>Javelins</option>
+    </weapon>
+    <weapon type="polearms">
+        <option>glaives</option>
+        <option>guisarmes</option>
+        <option>halberds</option>
+        <option>ranseurs</option>
+    </weapon>
+    <weapon type="spears">
+        <option>short spears</option>
+        <option>long spears</option>
+        <option>tridents</option>
+        <option>harpoons</option>
+        <option>javelins</option>
+    </weapon>
+    <weapon type="unarmed combat">
+        <option>unarmed combat</option>
+        <option>martial arts</option>
+    </weapon>
+</weapontypes>
+
+
 <popdensity>
     <option type="sparsely"  feetpercapita="5000"/>
     <option type="lightly"   feetpercapita="3000"/>
@@ -598,13 +686,14 @@
 </order>
 
 <govtypes>
-    <descriptor approvalmod='3' >much loved</descriptor>
+    <descriptor approvalmod='-5'>hated</descriptor>
+    <descriptor approvalmod='-4'>despised</descriptor>
     <descriptor approvalmod='-3'>much maligned</descriptor>
     <descriptor approvalmod='-2'>ridiculed</descriptor>
-    <descriptor approvalmod='-5'>hated</descriptor>
+    <descriptor approvalmod='-1'>mocked</descriptor>
+    <descriptor approvalmod='2' >much loved</descriptor>
     <descriptor approvalmod='3' >praised</descriptor>
     <descriptor approvalmod='4' >respected</descriptor>
-    <descriptor approvalmod='-4'>despised</descriptor>
     <descriptor approvalmod='5' >revered</descriptor>
     <govt approvalmod='0'  religion='2'  mil_mod='-1' >council</govt>
     <govt approvalmod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
