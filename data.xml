@@ -632,69 +632,131 @@
     <landmarkdesc chance="50">
         <option>nondescript</option>
         <option>curious</option>
+	<option>tiny</option>
         <option>small</option>
         <option>large</option>
         <option>huge</option>
         <option>massive</option>
+	<option>gigantic</option>
     </landmarkdesc>
     <location description="on the coast" port_chance='100'>
-        <landmarks chance="12">cliff</landmarks>
-        <landmarks chance="10">lighthouse</landmarks>
-        <landmarks chance="10">river</landmarks>
-        <landmarks chance="10">rivermouth</landmarks>
-        <landmarks chance="20">beach</landmarks>
-        <landmarks chance="10">jagged outcropping of rock</landmarks>
-	<landmarks chance="15">lagoon</landmarks>
-	<landmarks chance="15">delta</landmarks>
-	<landmarks chance="10">atoll</landmarks>
-	<landmarks chance="25">reef</landmarks>
-	<landmarks chance="5">glacier</landmarks>
-	<landmarks chance="5">ice sheet</landmarks>
-	<landmarks chance="20">marsh</landmarks>
-	<landmarks chance="12">dock</landmarks>
-	<landmarks chance="12">hatchery</landmarks>
-	<landmarks chance="15">cove</landmarks>
-	<landmarks chance="12">cape</landmarks>
-	<landmarks chance="5">cave</landmarks>
-	<landmarks chance="15">peninsula</landmarks>
-	<landmarks chance="10">fjord</landmarks>
-	<landmarks chance="20">dune</landmarks>
-	<landmarks chance="5">lava cave</landmarks>
-	<landmarks chance="20">mangroves</landmarks>
-	<landmarks chance="5">oyster bank</landmarks>
-	<landmarks chance="10">channel</landmarks>
-	<landmarks chance="15">inlet</landmarks>
-	<landmarks chance="10">sound</landmarks>
-	<landmarks chance="15">ridge</landmarks>
-	<landmarks chance="12">floodplain</landmarks>
-	<landmarks chance="15">bluff</landmarks>
-	<landmarks chance="10">hill</landmarks>
-	<landmarks chance="10">creek</landmarks>
-	<landmarks chance="15">shoal</landmarks>
+	<landmarks chance="12">cliff</landmarks>
+	<landmarks chance="10">lighthouse</landmarks>
+	<landmarks chance="10">rivermouth</landmarks>
+	<landmarks chance="20">beach</landmarks>
+	<landmarks chance="10">jagged outcropping of rock</landmarks>      
+	<landmarks chance="12">sea cliff</landmarks>
+	<landmarks chance="12">coral reef</landmarks>
+	<landmarks chance="12">barrier island</landmarks>
     </location>
     <location description="near a canal" port_chance='90'>
+      <landmarks chance="12">bluff</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">rapids</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
+      <landmarks chance="12">lake</landmarks>
+      <landmarks chance="12">valley</landmarks>
+      <landmarks chance="12">swamp</landmarks>
     </location>
     <location description="on a cape" port_chance='90'>
+	<landmarks chance="12">beach</landmarks>
+	<landmarks chance="12">bluff</landmarks>
+	<landmarks chance="12">canal</landmarks>
+	<landmarks chance="12">cliff</landmarks>
+	<landmarks chance="12">fjord</landmarks>
+	<landmarks chance="12">sea cliffs</landmarks>
+	<landmarks chance="12">sea cave</landmarks>
+	<landmarks chance="12">volcanic island</landmarks>
     </location>
     <location description="near a reservoir" port_chance='60'>
+      <landmarks chance="12">canal</landmarks>
+      <landmarks chance="12">cavern</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">foothills</landmarks>
+      <landmarks chance="12">mud volcaino</landmarks>
+      <landmarks chance="12">ravine</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">waterfall</landmarks>
     </location>
-    <location description="on a delta" port_chance='90'>
+    <location description="on a delta" port_chance='900'>
+      <landmarks chance="12">bayou</landmarks>
+      <landmarks chance="12">coastline</landmarks>
+      <landmarks chance="12">continental shelf</landmarks>
+      <landmarks chance="12">salt marsh</landmarks>
+      <landmarks chance="12">sandbar</landmarks>
+      <landmarks chance="12">mud flat</landmarks>
+      <landmarks chance="12">submarine volcano</landmarks>
     </location>
     <location description="peninsula" port_chance='90'>
+      <landmarks chance="12">barrier island</landmarks>
+      <landmarks chance="12">coastline</landmarks>
+      <landmarks chance="12">sea cave</landmarks>
+      <landmarks chance="12">sea cliff</landmarks>
+      <landmarks chance="12">tidal basin</landmarks>
+      <landmarks chance="12">wetland</landmarks>
+      <landmarks chance="12">cove</landmarks>
+      <landmarks chance="12">reef</landmarks>
     </location>
     <location description="in an oasis" port_chance='0'>
+      <landmarks chance="12">dry lake</landmarks>
+      <landmarks chance="12">sand dunes</landmarks>
+      <landmarks chance="12">foothills</landmarks>
+      <landmarks chance="12">sand hill</landmarks>
+      <landmarks chance="12">ravine</landmarks>
+      <landmarks chance="12">escarpment</landmarks>
+      <landmarks chance="12">dry riverbed</landmarks>
+      <landmarks chance="12">rift valley</landmarks>
     </location>
     <location description="near a strait" port_chance='70'>
+      <landmarks chance="12">bluff</landmarks>
+      <landmarks chance="12">tidal basin</landmarks>
+      <landmarks chance="12">flood plain</landmarks>
+      <landmarks chance="12">salt marsh</landmarks>
+      <landmarks chance="12">shallows</landmarks>
+      <landmarks chance="12">surge channel</landmarks>
+      <landmarks chance="12">shoreline</landmarks>
+      <landmarks chance="12">sandbar</landmarks>
     </location>
     <location description="in a valley" port_chance='10'>
+      <landmarks chance="12">cave</landmarks>
+      <landmarks chance="12">cliff</landmarks>
+      <landmarks chance="12">crag</landmarks>
+      <landmarks chance="12">falls</landmarks>
+      <landmarks chance="12">glacier</landmarks>
+      <landmarks chance="12">lake</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
     </location>
     <location description="near a wetland" port_chance='10'>
+      <landmarks chance="12">box canyon</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">mud flat</landmarks>
+      <landmarks chance="12">swamp</landmarks>
+      <landmarks chance="12">spring</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
+      <landmarks chance="12">prairie</landmarks>
+      <landmarks chance="12">marsh</landmarks>
     </location>
     <location description="on an archipelago" port_chance='100'>
+      <landmarks chance="12">caldera</landmarks>
+      <landmarks chance="12">atoll</landmarks>
+      <landmarks chance="12">beach</landmarks>
+      <landmarks chance="12">oceanic trench</landmarks>
+      <landmarks chance="12">sea cave</landmarks>
+      <landmarks chance="12">sea cliff</landmarks>
+      <landmarks chance="12">submarine volcano</landmarks>      
+      <landmarks chance="12">volcanic island</landmarks>
     </location>
     <location description="near a river" port_chance='50'>
         <landmarks chance="10">marsh</landmarks>
-        <landmarks chance="10">drainage ditch</landmarks>
+        <landmarks chance="12">stream</landmarks>
+	<landmarks chance="12">rapids</landmarks>
+	<landmarks chance="12">waterfall</landmarks>
+	<landmarks chance="12">spring</landmarks>
+	<landmarks chance="12">river delta</landmarks>
+	<landmarks chance="12">cliffs</landmarks>
+	<landmarks chance="12">foothills</landmarks>
     </location>
     <location description="on a hill" port_chance='25'>
         <landmarks chance="22">rocky outcropping</landmarks>
@@ -702,7 +764,8 @@
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">pond</landmarks>
         <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">plain</landmarks>
+        <landmarks chance="12">pass</landmarks>
+	<landmarks chance="12">overhang</landmarks>
         <landmarks chance="10">crossroad</landmarks>
         <landmarks chance="10">mountain range</landmarks>
     </location>
@@ -714,16 +777,27 @@
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">boulder</landmarks>
         <landmarks chance="10">fruit orchard</landmarks>
+	<landmarks chance="12">riverbed</landmarks>
     </location>
     <location description="on a plateau" port_chance='0'>
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="20">jagged cliff</landmarks>
+	<landmarks chance="12">butte</landmarks>
+	<landmarks chance="12">dead volcano</landmarks>
+	<landmarks chance="12">scree</landmarks>
+	<landmarks chance="12">rocks</landmarks>
+	<landmarks chance="12">overhang</landmarks>
+	<landmarks chance="12">natural arch</landmarks>
     </location>
     <location description="in the mountains" port_chance='0'>
-        <landmarks chance="10">valley</landmarks>
+	<landmarks chance="12">tundra</landmarks>
         <landmarks chance="10">summit</landmarks>
-        <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">frostline</landmarks>
+	<landmarks chance="12">crevasse</landmarks>
+	<landmarks chance="12">glacier</landmarks>
+	<landmarks chance="12">glacier cave</landmarks>
+	<landmarks chance="12">mountain pass</landmarks>
+	<landmarks chance="12">slope</landmarks>
     </location>
     <location description="underground" port_chance='0'>
         <landmarks chance="10">underground lake</landmarks>
@@ -733,34 +807,60 @@
         <landmarks chance="10">cavern</landmarks>
         <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">faultline</landmarks>
+	<landmarks chance="12">lava tube</landmarks>
     </location>
     <location description="in the plains" port_chance='10'>
-        <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">sea</landmarks>
-        <landmarks chance="10">blue ocean</landmarks>
+	<landmarks chance="12">badlands</landmarks>
+	<landmarks chance="12">box canyon</landmarks>
+        <landmarks chance="12">butte</landmarks>
         <landmarks chance="10">forest</landmarks>
-        <landmarks chance="10">crossroad</landmarks>
+        <landmarks chance="12">mud volcaino</landmarks>
         <landmarks chance="10">bog</landmarks>
         <landmarks chance="10">swamp</landmarks>
-        <landmarks chance="10">rocky outcropping</landmarks>
-        <landmarks chance="10">farmland</landmarks>
+        <landmarks chance="12">geyser</landmarks>
     </location>
     <location description="in the desert" port_chance='0'>
         <landmarks chance="10">wonderful oasis</landmarks>
         <landmarks chance="10">sea of sand dunes</landmarks>
-        <landmarks chance="10">rocky outcropping</landmarks>
+        <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">stone formation</landmarks>
+	<landmarks chance="12">ridge</landmarks>
+	<landmarks chance="12">natural arch</landmarks>
+	<landmarks chance="12">foothills</landmarks>
+	<landmarks chance="12">fissure</landmarks>
     </location>
     <location description="in the forest" port_chance='5'>
         <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">red oak grove</landmarks>
+	<landmarks chance="12">cavern</landmarks>
+	<landmarks chance="12">gully</landmarks>
         <landmarks chance="10">sequoia grove</landmarks>
-        <landmarks chance="10">spruce grove</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">caves</landmarks>
         <landmarks chance="10">clearing</landmarks>
+	<landmarks chance="12">moraine</landmarks>
+    </location>
+    <location description="in the badlands" port_chance='5'>
+        <landmarks chance="12">box canyon</landmarks>
+	<landmarks chance="12">lava flow</landmarks>
+	<landmarks chance="12">mud flat</landmarks>
+	<landmarks chance="12">volcano</landmarks>
+	<landmarks chance="12">swamp</landmarks>
+	<landmarks chance="12">escarpment</landmarks>
+	<landmarks chance="12">tar pit</landmarks>
+	<landmarks chance="12">mesa</landmarks>
+    </location>
+    <location description="in the tundra" port_chance='5'>
+        <landmarks chance="12">mountain range</landmarks>
+	<landmarks chance="12">ice cliff</landmarks>
+	<landmarks chance="12">glacier</landmarks>
+	<landmarks chance="12">glacier cave</landmarks>
+	<landmarks chance="12">moraine</landmarks>
+	<landmarks chance="12">crevasse</landmarks>
+	<landmarks chance="12">rivulet</landmarks>
+	<landmarks chance="12">fissure</landmarks>
     </location>
 </locations>
+
 <direction>
     <option>northwest</option>
     <option>north</option>
