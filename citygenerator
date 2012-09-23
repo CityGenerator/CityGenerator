@@ -25,6 +25,7 @@ our $city={'seed'=>$seed};
 #TODO change govtype and weapontype to use <respect> for reverence/mockery
 # favored weapons
 # racial order
+
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
