@@ -74,6 +74,7 @@ sub describe_city {
     $content.=describe_geography();
     $content.=describe_cityscape();
     $content.=describe_government();
+    $content.=describe_military();
     $content.=describe_population();
     $content.=describe_economy();
     $content.=describe_current_events();
@@ -265,6 +266,15 @@ sub describe_economy{
 }
 
 #######################################################################################################################
+sub describe_military{
+    my $content="
+                    <section id='military'>
+                        <h2>Military</h2>
+                        <p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces. Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised.</p>
+
+                    </section>
+";
+}
 
 sub describe_secondarypower{
     my $content=" Within the city there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
@@ -495,52 +505,6 @@ sub print_landmarks {
     }
 }
 
-
-#Population
-#The population is broken down as follows:
-#
-#    1848 Troglodyte ( 98.9%)
-#    19 Mindflayer ( 1%)
-#____ [and ______] are treated as equals by _______. ______ looks down upon ________. There has been no history of racial violence. 20% of the trogladyte population belong to a violent religious sect.
-#
-#
-#Economy:
-#The economy is strong. Magic is somewhat common. Education is low. This is an economically isolated area with few travelers.
-#
-#Galeshead Ridge is known for:
-#
-#    nearby bays
-#    crucial bauxite deposits
-#
-#
-#
-#--------------------------------------------
-#Local Info
-#
-#Within the city and the surrounding areas, you'll find:
-#
-#    Thieves guild (secret)
-#    Adventurers guild (secret)
-#
-#Current Events
-#
-#You arrive at the city around mid-day, The the clouds are overcast, the air is thin and the wind is heavy. It is unusually hot. There is thunder and lighting.
-#
-#Upon arrival, around 38 citizens are wandering the chilly town. You see:
-#
-#    the aftermath of a war
-#    the midst of a raid
-#
-#
-#
-#EOF
-#;
-
-
-
-
-
-
 ###############################################################################
 #
 # print_style - a simple style to make lists pretty.
@@ -626,6 +590,7 @@ sub generate_city_core{
     generate_pop_counts();
     generate_city_age();
     generate_children();
+    generate_elderly();
 }
 
 ###############################################################################
@@ -682,32 +647,59 @@ sub generate_economics {
     generate_magic_description();
 }
 
-
 ###############################################################################
 #
-# generate_military - generate percentage of militant population
+# generate_military - generate military, fortifications, wars, etc
 #
 ###############################################################################
 
 sub generate_military {
+    generate_military_stats();
+    generate_fortifications();
+}
+
+###############################################################################
+#
+# generate_fortifications - generate fortifications
+#
+###############################################################################
+
+sub generate_fortifications {
+#<fortification>
+#    <option min='1'  max='5'>abysmally</option>
+    my $roll;
+    if ($city->{'walls'}->{'content'} eq 'none' ){
+        $roll=&d(45);
+        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'fortification'}->{'option'}) ;
+    }else{
+        $roll=&d(100) + $city->{'walls'}->{'height'};
+        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'fortification'}->{'option'}) ;
+    }
+    $city->{'fortification'}->{'roll'}=$roll;
+}
+
+###############################################################################
+#
+# generate_military_stats - generate percentage of militant population
+#
+###############################################################################
+
+sub generate_military_stats {
+    $city->{'militarystats'}={};
     #factors - is there a barraks district? +10%
-    # order, mil, authority, 
-    # base militaryi
-    # low order means more paramilitary
-    # high military and no authority = 1000 * ( 2 + 20 + 0  ) = 24% total
-    # high military and no authority = 1000 * ( 2 + 2 + 20 + 5  ) = 29% total
-    my $total_percent=  max( 0,( 2 + $city->{'govtype'}->{'mil_mod'}  +   ( 4 + $city->{'military'}+5)*2   +  ($city->{'authority'} )      )/100 );
-    my $total =  int ($city->{'population'} * $total_percent) ;
-    my $para_percent = (5 - $city->{'authority'});
+    # order, mil, authority,
+    # base military
+    $city->{'militarystats'}->{'activepercent'}  = max(0, 10 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/2  );
+    $city->{'militarystats'}->{'reservepercent'} = max(0,  3 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/4   ) ;
+    $city->{'militarystats'}->{'parapercent'}    = max(0,  7 + $city->{'military'} +  $city->{'govtype'}->{'mil_mod'} );
+    $city->{'militarystats'}->{'inelegable_pop'} = int( $city->{'imprisonment'}->{'population'} + $city->{'children'}->{'population'}/2 +$city->{'elderly'}->{'population'});
+
+    $city->{'militarystats'}->{'active'}  =  int ($city->{'population'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
+    $city->{'militarystats'}->{'reserve'} =  int ($city->{'population'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
+    $city->{'militarystats'}->{'para'}    =  int ($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
+    $city->{'militarystats'}->{'militia'} =  int ($city->{'population'} - $city->{'militarystats'}->{'inelegable_pop'} );
+    $city->{'militarystats'}->{'militiapercent'} =  int (  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
     
-# What 
-#military percentages 
-#Active 4.88/100 to .03/100 or none
-#Reserve 40/100 to    .02/100 or none
-#paramilitary is 3x to 1/20th of active force or none
-#total 25.89/100 to .02/100
-
-
 }
 
 ###############################################################################
@@ -1389,6 +1381,27 @@ sub generate_imprisonment_rate{
 }
 
 
+
+###############################################################################
+#
+# generate_elderly - set the percentage of the population that are elderly, 
+# modified by the age of the city
+#
+###############################################################################
+sub generate_elderly {
+
+    $city->{'elderly'}={};
+    #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
+    # 1% and 26%, which follows the reported international rates of the US census bureau, so STFU.
+    $city->{'elderly'}->{'percent'}= max(1.5, (6 + &d(5) -  $city->{'cityage'}->{'agemod'})  );
+
+    #calculate out the actual child population in whole numbers
+    $city->{'elderly'}->{'population'}= ceil( $city->{'elderly'}->{'percent'}/100 * $city->{'population'});
+
+    #recalulate to make the percent accurate with the population
+    $city->{'elderly'}->{'percent'}= ceil($city->{'elderly'}->{'population'}/$city->{'population'}*1000)/10;
+
+}
 
 
 ###############################################################################
