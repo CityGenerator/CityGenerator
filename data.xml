@@ -3,19 +3,17 @@
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-6"   minpop="11"     maxpop="100"    gplimit="100"/>     
-    <city size="hamlet"        min="11"  max="30"  size_modifier="-5"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="small village" min="31"  max="35"  size_modifier="-4"   minpop="501"    maxpop="600"    gplimit="600"/>    
-    <city size="village"       min="36"  max="40"  size_modifier="-3"   minpop="601"    maxpop="750"    gplimit="750"/>   
-    <city size="large village" min="41"  max="45"  size_modifier="-2"   minpop="751"    maxpop="1000"   gplimit="1000"/>     
-    <city size="small town"    min="46"  max="60"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="town"          min="61"  max="70"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
-    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"   gplimit="5000"/>     
-    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"   gplimit="8000"/>     
-    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000"  gplimit="15000"/>    
-    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000"  gplimit="22000"/>    
-    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000"  gplimit="30000"/>    
-    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="50000"  gplimit="50000"/>    
+    <city size="commune"      min="1"   max="4"   size_modifier="-5"   minpop="11"     maxpop="20"     gplimit="50"/>          
+    <city size="settlement"   min="5"   max="9"   size_modifier="-4"   minpop="21"     maxpop="100"    gplimit="100"/>         
+    <city size="hamlet"       min="10"  max="29"  size_modifier="-3"   minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="village"      min="30"  max="44"  size_modifier="-2"   minpop="501"    maxpop="1000"   gplimit="1000"/>     
+    <city size="small town"   min="45"  max="59"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="town"         min="60"  max="69"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="large town"   min="70"  max="79"  size_modifier="2"    minpop="3501"   maxpop="5000"   gplimit="5000"/>     
+    <city size="small city"   min="80"  max="89"  size_modifier="4"    minpop="5001"   maxpop="8000"   gplimit="8000"/>     
+    <city size="city"         min="90"  max="94"  size_modifier="6"    minpop="8001"   maxpop="15000"  gplimit="15000"/>    
+    <city size="large city"   min="95"  max="99"  size_modifier="8"    minpop="15001"  maxpop="25000"  gplimit="25000"/>    
+    <city size="capitol"      min="100" max="100" size_modifier="12"   minpop="25001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
 
 <resources>
@@ -23,25 +21,23 @@
         <title>pristine</title>
         <title>plentiful</title>
         <title>ruined</title>
-        <title></title>
         <root>yellow</root>
         <root>red</root>
         <root>white</root>
         <root>black</root>
         <root></root>
-        <trailer>sandy beaches</trailer>
+        <post>sandy beaches</post>
     </resource>
     <resource type="wildlife">
         <title>plentiful</title>
         <title>now scarce</title>
         <title>endangered</title>
         <title>unique</title>
-        <title></title>
         <root>woodland</root>
         <root>aquatic</root>
         <root>marine</root>
         <root></root>
-        <trailer>wildlife</trailer>
+        <post>wildlife</post>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -75,8 +71,8 @@
         <root>sunflower</root>
         <root>fruit</root>
         <root>vegetable</root>
-        <trailer>fields</trailer>
-        <trailer>crops</trailer>
+        <post>fields</post>
+        <post>crops</post>
     </resource>
     <resource type="metals">
         <title>plentiful</title>
@@ -94,11 +90,11 @@
         <root>titanium</root>
         <root>zinc</root>
         <root>nonferrous metal</root>
-        <trailer>works</trailer>
-        <trailer>smithing</trailer>
-        <trailer>ore</trailer>
-        <trailer>deposits</trailer>
-        <trailer>mines</trailer>
+        <post>works</post>
+        <post>smithing</post>
+        <post>ore</post>
+        <post>deposits</post>
+        <post>mines</post>
     </resource>
     <resource type="gem">
         <title>plentiful</title>
@@ -116,9 +112,9 @@
         <root>precious stone</root>
         <root>pyrite</root>
         <root>quartz</root>
-        <trailer>cutting</trailer>
-        <trailer>deposits</trailer>
-        <trailer>mines</trailer>
+        <post>cutting</post>
+        <post>deposits</post>
+        <post>mines</post>
     </resource>
     <resource type="minerals">
         <title>plentiful</title>
@@ -145,8 +141,8 @@
         <root>minor minerals</root>
         <root>calcified seaweed</root>
 
-        <trailer>mines</trailer>
-        <trailer>deposits</trailer>
+        <post>mines</post>
+        <post>deposits</post>
     </resource>
 
     <resource type='harvests'>
@@ -165,7 +161,7 @@
         <root>squid</root>
         <root>spiny lobster</root>
 
-        <trailer>harvests</trailer>
+        <post>harvests</post>
     </resource>
 
     <resource type='herd animals'>
@@ -180,7 +176,7 @@
         <root>llama</root>
         <root>horse</root>
 
-        <trailer>herds</trailer>
+        <post>herds</post>
     </resource>
 
     <resource type='wood'>
@@ -202,10 +198,10 @@
         <root>miro</root>
         <root>willow</root>
 
-        <trailer>trees</trailer>
-        <trailer>forests</trailer>
-        <trailer>lumbermills</trailer>
-        <trailer>woodworkers</trailer>
+        <post>trees</post>
+        <post>forests</post>
+        <post>lumbermills</post>
+        <post>woodworkers</post>
     </resource>
 
     <resource type="quarries">
@@ -222,8 +218,8 @@
         <root>slate</root>
         <root></root>
 
-        <trailer>mines</trailer>
-        <trailer>quarries</trailer>
+        <post>mines</post>
+        <post>quarries</post>
     </resource>
 
     <resource type="locales">
@@ -335,17 +331,17 @@
     <root>cobblestone streets</root>
     <root>cobblestone paths</root>
 
-    <trailer>in a grid pattern</trailer>
-    <trailer>in a ray pattern</trailer>
-    <trailer>in a contour-forming pattern</trailer>
-    <trailer>in an irregular pattern</trailer>
-    <trailer>in a random mesh pattern</trailer>
-    <trailer>in an organic pattern</trailer>
-    <trailer>in a fragmented parallel pattern</trailer>
-    <trailer>in a looped pattern</trailer>
-    <trailer>in a warped parallel pattern</trailer>
-    <trailer>in a linear pattern</trailer>
-    <trailer>in a wheel and spoke pattern</trailer>
+    <post>in a grid pattern</post>
+    <post>in a ray pattern</post>
+    <post>in a contour-forming pattern</post>
+    <post>in an irregular pattern</post>
+    <post>in a random mesh pattern</post>
+    <post>in an organic pattern</post>
+    <post>in a fragmented parallel pattern</post>
+    <post>in a looped pattern</post>
+    <post>in a warped parallel pattern</post>
+    <post>in a linear pattern</post>
+    <post>in a wheel and spoke pattern</post>
 </streets>
 
 <walls chance='10' >
@@ -359,18 +355,18 @@
     <root>wood</root>
     <root>stone</root>
 
-    <trailer>embankment</trailer>
-    <trailer>barricade</trailer>
-    <trailer>barrier</trailer>
-    <trailer>bulwark</trailer>
-    <trailer>fence</trailer>
-    <trailer>fortification</trailer>
-    <trailer>palisade </trailer>
-    <trailer>partition</trailer>
-    <trailer>rampart</trailer>
-    <trailer>stockade</trailer>
-    <trailer>enclosure</trailer>
-    <trailer>wall</trailer>
+    <post>embankment</post>
+    <post>barricade</post>
+    <post>barrier</post>
+    <post>bulwark</post>
+    <post>fence</post>
+    <post>fortification</post>
+    <post>palisade </post>
+    <post>partition</post>
+    <post>rampart</post>
+    <post>stockade</post>
+    <post>enclosure</post>
+    <post>wall</post>
 </walls>
 
 
@@ -383,94 +379,96 @@
 
 <buildings>
 
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops">alchemist</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="poor">almshouse</building>
-    <building weight='1' priority='8'  perbuilding='2'  requires_size="0"  district="fineshops">apothecary</building>
-    <building weight='2' priority='3'  perbuilding='3'  requires_size="-2" district="trade">armorer</building>
-    <building weight='2' priority='10' perbuilding='5'  requires_size="6"  district="trade">assassin/bounty hunter</building>
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops">astrologer</building>
-    <building weight='2' priority='4'  perbuilding='4'  requires_size="-4" district="trade">baker</building>
-    <building weight='1' priority='4'  perbuilding='10' requires_size="0"  district="professional">banker</building>
-    <building weight='2' priority='5'  perbuilding='3'  requires_size="0"  district="professional">barber</building>
-    <building weight='1' priority='5'  perbuilding='20' requires_size="-1" district="military">barracks</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="2"  district="civic">barrister</building>
-    <building weight='2' priority='2'  perbuilding='3'  requires_size="-5" district="trade">blacksmith</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="-1" district="port">boat for hire</building>
-    <building weight='1' priority='9'  perbuilding='2'  requires_size="0"  district="fineshops">bookseller</building>
-    <building weight='1' priority='3'  perbuilding='4'  requires_size="-3" district="trade">bowyer</building>
-    <building weight='1' priority='5'  perbuilding='5'  requires_size="-1" district="trade">brewer</building>
-    <building weight='2' priority='4'  perbuilding='10' requires_size="-1" district="poor">brothel</building>
-    <building weight='2' priority='2'  perbuilding='5'  requires_size="-3" district="trade">butcher</building>
-    <building weight='1' priority='7'  perbuilding='10' requires_size="-3" district="trade">carpenter</building>
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade">cartwright</building>
-    <building weight='1' priority='10' perbuilding='50' requires_size="6"  district="wealthy">castle</building>
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="trade">chandler</building>
-    <building weight='1' priority='7'  perbuilding='3'  requires_size="0"  district="trade">cheesemaker</building>
-    <building weight='3' priority='3'  perbuilding='6'  requires_size="-3" district="mercy">church</building>
-    <building weight='1' priority='7'  perbuilding='2'  requires_size="-3" district="shops">cobbler</building>
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" district="trade">cooper</building>
-    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade">dyer</building>
-    <building weight='1' priority='10' perbuilding='7'  requires_size="6"  district="professional">engineer</building>
-    <building weight='1' priority='10' perbuilding='6'  requires_size="4"  district="professional">entertainer</building>
-    <building weight='1' priority='8'  perbuilding='3'  requires_size="0"  district="market">fishmonger</building>
-    <building weight='1' priority='5'  perbuilding='20' requires_size="6"  district="civic">fortress</building>
-    <building weight='1' priority='7'  perbuilding='3'  requires_size="-3" district="trade">furrier</building>
-    <building weight='1' priority='9'  perbuilding='6'  requires_size="-1" district="trade">glassblower</building>
-    <building weight='1' priority='1'  perbuilding='10' requires_size="-6" district="civic">graveyard</building>
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="market">grocer</building>
-    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" district="mercy">healer</building>
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-4" district="shops">herbalist</building>
-    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  district="embassy">hostel</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="6"  district="embassy">interpreter</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="0"  district="civic">jailhouse</building>
-    <building weight='1' priority='8'  perbuilding='4'  requires_size="-2" district="fineshops">jeweler</building>
-    <building weight='3' priority='6'  perbuilding='10' requires_size="-2" district="industry">laborer</building>
-    <building weight='1' priority='8'  perbuilding='20' requires_size="4"  district="trade">mercenary</building>
-    <building weight='2' priority='3'  perbuilding='4'  requires_size="-4" district="trade">leatherworker</building>
-    <building weight='5' priority='2'  perbuilding='4'  requires_size="-5" district="official">law enforcement</building>
-    <building weight='1' priority='7'  perbuilding='4'  requires_size="-2" district="education">library</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="professional">locksmith</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="-2" district="industry">lumbermill</building>
-    <building weight='1' priority='6'  perbuilding='2'  requires_size="4"  district="shops">magic store</building>
-    <building weight='1' priority='3'  perbuilding='10' requires_size="-3" district="industry">mason</building>
-    <building weight='1' priority='2'  perbuilding='10' requires_size="-4" district="market">merchant</building>
-    <building weight='1' priority='10' perbuilding='5'  requires_size="0"  district="embassy">messenger</building>
-    <building weight='1' priority='1'  perbuilding='6'  requires_size="-6" district="trade">miller</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="professional">navigator</building>
-    <building weight='2' priority='3'  perbuilding='5'  requires_size="-4" district="civic">official</building>
-    <building weight='1' priority='7'  perbuilding='4'  requires_size="0"  district="mercy">orphanage</building>
-    <building weight='1' priority='4'  perbuilding='4'  requires_size="-2" district="mercy">physician</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="professional">porter</building>
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-2" district="trade">potter</building>
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="market">provisioner</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="8"  district="market">rare crafts and trades</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="trade">saddler</building>
-    <building weight='1' priority='3'  perbuilding='2'  requires_size="-4" district="professional">sage</building>
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-4" district="educational">school</building>
-    <building weight='1' priority='6'  perbuilding='10' requires_size="2"  district="professional">scribe</building>
-    <building weight='1' priority='10' perbuilding='20' requires_size="6"  district="port">shipyard</building>
-    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  district="mercy">shrine</building>
-    <building weight='2' priority='1'  perbuilding='4'  requires_size="-5" district="trade">smith</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="fineshops">specialty smith</building>
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" district="trade">stable</building>
-    <building weight='1' priority='7'  perbuilding='6'  requires_size="-1" district="professional">tailor/seamstress</building>
-    <building weight='1' priority='4'  perbuilding='3'  requires_size="-3" district="trade">tanner</building>
-    <building weight='2' priority='2'  perbuilding='4'  requires_size="-5" district="">tavern/inn</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="-1" district="professional">teamster</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="-3" district="mercy">temple</building>
-    <building weight='1' priority='10' perbuilding='10' requires_size="4"  district="entertainment">theatre</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="6"  district="industry">tilemaker</building>
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="market">trader</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="industrial">transportation</building>
-    <building weight='1' priority='10' perbuilding='20' requires_size="10" district="education">university</building>
-    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade">vintner</building>
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="industrial">wagon yard</building>
-    <building weight='2' priority='6'  perbuilding='2'  requires_size="6"  district="industrial">warehouse</building>
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade">weaponsmith</building>
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-3" district="trade">weaver</building>
-    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" district="trade">woodworker</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fineshops">alchemist</building>
+    <building weight='1' priority='10' perbuilding='3'  district="poor">almshouse</building>
+    <building weight='1' priority='8'  perbuilding='2'  district="fineshops">apothecary</building>
+    <building weight='2' priority='3'  perbuilding='3'  district="trade">armorer</building>
+    <building weight='2' priority='10' perbuilding='5'  district="trade">assassin/bounty hunter</building>
+    <building weight='1' priority='10' perbuilding='2'  district="fineshops">astrologer</building>
+    <building weight='2' priority='4'  perbuilding='4'  district="trade">baker</building>
+    <building weight='1' priority='4'  perbuilding='10' district="professional">banker</building>
+    <building weight='2' priority='5'  perbuilding='3'  district="professional">barber</building>
+    <building weight='1' priority='5'  perbuilding='20' district="military">barracks</building>
+    <building weight='1' priority='10' perbuilding='4'  district="civic">barrister</building>
+    <building weight='2' priority='2'  perbuilding='3'  district="trade">blacksmith</building>
+    <building weight='1' priority='10' perbuilding='3'  district="port">boat for hire</building>
+    <building weight='1' priority='9'  perbuilding='2'  district="fineshops">bookseller</building>
+    <building weight='1' priority='3'  perbuilding='4'  district="trade">bowyer</building>
+    <building weight='1' priority='5'  perbuilding='5'  district="trade">brewer</building>
+    <building weight='2' priority='4'  perbuilding='10' district="poor">brothel</building>
+    <building weight='2' priority='2'  perbuilding='5'  district="trade">butcher</building>
+    <building weight='1' priority='7'  perbuilding='10' district="trade">carpenter</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">cartwright</building>
+    <building weight='1' priority='10' perbuilding='50' district="wealthy">castle</building>
+    <building weight='1' priority='10' perbuilding='2'  district="trade">chandler</building>
+    <building weight='1' priority='7'  perbuilding='3'  district="trade">cheesemaker</building>
+    <building weight='3' priority='3'  perbuilding='6'  district="mercy">church</building>
+    <building weight='1' priority='7'  perbuilding='2'  district="shops">cobbler</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">cooper</building>
+    <building weight='1' priority='10' perbuilding='6'  district="trade">dyer</building>
+    <building weight='1' priority='10' perbuilding='7'  district="professional">engineer</building>
+    <building weight='1' priority='10' perbuilding='6'  district="professional">entertainer</building>
+    <building weight='1' priority='8'  perbuilding='3'  district="market">fishmonger</building>
+    <building weight='1' priority='5'  perbuilding='20' district="civic">fortress</building>
+    <building weight='1' priority='7'  perbuilding='3'  district="trade">furrier</building>
+    <building weight='1' priority='9'  perbuilding='6'  district="trade">glassblower</building>
+    <building weight='1' priority='1'  perbuilding='10' district="civic">graveyard</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="market">grocer</building>
+    <building weight='1' priority='5'  perbuilding='3'  district="mercy">healer</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="shops">herbalist</building>
+    <building weight='1' priority='10' perbuilding='8'  district="embassy">hostel</building>
+    <building weight='2' priority='4'  perbuilding='4'  district="shops">inn</building>
+    <building weight='1' priority='10' perbuilding='10' district="embassy">interpreter</building>
+    <building weight='1' priority='10' perbuilding='10' district="civic">jailhouse</building>
+    <building weight='1' priority='8'  perbuilding='4'  district="fineshops">jeweler</building>
+    <building weight='3' priority='6'  perbuilding='10' district="industry">laborer</building>
+    <building weight='1' priority='8'  perbuilding='20' district="trade">mercenary</building>
+    <building weight='2' priority='3'  perbuilding='4'  district="trade">leatherworker</building>
+    <building weight='10' priority='2' perbuilding='4'  district="official">law enforcement</building>
+    <building weight='1' priority='7'  perbuilding='4'  district="education">library</building>
+    <building weight='1' priority='10' perbuilding='4'  district="professional">locksmith</building>
+    <building weight='1' priority='10' perbuilding='10' district="industry">lumbermill</building>
+    <building weight='1' priority='6'  perbuilding='2'  district="shops">magic store</building>
+    <building weight='1' priority='3'  perbuilding='10' district="industry">mason</building>
+    <building weight='1' priority='2'  perbuilding='10' district="market">merchant</building>
+    <building weight='1' priority='10' perbuilding='5'  district="embassy">messenger</building>
+    <building weight='1' priority='1'  perbuilding='6'  district="trade">miller</building>
+    <building weight='1' priority='10' perbuilding='3'  district="professional">navigator</building>
+    <building weight='2' priority='3'  perbuilding='5'  district="civic">official</building>
+    <building weight='1' priority='7'  perbuilding='4'  district="mercy">orphanage</building>
+    <building weight='1' priority='4'  perbuilding='4'  district="mercy">physician</building>
+    <building weight='1' priority='10' perbuilding='3'  district="professional">porter</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">potter</building>
+    <building weight='1' priority='10' perbuilding='2'  district="market">provisioner</building>
+    <building weight='1' priority='10' perbuilding='4'  district="market">rare crafts and trades</building>
+    <building weight='1' priority='10' perbuilding='4'  district="trade">saddler</building>
+    <building weight='1' priority='3'  perbuilding='2'  district="professional">sage</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="educational">school</building>
+    <building weight='1' priority='6'  perbuilding='10' district="professional">scribe</building>
+    <building weight='1' priority='10' perbuilding='20' district="port">shipyard</building>
+    <building weight='1' priority='10' perbuilding='8'  district="mercy">shrine</building>
+    <building weight='2' priority='1'  perbuilding='4'  district="trade">smith</building>
+    <building weight='1' priority='10' perbuilding='3'  district="fineshops">specialty smith</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">stable</building>
+    <building weight='1' priority='7'  perbuilding='6'  district="professional">tailor/seamstress</building>
+    <building weight='1' priority='4'  perbuilding='3'  district="trade">tanner</building>
+    <building weight='1' priority='4'  perbuilding='3'  district="market">tavern</building>
+    <building weight='2' priority='2'  perbuilding='4'  district="">tavern/inn</building>
+    <building weight='1' priority='10' perbuilding='10' district="professional">teamster</building>
+    <building weight='1' priority='10' perbuilding='10' district="mercy">temple</building>
+    <building weight='1' priority='10' perbuilding='10' district="entertainment">theatre</building>
+    <building weight='1' priority='10' perbuilding='3'  district="industry">tilemaker</building>
+    <building weight='1' priority='10' perbuilding='3'  district="market">trader</building>
+    <building weight='1' priority='10' perbuilding='4'  district="industrial">transportation</building>
+    <building weight='1' priority='10' perbuilding='20' district="education">university</building>
+    <building weight='1' priority='10' perbuilding='6'  district="trade">vintner</building>
+    <building weight='1' priority='10' perbuilding='4'  district="industrial">wagon yard</building>
+    <building weight='2' priority='6'  perbuilding='2'  district="industrial">warehouse</building>
+    <building weight='1' priority='6'  perbuilding='4'  district="trade">weaponsmith</building>
+    <building weight='1' priority='5'  perbuilding='4'  district="trade">weaver</building>
+    <building weight='1' priority='5'  perbuilding='3'  district="trade">woodworker</building>
 
-    <building weight='10' priority='10' perbuilding='10' requires_size="-6" district="">misc.</building>
+    <building weight='10' priority='10' perbuilding='10' district="">misc.</building>
 </buildings>
 <citytype>
     <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</city>
@@ -542,30 +540,30 @@
 </poptypes>
 
 <races>
-    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  mil='1'   plural='Humans'>Human</race>
-    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1'  mil='1'   plural='Elves'>Elf</race>
-    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1'  mil='4'   plural='Dwarves'>Dwarf</race>
-    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3'  mil='-1'  plural='Gnomes'>Gnome</race>
-    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3'  mil='-2'  plural='Halflings'>Halfling</race>
-    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5'  mil='-1'  plural='Half-elves'>Half-elf</race>
-    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2'  mil='2'   plural='Half-orcs'>Half-orc</race>
-    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5'  mil='3'   plural='Half-dwarves'>Half-dwarf</race>
+    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3' >Human</race>
+    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1' >Elf</race>
+    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1' >Dwarf</race>
+    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3' >Gnome</race>
+    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3' >Halfling</race>
+    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5' >Half-elf</race>
+    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2' >Half-orc</race>
+    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5' >Half-dwarf</race>
 
-    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2'  mil='0'   plural='others'>other</race>
+    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2' >other</race>
 
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1'  mil='-3'  plural='Kobolds'>Kobold</race>
-    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1' mil='5'   plural='Deep Dwarves'>Deep Dwarf</race>
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1'  mil='0'   plural='Goblins'>Goblin</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1' mil='2'   plural='Orcs'>Orc</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0'  mil='-4'  plural='Ogres'>Ogre</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='2'   plural='Bugbears'>Bugbear</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='-1'  plural='Hobgoblins'>Hobgoblin</race>
-    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2' mil='2'   plural='Lizardfolk'>Lizardfolk</race>
-    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5' mil='3'   plural='Minotaurs'>Minotaur</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1'  mil='-1'  plural='Troglodytes'>Troglodyte</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0'  mil='-3'  plural='Lycanthropes'>Lycanthrope</race>
-    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5' mil='-5'  plural='Mindflayers'>Mindflayer</race>
-    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' mil='2'   plural='Drow'>Drow</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1' >Kobold</race>
+    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1'>Deep Dwarf</race>
+    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1' >Goblin</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1'>Orc</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0' >Ogre</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Bugbear</race>
+    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1'>Hobgoblin</race>
+    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2'>Lizardfolk</race>
+    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5'>Minotaur</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1' >Troglodyte</race>
+    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0' >Lycanthropes</race>
+    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5'>Mindflayer</race>
+    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5'>Drow</race>
 </races>
 
 <moral>
@@ -589,14 +587,14 @@
     <descriptor approvalmod='4' >respected</descriptor>
     <descriptor approvalmod='-4'>despised</descriptor>
     <descriptor approvalmod='5' >revered</descriptor>
-    <govt approvalmod='0'  religion='2'  mil_mod='-1' >council</govt>
-    <govt approvalmod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
-    <govt approvalmod='-1' religion='0'  mil_mod='1'  >despot</govt>
-    <govt approvalmod='0'  religion='1'  mil_mod='1'  >baron</govt>
-    <govt approvalmod='0'  religion='0'  mil_mod='2'  >royalty</govt>
-    <govt approvalmod='-1' religion='-1' mil_mod='1'  >dictator</govt>
-    <govt approvalmod='0'  religion='-1' mil_mod='0'  >clergy</govt>
-    <govt approvalmod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
+    <govt approvalmod='0'  religion='2' >council</govt>
+    <govt approvalmod='0'  religion='1' >powerful wizard</govt>
+    <govt approvalmod='-1' religion='0' >despot</govt>
+    <govt approvalmod='0'  religion='1' >baron</govt>
+    <govt approvalmod='0'  religion='0' >royalty</govt>
+    <govt approvalmod='-1' religion='-1'>dictator</govt>
+    <govt approvalmod='0'  religion='-1'>clergy</govt>
+    <govt approvalmod='1'  religion='-5'>cult leader</govt>
 </govtypes>
 
 <cityages>
@@ -615,69 +613,131 @@
     <landmarkdesc chance="50">
         <option>nondescript</option>
         <option>curious</option>
+	<option>tiny</option>
         <option>small</option>
         <option>large</option>
         <option>huge</option>
         <option>massive</option>
+	<option>gigantic</option>
     </landmarkdesc>
     <location description="on the coast" port_chance='100'>
-        <landmarks chance="12">cliff</landmarks>
-        <landmarks chance="10">lighthouse</landmarks>
-        <landmarks chance="10">river</landmarks>
-        <landmarks chance="10">rivermouth</landmarks>
-        <landmarks chance="20">beach</landmarks>
-        <landmarks chance="10">jagged outcropping of rock</landmarks>
-	<landmarks chance="15">lagoon</landmarks>
-	<landmarks chance="15">delta</landmarks>
-	<landmarks chance="10">atoll</landmarks>
-	<landmarks chance="25">reef</landmarks>
-	<landmarks chance="5">glacier</landmarks>
-	<landmarks chance="5">ice sheet</landmarks>
-	<landmarks chance="20">marsh</landmarks>
-	<landmarks chance="12">dock</landmarks>
-	<landmarks chance="12">hatchery</landmarks>
-	<landmarks chance="15">cove</landmarks>
-	<landmarks chance="12">cape</landmarks>
-	<landmarks chance="5">cave</landmarks>
-	<landmarks chance="15">peninsula</landmarks>
-	<landmarks chance="10">fjord</landmarks>
-	<landmarks chance="20">dune</landmarks>
-	<landmarks chance="5">lava cave</landmarks>
-	<landmarks chance="20">mangroves</landmarks>
-	<landmarks chance="5">oyster bank</landmarks>
-	<landmarks chance="10">channel</landmarks>
-	<landmarks chance="15">inlet</landmarks>
-	<landmarks chance="10">sound</landmarks>
-	<landmarks chance="15">ridge</landmarks>
-	<landmarks chance="12">floodplain</landmarks>
-	<landmarks chance="15">bluff</landmarks>
-	<landmarks chance="10">hill</landmarks>
-	<landmarks chance="10">creek</landmarks>
-	<landmarks chance="15">shoal</landmarks>
+	<landmarks chance="12">cliff</landmarks>
+	<landmarks chance="10">lighthouse</landmarks>
+	<landmarks chance="10">rivermouth</landmarks>
+	<landmarks chance="20">beach</landmarks>
+	<landmarks chance="10">jagged outcropping of rock</landmarks>      
+	<landmarks chance="12">sea cliff</landmarks>
+	<landmarks chance="12">coral reef</landmarks>
+	<landmarks chance="12">barrier island</landmarks>
     </location>
     <location description="near a canal" port_chance='90'>
+      <landmarks chance="12">bluff</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">rapids</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
+      <landmarks chance="12">lake</landmarks>
+      <landmarks chance="12">valley</landmarks>
+      <landmarks chance="12">swamp</landmarks>
     </location>
     <location description="on a cape" port_chance='90'>
+	<landmarks chance="12">beach</landmarks>
+	<landmarks chance="12">bluff</landmarks>
+	<landmarks chance="12">canal</landmarks>
+	<landmarks chance="12">cliff</landmarks>
+	<landmarks chance="12">fjord</landmarks>
+	<landmarks chance="12">sea cliffs</landmarks>
+	<landmarks chance="12">sea cave</landmarks>
+	<landmarks chance="12">volcanic island</landmarks>
     </location>
     <location description="near a reservoir" port_chance='60'>
+      <landmarks chance="12">canal</landmarks>
+      <landmarks chance="12">cavern</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">foothills</landmarks>
+      <landmarks chance="12">mud volcaino</landmarks>
+      <landmarks chance="12">ravine</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">waterfall</landmarks>
     </location>
     <location description="on a delta" port_chance='900'>
+      <landmarks chance="12">bayou</landmarks>
+      <landmarks chance="12">coastline</landmarks>
+      <landmarks chance="12">continental shelf</landmarks>
+      <landmarks chance="12">salt marsh</landmarks>
+      <landmarks chance="12">sandbar</landmarks>
+      <landmarks chance="12">mud flat</landmarks>
+      <landmarks chance="12">submarine volcano</landmarks>
     </location>
     <location description="peninsula" port_chance='90'>
+      <landmarks chance="12">barrier island</landmarks>
+      <landmarks chance="12">coastline</landmarks>
+      <landmarks chance="12">sea cave</landmarks>
+      <landmarks chance="12">sea cliff</landmarks>
+      <landmarks chance="12">tidal basin</landmarks>
+      <landmarks chance="12">wetland</landmarks>
+      <landmarks chance="12">cove</landmarks>
+      <landmarks chance="12">reef</landmarks>
     </location>
     <location description="in an oasis" port_chance='0'>
+      <landmarks chance="12">dry lake</landmarks>
+      <landmarks chance="12">sand dunes</landmarks>
+      <landmarks chance="12">foothills</landmarks>
+      <landmarks chance="12">sand hill</landmarks>
+      <landmarks chance="12">ravine</landmarks>
+      <landmarks chance="12">escarpment</landmarks>
+      <landmarks chance="12">dry riverbed</landmarks>
+      <landmarks chance="12">rift valley</landmarks>
     </location>
     <location description="near a strait" port_chance='70'>
+      <landmarks chance="12">bluff</landmarks>
+      <landmarks chance="12">tidal basin</landmarks>
+      <landmarks chance="12">flood plain</landmarks>
+      <landmarks chance="12">salt marsh</landmarks>
+      <landmarks chance="12">shallows</landmarks>
+      <landmarks chance="12">surge channel</landmarks>
+      <landmarks chance="12">shoreline</landmarks>
+      <landmarks chance="12">sandbar</landmarks>
     </location>
     <location description="in a valley" port_chance='10'>
+      <landmarks chance="12">cave</landmarks>
+      <landmarks chance="12">cliff</landmarks>
+      <landmarks chance="12">crag</landmarks>
+      <landmarks chance="12">falls</landmarks>
+      <landmarks chance="12">glacier</landmarks>
+      <landmarks chance="12">lake</landmarks>
+      <landmarks chance="12">marsh</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
     </location>
     <location description="near a wetland" port_chance='10'>
+      <landmarks chance="12">box canyon</landmarks>
+      <landmarks chance="12">creek</landmarks>
+      <landmarks chance="12">mud flat</landmarks>
+      <landmarks chance="12">swamp</landmarks>
+      <landmarks chance="12">spring</landmarks>
+      <landmarks chance="12">tar pit</landmarks>
+      <landmarks chance="12">prairie</landmarks>
+      <landmarks chance="12">marsh</landmarks>
     </location>
     <location description="on an archipelago" port_chance='100'>
+      <landmarks chance="12">caldera</landmarks>
+      <landmarks chance="12">atoll</landmarks>
+      <landmarks chance="12">beach</landmarks>
+      <landmarks chance="12">oceanic trench</landmarks>
+      <landmarks chance="12">sea cave</landmarks>
+      <landmarks chance="12">sea cliff</landmarks>
+      <landmarks chance="12">submarine volcano</landmarks>      
+      <landmarks chance="12">volcanic island</landmarks>
     </location>
     <location description="near a river" port_chance='50'>
         <landmarks chance="10">marsh</landmarks>
-        <landmarks chance="10">drainage ditch</landmarks>
+        <landmarks chance="12">stream</landmarks>
+	<landmarks chance="12">rapids</landmarks>
+	<landmarks chance="12">waterfall</landmarks>
+	<landmarks chance="12">spring</landmarks>
+	<landmarks chance="12">river delta</landmarks>
+	<landmarks chance="12">cliffs</landmarks>
+	<landmarks chance="12">foothills</landmarks>
     </location>
     <location description="on a hill" port_chance='25'>
         <landmarks chance="22">rocky outcropping</landmarks>
@@ -685,7 +745,8 @@
         <landmarks chance="10">river</landmarks>
         <landmarks chance="10">pond</landmarks>
         <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">plain</landmarks>
+        <landmarks chance="12">pass</landmarks>
+	<landmarks chance="12">overhang</landmarks>
         <landmarks chance="10">crossroad</landmarks>
         <landmarks chance="10">mountain range</landmarks>
     </location>
@@ -697,16 +758,27 @@
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">boulder</landmarks>
         <landmarks chance="10">fruit orchard</landmarks>
+	<landmarks chance="12">riverbed</landmarks>
     </location>
     <location description="on a plateau" port_chance='0'>
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="20">jagged cliff</landmarks>
+	<landmarks chance="12">butte</landmarks>
+	<landmarks chance="12">dead volcano</landmarks>
+	<landmarks chance="12">scree</landmarks>
+	<landmarks chance="12">rocks</landmarks>
+	<landmarks chance="12">overhang</landmarks>
+	<landmarks chance="12">natural arch</landmarks>
     </location>
     <location description="in the mountains" port_chance='0'>
-        <landmarks chance="10">valley</landmarks>
+	<landmarks chance="12">tundra</landmarks>
         <landmarks chance="10">summit</landmarks>
-        <landmarks chance="10">forest</landmarks>
         <landmarks chance="10">frostline</landmarks>
+	<landmarks chance="12">crevasse</landmarks>
+	<landmarks chance="12">glacier</landmarks>
+	<landmarks chance="12">glacier cave</landmarks>
+	<landmarks chance="12">mountain pass</landmarks>
+	<landmarks chance="12">slope</landmarks>
     </location>
     <location description="underground" port_chance='0'>
         <landmarks chance="10">underground lake</landmarks>
@@ -716,32 +788,57 @@
         <landmarks chance="10">cavern</landmarks>
         <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">faultline</landmarks>
+	<landmarks chance="12">lava tube</landmarks>
     </location>
     <location description="in the plains" port_chance='10'>
-        <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">sea</landmarks>
-        <landmarks chance="10">blue ocean</landmarks>
+	<landmarks chance="12">badlands</landmarks>
+	<landmarks chance="12">box canyon</landmarks>
+        <landmarks chance="12">butte</landmarks>
         <landmarks chance="10">forest</landmarks>
-        <landmarks chance="10">crossroad</landmarks>
+        <landmarks chance="12">mud volcaino</landmarks>
         <landmarks chance="10">bog</landmarks>
         <landmarks chance="10">swamp</landmarks>
-        <landmarks chance="10">rocky outcropping</landmarks>
-        <landmarks chance="10">farmland</landmarks>
+        <landmarks chance="12">geyser</landmarks>
     </location>
     <location description="in the desert" port_chance='0'>
         <landmarks chance="10">wonderful oasis</landmarks>
         <landmarks chance="10">sea of sand dunes</landmarks>
-        <landmarks chance="10">rocky outcropping</landmarks>
+        <landmarks chance="10">gysers</landmarks>
         <landmarks chance="10">stone formation</landmarks>
+	<landmarks chance="12">ridge</landmarks>
+	<landmarks chance="12">natural arch</landmarks>
+	<landmarks chance="12">foothills</landmarks>
+	<landmarks chance="12">fissure</landmarks>
     </location>
     <location description="in the forest" port_chance='5'>
         <landmarks chance="10">lake</landmarks>
-        <landmarks chance="10">red oak grove</landmarks>
+	<landmarks chance="12">cavern</landmarks>
+	<landmarks chance="12">gully</landmarks>
         <landmarks chance="10">sequoia grove</landmarks>
-        <landmarks chance="10">spruce grove</landmarks>
         <landmarks chance="10">rocky outcropping</landmarks>
         <landmarks chance="10">caves</landmarks>
         <landmarks chance="10">clearing</landmarks>
+	<landmarks chance="12">moraine</landmarks>
+    </location>
+    <location description="in the badlands" port_chance='5'>
+        <landmarks chance="12">box canyon</landmarks>
+	<landmarks chance="12">lava flow</landmarks>
+	<landmarks chance="12">mud flat</landmarks>
+	<landmarks chance="12">volcano</landmarks>
+	<landmarks chance="12">swamp</landmarks>
+	<landmarks chance="12">escarpment</landmarks>
+	<landmarks chance="12">tar pit</landmarks>
+	<landmarks chance="12">mesa</landmarks>
+    </location>
+    <location description="in the tundra" port_chance='5'>
+        <landmarks chance="12">mountain range</landmarks>
+	<landmarks chance="12">ice cliff</landmarks>
+	<landmarks chance="12">glacier</landmarks>
+	<landmarks chance="12">glacier cave</landmarks>
+	<landmarks chance="12">moraine</landmarks>
+	<landmarks chance="12">crevasse</landmarks>
+	<landmarks chance="12">rivulet</landmarks>
+	<landmarks chance="12">fissure</landmarks>
     </location>
 </locations>
 <direction>
@@ -827,25 +924,25 @@
         <option>Lightning lights the sky.</option>
     </thunder>
     <clouds>
-        <option>is slightly cloudy</option>
-        <option>is cloudly</option>
-        <option>is dark with clouds</option>
-        <option>is overcast</option>
+        <option>lightly cloudy</option>
+        <option>cloudly</option>
+        <option>dark</option>
+        <option>overcast</option>
     </clouds>
 </weather>
 
 <time>
-    <option time="06:00" public_modifier="0"  bar_mod="0"  >at daybreak</option>
+    <option time="06:00" public_modifier="0"  bar_mod="0"  >daybreak</option>
     <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4"  >around noon</option>
-    <option time="02:00" public_modifier="3"  bar_mod="2"  >in the afternoon</option>
+    <option time="12:00" public_modifier="4"  bar_mod="4"  >noon</option>
+    <option time="02:00" public_modifier="3"  bar_mod="2"  >afternoon</option>
     <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
-    <option time="06:00" public_modifier="1"  bar_mod="6"  >in the early evening</option>
-    <option time="08:00" public_modifier="0"  bar_mod="8"  >before nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10" >after nightfall</option>
-    <option time="00:00" public_modifier="-3" bar_mod="8"  >at midnight</option>
-    <option time="02:00" public_modifier="-4" bar_mod="4"  >in the dead of night</option>
-    <option time="04:00" public_modifier="-2" bar_mod="0"  >before dawn</option>
+    <option time="06:00" public_modifier="1"  bar_mod="6"  >early evening</option>
+    <option time="08:00" public_modifier="0"  bar_mod="8"  >nightfall</option>
+    <option time="10:00" public_modifier="-1" bar_mod="10" >after dark</option>
+    <option time="00:00" public_modifier="-3" bar_mod="8"  >midnight</option>
+    <option time="02:00" public_modifier="-4" bar_mod="4"  >dead of night</option>
+    <option time="04:00" public_modifier="-2" bar_mod="0"  >early morning</option>
 </time>
 
 <laws>
@@ -919,9 +1016,8 @@
     <title>Upper</title>
     <title>West</title>
 
-    <pre>De</pre>
-    <pre>Le</pre>
-
+<pre>De</pre>
+<pre>Le</pre>
     <root>Ack</root>
     <root>Ad</root>
     <root>Ail</root>
@@ -1395,40 +1491,6 @@
     <trailer>Vista</trailer>
     <trailer>Vernon</trailer>
 </cityname>
-<realm post_chance='30' title_chance='22'>
-    <title>Greater</title>
-    <title>Lesser</title>
-    <title>Eastern</title>
-    <title>Western</title>
-    <pre>Don</pre>
-    <pre>Ber</pre>
-    <pre>Cap</pre>
-    <pre>Ful</pre>
-    <pre>Mool</pre>
-    <pre>Nill</pre>
-    <pre>Kon</pre>
-    <root>sak</root>
-    <root>bor</root>
-    <root>kil</root>
-    <root>bor</root>
-    <root>ark</root>
-    <root>lak</root>
-    <post>or</post>
-    <post>at</post>
-    <post>ep</post>
-    <post>ak</post>
-
-    <trailer>Province</trailer>
-    <trailer>District</trailer>
-    <trailer>Domain</trailer>
-    <trailer>Region</trailer>
-    <trailer>Territory</trailer>
-
-</realm>
-
-
-
-
 
 <events>
     <event type="festival">
@@ -1615,20 +1677,20 @@
 <!--  ###########################################################################  -->
 
 <taverns trailer_chance="30" >
-    <title>Drunken</title>
-    <title>Angry</title>
-    <title>Green</title>
-    <title>Black</title>
-    <title>White</title>
-    <title>Blue</title>
-    <title>Wet</title>
-    <title>Ugly</title>
-    <title>Prancing</title>
-    <title>Hungry</title>
-    <title>Empty</title>
-    <title>Salty</title>
-    <title>Greasy</title>
-    <title>Broken</title>
+    <pre>Drunken</pre>
+    <pre>Angry</pre>
+    <pre>Green</pre>
+    <pre>Black</pre>
+    <pre>White</pre>
+    <pre>Blue</pre>
+    <pre>Wet</pre>
+    <pre>Ugly</pre>
+    <pre>Prancing</pre>
+    <pre>Hungry</pre>
+    <pre>Empty</pre>
+    <pre>Salty</pre>
+    <pre>Greasy</pre>
+    <pre>Broken</pre>
 
     <root>Dragon</root>
     <root>Maiden</root>
@@ -1657,11 +1719,8 @@
     <size cost_mod="-2" pop_mod="4" >large</size>
     <condition cost_mod="-3">filthy</condition>
     <condition cost_mod="-2">dirty</condition>
-    <condition cost_mod="-1">seedy</condition>
-    <condition cost_mod="0">decent</condition>
-    <condition cost_mod="1">respectable</condition>
-    <condition cost_mod="2">upscale</condition>
-    <condition cost_mod="4" >beloved</condition>
+    <condition cost_mod="-0">decent</condition>
+    <condition cost_mod="4" >upscale</condition>
     <class cost_mod="-4" min='1'  max='25'  >poor</class>
     <class cost_mod="-2" min='26' max='45'  >low-class</class>
     <class cost_mod="0"  min='46' max='85'  >middle-class</class>
@@ -1877,23 +1936,6 @@
         <adjective>crumbling</adjective>
     </option>
 </economyalignment>
-
-<militaryalignment>
-    <option type="positive" min='2' >
-        <adjective>militant</adjective>
-        <adjective>disciplined</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>not militant</adjective>
-        <adjective>laid back</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>disorganized</adjective>
-        <adjective>anti-militant</adjective>
-        <adjective>hates</adjective>
-    </option>
-</militaryalignment>
-
 <tolerancealignment>
     <option type="positive" min='2' >
         <adjective>is accepting of</adjective>
@@ -1979,17 +2021,6 @@
     </option>
 </magicalignment>
 
-<climate>
-        <option pop_support="180" >moist tropical</option>
-        <option pop_support="180" >dry tropical</option>
-        <option pop_support="180" >humid sub-tropical</option>
-        <option pop_support="180" >humid continental</option>
-        <option pop_support="180" >mild continental</option>
-        <option pop_support="140" >temperate steppe</option>
-        <option pop_support="60"  >desert</option>
-        <option pop_support="100" >tundra</option>
-        <option pop_support="60" >polar</option>
-</climate>
 <topography>
     <region>mountainous</region>
     <region>hilly</region>
@@ -2035,8 +2066,8 @@
 </classes>
 
 <housing>
-    <quality name="poor"    percent="30" density="15" required='true'/>
-    <quality name="average" percent="69" density="7"/>
+    <quality name="poor"    percent="30" density="20" required='true'/>
+    <quality name="average" percent="69" density="10"/>
     <quality name="wealthy"   percent="1"  density="5"/>
 
 
