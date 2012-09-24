@@ -372,25 +372,25 @@
     <trailer>enclosure</trailer>
     <trailer>wall</trailer>
 </walls>
-<fortification>
+<preparation>
     <option          max='5'>abysmally</option>
     <option min='6'  max='10'>terribly</option>
     <option min='11' max='15'>badly</option>
     <option min='16' max='20'>poorly</option>
     <option min='21' max='25'>inadequately</option>
 
-    <option min='26' max='35'>lightly</option>
-    <option min='36' max='45'>fairly</option>
+    <option min='26' max='35'>tolerably</option>
+    <option min='36' max='45'>suitably</option>
     <option min='46' max='55'>moderately</option>
-    <option min='56' max='65'>reasonably</option>
-    <option min='66' max='75'>well</option>
+    <option min='56' max='65'>reasonably well</option>
+    <option min='66' max='75'>properly</option>
 
-    <option min='76' max='80'>greatly</option>
-    <option min='81' max='85'>heavily</option>
+    <option min='76' max='80'>admirably</option>
+    <option min='81' max='85'>greatly</option>
     <option min='86' max='90'>excellently</option>
     <option min='91' max='95'>spectacularly</option>
     <option min='96'         >perfectly</option>
-</fortification>
+</preparation>
 <specialties>
     <specialty>farming</specialty>
     <specialty>military</specialty>
@@ -520,14 +520,15 @@
 </districts>
 
 
+<tactictypes>
+    <option>rigid formations</option>
+    <option>frenzied fighting</option>
+    <option>phlanyx formations</option>
+    <option>guerrilla warfare</option>
+    <option>hoarde tactics</option>
+</tactictypes>
+
 <weapontypes> <!-- __ fighters are known/renown/mocked for their use of ____ and ____ -->
-    <techniques>
-        <option>rigid formations</option>
-        <option>frenzied fighting</option>
-        <option>phlanyx formations</option>
-        <option>guerrilla warfare</option>
-        <option>hoarde tactics</option>
-    </techniques>
     <weapon type="axes" >
         <option>battle axes</option>
         <option>hand axes</option>
@@ -696,14 +697,14 @@
     <option approval_mod='5' >revered</option>
 </respect>
 <govtypes>
-    <govt approvalmod='0'  religion='2'  mil_mod='-1' >council</govt>
-    <govt approvalmod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
-    <govt approvalmod='-1' religion='0'  mil_mod='1'  >despot</govt>
-    <govt approvalmod='0'  religion='1'  mil_mod='1'  >baron</govt>
-    <govt approvalmod='0'  religion='0'  mil_mod='2'  >royalty</govt>
-    <govt approvalmod='-1' religion='-1' mil_mod='1'  >dictator</govt>
-    <govt approvalmod='0'  religion='-1' mil_mod='0'  >clergy</govt>
-    <govt approvalmod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
+    <govt approval_mod='0'  religion='2'  mil_mod='-1' >council</govt>
+    <govt approval_mod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
+    <govt approval_mod='-1' religion='0'  mil_mod='1'  >despot</govt>
+    <govt approval_mod='0'  religion='1'  mil_mod='1'  >baron</govt>
+    <govt approval_mod='0'  religion='0'  mil_mod='2'  >royalty</govt>
+    <govt approval_mod='-1' religion='-1' mil_mod='1'  >dictator</govt>
+    <govt approval_mod='0'  religion='-1' mil_mod='0'  >clergy</govt>
+    <govt approval_mod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
 </govtypes>
 
 <cityages>

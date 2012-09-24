@@ -274,9 +274,9 @@ sub describe_secondarypower{
     return $content.".";
 }
 sub describe_approval{
-    if ($city->{'govtype'}->{'approvalmod'} <-1){
+    if ($city->{'govtype'}->{'approval_mod'} <-1){
         return "does not approve of"
-    }elsif ($city->{'govtype'}->{'approvalmod'} >1){
+    }elsif ($city->{'govtype'}->{'approval_mod'} >1){
         return "approves of"
     }else{
         return "is indifferent towards"
@@ -308,16 +308,25 @@ sub describe_relations {
     }
     return "<ul class='two-column'><li>".join('</li><li>',@relations)."</li></ul>";
 }
+sub define_tactics{
+    if (defined $city->{'tactics'}->{'content'}){
+        return " $city->{'tactics'}->{'respect'} for their $city->{'tactics'}->{'content'} and are"
+    }else{
+        return ""
+    }
+}
+
 sub describe_military{
     my $walls=$city->{'walls'}->{'content'} ;
     if   ( $city->{'walls'}->{'content'} eq 'none'){    
         $walls="lack of defensible wall";
     }
+    my $tactic=define_tactics();
     
     my $content="<p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>";
 
     $content.="<p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>";
-    $content.="<p>$city->{'name'} fighters are $city->{'weapons'}->{'respect'} for their use of $city->{'weapons'}->{'content'} in combat.</p>";
+    $content.="<p>$city->{'name'} fighters are $city->{'weapons'}->{'respect'} for their use of $city->{'weapons'}->{'content'} in battle. They are$tactic considered $city->{'militaryskill'}->{'content'} skilled in battle.</p>";
     return $content;
 }
 
@@ -664,6 +673,8 @@ sub generate_military {
     generate_fortifications();
     generate_kingdom_troops();
     generate_favored_weapon();
+    generate_favored_tactic();
+    generate_military_skill();
     #generate_watchtowers();
 
 #TODO travelers
@@ -671,7 +682,50 @@ sub generate_military {
 # favored weapons
 #    generate_seige();
 }
+###############################################################################
+#
+# generate_military_skill - generate favored_tactic, fortifications, wars, etc
+#
+###############################################################################
 
+sub generate_military_skill {
+    $city->{'militaryskill'}={};
+
+    my $roll;
+    if ( $city->{'military'} < -1 ) {
+        $roll=&d(45);
+    }elsif ( $city->{'military'} > 1 ) {
+        $roll=56+ &d(45);
+    }else{
+        $roll=&d(100);
+    }
+    $city->{'militaryskill'}->{'roll'}=$roll;
+    $city->{'militaryskill'}->{'content'}=roll_from_array( $roll, $xml_data->{'preparation'}->{'option'})->{'content'};
+
+}
+
+###############################################################################
+#
+# generate_favored_tactic - generate favored_tactic, fortifications, wars, etc
+#
+###############################################################################
+
+sub generate_favored_tactic {
+    $city->{'tactics'}={};
+
+    # only a 25% chance of having a favored tactic.
+    $city->{'tactics'}->{'chance'}=&d(100);
+    if ( $city->{'tactics'}->{'chance'}  <= 25){
+
+        my $tactic=rand_from_array(    $xml_data->{'tactictypes'}->{'option'} );
+        $city->{'tactics'}->{'content'}= $tactic->{'content'};
+    
+        my $respectlist=$xml_data->{'respect'}->{'option'} ;
+        my $respect = rand_from_array(  $respectlist  );
+        $city->{'tactics'}->{'respect'}=$respect->{'content'};
+    }
+
+}
 ###############################################################################
 #
 # generate_favored_weapon - generate favored_weapon, fortifications, wars, etc
@@ -714,10 +768,10 @@ sub generate_fortifications {
     my $roll;
     if ($city->{'walls'}->{'content'} eq 'none' ){
         $roll=&d(45);
-        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'fortification'}->{'option'}) ;
+        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'preparation'}->{'option'}) ;
     }else{
         $roll=&d(100) + $city->{'walls'}->{'height'};
-        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'fortification'}->{'option'}) ;
+        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'preparation'}->{'option'}) ;
     }
     $city->{'fortification'}->{'roll'}=$roll;
 }
@@ -1521,11 +1575,11 @@ sub set_govt_type {
     my $respect = rand_from_array(  $respectlist  );
     $city->{'govtype'}->{'respect'}=$respect->{'content'};
 
-    # add random element + govtype base approvalmod + respect approval + authority mod
-    $city->{'govtype'}->{'approvalmod'}    = &d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $respect->{'approvalmod'} +  $city->{'authority'};
+    # add random element + govtype base approval_mod + respect approval + authority mod
+    $city->{'govtype'}->{'approval_mod'}    = &d(4)-2 +  $city->{'govtype'}->{'approval_mod'} + $respect->{'approval_mod'} +  $city->{'authority'};
 
     # ensure it falls in the proper range
-    $city->{'govtype'}->{'approvalmod'}=max(-5, min(5,  $city->{'govtype'}->{'approvalmod'}   ) );
+    $city->{'govtype'}->{'approval_mod'}=max(-5, min(5,  $city->{'govtype'}->{'approval_mod'}   ) );
 
     $city->{'govtype'}->{'religion'}=&d(4)-2 +  $city->{'govtype'}->{'religion'} ; 
 
