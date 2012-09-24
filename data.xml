@@ -716,14 +716,14 @@
       <landmarks chance="12">shallows</landmarks>
       <landmarks chance="12">surge channel</landmarks>
       <landmarks chance="12">shoreline</landmarks>
-      <landmarks chance="12">sandbar</landmarks>
+      <landmarks chance="12">estuary</landmarks>
     </location>
     <location description="in a valley" port_chance='10'>
       <landmarks chance="12">cave</landmarks>
       <landmarks chance="12">cliff</landmarks>
       <landmarks chance="12">crag</landmarks>
       <landmarks chance="12">falls</landmarks>
-      <landmarks chance="12">glacier</landmarks>
+      <landmarks chance="12">mud flat</landmarks>
       <landmarks chance="12">lake</landmarks>
       <landmarks chance="12">marsh</landmarks>
       <landmarks chance="12">tar pit</landmarks>
@@ -790,12 +790,12 @@
 	<landmarks chance="12">natural arch</landmarks>
     </location>
     <location description="in the mountains" port_chance='0'>
-	<landmarks chance="12">tundra</landmarks>
+	<landmarks chance="12">cataract</landmarks>
         <landmarks chance="10">summit</landmarks>
-        <landmarks chance="10">frostline</landmarks>
+        <landmarks chance="10">lava dome</landmarks>
 	<landmarks chance="12">crevasse</landmarks>
-	<landmarks chance="12">glacier</landmarks>
-	<landmarks chance="12">glacier cave</landmarks>
+	<landmarks chance="12">chasm</landmarks>
+	<landmarks chance="12">cave</landmarks>
 	<landmarks chance="12">mountain pass</landmarks>
 	<landmarks chance="12">slope</landmarks>
     </location>
@@ -851,11 +851,11 @@
     </location>
     <location description="in the tundra" port_chance='5'>
         <landmarks chance="12">mountain range</landmarks>
-	<landmarks chance="12">ice cliff</landmarks>
-	<landmarks chance="12">glacier</landmarks>
-	<landmarks chance="12">glacier cave</landmarks>
-	<landmarks chance="12">moraine</landmarks>
+	<landmarks chance="12">crater lake</landmarks>
 	<landmarks chance="12">crevasse</landmarks>
+	<landmarks chance="12">geyser</landmarks>
+	<landmarks chance="12">moraine</landmarks>
+	<landmarks chance="12">gully</landmarks>
 	<landmarks chance="12">rivulet</landmarks>
 	<landmarks chance="12">fissure</landmarks>
     </location>
