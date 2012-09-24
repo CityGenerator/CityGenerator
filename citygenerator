@@ -787,20 +787,20 @@ sub generate_military_stats {
     #factors - is there a barraks district? +10%
     # order, mil, authority,
     # base military
-    $city->{'militarystats'}->{'activepercent'}  = max(0, 10 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/2  );
-    $city->{'militarystats'}->{'reservepercent'} = max(0,  3 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/4   ) ;
-    $city->{'militarystats'}->{'parapercent'}    = max(0,  7 + $city->{'military'} +  $city->{'govtype'}->{'mil_mod'} );
-    $city->{'militarystats'}->{'inelegable_pop'} = int( $city->{'imprisonment'}->{'population'} + $city->{'children'}->{'population'}/2 +$city->{'elderly'}->{'population'});
+    $city->{'militarystats'}->{'activepercent'}  =  max(0, 10 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/2  );
+    $city->{'militarystats'}->{'reservepercent'} =  max(0,  3 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/4   ) ;
+    $city->{'militarystats'}->{'parapercent'}    =  max(0,  7 + $city->{'military'} +  $city->{'govtype'}->{'mil_mod'} );
+    $city->{'militarystats'}->{'inelegable_pop'} = ceil( $city->{'imprisonment'}->{'population'} + $city->{'children'}->{'population'}/2 +$city->{'elderly'}->{'population'});
 
-    $city->{'militarystats'}->{'active'}  =  int ($city->{'population'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
-    $city->{'militarystats'}->{'reserve'} =  int ($city->{'population'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
-    $city->{'militarystats'}->{'para'}    =  int ($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
-    $city->{'militarystats'}->{'militia'} =  int ($city->{'population'} - $city->{'militarystats'}->{'inelegable_pop'} );
+    $city->{'militarystats'}->{'active'}  =  ceil($city->{'population'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
+    $city->{'militarystats'}->{'reserve'} =  ceil($city->{'population'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
+    $city->{'militarystats'}->{'para'}    =  ceil($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
+    $city->{'militarystats'}->{'militia'} =  ceil($city->{'population'} - $city->{'militarystats'}->{'inelegable_pop'} );
 
-    $city->{'militarystats'}->{'activepercent'}  = int (  $city->{'militarystats'}->{'active'}/$city->{'population'}*10000  )/100;
-    $city->{'militarystats'}->{'reservepercent'} = int (  $city->{'militarystats'}->{'reserve'}/$city->{'population'}*10000  )/100;
-    $city->{'militarystats'}->{'parapercent'}    = int (  $city->{'militarystats'}->{'para'}/$city->{'militarystats'}->{'active'} *10000  )/100;
-    $city->{'militarystats'}->{'militiapercent'} = int (  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'activepercent'}  = ceil(  $city->{'militarystats'}->{'active'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'reservepercent'} = ceil(  $city->{'militarystats'}->{'reserve'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'parapercent'}    = ceil(  $city->{'militarystats'}->{'para'}/$city->{'militarystats'}->{'active'} *10000  )/100;
+    $city->{'militarystats'}->{'militiapercent'} = ceil(  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
     
 }
 
@@ -816,11 +816,6 @@ sub generate_current_events {
     generate_visible_population();
     generate_events();
 }
-
-
-###############################################################################
-###############################################################################
-
 
 
 ###############################################################################
@@ -908,7 +903,7 @@ sub generate_weather {
         my $precip = rand_from_array( $xml_data->{'weather'}->{'precip'}->{'option'} );
         $city->{'weather'}->{'precip'}= $precip->{'description'};
         if (defined $precip->{'type'} ){
-            $city->{'weather'}->{'precip'} = rand_from_array( $precip->{'type'} )->{'content'} . $city->{'weather'}->{'precip'} ;
+            $city->{'weather'}->{'precip'} = rand_from_array( $precip->{'type'} )->{'content'}||"it's " . $city->{'weather'}->{'precip'} ;
 
         }
     }

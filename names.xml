@@ -1,6 +1,111 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <names>
+    <race name='gnome'>
+        <firstname post_chance='70'>
+            <pre>Ada</pre>
+            <pre>Ai</pre>
+            <pre>Alli</pre>
+            <pre>Arn</pre>
+            <pre>Bab</pre>
+            <pre>Bea</pre>
+            <pre>Bon</pre>
+            <pre>Cot</pre>
+            <pre>Car</pre>
+            <pre>Gav</pre>
+            <pre>Gab</pre>
+            <pre>Gil</pre>
+            <pre>Ham</pre>
+            <pre>Hew</pre>
+            <pre>Jen</pre>
+            <pre>Jun</pre>
+            <pre>Kia</pre>
+            <pre>Mal</pre>
+            <pre>Nin</pre>
+            <pre>Tul</pre>
+            <pre>Tor</pre>
+            <pre>Wiz</pre>
+            <pre>Tom</pre>
+            <pre>Tom</pre>
+            <post>an</post>
+            <post>va</post>
+            <post>son</post>
+            <post>rette</post>
+            <post>mida</post>
+            <post>gan</post>
+            <post>lita</post>
+            <post>gles</post>
+            <post>nk</post>
+            <post>tsy</post>
+            <post>lin</post>
+            <post>by</post>
+            <post>ley</post>
+            <post>ina</post>
+            <post>xie</post>
+            <post>key</post>
+            <post>ita</post>
+            <post>ton</post>
+            <post>vin</post>
+            <post>eno</post>
+            <post>wan</post>
+            <post>dan</post>
+
+
+        </firstname>
+        <lastname>
+            <pre>Coggle</pre>
+            <pre>Cobble</pre>
+            <pre>Electro</pre>
+            <pre>Fuse</pre>
+            <pre>Gear</pre>
+            <pre>Grease</pre>
+            <pre>Gyro</pre>
+            <pre>Rocket</pre>
+            <pre>Thermo</pre>
+            <pre>Tiddly</pre>
+            <pre>Tinker</pre>
+            <pre>Trigger</pre>
+            <pre>Wizz</pre>
+            <pre>Wobb</pre>
+            <post>fiz</post>
+            <post>gauge</post>
+            <post>sprocket</post>
+            <post>gadget</post>
+            <post>bit</post>
+            <post>scope</post>
+            <post>cog</post>
+            <post>fuel</post>
+            <post>bolt</post>
+            <post>jet</post>
+            <post>wink</post>
+            <post>tonk</post>
+            <post>blast</post>
+            <post>bun</post>
+
+        </lastname>
+    </race>
+    <race name='troglodyte'>
+        <firstname>
+            <pre>An</pre>
+            <pre>Cee</pre>
+            <pre>Elh</pre>
+            <pre>Ghri</pre>
+            <pre>Goz</pre>
+            <pre>Por</pre>
+            <pre>Surp</pre>
+            <pre>Til</pre>
+            <pre>Voth</pre>
+
+            <post>ra</post>
+            <post>zer</post>
+            <post>s</post>
+            <post>ka</post>
+            <post>lak</post>
+            <post>raz</post>
+            <post>g</post>
+            <post>karo</post>
+        </firstname>
+    </race>
     <race name='halfling'>
         <firstname root_chance='50' post_chance='50'>
             <pre>Ada</pre>

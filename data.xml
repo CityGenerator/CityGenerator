@@ -1006,7 +1006,7 @@
         <option description="sprinkling"></option>
         <option description="misty"></option>
         <option description="foggy">
-            <type> </type>
+            <type></type>
             <type>lightly </type>
             <type>moderately </type>
             <type>heavily </type>
