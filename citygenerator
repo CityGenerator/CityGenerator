@@ -23,9 +23,7 @@ our $city={'seed'=>$seed};
 #TODO travelers
 #TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
 #TODO change govtype and weapontype to use <respect> for reverence/mockery
-# favored weapons
 # racial order
-
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
@@ -319,7 +317,7 @@ sub describe_military{
     my $content="<p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>";
 
     $content.="<p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>";
-    $content.="<p>$city->{'name'} fighters are known for their use of $city->{'weapons'}->{'content'} in combat.</p>";
+    $content.="<p>$city->{'name'} fighters are $city->{'weapons'}->{'respect'} for their use of $city->{'weapons'}->{'content'} in combat.</p>";
     return $content;
 }
 
@@ -333,7 +331,7 @@ sub describe_government{
     my $content="
                     <section id='government'>
                         <h2>Government</h2>
-                        <p>$city->{'name'} is ruled by $city->{'govtype'}->{'descriptor'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>
+                        <p>$city->{'name'} is ruled by $city->{'govtype'}->{'respect'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} in general. Freedom of religion is $freedom, and magic use is $magic. </p>
 
                         <h3>Diplomatic Ties</h3>
                         <p>$city->{'name'} has the following diplomatic relations:</p>
@@ -685,6 +683,11 @@ sub generate_favored_weapon {
     my $weaponclass=rand_from_array(    $xml_data->{'weapontypes'}->{'weapon'} );
     $city->{'weapons'}->{'type'}   =  $weaponclass->{'type'} ;
     $city->{'weapons'}->{'content'}=rand_from_array(    $weaponclass->{'option'} )->{'content'};
+
+    my $respectlist=$xml_data->{'respect'}->{'option'} ;
+    my $respect = rand_from_array(  $respectlist  );
+    $city->{'weapons'}->{'respect'}=$respect->{'content'};
+
 }
 
 ###############################################################################
@@ -1514,12 +1517,12 @@ sub set_govt_type {
     my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
     $city->{'govtype'} = rand_from_array(  $govttypelist  );
 
-    my $descriptorlist=$xml_data->{'govtypes'}->{'descriptor'} ;
-    my $descriptor = rand_from_array(  $descriptorlist  );
-    $city->{'govtype'}->{'descriptor'}=$descriptor->{'content'};
+    my $respectlist=$xml_data->{'respect'}->{'option'} ;
+    my $respect = rand_from_array(  $respectlist  );
+    $city->{'govtype'}->{'respect'}=$respect->{'content'};
 
-    # add random element + govtype base approvalmod + descriptor approval + authority mod
-    $city->{'govtype'}->{'approvalmod'}    = &d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $descriptor->{'approvalmod'} +  $city->{'authority'};
+    # add random element + govtype base approvalmod + respect approval + authority mod
+    $city->{'govtype'}->{'approvalmod'}    = &d(4)-2 +  $city->{'govtype'}->{'approvalmod'} + $respect->{'approvalmod'} +  $city->{'authority'};
 
     # ensure it falls in the proper range
     $city->{'govtype'}->{'approvalmod'}=max(-5, min(5,  $city->{'govtype'}->{'approvalmod'}   ) );

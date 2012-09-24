@@ -684,17 +684,18 @@
     <option min="34"  max="66"  >neutral</option>
     <option min="67"  max="100" >lawful</option>
 </order>
-
+<respect>
+    <option approval_mod='-5'>hated</option>
+    <option approval_mod='-4'>despised</option>
+    <option approval_mod='-3'>much maligned</option>
+    <option approval_mod='-2'>ridiculed</option>
+    <option approval_mod='-1'>mocked</option>
+    <option approval_mod='2' >much loved</option>
+    <option approval_mod='3' >praised</option>
+    <option approval_mod='4' >respected</option>
+    <option approval_mod='5' >revered</option>
+</respect>
 <govtypes>
-    <descriptor approvalmod='-5'>hated</descriptor>
-    <descriptor approvalmod='-4'>despised</descriptor>
-    <descriptor approvalmod='-3'>much maligned</descriptor>
-    <descriptor approvalmod='-2'>ridiculed</descriptor>
-    <descriptor approvalmod='-1'>mocked</descriptor>
-    <descriptor approvalmod='2' >much loved</descriptor>
-    <descriptor approvalmod='3' >praised</descriptor>
-    <descriptor approvalmod='4' >respected</descriptor>
-    <descriptor approvalmod='5' >revered</descriptor>
     <govt approvalmod='0'  religion='2'  mil_mod='-1' >council</govt>
     <govt approvalmod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
     <govt approvalmod='-1' religion='0'  mil_mod='1'  >despot</govt>
