@@ -21,9 +21,7 @@ srand $seed;
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
 #TODO travelers
-#TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
-#TODO change govtype and weapontype to use <respect> for reverence/mockery
-# racial order
+#TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames, symbol (bird, tree, etc)
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
