@@ -23,7 +23,11 @@
         <title>pristine</title>
         <title>plentiful</title>
         <title>ruined</title>
-        <title></title>
+        <title>stoney</title>
+	<title>rocky</title>
+	<title>wreckage strewn</title>
+	<title>narrow</title>
+	<title></title>
         <root>yellow</root>
         <root>red</root>
         <root>white</root>
@@ -32,16 +36,23 @@
         <trailer>sandy beaches</trailer>
     </resource>
     <resource type="wildlife">
+	<title>wild</title>
+	<title>dangerous</title>
         <title>plentiful</title>
         <title>now scarce</title>
         <title>endangered</title>
         <title>unique</title>
-        <title></title>
+        <title>tame</title>
+	<title></title>
+	<root>carnivorous</root>
+	<root>poisonous</root>
+	<root>timid</root>
         <root>woodland</root>
         <root>aquatic</root>
         <root>marine</root>
         <root></root>
         <trailer>wildlife</trailer>
+	<trailer>caterpillar</trailer>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -82,7 +93,10 @@
         <title>plentiful</title>
         <title>crucial</title>
         <title>abandoned</title>
-        <root>copper</root>
+	<title>deep</title>
+	<title>ancient</title>
+	<title>creepy</title>
+	<root>copper</root>
         <root>gold</root>
         <root>iron</root>
         <root>lead</root>
@@ -92,6 +106,7 @@
         <root>silver</root>
         <root>tin</root>
         <root>titanium</root>
+	<root>vanadium</root>
         <root>zinc</root>
         <root>nonferrous metal</root>
         <trailer>works</trailer>
@@ -104,6 +119,9 @@
         <title>plentiful</title>
         <title>crucial</title>
         <title>long-abandoned</title>
+	<title>deep</title>
+	<title>ancient</title>
+	<title>creepy</title>
         <root>diamond</root>
         <root>emerald</root>
         <root>ruby</root>
@@ -124,7 +142,11 @@
         <title>plentiful</title>
         <title>crucial</title>
         <title>abandoned</title>
-
+	<title>deep</title>
+	<title>ancient</title>
+	<title>creepy</title>
+	<root>gravel</root>
+	<root>coal</root>
         <root>graphite</root>
         <root>bauxite</root>
         <root>chalk</root>
@@ -144,7 +166,6 @@
         <root>rock salt</root>
         <root>minor minerals</root>
         <root>calcified seaweed</root>
-
         <trailer>mines</trailer>
         <trailer>deposits</trailer>
     </resource>
@@ -154,7 +175,20 @@
         <title>now scarce</title>
         <title>endangered</title>
         <title>unique</title>
-        <root>crab</root>
+	<title>daily</title>
+	<title>yearly</title>
+	<title>seasonal</title>
+	<root>reptile</root>
+	<root>serpent</root>
+	<root>lizard</root>
+	<root>whale</root>
+	<root>baby seal</root>
+	<root>panda</root>
+	<root>kitten</root>
+	<root>puppy</root>
+	<root>polar bear</root>
+	<root>dragon</root>
+	<root>crab</root>
         <root>crayfish</root>
         <root>finfish</root>
         <root>lobster</root>
@@ -164,7 +198,6 @@
         <root>shrimp</root>
         <root>squid</root>
         <root>spiny lobster</root>
-
         <trailer>harvests</trailer>
     </resource>
 
@@ -172,14 +205,21 @@
         <title>plentiful</title>
         <title>now scarce</title>
         <title>unique</title>
-
+	<title>daily</title>
+	<title>yearly</title>
+	<title>seasonal</title>
         <root>cattle</root>
         <root>goat</root>
         <root>sheep</root>
-        <root>seal</root>
+        <root>baby seal</root>
         <root>llama</root>
         <root>horse</root>
-
+	<root>pig</root>
+	<root>alligator</root>
+	<root>bison</root>
+	<root>deer</root>
+	<root>furry giraffe</root>
+	<root>kangaroo</root>
         <trailer>herds</trailer>
     </resource>
 
@@ -188,7 +228,8 @@
         <title>now scarce</title>
         <title>endangered</title>
         <title>unique</title>
-
+	<title>ancient</title>
+	<title>creepy</title>
         <root>hardwood</root>
         <root>softwood</root>
         <root>oak</root>
@@ -201,7 +242,28 @@
         <root>cork</root>
         <root>miro</root>
         <root>willow</root>
-
+	<root>ash</root>
+	<root>fruit</root>
+	<root>cedar</root>
+	<root>cypress</root>
+	<root>banyon</root>
+	<root>chokeberry</root>
+	<root>cottonwood</root>
+	<root>crabapple</root>
+	<root>buckeye</root>
+	<root>eucalyptus</root>
+	<root>ironwood</root>
+	<root>holly</root>
+	<root>hickory</root>
+	<root>hickory</root>
+	<root>black locust</root>
+	<root>magnolia</root>
+	<root>willow</root>
+	<root>witchhazel</root>
+	<root>walnut</root>
+	<root>redbud</root>
+	<root>redwood</root>
+	<root>tulip</root>
         <trailer>trees</trailer>
         <trailer>forests</trailer>
         <trailer>lumbermills</trailer>
@@ -212,7 +274,8 @@
         <title>plentiful</title>
         <title>now scarce</title>
         <title>unique</title>
-
+	<title>ancient</title>
+	<title>creepy</title>
         <root>granite</root>
         <root>gravel and sand</root>
         <root>building stone</root>
@@ -220,8 +283,10 @@
         <root>limestone</root>
         <root>marble</root>
         <root>slate</root>
+	<root>petroleum</root>
+	<root>napitha</root>
+	<root>oil</root>
         <root></root>
-
         <trailer>mines</trailer>
         <trailer>quarries</trailer>
     </resource>
@@ -232,7 +297,6 @@
         <title>renowned</title>
         <title>famous</title>
         <title>amazing</title>
-
         <root>glaciers</root>
         <root>deepwater harbors</root>
         <root>freshwater lakes</root>
@@ -254,7 +318,6 @@
         <root>deepwater ports</root>
         <root>tar sands</root>
         <root>coral reefs</root>
-
     </resource>
 
     <resource type="professionals">
@@ -306,7 +369,9 @@
         <title>plentiful</title>
         <title>now scarce</title>
         <title>unique</title>
-
+	<title>exceptional</title>
+	<title>expensive</title>
+	<title>cheap</title>
         <root>marbles</root>
         <root>pottery</root>
         <root>construction materials</root>
@@ -314,6 +379,30 @@
         <root>palm oils</root>
         <root>wax</root>
         <root>mineral water</root>
+	<root>coffins</root>
+	<root>boxes</root>
+	<root>barrels</root>
+	<root>torches</root>
+	<root>wheels</root>
+	<root>flutes</root>
+	<root>drums</root>
+	<root>dolls</root>
+	<root>codpieces</root>
+	<root>chasity belts</root>
+	<root>iron maidens</root>
+	<root>knives</root>
+	<root>swords</root>
+	<root>axes</root>
+	<root>maces</root>
+	<root>bows</root>
+	<root>saws</root>
+	<root>picks</root>
+	<root>shovels</root>
+	<root>poems</root>
+	<root>quilts</root>
+	<root>beer</root>
+	<root>wine</root>
+	<root>spirits</root>
     </resource>
 </resources>
 
@@ -329,12 +418,10 @@
     <title>well-maintained</title>
     <title>filthy</title>
     <title>muddy</title>
-
     <root>dirt roads</root>
     <root>dirt tracks</root>
     <root>cobblestone streets</root>
     <root>cobblestone paths</root>
-
     <trailer>in a grid pattern</trailer>
     <trailer>in a ray pattern</trailer>
     <trailer>in a contour-forming pattern</trailer>
@@ -355,10 +442,10 @@
     <title>fortified</title>
     <title>thick</title>
     <title>massive</title>
-
     <root>wood</root>
     <root>stone</root>
-
+    <root>mud brick</root>
+    <root>rubble</root>
     <trailer>embankment</trailer>
     <trailer>barricade</trailer>
     <trailer>barrier</trailer>
@@ -1897,8 +1984,6 @@
     <cost min='4' max='5'>insanely expensive</cost>
 </taverns>
 
-
-
 <behavioraltraits>
     <trait type="accusatory"        > </trait>
     <trait type="apologetic"        > </trait>
@@ -2080,7 +2165,7 @@
     <option type="negative"      max='-2'>
         <adjective>weak</adjective>
         <adjective>failing</adjective>
-        <adjective>shakey</adjective>
+        <adjective>shaky</adjective>
         <adjective>uncertain</adjective>
         <adjective>crumbling</adjective>
     </option>
