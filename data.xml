@@ -863,12 +863,12 @@
     <location description="in a basin" port_chance='5'>
         <landmarks chance="10">stream</landmarks>
         <landmarks chance="10">river</landmarks>
-        <landmarks chance="10">pond</landmarks>
+        <landmarks chance="10">puddle</landmarks>
         <landmarks chance="10">lake</landmarks>
         <landmarks chance="10">cliff</landmarks>
         <landmarks chance="10">boulder</landmarks>
-        <landmarks chance="10">fruit orchard</landmarks>
-	<landmarks chance="12">riverbed</landmarks>
+        <landmarks chance="10">mud flat</landmarks>
+	<landmarks chance="12">swamp</landmarks>
     </location>
     <location description="on a plateau" port_chance='0'>
         <landmarks chance="10">cliff</landmarks>
