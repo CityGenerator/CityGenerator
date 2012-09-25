@@ -369,6 +369,9 @@
         <title>plentiful</title>
         <title>now scarce</title>
         <title>unique</title>
+	<title>exceptional</title>
+	<title>expensive</title>
+	<title>cheap</title>
         <root>marbles</root>
         <root>pottery</root>
         <root>construction materials</root>
@@ -376,7 +379,30 @@
         <root>palm oils</root>
         <root>wax</root>
         <root>mineral water</root>
+	<root>coffins</root>
+	<root>boxes</root>
+	<root>barrels</root>
+	<root>torches</root>
+	<root>wheels</root>
 	<root>flutes</root>
+	<root>drums</root>
+	<root>dolls</root>
+	<root>codpieces</root>
+	<root>chasity belts</root>
+	<root>iron maidens</root>
+	<root>knives</root>
+	<root>swords</root>
+	<root>axes</root>
+	<root>maces</root>
+	<root>bows</root>
+	<root>saws</root>
+	<root>picks</root>
+	<root>shovels</root>
+	<root>poems</root>
+	<root>quilts</root>
+	<root>beer</root>
+	<root>wine</root>
+	<root>spirits</root>
     </resource>
 </resources>
 
@@ -392,12 +418,10 @@
     <title>well-maintained</title>
     <title>filthy</title>
     <title>muddy</title>
-
     <root>dirt roads</root>
     <root>dirt tracks</root>
     <root>cobblestone streets</root>
     <root>cobblestone paths</root>
-
     <trailer>in a grid pattern</trailer>
     <trailer>in a ray pattern</trailer>
     <trailer>in a contour-forming pattern</trailer>
@@ -418,10 +442,10 @@
     <title>fortified</title>
     <title>thick</title>
     <title>massive</title>
-
     <root>wood</root>
     <root>stone</root>
-
+    <root>mud brick</root>
+    <root>rubble</root>
     <trailer>embankment</trailer>
     <trailer>barricade</trailer>
     <trailer>barrier</trailer>
@@ -1869,8 +1893,6 @@
     <cost min='4' max='5'>insanely expensive</cost>
 </taverns>
 
-
-
 <behavioraltraits>
     <trait type="accusatory"        > </trait>
     <trait type="apologetic"        > </trait>
@@ -2052,7 +2074,7 @@
     <option type="negative"      max='-2'>
         <adjective>weak</adjective>
         <adjective>failing</adjective>
-        <adjective>shakey</adjective>
+        <adjective>shaky</adjective>
         <adjective>uncertain</adjective>
         <adjective>crumbling</adjective>
     </option>
