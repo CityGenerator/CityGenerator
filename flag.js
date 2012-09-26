@@ -3,6 +3,7 @@
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
 function create_flag(seed) {
+    
     Math.seedrandom(seed);
 
     var division=getQueryString()['division'];
@@ -36,8 +37,9 @@ function select_symbol(flag,width,height){
 }
 
 function select_border(flag,width,height){
+    var border=getQueryString()['border'];
     var chance=  Math.floor ( Math.random() * 30 )  ; 
-    if (chance <10){
+    if (chance < 10 || border == 'true'){
         flag=draw_border( flag, width, height,  Math.floor(Math.random()*10)+2  );
     }
     return flag;
