@@ -35,12 +35,12 @@ function create_flag(seed) {
 // Division should only use colors 0,1 and 2 at most.
 function select_division( flag, width, height, colorlist){
 
-    division = getQueryString()['division'];
-    flag = draw_solid( flag, width, height, colorlist );
-
     // by making chance possibly a text string, it should become larger than
     // usable and force division to work. kudgy, but functional.
-    var chance=division || Math.floor ( Math.random() * 50 ); 
+    var division = getQueryString()['division'];
+    var chance=division || d( 50 ); 
+
+    var flag = draw_solid( flag, width, height, colorlist[0] );
 
     if        (chance <10 || division == 'quads'){
         flag = draw_quads( flag, width, height, colorlist );
@@ -60,39 +60,59 @@ function select_division( flag, width, height, colorlist){
 }
 
 
-
 // overlay should use colors 3 
 function select_overlay(flag,width,height, colorlist){
+
     var overlay=getQueryString()['overlay'];
-    var chance=overlay ||  Math.floor ( Math.random() * 100 )  ; 
+    var chance=overlay || d( 100 ) ; 
+
     if        (chance <10 || overlay=='quaddiag'){
-        flag= draw_quaddiagonal(flag, width, height,  Math.floor ( Math.random() * 4 ),colorlist[3] );
+        flag= draw_quaddiagonal(flag, width, height, d( 4 ), colorlist[3] );
+
     } else if (chance <20 || overlay=='quad'){
         flag= draw_quad(flag, width, height, 1, colorlist[3]);
 
     } else if (chance <30 || overlay=='stripe'){
         flag= draw_stripe(flag,width, height, undefined, undefined, undefined, colorlist[3]);
-    } else if (chance <40 || overlay=='asterisk'){
-        flag= draw_cross(flag, width, height, undefined, 1/2, undefined, 1/2, colorlist[3]);
-        flag= draw_x(flag,width,height,undefined,colorlist[3]);
 
-    } else if (chance <50 || overlay=='x'){
+    } else if (chance <40 || overlay=='jack'){
+        flag= draw_asterisk(flag,width,height,colorlist[3]);
+        flag= draw_asterisk(flag,width,height,colorlist[2]);
+
+    } else if (chance <50 || overlay=='asterisk'){
+        flag= draw_asterisk(flag,width,height,colorlist[3]);
+        flag= draw_asterisk(flag,width,height,colorlist[2]);
+
+    } else if (chance <60 || overlay=='x'){
         flag= draw_x(flag,width,height, undefined,colorlist[3]);
+        flag= draw_x(flag,width,height, undefined,colorlist[2]);
 
-    } else if (chance <60 || overlay=='cross'){
+    } else if (chance <70 || overlay=='cross'){
         flag= draw_cross(flag, width, height, undefined, undefined, undefined, undefined, colorlist[3]);
-    } else if (chance <70 || overlay=='diamond'){
+
+    } else if (chance <80 || overlay=='diamond'){
         flag= draw_diamond(flag,width,height,colorlist[3]);
-    } else if (chance <80 || overlay=='circle'){
+
+    } else if (chance <90 || overlay=='circle'){
         flag=draw_circle(flag,  width, height, 1/2, 1/2, undefined, colorlist[3] );
-    }        
+
+    } else{ /* 10% chance of getting nothing! */}
     return flag;
 }
 
-
+function draw_asterisk(flag, width,height,color){
+        flag= draw_stripe(flag, width, height, undefined, 5, 3, color);
+        flag= draw_x(flag, width, height, undefined, color);
+        return flag;
+}
+function draw_jack(flag, width,height,color){
+        flag= draw_cross(flag, width, height, undefined, 1/2, undefined, 1/2, color);
+        flag= draw_x(flag,width,height,undefined,color);
+        return flag;
+}
 function select_symbol(flag, width, height, colorlist){
     var symbol = getQueryString()['symbol'];
-    var chance= symbol|| Math.floor ( Math.random() * 60 )  ; 
+    var chance= symbol|| d( 60 )  ; 
 
     // TODO find another pattern for chance|| because symbol is failing to match if chance does first.
     if (chance <10 || symbol=='slash'){
@@ -108,7 +128,7 @@ function select_symbol(flag, width, height, colorlist){
 
 function select_border(flag, width, height, colorlist){
     var border=getQueryString()['border'];
-    var chance=  Math.floor ( Math.random() * 30 )  ;
+    var chance=  d( 30 )  ;
  
     if (chance < 10 || border == 'true'){
 
@@ -116,35 +136,39 @@ function select_border(flag, width, height, colorlist){
     }
     return flag;
 }
-function draw_solid(flag, width, height, colorlist){
-        flag.fillStyle=colorlist[0];
+function draw_solid(flag, width, height, color){
+        flag.fillStyle=color||random_color();
         flag.fillRect(0,0, width,height); 
         return flag;
 
 }
 
-function draw_slash(flag, width,height,linewidth,direction,color){
+function draw_slash(flag, width,height,linesize,direction,color){
 
-    var linewidths=Array(1/4, 1/6,1/8,1/9,1/10,1/12,1/15,1/20);
-    linewidth =linewidth||linewidths[ Math.floor ( Math.random() * linewidths.length ) ] ;
+    var linesizes=Array(1/4, 1/6,1/8,1/9,1/10,1/12,1/15,1/20);
+    linesize =linesize||linesizes[ d( linesizes.length ) ] ;
 
     var directions=Array('left','right');
-    direction = direction||directions[ Math.floor ( Math.random() * directions.length ) ] ;
+    direction = direction||directions[ d( directions.length ) ] ;
     flag.beginPath();
+
+    var linewidth=linesize*width;
+    var lineheight=linesize*height;
+
     if (direction =='left'){
         flag.moveTo(    0,                      0);
-        flag.lineTo(    linewidth*width,        0);
-        flag.lineTo(    width,                  height-linewidth*height);
+        flag.lineTo(    linewidth,              0);
+        flag.lineTo(    width,                  height-lineheight);
         flag.lineTo(    width,                  height);
-        flag.lineTo(    width-linewidth*width,  height);
-        flag.lineTo(    0,                      linewidth*height);
+        flag.lineTo(    width-linewidth,        height);
+        flag.lineTo(    0,                      lineheight);
     }else{
-        flag.moveTo(    width-linewidth*width,  0);
+        flag.moveTo(    width-linewidth,        0);
         flag.lineTo(    width,                  0);
-        flag.lineTo(    width,                  linewidth*height);
-        flag.lineTo(    linewidth*width,        height);
+        flag.lineTo(    width,                  lineheight);
+        flag.lineTo(    linewidth,              height);
         flag.lineTo(    0,                      height);
-        flag.lineTo(    0,                      height-linewidth*height);
+        flag.lineTo(    0,                      height-lineheight);
     }
     flag.fillStyle=color||random_color();
     flag.fill();
@@ -155,12 +179,11 @@ function draw_slash(flag, width,height,linewidth,direction,color){
 
 function draw_x(flag, width, height, thickness, color){
     var linewidths=Array(1/4, 1/6, 1/8, 1/9, 1/10, 1/12, 1/15, 1/20);
-    thickness = thickness|| linewidths[ Math.floor ( Math.random() * linewidths.length ) ] ;
+    thickness = thickness|| linewidths[ d( linewidths.length ) ] ;
     flag=draw_slash(flag,width,height,thickness,'left',color);
     flag=draw_slash(flag,width,height,thickness,'right',color);
     return flag;
 }
-
 function draw_cross(flag, width, height, vlinewidth, vlinecenter, hlinewidth, hlinecenter, color){
     flag.fillStyle=color||random_color();
 
@@ -168,12 +191,12 @@ function draw_cross(flag, width, height, vlinewidth, vlinecenter, hlinewidth, hl
     var linewidths=Array(1/4, 1/6,1/8,1/10);
     var linecenters=Array(1/6, 1/4, 1/3, 1/2, 2/3, 3/4, 5/6  );
 
-    vlinewidth  =(vlinewidth || linewidths[Math.floor ( Math.random() * linewidths.length )])*width ;
-    vlinecenter =(vlinecenter || linecenters[Math.floor ( Math.random() * (linecenters.length)  )])*width;
+    vlinewidth  =(vlinewidth || linewidths[ d( linewidths.length )])*width ;
+    vlinecenter =(vlinecenter || linecenters[d( linecenters.length )])*width;
     flag.fillRect( vlinecenter-(vlinewidth/2), 0 , vlinewidth,  height );
 
-    hlinewidth = (hlinewidth||  linewidths[Math.floor ( Math.random() * linewidths.length )])*height ;
-    hlinecenter = (hlinecenter|| linecenters[Math.floor ( Math.random() * (linecenters.length)  )])*height;
+    hlinewidth  = (hlinewidth||  linewidths[ d(linewidths.length  )])*width ;
+    hlinecenter = (hlinecenter|| linecenters[d(linecenters.length )])*height;
     flag.fillRect( 0,hlinecenter-(hlinewidth/2) , width,  hlinewidth );
     return flag;
 }
@@ -181,7 +204,7 @@ function draw_cross(flag, width, height, vlinewidth, vlinecenter, hlinewidth, hl
 
 
 function draw_border(flag, width, height, thickness,colorlist){
-    thickness=thickness|| Math.floor(Math.random()*10)+2 ;
+    thickness=thickness|| d(10)+2 ;
     var color=colorlist[2] ||random_color();
     flag.beginPath();
     flag.lineWidth=thickness;
@@ -250,11 +273,13 @@ function draw_diamond(flag, width, height, color){
 function draw_circle(flag, width, height,x, y, radius, color){
     var xaxis=Array(  1/4, 1/2, 3/4 );
     var yaxis=Array(  1/4, 1/3, 1/2, 3/4 );
+    var radiusmultipliers=Array( 1/2, 3/4, 1 );
+    var radiusmultiplier= radiusmultipliers[Math.floor ( Math.random() *radiusmultipliers.length)];
 
     x= x || xaxis[Math.floor ( Math.random() *xaxis.length)];
     y= x || xaxis[Math.floor ( Math.random() *xaxis.length)];
 
-    radius=radius||Math.min( width*(x) , height*(y), width*(1-x) , height*(1-y)  )-10;
+    radius=radius||(Math.min( width*(x) , height*(y), width*(1-x) , height*(1-y)  )-10)*radiusmultiplier;
 
     flag.beginPath(); // Start the path
     flag.arc(width*x,height*y, radius, 0, Math.PI*2, false ); // Draw a circle
@@ -268,6 +293,9 @@ function draw_circle(flag, width, height,x, y, radius, color){
 function draw_stripes(flag,width, height, type,stripecount,colorlist){
     var stripecounts=Array(2, 3, 5, 9, 13);
     stripecount = stripecount||stripecounts[Math.floor ( Math.random() * stripecounts.length )]; 
+
+    types=Array('hor','vert');
+    type=type||types[Math.floor ( Math.random() * types.length)];
 
     var loop=stripecount;
     var mod=2;
@@ -284,9 +312,11 @@ function draw_stripes(flag,width, height, type,stripecount,colorlist){
 
 
 function draw_stripe(flag, width, height, type, count, order, color){
-    counts=Array(2, 3, 5, 9, 13);
-    count = count||stripecounts[Math.floor ( Math.random() * stripecounts.length )];
+    var counts=Array(2, 3, 5, 9, 13);
+    var types=Array('hor','vert');
+    count = count||counts[Math.floor ( Math.random() * counts.length )];
     order = order||Math.floor ( Math.random() *count );
+    type=type||types[Math.floor ( Math.random() * types.length)];
 
     flag.fillStyle=color||random_color();
 
@@ -381,7 +411,7 @@ function set_ratio(flag){
     // http://www.crwflags.com/fotw/flags/xf-size.html
     // like, expand your worldview man.
     var ratios=Array(1, 1.15, 1.25, 1.33, 1.32, 1.38, 1.39, 1.50, 1.6, 1.67, 1.9, 2.0, 2.55 );
-    var ratio = ratios[Math.floor ( Math.random() * ratios.length )]; 
+    var ratio = ratios[d( ratios.length )]; 
     return ratio;
 }
 function set_base_color(flag, width,height){
@@ -392,12 +422,9 @@ function set_base_color(flag, width,height){
 function random_color(){
 
     var color=Array('00', '44', '88', 'CC', 'FF','FF','FF','00','00');
-    var finalcolor = color.splice(Math.floor ( Math.random() * color.length ),1); 
-    finalcolor    += color.splice(Math.floor ( Math.random() * color.length ),1); 
-    finalcolor    += color.splice(Math.floor ( Math.random() * color.length ),1);
-//    var finalcolor = color[Math.floor ( Math.random() * color.length )]; 
-//    finalcolor += color[Math.floor ( Math.random() * color.length )]; 
-//    finalcolor += color[Math.floor ( Math.random() * color.length )];
+    var finalcolor = color.splice( d( color.length ),1); 
+    finalcolor    += color.splice( d( color.length ),1); 
+    finalcolor    += color.splice( d( color.length ),1);
     return "#"+finalcolor;
 }
 function getQueryString() {
@@ -430,3 +457,11 @@ function select_5_colors(){
     }
     return colors;
 }
+
+// yes, a single letter function. it stands for dice, as in "roll a d20"
+// the only difference is this one rolls 0-19 rather than 1-20, but
+// since it's only really used against arrays that's ok.
+function d(num){
+    return Math.floor ( Math.random() * num ) ;
+}
+
