@@ -53,6 +53,7 @@
         <root></root>
         <trailer>wildlife</trailer>
 	<trailer>caterpillar</trailer>
+	<trailer>spiders</trailer>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -74,7 +75,7 @@
         <root>rye</root>
         <root>squash</root>
         <root>zucchini</root>
-        <root>brussels sprouts</root>
+        <root>brussels sprout</root>
         <root>cotton</root>
         <root>coconut</root>
         <root>grain</root>
@@ -88,6 +89,7 @@
         <root>vegetable</root>
         <trailer>fields</trailer>
         <trailer>crops</trailer>
+	<trailer>plantations</trailer>
     </resource>
     <resource type="metals">
         <title>plentiful</title>
@@ -390,6 +392,7 @@
 	<root>codpieces</root>
 	<root>chasity belts</root>
 	<root>iron maidens</root>
+	<root>penis sheathes</root>
 	<root>knives</root>
 	<root>swords</root>
 	<root>axes</root>
@@ -398,6 +401,8 @@
 	<root>saws</root>
 	<root>picks</root>
 	<root>shovels</root>
+	<root>clubs</root>
+	<root>dreamcatchers</root>
 	<root>poems</root>
 	<root>quilts</root>
 	<root>beer</root>
