@@ -320,7 +320,7 @@ function draw_rays(  flag, width, height, x, y, count, offset, color ){
 function draw_star(flag, width, height, points,inset,color) {
 
     var pointcounts=Array( 4, 5, 6, 8, 12, 20 );
-    var insetlist=Array( 1/4, 1/3, 1/2, 2/3, 3/4, 1 );
+    var insetlist=Array( 1/4, 1/3, 1/2 );
 
     points = points|| pointcounts[ d( pointcounts.length ) ] ;
     inset  = inset || insetlist[   d( insetlist.length ) ];
