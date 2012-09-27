@@ -319,7 +319,7 @@ function draw_rays(  flag, width, height, x, y, count, offset, color ){
 //canvas, x of center, y of center, radius, number of points, fraction of radius for inset).
 function draw_star(flag, width, height, points,inset,color) {
 
-    var pointcounts=Array(2, 3, 4, 5, 6, 8, 12, 20 );
+    var pointcounts=Array( 4, 5, 6, 8, 12, 20 );
     var insetlist=Array( 1/4, 1/3, 1/2, 2/3, 3/4, 1 );
 
     points = points|| pointcounts[ d( pointcounts.length ) ] ;
@@ -327,7 +327,7 @@ function draw_star(flag, width, height, points,inset,color) {
 
 
     var xaxis=Array( 1/4, 1/2, 3/4 );
-    var yaxis=Array( 1/4, 1/2, 3/4 );
+    var yaxis=Array( 1/4, 1/2  );
     
     xaxis = xaxis[d( xaxis.length )] ;
     yaxis = yaxis[d( yaxis.length )] ;
