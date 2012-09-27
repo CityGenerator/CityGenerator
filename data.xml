@@ -17,7 +17,155 @@
     <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000"  gplimit="30000"/>    
     <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
+<flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
+    <color type="red" >
+        <shade type="Very light red"    red="255" green="102" blue="102" symbol="R--"/>
+        <shade type="Light red"         red="255" green="51"  blue="51"  symbol="R-"/>
+        <shade type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
+        <shade type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
+        <shade type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
+        <meaning>power</meaning>
+        <meaning>vibrancy</meaning>
+        <meaning>revolution</meaning>
+        <meaning>religion</meaning>
+        <meaning>war</meaning>
+    </color>
+    <color type="blue" >
+        <shade type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
+        <shade type="Light blue"        red="51"  green="153" blue="255" symbol="B-"/>
+        <shade type="Blue"              red="0"   green="0"   blue="255" symbol="B"/>
+        <shade type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"/>
+        <shade type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"/>
+        <meaning>liberty</meaning>
+        <meaning>determination</meaning>
+        <meaning>good fortune</meaning>
+        <meaning>alertness</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="green" >
+        <shade type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"/>
+        <shade type="Light green"       red="0"   green="204" blue="0"   symbol="V-"/>
+        <shade type="Green"             red="0"   green="153" blue="0"   symbol="V"/>
+        <shade type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"/>
+        <shade type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"/>
+        <meaning>agriculture</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="yellow" >
+        <shade type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"/>
+        <shade type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"/>
+        <shade type="Yellow"            red="255" green="255" blue="0"   symbol="Y"/>
+        <shade type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"/>
+        <meaning>wealth</meaning>
+        <meaning>energy</meaning>
+        <meaning>happiness</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="orange" >
+        <shade type="Light orange"      red="255" green="153" blue="0"   symbol="O-"/>
+        <shade type="Orange"            red="255" green="102" blue="0"   symbol="O"/>
+    </color>
+    <color type="gold" >
+        <shade type="Gold"              red="255" green="204" blue="51"  symbol="Au"/>
+    </color>
+    <color type="grey" >
+        <shade type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
+        <shade type="Grey"              red="153" green="153" blue="153" symbol="G"/>
+        <shade type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
+        <shade type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
+    </color>
+    <color type="brown" >
+        <shade type="Light brown"       red="153" green="102" blue="0"   symbol="M-"/>
+        <shade type="Brown"             red="102" green="51"  blue="0"   symbol="M"/>
+        <shade type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+"/>
+    </color>
+    <color type="purple" >
+        <shade type="Purple"            red="102" green="0"   blue="153" symbol="P"/>
+    </color>
+    <color type="black" >
+        <shade type="Black"             red="0"   green="0"   blue="0"   symbol="N"/>
+        <meaning>purpose</meaning>
+        <meaning>victory</meaning>
+        <meaning>control</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="white" >
+        <shade type="White"             red="255" green="255" blue="255" symbol="W"/>
+        <meaning>purity</meaning>
+        <meaning>peace</meaning>
+        <meaning>harmony</meaning>
+        <meaning>religion</meaning>
+    </color>
 
+
+</flagcolors>
+<trivia>their official _______ is the ________
+    <fact type='tree'>
+        <title>red</title>
+        <title>blue</title>
+        <title>yellow</title>
+        <title>white</title>
+        <root>pine</root>
+        <root>maple</root>
+        <root>oak</root>
+        <root>cypress</root>
+    </fact>
+    <fact type='animal' title_chance='30'>
+        <title>wild</title>
+        <title>dire</title>
+        <root>bear</root>
+        <root>boar</root>
+        <root>lion</root>
+        <root>ferret</root>
+    </fact>
+    <fact type='stone' title_chance='10'>
+        <title>red</title>
+        <title>white</title>
+        <title>black</title>
+        <title>blue</title>
+        <root>marble</root>
+        <root>bauxite</root>
+        <root>geode</root>
+        <root>limestone</root>
+        <root>agate</root>
+        <root>granite</root>
+        <root>slate</root>
+    </fact>
+    <fact type='beverage' >
+        <root>beer</root>
+        <root>tea</root>
+        <root>coffee</root>
+        <root>wine</root>
+        <root>ale</root>
+    </fact>
+    <fact type='symbol'>
+        <root>bird</root>
+        <root>dragon</root>
+        <root>ram</root>
+        <root>horse</root>
+        <root>tree</root>
+        <root>flower</root>
+    </fact>
+    <fact type='flower'>
+        <root>daisy</root>
+        <root>rose</root>
+        <root>tulip</root>
+    </fact>
+
+    <fact type='bird'>
+        <root></root>
+    </fact>
+
+    <fact type='fish'>
+        <root></root>
+    </fact>
+
+    <fact type='insect'>
+        <root></root>
+    </fact>
+
+
+</trivia>
 <resources>
     <resource type="beaches">
         <title>pristine</title>

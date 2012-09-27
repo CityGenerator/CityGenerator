@@ -2,7 +2,7 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(seed) {
+function create_flag(seed,colorlist) {
     Math.seedrandom(seed);
 
 
@@ -10,7 +10,7 @@ function create_flag(seed) {
     var flag=canvas.getContext('2d');
 
     //This is the flag's colorscheme; at most it'll have a 3 color background
-    var colorlist = select_5_colors();
+    //var colorlist = select_5_colors();
 
     // Set the base size of the flag; height will 
     // always be 100, but width may change.
@@ -19,8 +19,8 @@ function create_flag(seed) {
     var width=height*ratio;
 
     //FIXME note that I'm overriding the ratios for now.
-    width=150;
-    height=100;
+//    width=150;
+//    height=100;
     flag=set_shape(flag, width, height);
     flag.clip();
     
@@ -35,7 +35,7 @@ function create_flag(seed) {
 function set_shape(flag, width, height){
     var shape = getQueryString()['shape'];
     var chance=shape || d( 300 ); 
-    if  (chance <10 || shape == 'para'){
+    if  (chance <5 || shape == 'para'){
         flag.moveTo(    0,        0);
         flag.lineTo(    width,    height/6);
         flag.lineTo(    width,    height-height/6);
@@ -44,7 +44,7 @@ function set_shape(flag, width, height){
         flag.moveTo(    0,        0);
         flag.lineTo(    width,    height/2);
         flag.lineTo(    0,        height);
-    }else if  (chance <30 || shape == 'pennant'){
+    }else if  (chance <25 || shape == 'pennant'){
         flag.moveTo(    0,        0);
         flag.lineTo(    width,    height/5*2);
         flag.lineTo(    width,    height/5*3);
@@ -55,32 +55,32 @@ function set_shape(flag, width, height){
         flag.lineTo(    width-width/5,    height/2);
         flag.lineTo(    width,            height/3*2);
         flag.lineTo(    0,                height);
-    }else if  (chance <50 || shape == 'tongued'){
+    }else if  (chance <45 || shape == 'tongued'){
         flag.moveTo(    0,                0);
         flag.lineTo(    width,            0);
         flag.lineTo(    width,            height/11*1);
-        flag.lineTo(    width-width/5,    height/11*1);
-        flag.lineTo(    width-width/5,    height/11*2);
+        flag.lineTo(    width-width/11,   height/11*1);
+        flag.lineTo(    width-width/11,   height/11*2);
 
         flag.lineTo(    width,            height/11*2);
         flag.lineTo(    width,            height/11*3);
-        flag.lineTo(    width-width/5,    height/11*3);
-        flag.lineTo(    width-width/5,    height/11*4);
+        flag.lineTo(    width-width/11,   height/11*3);
+        flag.lineTo(    width-width/11,   height/11*4);
 
         flag.lineTo(    width,            height/11*4);
         flag.lineTo(    width,            height/11*5);
-        flag.lineTo(    width-width/5,    height/11*5);
-        flag.lineTo(    width-width/5,    height/11*6);
+        flag.lineTo(    width-width/11,   height/11*5);
+        flag.lineTo(    width-width/11,   height/11*6);
 
         flag.lineTo(    width,            height/11*6);
         flag.lineTo(    width,            height/11*7);
-        flag.lineTo(    width-width/5,    height/11*7);
-        flag.lineTo(    width-width/5,    height/11*8);
+        flag.lineTo(    width-width/11,   height/11*7);
+        flag.lineTo(    width-width/11,   height/11*8);
 
         flag.lineTo(    width,            height/11*8);
         flag.lineTo(    width,            height/11*9);
-        flag.lineTo(    width-width/5,    height/11*9);
-        flag.lineTo(    width-width/5,    height/11*10);
+        flag.lineTo(    width-width/11,   height/11*9);
+        flag.lineTo(    width-width/11,   height/11*10);
 
         flag.lineTo(    width,            height/11*10);
         flag.lineTo(    width,            height);
@@ -99,7 +99,7 @@ function select_division( flag, width, height, colorlist){
     // by making chance possibly a text string, it should become larger than
     // usable and force division to work. kudgy, but functional.
     var division = getQueryString()['division'];
-    var chance=division || d( 60 ); 
+    var chance=division || d( 70 );
 
     var flag = draw_solid( flag, width, height, colorlist[0] );
 
@@ -109,10 +109,10 @@ function select_division( flag, width, height, colorlist){
     } else if (chance <20 || division == 'diagquad' ){
         flag = draw_quaddiagonals( flag, width, height, colorlist );
 
-    } else if (chance <30 || division == 'diag1'){
+    } else if (chance <35 || division == 'diag1'){
         flag = draw_diagonals( flag, width, height, undefined, colorlist );
 
-    } else if (chance <40 || division == 'vert' || division == 'hor' ){
+    } else if (chance <55 || division == 'vert' || division == 'hor' ){
         flag = draw_stripes( flag, width, height, division, undefined, colorlist );
 
     } else{/*nothing, just the base.*/}
@@ -367,13 +367,12 @@ function draw_diamond(flag, width, height, color){
 
 
 function draw_circle(flag, width, height,x, y, radius, color){
-    var xaxis=Array(   1/2 );
-    var yaxis=Array(   1/2  );
+    var xaxis=Array(  1/4, 1/2 );
     var radiusmultipliers=Array( 1/2, 3/4, 1 );
     var radiusmultiplier= radiusmultipliers[d( radiusmultipliers.length)];
 
     x= x || xaxis[d(xaxis.length)];
-    y= x || xaxis[d(xaxis.length)];
+//    y= y || xaxis[d(xaxis.length)];
 
     radius=radius||(Math.min( width*(x) , height*(y), width*(1-x) , height*(1-y)  )-10)*radiusmultiplier;
 
