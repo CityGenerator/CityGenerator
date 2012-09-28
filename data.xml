@@ -659,29 +659,64 @@
     <trailer>in a wheel and spoke pattern</trailer>
 </streets>
 
-<walls chance='10' >
-    <title></title>
-    <title>low</title>
-    <title>high</title>
-    <title>fortified</title>
-    <title>thick</title>
-    <title>massive</title>
-    <root>wood</root>
-    <root>stone</root>
-    <root>mud brick</root>
-    <root>rubble</root>
-    <trailer>embankment</trailer>
-    <trailer>barricade</trailer>
-    <trailer>barrier</trailer>
-    <trailer>bulwark</trailer>
-    <trailer>fence</trailer>
-    <trailer>fortification</trailer>
-    <trailer>palisade </trailer>
-    <trailer>partition</trailer>
-    <trailer>rampart</trailer>
-    <trailer>stockade</trailer>
-    <trailer>enclosure</trailer>
-    <trailer>wall</trailer>
+<walls chance='8' >
+    <wall          max='10' type='rubble'>
+        <title></title>
+        <title>low</title>
+        <title>crumbling</title>
+        <root>rubble</root>
+        <trailer>embankment</trailer>
+        <trailer>barrier</trailer>
+    </wall>
+    <wall min='11' max='20' type='mud brick'>
+        <title></title>
+        <title>low</title>
+        <title>fortified</title>
+        <title>thick</title>
+        <root>brick</root>
+        <root>mud brick</root>
+        <trailer>barricade</trailer>
+        <trailer>fortification</trailer>
+        <trailer>partition</trailer>
+        <trailer>wall</trailer>
+        <trailer>enclosure</trailer>
+        <trailer>rampart</trailer>
+    </wall>
+    <wall min='21' max='60' type='wood'>
+        <title>low</title>
+        <title>high</title>
+        <title>fortified</title>
+        <title>thick</title>
+        <title>massive</title>
+        <root>wood</root>
+        <root>oak</root>
+        <trailer>stockade</trailer>
+        <trailer>rampart</trailer>
+        <trailer>barricade</trailer>
+        <trailer>fortification</trailer>
+        <trailer>palisade</trailer>
+        <trailer>fence</trailer>
+        <trailer>partition</trailer>
+        <trailer>wall</trailer>
+        <trailer>enclosure</trailer>
+    </wall>
+    <wall min='61'          type='stone'>
+        <title></title>
+        <title>low</title>
+        <title>high</title>
+        <title>fortified</title>
+        <title>thick</title>
+        <title>massive</title>
+        <root>stone</root>
+        <root>marble</root>
+        <root>granite</root>
+        <trailer>rampart</trailer>
+        <trailer>fortification</trailer>
+        <trailer>partition</trailer>
+        <trailer>wall</trailer>
+        <trailer>bulwark</trailer>
+        <trailer>enclosure</trailer>
+    </wall>
 </walls>
 <preparation>
     <option          max='5'>abysmally</option>

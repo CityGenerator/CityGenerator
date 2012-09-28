@@ -689,7 +689,7 @@ sub generate_military {
     generate_favored_weapon();
     generate_favored_tactic();
     generate_military_skill();
-    #generate_watchtowers();
+    generate_watchtowers();
 
 #TODO travelers
 #TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
@@ -724,13 +724,25 @@ sub generate_current_events {
 
 ###############################################################################
 #
+# generate_watchtowers
+#
+###############################################################################
+
+sub generate_watchtowers {
+    $city->{'watchtowers'}={};
+    #TODO finish this after work
+
+}
+
+###############################################################################
+#
 # generate_city_crest - generate colors and the design
 #
 ###############################################################################
 
 sub generate_city_crest {
     $city->{'crest'}={};
-
+    #TODO finish this after work
 
 }
 
@@ -1265,10 +1277,14 @@ sub generate_neighbors {
 #
 ###############################################################################
 sub generate_walls {
+    #Chance of there being a wall
     my $roll=&d(20)+ $city->{'size_modifier'} ;
+
     if( $xml_data->{'walls'}->{'chance'}< $roll){
-        $city->{'walls'}=parse_object($xml_data->{'walls'});
-        $city->{'walls'}->{'height'}= 8 +&d(10) + $city->{'size_modifier'};
+        my $wallroll=&d(100) + $city->{'size_modifier'};
+        my $wall=roll_from_array( $wallroll, $xml_data->{'walls'}->{'wall'}     );
+        $city->{'walls'}=parse_object($wall);
+        $city->{'walls'}->{'height'}= 8 +int($wallroll/10) + $city->{'size_modifier'};
     }else{
         $city->{'walls'}->{'content'}="none";
         $city->{'walls'}->{'height'}=0;
