@@ -192,7 +192,7 @@ sub describe_population{
     my $content="
                     <section id='population'>
                         <h2>Population</h2>
-                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
+                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'population'}->{'children'}->{'percent'}% ($city->{'population'}->{'children'}->{'population'}), and the elderly account for $city->{'population'}->{'elderly'}->{'percent'}% ($city->{'population'}->{'elderly'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
                         $populations
                         <h3>Race Relations</h3>
                         $racerelations 
@@ -233,8 +233,8 @@ sub describe_tavern{
     #max =d(12+4 )+10=26
     my $tavernmod= &d($city->{'size_modifier'}+$tavern->{'population'})*2 + $city->{'time'}->{'bar_mod'}  ;
 
-    my $tavernpop=max(0,  min(  int($city->{'population'}/2),   $tavernmod  )  );
-    if ($tavernpoptotal+$tavernpop <= int($city->{'population'}/2)){
+    my $tavernpop=max(0,  min(  int($city->{'population'}->{'size'}/2),   $tavernmod  )  );
+    if ($tavernpoptotal+$tavernpop <= int($city->{'population'}->{'size'}/2)){
         $tavern->{'pop_count'}= $tavernpop;
         $tavernpoptotal+=$tavernpop;
     }
@@ -355,7 +355,7 @@ sub describe_government{
                         <p>$city->{'name'} has the following diplomatic relations:</p>
                         $relations
                         <h3>Crime and Punishment</h3>
-                        <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'imprisonment'}->{'percent'}% of the population ($city->{'imprisonment'}->{'population'} adult[s]).</p>
+                        <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'population'}->{'imprisonment'}->{'percent'}% of the population ($city->{'population'}->{'imprisonment'}->{'population'} adult[s]).</p>
                         <h3>Military</h3>
                         $military
                     </section>
@@ -384,7 +384,7 @@ sub describe_summary {
                         <div style='font-weight:bold;margin:auto;padding:auto;float:right;width:270px;'><div style=''>Official Flag:<br> <canvas style='margin:0 auto;display:block;' id='flagcanvas'> </canvas></div></div>
                         <h2>Summary</h2>
 
-                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
+                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
 
                     </header>";
 }
@@ -395,7 +395,7 @@ sub describe_geography {
     my $content="
                     <section id='geography'>
                         <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'area'} hectares, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
                     </section>
 ";
 }
@@ -409,7 +409,7 @@ sub describe_walls {
     if   ( $city->{'walls'}->{'content'} eq 'none'){
         return " No walls currently surround the city."
     }else{
-        return " Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall.";
+        return " Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall. The city wall protects the core $city->{'walls'}->{'protectedpercent'}% of the city, with $city->{'walls'}->{'towercount'} towers spread along the $city->{'walls'}->{'length'} yard wall.";
     }
     
 }
@@ -656,6 +656,8 @@ sub generate_physical_traits {
     generate_districts();
     generate_streets();
     generate_walls();
+    generate_watchtowers();
+    generate_shape();
     generate_neighbors();
     generate_topography();
 }
@@ -689,7 +691,6 @@ sub generate_military {
     generate_favored_weapon();
     generate_favored_tactic();
     generate_military_skill();
-    generate_watchtowers();
 
 #TODO travelers
 #TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
@@ -729,9 +730,20 @@ sub generate_current_events {
 ###############################################################################
 
 sub generate_watchtowers {
-    $city->{'watchtowers'}={};
-    #TODO finish this after work
 
+# inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
+# outer wall is 1320 with 18 towers, meaning every 73
+
+    # Determine  walled area - only the city core is walled;
+    # best way to calculate that is population@ max density 
+    my $protectedcitizens = $city->{'population'}->{'wealthy'}+$city->{'population'}->{'average'};
+    my $protectedfeet     = $protectedcitizens*$city->{'popdensity'}->{'feetpercapita'}; #nominal density
+    my $protectedhectares = int($protectedfeet/107639*100)/100;
+    $city->{'walls'}->{'protectedarea'}= $protectedhectares;
+    $city->{'walls'}->{'protectedpercent'}= int($protectedhectares/$city->{'area'}*1000)/10;
+    $city->{'walls'}->{'length'}= int(sqrt($protectedhectares )*100*4);
+    $city->{'walls'}->{'towercount'}=$city->{'walls'}->{'length'} / ( 100 + $city->{'size_modifier'}*$city->{'popdensity'}->{'feetpercapita'}/1000);
+    $city->{'walls'}->{'towercount'}=int($city->{'walls'}->{'towercount'} * (1+ ($city->{'economy'}*2/100  ) ));
 }
 
 ###############################################################################
@@ -745,7 +757,16 @@ sub generate_city_crest {
     #TODO finish this after work
 
 }
+###############################################################################
+#
+# generate_shape - generate the rough shape of the city.
+#
+###############################################################################
 
+sub generate_shape {
+    $city->{'shape'}=rand_from_array($xml_data->{'cityshape'}->{'option'})->{'content'};
+
+}
 ###############################################################################
 #
 # generate_flag_colors - generate colors and their meanings
@@ -883,17 +904,17 @@ sub generate_military_stats {
     $city->{'militarystats'}->{'activepercent'}  =  max(0, 10 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/2  );
     $city->{'militarystats'}->{'reservepercent'} =  max(0,  3 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/4   ) ;
     $city->{'militarystats'}->{'parapercent'}    =  max(0,  7 + $city->{'military'} +  $city->{'govtype'}->{'mil_mod'} );
-    $city->{'militarystats'}->{'inelegable_pop'} = ceil( $city->{'imprisonment'}->{'population'} + $city->{'children'}->{'population'}/2 +$city->{'elderly'}->{'population'});
+    $city->{'militarystats'}->{'inelegable_pop'} = ceil( $city->{'population'}->{'imprisonment'}->{'population'} + $city->{'population'}->{'children'}->{'population'}/2 +$city->{'population'}->{'elderly'}->{'population'});
 
-    $city->{'militarystats'}->{'active'}  =  ceil($city->{'population'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
-    $city->{'militarystats'}->{'reserve'} =  ceil($city->{'population'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
+    $city->{'militarystats'}->{'active'}  =  ceil($city->{'population'}->{'size'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
+    $city->{'militarystats'}->{'reserve'} =  ceil($city->{'population'}->{'size'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
     $city->{'militarystats'}->{'para'}    =  ceil($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
-    $city->{'militarystats'}->{'militia'} =  ceil($city->{'population'} - $city->{'militarystats'}->{'inelegable_pop'} );
+    $city->{'militarystats'}->{'militia'} =  ceil($city->{'population'}->{'size'} - $city->{'militarystats'}->{'inelegable_pop'} );
 
-    $city->{'militarystats'}->{'activepercent'}  = ceil(  $city->{'militarystats'}->{'active'}/$city->{'population'}*10000  )/100;
-    $city->{'militarystats'}->{'reservepercent'} = ceil(  $city->{'militarystats'}->{'reserve'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'activepercent'}  = ceil(  $city->{'militarystats'}->{'active'}/$city->{'population'}->{'size'}*10000  )/100;
+    $city->{'militarystats'}->{'reservepercent'} = ceil(  $city->{'militarystats'}->{'reserve'}/$city->{'population'}->{'size'}*10000  )/100;
     $city->{'militarystats'}->{'parapercent'}    = ceil(  $city->{'militarystats'}->{'para'}/$city->{'militarystats'}->{'active'} *10000  )/100;
-    $city->{'militarystats'}->{'militiapercent'} = ceil(  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
+    $city->{'militarystats'}->{'militiapercent'} = ceil(  $city->{'militarystats'}->{'militia'}/$city->{'population'}->{'size'}*10000  )/100;
     
 }
 
@@ -929,7 +950,7 @@ sub generate_events {
 ###############################################################################
 sub generate_visible_population {
 
-    my $pop=$city->{'population'};
+    my $pop=$city->{'population'}->{'size'};
     my $timemodifier=$city->{'time'}->{'public_modifier'};
     my $sizemodifier=$city->{'size_modifier'};
 
@@ -1284,7 +1305,8 @@ sub generate_walls {
         my $wallroll=&d(100) + $city->{'size_modifier'};
         my $wall=roll_from_array( $wallroll, $xml_data->{'walls'}->{'wall'}     );
         $city->{'walls'}=parse_object($wall);
-        $city->{'walls'}->{'height'}= 8 +int($wallroll/10) + $city->{'size_modifier'};
+        $city->{'walls'}->{'height'}= $wall->{'heightmin'}+  &d($wall->{'heightmax'}-$wall->{'heightmin'})   + $city->{'size_modifier'};
+
     }else{
         $city->{'walls'}->{'content'}="none";
         $city->{'walls'}->{'height'}=0;
@@ -1352,7 +1374,7 @@ sub generate_businesses{
     $city->{'business'}={  'total'=>0  };
 
     #5.5-10.5%  of the population runs a business, depending on the economy
-    my $businessestimate=floor($city->{'population'}*(15+($city->{'economy'}+$city->{'size_modifier'} ))/100 );
+    my $businessestimate=floor($city->{'population'}->{'size'}*(15+($city->{'economy'}+$city->{'size_modifier'} ))/100 );
     $city->{'business'}={ 'estimate'=>$businessestimate };
 
     # separate each business into priorities
@@ -1444,7 +1466,7 @@ sub generate_support_area {
     # a desert with no economy, no education, no magic and no order can't support anyone.
 
     my $people_per_sq_mile= $city->{'climate'}->{'pop_support'}+ $city->{'economy'} + $city->{'education'} + ($city->{'order'}-50) +  ($city->{'magic'}+5)*5 ;
-    $city->{'supportarea'}=   int($city->{'population'}/$people_per_sq_mile *100*258.999  )/100;
+    $city->{'supportarea'}=   int($city->{'population'}->{'size'}/$people_per_sq_mile *100*258.999  )/100;
 }
 
 
@@ -1457,7 +1479,7 @@ sub generate_support_area {
 ###############################################################################
 sub generate_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
-    $city->{'area'}=   int( $city->{'population'}*( $city->{'popdensity'}->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
+    $city->{'area'}=   int( $city->{'population'}->{'size'}*( $city->{'popdensity'}->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
 
 }
 
@@ -1472,14 +1494,20 @@ sub generate_housing {
     my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
 
     $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*5);
+
     $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*5);
+
+
+    $city->{'population'}->{'wealthy'}=ceil( $city->{'population'}->{'size'} * $xml_data->{'housing'}->{'quality'}->{'wealthy'}->{'percent'}/100 );
+    $city->{'population'}->{'average'}=ceil( $city->{'population'}->{'size'} * $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}/100 );
+    $city->{'population'}->{'poor'}= $city->{'population'}->{'size'} - $city->{'population'}->{'average'} - $city->{'population'}->{'wealthy'} ;
 
     foreach my $housingquality ( @qualitylist ){
 
         my $housingtype= $xml_data->{'housing'}->{'quality'}->{$housingquality};
 
         # fractional housecount total, but you can't have .3 of a house... 
-        my $housecount= $city->{'population'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
+        my $housecount= $city->{'population'}->{'size'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
 
         # to ensure minimal housing, we require poor housing via ceil, so we always have 1.
         if (defined $housingtype->{'required'}){
@@ -1548,14 +1576,14 @@ sub generate_imprisonment_rate{
     # low education means more in jail
     # larger city means more in jail
     # higher order means more in jail
-    $city->{'imprisonment'}={};
-    $city->{'imprisonment'}->{'percent'} = (((15 + $city->{'authority'} - $city->{'education'}  +$city->{'size_modifier'} )/5) +1 )*($city->{'order'}+50)/100 /10 ;
+    $city->{'population'}->{'imprisonment'}={};
+    $city->{'population'}->{'imprisonment'}->{'percent'} = (((15 + $city->{'authority'} - $city->{'education'}  +$city->{'size_modifier'} )/5) +1 )*($city->{'order'}+50)/100 /10 ;
 
     #calculate out the actual prison population in whole numbers
-    $city->{'imprisonment'}->{'population'}= ceil( $city->{'imprisonment'}->{'percent'}/100 * $city->{'population'});
+    $city->{'population'}->{'imprisonment'}->{'population'}= ceil( $city->{'population'}->{'imprisonment'}->{'percent'}/100 * $city->{'population'}->{'size'});
 
     #recalulate to make the percent accurate with the population
-    $city->{'imprisonment'}->{'percent'}= int($city->{'imprisonment'}->{'population'}/$city->{'population'}*1000)/10;
+    $city->{'population'}->{'imprisonment'}->{'percent'}= int($city->{'population'}->{'imprisonment'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
 
 
 }
@@ -1570,16 +1598,16 @@ sub generate_imprisonment_rate{
 ###############################################################################
 sub generate_elderly {
 
-    $city->{'elderly'}={};
+    $city->{'population'}->{'elderly'}={};
     #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
     # 1% and 26%, which follows the reported international rates of the US census bureau, so STFU.
-    $city->{'elderly'}->{'percent'}= max(1.5, (6 + &d(5) -  $city->{'cityage'}->{'agemod'})  );
+    $city->{'population'}->{'elderly'}->{'percent'}= max(1.5, (6 + &d(5) -  $city->{'cityage'}->{'agemod'})  );
 
     #calculate out the actual child population in whole numbers
-    $city->{'elderly'}->{'population'}= ceil( $city->{'elderly'}->{'percent'}/100 * $city->{'population'});
+    $city->{'population'}->{'elderly'}->{'population'}= ceil( $city->{'population'}->{'elderly'}->{'percent'}/100 * $city->{'population'}->{'size'});
 
     #recalulate to make the percent accurate with the population
-    $city->{'elderly'}->{'percent'}= ceil($city->{'elderly'}->{'population'}/$city->{'population'}*1000)/10;
+    $city->{'population'}->{'elderly'}->{'percent'}= ceil($city->{'population'}->{'elderly'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
 
 }
 
@@ -1592,16 +1620,16 @@ sub generate_elderly {
 ###############################################################################
 sub generate_children {
 
-    $city->{'children'}={};
+    $city->{'population'}->{'children'}={};
     #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
     # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
-    $city->{'children'}->{'percent'}= 20 + &d(15) +  $city->{'cityage'}->{'agemod'};
+    $city->{'population'}->{'children'}->{'percent'}= 20 + &d(15) +  $city->{'cityage'}->{'agemod'};
 
     #calculate out the actual child population in whole numbers
-    $city->{'children'}->{'population'}= floor( $city->{'children'}->{'percent'}/100 * $city->{'population'});
+    $city->{'population'}->{'children'}->{'population'}= floor( $city->{'population'}->{'children'}->{'percent'}/100 * $city->{'population'}->{'size'});
 
     #recalulate to make the percent accurate with the population
-    $city->{'children'}->{'percent'}= int($city->{'children'}->{'population'}/$city->{'population'}*1000)/10;
+    $city->{'population'}->{'children'}->{'percent'}= int($city->{'population'}->{'children'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
 
 }
 
@@ -1741,7 +1769,7 @@ sub generate_city_beliefs {
 #
 ###############################################################################
 sub generate_pop_counts {
-    my $population = $city->{'population'};
+    my $population = $city->{'population'}->{'size'};
     my $newpop     = 0;
     my @races;
     my @newraces;
@@ -1755,7 +1783,7 @@ sub generate_pop_counts {
     }
 
     # Add up all of the rough counts to create a final population total
-    $city->{'population'} = $newpop;
+    $city->{'population'}->{'size'} = $newpop;
     $city->{'races'}      = \@races;
 
     # Loop through the races a second time, recalulating percentages.
@@ -1923,10 +1951,10 @@ sub set_city_size {
     my $citysizelist=$xml_data->{'citysize'}->{'city'} ;
     my $citysize = roll_from_array( &d(100), $citysizelist );
 
-    $city->{'size'}          = $citysize->{'size'};
-    $city->{'gplimit'}       = $citysize->{'gplimit'};
-    $city->{'population'}    = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'} );
-    $city->{'size_modifier'} = $citysize->{'size_modifier'};
+    $city->{'size'}                 = $citysize->{'size'};
+    $city->{'gplimit'}              = $citysize->{'gplimit'};
+    $city->{'population'}->{'size'} = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'} );
+    $city->{'size_modifier'}        = $citysize->{'size_modifier'};
 }
 
 #######################################################################################################################

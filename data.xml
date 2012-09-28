@@ -660,7 +660,7 @@
 </streets>
 
 <walls chance='8' >
-    <wall          max='10' type='rubble'>
+    <wall          max='10' type='rubble' heightmin='4' heightmax='6' >
         <title></title>
         <title>low</title>
         <title>crumbling</title>
@@ -668,9 +668,8 @@
         <trailer>embankment</trailer>
         <trailer>barrier</trailer>
     </wall>
-    <wall min='11' max='20' type='mud brick'>
+    <wall min='11' max='20' type='mud brick' heightmin='8' heightmax='20' >
         <title></title>
-        <title>low</title>
         <title>fortified</title>
         <title>thick</title>
         <root>brick</root>
@@ -682,9 +681,8 @@
         <trailer>enclosure</trailer>
         <trailer>rampart</trailer>
     </wall>
-    <wall min='21' max='60' type='wood'>
-        <title>low</title>
-        <title>high</title>
+    <wall min='21' max='60' type='wood' heightmin='8' heightmax='30' >
+        <title></title>
         <title>fortified</title>
         <title>thick</title>
         <title>massive</title>
@@ -700,10 +698,8 @@
         <trailer>wall</trailer>
         <trailer>enclosure</trailer>
     </wall>
-    <wall min='61'          type='stone'>
+    <wall min='61'          type='stone' heightmin='15' heightmax='50'  >
         <title></title>
-        <title>low</title>
-        <title>high</title>
         <title>fortified</title>
         <title>thick</title>
         <title>massive</title>
@@ -1308,11 +1304,13 @@
     <option>southwest</option>
     <option>south</option>
 </direction>
-<cityshape>TODO
-    <option>circular</option>
-    <option>square</option>
-    <option>pear</option>
-    <option>rectangular</option>
+<cityshape>The densly populated town proper is a circular 0.58 hectare region.
+    <option>a circlular</option>
+    <option>an ovalar</option>
+    <option>a square</option>
+    <option>a pear-shaped</option>
+    <option>a rectangular</option>
+    <option>a hexagonal</option>
 </cityshape>
 <weather>
     <forecast>
