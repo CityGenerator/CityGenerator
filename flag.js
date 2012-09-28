@@ -2,7 +2,7 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(seed,colorlist) {
+function create_flag(seed,letter,colorlist) {
     Math.seedrandom(seed);
 
 
@@ -18,9 +18,6 @@ function create_flag(seed,colorlist) {
     var height=100;
     var width=height*ratio;
 
-    //FIXME note that I'm overriding the ratios for now.
-//    width=150;
-//    height=100;
     flag=set_shape(flag, width, height);
     flag.clip();
     
@@ -28,7 +25,7 @@ function create_flag(seed,colorlist) {
     // a symbol, and a border.
     flag=select_division(flag, width, height, colorlist );
     flag=select_overlay( flag, width, height, colorlist );
-    flag=select_symbol(  flag, width, height, colorlist );
+    flag=select_symbol(  flag, width, height, letter, colorlist );
     flag=select_border(  flag, width, height, colorlist );
 }
 
@@ -174,18 +171,48 @@ function draw_jack(flag, width,height,color){
         flag= draw_x(flag,width,height,undefined,color);
         return flag;
 }
-function select_symbol(flag, width, height, colorlist){
+
+function select_symbol(flag, width, height, letter, colorlist){
     var symbol = getQueryString()['symbol'];
-    var chance= symbol|| d( 60 )  ; 
+    var chance= symbol || d( 60 )  ; 
 
     if (chance <10 || symbol=='circle'){
         flag=draw_circle(flag,  width, height, undefined, undefined, undefined, colorlist[4] );
     } else if (chance <20 || symbol=='star'){
         flag= draw_star(flag, width, height, undefined, undefined, colorlist[4]);
+    } else if (chance <30 || symbol=='letter'){
+        flag= draw_letter(flag, width, height, undefined, letter, undefined, undefined, colorlist[4]);
     }
     return flag;
 }
 
+function draw_letter(flag, width, height, axis, letter, font, size, color){
+    letter = getQueryString()['letter'] || letter || '#' ;
+    var axislist=Array(  1/4,1/2 );
+    axis = axis || axislist[ d( axislist.length ) ];
+    var sizelist=Array(  30,40,50,60,70,80);
+    size=size|| sizelist[ d(axislist.length)];
+    var fontlist=Array(
+                    "Arial Black", "Comic Sans MS Bold", "Courier New Bold", 
+                    "Courier New Bold Italic", "Impact", "Lucida Console", 
+                    "Trebuchet MS", "Trebuchet MS Bold", "Trebuchet MS Italic",
+                    "Trebuchet MS Bold Italic", "Verdana", "Verdana Bold", 
+                    "Verdana Bold Italic", "sans serif"
+                    );
+    font = font || fontlist[ d( fontlist.length ) ];
+
+    flag.fillStyle=color||random_color();
+
+    //c6_context.font = 'italic bold 30px sans-serif';
+    flag.textBaseline = 'middle';
+    flag.font=size+"px bold "+font;
+//    flag.fillText("Hello World",10,50)
+//    flag.font="normal 50px Verdana";
+    flag.fillText(letter, width*axis-size/2+size/10, height*axis);
+
+    return flag;
+
+}
 
 function select_border(flag, width, height, colorlist){
     var border=getQueryString()['border'];

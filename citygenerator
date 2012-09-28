@@ -79,7 +79,7 @@ sub describe_city {
     $content.=describe_footer();
 }
 
-sub describe_flag_colors{
+sub get_flag_colors{
 
     my @colors=shuffle map {  $_->{'hex'} } @{ $city->{'flag'}->{'colors'} };
     return "['". join("','",@colors)."']";
@@ -87,7 +87,8 @@ sub describe_flag_colors{
 }
 sub describe_header{
     my $style=print_style();
-    my $flagcolors=describe_flag_colors(); 
+    my $flagcolors=get_flag_colors(); 
+    my $letter = substr $city->{'name'}, 0,1;
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
@@ -95,7 +96,7 @@ sub describe_header{
             $style
             <script src='/js/flag.js' ></script>
             </head>
-            <body onload=\"create_flag($seed,$flagcolors)\">";
+            <body onload=\"create_flag($seed, '$letter', $flagcolors)\">";
     return $content;
 }
 sub describe_footer{
