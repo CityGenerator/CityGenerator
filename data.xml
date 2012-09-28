@@ -24,11 +24,12 @@
         <shade type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
         <shade type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
         <shade type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
-        <meaning>power</meaning>
         <meaning>vibrancy</meaning>
         <meaning>revolution</meaning>
         <meaning>religion</meaning>
         <meaning>war</meaning>
+        <meaning>love</meaning>
+        <meaning>leadership</meaning>
     </color>
     <color type="blue" >
         <shade type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
@@ -39,7 +40,8 @@
         <meaning>liberty</meaning>
         <meaning>determination</meaning>
         <meaning>good fortune</meaning>
-        <meaning>alertness</meaning>
+        <meaning>truth</meaning>
+        <meaning>loyalty</meaning>
         <meaning>religion</meaning>
     </color>
     <color type="green" >
@@ -50,13 +52,16 @@
         <shade type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"/>
         <meaning>agriculture</meaning>
         <meaning>religion</meaning>
+        <meaning>growth</meaning>
+        <meaning>prosperity</meaning>
+        <meaning>hope</meaning>
+        <meaning>endurance</meaning>
     </color>
     <color type="yellow" >
         <shade type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"/>
         <shade type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"/>
         <shade type="Yellow"            red="255" green="255" blue="0"   symbol="Y"/>
         <shade type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"/>
-        <meaning>wealth</meaning>
         <meaning>energy</meaning>
         <meaning>happiness</meaning>
         <meaning>religion</meaning>
@@ -64,9 +69,18 @@
     <color type="orange" >
         <shade type="Light orange"      red="255" green="153" blue="0"   symbol="O-"/>
         <shade type="Orange"            red="255" green="102" blue="0"   symbol="O"/>
+        <meaning>enthusiasm</meaning>
+        <meaning>distrust</meaning>
+        <meaning>ambition</meaning>
     </color>
     <color type="gold" >
         <shade type="Gold"              red="255" green="204" blue="51"  symbol="Au"/>
+        <meaning>prestige</meaning>
+        <meaning>wisdom</meaning>
+        <meaning>wealth</meaning>
+        <meaning>quality</meaning>
+        <meaning>generosity</meaning>
+
     </color>
     <color type="grey" >
         <shade type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
@@ -78,12 +92,19 @@
         <shade type="Light brown"       red="153" green="102" blue="0"   symbol="M-"/>
         <shade type="Brown"             red="102" green="51"  blue="0"   symbol="M"/>
         <shade type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+"/>
+        <meaning>nature</meaning>
+        <meaning>strength</meaning>
     </color>
     <color type="purple" >
         <shade type="Purple"            red="102" green="0"   blue="153" symbol="P"/>
+        <meaning>majesty</meaning>
+        <meaning>justice</meaning>
+        <meaning>sovereignty</meaning>
     </color>
     <color type="black" >
         <shade type="Black"             red="0"   green="0"   blue="0"   symbol="N"/>
+        <meaning>power</meaning>
+        <meaning>loss</meaning>
         <meaning>purpose</meaning>
         <meaning>victory</meaning>
         <meaning>control</meaning>
@@ -201,7 +222,7 @@
         <root></root>
         <trailer>wildlife</trailer>
 	<trailer>caterpillar</trailer>
-	<trailer>spiders</trailer>
+    <trailer>spiders</trailer>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -237,7 +258,7 @@
         <root>vegetable</root>
         <trailer>fields</trailer>
         <trailer>crops</trailer>
-	<trailer>plantations</trailer>
+        <trailer>plantations</trailer>
     </resource>
     <resource type="metals">
         <title>plentiful</title>
@@ -540,18 +561,18 @@
 	<root>codpieces</root>
 	<root>chasity belts</root>
 	<root>iron maidens</root>
-	<root>penis sheathes</root>
-	<root>kitten mittens</root>
-	<root>monkey wrenches</root>
-	<root>small lyres</root>
-	<root>small bits of string</root>
-	<root>rocks</root>
-	<root>carrier pigeons</root>
-	<root>courtesans</root>
-	<root>singing frogs</root>
-	<root>horney toads</root>
-	<root>nightingale floors</root>
-	<root></root>
+    <root>penis sheathes</root>
+    <root>kitten mittens</root>
+    <root>monkey wrenches</root>
+    <root>small lyres</root>
+    <root>small bits of string</root>
+    <root>rocks</root>
+    <root>carrier pigeons</root>
+    <root>courtesans</root>
+    <root>singing frogs</root>
+    <root>horney toads</root>
+    <root>nightingale floors</root>
+    <root></root>
 	<root>knives</root>
 	<root>swords</root>
 	<root>axes</root>
@@ -560,8 +581,8 @@
 	<root>saws</root>
 	<root>picks</root>
 	<root>shovels</root>
-	<root>clubs</root>
-	<root>dreamcatchers</root>
+    <root>clubs</root>
+    <root>dreamcatchers</root>
 	<root>poems</root>
 	<root>quilts</root>
 	<root>beer</root>

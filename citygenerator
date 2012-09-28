@@ -515,14 +515,11 @@ sub print_neighbors {
 ###############################################################################
 sub print_landmarks {
     my $landmarks=$city->{'location'}->{'landmarks'};
-#    print Dumper $city->{'location'} ;
     if(ref($landmarks) eq 'ARRAY'){
         if (scalar(@$landmarks) eq 1 ){
             return "A nearby ".$landmarks->[0]." is a local landmark.";
         
-        }elsif(scalar(@$landmarks) >1 ){
-#            @$landmarks=map {$_->{'content'}}  @$landmarks;
-#            print Dumper @$landmarks;
+        } elsif( scalar(@$landmarks) >1 ){
             my $landmarklist=" and ".(pop(@{$landmarks}));
             return "Local landmarks include a ".join(', ', @{$landmarks}) . $landmarklist .".";
         }else{
@@ -603,8 +600,8 @@ sub build_city {
     generate_physical_traits();
     generate_economics();
     generate_military();
+    generate_culture();
     generate_current_events();
-
 }
 
 ###############################################################################
@@ -692,7 +689,6 @@ sub generate_military {
     generate_favored_weapon();
     generate_favored_tactic();
     generate_military_skill();
-    generate_flag_colors()
     #generate_watchtowers();
 
 #TODO travelers
@@ -700,6 +696,32 @@ sub generate_military {
 # favored weapons
 #    generate_seige();
 }
+
+###############################################################################
+#
+# generate_culture - generate cultural things
+#
+###############################################################################
+sub generate_culture {
+    generate_flag_colors();
+    generate_city_crest();
+
+
+}
+
+###############################################################################
+#
+# generate_current_events - generate weather conditions, visible population,
+# and ongoing events.
+#
+###############################################################################
+sub generate_current_events {
+    generate_time();
+    generate_weather();
+    generate_visible_population();
+    generate_events();
+}
+
 
 ###############################################################################
 #
@@ -851,20 +873,6 @@ sub generate_military_stats {
     $city->{'militarystats'}->{'militiapercent'} = ceil(  $city->{'militarystats'}->{'militia'}/$city->{'population'}*10000  )/100;
     
 }
-
-###############################################################################
-#
-# generate_current_events - generate weather conditions, visible population,
-# and ongoing events.
-#
-###############################################################################
-sub generate_current_events {
-    generate_time();
-    generate_weather();
-    generate_visible_population();
-    generate_events();
-}
-
 
 ###############################################################################
 #
