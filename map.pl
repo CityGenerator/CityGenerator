@@ -28,6 +28,7 @@ our $palette = {
 &draw_ocean();
 &select_land_pattern();
 
+        $img->string(GD::gdLargeFont,2,10,"$seed",$palette->{'wall'});
 if (defined $q->param('debug')) {
     exit;
 }
@@ -40,13 +41,12 @@ exit;
 #######################################################################################################################
 sub select_land_pattern{
     my $poly = new GD::Polygon;
-    my @sides=('north', 'south', 'east', 'west' );
-    my $sidelist=join '|',@sides;
-    my $side='west';
-    if (defined $q->param('side') and $q->param('side') =~/north|south|east|west/){
-        $side=$q->param('side');
-    }
+    my @sides=('north', 'south', 'east', 'west','northeast' );
+    my $side=$q->param('side') ;
 
+    if (! defined $side  or "@sides"!~ /\b$side\b/){
+        $side=rand_from_array(\@sides);
+    }
 
     if ($q->param('loc') eq "on the coast"){
         my $xbase=0;
@@ -55,75 +55,93 @@ sub select_land_pattern{
         my $ycur=0;
         my $length=0;
         my $totaldistance=$width;
+
+    if ($side eq 'north' || $side eq 'south'){
+            $totaldistance=$width;
+
+    }elsif ($side eq 'east' || $side eq 'west'){
+            $totaldistance=$height;
+    }elsif($side eq 'northeast'){
+            $totaldistance=int (sqrt( $height**2 + $width**2) );
+    }
+
         if ($side eq 'north'){
-            $ybase=30;
-            $totaldistance=$width;
-            $poly->addPt(0,$ybase*2);
-        }elsif ($side eq 'south'){
-            $ybase=$height-30;
-            $totaldistance=$width;
-            $poly->addPt(0,$ybase);
-        }elsif ($side eq 'east'){
-            $xbase=$width-30;
-            $totaldistance=$height;
-            $poly->addPt($xbase,0);
-        }elsif ($side eq 'west'){
-            $xbase=30;
-            $totaldistance=$height;
-            $poly->addPt($xbase,0);
+            $poly->addPt(0,0);
+        } elsif ($side eq 'south'){
+            $ybase=$height;
+            $poly->addPt(0,$height);
+        } elsif ($side eq 'east'){
+            $xbase=$width;
+            $poly->addPt($width,0);
+        } elsif ($side eq 'west'){
+            $poly->addPt(0,0);
+        } elsif ($side eq 'northeast'){
+            $poly->addPt(0,0);
         }
+
         while ($length < $totaldistance){
 
             my $lengthmod=  &d(20)-5;
-            my $depthmod=   &d(20)-10;
-            if ($side eq 'north'){
+            my $depthmod=   &d(24)-12;
+
+            if ($side eq 'north' || $side eq 'south'){
                 $xcur+=$lengthmod;
-                $ycur+=$depthmod;
-                $ycur=max( $ycur, $ybase);
-                $xcur=max( 0, $xcur);
-                $length+=$lengthmod;
-
-            }elsif ($side eq 'south'){
-                $xcur+=$lengthmod;
-                $ycur+=$depthmod;
-                $xcur=max( 0, $xcur);
-                $ycur=min( $ybase, $ycur);
-                $length+=$lengthmod;
-
-            }elsif ($side eq 'east'){
-                $xcur+=$depthmod;
+                $length=$xcur;
+            } elsif ($side eq 'east' || $side eq 'west'){
                 $ycur+=$lengthmod;
-                $xcur=min( 0, $xcur);
-                $ycur=max( $ybase, $ycur);
-                $length+=$lengthmod;
-
-            }elsif ($side eq 'west'){
-                $xcur+=$depthmod;
-                $ycur+=$lengthmod;
-                $xcur=max( 0, $xcur);
-                $ycur=max( $ybase, $ycur);
-                $length+=$lengthmod;
+                $length=$ycur;
+            } elsif ($side eq 'northeast') {
+                $ycur+=&d(20)-5;
+                $xcur+=&d(20)-5;
+                $length=max($xcur, $ycur);
 
             }
+
+
+            if ($side eq 'north'){
+                $ycur=max( $ycur+$depthmod, $ybase-50);
+            } elsif ($side eq 'south'){
+                $ycur=min( $ycur+$depthmod, $height);
+            } elsif ($side eq 'east'){
+                $xcur=min( $xcur+$depthmod, $width);
+            } elsif ($side eq 'west'){
+                $xcur=max( $xcur+$depthmod, $xbase-50);
+            } elsif ($side eq 'northeast'){
+                $ycur=max( $ycur+$depthmod, $ybase-50);
+                $xcur=max( $xcur+$depthmod, $xbase-50);
+    
+            }
             if (defined $q->param('debug')  ){
-                print(" width: ".($xbase+$xcur)."  height: ".($ybase+$ycur)."\n");
             }
             $poly->addPt($xbase+$xcur,$ybase+$ycur);
         }
-        
     }
+
     if ($side eq 'north'){
         $poly->addPt($width,$height);
         $poly->addPt(0,$height);
-    }elsif ($side eq 'south'){
+        $poly->offset(0,100);
+    } elsif ($side eq 'south'){
         $poly->addPt($width,0);
         $poly->addPt(0,0);
-    }elsif ($side eq 'east'){
+        $poly->offset(0,-100);
+    } elsif ($side eq 'east'){
         $poly->addPt(0,$height);
         $poly->addPt(0,0);
-    }elsif ($side eq 'west'){
+        $poly->offset(-100,0);
+    } elsif ($side eq 'west'){
         $poly->addPt($width,$height);
         $poly->addPt($width,0);
+        $poly->offset(100,0);
+    } elsif ($side eq 'northeast'){
+        $poly->addPt($width,$height+50);
+        $poly->addPt(-50,$height+50);
+        $poly->addPt(-50,-50);
+        $poly->offset(50,-50);
+    }
+
+    if (defined $q->param('debug')  ){
+        print Dumper $poly;
     }
     
   $img->filledPolygon($poly,$palette->{'grass'});
