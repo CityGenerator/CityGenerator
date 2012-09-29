@@ -15,11 +15,11 @@ my $xml = new XML::Simple;
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $names_data = $xml->XMLin(   "../names.xml", ForceContent => 1, ForceArray  =>[]  );
-our $seed=set_seed();
-srand $seed;
+our $seed=set_seed($q->param('cityid'));
 
 # This is our city object- it can and will be exported to xml eventually, so keep it clean.
 our $city={'seed'=>$seed};
+
 #TODO travelers
 #TODO generate trivia
 #TODO city seal, stone, coat of arms, animal, beverages, colors, foods, motto, nicknames, symbol (bird, tree, etc)
@@ -1157,11 +1157,13 @@ sub generate_bartender{
 ###############################################################################
 
 sub generate_resources{
-    #ensure that the resource count is at most 10 and at least 0
-    my $resource_count=min( max($city->{'size_modifier'}+$city->{'economy'}, 0),10) ;
+    #ensure that the resource count is at most 13 and at least 2
+    my $resource_count=min( max($city->{'size_modifier'}+$city->{'economy'}, 2 ),13) ;
 
-    #shift from 0-10 to 2-12
-    $resource_count = int( rand( $resource_count ))+2;
+    #shift from 2-13 to 1-12
+    $city->{'resourcecountb'}= $resource_count;
+    $resource_count = &d($resource_count);
+    $city->{'resourcecount'}= $resource_count;
 
     $city->{'resources'}=[];
     while ($resource_count-- > 0 ){
@@ -1187,9 +1189,9 @@ sub generate_markets {
 
 
     # loop through the marketcount to randomly select markets
-    # this allows us to get "duplicates""
-    while ( $marketcount > 0 ){
-
+    # this allows us to get "duplicates"
+    my $tries=scalar( @{ $xml_data->{'markets'}->{'option'} })*2;
+    while ( $marketcount > 0 and $tries-- >0){
         # get a shuffled list of markets
         my @markets=shuffle @{ $xml_data->{'markets'}->{'option'} };
 
@@ -1243,10 +1245,10 @@ sub generate_markets {
 #
 ###############################################################################
 sub generate_realm {
-    my $newseed=$seed-$seed%20;
-    srand $newseed;
+    my $oldseed=$seed;
+    $seed=set_seed($seed-$seed%20);
     $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
-    srand $seed;
+    $seed=set_seed($oldseed);
 }
 
 ###############################################################################
@@ -1274,20 +1276,26 @@ sub generate_topography {
 #
 ###############################################################################
 sub generate_neighbors {
-    my $neighbortotal=1+&d(3);
-    $city->{'neighbors'}=[];
-    my $neighborcount=-int($neighbortotal/2)-1;
-    while($neighborcount< ceil($neighbortotal/2)+1){
-        my $newseed=$seed+$neighborcount ;
-        if ($newseed != $seed){
-            srand( $newseed );
-            my $neighbor->{'id'}=$newseed;
-            $neighbor->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
 
+    # up to 6 neighbors, but one is always you.
+    my $neighbortotal=&d(5);
+    $city->{'neighbors'}=[];
+    my $neighborid=$seed- int($neighbortotal/2);
+
+    #save this guy for later
+    my $oldseed=$seed;
+    
+    while($neighbortotal >0){
+        if ($neighborid != $oldseed){
+            $seed=set_seed($neighborid);
+            my $neighbor->{'id'}=$seed;
+            $neighbor->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
             $neighbor->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
             push @{$city->{'neighbors'}}, $neighbor;
+            $seed=set_seed($oldseed);
+            $neighbortotal--;
         }
-        $neighborcount++;
+        $neighborid++;
     }
 }
 
@@ -1326,6 +1334,21 @@ sub generate_streets {
 
 
 }
+
+sub adjust_chance_for_port{
+    if ( $city->{'location'}->{'port'}  ) {
+        $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
+    }
+}
+sub specialists_influence_districts{
+
+    foreach my $business (@{$city->{'buildings'}}){
+        my $district=$city->{'business'}->{$business->{'content'}}->{'district'};
+        $xml_data->{'districts'}->{'district'}->{$district}->{'chance'}+= $city->{'business'}->{$business->{'content'}}->{'specialists'} ;
+    }
+
+}
+
 ###############################################################################
 #
 # generate_districts - using population size and professionals, determine
@@ -1336,29 +1359,58 @@ sub generate_districts {
 
     $city->{'districts'}=[];
 
-    if ( $city->{'location'}->{'port'}  ) {
-        $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
-    }
+    adjust_chance_for_port();
 
     # use the number of specialists to influence the chance of a district showing up
-    foreach my $business (@{$city->{'buildings'}}){
-        my $district=$city->{'business'}->{$business->{'content'}}->{'district'};
-        $xml_data->{'districts'}->{'district'}->{$district}->{'chance'}+= $city->{'business'}->{$business->{'content'}}->{'specialists'} ;
-    }
-    # select a number of districts using the size modifier of the city.
-    # larger city means more districts, generally speaking.
-    my $districtcount= 4 + int($city->{'size_modifier'}/2)+&d(8);
-    
-    # shuffle the list of districts, 
-    foreach my $districtname (shuffle keys %{$xml_data->{'districts'}->{'district'}}){
+    specialists_influence_districts();
+
+    # select a number of districts using the size modifier of the city and order of cirt
+    # larger city or more order means more districts, generally speaking.
+    my $districtcount=5 + int((6+$city->{'size_modifier'}) /3)  +       (int($city->{'order'}/10) -5)  ;
+
+    # keep it in the city object for posterity.
+    $city->{'districtcount'}= $districtcount;
+
+    # get a list of all of the districts we have available
+    my @districtlist=shuffle keys %{$xml_data->{'districts'}->{'district'}};
+
+    # Number of times we're allowed to fail before drastic actions are taken
+    # This allows us to still use both district counts and district chance
+    # before making both useless
+    my $failallowance=scalar(@districtlist);
+
+    # If we fail, the kludge facter will increase...
+    my $kludge=0;
+
+    # Keep looping until we have all of our districts allocated.
+    while ($districtcount >0){ 
+
+        # grab top district and its stats
+        my $districtname=pop @districtlist;
         my $district=$xml_data->{'districts'}->{'district'}->{$districtname};
+        my $districtchance=$district->{'chance'}  + $city->{'size_modifier'}*2 + $city->{$district->{'stat'}} + $kludge;
 
-        my $districtchance=$district->{'chance'}  + $city->{'size_modifier'}*2 + $city->{$district->{'stat'}};
-
-        if (&d(100) <= $districtchance    and     $districtcount >0 ){
+        # check to see if we can add the district
+        if (&d(100) <= $districtchance ){
+            # success! add it to the list, reset kludge to 0 (if it was used) and decrement the districtcount
             push @{$city->{'districts'}}, $districtname;
+            $kludge=0;
             $districtcount--;
+        }else{
+            # We failed to assign this distict. put it at the back of the line and
+            # decrement our fail allowance
+            unshift @districtlist, $districtname;
+            $failallowance--;
         }
+        # We've reached critical failure!
+        if ($failallowance <= 0 ){
+            # Reset the fail allowance and bump up the kludge 25%
+            # This allows us to incrementally reduce failure and still value relative chance
+            $failallowance =scalar ( keys %{$xml_data->{'districts'}->{'district'}});
+            $kludge+=25;
+            print "failed , forcing kludge of $kludge% to checks\n";
+        }
+
     }
 
 }
@@ -1393,7 +1445,7 @@ sub generate_businesses{
             my %business2=%$business;
             push @{$businesspriorities->{$priority}}, \%business2;
 
-            $business->{'weight'}=$business->{'weight'}-1;
+            $business->{'weight'}--;
         }
     }
     my %junkpriority=%$businesspriorities;
@@ -1974,11 +2026,13 @@ sub set_city_size {
 #
 ###############################################################################
 sub set_seed{
-    if (defined $q->param('cityid') and  $q->param('cityid')=~/(\d+)/){
-        return $1;
+    my ($newseed)=@_;
+    if (defined $newseed and  $newseed=~/(\d+)/){
+        $newseed= $1;
     }else{
-        return int rand(1000000);
+        $newseed = int rand(1000000);
     }
+    return $newseed;
 }
 
 
@@ -2036,7 +2090,8 @@ sub d {
     my ($die) = @_;
     # d as in 1d6
     if ($die =~/^\d+$/){
-        return int( rand($die) );
+        srand $seed;
+        return int( rand($die)+1 );
     }elsif ($die=~/^(\d+)d(\d+)$/){
         my $dicecount=$1;
         my $die=$2;

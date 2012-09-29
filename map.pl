@@ -13,6 +13,7 @@ srand $seed;
 
 our $height=500;
 our $width=500;
+our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
 
 our $img = GD::Image->new($width,$height);
 our $palette = {
@@ -28,10 +29,18 @@ our $palette = {
 &draw_ocean();
 &select_land_pattern();
 
-        $img->string(GD::gdLargeFont,2,10,"$seed",$palette->{'wall'});
+&city_size();
+
+
+
+
+
+
+
 if (defined $q->param('debug')) {
     exit;
 }
+$img->string(GD::gdLargeFont,2,10,"$seed",$palette->{'wall'});
 &finish();
 exit;
 
@@ -39,6 +48,14 @@ exit;
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
+sub city_size {
+
+
+
+
+}
+
+
 sub select_land_pattern{
     my $poly = new GD::Polygon;
     my @sides=('north', 'south', 'east', 'west','northeast' );
@@ -145,7 +162,7 @@ sub select_land_pattern{
     }
     
   $img->filledPolygon($poly,$palette->{'grass'});
-
+ return $poly;
 }
 
 
