@@ -73,7 +73,10 @@ $img->filledPolygon($city->{'map'},$palette->{'wall'});
 if (defined $q->param('debug')) {
     exit;
 }
-$img->string(GD::gdLargeFont,2,10,"$city->{'seed'}",$palette->{'wall'});
+$img->string(GD::gdLargeFont,2,10,"Name:$city->{'name'} ($city->{'seed'}) ",$palette->{'wall'});
+$img->string(GD::gdLargeFont,2,30,"Pop:$city->{'population'}->{'size'}",$palette->{'wall'});
+$img->string(GD::gdLargeFont,2,50,"Roads:$city->{'streets'}->{'roads'} ($city->{'streets'}->{'mainroads'} main)",$palette->{'wall'});
+$img->string(GD::gdLargeFont,2,70,"houses:$city->{'housing'}->{'total'}, business: $city->{'businesstotal'}",$palette->{'wall'});
 &finish();
 exit;
 
@@ -103,10 +106,8 @@ sub city_shape{
     if ($land->length>4){
         $center=[$land->getPt($land->length/2-2) ]  ;
     }
-#    $center->[0]=int $center->[0];
-#    $center->[1]=int $center->[1]+$size/2 -10 + d(10)*5 ;
     my $origin=$center;
-    if ( $city->{'shape'} eq "a square" or 1 ){
+    if ( $city->{'shape'} eq "a square" ){
         while($pointcount++ < $pointtotal){
             my $majorjitter=d(5)-2+5;
             my $minorjitter=d(5)-2;
@@ -129,6 +130,8 @@ sub city_shape{
         }
 
     }elsif ( $city->{'shape'} eq "a circular" or 1 ){
+        $center->[0]=int $center->[0];
+        $center->[1]=int $center->[1]+$size/2 -10 + d(10)*5 ;
         print Dumper $center if (defined $q->param('debug')  );
         print " $center->[0]      ". int ($center->[1] -$size/2) ."\n" if (defined $q->param('debug')  );
         while($pointcount++ < $pointtotal){
@@ -164,7 +167,7 @@ sub select_land_pattern{
     my $poly = new GD::Polyline;
 
     #FIXME coast is currently the only one supported, hence the "or 1"
-    if ($city->{'location'}->{'name'} eq "on the coast"  or 1){
+    if ($city->{'location'}->{'name'} eq "on the coast"  or d(5) > 2){
         # Set base distances
         my ($xbase, $ybase, $xcur, $ycur, $length)= (0,0,0,0,0);
         my $totaldistance=$width;
@@ -184,6 +187,12 @@ sub select_land_pattern{
         $poly->addPt($width,$height);
         $poly->addPt(0,$height);
         $poly->offset(-$width/4,100);
+    }else{
+        $poly->addPt(0,0);
+        $poly->addPt($width,0);
+        $poly->addPt($width,$height);
+        $poly->addPt(0,$height);
+        $poly->offset(-$width/4,-$height/4,);
     
     }
 #$poly->transform($sx,$rx,$sy,$ry,$tx,$ty);
@@ -202,7 +211,7 @@ sub set_direction{
     $width=$width/2;
     $height=$height/2;
 
-    my $side=$q->param('side')||"north" ;
+    my $side=$q->param('side')||$city->{'location'}->{'coastdirection'} ;
     if ($side eq 'north'){
 
     }elsif($side eq 'northeast'){

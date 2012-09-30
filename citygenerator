@@ -410,7 +410,7 @@ sub describe_geography {
 }
 sub describe_port {
     if   ( $city->{'location'}->{'port'} ){
-        return " There is a port on the ".$city->{'location'}->{'portdirection'}." side of the city.";
+        return " There is a port on the ".$city->{'location'}->{'coastdirection'}." side of the city.";
     }
 
 }

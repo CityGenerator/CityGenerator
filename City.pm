@@ -882,8 +882,8 @@ sub generate_districts {
 ###############################################################################
 sub generate_businesses{
 
-    $city->{'business'}={  'total'=>0  };
-
+    $city->{'business'}={};
+    $city->{'businesstotal'}=0;
     #5.5-10.5%  of the population runs a business, depending on the economy
     my $businessestimate=floor($city->{'population'}->{'size'}*(15+($city->{'economy'}+$city->{'size_modifier'} ))/100 );
     $city->{'business'}={ 'estimate'=>$businessestimate };
@@ -955,6 +955,7 @@ sub generate_businesses{
     foreach my $businessname (keys %{$city->{'business'}}){
 #        print Dumper $city->{'business'}->{$businessname};
         $city->{'business'}->{$businessname}->{'count'}=ceil( $city->{'business'}->{$businessname}->{'specialists'} /$city->{'business'}->{$businessname}->{'perbuilding'});
+        $city->{'businesstotal'}+=$city->{'business'}->{$businessname}->{'count'};
     }
 
 
@@ -1049,9 +1050,7 @@ sub generate_location {
     my $location = rand_from_array(  $locationlist  );
     $city->{'location'}->{'name'}=$location->{'description'};
     $city->{'location'}->{'port'}= ( &d(100) <= $location->{'port_chance'}  );
-    if ($city->{'location'}->{'port'}){
-        $city->{'location'}->{'portdirection'}=rand_from_array($xml_data->{'direction'}->{'option'})->{'content'};
-    }
+    $city->{'location'}->{'coastdirection'}=rand_from_array($xml_data->{'direction'}->{'option'})->{'content'};
     #why 20? to give us a better chance of getting one.
     my $landmarkmod=20;
     foreach my $landmark (shuffle @{$location->{'landmarks'}}){
