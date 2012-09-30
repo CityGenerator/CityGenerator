@@ -2,7 +2,7 @@
 use strict;
 use CGI;
 use Data::Dumper;
-use GD;
+use GD::Polyline;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use XML::Simple;
@@ -42,8 +42,8 @@ our $city=build_city($q->param('cityid'));
 if (defined $q->param('debug')) {
 print "seed: $city->{'seed'}\n";
 }
-our $height=500;
-our $width=500;
+my $height=500;
+my $width=500;
 
 our $img = GD::Image->new($width,$height);
 our $palette = {
@@ -55,14 +55,19 @@ our $palette = {
     'wall'  => $img->colorAllocate(97,97,97),
 };
 
-&draw_ocean();
-my $poly= &select_land_pattern();
-&city_size();
-&place_city();
+&draw_ocean($width,$height);
+my $land= &select_land_pattern($width,$height);
+
+my $size=&city_size($width,$height);
+$city->{'map'}= &city_shape($size,$land,$width,$height);
 
 
+$land         = &set_direction($land,$width,$height);
+$city->{'map'}= &set_direction($city->{'map'},$width,$height);
 
 
+$img->filledPolygon($land,$palette->{'grass'});
+$img->filledPolygon($city->{'map'},$palette->{'wall'});
 
 
 if (defined $q->param('debug')) {
@@ -77,23 +82,86 @@ exit;
 #######################################################################################################################
 #######################################################################################################################
 sub city_size {
+    my ($width,$height)=@_;
+    #range from 50px to 220;
+    my $basediameter=100+$city->{'size_modifier'}*10;
+    $img->string(GD::gdLargeFont,2,40,$basediameter,$palette->{'wall'});
+    return $basediameter;
+}
 
+sub city_shape{
+    my ($size,$land,$width,$height)=@_;
+    my $cityarea = new GD::Polyline;
+
+    my $pointtotal=$size/2;
+    my $pointcount=0;
+
+    # if polysize > 4, there is a body of water.
+    print "size: $size\n" if (defined $q->param('debug')  );
+
+    my $center=[$width/2,$height/2];
+    if ($land->length>4){
+        $center=[$land->getPt($land->length/2-2) ]  ;
+    }
+#    $center->[0]=int $center->[0];
+#    $center->[1]=int $center->[1]+$size/2 -10 + d(10)*5 ;
+    my $origin=$center;
+    if ( $city->{'shape'} eq "a square" or 1 ){
+        while($pointcount++ < $pointtotal){
+            my $majorjitter=d(5)-2+5;
+            my $minorjitter=d(5)-2;
+            if ($pointcount < $pointtotal*1/4){
+                $center->[0]+=   $majorjitter;
+                $center->[1]+=   $minorjitter;
+            }elsif($pointcount < $pointtotal*2/4){
+                $center->[1]+=   $majorjitter;
+                $center->[0]+=   $minorjitter;
+            }elsif($pointcount < $pointtotal*3/4){
+                $center->[0]+= - $majorjitter;
+                $center->[1]+= - $minorjitter;
+            }elsif($pointcount < $pointtotal){
+                $center->[1]+= - $majorjitter;
+                $center->[0]+= - $minorjitter;
+            }else{
+                $center= $origin ;
+            }
+                $cityarea->addPt(@$center);
+        }
+
+    }elsif ( $city->{'shape'} eq "a circular" or 1 ){
+        print Dumper $center if (defined $q->param('debug')  );
+        print " $center->[0]      ". int ($center->[1] -$size/2) ."\n" if (defined $q->param('debug')  );
+        while($pointcount++ < $pointtotal){
+            $cityarea->addPt( $center->[0] +d(10)-5  , int ($center->[1] -$size/2)+d(10)-5 );
+            #$cityarea->addPt( $center->[0]   , int ($center->[1] -$size/2) );
+            $cityarea->rotate( 3.14159*2/$pointtotal , @$center); 
+        }
+    }
+#        print Dumper $cityarea if (defined $q->param('debug')  );
+
+    
+
+##    <option>a circular</option>
+##    <option>an ovalar</option>
+##    <option>a square</option>
+##    <option>a pear-shaped</option>
+##    <option>a rectangular</option>
+##    <option>a hexagonal</option>
+#
+    return $cityarea;
 
 }
-sub place_city{
 
+
+sub roughen_polygon{
 
 }
 
 sub select_land_pattern{
-
-    my $poly = new GD::Polygon;
-    my @sides=('north', 'south', 'east', 'west','northeast' );
-    my $side=$q->param('side') ;
-
-    if (! defined $side  or "@sides"!~ /\b$side\b/){
-        $side=rand_from_array(\@sides);
-    }
+    my ($width,$height)=@_;
+    $width=$width*2;
+    $height=$height*2;
+    my $poly = new GD::Polyline;
 
     #FIXME coast is currently the only one supported, hence the "or 1"
     if ($city->{'location'}->{'name'} eq "on the coast"  or 1){
@@ -102,97 +170,66 @@ sub select_land_pattern{
         my $totaldistance=$width;
 
         #Determine the total distance that needs to be traveled.
-        if ($side eq 'north' || $side eq 'south'){
-                $totaldistance=$width;
-        }elsif ($side eq 'east' || $side eq 'west'){
-                $totaldistance=$height;
-        }elsif($side eq 'northeast'){
-                $totaldistance=int (sqrt( $height**2 + $width**2) );
-        }
-
-        # Determine the starting point for that side
-        if ($side eq 'south'){
-            $poly->addPt(0,$height);
-        } elsif ($side eq 'east'){
-            $poly->addPt($width,0);
-        }elsif($side eq 'north' || $side eq 'west' || $side eq 'northeast'){
-            $poly->addPt(0,0);
-        }
-
-        # For "backward" sides, set the base to the opposite of 0
-        if ($side eq 'south'){
-            $ybase=$height;
-        }elsif ($side eq 'east'){
-            $xbase=$width;
-        }
-    
+        $totaldistance=$width;
+        $poly->addPt(0,0);
         while ($length < $totaldistance){
             my $lengthmod=  &d(20)-5;
             my $depthmod=   &d(24)-12;
+            $xcur+=$lengthmod;
+            $length=$xcur;
+            $ycur=min( $ybase+100,  max( $ycur+$depthmod, $ybase-50));
 
-            if ($side eq 'north' || $side eq 'south'){
-                $xcur+=$lengthmod;
-                $length=$xcur;
-            } elsif ($side eq 'east' || $side eq 'west'){
-                $ycur+=$lengthmod;
-                $length=$ycur;
-            } elsif ($side eq 'northeast') {
-                $ycur+=&d(20)-5;
-                $xcur+=&d(20)-5;
-                $length=max($xcur, $ycur);
-            }
-            if ($side eq 'north'){
-                $ycur=max( $ycur+$depthmod, $ybase-50);
-            } elsif ($side eq 'south'){
-                $ycur=min( $ycur+$depthmod, $height);
-            } elsif ($side eq 'east'){
-                $xcur=min( $xcur+$depthmod, $width);
-            } elsif ($side eq 'west'){
-                $xcur=max( $xcur+$depthmod, $xbase-50);
-            } elsif ($side eq 'northeast'){
-                $ycur=max( $ycur+$depthmod, $ybase-50);
-                $xcur=max( $xcur+$depthmod, $xbase-50);
-        
-            }
-            if (defined $q->param('debug')  ){
-            }
             $poly->addPt($xbase+$xcur,$ybase+$ycur);
         }
-        
-        if ($side eq 'north'){
-            $poly->addPt($width,$height);
-            $poly->addPt(0,$height);
-            $poly->offset(0,100);
-        } elsif ($side eq 'south'){
-            $poly->addPt($width,0);
-            $poly->addPt(0,0);
-            $poly->offset(0,-100);
-        } elsif ($side eq 'east'){
-            $poly->addPt(0,$height);
-            $poly->addPt(0,0);
-            $poly->offset(-100,0);
-        } elsif ($side eq 'west'){
-            $poly->addPt($width,$height);
-            $poly->addPt($width,0);
-            $poly->offset(100,0);
-        } elsif ($side eq 'northeast'){
-            $poly->addPt($width,$height+50);
-            $poly->addPt(-50,$height+50);
-            $poly->addPt(-50,-50);
-            $poly->offset(50,-50);
-        }
-        
+        $poly->addPt($width,$height);
+        $poly->addPt(0,$height);
+        $poly->offset(-$width/4,100);
     
-  }
+    }
+#$poly->transform($sx,$rx,$sy,$ry,$tx,$ty);
+#Run each vertex of the polygon through a transformation matrix, where 
+#sx and sy are the X and Y scaling factors, 
+#rx and ry are the X and Y rotation factors, and 
+#tx and ty are X and Y offsets. 
+#See the Adobe PostScript Reference, page 154 for a full explanation, or experiment.
 
-  print Dumper $poly if (defined $q->param('debug')  );
+#  print Dumper $poly if (defined $q->param('debug')  );
 
-  $img->filledPolygon($poly,$palette->{'grass'});
  return $poly;
 }
+sub set_direction{
+    my ($poly,$width,$height)=@_;
+    $width=$width/2;
+    $height=$height/2;
 
+    my $side=$q->param('side')||"north" ;
+    if ($side eq 'north'){
 
+    }elsif($side eq 'northeast'){
+        $poly->rotate(3.14159/4,$width,$height) ;
+
+    }elsif($side eq 'east'){
+        $poly->rotate(3.14159/2,$width,$height) ;
+
+    }elsif($side eq 'southeast'){
+        $poly->rotate(3.14159*3/4,$width,$height) ;
+
+    }elsif($side eq 'south'){
+        $poly->rotate(3.14159,$width,$height) ;
+
+    }elsif($side eq 'southwest'){
+        $poly->rotate(3.14159*5/4,$width,$height) ;
+
+    }elsif($side eq 'west'){
+        $poly->rotate(3.14159*3/2,$width,$height) ;
+
+    }elsif($side eq 'northwest'){
+        $poly->rotate(3.14159*7/4,$width,$height) ;
+    }
+    return $poly;
+}
 sub draw_ocean(){
+    my ($width,$height)=@_;
     $img->filledRectangle( 0, 0, $width, $height, $palette->{'ocean'} );
 }
 
