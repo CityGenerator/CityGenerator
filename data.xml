@@ -3,13 +3,13 @@
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-6"   minpop="11"     maxpop="100"    gplimit="100"/>     
-    <city size="hamlet"        min="11"  max="30"  size_modifier="-5"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="small village" min="31"  max="35"  size_modifier="-4"   minpop="501"    maxpop="600"    gplimit="600"/>    
-    <city size="village"       min="36"  max="40"  size_modifier="-3"   minpop="601"    maxpop="750"    gplimit="750"/>   
-    <city size="large village" min="41"  max="45"  size_modifier="-2"   minpop="751"    maxpop="1000"   gplimit="1000"/>     
-    <city size="small town"    min="46"  max="60"  size_modifier="-1"   minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="town"          min="61"  max="70"  size_modifier="0"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
+    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"    gplimit="100"/>     
+    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"    gplimit="500"/>      
+    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"    gplimit="600"/>    
+    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"    gplimit="750"/>   
+    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"   gplimit="1000"/>     
+    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"   gplimit="1500"/>     
+    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
     <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"   gplimit="5000"/>     
     <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"   gplimit="8000"/>     
     <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000"  gplimit="15000"/>    
@@ -1308,9 +1308,9 @@
     <option>a circular</option>
     <option>an oval</option>
     <option>a square</option>
-    <option>a pear-shaped</option>
     <option>a rectangular</option>
     <option>a hexagonal</option>
+    <option>a octagonal</option>
 </cityshape>
 <weather>
     <forecast>

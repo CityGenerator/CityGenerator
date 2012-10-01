@@ -8,7 +8,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA        = qw(Exporter);
-@EXPORT_OK  = qw( build_city set_seed d rand_from_array rand_from_array );
+@EXPORT_OK  = qw( build_city set_seed d roll_from_array rand_from_array );
 
 
 use CGI;
@@ -236,7 +236,9 @@ sub generate_flag_colors {
     $city->{'flag'}={'colors'=>[] };
     my $colorcount=5;
     my @colors=shuffle @{$xml_data->{'flagcolors'}->{'color'}};
+    my $oldseed=$seed;
     while ($colorcount-- >0){
+        $seed++;
         my $color=pop @colors;
         if ( ref( $color->{'meaning'}) eq 'ARRAY'){
             $color->{'meaning'}=rand_from_array($color->{'meaning'})->{'content'};
@@ -252,6 +254,7 @@ sub generate_flag_colors {
         delete $color->{'shade'};
         push @{$city->{'flag'}->{'colors'}}, $color ;
     }
+    $seed=$oldseed;
 }
 
 
@@ -388,8 +391,9 @@ sub generate_events {
     $city->{'eventslimit'}=$limit;
     $city->{'events'}=[];
     my @events;
-
+    my $oldseed=$seed;
     for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
+        $seed++;
         if ($limit > 0 ){
             my $eventname=$event->{'type'};
             my $desc = rand_from_array(  $event->{'option'}  )->{'content'};
@@ -397,6 +401,7 @@ sub generate_events {
             $limit--;
         }
     }
+    $seed=$oldseed;
 
 }
 
@@ -519,7 +524,9 @@ sub generate_economic_description {
 sub generate_travelers{
     my $travelercount= int( ( 7 +  $city->{'size_modifier'} )/2);
     $city->{'travelers'}=[];
+    my $oldseed=$seed;
     while ($travelercount-- ){
+        $seed++;
         #TODO switch to roll_from_array
         my $travelerclass= rand_from_array( [ keys %{$xml_data->{'classes'}->{'class'}}] );
         my $traveler=$xml_data->{'classes'}->{'class'}->{$travelerclass};
@@ -529,7 +536,7 @@ sub generate_travelers{
         push @{$city->{'travelers'}}, $traveler;
 
     }
-
+    $seed=$oldseed;
 }
 
 ###############################################################################
@@ -545,7 +552,9 @@ sub generate_taverns{
     }
     $taverncount=min(5 ,  $taverncount);
     $city->{'taverns'}=[];
+    my $oldseed=$seed;
     while ($taverncount-- > 0){
+        $seed++;
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
         $tavern->{'cost'}=$city->{'economy'};
         $tavern->{'population'}=0;
@@ -571,7 +580,7 @@ sub generate_taverns{
 
         push @{$city->{'taverns'}}, $tavern;
     }
-
+    $seed=$oldseed;
 }
 
 ###############################################################################
@@ -625,10 +634,13 @@ sub generate_resources{
     $city->{'resourcecount'}= $resource_count;
 
     $city->{'resources'}=[];
+    my $oldseed=$seed;
     while ($resource_count-- > 0 ){
+        $seed++;
         my $resource=rand_from_array($xml_data->{'resources'}->{'resource'});
         push @{ $city->{'resources'} }, parse_object($resource);
     }
+    $seed=$oldseed;
 
 }
 
@@ -650,7 +662,9 @@ sub generate_markets {
     # loop through the marketcount to randomly select markets
     # this allows us to get "duplicates"
     my $tries=scalar( @{ $xml_data->{'markets'}->{'option'} })*2;
+    my $oldseed=$seed;
     while ( $marketcount > 0 and $tries-- >0){
+        $seed++;
         # get a shuffled list of markets
         my @markets=shuffle @{ $xml_data->{'markets'}->{'option'} };
 
@@ -687,6 +701,7 @@ sub generate_markets {
        } 
 
     }
+    $seed=$oldseed;
 
 }
 
@@ -743,7 +758,6 @@ sub generate_neighbors {
 
     #save this guy for later
     my $oldseed=$seed;
-    
     while($neighbortotal >0){
         if ($neighborid != $oldseed){
             $seed=set_seed($neighborid);
@@ -1340,13 +1354,14 @@ sub assign_races {
     # add the last percent of "others" because mrsassypants didn't grok that
     # things added up to 99% for a reason.
     push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
-
+    my $oldseed=$seed;
     for my $race ( @races ) {
+        $seed++;
         my $roll= &d(10)-5 + $race->{'tolerance'} ;
         my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerancealignment'}->{'option'} );
         $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
     }
-
+    $seed=$oldseed;
     #replace race percentages with full race breakdowns.
     $city->{'races'} = \@races;
 }

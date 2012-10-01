@@ -29,7 +29,6 @@ my $xml = new XML::Simple;
 # Unique, Ubiquitous Singletons.
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
-our $names_data = $xml->XMLin(   "../names.xml", ForceContent => 1, ForceArray  =>[]  );
 
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
@@ -54,8 +53,8 @@ if (defined $q->param('debug')) {
 my $height=300;
 my $width=300;
 
-our $img     = GD::Image->new($width,$height);
-our $palette = create_palette($img);
+my $img     = GD::Image->new($width,$height);
+my $palette = create_palette($img);
 
 
 my $land= &select_land_pattern($width,$height);
@@ -65,14 +64,55 @@ my $land= &select_land_pattern($width,$height);
 &city_size($width,$height);
 &city_shape($city->{'citydiameter'},$land,$width,$height);
 
+my $roads=draw_roads( $city->{'map'},$land,$width,$height  );
+
 
 $land         = &set_direction($land,$width,$height);
 $city->{'map'}= &set_direction($city->{'map'},$width,$height);
 
+my $newroads=[];
+
+foreach my $road (@$roads){
+    push @$newroads,         &set_direction($road,$width,$height);
+}
+$roads=$newroads;
 
 $img->filledRectangle( 0, 0, $width, $height, $palette->{'ocean'} );
 $img->filledPolygon($land,                    $palette->{'grass'});
-$img->filledPolygon($city->{'map'},           $palette->{'wall'});
+
+my $cityarea = $city->{'map'};
+$img->filledPolygon($cityarea,           $palette->{'extcity'});
+
+
+my $mainroadcount=$city->{'streets'}->{'mainroads'};
+#$img->setAntiAliased($palette->{'road'});
+foreach my $road (@$roads){
+    if ($mainroadcount-- >0){
+        $img->setThickness( int  ($city->{'size_modifier'}+6)/3 );
+    }else{
+        $img->setThickness(1);
+    }
+    $img->polyline($road,  $palette->{'road'}     ,GD::gdStyledBrushed);
+}
+
+
+if  ($city->{'walls'}->{'content'} ne 'none' ){
+    my $pct=$city->{'walls'}->{'protectedpercent'} ;
+    $cityarea->scale( $pct/100,$pct/100, $cityarea->centroid  );
+
+    for (my $index =0 ; $index < $cityarea->length; $index++ ){
+        if ($index%4 !=1){
+            $cityarea->deletePt($index);
+        }
+    }
+}
+    $img->filledPolygon($cityarea,      $palette->{'cityproper'});
+
+if  ($city->{'walls'}->{'content'} ne 'none' ){
+
+    $img->setThickness( int  ($city->{'size_modifier'}+6)/3  );
+    $img->openPolygon($cityarea,           $palette->{'wall'});
+}
 
 
 if (defined $q->param('debug')) {
@@ -84,14 +124,16 @@ if (defined $q->param('test')) {
     $img->string(GD::gdLargeFont,2,40,"Roads:$city->{'streets'}->{'roads'} ($city->{'streets'}->{'mainroads'} main)",$palette->{'text'});
     $img->string(GD::gdLargeFont,2,55,"houses:$city->{'housing'}->{'total'}, business: $city->{'businesstotal'}",$palette->{'text'});
     $img->string(GD::gdLargeFont,2,70,"side:$city->{'location'}->{'coastdirection'}, shape: $city->{'shape'}",$palette->{'text'});
+    $img->string(GD::gdLargeFont,2,85,"protected: $city->{'walls'}->{'protectedpercent'} ",$palette->{'text'});
 }
-&finish();
+&finish($img);
 exit;
 
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
+
 sub city_size {
     my ($width,$height)=@_;
     #range from 50px to 220;
@@ -146,11 +188,51 @@ sub plot_hexagon{
             $center->[0]+= - $majorXjitter;
             $center->[1]+= - $majorYjitter;
         }elsif($pointcount < $pointtotal*5/6){
-            $center->[1]+= - $majorXjitter;
+            $center->[1]+= - $majorYjitter;
             $center->[0]+=   $minorjitter;
         }elsif($pointcount < $pointtotal*6/6){
             $center->[1]+= - $majorYjitter;
             $center->[0]+=   $majorXjitter;
+        }else{
+            $center= $origin ;
+        }
+        $cityarea->addPt(@$center);
+    }
+    return $cityarea;
+}
+sub plot_octagonal{
+    my ($pointtotal,$width,$height, $center,$cityarea) =@_ ;
+    my $pointcount=0;
+    my $origin=$center;
+    while($pointcount++ < $pointtotal){
+        my $majorXjitter=int $width/100  +  d($width/180)-1;
+        my $majorYjitter=int $width/100  +  d($width/180)-1;
+#        $majorYjitter=$majorXjitter=3;
+        my $minorjitter=int (d($width/150)-1);
+        if ($pointcount < $pointtotal*1/8){
+            $center->[0]+=   $majorXjitter;
+            $center->[1]+=   $majorYjitter;
+        }elsif($pointcount < $pointtotal*2/8){
+            $center->[0]+=   $minorjitter;
+            $center->[1]+=   $majorYjitter;
+        }elsif($pointcount < $pointtotal*3/8){
+            $center->[0]+= - $majorXjitter;
+            $center->[1]+=   $majorYjitter;
+        }elsif($pointcount < $pointtotal*4/8){
+            $center->[0]+= - $majorXjitter;
+            $center->[1]+=   $minorjitter;
+        }elsif($pointcount < $pointtotal*5/8){
+            $center->[0]+= - $majorXjitter;
+            $center->[1]+= - $majorYjitter;
+        }elsif($pointcount < $pointtotal*6/8){
+            $center->[0]+=   $minorjitter;
+            $center->[1]+= - $majorYjitter;
+        }elsif($pointcount < $pointtotal*7/8){
+            $center->[0]+=   $majorXjitter;
+            $center->[1]+= - $majorYjitter;
+        }elsif($pointcount < $pointtotal*8/8){
+            $center->[0]+=   $majorXjitter;
+            $center->[1]+=   $minorjitter;
         }else{
             $center= $origin ;
         }
@@ -163,21 +245,13 @@ sub plot_circular{
     my ($pointtotal,$width,$height, $center,$size,$cityarea)=@_ ;
     my $pointcount=0;
     $center->[0]=int $center->[0];
-    $center->[1]=int $center->[1]+$size/2 -($width/50); + d($width/50)*10 ;
+    my $offset= int(  $size/2 -($width/50) + d($width/50)*10  );
+    $center->[1]= $center->[1]+ $offset ;
     while($pointcount < $pointtotal){
-        $cityarea->addPt( $center->[0] + d(10)-5  ,      $center->[1] -$size/2 +d(10)-5   )     ;
-        $cityarea->rotate( 3.14159*2/$pointtotal , @$center);
-        $pointcount++;
-    }
-    return $cityarea;
-}
-sub plot_oval{
-    my ($pointtotal,$width,$height, $center,$size,$cityarea)=@_ ;
-    my $pointcount=0;
-    $center->[0]=int $center->[0];
-    $center->[1]=int $center->[1]+$size/2 -($width/50); + d($width/50)*10 ;
-    while($pointcount < $pointtotal){
-        $cityarea->addPt( $center->[0] + d(10)-5  ,      $center->[1] -$size/2 +d(10)-5   )     ;
+        my $jitterx=d($width/25)-$width/50;
+        my $jittery=d($width/25)-$width/50;
+        my $length= $size/2 ;
+        $cityarea->addPt( $center->[0] + $jitterx  ,      $center->[1] + $length  +  $jittery   )     ;
         $cityarea->rotate( 3.14159*2/$pointtotal , @$center);
         $pointcount++;
     }
@@ -187,8 +261,8 @@ sub city_shape{
     my ($size,$land,$width,$height)=@_;
     my $cityarea = new GD::Polyline;
 
-    my $pointtotal=int($size/2);
-
+    my $pointtotal=int($size/2 + $city->{'size_modifier'});
+    print "Total is $pointtotal "if (defined $q->param('debug')  );
     # if polysize > 4, there is a body of water.
     print "size: $size\n" if (defined $q->param('debug')  );
 
@@ -205,44 +279,85 @@ sub city_shape{
     }elsif ( $city->{'shape'} eq "a hexagonal" ){
         $cityarea=plot_hexagon($pointtotal,$width,$height, $center,$cityarea ) ;
         $cityarea->rotate( 3.14159*2/(&d(100)) , $cityarea->centroid()); 
-
+    }elsif ( $city->{'shape'} eq "a octagonal" ){
+        $cityarea=plot_octagonal($pointtotal,$width,$height, $center,$cityarea ) ;
+    }elsif ( $city->{'shape'} eq "an oval" ){
+        $cityarea=plot_circular($pointtotal,$width,$height, $center,$size,$cityarea ) ;
+        $cityarea->scale(1.3,.8, @$center);
+        $cityarea->rotate( 3.14159*2/(&d(100)) , $cityarea->centroid());
+ 
     #circular is currently the default
-    }elsif ( $city->{'shape'} eq "an oval" or 1 ){
-        $cityarea=plot_oval($pointtotal,$width,$height, $center,$size,$cityarea ) ;
-        $cityarea->rotate( 3.14159*2/(&d(100)) , $cityarea->centroid()); 
-
-    #circular is currently the default
-    }elsif ( $city->{'shape'} eq "a circular" or 1 ){
+    }else{
         $cityarea=plot_circular($pointtotal,$width,$height, $center,$size,$cityarea ) ;
         $cityarea->rotate( 3.14159*2/(&d(100)) , $cityarea->centroid()); 
 
     }
-#        print Dumper $cityarea if (defined $q->param('debug')  );
 
+   # Grow it a little bit.
    $cityarea->scale(1.2, 1.2, $cityarea->centroid())  ;
-
-##    <option>an ovalar</option>
-##    <option>a pear-shaped</option>
-#
-$city->{'map'}=$cityarea;
+    
+   $city->{'map'}=$cityarea;
 
 }
 
 
-sub roughen_polygon{
+sub draw_roads{
+    my ($cityarea,$land,$width,$height)=@_;
+    my $roadcount=$city->{'streets'}->{'roads'};
+    my $roads=[];
+    while ($roadcount-- >0 ){
+        push @$roads, draw_road( $cityarea,$land,$width,$height  );
+    }
 
+
+    return $roads;
+}
+
+sub draw_road{
+    my ($cityarea,$land,$width,$height)=@_;
+    my $road = new GD::Polyline;
+
+
+    $road->addPt( $cityarea->centroid());
+    my $length=0;
+    my $lowerBound=$width/5;
+    my $upperBound=-$width/10;
+    my $cursor=[$cityarea->centroid()];
+    my $twist=3.14159*(d(61)-1)/30;
+#    $twist=3.14159*(15-1)/30;
+    while ($length <$width){
+        my $lengthmod=  &d(20)-2;
+        my $depthmod=   &d(6)-3;
+        $cursor->[0]+=$lengthmod;
+        $cursor->[1]+=$depthmod;
+
+        if ($city->{'location'}->{'name'} eq "on the coast" ){
+            $cursor->[1]=min( $lowerBound,  max( $cursor->[1] ,$upperBound));
+#            $twist=3.14159*(d(31)-1)/30;
+        }
+
+        $road->addPt( @$cursor);
+#print "$length  $width \n";
+        $length+=$lengthmod;
+    }
+    $road->rotate($twist,$cityarea->centroid()) ;
+
+
+    return $road;
 }
 
 sub select_land_pattern{
     my ($width,$height)=@_;
     $width=$width*2;
     $height=$height*2;
+    my $lowerBound=$width/5;
+    my $upperBound=-$width/10;
     my $poly = new GD::Polyline;
 
     #FIXME coast is currently the only one supported, hence the "or 1"
-    if ($city->{'location'}->{'name'} eq "on the coast"  or d(5) > 2){
+    if ($city->{'location'}->{'name'} eq "on the coast" ){
         # Set base distances
-        my ($xbase, $ybase, $xcur, $ycur, $length)= (0,0,0,0,0);
+        my ( $xcur, $ycur, $length)= (0,0,0);
         my $totaldistance=$width;
 
         #Determine the total distance that needs to be traveled.
@@ -252,10 +367,13 @@ sub select_land_pattern{
             my $lengthmod=  &d(20)-5;
             my $depthmod=   &d(24)-12;
             $xcur+=$lengthmod;
+            $ycur=$ycur+$depthmod;
             $length=$xcur;
-            $ycur=min( $ybase+($width/5),  max( $ycur+$depthmod, $ybase-($width/10)));
 
-            $poly->addPt($xbase+$xcur,$ybase+$ycur);
+            #Ensure the coast stays between the bounds.
+            $ycur=min( $lowerBound,  max( $ycur,$upperBound));
+
+            $poly->addPt($xcur,$ycur);
         }
         $poly->addPt($width,$height);
         $poly->addPt(0,$height);
@@ -319,6 +437,7 @@ sub set_direction{
 ###############################################################################
 
 sub finish {
+    my ($img)=@_;
     # make sure we are writing to a binary stream
     $img->interlaced( 'true' );
     binmode STDOUT;
@@ -337,10 +456,12 @@ sub create_palette{
 return {
     # create a new image
     # allocate some colors
-    'grass' => $img->colorAllocate(17,83,7),
-    'ocean' => $img->colorAllocate(14,43,104),
-    'road'  => $img->colorAllocate(66,30,3),
-    'wall'  => $img->colorAllocate(97,97,97),
-    'text'  => $img->colorAllocate(0,0,0),
+    'grass'     => $img->colorAllocateAlpha(17,83,7,0),
+    'ocean'     => $img->colorAllocateAlpha(14,43,104,0),
+    'road'      => $img->colorAllocateAlpha(66,30,3,0),
+    'cityproper'=> $img->colorAllocateAlpha(97,97,97,0),
+    'extcity'   => $img->colorAllocateAlpha(120,120,120,64),
+    'wall'      => $img->colorAllocateAlpha(50,50,50,0),
+    'text'      => $img->colorAllocateAlpha(0,0,0,0),
     };
 }
