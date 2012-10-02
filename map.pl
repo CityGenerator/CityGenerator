@@ -57,31 +57,22 @@ my $img     = GD::Image->new($width,$height);
 my $palette = create_palette($img);
 
 
-my $land= &select_land_pattern($width,$height);
+my $land    = &generate_land($width,$height);
+my $hills   = &generate_hills($width,$height);
+my $cityarea= &generate_city($land,$width,$height);
+
+my $roads=draw_roads( $cityarea, $width, $height  );
+
+
+$cityarea= &set_direction($cityarea,$width,$height);
 
 
 
-&city_size($width,$height);
-&city_shape($city->{'citydiameter'},$land,$width,$height);
 
-my $roads=draw_roads( $city->{'map'},$land,$width,$height  );
-
-
-$land         = &set_direction($land,$width,$height);
-$city->{'map'}= &set_direction($city->{'map'},$width,$height);
-
-my $newroads=[];
-
-foreach my $road (@$roads){
-    push @$newroads,         &set_direction($road,$width,$height);
-}
-$roads=$newroads;
-
-$img->filledRectangle( 0, 0, $width, $height, $palette->{'ocean'} );
-$img->filledPolygon($land,                    $palette->{'grass'});
-
-my $cityarea = $city->{'map'};
-$img->filledPolygon($cityarea,           $palette->{'extcity'});
+$img->filledRectangle( 0, 0, $width, $height,   $palette->{'ocean'} );
+$img->filledPolygon($land,                      $palette->{'grass'});
+#$img->copy($hills,0,0,  0,0,$width,$height);
+$img->filledPolygon($cityarea,                  $palette->{'extcity'});
 
 
 my $mainroadcount=$city->{'streets'}->{'mainroads'};
@@ -115,17 +106,7 @@ if  ($city->{'walls'}->{'content'} ne 'none' ){
 }
 
 
-if (defined $q->param('debug')) {
-    exit;
-}
-if (defined $q->param('test')) {
-    $img->string(GD::gdLargeFont,2,10,"Name:$city->{'name'} ($city->{'seed'}) ",$palette->{'text'});
-    $img->string(GD::gdLargeFont,2,25,"Pop:$city->{'population'}->{'size'} diameter: $city->{'citydiameter'}",$palette->{'text'});
-    $img->string(GD::gdLargeFont,2,40,"Roads:$city->{'streets'}->{'roads'} ($city->{'streets'}->{'mainroads'} main)",$palette->{'text'});
-    $img->string(GD::gdLargeFont,2,55,"houses:$city->{'housing'}->{'total'}, business: $city->{'businesstotal'}",$palette->{'text'});
-    $img->string(GD::gdLargeFont,2,70,"side:$city->{'location'}->{'coastdirection'}, shape: $city->{'shape'}",$palette->{'text'});
-    $img->string(GD::gdLargeFont,2,85,"protected: $city->{'walls'}->{'protectedpercent'} ",$palette->{'text'});
-}
+&testinfo($img,$palette);
 &finish($img);
 exit;
 
@@ -134,11 +115,27 @@ exit;
 #######################################################################################################################
 #######################################################################################################################
 
+sub generate_hills{
+    my ($width,$height)=@_;
+    my $hills    = GD::Image->new($width,$height);
+    $img->interlaced( 'true' );
+    $hills->string(GD::gdSmallFont,2,10,"Peachy Keen",$palette->{'test'});    
+    return $hills;
+}
+
+
+
+
+
+
+
+
+
 sub city_size {
     my ($width,$height)=@_;
     #range from 50px to 220;
     my $basediameter=$width/4+$city->{'size_modifier'}*$width/60;
-    $city->{'citydiameter'} = $basediameter;
+    return $basediameter;
 }
 
 sub plot_rectangle{
@@ -257,11 +254,12 @@ sub plot_circular{
     }
     return $cityarea;
 }
-sub city_shape{
-    my ($size,$land,$width,$height)=@_;
+sub generate_city{
+    my ($land,$width,$height)=@_;
+    my $size=&city_size($width,$height);
     my $cityarea = new GD::Polyline;
-
-    my $pointtotal=int($size/2 + $city->{'size_modifier'});
+    
+    my $pointtotal=int( $size/2 + $city->{'size_modifier'});
     print "Total is $pointtotal "if (defined $q->param('debug')  );
     # if polysize > 4, there is a body of water.
     print "size: $size\n" if (defined $q->param('debug')  );
@@ -295,36 +293,48 @@ sub city_shape{
 
    # Grow it a little bit.
    $cityarea->scale(1.2, 1.2, $cityarea->centroid())  ;
-    
-   $city->{'map'}=$cityarea;
+
+
+
+   return $cityarea;
 
 }
 
 
 sub draw_roads{
-    my ($cityarea,$land,$width,$height)=@_;
+    my ($cityarea,$width,$height)=@_;
     my $roadcount=$city->{'streets'}->{'roads'};
     my $roads=[];
+    my $rotation=0;
     while ($roadcount-- >0 ){
-        push @$roads, draw_road( $cityarea,$land,$width,$height  );
-    }
+        my $road=draw_road( $cityarea,$width,$height  );
+        my $twist=3.14159*(d(101)-1)/50;
+        my $rotationrange=2;
 
+        if ($city->{'location'}->{'name'} eq "on the coast" ){
+            $rotationrange=1;
+        }
+
+        $rotation=$rotationrange/$city->{'streets'}->{'roads'}*$roadcount +1/20 ;
+        $twist=3.14159*$rotation ;
+        $road->rotate($twist,$cityarea->centroid()) ;
+        $road=&set_direction($road,$width,$height);
+        push @$roads, $road;
+    }
 
     return $roads;
 }
 
 sub draw_road{
-    my ($cityarea,$land,$width,$height)=@_;
+    my ($cityarea,$width,$height)=@_;
     my $road = new GD::Polyline;
 
 
     $road->addPt( $cityarea->centroid());
     my $length=0;
-    my $lowerBound=$width/5;
-    my $upperBound=-$width/10;
+    my $upperBound=$width/5;
+    my $lowerBound=-$width/10;
     my $cursor=[$cityarea->centroid()];
-    my $twist=3.14159*(d(61)-1)/30;
-#    $twist=3.14159*(15-1)/30;
     while ($length <$width){
         my $lengthmod=  &d(20)-2;
         my $depthmod=   &d(6)-3;
@@ -332,37 +342,35 @@ sub draw_road{
         $cursor->[1]+=$depthmod;
 
         if ($city->{'location'}->{'name'} eq "on the coast" ){
-            $cursor->[1]=min( $lowerBound,  max( $cursor->[1] ,$upperBound));
-#            $twist=3.14159*(d(31)-1)/30;
+            $cursor->[1]=  max( $cursor->[1] ,$upperBound);
         }
 
         $road->addPt( @$cursor);
 #print "$length  $width \n";
         $length+=$lengthmod;
     }
-    $road->rotate($twist,$cityarea->centroid()) ;
 
 
     return $road;
 }
 
-sub select_land_pattern{
+sub generate_land{
     my ($width,$height)=@_;
-    $width=$width*2;
-    $height=$height*2;
-    my $lowerBound=$width/5;
-    my $upperBound=-$width/10;
-    my $poly = new GD::Polyline;
+    my $doublewidth=$width*2;
+    my $doubleheight=$height*2;
+    my $lowerBound=$doublewidth/5;
+    my $upperBound=-$doublewidth/10;
+    my $land = new GD::Polyline;
 
     #FIXME coast is currently the only one supported, hence the "or 1"
     if ($city->{'location'}->{'name'} eq "on the coast" ){
         # Set base distances
         my ( $xcur, $ycur, $length)= (0,0,0);
-        my $totaldistance=$width;
+        my $totaldistance=$doublewidth;
 
         #Determine the total distance that needs to be traveled.
-        $totaldistance=$width;
-        $poly->addPt(0,0);
+        $totaldistance=$doublewidth;
+        $land->addPt(0,0);
         while ($length < $totaldistance){
             my $lengthmod=  &d(20)-5;
             my $depthmod=   &d(24)-12;
@@ -373,32 +381,36 @@ sub select_land_pattern{
             #Ensure the coast stays between the bounds.
             $ycur=min( $lowerBound,  max( $ycur,$upperBound));
 
-            $poly->addPt($xcur,$ycur);
+            $land->addPt($xcur,$ycur);
         }
-        $poly->addPt($width,$height);
-        $poly->addPt(0,$height);
-        $poly->offset(-$width/4,($width/5));
+        $land->addPt($doublewidth,$doubleheight);
+        $land->addPt(0,$doubleheight);
+        $land->offset(-$doublewidth/4,($doublewidth/5));
     }else{
-        $poly->addPt(0,0);
-        $poly->addPt($width,0);
-        $poly->addPt($width,$height);
-        $poly->addPt(0,$height);
-        $poly->offset(-$width/4,-$height/4,);
+        $land->addPt(0,0);
+        $land->addPt($doublewidth,0);
+        $land->addPt($doublewidth,$doubleheight);
+        $land->addPt(0,$doubleheight);
+        $land->offset(-$doublewidth/4,-$doubleheight/4);
     
     }
-#$poly->transform($sx,$rx,$sy,$ry,$tx,$ty);
-#Run each vertex of the polygon through a transformation matrix, where 
-#sx and sy are the X and Y scaling factors, 
-#rx and ry are the X and Y rotation factors, and 
-#tx and ty are X and Y offsets. 
-#See the Adobe PostScript Reference, page 154 for a full explanation, or experiment.
 
-#  print Dumper $poly if (defined $q->param('debug')  );
+    $land   = &set_direction($land,$width,$height);
 
- return $poly;
+    return $land;
+
 }
+
+
+###############################################################################
+#
+# set_direction - Twist a given layer/image/polygon to the proper direction.
+#
+###############################################################################
+
+
 sub set_direction{
-    my ($poly,$width,$height)=@_;
+    my ($layer,$width,$height)=@_;
     $width=$width/2;
     $height=$height/2;
 
@@ -406,27 +418,27 @@ sub set_direction{
     if ($side eq 'north'){
 
     }elsif($side eq 'northeast'){
-        $poly->rotate(3.14159/4,$width,$height) ;
+        $layer->rotate(3.14159/4,$width,$height) ;
 
     }elsif($side eq 'east'){
-        $poly->rotate(3.14159/2,$width,$height) ;
+        $layer->rotate(3.14159/2,$width,$height) ;
 
     }elsif($side eq 'southeast'){
-        $poly->rotate(3.14159*3/4,$width,$height) ;
+        $layer->rotate(3.14159*3/4,$width,$height) ;
 
     }elsif($side eq 'south'){
-        $poly->rotate(3.14159,$width,$height) ;
+        $layer->rotate(3.14159,$width,$height) ;
 
     }elsif($side eq 'southwest'){
-        $poly->rotate(3.14159*5/4,$width,$height) ;
+        $layer->rotate(3.14159*5/4,$width,$height) ;
 
     }elsif($side eq 'west'){
-        $poly->rotate(3.14159*3/2,$width,$height) ;
+        $layer->rotate(3.14159*3/2,$width,$height) ;
 
     }elsif($side eq 'northwest'){
-        $poly->rotate(3.14159*7/4,$width,$height) ;
+        $layer->rotate(3.14159*7/4,$width,$height) ;
     }
-    return $poly;
+    return $layer;
 }
 
 
@@ -438,6 +450,11 @@ sub set_direction{
 
 sub finish {
     my ($img)=@_;
+
+    #If we're debugging, exit without printing to the screen
+    if (defined $q->param('debug')) {
+        exit;
+    }
     # make sure we are writing to a binary stream
     $img->interlaced( 'true' );
     binmode STDOUT;
@@ -459,9 +476,30 @@ return {
     'grass'     => $img->colorAllocateAlpha(17,83,7,0),
     'ocean'     => $img->colorAllocateAlpha(14,43,104,0),
     'road'      => $img->colorAllocateAlpha(66,30,3,0),
+    'test'      => $img->colorAllocateAlpha(110,110,3,0),
     'cityproper'=> $img->colorAllocateAlpha(97,97,97,0),
     'extcity'   => $img->colorAllocateAlpha(120,120,120,64),
     'wall'      => $img->colorAllocateAlpha(50,50,50,0),
     'text'      => $img->colorAllocateAlpha(0,0,0,0),
     };
 }
+
+
+###############################################################################
+#
+# testinfo - If we're testing at the browser, write stats on the image.
+#
+###############################################################################
+
+sub testinfo{
+    my ($width,$height)=@_;
+    if (defined $q->param('test')) {
+        $img->string(GD::gdLargeFont,2,10,"Name:$city->{'name'} ($city->{'seed'}) ",$palette->{'text'});
+        $img->string(GD::gdLargeFont,2,25,"Pop:$city->{'population'}->{'size'} diameter: $city->{'citydiameter'}",$palette->{'text'});
+        $img->string(GD::gdLargeFont,2,40,"Roads:$city->{'streets'}->{'roads'} ($city->{'streets'}->{'mainroads'} main)",$palette->{'text'});
+        $img->string(GD::gdLargeFont,2,55,"houses:$city->{'housing'}->{'total'}, business: $city->{'businesstotal'}",$palette->{'text'});
+        $img->string(GD::gdLargeFont,2,70,"side:$city->{'location'}->{'coastdirection'}, area: $city->{'location'}->{'name'} ",$palette->{'text'});
+        $img->string(GD::gdLargeFont,2,85,"shape: $city->{'shape'} protected: $city->{'walls'}->{'protectedpercent'} ",$palette->{'text'});
+    }
+}
+
