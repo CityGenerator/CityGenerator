@@ -35,7 +35,8 @@ our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
 our $city=build_city($q->param('cityid'));
-
+# TODO use towers to determine the number of vertices and wall length to
+# determine how big to make the city
 #########################################################################
 #########################################################################
 #########################################################################
@@ -53,24 +54,22 @@ if (defined $q->param('debug')) {
 my $height=300;
 my $width=300;
 
-my $img     = GD::Image->new($width,$height);
+my $img     = GD::Image->new($width,$height,24);
 my $palette = create_palette($img);
 
 
-my $land    = &generate_land($width,$height);
-my $hills   = &generate_hills($width,$height);
-my $cityarea= &generate_city($land,$width,$height);
-
-my $roads=draw_roads( $cityarea, $width, $height  );
-
+my $ocean   = &generate_ocean( $width, $height );
+my $land    = &generate_land( $width, $height );
+my $hills   = &generate_hills( $width, $height);
+my $cityarea= &generate_city( $land, $width, $height);
+my $roads   = &generate_roads( $cityarea, $width, $height  );
 
 $cityarea= &set_direction($cityarea,$width,$height);
 
 
 
-
-$img->filledRectangle( 0, 0, $width, $height,   $palette->{'ocean'} );
-$img->filledPolygon($land,                      $palette->{'grass'});
+$img->filledPolygon( $ocean,                    $palette->{'ocean'} );
+$img->filledPolygon( $land,                     $palette->{'grass'});
 #$img->copy($hills,0,0,  0,0,$width,$height);
 $img->filledPolygon($cityarea,                  $palette->{'extcity'});
 
@@ -83,7 +82,7 @@ foreach my $road (@$roads){
     }else{
         $img->setThickness(1);
     }
-    $img->polyline($road,  $palette->{'road'}     ,GD::gdStyledBrushed);
+    $img->polyline($road,  $palette->{'road'}    );
 }
 
 
@@ -97,7 +96,8 @@ if  ($city->{'walls'}->{'content'} ne 'none' ){
         }
     }
 }
-    $img->filledPolygon($cityarea,      $palette->{'cityproper'});
+
+$img->filledPolygon($cityarea,      $palette->{'cityproper'});
 
 if  ($city->{'walls'}->{'content'} ne 'none' ){
 
@@ -129,14 +129,14 @@ sub generate_hills{
 
 
 
-
-
 sub city_size {
     my ($width,$height)=@_;
     #range from 50px to 220;
     my $basediameter=$width/4+$city->{'size_modifier'}*$width/60;
     return $basediameter;
 }
+
+
 
 sub plot_rectangle{
     my ($pointtotal,$width,$height, $center,$cityarea,$isrect) =@_ ;
@@ -291,6 +291,12 @@ sub generate_city{
 
     }
 
+    for (my $index =0 ; $index < $cityarea->length; $index++ ){
+        if ($index%2 !=1){
+            $cityarea->deletePt($index);
+        }
+    }
+
    # Grow it a little bit.
    $cityarea->scale(1.2, 1.2, $cityarea->centroid())  ;
 
@@ -301,7 +307,7 @@ sub generate_city{
 }
 
 
-sub draw_roads{
+sub generate_roads{
     my ($cityarea,$width,$height)=@_;
     my $roadcount=$city->{'streets'}->{'roads'};
     my $roads=[];
@@ -470,7 +476,7 @@ sub finish {
 
 sub create_palette{
     my ($img)=@_;
-return {
+    my $palette= {
     # create a new image
     # allocate some colors
     'grass'     => $img->colorAllocateAlpha(17,83,7,0),
@@ -482,6 +488,10 @@ return {
     'wall'      => $img->colorAllocateAlpha(50,50,50,0),
     'text'      => $img->colorAllocateAlpha(0,0,0,0),
     };
+    foreach my $key (keys %{$palette} ){
+        $img->setAntiAliased($palette->{$key});
+    }
+    return $palette;
 }
 
 
@@ -503,3 +513,21 @@ sub testinfo{
     }
 }
 
+
+###############################################################################
+#
+# generate_ocean - draw a simple blue square
+#
+###############################################################################
+
+sub generate_ocean{
+    my ($width,$height)=@_;
+    my $ocean = new GD::Polyline;
+        $ocean->addPt(0,0);
+        $ocean->addPt($width,0);
+        $ocean->addPt($width,$height);
+        $ocean->addPt(0,$height);
+        $ocean->offset(-$width/4,-$height/4);
+
+    return $ocean;
+}

@@ -52,8 +52,12 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
+#show city data structure
+}elsif (defined $q->param('type') and $q->param('type') eq 'citizens' ){
+    print $q->header( 'text/plain' );
+    print Dumper $city->{'citizens'};
 # run describe city, but don't print it- useful for debugging
-}elsif (defined $q->param('type') and $q->param('type') eq 'debug' ){
+}elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
     describe_city();
 # show the data.xml xml content
 }elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
@@ -85,6 +89,7 @@ sub describe_city {
     $content.=describe_population();
     $content.=describe_economy();
     $content.=describe_current_events();
+    $content.=describe_people();
     $content.=describe_footer();
 }
 
@@ -159,9 +164,70 @@ sub describe_current_events{
                          $events
                     </section>
 ";
-
+    return $content;
+}
+sub describe_citizens{
+    my $content="None are of note.";
+    if (scalar @{$city->{'citizens'}} >0){
+        $content="<p>The following citizens are worth mentioning:</p><ul class='one-column'>";
+        foreach my $citizen ( @{$city->{'citizens'}} ){
+            if ($citizen->{'race'}->{'content'} eq 'other'){
+                $citizen->{'race'}->{'article'}="an";
+                $citizen->{'race'}->{'content'}="oddball";
+            }
+            $content.="<li>";
+            if ( defined $citizen->{'fullname'}){
+                $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race'}->{'article'}." ".lc($citizen->{'race'}->{'content'})." ";
+            }else{
+                $content.="A ".$citizen->{'noname'}." ";
+            }
+            $content.="who is known in ".$citizen->{'scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'job'}.". ".ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
+            
+            $content.="</li>\n";
+#print Dumper $content;
+#print Dumper $citizen;
+        }
+#exit;
+        $content.="</ul>\n";
+    }
+    return $content;
+}
+sub describe_traveler{
+    my $content="None are of note.";
+    if (scalar @{$city->{'travelers'}} >0){
+        $content="<p>The following travelers are worth mentioning:</p><ul class='one-column'>";
+        foreach my $traveler ( @{$city->{'travelers'}} ){
+            $content.="<li>";
+            if ( defined $traveler->{'fullname'}){
+                $content.="<b>".$traveler->{'fullname'}."</b>, ".$traveler->{'sex'}->{'content'}." ".lc($traveler->{'race'}->{'content'}).". ";
+            } else {
+                $content.=ucfirst($traveler->{'sex'}->{'content'})." ".lc($traveler->{'race'}->{'content'}).". ";
+            }
+            $content.=ucfirst($traveler->{'sex'}->{'pronoun'})." is ".$traveler->{'article'}." ".lc($traveler->{'class'})." who has come to ".$traveler->{'motivation'}.".";
+            $content.="</li>\n";
+        }
+        $content.="</ul>\n";
+    }
+    return $content;
 }
 
+
+
+sub describe_people{
+    my $citizens=describe_citizens();
+    my $travelers=describe_traveler();
+    my $content="
+                    <section id='people'>
+                        <h2>People</h2>
+                        <p>You can find the following people around $city->{'name'}.</p>
+                        <h3>Citizens</h3>
+                        $citizens
+                        <h3>Travelers</h3>
+                        $travelers
+                    </section>
+";
+    return $content;
+}
 
 
 
@@ -170,7 +236,7 @@ sub describe_current_events{
 sub describe_populations{
     my @populations;
     foreach my $race ( reverse sort {$a->{'percent'} <=> $b->{'percent'}} @{$city->{'races'}}  ){
-        push @populations, "$race->{'count'} $race->{'name'} ($race->{'percent'}%)";
+        push @populations, "$race->{'count'} $race->{'content'} ($race->{'percent'}%)";
     }
     return "<ul><li>".join('</li><li>',@populations)."</li></ul>";
 
@@ -185,10 +251,9 @@ sub describe_race_relations{
     my @relations;
     while ($racecount-- > 0 and  scalar(@races) >0){
         my $victim= pop @races;
-        push @relations, "The $instigator->{'name'} population $instigator->{'tolerancedescription'} the $victim->{'name'} population.\n";
+        push @relations, "The $instigator->{'content'} population $instigator->{'tolerancedescription'} the $victim->{'content'} population.\n";
         unshift @races, $instigator;
         $instigator=$victim;
-
     }
     $content.="<p>Relations between races are varied by individuals, but in general:</p>";
     $content.= "<ul class='one-column'>\n<li>".join("</li>\n<li>",@relations)."</li>\n</ul>\n";
@@ -249,8 +314,7 @@ sub describe_tavern{
     }
     my $name="";
     if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
-
-    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by a $tavern->{'bartender'}->{'race'}$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
+    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by $tavern->{'bartender'}->{'race'}->{'article'} ".lc($tavern->{'bartender'}->{'race'}->{'content'})."$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
 }
 
 sub describe_localinfo{
@@ -390,7 +454,7 @@ sub describe_summary {
     my $content="
                     <header>
                        <h1><a href='?cityid=$previousid'>&lt;&lt;</a> <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a> <a href='?cityid=$nextid'>&gt;&gt;</a></h1>
-                        <div style='font-weight:bold;margin:auto;padding:auto;float:right;width:270px;'><div style=''>Official Flag:<br> <canvas style='margin:0 auto;display:block;' id='flagcanvas'> </canvas></div>
+                        <div id='sidebar'><div >Official Flag:<br> <canvas id='flagcanvas' > </canvas></div>
                         <div style=''>Map:<br> <a href='map?cityid=$city->{'seed'}' style='border:0px;'><img src='map?cityid=$city->{'seed'}' /></a></div></div>
                         <h2>Summary</h2>
 
@@ -551,6 +615,10 @@ sub print_style{
             body{
                 background-color:#44aa44;
             }
+            #flagcanvas {
+                margin:0 auto;
+                display:block;
+            }
             section, header{
                 padding:5px;
                 width:800px;
@@ -571,7 +639,15 @@ sub print_style{
             .two-column ul{
                 -moz-column-width:250px;
                 -webkit-column-width:250px ;
-            } 
+            }
+            #sidebar {
+                font-weight:bold;
+                margin:auto;
+                padding:auto;
+                float:right;
+                width:270px;
+            }
+} 
         </style>
 
 

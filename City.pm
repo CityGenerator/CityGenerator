@@ -60,6 +60,7 @@ sub build_city {
     generate_military();
     generate_culture();
     generate_current_events();
+    generate_people();
     return $city;
 }
 
@@ -131,7 +132,6 @@ sub generate_economics {
     generate_markets();
     generate_resources();
     generate_taverns();
-    generate_travelers();
     generate_economic_description();
     generate_education_description();
     generate_magic_description();
@@ -180,6 +180,52 @@ sub generate_current_events {
     generate_weather();
     generate_visible_population();
     generate_events();
+}
+
+###############################################################################
+#
+# generate_people - generate citizens and travelers of note.
+#
+###############################################################################
+sub generate_people {
+    generate_citizens();
+    generate_travelers();
+}
+
+###############################################################################
+#
+# generate_citizens - given all of our specialists, are any noteworhy?
+#
+###############################################################################
+
+sub generate_citizens {
+
+    my $limit = $city->{'specialisttotal'};
+    # no less than 0, no more than specialisttotal.
+    my $citizencount = min( $city->{'specialisttotal'},  int( &d( 6 +  $city->{'size_modifier'} )-1));
+
+    $city->{'citizens'}=[];
+    my $businesslist=$city->{'business'};
+    while ($citizencount-- >0 ){
+        $seed++;
+        my $race = rand_from_array($city->{'races'}) ;
+        my $citizen=generate_npc_name( lc $race->{'content'}  );
+        print Dumper $citizen;
+        $citizen->{'skill'} =roll_from_array(&d(100),$xml_data->{'skill'}->{'level'})->{'content'} ;
+        $citizen->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
+        $citizen->{'scope'}=rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
+        $citizen->{'race'} =$race;
+        my @keys= shuffle  keys %$businesslist  ;
+        my $businessname = pop @keys;
+#        print Dumper $businesslist->{$businessname};
+        $citizen->{'job'}=$businesslist->{$businessname}->{'profession'}||$businessname ;
+        delete $businesslist->{$businessname};
+        
+        if (scalar keys %$businesslist ==0 ){
+            $businesslist=$city->{'business'};
+        }
+        push @{ $city->{'citizens'} }, $citizen;
+    }
 }
 
 ###############################################################################
@@ -236,7 +282,6 @@ sub generate_flag_colors {
     $city->{'flag'}={'colors'=>[] };
     my $colorcount=5;
     my @colors=shuffle @{$xml_data->{'flagcolors'}->{'color'}};
-    my $oldseed=$seed;
     while ($colorcount-- >0){
         $seed++;
         my $color=pop @colors;
@@ -254,7 +299,6 @@ sub generate_flag_colors {
         delete $color->{'shade'};
         push @{$city->{'flag'}->{'colors'}}, $color ;
     }
-    $seed=$oldseed;
 }
 
 
@@ -391,7 +435,6 @@ sub generate_events {
     $city->{'eventslimit'}=$limit;
     $city->{'events'}=[];
     my @events;
-    my $oldseed=$seed;
     for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
         $seed++;
         if ($limit > 0 ){
@@ -401,7 +444,6 @@ sub generate_events {
             $limit--;
         }
     }
-    $seed=$oldseed;
 
 }
 
@@ -467,7 +509,7 @@ sub generate_weather {
         my $precip = rand_from_array( $xml_data->{'weather'}->{'precip'}->{'option'} );
         $city->{'weather'}->{'precip'}= $precip->{'description'};
         if (defined $precip->{'type'} ){
-            $city->{'weather'}->{'precip'} = rand_from_array( $precip->{'type'} )->{'content'}||"it's " . $city->{'weather'}->{'precip'} ;
+            $city->{'weather'}->{'precip'} = (rand_from_array( $precip->{'type'} )->{'content'}||"it's ") . $city->{'weather'}->{'precip'} ;
 
         }
     }
@@ -522,9 +564,8 @@ sub generate_economic_description {
 #
 ###############################################################################
 sub generate_travelers{
-    my $travelercount= int( ( 7 +  $city->{'size_modifier'} )/2);
+    my $travelercount= int( ( 6 +  $city->{'size_modifier'} )/2);
     $city->{'travelers'}=[];
-    my $oldseed=$seed;
     while ($travelercount-- ){
         $seed++;
         #TODO switch to roll_from_array
@@ -532,13 +573,31 @@ sub generate_travelers{
         my $traveler=$xml_data->{'classes'}->{'class'}->{$travelerclass};
         $traveler->{'class'}=$travelerclass;
         $traveler->{'level'}= min( 20 ,max(1, &d($traveler->{'max_level'}) + &d( $city->{'size_modifier'} )) ) ;
-    
+        if ( &d(20) > 5 ){
+            my @races=shuffle get_races(   $city->{'base_pop'}   );
+            $traveler->{'race'}  =pop( @races  );
+            $traveler->{'reaction'}='oblivious';
+        }else{
+            $traveler->{'race'}  =get_other_race(  $city->{'base_pop'} );
+            $traveler->{'reaction'}='untrusting';
+        }
+        my $names=generate_npc_name(  $traveler->{'race'}->{'content'}  );
+
+        foreach my $nametype (qw/ firstname lastname fullname noname sex/ ){
+            if (defined $names->{$nametype}){
+                $traveler->{$nametype}= $names->{$nametype};
+            }
+        }
+        my $motivation=rand_from_array($xml_data->{'travelermotivation'}->{'motive'});
+        if (defined $motivation->{'option'}){
+            $traveler->{'motivation'}=$motivation->{'type'}." ".rand_from_array($motivation->{'option'})->{'content'};
+        }else{
+            $traveler->{'motivation'}=$motivation->{'type'};
+        }
         push @{$city->{'travelers'}}, $traveler;
 
     }
-    $seed=$oldseed;
 }
-
 ###############################################################################
 #
 # generate_taverns - generate a few taverns;
@@ -552,7 +611,6 @@ sub generate_taverns{
     }
     $taverncount=min(5 ,  $taverncount);
     $city->{'taverns'}=[];
-    my $oldseed=$seed;
     while ($taverncount-- > 0){
         $seed++;
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
@@ -580,7 +638,6 @@ sub generate_taverns{
 
         push @{$city->{'taverns'}}, $tavern;
     }
-    $seed=$oldseed;
 }
 
 ###############################################################################
@@ -593,29 +650,59 @@ sub generate_bartender{
     my $bartender;
     $bartender->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
     my @races=get_races(   $city->{'base_pop'}    );
-    $bartender->{'race'}= pop(@races)->{'content'} ;
+    $bartender->{'race'}= pop(@races) ;
     $bartender->{'level'}= min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) ) ;
 
-    my $race= lc $bartender->{'race'};
+    my $names=generate_npc_name(  $bartender->{'race'}->{'content'}  );
 
-    if (defined $names_data->{'race'}->{ $race}     ){
-        my $racenames=$names_data->{'race'}->{ $race} ;
-        if ( defined $racenames->{'firstname'} ){
-            $bartender->{'firstname'}= parse_object(    $racenames->{'firstname'}         )->{'content'};
-            $bartender->{'fullname'}=$bartender->{'firstname'};
-        }
-        if ( defined $racenames->{'lastname'} ){
-            $bartender->{'lastname'}= parse_object(    $racenames->{'lastname'}         )->{'content'};
-            $bartender->{'fullname'}=$bartender->{'lastname'};
-        }
-        if ( defined $racenames->{'firstname'}  and defined $racenames->{'lastname'} ){
-            $bartender->{'fullname'}=$bartender->{'firstname'} ." ". $bartender->{'lastname'};
+    foreach my $nametype (qw/ firstname lastname fullname noname/ ){
+        if (defined $names->{$nametype}){
+            $bartender->{$nametype}= $names->{$nametype};
         }
     }
 
     return $bartender;
+}
 
 
+
+
+###############################################################################
+#
+# generate_npc_name - generate an npc name if they're available for that race
+#
+###############################################################################
+
+sub generate_npc_name{
+    my($race)=@_;
+    # ensure it's lowercase
+    my $npc;
+    if ( $race eq "other"    ){
+        my @races=shuffle get_races('mixed');
+        $race = pop(@races)->{'content'};
+    }    
+    $race= lc $race;
+    if (defined $names_data->{'race'}->{ $race}     ){
+        my $racenames=$names_data->{'race'}->{ $race} ;
+        if ( defined $racenames->{'firstname'} ){
+            $npc->{'firstname'}= parse_object(    $racenames->{'firstname'}         )->{'content'};
+            $npc->{'fullname'}=$npc->{'firstname'};
+        }
+        if ( defined $racenames->{'lastname'} ){
+            $npc->{'lastname'}= parse_object(    $racenames->{'lastname'}         )->{'content'};
+            $npc->{'fullname'}=$npc->{'lastname'};
+        }
+        if ( defined $racenames->{'firstname'}  and defined $racenames->{'lastname'} and $racenames->{'firstname'} ne '' and $racenames->{'lastname'} ne '' ){
+            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
+        }
+    }else{
+        $npc->{'noname'}="random $race";
+    }
+
+
+    $npc->{'sex'}= roll_from_array( &d(100),    $xml_data->{'sex'}->{'option'}    );
+
+    return $npc;
 }
 
 ###############################################################################
@@ -634,13 +721,11 @@ sub generate_resources{
     $city->{'resourcecount'}= $resource_count;
 
     $city->{'resources'}=[];
-    my $oldseed=$seed;
     while ($resource_count-- > 0 ){
         $seed++;
         my $resource=rand_from_array($xml_data->{'resources'}->{'resource'});
         push @{ $city->{'resources'} }, parse_object($resource);
     }
-    $seed=$oldseed;
 
 }
 
@@ -656,13 +741,12 @@ sub generate_markets {
     $city->{'markets'}=[];
 
     # minimum of 2 markets, max of size modifier(9)
-    my $marketcount= max(2, &d( int(7 + $city->{'size_modifier'})/2     ));
+    my $marketcount= max(2, &d( int(6 + $city->{'size_modifier'})/2     ));
 
 
     # loop through the marketcount to randomly select markets
     # this allows us to get "duplicates"
     my $tries=scalar( @{ $xml_data->{'markets'}->{'option'} })*2;
-    my $oldseed=$seed;
     while ( $marketcount > 0 and $tries-- >0){
         $seed++;
         # get a shuffled list of markets
@@ -701,7 +785,6 @@ sub generate_markets {
        } 
 
     }
-    $seed=$oldseed;
 
 }
 
@@ -936,6 +1019,7 @@ sub generate_businesses{
                         $city->{'business'}->{$newbusiness->{'content'}}->{'weight'}     =$newbusiness->{'weight'};
                         $city->{'business'}->{$newbusiness->{'content'}}->{'priority'}   =$newbusiness->{'priority'};
                         $city->{'business'}->{$newbusiness->{'content'}}->{'requires_size'}   =$newbusiness->{'requires_size'};
+                        $city->{'business'}->{$newbusiness->{'content'}}->{'profession'}   =$newbusiness->{'profession'}||undef;
                     }else{
                         $city->{'business'}->{$newbusiness->{'content'}}->{'specialists'}++;
                     }
@@ -965,11 +1049,12 @@ sub generate_businesses{
         }
     }
         delete $city->{'business'}->{'estimate'};
-    
+    $city->{'specialisttotal'} =0;
     foreach my $businessname (keys %{$city->{'business'}}){
 #        print Dumper $city->{'business'}->{$businessname};
         $city->{'business'}->{$businessname}->{'count'}=ceil( $city->{'business'}->{$businessname}->{'specialists'} /$city->{'business'}->{$businessname}->{'perbuilding'});
         $city->{'businesstotal'}+=$city->{'business'}->{$businessname}->{'count'};
+        $city->{'specialisttotal'}+=$city->{'business'}->{$businessname}->{'specialists'};
     }
 
 
@@ -1354,14 +1439,12 @@ sub assign_races {
     # add the last percent of "others" because mrsassypants didn't grok that
     # things added up to 99% for a reason.
     push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
-    my $oldseed=$seed;
     for my $race ( @races ) {
         $seed++;
         my $roll= &d(10)-5 + $race->{'tolerance'} ;
         my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerancealignment'}->{'option'} );
         $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
     }
-    $seed=$oldseed;
     #replace race percentages with full race breakdowns.
     $city->{'races'} = \@races;
 }
@@ -1376,7 +1459,7 @@ sub assign_races {
 
 sub add_race_features {
     my ( $race, $newrace ) = @_;
-    $race->{'name'}      = $newrace->{'content'};
+    $race->{'content'}   = $newrace->{'content'};
     $race->{'order'}     = $newrace->{'order'};
     $race->{'moral'}     = $newrace->{'moral'};
     $race->{'magic'}     = $newrace->{'magic'};
@@ -1388,6 +1471,7 @@ sub add_race_features {
     $race->{'tolerance'} = $newrace->{'toler'};
     $race->{'plural'}    = $newrace->{'plural'};
     $race->{'type'}      = $newrace->{'type'};
+    $race->{'article'}   = $newrace->{'article'};
 
     if (defined $race->{'dominant'} ){
         $city->{'dominant_race'}  =  $newrace->{'content'};
