@@ -210,7 +210,7 @@ sub generate_citizens {
         $seed++;
         my $race = rand_from_array($city->{'races'}) ;
         my $citizen=generate_npc_name( lc $race->{'content'}  );
-        print Dumper $citizen;
+        #print Dumper $citizen;
         $citizen->{'skill'} =roll_from_array(&d(100),$xml_data->{'skill'}->{'level'})->{'content'} ;
         $citizen->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
         $citizen->{'scope'}=rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};

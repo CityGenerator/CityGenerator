@@ -2604,7 +2604,6 @@
 </classes>
 <travelermotivation><!-- Bob is in Willis to -->
     <motive type="broker a truce"/>
-    <motive type=""/>
     <motive type="do something">
         <option>nefarious</option>
         <option>amazing</option>
