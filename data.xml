@@ -579,9 +579,11 @@
         <title>plentiful</title>
         <title>now scarce</title>
         <title>unique</title>
-	<title>exceptional</title>
-	<title>expensive</title>
-	<title>cheap</title>
+        <title>exceptional</title>
+        <title>decorative</title>
+        <title>expensive</title>
+        <title>cheap</title>
+
         <root>marbles</root>
         <root>pottery</root>
         <root>construction materials</root>
@@ -589,44 +591,42 @@
         <root>palm oils</root>
         <root>wax</root>
         <root>mineral water</root>
-	<root>coffins</root>
-	<root>boxes</root>
-	<root>barrels</root>
-	<root>torches</root>
-	<root>wheels</root>
-	<root>flutes</root>
-	<root>drums</root>
-	<root>dolls</root>
-	<root>codpieces</root>
-	<root>chasity belts</root>
-	<root>iron maidens</root>
-    <root>penis sheathes</root>
-    <root>kitten mittens</root>
-    <root>monkey wrenches</root>
-    <root>small lyres</root>
-    <root>small bits of string</root>
-    <root>rocks</root>
-    <root>carrier pigeons</root>
-    <root>courtesans</root>
-    <root>singing frogs</root>
-    <root>horney toads</root>
-    <root>nightingale floors</root>
-    <root></root>
-	<root>knives</root>
-	<root>swords</root>
-	<root>axes</root>
-	<root>maces</root>
-	<root>bows</root>
-	<root>saws</root>
-	<root>picks</root>
-	<root>shovels</root>
-    <root>clubs</root>
-    <root>dreamcatchers</root>
-	<root>poems</root>
-	<root>quilts</root>
-	<root>beer</root>
-	<root>wine</root>
-	<root>spirits</root>
+        <root>coffins</root>
+        <root>boxes</root>
+        <root>barrels</root>
+        <root>torches</root>
+        <root>wheels</root>
+        <root>flutes</root>
+        <root>drums</root>
+        <root>dolls</root>
+        <root>codpieces</root>
+        <root>chasity belts</root>
+        <root>iron maidens</root>
+        <root>penis sheathes</root>
+        <root>kitten mittens</root>
+        <root>monkey wrenches</root>
+        <root>small lyres</root>
+        <root>small bits of string</root>
+        <root>rocks</root>
+        <root>carrier pigeons</root>
+        <root>courtesans</root>
+        <root>singing frogs</root>
+        <root>horney toads</root>
+        <root>knives</root>
+        <root>swords</root>
+        <root>axes</root>
+        <root>maces</root>
+        <root>bows</root>
+        <root>saws</root>
+        <root>picks</root>
+        <root>shovels</root>
+        <root>clubs</root>
+        <root>dreamcatchers</root>
+        <root>poems</root>
+        <root>quilts</root>
+        <root>beer</root>
+        <root>wine</root>
+        <root>spirits</root>
     </resource>
 </resources>
 
@@ -2604,6 +2604,7 @@
 </classes>
 <travelermotivation><!-- Bob is in Willis to -->
     <motive type="broker a truce"/>
+    <motive type=""/>
     <motive type="do something">
         <option>nefarious</option>
         <option>amazing</option>
