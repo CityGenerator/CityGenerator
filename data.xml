@@ -1016,6 +1016,37 @@
     <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' mil='2'  article="a"  plural='Drow'>Drow</race>
 </races>
 
+<nameoptions>
+	<race name='other'>
+	    <option>human</option>
+	    <option>elf</option>
+	    <option>orc</option>
+	    <option>dwarf</option>
+	    <option>gnome</option>
+	</race>
+	<race name='Half-elf'>
+	    <option>human</option>
+	    <option>elf</option>
+	</race>
+	<race name='Half-orc'>
+	    <option>human</option>
+	    <option>orc</option>
+	</race>
+	<race name='Half-dwarf'>
+	    <option>human</option>
+	    <option>dwarf</option>
+	</race>
+	 <race name='Deep Dwarf'>
+	    <option>dwarf</option>
+	</race>
+	 <race name='Drow'>
+	    <option>elf</option>
+	</race>
+	 <race name='Lycanthrope'>
+	    <option>human</option>
+	</race>
+</nameoptions>
+
 <moral>
     <option min="1"   max="33"  >evil</option>
     <option min="34"  max="66"  >neutral</option>
@@ -2604,7 +2635,6 @@
 </classes>
 <travelermotivation><!-- Bob is in Willis to -->
     <motive type="broker a truce"/>
-    <motive type=""/>
     <motive type="do something">
         <option>nefarious</option>
         <option>amazing</option>
@@ -2622,6 +2652,11 @@
         <option>friend</option>
         <option>nemesis</option>
         <option>criminal</option>
+        <option>artifact</option>
+        <option>treasure</option>
+        <option>map</option>
+        <option>heir</option>
+        <option>artifact</option>
     </motive>
     <motive type="find a long-lost">
         <option>parent</option>

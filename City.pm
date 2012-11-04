@@ -19,7 +19,7 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>[]  );
+our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>['option']  );
 our $names_data = $xml->XMLin(   "../names.xml", ForceContent => 1, ForceArray  =>[]  );
 our $seed;
 our $city;
@@ -589,6 +589,7 @@ sub generate_travelers{
             }
         }
         my $motivation=rand_from_array($xml_data->{'travelermotivation'}->{'motive'});
+print Dumper $motivation;
         if (defined $motivation->{'option'}){
             $traveler->{'motivation'}=$motivation->{'type'}." ".rand_from_array($motivation->{'option'})->{'content'};
         }else{
@@ -677,22 +678,35 @@ sub generate_npc_name{
     my($race)=@_;
     # ensure it's lowercase
     my $npc;
-    if ( $race eq "other"    ){
-        my @races=shuffle get_races('mixed');
-        $race = pop(@races)->{'content'};
-    }    
+
+print Dumper $race;
+    #check to see if there is a "half-elf section in the names_data"
+    if (! defined $names_data->{'race'}->{ $race} ){
+        #half-elves don't exist, in the names_data file, so lets see if a names option exists.
+        if (defined $xml_data->{'nameoptions'}->{'race'}->{$race}){
+print Dumper  $xml_data->{'nameoptions'}->{'race'}->{$race};
+            #if it does, steal a random race option from here and use it.
+            $race= rand_from_array( $xml_data->{'nameoptions'}->{'race'}->{$race}->{'option'})->{'content'};
+        }
+    }
+
+
     $race= lc $race;
     if (defined $names_data->{'race'}->{ $race}     ){
         my $racenames=$names_data->{'race'}->{ $race} ;
         if ( defined $racenames->{'firstname'} ){
             $npc->{'firstname'}= parse_object(    $racenames->{'firstname'}         )->{'content'};
-            $npc->{'fullname'}=$npc->{'firstname'};
+            if ($npc->{'firstname'} ne ''){
+                $npc->{'fullname'}=$npc->{'firstname'};
+            }
         }
         if ( defined $racenames->{'lastname'} ){
             $npc->{'lastname'}= parse_object(    $racenames->{'lastname'}         )->{'content'};
-            $npc->{'fullname'}=$npc->{'lastname'};
+            if ($npc->{'lastname'} ne ''){
+                $npc->{'fullname'}=$npc->{'lastname'};
+            }
         }
-        if ( defined $racenames->{'firstname'}  and defined $racenames->{'lastname'} and $racenames->{'firstname'} ne '' and $racenames->{'lastname'} ne '' ){
+        if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
             $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
         }
     }else{

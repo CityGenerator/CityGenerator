@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <names>
+    <race name='lizardfolk'>
+<!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
+        <firstname>
+            <pre>S'her</pre>
+            <pre>Khal</pre>
+            <pre>Yer</pre>
+            <pre>S'hoor</pre>
+            <pre>Ghe</pre>
+            <pre>Khal</pre>
+            <post>ssen</post>
+            <post>al</post>
+            <post>zin</post>
+            <post>zor</post>
+        </firstname>
+        <lastname title_chance='100'>
+            <title>ahn</title>
+            <title>teh</title>
+            <title>se</title>
+            <title>fe</title>
+            <title>heh</title>
+            <title>seh</title>
+            <pre>Ghe</pre>
+            <pre>S'her</pre>
+            <pre>Khal</pre>
+            <pre>Yer</pre>
+            <pre>S'hoor</pre>
+            <pre>Ghe</pre>
+            <pre>Khal</pre>
+            <post>ssen</post>
+            <post>al</post>
+            <post>zin</post>
+            <post>zor</post>
+        </lastname>
+    </race>
     <race name='gnome'>
         <firstname post_chance='70'>
             <pre>Ada</pre>
@@ -234,7 +268,6 @@
             <pre>Thorn</pre> 
             <pre>Tigh</pre> 
             <pre>Toss</pre> 
-            <pre>Travelling</pre> 
             <pre>Trill</pre> 
             <pre>Under</pre> 
             <pre>Warm</pre> 
@@ -384,6 +417,206 @@
 
         </firstname>
         <lastname>
+            <root>Amber</root>
+            <root>Armor</root>
+            <root>Ash</root>
+            <root>Barley</root>
+            <root>Bear</root>
+            <root>Bitter</root>
+            <root>Black</root>
+            <root>Blood</root>
+            <root>Blue</root>
+            <root>Brandy</root>
+            <root>Brass</root>
+            <root>Bright</root>
+            <root>Broad</root>
+            <root>Bronze</root>
+            <root>Carbon</root>
+            <root>Clashing</root>
+            <root>Claw</root>
+            <root>Clay</root>
+            <root>Coal</root>
+            <root>Cold</root>
+            <root>Copper</root>
+            <root>Coral</root>
+            <root>Crunch</root>
+            <root>Crystal</root>
+            <root>Dark</root>
+            <root>Deep</root>
+            <root>Dog</root>
+            <root>Dough</root>
+            <root>Dragon</root>
+            <root>Drake</root>
+            <root>Drum</root>
+            <root>Dull</root>
+            <root>Dwarf</root>
+            <root>Earth</root>
+            <root>Feast</root>
+            <root>Fire</root>
+            <root>Foe</root>
+            <root>Forge</root>
+            <root>Gold</root>
+            <root>Good</root>
+            <root>Grand</root>
+            <root>Granite</root>
+            <root>Gravel</root>
+            <root>Gray</root>
+            <root>Greasey</root>
+            <root>Green</root>
+            <root>Hawk</root>
+            <root>Holy</root>
+            <root>Honor</root>
+            <root>Ice</root>
+            <root>Iron</root>
+            <root>Ivory</root>
+            <root>Jade</root>
+            <root>Jet</root>
+            <root>Kind</root>
+            <root>Lead</root>
+            <root>Light</root>
+            <root>Lightning</root>
+            <root>Lion</root>
+            <root>Lumber</root>
+            <root>Marble</root>
+            <root>Mithril</root>
+            <root>Moon</root>
+            <root>Oat</root>
+            <root>Oil</root>
+            <root>Onyx</root>
+            <root>Opal</root>
+            <root>Orange</root>
+            <root>Paper</root>
+            <root>Pearl</root>
+            <root>Platinum</root>
+            <root>Quartz</root>
+            <root>Rat</root>
+            <root>Red</root>
+            <root>Roar</root>
+            <root>Ruby</root>
+            <root>Rust</root>
+            <root>Salt</root>
+            <root>Shiny</root>
+            <root>Silver</root>
+            <root>Slate</root>
+            <root>Smart</root>
+            <root>Smoke</root>
+            <root>Star</root>
+            <root>Steel</root>
+            <root>Stone</root>
+            <root>Storm</root>
+            <root>Strong</root>
+            <root>Sun</root>
+            <root>Talon</root>
+            <root>Thud</root>
+            <root>Tiger</root>
+            <root>Tin</root>
+            <root>Ugly</root>
+            <root>War</root>
+            <root>Wave</root>
+            <root>Wheel</root>
+            <root>White</root>
+            <root>Wise</root>
+
+            <post>ale</post>
+            <post>altar</post>
+            <post>ankle</post>
+            <post>anvil</post>
+            <post>arm</post>
+            <post>axe</post>
+            <post>back</post>
+            <post>baker</post>
+            <post>barrel</post>
+            <post>battler</post>
+            <post>beard</post>
+            <post>bellows</post>
+            <post>belly</post>
+            <post>blade</post>
+            <post>blood</post>
+            <post>boot</post>
+            <post>bread</post>
+            <post>breaker</post>
+            <post>breeches</post>
+            <post>bridge</post>
+            <post>brooch</post>
+            <post>cairn</post>
+            <post>cask</post>
+            <post>castle</post>
+            <post>cavern</post>
+            <post>chest</post>
+            <post>chisel</post>
+            <post>cloak</post>
+            <post>coin</post>
+            <post>crown</post>
+            <post>cutter</post>
+            <post>door</post>
+            <post>ear</post>
+            <post>eye</post>
+            <post>face</post>
+            <post>fighter</post>
+            <post>finger</post>
+            <post>fist</post>
+            <post>foot</post>
+            <post>forge</post>
+            <post>founder</post>
+            <post>gem</post>
+            <post>goblet</post>
+            <post>grave</post>
+            <post>grieve</post>
+            <post>guard</post>
+            <post>hair</post>
+            <post>hall</post>
+            <post>hammer</post>
+            <post>hand</post>
+            <post>head</post>
+            <post>helm</post>
+            <post>hill</post>
+            <post>hunter</post>
+            <post>keep</post>
+            <post>keg</post>
+            <post>killer</post>
+            <post>knee</post>
+            <post>leg</post>
+            <post>mace</post>
+            <post>mail</post>
+            <post>mansion</post>
+            <post>mead</post>
+            <post>mill</post>
+            <post>mine</post>
+            <post>molder</post>
+            <post>moor</post>
+            <post>mouth</post>
+            <post>mug</post>
+            <post>neck</post>
+            <post>nose</post>
+            <post>plate</post>
+            <post>ring</post>
+            <post>river</post>
+            <post>road</post>
+            <post>robe</post>
+            <post>sapper</post>
+            <post>shield</post>
+            <post>ship</post>
+            <post>shoulder</post>
+            <post>slasher</post>
+            <post>slayer</post>
+            <post>smasher</post>
+            <post>smelter</post>
+            <post>smith</post>
+            <post>staff</post>
+            <post>stomach</post>
+            <post>stone</post>
+            <post>stream</post>
+            <post>sword</post>
+            <post>table</post>
+            <post>throne</post>
+            <post>toe</post>
+            <post>tower</post>
+            <post>tracker</post>
+            <post>tun</post>
+            <post>tunnel</post>
+            <post>vault</post>
+            <post>vein</post>
+            <post>vest</post>
         </lastname>
     </race>
     <race name='elf'>
@@ -436,6 +669,165 @@
             <post>tel</post>
         </firstname>
         <lastname>
+
+            <root>Alean</root>
+            <root>Alea</root>
+            <root>Arkenea</root>
+            <root>Auvrea</root>
+            <root>Baequi</root>
+            <root>Banni</root>
+            <root>Black</root>
+            <root>Blade</root>
+            <root>Blue</root>
+            <root>Bright</root>
+            <root>Broad</root>
+            <root>Cyred</root>
+            <root>Dark</root>
+            <root>Dawn</root>
+            <root>Dew</root>
+            <root>Dirth</root>
+            <root>Dryear</root>
+            <root>Dusking</root>
+            <root>Dusk</root>
+            <root>Earth</root>
+            <root>Even</root>
+            <root>Ever</root>
+            <root>Eyllis</root>
+            <root>Eyther</root>
+            <root>Fair</root>
+            <root>Far</root>
+            <root>Feather</root>
+            <root>Fire</root>
+            <root>Floral</root>
+            <root>Freani</root>
+            <root>Frost</root>
+            <root>Golden</root>
+            <root>Gold</root>
+            <root>Gysse</root>
+            <root>Hawk</root>
+            <root>Heart</root>
+            <root>Hlae</root>
+            <root>Hunith</root>
+            <root>Jade</root>
+            <root>Keen</root>
+            <root>Kennyr</root>
+            <root>Kille</root>
+            <root>Kind</root>
+            <root>Leaf</root>
+            <root>Light</root>
+            <root>Long</root>
+            <root>Maern</root>
+            <root>Meadow</root>
+            <root>Melith</root>
+            <root>Mist</root>
+            <root>Moon</root>
+            <root>Morning</root>
+            <root>Myrth</root>
+            <root>Night</root>
+            <root>Norre</root>
+            <root>Oak</root>
+            <root>Orle</root>
+            <root>Oussea</root>
+            <root>Raven</root>
+            <root>Rift</root>
+            <root>Rilynn</root>
+            <root>River</root>
+            <root>Root</root>
+            <root>Shade</root>
+            <root>Shadow</root>
+            <root>Silent</root>
+            <root>Silver</root>
+            <root>Sky</root>
+            <root>Soft</root>
+            <root>Spirit</root>
+            <root>Star</root>
+            <root>Still</root>
+            <root>Summer</root>
+            <root>Sun</root>
+            <root>Swift</root>
+            <root>Teasen'</root>
+            <root>Tyrnea</root>
+            <root>Tyr</root>
+            <root>Wave</root>
+            <root>White</root>
+            <root>Wind</root>
+            <root>Winter</root>
+            <root>Wish</root>
+            <root>Wolf</root>
+
+            <post>arrow</post>
+            <post>blade</post>
+            <post>blaze</post>
+            <post>borne</post>
+            <post>bough</post>
+            <post>bow</post>
+            <post>breeze</post>
+            <post>caller</post>
+            <post>chaser</post>
+            <post>cloak</post>
+            <post>dawn</post>
+            <post>dew</post>
+            <post>drake</post>
+            <post>ears</post>
+            <post>eye</post>
+            <post>feather</post>
+            <post>fire</post>
+            <post>form</post>
+            <post>gale</post>
+            <post>gazer</post>
+            <post>gleam</post>
+            <post>glider</post>
+            <post>glow</post>
+            <post>grove</post>
+            <post>hand</post>
+            <post>heart</post>
+            <post>helm</post>
+            <post>hunter</post>
+            <post>leaf</post>
+            <post>light</post>
+            <post>mane</post>
+            <post>might</post>
+            <post>mist</post>
+            <post>moon</post>
+            <post>night</post>
+            <post>oak</post>
+            <post>risen</post>
+            <post>river</post>
+            <post>rose</post>
+            <post>runner</post>
+            <post>run</post>
+            <post>seeker</post>
+            <post>shade</post>
+            <post>shadow</post>
+            <post>shield</post>
+            <post>shine</post>
+            <post>sight</post>
+            <post>singer</post>
+            <post>sing</post>
+            <post>sky</post>
+            <post>song</post>
+            <post>sorrow</post>
+            <post>spear</post>
+            <post>stalker</post>
+            <post>star</post>
+            <post>stride</post>
+            <post>strike</post>
+            <post>stryke</post>
+            <post>sun</post>
+            <post>sworn</post>
+            <post>wake</post>
+            <post>waker</post>
+            <post>walker</post>
+            <post>watch</post>
+            <post>water</post>
+            <post>weave</post>
+            <post>weaver</post>
+            <post>whisper</post>
+            <post>wind</post>
+            <post>wing</post>
+
+
+
         </lastname>
     </race>
     <race name='ogre'>
@@ -479,7 +871,7 @@
         </lastname>
     </race>
     <race name='human'>
-        <firstname title_chance='5' pre_chance='5' post_chance='70'>
+        <firstname title_chance='5' pre_chance='1' post_chance='70'>
             <title>Sir</title>
             <title>Pastor</title>
             <title>General</title>
@@ -500,12 +892,58 @@
             <post>es</post>
             <post>ry</post>
             <post>ic</post>
-        </firstname>
-        <lastname>
-
+        </firstname> 
+        <lastname pre_chance='5'>
+            <pre>Mac</pre>
+            <pre>Van</pre>
+            <root>Andr</root>
+            <root>Andre</root>
+            <root>Anton</root>
+            <root>Bar</root>
+            <root>Barto</root>
+            <root>Ben</root>
+            <root>Ber</root>
+            <root>Berna</root>
+            <root>Black</root>
+            <root>Bra</root>
+            <root>Bri</root>
+            <root>Bro</root>
+            <root>Brown</root>
+            <root>Bur</root>
+            <root>Car</root>
+            <root>Cas</root>
+            <root>Cast</root>
+            <root>Cha</root>
+            <root>Chris</root>
+            <root>Col</root>
+            <root>Cor</root>
+            <root>David</root>
+            <root>Fer</root>
+            <root>Fran</root>
+            <root>Franc</root>
+            <root>Giaco</root>
+            <root>Gil</root>
+            <root>Good</root>
+            <root>Green</root>
+            <root>Har</root>
+            <root>Klein</root>
+            <root>Mar</root>
+            <root>Marti</root>
+            <root>Mat</root>
+            <root>Petr</root>
+            <root>Rose</root>
+            <root>Rosen</root>
+            <root>She</root>
+            <root>Simon</root>
+            <root>South</root>
+            <root>Sta</root>
+            <root>Stan</root>
+            <root>Sto</root>
+            <root>Whit</root>
+            <root>White</root>
+            <root>Wil</root>
             <root>Mor</root>
             <root>Clay</root>
-            <root>Mat</root>
             <root>Tram</root>
             <root>Dav</root>
             <root>Dil</root>
@@ -522,6 +960,66 @@
             <post>sone</post>
             <post>gan</post>
             <post>man</post>
+            <post>rell</post>
+            <post>leton</post>
+            <post>sford</post>
+            <post>ville</post>
+            <post>erley</post>
+            <post>liffe</post>
+            <post>rough</post>
+            <post>croft</post>
+            <post>ewicz</post>
+            <post>house</post>
+            <post>brook</post>
+            <post>inson</post>
+            <post>combe</post>
+            <post>ngham</post>
+            <post>erson</post>
+            <post>erton</post>
+            <post>stone</post>
+            <post>worth</post>
+            <post>ridge</post>
+            <post>ngton</post>
+            <post>field</post>
+            <post>tone</post>
+            <post>nson</post>
+            <post>ster</post>
+            <post>wood</post>
+            <post>orth</post>
+            <post>ling</post>
+            <post>gton</post>
+            <post>ston</post>
+            <post>ield</post>
+            <post>idge</post>
+            <post>land</post>
+            <post>well</post>
+            <post>ford</post>
+            <post>ick</post>
+            <post>and</post>
+            <post>ord</post>
+            <post>den</post>
+            <post>ill</post>
+            <post>ham</post>
+            <post>ter</post>
+            <post>ard</post>
+            <post>all</post>
+            <post>ett</post>
+            <post>ing</post>
+            <post>man</post>
+            <post>son</post>
+            <post>ley</post>
+            <post>ell</post>
+            <post>ton</post>
+            <post>ne</post>
+            <post>es</post>
+            <post>tt</post>
+            <post>en</post>
+            <post>in</post>
+            <post>an</post>
+            <post>ll</post>
+            <post>ey</post>
+            <post>on</post>
+            <post>er</post>
         </lastname>
     </race>
     <race name='half-orc'>
