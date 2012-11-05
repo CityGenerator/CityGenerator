@@ -2679,9 +2679,9 @@
     <house_type type="small hut" value="5gp" max="5" />
     <house_type type="medium hut" value="9gp" max="10" />
     <house_type type="large hut" value="12gp" max="15" />
-    <house_type type="small poor house" value="20gp" max="6" />
-    <house_type type="medium poor house" value="40gp" max="8" />
-    <house_type type="large poor house" value="60gp" max="12" />
+    <house_type type="small house" value="20gp" max="6" />
+    <house_type type="medium house" value="40gp" max="8" />
+    <house_type type="large house" value="60gp" max="12" />
 </housing>
 
 </data>

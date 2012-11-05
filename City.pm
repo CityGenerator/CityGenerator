@@ -1,32 +1,34 @@
 #!/usr/bin/perl -wT
-
-package City ;
+###############################################################################
+#
+package City;
 
 
 use strict;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
-@ISA        = qw(Exporter);
-@EXPORT_OK  = qw( build_city set_seed d roll_from_array rand_from_array );
+@ISA       = qw(Exporter);
+@EXPORT_OK = qw( build_city set_seed d roll_from_array rand_from_array );
 
 
 use CGI;
 use Data::Dumper;
-use List::Util 'shuffle', 'min', 'max' ;
+use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $xml_data = $xml->XMLin(   "../data.xml", ForceContent => 1, ForceArray  =>['option']  );
-our $names_data = $xml->XMLin(   "../names.xml", ForceContent => 1, ForceArray  =>[]  );
+our $xml_data   = $xml->XMLin( "../data.xml",  ForceContent => 1, ForceArray => ['option'] );
+our $names_data = $xml->XMLin( "../names.xml", ForceContent => 1, ForceArray => [] );
 our $seed;
 our $city;
-#TODO travelers
-#TODO generate trivia
-#TODO city seal, stone, coat of arms, animal, beverages, colors, foods, motto, nicknames, symbol (bird, tree, etc)
 
+#TODO generate trivia
+#TODO generate a random house and the contents based on wealth of city, owner of the house, size of the family, etc
+#TODO generate content of stores
+#TODO city seal, stone, coat of arms, animal, beverages, colors, foods, motto, nicknames, symbol (bird, tree, etc)
 
 
 #######################################################################################################################
@@ -40,18 +42,18 @@ our $city;
 
 ###############################################################################
 #
-# build_city - This is the primary method for building a city. using $seed, 
-# generate the city name, then the core, creedence, physical traits, economy, 
+# build_city - This is the primary method for building a city. using $seed,
+# generate the city name, then the core, creedence, physical traits, economy,
 # military and current events. Once that's finished you have a fully
 # funcitonal city.
 #
 ###############################################################################
 
 sub build_city {
-    my ($newseed)=@_;
-    $seed=set_seed($newseed);
-    $city={'seed'=>$seed};
-    $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
+    my ($newseed) = @_;
+    $seed           = set_seed($newseed);
+    $city           = { 'seed' => $seed };
+    $city->{'name'} = parse_object( $xml_data->{'cityname'} )->{'content'};
 
     generate_city_core();
     generate_city_credence();
@@ -62,7 +64,7 @@ sub build_city {
     generate_current_events();
     generate_people();
     return $city;
-}
+} ## end sub build_city
 
 ###############################################################################
 #
@@ -71,7 +73,7 @@ sub build_city {
 #
 ###############################################################################
 
-sub generate_city_core{
+sub generate_city_core {
     set_city_size();
     set_city_type();
     generate_pop_type();
@@ -80,7 +82,7 @@ sub generate_city_core{
     generate_city_age();
     generate_children();
     generate_elderly();
-}
+} ## end sub generate_city_core
 
 ###############################################################################
 #
@@ -96,12 +98,12 @@ sub generate_city_credence {
     set_laws();
     generate_crime();
     generate_imprisonment_rate();
-}
+} ## end sub generate_city_credence
 
 ###############################################################################
 #
-# generate_physical_traits - Generate the location, size, support area, 
-# landmarks, 
+# generate_physical_traits - Generate the location, size, support area,
+# landmarks,
 #
 ###############################################################################
 
@@ -120,7 +122,7 @@ sub generate_physical_traits {
     generate_shape();
     generate_neighbors();
     generate_topography();
-}
+} ## end sub generate_physical_traits
 
 ###############################################################################
 #
@@ -135,7 +137,7 @@ sub generate_economics {
     generate_economic_description();
     generate_education_description();
     generate_magic_description();
-}
+} ## end sub generate_economics
 
 ###############################################################################
 #
@@ -151,11 +153,8 @@ sub generate_military {
     generate_favored_tactic();
     generate_military_skill();
 
-#TODO travelers
-#TODO city seal, stone, flag, coat of arms, animal, beverages, colors, foods, motto, nicknames
-# favored weapons
-#    generate_seige();
-}
+    #    generate_seige();
+} ## end sub generate_military
 
 ###############################################################################
 #
@@ -165,9 +164,7 @@ sub generate_military {
 sub generate_culture {
     generate_flag_colors();
     generate_city_crest();
-
-
-}
+} ## end sub generate_culture
 
 ###############################################################################
 #
@@ -180,7 +177,7 @@ sub generate_current_events {
     generate_weather();
     generate_visible_population();
     generate_events();
-}
+} ## end sub generate_current_events
 
 ###############################################################################
 #
@@ -197,36 +194,34 @@ sub generate_people {
 # generate_citizens - given all of our specialists, are any noteworhy?
 #
 ###############################################################################
-
 sub generate_citizens {
 
     my $limit = $city->{'specialisttotal'};
-    # no less than 0, no more than specialisttotal.
-    my $citizencount = min( $city->{'specialisttotal'},  int( &d( 6 +  $city->{'size_modifier'} )-1));
 
-    $city->{'citizens'}=[];
-    my $businesslist=$city->{'business'};
-    while ($citizencount-- >0 ){
+    # no less than 0, no more than specialisttotal.
+    my $citizencount = min( $city->{'specialisttotal'}, int( &d( 6 + $city->{'size_modifier'} ) - 1 ) );
+
+    $city->{'citizens'} = [];
+    my $businesslist = $city->{'business'};
+    while ( $citizencount-- > 0 ) {
         $seed++;
-        my $race = rand_from_array($city->{'races'}) ;
-        my $citizen=generate_npc_name( lc $race->{'content'}  );
-        #print Dumper $citizen;
-        $citizen->{'skill'} =roll_from_array(&d(100),$xml_data->{'skill'}->{'level'})->{'content'} ;
-        $citizen->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
-        $citizen->{'scope'}=rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
-        $citizen->{'race'} =$race;
-        my @keys= shuffle  keys %$businesslist  ;
+        my $race    = rand_from_array( $city->{'races'} );
+        my $citizen = generate_npc_name( lc $race->{'content'} );
+        $citizen->{'skill'}    = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
+        $citizen->{'behavior'} = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
+        $citizen->{'scope'}    = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
+        $citizen->{'race'}     = $race;
+        my @keys         = shuffle keys %$businesslist;
         my $businessname = pop @keys;
-#        print Dumper $businesslist->{$businessname};
-        $citizen->{'job'}=$businesslist->{$businessname}->{'profession'}||$businessname ;
+        $citizen->{'job'} = $businesslist->{$businessname}->{'profession'} || $businessname;
         delete $businesslist->{$businessname};
-        
-        if (scalar keys %$businesslist ==0 ){
-            $businesslist=$city->{'business'};
+
+        if ( scalar keys %$businesslist == 0 ) {
+            $businesslist = $city->{'business'};
         }
         push @{ $city->{'citizens'} }, $citizen;
-    }
-}
+    } ## end while ( $citizencount-- >...)
+} ## end sub generate_citizens
 
 ###############################################################################
 #
