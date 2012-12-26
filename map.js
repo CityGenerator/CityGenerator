@@ -33,7 +33,7 @@ function  worldMap(size) {
             assignCornerElevations();
             assignOceanCoastAndLand();
             redistributeElevations(landCorners(this.corners));
-            this.corners.forEach(corner){
+            for ( corner in this.corners){
                 if (corner.ocean ||corner.coast){
                     corner.elevation=0.0;
                 }
@@ -68,7 +68,7 @@ function  worldMap(size) {
     //I do not currently understand the purpose of this method.
     function landCorners(){
         var locations=Array();
-        this.corners.forEach(corner){
+        for (corner in this.corners){
           if (!corner.ocean && !corner.coast) {
             locations.push(corner);
           }
@@ -189,8 +189,6 @@ function  worldMap(size) {
         //TODO magic
     }
 
-
-  }
 }
 
 

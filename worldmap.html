@@ -1,18 +1,70 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="map.js">
-        </script>
+        <script src="map.js"></script>
+        <script src="rhill-voronoi-core.js"></script>
+        <script src='/js/flag.js' ></script>
         <script>
             window.onload = function(){
-                var canvas = document.getElementById("worldmap");
-                var context = canvas.getContext("2d");
+                Math.seedrandom(12);
+                var canvas = document.getElementById("worldmapCanvas");
+                var voronoi = new Voronoi();
+                var dotcount=400
+                    // create vertices
+                var sites = [];
+                for (var i=0; i<dotcount; i++) {
+                    sites.push({
+                                x:self.Math.round((self.Math.random()*canvas.width )*10)/10,
+                                y:self.Math.round((self.Math.random()*canvas.height)*10)/10
+                               });
+                }
+                var diagram = voronoi.compute(sites, Array(0,800,0,600 ));
+                var ctx=getcontext(canvas);
+                render(ctx,diagram,sites);
             };
+        function render(ctx,diagram,sites){
+                var edges = diagram.edges,
+                    iEdge = edges.length,
+                    edge, v;
+                while (iEdge--) {
+                    edge = edges[iEdge];
+                    v = edge.va;
+                    ctx.moveTo(v.x,v.y);
+                    v = edge.vb;
+                    ctx.lineTo(v.x,v.y);
+                    }
+                ctx.stroke();
+                // sites
+                ctx.beginPath();
+                ctx.fillStyle = '#44f';
+                var msites = sites,
+                    iSite = sites.length;
+                while (iSite--) {
+                    v = msites[iSite];
+                    ctx.rect(v.x-2/3,v.y-2/3,2,2);
+                    }
+                ctx.fill();
+
+
+        }
+        function getcontext(canvas){
+                var ctx = canvas.getContext('2d');
+                ctx.globalAlpha = 1;
+                ctx.beginPath();
+                ctx.rect(0,0,canvas.width,canvas.height);
+                ctx.fillStyle = 'white';
+                ctx.fill();
+                ctx.strokeStyle = '#888';
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.strokeStyle='#000';
+                return ctx
+        }
         </script>
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
-        <canvas id="worldmap" style="height:600px;width:800px;border:1px solid black;">
+        <canvas id="worldmapCanvas" width='800' height='600' style="border:1px solid black;" >
         </canvas>
     </body>
 </html>
