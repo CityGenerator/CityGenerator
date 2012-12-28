@@ -26,6 +26,12 @@
                 var canvas = document.getElementById("worldmapCanvas2");
                 render(canvas,diagram,sites);
 
+
+
+
+                var canvas = document.getElementById("worldmapCanvas3");
+                render(canvas,diagram,sites);
+
             };
         function generate_sites(dotcount,width,height){
                 var sites = [];
@@ -78,6 +84,10 @@
         }
         function render(canvas,diagram,sites){
                 var ctx=getcontext(canvas);
+
+
+
+
                 var edges = diagram.edges,
                     iEdge = edges.length,
                     edge, v;
@@ -89,9 +99,13 @@
                     ctx.lineTo(v.x,v.y);
                     }
                 ctx.stroke();
+                ctx.fillStyle = '#440044';
+
+
+
                 // sites
                 ctx.beginPath();
-                ctx.fillStyle = '#44f';
+                ctx.fillStyle = '#ff0000';
                 var msites = sites,
                     iSite = sites.length;
                 while (iSite--) {
@@ -99,7 +113,6 @@
                     ctx.rect(v.x-2/3,v.y-2/3,2,2);
                     }
                 ctx.fill();
-
 
         }
         function getcontext(canvas){
@@ -120,18 +133,24 @@
     </head>
     <body>
         <div>
-            <div>Before</div>
+            <div>Voronoi</div>
             <canvas id="worldmapCanvas1" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
             <textarea id='before' rows="6" cols="100">e</textarea>
             <br clear='all'/>
         </div>
 
         <div>
-            <div>After</div>
+            <div>Voronoi w/ lloyd's relaxation</div>
             <canvas id="worldmapCanvas2" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
             <textarea id='after'  rows="6" cols="100">e</textarea>
             <br clear='all'/>
         </div>
+
+        <div>
+            <div>divide land/water</div>
+            <canvas id="worldmapCanvas3" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
+            <textarea id='textarea3'  rows="6" cols="100"></textarea>
+            <br clear='all'/>
 
         </div>
 
