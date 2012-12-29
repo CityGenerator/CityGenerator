@@ -27,7 +27,7 @@
             function clickie(){
                 var canvas = document.getElementById("worldmapCanvas1");
                 map.paintBackground(canvas);
-                map.colorPolygon(colorid,canvas);
+                map.colorPolygon(colorid,canvas,'#0FF');
                 document.getElementById('before').value=JSON.stringify(colorid);
                 map.render(canvas);
                 colorid++;
@@ -41,7 +41,7 @@
             <div>Voronoi</div>
             <input type='button' id='clickme' value='click me' onclick='clickie();'/>
             <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
-            <textarea id='before' rows="6" cols="100">e</textarea>
+            <textarea id='before' rows="6" cols="100">click to increment the cell ID to colorize</textarea>
             <br clear='all'/>
         </div>
 

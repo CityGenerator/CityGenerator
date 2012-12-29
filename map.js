@@ -1,68 +1,98 @@
 /* **************************************************************** */
-/*  
+/*  Lets generate a worldmap!
 /* **************************************************************** */
 
-function  WorldMap(width,height,count) {
-
+function  WorldMap(width,height,point_count) {
+    // Base Parameters
     this.width=width;
     this.height=width;
-    this.num_points = count;
+    this.num_points = point_count;
+    
+    // default constant values
     this.lake_threshold=0.3;
     this.num_lloyd_iterations=2;
-    
+
+    // These are important bits to track
     this.points=Array();
     this.centers=Array();
     this.corners=Array();
     this.edges=Array();
-
     this.voronoi = new Voronoi();
-    this.points=this.generateRandomPoints();
+
+
+    // Now lets actually make stuff. 
+    //First generate points,
+    this.generateRandomPoints();
+    // then compute the virinoi
     this.buildGraph();
+    //
 }
 
 
+/* **************************************************************** */
+/*  buildGraph uses the points, width and height that were 
+/*  previously set to generate a voronoi diagram.
+/*  From there, the edges, centers and corners are calculated.
+/* **************************************************************** */
 WorldMap.prototype.buildGraph = function(){
     this.diagram = this.voronoi.compute(this.points, Array(0,this.width,0,this.height ));
     this.edges=this.diagram.edges;
+    //TODO is edges really what I want/need?
+    //TODO calculate centers
+    //TODO calculate corners
 
 }
-WorldMap.prototype.generateRandomPoints = function(){
-        var points = [];
-        for (var i=0; i<this.num_points; i++) {
-            points.push({
-                        x:Math.round((Math.random()*this.width )*10)/10,
-                        y:Math.round((Math.random()*this.height)*10)/10
-                        });
-        }
-        return points;
-    }      
-WorldMap.prototype.getcontext = function(canvas){
-        var ctx = canvas.getContext('2d');
-        return ctx
-    }
-WorldMap.prototype.colorPolygon = function(cellid,canvas){
-    var cell = this.diagram.cells[cellid];
-    var ctx  = this.getcontext(canvas);
-    ctx.beginPath();
 
+/* **************************************************************** */
+/*  generateRandomPoints  generate a random set of points using
+/*  the previously provided width, height, and number of points.
+/* **************************************************************** */
+WorldMap.prototype.generateRandomPoints = function(){
+    var points = [];
+    for (var i=0; i<this.num_points; i++) {
+        points.push({
+                    x:Math.round((Math.random()*this.width )*10)/10,
+                    y:Math.round((Math.random()*this.height)*10)/10
+                    });
+    }
+    this.points=points;
+}      
+
+/* **************************************************************** */
+/*  colorPolygon make a pretty polygon given a cellid and a canvas
+/*  to draw on. This is currently broken, which makes me a sad panda.
+/* **************************************************************** */
+WorldMap.prototype.colorPolygon = function(cellid,canvas,color){
+    var cell = this.diagram.cells[cellid];
+    var ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    // draw a line for each edge, A to B.
     for (var i=0; i<cell.halfedges.length; i++) {
         var vertexa=this.diagram.cells[cellid].halfedges[i].edge.va;
         ctx.lineTo(vertexa.x,vertexa.y);
         var vertexb=this.diagram.cells[cellid].halfedges[i].edge.vb;
         ctx.lineTo(vertexb.x,vertexb.y);
     }
+    //close the path and fill it in with the provided color
     ctx.closePath();
-    ctx.fillStyle='#0FF';
+    ctx.fillStyle=color;
     ctx.fill();
-
 }
+
+/* **************************************************************** */
+/*  render uses the edges from the diagram, then mark the points.
+/* **************************************************************** */
 WorldMap.prototype.render = function(canvas){
-        var ctx=this.getcontext(canvas);
-/////////////////////////////////////////////////////////////////////////////////////////////////
+        var ctx = canvas.getContext('2d');
+       
+        //First lets draw all of the edges.
+        // This can probably be refactored
         ctx.beginPath();
-        var edges = this.diagram.edges,
-            iEdge = edges.length,
-            edge, v;
+        ctx.strokeStyle='#000';
+        var edges = this.diagram.edges;
+        var iEdge = edges.length;
+        var edge, v;
         while (iEdge--) {
             edge = edges[iEdge];
             v = edge.va;
@@ -71,34 +101,36 @@ WorldMap.prototype.render = function(canvas){
             ctx.lineTo(v.x,v.y);
             }
         ctx.stroke();
-        ctx.fillStyle = '#440044';
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
  
- 
-        // sites
+        // Now lets draw some red dots at the 
+        // point for each cell (note, not the center)
+        // This can probably be refactored
         ctx.beginPath();
         ctx.fillStyle = '#ff0000';
         var msites = this.points,
             iSite = this.points.length;
         while (iSite--) {
             v = msites[iSite];
+            //TODO this doesn't need to be a rectangle; simplify with a dot if possible
             ctx.rect(v.x-2/3,v.y-2/3,2,2);
             }
         ctx.fill();
- 
+
+        //TODO add the centers to the render list.
     }
+
+
+/* **************************************************************** */
+/*  paintBackground is relatively simple- it just draws the 
+/*  background rectangle.
+/* **************************************************************** */
 WorldMap.prototype.paintBackground = function(canvas){
-        var ctx=this.getcontext(canvas);
+        var ctx = canvas.getContext('2d');
         ctx.globalAlpha = 1;
         ctx.beginPath();
         ctx.rect(0,0,this.width,this.height);
         ctx.fillStyle = 'white';
         ctx.fill();
-        ctx.strokeStyle = '#888';
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.strokeStyle='#000';
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
