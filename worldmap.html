@@ -1,158 +1,57 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src='/js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
         <script src="map.js"></script>
         <script src="rhill-voronoi-core.js"></script>
-        <script src='/js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
         <script>
+            Math.seedrandom(12);
+            var width =400;
+            var height=300;
+            var sites=100;
+            var colorid=0;
+            var map=new WorldMap(width,height,sites);
             window.onload = function(){
-                Math.seedrandom(12);
-                var dotcount=600;
+
                 var canvas = document.getElementById("worldmapCanvas1");
-                var width=canvas.width;
-                var height=canvas.height;
-                var voronoi = new Voronoi();
-                    // create vertices
-                var sites=generate_sites(dotcount,width,height);
+                canvas.height=height;canvas.width=width;
+                map.paintBackground(canvas);
+                map.render(canvas);
 
-                document.getElementById('before').value=JSON.stringify(sites);
-                var diagram = voronoi.compute(sites, Array(0,width,0,height ));
-                render(canvas,diagram,sites);
-
-                sites = lloydrelax(diagram,width,height);
-                voronoi = new Voronoi();
-                diagram = voronoi.compute(sites, Array(0,width,0,height ));
-
-                var canvas = document.getElementById("worldmapCanvas2");
-                render(canvas,diagram,sites);
-
-
-
-
-                var canvas = document.getElementById("worldmapCanvas3");
-                render(canvas,diagram,sites);
+//                map.improveRandomPoints();
+//                var canvas = document.getElementById("worldmapCanvas2");
+//                canvas.height=height;canvas.width=width;
+//                map.render(canvas);
 
             };
-        function generate_sites(dotcount,width,height){
-                var sites = [];
-                for (var i=0; i<dotcount; i++) {
-                    sites.push({
-                                x:self.Math.round((self.Math.random()*width )*10)/10,
-                                y:self.Math.round((self.Math.random()*height)*10)/10
-                               });
-                }
-                return sites;
+            function clickie(){
+                var canvas = document.getElementById("worldmapCanvas1");
+                map.paintBackground(canvas);
+                map.colorPolygon(colorid,canvas);
+                document.getElementById('before').value=JSON.stringify(colorid);
+                map.render(canvas);
+                colorid++;
 
-        }
-        function lloydrelax(diagram,width,height){
-            var sites=[];
-            for (var i = 0; i < 2; i++) {
-                sites=[];
-                for(cellid in diagram.cells) {
-                    var cell = diagram.cells[cellid];
-                    cell.site.x = 0.0;
-                    cell.site.y = 0.0;
-                    var count=0;
-                    for (hedgeid in cell.halfedges) {
-                        var he = cell.halfedges[hedgeid];
-                        var hestart=he.getStartpoint();
-                        if (hestart.x != NaN && hestart.y != NaN){
-                            cell.site.x += hestart.x||0;
-                            cell.site.y += hestart.y||0;
-                            count++;
-                        }
-                        var heend=he.getEndpoint();
-                        if (heend.x != NaN && heend.y != NaN){
-
-                            cell.site.x += heend.x||0;
-                            cell.site.y += heend.y||0;
-                            count++;
-                        }
-                    }
-                    var px = parseInt(cell.site.x / count);
-                    var py = parseInt(cell.site.y / count);
-                    sites.push({x:px,
-                                y:py
-                                });
-                }
-                
-                document.getElementById('after').value=JSON.stringify(sites);
-                var voronoi = new Voronoi();
-                diagram = voronoi.compute(sites, Array(0,width,0,height ));
             }
-            return sites;
-        }
-        function render(canvas,diagram,sites){
-                var ctx=getcontext(canvas);
-
-
-
-
-                var edges = diagram.edges,
-                    iEdge = edges.length,
-                    edge, v;
-                while (iEdge--) {
-                    edge = edges[iEdge];
-                    v = edge.va;
-                    ctx.moveTo(v.x,v.y);
-                    v = edge.vb;
-                    ctx.lineTo(v.x,v.y);
-                    }
-                ctx.stroke();
-                ctx.fillStyle = '#440044';
-
-
-
-                // sites
-                ctx.beginPath();
-                ctx.fillStyle = '#ff0000';
-                var msites = sites,
-                    iSite = sites.length;
-                while (iSite--) {
-                    v = msites[iSite];
-                    ctx.rect(v.x-2/3,v.y-2/3,2,2);
-                    }
-                ctx.fill();
-
-        }
-        function getcontext(canvas){
-                var ctx = canvas.getContext('2d');
-                ctx.globalAlpha = 1;
-                ctx.beginPath();
-                ctx.rect(0,0,canvas.width,canvas.height);
-                ctx.fillStyle = 'white';
-                ctx.fill();
-                ctx.strokeStyle = '#888';
-                ctx.stroke();
-                ctx.beginPath();
-                ctx.strokeStyle='#000';
-                return ctx
-        }
         </script>
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
         <div>
             <div>Voronoi</div>
-            <canvas id="worldmapCanvas1" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
+            <input type='button' id='clickme' value='click me' onclick='clickie();'/>
+            <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
             <textarea id='before' rows="6" cols="100">e</textarea>
             <br clear='all'/>
         </div>
 
-        <div>
+<!--        <div>
             <div>Voronoi w/ lloyd's relaxation</div>
-            <canvas id="worldmapCanvas2" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
+            <canvas id="worldmapCanvas2"  style="border:1px solid black;float:left;" ></canvas>
             <textarea id='after'  rows="6" cols="100">e</textarea>
             <br clear='all'/>
         </div>
-
-        <div>
-            <div>divide land/water</div>
-            <canvas id="worldmapCanvas3" width='400' height='300' style="border:1px solid black;float:left;" ></canvas>
-            <textarea id='textarea3'  rows="6" cols="100"></textarea>
-            <br clear='all'/>
-
-        </div>
+-->
 
     </body>
 </html>

@@ -1,8 +1,8 @@
 /*!
-Author: Raymond Hill (rhill@raymondhill.net)
+Author: Raymond Hill (rhill@raymondhill.net), modified by Jesse Morgan (morgajel@gmail.com)
 File: rhill-voronoi-core.js
-Version: 0.96
-Date: May 26, 2011
+Version: 0.96-m1
+Date: December 26, 2012
 Description: This is my personal Javascript implementation of
 Steven Fortune's algorithm to compute Voronoi diagrams.
 
@@ -475,6 +475,7 @@ Voronoi.prototype.RBTree.prototype.getLast = function(node) {
 
 Voronoi.prototype.Cell = function(site) {
 	this.site = site;
+    this.elevation=0;
 	this.halfedges = [];
 	};
 
@@ -499,6 +500,15 @@ Voronoi.prototype.Cell.prototype.prepare = function() {
 	halfedges.sort(function(a,b){return b.angle-a.angle;});
 	return halfedges.length;
 	};
+
+Voronoi.prototype.Cell.prototype.setElevation = function(elevation) {
+	this.elevation = elevation;
+	};
+Voronoi.prototype.Cell.prototype.getElevation = function() {
+	return this.elevation;
+	};
+
+
 
 // ---------------------------------------------------------------------------
 // Edge methods
