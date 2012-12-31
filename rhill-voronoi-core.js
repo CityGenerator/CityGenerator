@@ -146,7 +146,7 @@ TODO: Let the user close the Voronoi cells, do not do it automatically. Not only
 
 function Voronoi() {
 	this.edges = null;
-	this.cells = null;
+	this.cells = [];
 	this.beachsectionJunkyard = [];
 	this.circleEventJunkyard = [];
 	}
@@ -475,7 +475,8 @@ Voronoi.prototype.RBTree.prototype.getLast = function(node) {
 
 Voronoi.prototype.Cell = function(site) {
 	this.site = site;
-    this.elevation=0;
+    this.elevation = 0;
+    this.corners   = [];
 	this.halfedges = [];
 	};
 
@@ -487,11 +488,14 @@ Voronoi.prototype.Cell.prototype.prepare = function() {
 	// rhill 2011-05-27: Keep it simple, no point here in trying
 	// to be fancy: dangling edges are a typically a minority.
 	while (iHalfedge--) {
+        this.corners.push(halfedges[iHalfedge].getStartpoint());
 		edge = halfedges[iHalfedge].edge;
 		if (!edge.vb || !edge.va) {
 			halfedges.splice(iHalfedge,1);
 			}
 		}
+    this.corners=this.corners.filter(function(val) { return val !== null; });
+
 	// rhill 2011-05-26: I tried to use a binary search at insertion
 	// time to keep the array sorted on-the-fly (in Cell.addHalfedge()).
 	// There was no real benefits in doing so, performance on
@@ -501,15 +505,6 @@ Voronoi.prototype.Cell.prototype.prepare = function() {
 	return halfedges.length;
 	};
 
-Voronoi.prototype.Cell.prototype.setElevation = function(elevation) {
-	this.elevation = elevation;
-	};
-Voronoi.prototype.Cell.prototype.getElevation = function() {
-	return this.elevation;
-	};
-
-
-
 // ---------------------------------------------------------------------------
 // Edge methods
 //
@@ -517,6 +512,10 @@ Voronoi.prototype.Cell.prototype.getElevation = function() {
 Voronoi.prototype.Vertex = function(x, y) {
 	this.x = x;
 	this.y = y;
+	this.elevation = 0;
+	this.cells = [];
+    this.water = false;
+    this.border = false;
 	};
 
 Voronoi.prototype.Edge = function(lSite, rSite) {
@@ -1372,7 +1371,6 @@ Voronoi.prototype.closeCells = function(bbox) {
 			}
 		}
 	};
-
 // ---------------------------------------------------------------------------
 // Top-level Fortune loop
 
@@ -1381,6 +1379,7 @@ Voronoi.prototype.closeCells = function(bbox) {
 //   user to freely modify content. At compute time,
 //   *references* to sites are copied locally.
 Voronoi.prototype.compute = function(sites, bbox) {
+    
 	// to measure execution time
 	var startTime = new Date();
 
@@ -1454,6 +1453,7 @@ Voronoi.prototype.compute = function(sites, bbox) {
 	var result = {
 		cells: this.cells,
 		edges: this.edges,
+		corners: this.corners,
 		execTime: stopTime.getTime()-startTime.getTime()
 		};
 
@@ -1462,3 +1462,6 @@ Voronoi.prototype.compute = function(sites, bbox) {
 
 	return result;
 	};
+
+
+

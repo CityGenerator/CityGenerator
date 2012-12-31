@@ -5,7 +5,7 @@
 function  WorldMap(width,height,point_count) {
     // Base Parameters
     this.width=width;
-    this.height=width;
+    this.height=height;
     this.num_points = point_count;
     
     // default constant values
@@ -35,12 +35,13 @@ function  WorldMap(width,height,point_count) {
 /*  From there, the edges, centers and corners are calculated.
 /* **************************************************************** */
 WorldMap.prototype.buildGraph = function(){
-    this.diagram = this.voronoi.compute(this.points, Array(0,this.width,0,this.height ));
-    this.edges=this.diagram.edges;
+    this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
+    this.improveRandomPoints();
+    this.assignElevations()
+
     //TODO is edges really what I want/need?
     //TODO calculate centers
     //TODO calculate corners
-
 }
 
 /* **************************************************************** */
@@ -49,14 +50,53 @@ WorldMap.prototype.buildGraph = function(){
 /* **************************************************************** */
 WorldMap.prototype.generateRandomPoints = function(){
     var points = [];
+    var margin=0;
     for (var i=0; i<this.num_points; i++) {
         points.push({
-                    x:Math.round((Math.random()*this.width )*10)/10,
-                    y:Math.round((Math.random()*this.height)*10)/10
+                    x:Math.round((Math.random()*(this.width  -margin*2) )*10)/10 +margin,
+                    y:Math.round((Math.random()*(this.height -margin*2) )*10)/10 +margin
                     });
     }
     this.points=points;
 }      
+
+/* **************************************************************** */
+/*  assignElevations
+/*  
+/* **************************************************************** */
+WorldMap.prototype.assignElevations = function() {
+    var sim = new SimplexNoise() ;
+    var min=1;
+    var max=0;
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        var width  = this.width;
+        var height = this.height;
+        var x = cell.site.x;
+        var y = cell.site.y;
+        var centerx = width/2;
+        var centery = height/2;
+        var lesser  = width < height ? width : height;
+        var minradius= Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2)) ;
+
+        var adjustedx=x-centerx;
+        var adjustedy=y-centery;
+        var noise= sim.noise2D(Math.abs(adjustedx),Math.abs(adjustedy)); 
+        var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2))*2;
+        var percent= radius/minradius +noise/10;
+
+//        var percent = Math.abs(x-centerx) > Math.abs(y-centery ) ? Math.abs(x-centerx)/width*2: Math.abs(y-centery )/height*2;
+//        percent=percent+sim.noise2D(x/300,y/300);
+        cell.elevation=Math.round( percent*100)/100 ;
+        if (cell.elevation < min){min=cell.elevation};
+        if (cell.elevation > max){max=cell.elevation};
+    }
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        //adjust min and max to be on the proper scale.
+
+    }
+}
 
 /* **************************************************************** */
 /*  colorPolygon make a pretty polygon given a cellid and a canvas
@@ -69,15 +109,25 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,color){
     ctx.beginPath();
     // draw a line for each edge, A to B.
     for (var i=0; i<cell.halfedges.length; i++) {
-        var vertexa=this.diagram.cells[cellid].halfedges[i].edge.va;
+
+        var vertexa=this.diagram.cells[cellid].halfedges[i].getStartpoint();
         ctx.lineTo(vertexa.x,vertexa.y);
-        var vertexb=this.diagram.cells[cellid].halfedges[i].edge.vb;
+        var vertexb=this.diagram.cells[cellid].halfedges[i].getEndpoint();
         ctx.lineTo(vertexb.x,vertexb.y);
     }
     //close the path and fill it in with the provided color
     ctx.closePath();
+    if (color == null){
+        color='#B78856';
+        if (cell.elevation >0.5){
+            color='#6699aa';
+        }
+    }
     ctx.fillStyle=color;
     ctx.fill();
+
+
+
 }
 
 /* **************************************************************** */
@@ -89,7 +139,7 @@ WorldMap.prototype.render = function(canvas){
         //First lets draw all of the edges.
         // This can probably be refactored
         ctx.beginPath();
-        ctx.strokeStyle='#000';
+        ctx.strokeStyle='#aaaaaa';
         var edges = this.diagram.edges;
         var iEdge = edges.length;
         var edge, v;
@@ -106,7 +156,7 @@ WorldMap.prototype.render = function(canvas){
         // point for each cell (note, not the center)
         // This can probably be refactored
         ctx.beginPath();
-        ctx.fillStyle = '#ff0000';
+        ctx.fillStyle = '#faa';
         var msites = this.points,
             iSite = this.points.length;
         while (iSite--) {
@@ -208,9 +258,9 @@ WorldMap.prototype.improveRandomPoints = function(){
                         });
         }
         
-        var voronoi = new Voronoi();
-        this.diagram = voronoi.compute(points, Array(0,this.width,0,this.height ));
+        this.voronoi.reset();
         this.points=points;
+        this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
     }
 }
 //        // requires Voronoi voodoo
@@ -231,13 +281,12 @@ WorldMap.prototype.improveRandomPoints = function(){
 //        return locations;
 //    }
 //
-//    function buildGraph(points,voronoi){
-//        // I have no clue how to implement this without a voronoi object. 
-//    }
 //
-//    function assignCornerElevations(){
-//        // TODO yeah this one as well.
-//    }
+WorldMap.prototype.assignCornerElevations = function(){
+
+
+        // TODO yeah this one as well.
+    }
 //    function redistributeElevations(locations){
 //        // TODO yeah this one as well.
 //    }
@@ -347,11 +396,3 @@ WorldMap.prototype.improveRandomPoints = function(){
 //}
 //
 //
-//function IslandShape() {
-//
-//    this.island_factor=1.07;  
-//    function makePerlin(seed){
-//        // haha, I have no idea how to implement this. TODO learn math.
-//    }
-//  
-//}

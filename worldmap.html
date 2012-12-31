@@ -4,11 +4,12 @@
         <script src='/js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
         <script src="map.js"></script>
         <script src="rhill-voronoi-core.js"></script>
+        <script src="https://raw.github.com/jwagner/simplex-noise.js/master/simplex-noise.js"></script>
         <script>
-            Math.seedrandom(12);
-            var width =400;
-            var height=300;
-            var sites=100;
+            Math.seedrandom(1);
+            var width =600;
+            var height=450;
+            var sites=2000;
             var colorid=0;
             var map=new WorldMap(width,height,sites);
             window.onload = function(){
@@ -16,39 +17,44 @@
                 var canvas = document.getElementById("worldmapCanvas1");
                 canvas.height=height;canvas.width=width;
                 map.paintBackground(canvas);
-                map.render(canvas);
 
-//                map.improveRandomPoints();
-//                var canvas = document.getElementById("worldmapCanvas2");
-//                canvas.height=height;canvas.width=width;
-//                map.render(canvas);
+                for (var i=0; i < map.diagram.cells.length ; i++ ){
+                    map.colorPolygon(i,canvas);
+                }
+                map.render(canvas);
+                document.getElementById('before').value=JSON.stringify(map.points);
+
 
             };
             function clickie(){
                 var canvas = document.getElementById("worldmapCanvas1");
-                map.paintBackground(canvas);
-                map.colorPolygon(colorid,canvas,'#0FF');
-                document.getElementById('before').value=JSON.stringify(colorid);
-                map.render(canvas);
-                colorid++;
+
+ 
+                for (var i=0; colorid<map.diagram.cells.length && i < 50 ; i++ ){
+                    map.colorPolygon(colorid,canvas,'#0FF');
+//                document.getElementById('before').value=JSON.stringify(colorid);
+                    var cell=map.diagram.cells[colorid];
+//                document.getElementById('after').value=JSON.stringify(cell.corners);
+                    colorid++;
+                }
 
             }
         </script>
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
-        <div>
             <div>Voronoi</div>
-            <input type='button' id='clickme' value='click me' onclick='clickie();'/>
             <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
-            <textarea id='before' rows="6" cols="100">click to increment the cell ID to colorize</textarea>
-            <br clear='all'/>
+            <div>
+
+<!--            <textarea id='before' rows="6" cols="70">click to increment the cell ID to colorize</textarea>
+            <textarea id='after'  rows="6" cols="70">cell info</textarea>
+            <br clear='all'/>-->
         </div>
 
 <!--        <div>
             <div>Voronoi w/ lloyd's relaxation</div>
             <canvas id="worldmapCanvas2"  style="border:1px solid black;float:left;" ></canvas>
-            <textarea id='after'  rows="6" cols="100">e</textarea>
             <br clear='all'/>
         </div>
 -->
