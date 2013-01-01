@@ -77,24 +77,29 @@ WorldMap.prototype.assignElevations = function() {
         var centerx = width/2;
         var centery = height/2;
         var lesser  = width < height ? width : height;
-        var minradius= Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2)) ;
+        var minradius= Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2))/2 ;
 
         var adjustedx=x-centerx;
         var adjustedy=y-centery;
         var noise= sim.noise2D(Math.abs(adjustedx),Math.abs(adjustedy)); 
-        var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2))*2;
-        var percent= radius/minradius +noise/10;
+        cell.radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
+        var percent= Math.abs(cell.radius/minradius) ;// +noise/10;
+        cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"  minradius:"+minradius+" percent: "+percent;
 
-//        var percent = Math.abs(x-centerx) > Math.abs(y-centery ) ? Math.abs(x-centerx)/width*2: Math.abs(y-centery )/height*2;
-//        percent=percent+sim.noise2D(x/300,y/300);
-        cell.elevation=Math.round( percent*100)/100 ;
+        percent=Math.pow(percent,2)-.6+sim.noise2D(x/200,y/200)/4;
+        cell.elevation=Math.round( percent*300)/100 ;
         if (cell.elevation < min){min=cell.elevation};
         if (cell.elevation > max){max=cell.elevation};
     }
+//    alert(min +" --"+max );
     for (cellid in this.diagram.cells){
         var cell   = this.diagram.cells[cellid];
         //adjust min and max to be on the proper scale.
-
+        cell.elevation=(cell.elevation-min)/max;
+        if (cell.elevation > .5){
+            cell.ocean=true;
+        }
+        cell.debug='\nocean:'+ cell.ocean +"\n" ;
     }
 }
 
@@ -102,7 +107,7 @@ WorldMap.prototype.assignElevations = function() {
 /*  colorPolygon make a pretty polygon given a cellid and a canvas
 /*  to draw on. This is currently broken, which makes me a sad panda.
 /* **************************************************************** */
-WorldMap.prototype.colorPolygon = function(cellid,canvas,color){
+WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
     var cell = this.diagram.cells[cellid];
     var ctx = canvas.getContext('2d');
 
@@ -110,23 +115,32 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,color){
     // draw a line for each edge, A to B.
     for (var i=0; i<cell.halfedges.length; i++) {
 
-        var vertexa=this.diagram.cells[cellid].halfedges[i].getStartpoint();
+        var vertexa=cell.halfedges[i].getStartpoint();
         ctx.lineTo(vertexa.x,vertexa.y);
-        var vertexb=this.diagram.cells[cellid].halfedges[i].getEndpoint();
+        var vertexb=cell.halfedges[i].getEndpoint();
         ctx.lineTo(vertexb.x,vertexb.y);
     }
     //close the path and fill it in with the provided color
     ctx.closePath();
     if (color == null){
-        color='#B78856';
-        if (cell.elevation >0.5){
-            color='#6699aa';
+        if (mode=='elevation'){ 
+            var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
+            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+        }else if (mode=='land/ocean'){ 
+            if (cell.ocean){
+                cell.color='#3366ff';
+            }else{
+                cell.color='#996633';
+            }
+        }else if (mode=='land/shallows'){
+            var c= parseInt(Math.floor(cell.elevation*2))*128; //The closer the elevation is to 0
+            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
         }
+    }else{
+        cell.color=color;
     }
-    ctx.fillStyle=color;
+    ctx.fillStyle=cell.color;
     ctx.fill();
-
-
 
 }
 

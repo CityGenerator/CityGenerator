@@ -476,6 +476,11 @@ Voronoi.prototype.RBTree.prototype.getLast = function(node) {
 Voronoi.prototype.Cell = function(site) {
 	this.site = site;
     this.elevation = 0;
+    this.radius= 0;
+    this.debug= " ";
+    this.color = '#ff00ff';
+    this.ocean = false;
+    this.terrain = "";
     this.corners   = [];
 	this.halfedges = [];
 	};
@@ -512,8 +517,6 @@ Voronoi.prototype.Cell.prototype.prepare = function() {
 Voronoi.prototype.Vertex = function(x, y) {
 	this.x = x;
 	this.y = y;
-	this.elevation = 0;
-	this.cells = [];
     this.water = false;
     this.border = false;
 	};

@@ -6,58 +6,111 @@
         <script src="rhill-voronoi-core.js"></script>
         <script src="https://raw.github.com/jwagner/simplex-noise.js/master/simplex-noise.js"></script>
         <script>
-            Math.seedrandom(1);
+            var seed=Number(getParameterByName('cityid'));
+            if (seed <=0 || seed >=1000000 ){
+                seed= Math.floor((Math.random()*1000000)+1); 
+            }
+            Math.seedrandom(seed);
             var width =600;
             var height=450;
             var sites=2000;
             var colorid=0;
             var map=new WorldMap(width,height,sites);
             window.onload = function(){
-
+                document.getElementById("seedID").value=seed;
                 var canvas = document.getElementById("worldmapCanvas1");
                 canvas.height=height;canvas.width=width;
                 map.paintBackground(canvas);
 
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(i,canvas);
+                    map.colorPolygon(i,canvas,'land/ocean');
                 }
-                map.render(canvas);
-                document.getElementById('before').value=JSON.stringify(map.points);
-
-
             };
+ 
+ 
             function clickie(){
                 var canvas = document.getElementById("worldmapCanvas1");
-
- 
                 for (var i=0; colorid<map.diagram.cells.length && i < 50 ; i++ ){
-                    map.colorPolygon(colorid,canvas,'#0FF');
-//                document.getElementById('before').value=JSON.stringify(colorid);
+                    map.colorPolygon(colorid,canvas,'highlight','#0FF');
                     var cell=map.diagram.cells[colorid];
-//                document.getElementById('after').value=JSON.stringify(cell.corners);
                     colorid++;
                 }
+            }
+ 
+ 
+            function getParameterByName(name){
+                name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+                var regexS = "[\\?&]" + name + "=([^&#]*)";
+                var regex = new RegExp(regexS);
+                var results = regex.exec(window.location.search);
+                if(results == null)
+                    return "";
+                else
+                    return decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+
+
+            function changeMode(mode){
+                var canvas = document.getElementById("worldmapCanvas1");
+                map.paintBackground(canvas);
+                for (var i=0; i < map.diagram.cells.length ; i++ ){
+                    map.colorPolygon(i,canvas,mode);
+                }
+            }
+
+
+            function examineCell(){
+                var cellid = document.getElementById("cellid").value;
+                var canvas = document.getElementById("worldmapCanvas1");
+                var cell   = map.diagram.cells[cellid];
+                map.paintBackground(canvas);
+                for (var i=0; i < map.diagram.cells.length ; i++ ){
+                    map.colorPolygon(i,canvas,document.getElementById("mode").value);
+                }
+                //map.render(canvas);
+                map.colorPolygon(cellid,canvas,'highlight','#0FF');
+                document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+"    "+
+                                                             "  x,y: "       + cell.site.x+","+cell.site.y+"\n"+
+                                                             "  elevation: " + cell.elevation+"   "+
+                                                             "  radius: "    + cell.radius+"\n"+
+                                                             "  debug: "     + cell.debug+"\n"+
+                                                             "  color: "     + cell.color;
+
+
 
             }
         </script>
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
-            <div>Voronoi</div>
-            <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
-            <div>
+        <div>Voronoi</div>
+        <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
 
-<!--            <textarea id='before' rows="6" cols="70">click to increment the cell ID to colorize</textarea>
-            <textarea id='after'  rows="6" cols="70">cell info</textarea>
-            <br clear='all'/>-->
+        <div>
+            cityid: <input type='text' id='seedID' />
+
+            mode:
+                <select id='mode' onchange='changeMode(this.value)'>
+                    <option>land/ocean</option>
+                    <option>land/shallows</option>
+                    <option>elevation</option>
+                </select>
+        </div>
+        <div>
+            Examine Cell: 
+                <input type='button' value='<<' onclick='document.getElementById("cellid").value--;examineCell();'>
+                <input type='text' id='cellid' value='962'/>
+                <input type='button' value='examine' onclick='examineCell();'>
+                <input type='button' value='>>' onclick='document.getElementById("cellid").value++;examineCell();'><br>
+
+                <input type='button' value='950' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
+                <input type='button' value='962' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
+                <input type='button' value='992' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
+                <input type='button' value='1007' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
+                <textarea id='celldetails'  rows="12" cols="70">cell info</textarea>
+
         </div>
 
-<!--        <div>
-            <div>Voronoi w/ lloyd's relaxation</div>
-            <canvas id="worldmapCanvas2"  style="border:1px solid black;float:left;" ></canvas>
-            <br clear='all'/>
-        </div>
--->
 
     </body>
 </html>
