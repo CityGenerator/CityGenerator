@@ -476,11 +476,14 @@ Voronoi.prototype.RBTree.prototype.getLast = function(node) {
 Voronoi.prototype.Cell = function(site) {
 	this.site = site;
     this.elevation = 0;
+    this.moisture = 0;
     this.radius= 0;
+    this.ocean= false;
+    this.coast= false;
     this.debug= " ";
     this.color = '#ff00ff';
-    this.ocean = false;
     this.terrain = "";
+    this.border = false;
     this.corners   = [];
 	this.halfedges = [];
 	};
@@ -1369,6 +1372,7 @@ Voronoi.prototype.closeCells = function(bbox) {
 				edge = this.createBorderEdge(cell.site, va, vb);
 				halfedges.splice(iLeft+1, 0, new this.Halfedge(edge, cell.site, null));
 				nHalfedges = halfedges.length;
+            cell.border=true;
 				}
 			iLeft++;
 			}

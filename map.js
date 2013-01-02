@@ -7,7 +7,25 @@ function  WorldMap(width,height,point_count) {
     this.width=width;
     this.height=height;
     this.num_points = point_count;
-    
+    this.terrain=[];
+    this.terrain['Snow']                        ={color:'#F8F8F8'};
+    this.terrain['Tundra']                      ={color:'#DDDDBB'};
+    this.terrain['Bare']                        ={color:'#BBBBBB'};
+    this.terrain['Scorched']                    ={color:'#999999'};
+    this.terrain['Taiga']                       ={color:'#708C33'};
+
+    this.terrain['Shrubland']                   ={color:'#CEE797'};
+    this.terrain['Grassland']                   ={color:'#91C15E'};
+
+    this.terrain['Subtropical Desert']          ={color:'#D2BCA3'};
+
+    this.terrain['Temperate Desert']            ={color:'#D7D29A'};
+    this.terrain['Temperate Deciduous Forest']  ={color:'#286D1B'};
+    this.terrain['Temperate Rain Forest']       ={color:'#088814'};
+
+    this.terrain['Tropical Seasonal Forest']    ={color:'#0D813C'};
+    this.terrain['Tropical Rain Forest']        ={color:'#13602D'};
+    //TODO I should add oceans here...    
     // default constant values
     this.lake_threshold=0.3;
     this.num_lloyd_iterations=2;
@@ -15,8 +33,6 @@ function  WorldMap(width,height,point_count) {
     // These are important bits to track
     this.points=Array();
     this.centers=Array();
-    this.corners=Array();
-    this.edges=Array();
     this.voronoi = new Voronoi();
 
 
@@ -37,13 +53,27 @@ function  WorldMap(width,height,point_count) {
 WorldMap.prototype.buildGraph = function(){
     this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
     this.improveRandomPoints();
-    this.assignElevations()
-
-    //TODO is edges really what I want/need?
-    //TODO calculate centers
-    //TODO calculate corners
+    this.assignElevations();
+    this.assignMoisture();
+    this.assignTerrain();
+    this.assignCoast();
 }
 
+WorldMap.prototype.assignCoast = function(){
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+//TODO finish this
+//        for(neighbor in cell.)
+
+//        cell.elevation=(cell.elevation-min)/(max-min);
+//        if (cell.elevation > .5 || cell.border){
+//            cell.ocean=true;
+//        }else{
+//            cell.elevation=1-cell.elevation*1.8;
+//        }
+    }
+
+}
 /* **************************************************************** */
 /*  generateRandomPoints  generate a random set of points using
 /*  the previously provided width, height, and number of points.
@@ -59,16 +89,99 @@ WorldMap.prototype.generateRandomPoints = function(){
     }
     this.points=points;
 }      
+/* **************************************************************** */
+/*  assignMoisture for each cell, assign moisture which is a
+/*  combination of elevation and simplex noise
+/* **************************************************************** */
+WorldMap.prototype.assignMoisture = function() {
+    var sim = new SimplexNoise() ;
+    //We're gonna track our min and max so we can resize later.
+    var min=1;
+    var max=0;
+    
+    for (cellid in this.diagram.cells){
+
+        // Lets use some easier-to-remember variables
+        var cell   = this.diagram.cells[cellid];
+        var width  = this.width;
+        var height = this.height;
+        var x = cell.site.x;
+        var y = cell.site.y;
+        var centerx = width/2;
+        var centery = height/2;
+        var lesser  = width < height ? width : height;
+        var minradius= 1;//Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2))/2 ;
+        var adjustedx=x-centerx;
+        var adjustedy=y-centery;
+
+        var noise= sim.noise2D(Math.abs(adjustedx),Math.abs(adjustedy));
+
+        // Pythagorean theorem for the win
+        cell.radius=1//+  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2))/30;
+
+        var percent= Math.abs(cell.radius/minradius)  +noise/20;
+        cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"  minradius:"+minradius+" percent: "+percent;
+
+        percent=Math.pow(percent,2)-.6+sim.noise2D(x/150,y/150)/2;
+        cell.moisture=Math.round( percent*300)/100 ;
+
+        // If this moisture is a new min or max moisture, lets track it.
+        if (cell.moisture < min){min=cell.moisture};
+        if (cell.moisture > max){max=cell.moisture};
+    }
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        cell.moisture=Math.round(  (cell.moisture-min)/(max-min)*100)/100;
+    }
+    
+}
 
 /* **************************************************************** */
-/*  assignElevations
-/*  
+/*  assignTerrain using elevation and moisture, set the proper
+/*  terrain for each cell.
+/* **************************************************************** */
+WorldMap.prototype.assignTerrain = function() {
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        var pelevation=cell.elevation;
+        cell.terrain=this.getTerrain(pelevation,cell.moisture);
+    }
+}
+/* **************************************************************** */
+/*  getTerrain Given an elevation and moisture, select the proper terrain type
+/*
+/* **************************************************************** */
+WorldMap.prototype.getTerrain = function(elevation,moisture) {
+    var terrain=[ //This is a very ugly hack.
+            ['Subtropical Desert','Grassland','Tropical Seasonal Forest','Tropical Seasonal Forest','Tropical Rain Forest','Tropical Rain Forest'],
+            ['Temperate Desert','Grassland','Grassland','Temperate Deciduous Forest','Temperate Deciduous Forest','Temperate Rain Forest'],
+            ['Temperate Desert','Temperate Desert','Shrubland','Shrubland','Taiga','Taiga'],
+            ['Scorched','Bare','Tundra','Snow','Snow','Snow'],
+            ];
+    var pelevation=Math.floor((elevation)*3 +.5); 
+    var pmoisture=Math.floor((moisture)*5);
+    return terrain[pelevation][pmoisture];
+}
+
+WorldMap.prototype.getTerrainColor = function(tname) {
+    return this.terrain[tname].color;
+}
+
+
+/* **************************************************************** */
+/*  assignElevations for each cell, assign an elevation which is a
+/*  combination of radial distance from the center and simplex noise
 /* **************************************************************** */
 WorldMap.prototype.assignElevations = function() {
     var sim = new SimplexNoise() ;
+
+    //We're gonna track our min and max so we can resize later.
     var min=1;
     var max=0;
+    
     for (cellid in this.diagram.cells){
+
+        // Lets use some easier-to-remember variables
         var cell   = this.diagram.cells[cellid];
         var width  = this.width;
         var height = this.height;
@@ -78,30 +191,41 @@ WorldMap.prototype.assignElevations = function() {
         var centery = height/2;
         var lesser  = width < height ? width : height;
         var minradius= Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2))/2 ;
-
         var adjustedx=x-centerx;
         var adjustedy=y-centery;
-        var noise= sim.noise2D(Math.abs(adjustedx),Math.abs(adjustedy)); 
+
+
+        // Pythagorean theorem for the win
         cell.radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
-        var percent= Math.abs(cell.radius/minradius) ;// +noise/10;
+
+        var percent= Math.abs(cell.radius/minradius) ;
         cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"  minradius:"+minradius+" percent: "+percent;
 
-        percent=Math.pow(percent,2)-.6+sim.noise2D(x/200,y/200)/4;
-        cell.elevation=Math.round( percent*300)/100 ;
+        percent=percent +sim.noise2D(x/200,y/200)/4;
+        cell.elevation=Math.round( percent*100)/100 ;
+
+        // If this elevation is a new min or max elevation, lets track it.
         if (cell.elevation < min){min=cell.elevation};
         if (cell.elevation > max){max=cell.elevation};
     }
-//    alert(min +" --"+max );
+    // re-examine the cells and adjust to a 0-1 range, then 
+    // set the cell to ocean if its value is >.5 or is a border
     for (cellid in this.diagram.cells){
         var cell   = this.diagram.cells[cellid];
         //adjust min and max to be on the proper scale.
-        cell.elevation=(cell.elevation-min)/max;
-        if (cell.elevation > .5){
+        cell.elevation=(cell.elevation-min)/(max-min);
+        if (cell.elevation > .5 || cell.border){
             cell.ocean=true;
+        }else{
+            //I use too many magic numbers :/
+            cell.elevation=1-cell.elevation*1.8;
         }
-        cell.debug='\nocean:'+ cell.ocean +"\n" ;
     }
+
 }
+
+
+
 
 /* **************************************************************** */
 /*  colorPolygon make a pretty polygon given a cellid and a canvas
@@ -123,15 +247,55 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
     //close the path and fill it in with the provided color
     ctx.closePath();
     if (color == null){
-        if (mode=='elevation'){ 
-            var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
+        if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
+            //not intentional, but s exxpected.
+            var c= parseInt(Math.floor(cell.elevation*128))*2;
             cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+
+        }else if (mode=='moisture'){ 
+            var c= parseInt(Math.floor(cell.moisture*128))*2;
+            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+
+        }else if (mode=='biomes'){ 
+            if (cell.ocean){
+                cell.color=this.getOceanColor(cell);
+            }else{
+               cell.color=this.terrain[ cell.terrain].color;
+            }
+
+        }else if (mode=='land elevation'){ 
+            if ( cell.ocean){
+                cell.color=this.getOceanColor(cell);
+            }else{
+                var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
+                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+            }
+
+
         }else if (mode=='land/ocean'){ 
             if (cell.ocean){
-                cell.color='#3366ff';
+                cell.color=this.getOceanColor(cell);
+            }else{
+                if (cell.elevation <.2){
+                    cell.color='#cc9955';
+                } else if (cell.elevation <.3){
+                    cell.color='#bb8855';
+                } else if (cell.elevation <.35){
+                    cell.color='#aa7744';
+                }else{
+                    cell.color='#996633';
+                }
+            }
+
+
+        }else if (mode=='land elevation'){ 
+            if (cell.ocean){
+                cell.color=this.getOceanColor(cell);
             }else{
                 cell.color='#996633';
             }
+
+
         }else if (mode=='land/shallows'){
             var c= parseInt(Math.floor(cell.elevation*2))*128; //The closer the elevation is to 0
             cell.color= 'rgb(' + c + "," + c + "," + c + ")";
@@ -143,6 +307,20 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
     ctx.fill();
 
 }
+
+/* **************************************************************** */
+/*  render uses the edges from the diagram, then mark the points.
+/* **************************************************************** */
+WorldMap.prototype.getOceanColor = function(cell){
+    if (cell.elevation <.6){
+        return '#5588ff';
+    }else if (cell.elevation <.7){
+        return '#4477ff';
+    }else{
+        return '#3366ff';
+    }
+}
+
 
 /* **************************************************************** */
 /*  render uses the edges from the diagram, then mark the points.
@@ -343,37 +521,6 @@ WorldMap.prototype.assignCornerElevations = function(){
 //    }
 //    function assignPolygonMoisture(){
 //        //TODO finish this
-//    }
-//
-//    function getBiome(p) {
-//      if (p.ocean) {
-//        return 'OCEAN';
-//      } else if (p.water) {
-//        if (p.elevation < 0.1) return 'MARSH';
-//        if (p.elevation > 0.8) return 'ICE';
-//        return 'LAKE';
-//      } else if (p.coast) {
-//        return 'BEACH';
-//      } else if (p.elevation > 0.8) {
-//        if (p.moisture > 0.50) return 'SNOW';
-//        else if (p.moisture > 0.33) return 'TUNDRA';
-//        else if (p.moisture > 0.16) return 'BARE';
-//        else return 'SCORCHED';
-//      } else if (p.elevation > 0.6) {
-//        if (p.moisture > 0.66) return 'TAIGA';
-//        else if (p.moisture > 0.33) return 'SHRUBLAND';
-//        else return 'TEMPERATE_DESERT';
-//      } else if (p.elevation > 0.3) {
-//        if (p.moisture > 0.83) return 'TEMPERATE_RAIN_FOREST';
-//        else if (p.moisture > 0.50) return 'TEMPERATE_DECIDUOUS_FOREST';
-//        else if (p.moisture > 0.16) return 'GRASSLAND';
-//        else return 'TEMPERATE_DESERT';
-//      } else {
-//        if (p.moisture > 0.66) return 'TROPICAL_RAIN_FOREST';
-//        else if (p.moisture > 0.33) return 'TROPICAL_SEASONAL_FOREST';
-//        else if (p.moisture > 0.16) return 'GRASSLAND';
-//        else return 'SUBTROPICAL_DESERT';
-//      }
 //    }
 //   
 // 

@@ -13,9 +13,10 @@
             Math.seedrandom(seed);
             var width =600;
             var height=450;
-            var sites=2000;
+            var sites=3000;
             var colorid=0;
             var map=new WorldMap(width,height,sites);
+
             window.onload = function(){
                 document.getElementById("seedID").value=seed;
                 var canvas = document.getElementById("worldmapCanvas1");
@@ -23,11 +24,16 @@
                 map.paintBackground(canvas);
 
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(i,canvas,'land/ocean');
+                    map.colorPolygon(i,canvas,document.getElementById("mode").value);
                 }
+                colorlegend();
             };
  
- 
+            function colorlegend(){
+                for (terrain in map.terrain){
+                    document.getElementById(terrain).style.background = map.getTerrainColor(terrain);
+                }
+            } 
             function clickie(){
                 var canvas = document.getElementById("worldmapCanvas1");
                 for (var i=0; colorid<map.diagram.cells.length && i < 50 ; i++ ){
@@ -69,12 +75,15 @@
                 }
                 //map.render(canvas);
                 map.colorPolygon(cellid,canvas,'highlight','#0FF');
-                document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+"    "+
-                                                             "  x,y: "       + cell.site.x+","+cell.site.y+"\n"+
-                                                             "  elevation: " + cell.elevation+"   "+
+                document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+" "+
+                                                             "  x,y: "       + cell.site.x+","+cell.site.y+" "+
+                                                             "  elevation: " + cell.elevation+"\n"+
+                                                             "  moisture: " + cell.moisture+"   "+
                                                              "  radius: "    + cell.radius+"\n"+
-                                                             "  debug: "     + cell.debug+"\n"+
-                                                             "  color: "     + cell.color;
+                                                             "  color: "     + cell.color+"   "+
+                                                             "  border: "     + cell.border+"   "+
+                                                             "  ocean: "     + cell.ocean+"\n"+
+                                                             "  debug: "     + cell.debug+"\n";
 
 
 
@@ -83,17 +92,19 @@
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
-        <div>Voronoi</div>
         <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
 
         <div>
             cityid: <input type='text' id='seedID' />
-
             mode:
                 <select id='mode' onchange='changeMode(this.value)'>
-                    <option>land/ocean</option>
+                    <option>biomes</option>
+                    <option>moisture</option>
+                    <option>land elevation</option>
                     <option>land/shallows</option>
                     <option>elevation</option>
+                    <option>land/ocean</option>
+                    <option>land elevation</option>
                 </select>
         </div>
         <div>
@@ -110,7 +121,23 @@
                 <textarea id='celldetails'  rows="12" cols="70">cell info</textarea>
 
         </div>
+<div>
+<span id='Bare'> Bare</span>
+<span id='Grassland'> Grassland</span>
+<span id='Scorched'> Scorched</span>
+<span id='Shrubland'> Shrubland</span>
+<span id='Snow'> Snow</span>
+<span id='Subtropical Desert'> Subtropical Desert</span>
+<span id='Taiga'> Taiga</span>
+<span id='Temperate Deciduous Forest'> Temperate Deciduous Forest</span>
+<span id='Temperate Desert'> Temperate Desert</span>
+<span id='Temperate Rain Forest'> Temperate Rain Forest</span>
+<span id='Tropical Rain Forest'> Tropical Rain Forest</span>
+<span id='Tropical Seasonal Forest'> Tropical Seasonal Forest</span>
+<span id='Tundra'> Tundra</span>
 
+
+</div>
 
     </body>
 </html>
