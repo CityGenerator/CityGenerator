@@ -271,7 +271,6 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
                 cell.color= 'rgb(' + c + "," + c + "," + c + ")";
             }
 
-
         }else if (mode=='land/ocean'){ 
             if (cell.ocean){
                 cell.color=this.getOceanColor(cell);
@@ -286,20 +285,8 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
                     cell.color='#996633';
                 }
             }
-
-
-        }else if (mode=='land elevation'){ 
-            if (cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-                cell.color='#996633';
-            }
-
-
-        }else if (mode=='land/shallows'){
-            var c= parseInt(Math.floor(cell.elevation*2))*128; //The closer the elevation is to 0
-            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
         }
+
     }else{
         cell.color=color;
     }
