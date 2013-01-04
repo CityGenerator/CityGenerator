@@ -54,26 +54,155 @@ WorldMap.prototype.buildGraph = function(){
     this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
     this.improveRandomPoints();
     this.assignElevations();
+    this.assignCoast();
     this.assignMoisture();
     this.assignTerrain();
-    this.assignCoast();
+    this.assignDownslopes();
+    this.assignRivers();
 }
-
-WorldMap.prototype.assignCoast = function(){
+WorldMap.prototype.assignRivers = function(){
     for (cellid in this.diagram.cells){
         var cell   = this.diagram.cells[cellid];
-//TODO finish this
-//        for(neighbor in cell.)
+        if (! cell.ocean  && cell.river==false && cell.moisture > .5 && Math.random() > .9){
+            this.setRiver(cell);
+        }
+    }
+}
 
-//        cell.elevation=(cell.elevation-min)/(max-min);
-//        if (cell.elevation > .5 || cell.border){
-//            cell.ocean=true;
-//        }else{
-//            cell.elevation=1-cell.elevation*1.8;
-//        }
+WorldMap.prototype.setRiver = function(cell){
+    cell.river=true;
+    if ( !cell.ocean && cell.downslope.site != cell.site  ){
+        this.setRiver(cell.downslope);
+    }else if (cell.downslope == cell ){
+        cell.lake=true;
     }
 
 }
+WorldMap.prototype.assignCoast = function(){
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        if (! cell.ocean){
+            for (var i=0; i<cell.halfedges.length; i++){
+                var edge=cell.halfedges[i].edge;
+                if (this.diagram.cells[edge.lSite.voronoiId].ocean || this.diagram.cells[edge.rSite.voronoiId].ocean){
+                    cell.coast=true;
+                }
+            }
+        }
+    }
+}
+WorldMap.prototype.assignDownslopes = function(){
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        this.setDownslope(cell);
+    }
+}
+WorldMap.prototype.getNeighbors = function(cell){
+    var neighborIDs = cell.getNeighborIDs();
+    var neighbors=[];
+    for (var i=0; i<neighborIDs.length; i++){
+        neighbors.push(this.diagram.cells[neighborIDs[i]]);
+    }
+    return neighbors;
+}
+WorldMap.prototype.setDownslope = function(cell){
+    var neighborIDs = cell.getNeighborIDs();
+    cell.downslope=cell;
+    for (var i=0; i<neighborIDs.length; i++){
+        var neighbor=this.diagram.cells[neighborIDs[i]];
+        if (neighbor.elevation > cell.downslope.elevation ){
+            cell.upslope.push(neighbor);
+        }
+        if (! cell.ocean && neighbor.ocean){
+            // if you're on land and your neighbor is ocean, mark it as downslope and exit the loop.
+            cell.downslope=neighbor;
+            break; 
+        }else if (neighbor.elevation < cell.downslope.elevation ){
+            //otherwise check if the neighbor is lower than the previous low point.
+            cell.downslope=neighbor;
+        }
+    }
+}
+
+WorldMap.prototype.drawRivers = function(canvas){
+    var ctx = canvas.getContext('2d');
+
+    for (var i=0; i<this.diagram.cells.length; i++){
+        var cell=this.diagram.cells[i];
+        if ( cell.river ){
+            ctx.beginPath();
+            ctx.lineCap = 'round';
+            ctx.strokeStyle='rgb(128,128,255)';
+            ctx.lineWidth = 1;
+            ctx.moveTo(cell.site.x,cell.site.y);
+            ctx.lineTo(cell.downslope.site.x,cell.downslope.site.y);
+            ctx.closePath();
+            ctx.stroke();
+        }
+        if ( cell.lake){
+            this.colorPolygon(cell.site.voronoiId,canvas,'highlight','rgb(128,128,255)');
+        }
+    }
+}
+
+WorldMap.prototype.drawDownslopes = function(canvas){
+    var ctx = canvas.getContext('2d');
+
+    for (var i=0; i<this.diagram.cells.length; i++){
+        var cell=this.diagram.cells[i];
+        if ( ! cell.ocean && cell.site != cell.downslope.site ){
+            ctx.lineCap = 'round';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(cell.site.x,cell.site.y);
+            ctx.lineTo(cell.downslope.site.x,cell.downslope.site.y);
+            ctx.closePath();
+            ctx.stroke();
+        } else if ( ! cell.ocean && cell.site == cell.downslope.site){
+            ctx.lineCap = 'round';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(cell.site.x,cell.site.y);
+            ctx.lineTo(cell.site.x+3,cell.site.y+3);
+            ctx.closePath();
+            ctx.stroke();
+
+
+        }
+    }
+}
+WorldMap.prototype.getRegion = function(cell){
+    //choose between 1 and sites/100
+    var maxregion=this.diagram.cells.length/100;
+    var regionlist=[cell];
+    for (var i=0; i<maxregion; i++){
+        console.log('i '+i+" of "+maxregion)
+        var parentcellid=Math.floor( Math.random()*regionlist.length);
+        //console.log("parentcellid "+parentcellid +" of "+regionlist.length);
+
+        var parentCell=regionlist[parentcellid];
+        console.log(parentCell);
+        var sideid=Math.floor( Math.random()*parentCell.halfedges.length); 
+        console.log(sideid);
+        var side=parentCell.halfedges[ sideid  ];
+        var childcell;
+
+        console.log("================ lsite:" + side.edge.lSite+" voronoiid "+side.edge.lSite.voronoiId);
+        if (         side.edge.lSite != null &&  regionlist.indexOf(this.diagram.cells[side.edge.lSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.lSite.voronoiId].ocean){
+            console.log("lsite: ")
+            regionlist.push(this.diagram.cells[side.edge.lSite.voronoiId]);
+        } else if (  side.edge.rSite != null  && regionlist.indexOf(this.diagram.cells[side.edge.rSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.rSite.voronoiId].ocean){
+            console.log("rsite: ")
+            regionlist.push(this.diagram.cells[side.edge.rSite.voronoiId]);
+        }else{
+            console.log("reduce i" +i)
+        }
+        console.log(regionlist);
+    }
+    //select random half-edge
+    return regionlist;
+}
+
 /* **************************************************************** */
 /*  generateRandomPoints  generate a random set of points using
 /*  the previously provided width, height, and number of points.
@@ -144,7 +273,11 @@ WorldMap.prototype.assignTerrain = function() {
     for (cellid in this.diagram.cells){
         var cell   = this.diagram.cells[cellid];
         var pelevation=cell.elevation;
-        cell.terrain=this.getTerrain(pelevation,cell.moisture);
+        var pmoisture=cell.moisture;
+        if (cell.coast){
+            pmoisture= pmoisture*0.7;
+        }
+        cell.terrain=this.getTerrain(pelevation,pmoisture);
     }
 }
 /* **************************************************************** */
@@ -158,8 +291,10 @@ WorldMap.prototype.getTerrain = function(elevation,moisture) {
             ['Temperate Desert','Temperate Desert','Shrubland','Shrubland','Taiga','Taiga'],
             ['Scorched','Bare','Tundra','Snow','Snow','Snow'],
             ];
-    var pelevation=Math.floor((elevation)*3 +.5); 
+    var pelevation=Math.floor((elevation)*3 ); 
     var pmoisture=Math.floor((moisture)*5);
+    //console.log("----------")
+    //console.log(pelevation+"  "+pmoisture+" "+terrain[pelevation])
     return terrain[pelevation][pmoisture];
 }
 
@@ -178,6 +313,11 @@ WorldMap.prototype.assignElevations = function() {
     //We're gonna track our min and max so we can resize later.
     var min=1;
     var max=0;
+    var landmin=1;
+    var landmax=0;
+    var oceanmin=1;
+    var oceanmax=0;
+    
     
     for (cellid in this.diagram.cells){
 
@@ -201,7 +341,9 @@ WorldMap.prototype.assignElevations = function() {
         var percent= Math.abs(cell.radius/minradius) ;
         cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"  minradius:"+minradius+" percent: "+percent;
 
-        percent=percent +sim.noise2D(x/200,y/200)/4;
+        percent= percent/2  +   sim.noise2D(x/200,y/200)/4;
+
+
         cell.elevation=Math.round( percent*100)/100 ;
 
         // If this elevation is a new min or max elevation, lets track it.
@@ -216,15 +358,24 @@ WorldMap.prototype.assignElevations = function() {
         cell.elevation=(cell.elevation-min)/(max-min);
         if (cell.elevation > .5 || cell.border){
             cell.ocean=true;
+            if (cell.elevation < oceanmin){oceanmin=cell.elevation};
+            if (cell.elevation > oceanmax){oceanmax=cell.elevation};
         }else{
-            //I use too many magic numbers :/
-            cell.elevation=1-cell.elevation*1.8;
+            if (cell.elevation < landmin){landmin=cell.elevation};
+            if (cell.elevation > landmax){landmax=cell.elevation};
+        }
+    }
+    //Because two loops wasn't enough, resize scales for ocean and land seperately
+    for (cellid in this.diagram.cells){
+        var cell   = this.diagram.cells[cellid];
+        if (cell.ocean){
+            cell.elevation=1-(cell.elevation-oceanmin)/(oceanmax-oceanmin);
+        }else{
+            cell.elevation=1-(cell.elevation-landmin)/(landmax-landmin);
         }
     }
 
 }
-
-
 
 
 /* **************************************************************** */
@@ -233,25 +384,11 @@ WorldMap.prototype.assignElevations = function() {
 /* **************************************************************** */
 WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
     var cell = this.diagram.cells[cellid];
-    var ctx = canvas.getContext('2d');
-
-    ctx.beginPath();
-    // draw a line for each edge, A to B.
-    for (var i=0; i<cell.halfedges.length; i++) {
-
-        var vertexa=cell.halfedges[i].getStartpoint();
-        ctx.lineTo(vertexa.x,vertexa.y);
-        var vertexb=cell.halfedges[i].getEndpoint();
-        ctx.lineTo(vertexb.x,vertexb.y);
-    }
-    //close the path and fill it in with the provided color
-    ctx.closePath();
     if (color == null){
         if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
             //not intentional, but s exxpected.
-            var c= parseInt(Math.floor(cell.elevation*128))*2;
-            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-
+                var c= parseInt(Math.floor(cell.elevation*128))*2;
+                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
         }else if (mode=='moisture'){ 
             var c= parseInt(Math.floor(cell.moisture*128))*2;
             cell.color= 'rgb(' + c + "," + c + "," + c + ")";
@@ -262,7 +399,6 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
             }else{
                cell.color=this.terrain[ cell.terrain].color;
             }
-
         }else if (mode=='land elevation'){ 
             if ( cell.ocean){
                 cell.color=this.getOceanColor(cell);
@@ -270,28 +406,27 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
                 var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
                 cell.color= 'rgb(' + c + "," + c + "," + c + ")";
             }
-
-        }else if (mode=='land/ocean'){ 
-            if (cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-                if (cell.elevation <.2){
-                    cell.color='#cc9955';
-                } else if (cell.elevation <.3){
-                    cell.color='#bb8855';
-                } else if (cell.elevation <.35){
-                    cell.color='#aa7744';
-                }else{
-                    cell.color='#996633';
-                }
-            }
         }
-
     }else{
         cell.color=color;
     }
-    ctx.fillStyle=cell.color;
-    ctx.fill();
+    var polyfill = canvas.getContext('2d');
+
+    polyfill.beginPath();
+    // draw a line for each edge, A to B.
+    for (var i=0; i<cell.halfedges.length; i++) {
+
+        var vertexa=cell.halfedges[i].getStartpoint();
+        polyfill.lineTo(vertexa.x,vertexa.y);
+        var vertexb=cell.halfedges[i].getEndpoint();
+        polyfill.lineTo(vertexb.x,vertexb.y);
+    }
+    //close the path and fill it in with the provided color
+    polyfill.closePath();
+    polyfill.fillStyle=cell.color;
+    polyfill.fill();
+    polyfill.strokeStyle=cell.color;
+    polyfill.stroke();
 
 }
 
@@ -299,13 +434,15 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
 /*  render uses the edges from the diagram, then mark the points.
 /* **************************************************************** */
 WorldMap.prototype.getOceanColor = function(cell){
-    if (cell.elevation <.6){
-        return '#5588ff';
-    }else if (cell.elevation <.7){
-        return '#4477ff';
-    }else{
-        return '#3366ff';
-    }
+                var c= parseInt(Math.floor((cell.elevation)*128));
+                return 'rgb(' + c + "," + c + ", 255)";
+//    if (cell.elevation <.6){
+//        return '#5588ff';
+//    }else if (cell.elevation <.7){
+//        return '#4477ff';
+//    }else{
+//        return '#3366ff';
+//    }
 }
 
 
@@ -511,36 +648,6 @@ WorldMap.prototype.assignCornerElevations = function(){
 //    }
 //   
 // 
-//    function assignBiomes() {
-//      var p;
-//      for (p in centers) {
-//          p.biome = getBiome(p);
-//        }
-//    }
 //
-//
-//    function lookupEdgeFromCenter(leftcenter,riftcenter) {
-//      for ( edge in leftcenter.borders) {
-//            if (edge.d0 == rightcenter || edge.d1 == rightcenter){
-//                return edge;
-//            }
-//        }
-//      return null;
-//    }
-//
-//    function lookupEdgeFromCorner(leftcorner,rightcorner) {
-//        for (edge in  leftcorner.protrudes) {
-//            if (edge.v0 == rightcorner || edge.v1 == rightcorner) {
-//                return edge;
-//            }
-//        }
-//      return null;
-//    }
-//
-//    function inside(p) {
-//        //TODO magic
-//    }
-//
-//}
 //
 //

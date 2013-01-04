@@ -6,19 +6,18 @@
         <script src="rhill-voronoi-core.js"></script>
         <script src="https://raw.github.com/jwagner/simplex-noise.js/master/simplex-noise.js"></script>
         <script>
-            var seed=Number(getParameterByName('cityid'));
-            if (seed <=0 || seed >=1000000 ){
-                seed= Math.floor((Math.random()*1000000)+1); 
+            window.seed=Number(getParameterByName('cityid'));
+            if (window.seed <=0 || window.seed >=1000000 ){
+                window.seed= Math.floor((Math.random()*1000000)+1); 
             }
-            Math.seedrandom(seed);
+            Math.seedrandom(window.seed);
             var width =600;
             var height=450;
             var sites=3000;
-            var colorid=0;
             var map=new WorldMap(width,height,sites);
 
             window.onload = function(){
-                document.getElementById("seedID").value=seed;
+                document.getElementById("seedID").value=window.seed;
                 var canvas = document.getElementById("worldmapCanvas1");
                 canvas.height=height;canvas.width=width;
                 map.paintBackground(canvas);
@@ -34,15 +33,6 @@
                     document.getElementById(terrain).style.background = map.getTerrainColor(terrain);
                 }
             } 
-            function clickie(){
-                var canvas = document.getElementById("worldmapCanvas1");
-                for (var i=0; colorid<map.diagram.cells.length && i < 50 ; i++ ){
-                    map.colorPolygon(colorid,canvas,'highlight','#0FF');
-                    var cell=map.diagram.cells[colorid];
-                    colorid++;
-                }
-            }
- 
  
             function getParameterByName(name){
                 name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -64,7 +54,21 @@
                 }
             }
 
-
+            function locateRegion(){
+                Math.seedrandom(window.seed);
+                var cellid = document.getElementById("cellid").value;
+                var canvas = document.getElementById("worldmapCanvas1");
+                var cell   = map.diagram.cells[cellid];
+                if (! cell.ocean){
+                    var cells=map.getRegion(cell);
+                    for (var i=0; i < cells.length ; i++ ){
+                        map.colorPolygon(cells[i].site.voronoiId,canvas,mode,'#fd0a1d');
+                    }
+                    
+                }else{
+                    alert("cell "+cellid+' is ocean, so no region for it!');
+                }
+            }
             function examineCell(){
                 var cellid = document.getElementById("cellid").value;
                 var canvas = document.getElementById("worldmapCanvas1");
@@ -76,16 +80,15 @@
                 //map.render(canvas);
                 map.colorPolygon(cellid,canvas,'highlight','#0FF');
                 document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+" "+
-                                                             "  x,y: "       + cell.site.x+","+cell.site.y+" "+
                                                              "  elevation: " + cell.elevation+"\n"+
+                                                             "  x,y: "       + cell.site.x+","+cell.site.y+" "+
                                                              "  moisture: " + cell.moisture+"   "+
                                                              "  radius: "    + cell.radius+"\n"+
                                                              "  color: "     + cell.color+"   "+
                                                              "  border: "     + cell.border+"   "+
-                                                             "  ocean: "     + cell.ocean+"\n"+
+                                                             "  ocean: "     + cell.ocean+""+
+                                                             "  coast: "     + cell.coast+"\n"+
                                                              "  debug: "     + cell.debug+"\n";
-
-
 
             }
         </script>
@@ -99,23 +102,25 @@
             mode:
                 <select id='mode' onchange='changeMode(this.value)'>
                     <option>biomes</option>
-                    <option>moisture</option>
-                    <option>land elevation</option>
                     <option>elevation</option>
-                    <option>land/ocean</option>
+                    <option>land elevation</option>
+                    <option>moisture</option>
                 </select>
         </div>
         <div>
             Examine Cell: 
-                <input type='button' value='<<' onclick='document.getElementById("cellid").value--;examineCell();'>
+                <input type='button' value='<<' onclick='document.getElementById("cellid").value--;examineCell();'/>
                 <input type='text' id='cellid' value='962'/>
-                <input type='button' value='examine' onclick='examineCell();'>
-                <input type='button' value='>>' onclick='document.getElementById("cellid").value++;examineCell();'><br>
+                <input type='button' value='examine' onclick='examineCell();'/>
+                <input type='button' value='>>' onclick='document.getElementById("cellid").value++;examineCell();'/>
+                <input type='button' value='locate region' onclick='locateRegion();'  />
+                <input type='button' value='downslopes' onclick='map.drawDownslopes(document.getElementById("worldmapCanvas1"));'  />
+                <input type='button' value='rivers' onclick='map.drawRivers(document.getElementById("worldmapCanvas1"));'  /><br>
 
-                <input type='button' value='950' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
-                <input type='button' value='962' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
-                <input type='button' value='992' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
-                <input type='button' value='1007' onclick='document.getElementById("cellid").value=this.value;examineCell();'>
+                <input type='button' value='950' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='962' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='992' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='1007' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
                 <textarea id='celldetails'  rows="12" cols="70">cell info</textarea>
 
         </div>

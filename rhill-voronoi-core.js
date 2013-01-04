@@ -479,7 +479,10 @@ Voronoi.prototype.Cell = function(site) {
     this.moisture = 0;
     this.radius= 0;
     this.ocean= false;
+    this.river= false;
+    this.lake=  false;
     this.coast= false;
+    this.upslope= [];
     this.debug= " ";
     this.color = '#ff00ff';
     this.terrain = "";
@@ -487,6 +490,19 @@ Voronoi.prototype.Cell = function(site) {
     this.corners   = [];
 	this.halfedges = [];
 	};
+
+Voronoi.prototype.Cell.prototype.getNeighborIDs = function() {
+    var neighbors=[];
+    for (var i=0; i<this.halfedges.length; i++){
+        var edge=this.halfedges[i].edge;
+        if ( edge.lSite != null && edge.lSite.voronoiId != this.site.voronoiId){
+            neighbors.push(edge.lSite.voronoiId );
+        }else if ( edge.rSite != null && edge.rSite.voronoiId != this.site.voronoiId){
+            neighbors.push(edge.rSite.voronoiId );
+        }
+    }
+    return neighbors;
+}
 
 Voronoi.prototype.Cell.prototype.prepare = function() {
 	var halfedges = this.halfedges,
