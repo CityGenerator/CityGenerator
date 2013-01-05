@@ -4,7 +4,7 @@
         <script src='/js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
         <script src="map.js"></script>
         <script src="rhill-voronoi-core.js"></script>
-        <script src="https://raw.github.com/jwagner/simplex-noise.js/master/simplex-noise.js"></script>
+        <script src="simplex-noise.js"></script>
         <script>
             window.seed=Number(getParameterByName('cityid'));
             if (window.seed <=0 || window.seed >=1000000 ){
@@ -13,7 +13,7 @@
             Math.seedrandom(window.seed);
             var width =600;
             var height=450;
-            var sites=3000;
+            var sites=6000;
             var map=new WorldMap(width,height,sites);
 
             window.onload = function(){
@@ -46,12 +46,26 @@
             }
 
 
-            function changeMode(mode){
+            function changeMode(){
                 var canvas = document.getElementById("worldmapCanvas1");
+                var mode = document.getElementById("mode").value;
                 map.paintBackground(canvas);
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
                     map.colorPolygon(i,canvas,mode);
                 }
+            }
+            function drawCorners(){
+                var cellid = document.getElementById("cellid").value;
+                var canvas = document.getElementById("worldmapCanvas1");
+                //changeMode();
+                for (var i=0; i < map.diagram.cells.length ; i++ ){
+                    var cell=map.diagram.cells[i];
+                    for (var j=0; j < cell.corners.length ; j++ ){
+                        var corner=cell.corners[j];
+                        map.colorCorner(corner,canvas,mode);
+                    }
+                }
+                
             }
 
             function locateRegion(){
@@ -64,11 +78,11 @@
                     for (var i=0; i < cells.length ; i++ ){
                         map.colorPolygon(cells[i].site.voronoiId,canvas,mode,'#fd0a1d');
                     }
-                    
                 }else{
                     alert("cell "+cellid+' is ocean, so no region for it!');
                 }
             }
+            
             function examineCell(){
                 var cellid = document.getElementById("cellid").value;
                 var canvas = document.getElementById("worldmapCanvas1");
@@ -88,7 +102,8 @@
                                                              "  border: "     + cell.border+"   "+
                                                              "  ocean: "     + cell.ocean+""+
                                                              "  coast: "     + cell.coast+"\n"+
-                                                             "  debug: "     + cell.debug+"\n";
+                                                             "----------------------------------\n"+
+                                                             "  corners: "     + JSON.stringify(cell.corners)+"\n";
 
             }
         </script>
@@ -100,7 +115,7 @@
         <div>
             cityid: <input type='text' id='seedID' />
             mode:
-                <select id='mode' onchange='changeMode(this.value)'>
+                <select id='mode' onchange='changeMode()'>
                     <option>biomes</option>
                     <option>elevation</option>
                     <option>land elevation</option>
@@ -113,9 +128,11 @@
                 <input type='text' id='cellid' value='962'/>
                 <input type='button' value='examine' onclick='examineCell();'/>
                 <input type='button' value='>>' onclick='document.getElementById("cellid").value++;examineCell();'/>
-                <input type='button' value='locate region' onclick='locateRegion();'  />
                 <input type='button' value='downslopes' onclick='map.drawDownslopes(document.getElementById("worldmapCanvas1"));'  />
-                <input type='button' value='rivers' onclick='map.drawRivers(document.getElementById("worldmapCanvas1"));'  /><br>
+                <input type='button' value='rivers' onclick='map.drawRivers(document.getElementById("worldmapCanvas1"));'  />
+                <input type='button' value='show kingdoms' onclick='map.drawKingdoms();'  />
+
+                <input type='button' value='colorCorners' onclick='drawCorners();'  /><br>
 
                 <input type='button' value='950' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
                 <input type='button' value='962' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>

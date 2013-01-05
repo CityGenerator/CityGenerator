@@ -482,6 +482,7 @@ Voronoi.prototype.Cell = function(site) {
     this.river= false;
     this.lake=  false;
     this.coast= false;
+    this.kingdom=false;
     this.upslope= [];
     this.debug= " ";
     this.color = '#ff00ff';
