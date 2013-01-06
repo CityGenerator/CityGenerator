@@ -2,6 +2,52 @@
 /*  Lets generate a worldmap!
 /* **************************************************************** */
 
+function create_map(seed, canvas){
+    console.log(seed);
+    var mod=seed%10
+    var continentseed=seed-mod;
+    console.log(continentseed);
+    Math.seedrandom(continentseed);
+    var width =400;
+    var height=400;
+    var sites=2000;
+    canvas.height=height;canvas.width=width
+    var map=new WorldMap(width,height,sites);
+    map.paintBackground(canvas);
+    for (var i=0; i < map.diagram.cells.length ; i++ ){
+        map.colorPolygon(i,canvas,'biomes');
+    }
+    map.drawRivers(canvas);
+
+    map.drawNeighborKingdoms(continentseed,mod,canvas);    
+
+    
+
+}
+
+WorldMap.prototype.drawNeighborKingdoms = function(continentseed,mod,canvas){
+    var colors = [   ' 255,105,180 ', ' 139,0,0 ',  ' 255,140,0 ',  ' 255,255,0 ',  ' 124,252,0 ', 
+                     ' 127,255,212 ',  '95,158,160  ',  '  30,144,255 ',  '  238,130,238',  '128,0,128  '      ];
+    for (var i=0 ; i<10 ; i++){
+        Math.seedrandom( continentseed  + i   )    ;
+        console.log(colors[i])
+        var color='rgba('+colors[i]+',.5)';
+        if (i == mod){
+            color= 'rgba(200,0,0,.3)';
+
+
+
+        var testcell=this.randomLand();
+        while ( testcell.kingdom){
+            testcell=this.randomLand();
+        }
+        this.drawKingdom( canvas,color, testcell);
+        }
+
+    }
+                        
+
+}
 function  WorldMap(width,height,point_count) {
     // Base Parameters
     this.width=width;
@@ -59,17 +105,20 @@ WorldMap.prototype.buildGraph = function(){
     this.assignTerrain();
     this.assignDownslopes();
     this.assignRivers();
-    this.assignKingdoms();
 }
-WorldMap.prototype.assignKingdoms = function(){
 
-    for (cellid in this.diagram.cells){
-        var cell   = this.diagram.cells[cellid];
-        if (! cell.ocean  && cell.river==false && cell.moisture > .5 && Math.random() > .9){
-            this.setRiver(cell);
+WorldMap.prototype.randomLand = function(){
+    var randomcell=null;
+    while ( randomcell ==null){
+        var cell=this.diagram.cells[ Math.floor(  Math.random()*this.diagram.cells.length  )   ];
+        if (! cell.ocean && ! cell.kingdom){
+            randomcell=cell;
         }
+
     }
+    return randomcell;    
 }
+
 WorldMap.prototype.assignRivers = function(){
     for (cellid in this.diagram.cells){
         var cell   = this.diagram.cells[cellid];
@@ -134,7 +183,12 @@ WorldMap.prototype.setDownslope = function(cell){
     }
 }
 
-
+WorldMap.prototype.drawKingdom = function(canvas,color,cell){
+        var klist=this.getKingdom(cell);
+        for (var j=0; j < klist.length ; j++ ){
+            this.colorPolygon(klist[j].site.voronoiId,canvas,'highlight', color);
+        }
+}
 
 WorldMap.prototype.drawRivers = function(canvas){
     var ctx = canvas.getContext('2d');
@@ -142,7 +196,7 @@ WorldMap.prototype.drawRivers = function(canvas){
     for (var i=0; i<this.diagram.cells.length; i++){
         var cell=this.diagram.cells[i];
         if ( cell.river ){
-            ctx.strokeStyle='rgb(128,128,255)';
+            ctx.strokeStyle='rgba(128,128,255,0.5)';
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(cell.site.x,cell.site.y);
@@ -151,7 +205,7 @@ WorldMap.prototype.drawRivers = function(canvas){
             ctx.stroke();
         }
         if ( cell.lake){
-            this.colorPolygon(cell.site.voronoiId,canvas,'highlight','rgb(128,128,255)');
+            this.colorPolygon(cell.site.voronoiId,canvas,'highlight','rgba(128,128,255,0.5)');
         }
     }
 }
@@ -187,33 +241,34 @@ WorldMap.prototype.drawDownslopes = function(canvas){
 
 WorldMap.prototype.getKingdom = function(cell){
     //choose between 1 and sites/100
-    var maxkingdom=this.diagram.cells.length/100;
+    //var maxkingdom=this.diagram.cells.length/100;
+    var maxkingdom=50;
     var kingdomlist=[cell];
     for (var i=0; i<maxkingdom; i++){
-        console.log('i '+i+" of "+maxkingdom)
+        //console.log('i '+i+" of "+maxkingdom)
         var parentcellid=Math.floor( Math.random()*kingdomlist.length);
         //console.log("parentcellid "+parentcellid +" of "+kingdomlist.length);
 
         var parentCell=kingdomlist[parentcellid];
-        console.log(parentCell);
+        //console.log(parentCell);
         var sideid=Math.floor( Math.random()*parentCell.halfedges.length); 
-        console.log(sideid);
+        //console.log(sideid);
         var side=parentCell.halfedges[ sideid  ];
         var childcell;
 
-        console.log("================ lsite:" + side.edge.lSite+" voronoiid "+side.edge.lSite.voronoiId);
+        //console.log("================ lsite:" + side.edge.lSite+" voronoiid "+side.edge.lSite.voronoiId);
         if (         side.edge.lSite != null &&  kingdomlist.indexOf(this.diagram.cells[side.edge.lSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.lSite.voronoiId].ocean &&this.diagram.cells[side.edge.lSite.voronoiId].kingdom==false ){
-            console.log("lsite: ")
+            //console.log("lsite: ")
             this.diagram.cells[side.edge.lSite.voronoiId].kingdom=true
             kingdomlist.push(this.diagram.cells[side.edge.lSite.voronoiId]);
         } else if (  side.edge.rSite != null  && kingdomlist.indexOf(this.diagram.cells[side.edge.rSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.rSite.voronoiId].ocean && this.diagram.cells[side.edge.lSite.voronoiId].kingdom==false){
-            console.log("rsite: ")
+            //console.log("rsite: ")
             this.diagram.cells[side.edge.rSite.voronoiId].kingdom=true
             kingdomlist.push(this.diagram.cells[side.edge.rSite.voronoiId]);
         }else{
-            console.log("reduce i" +i)
+            //console.log("reduce i" +i)
         }
-        console.log(kingdomlist);
+        //console.log(kingdomlist);
     }
     //select random half-edge
     return kingdomlist;
@@ -478,7 +533,7 @@ WorldMap.prototype.colorCorner = function(corner,canvas,mode,color){
 /*  colorPolygon make a pretty polygon given a cellid and a canvas
 /*  to draw on.
 /* **************************************************************** */
-WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
+WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color,noborder){
     var cell = this.diagram.cells[cellid];
     if (color == null){
         if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
@@ -522,8 +577,9 @@ WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color){
     //close the path and fill it in with the provided color
     polyfill.closePath();
     polyfill.fill();
-    polyfill.stroke();
-
+    if (!noborder){
+        polyfill.stroke();
+    }
 }
 
 /* **************************************************************** */
