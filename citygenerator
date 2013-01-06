@@ -106,7 +106,7 @@ sub describe_header{
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
-                <title>City Generator: $city->{'name'} </title>
+                <title>City Generator: $city->{'name'} ($city->{'seed'})</title>
             $style
             <script src='/js/flag.js' ></script>
             <script src='/js/map.js' ></script>
