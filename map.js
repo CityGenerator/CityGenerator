@@ -30,7 +30,6 @@ WorldMap.prototype.drawNeighborKingdoms = function(continentseed,mod,canvas){
                      ' 127,255,212 ',  '95,158,160  ',  '  30,144,255 ',  '  238,130,238',  '128,0,128  '      ];
     for (var i=0 ; i<10 ; i++){
         Math.seedrandom( continentseed  + i   )    ;
-        console.log(colors[i])
         var color='rgba('+colors[i]+',.5)';
         if (i == mod){
             color= 'rgba(200,0,0,.3)';
@@ -46,7 +45,6 @@ WorldMap.prototype.drawNeighborKingdoms = function(continentseed,mod,canvas){
 
     }
                         
-
 }
 function  WorldMap(width,height,point_count) {
     // Base Parameters
@@ -183,11 +181,74 @@ WorldMap.prototype.setDownslope = function(cell){
     }
 }
 
-WorldMap.prototype.drawKingdom = function(canvas,color,cell){
-        var klist=this.getKingdom(cell);
-        for (var j=0; j < klist.length ; j++ ){
-            this.colorPolygon(klist[j].site.voronoiId,canvas,'highlight', color);
+WorldMap.prototype.drawKingdom = function(canvas,color,basecell){
+        var celllist=this.getKingdom(basecell);
+        var ids=[]
+        for (var i=0; i < celllist.length ; i++ ){ ids.push(celllist[i].site.voronoiId)}
+        //console.log('all IDs'+ids);
+        var edges=[];
+
+        for (var i=0; i < celllist.length ; i++ ){
+            var cell=celllist[i];
+            for (var j=0; j < cell.halfedges.length ; j++ ){
+                var he=cell.halfedges[j];
+                if (  ids.indexOf( he.edge.lSite.voronoiId) ==-1 || ids.indexOf( he.edge.rSite.voronoiId) ==-1  ){
+                    edges.push(he);
+                }
+            }    
         }
+        var polyfill = canvas.getContext('2d');
+        polyfill.beginPath();
+        var pos=edges[0].edge.va;
+        //console.log("Total edges:"+edges.length+"   starting position")
+        //console.log(pos)
+        var drawndots=0
+        while(edges.length >0){
+            var testedge=edges.pop()
+            //console.log("edges left:"+edges.length+ "test POS: "+pos.voronoiId+" lsite: "+testedge.edge.va.voronoiId+" rsite: "+testedge.edge.vb.voronoiId)
+
+            if (testedge.edge.va == pos ){
+                    polyfill.lineTo(testedge.edge.vb.x,testedge.edge.vb.y);
+                    pos=testedge.edge.vb; 
+                    drawndots++
+            }else if (testedge.edge.vb == pos ){
+                    polyfill.lineTo(testedge.edge.va.x,testedge.edge.va.y);
+                    pos=testedge.edge.va; 
+                    drawndots++
+            }else{
+                edges.unshift(testedge);
+            }
+        }
+        polyfill.fillStyle='rgba(255,0,0,0.5)';
+        polyfill.fill();
+        polyfill.closePath()
+
+//--------
+
+        var polyline = canvas.getContext('2d');
+        polyline.beginPath();
+        for (var i=0; i < celllist.length ; i++ ){
+            var cell=celllist[i];
+            for (var j=0; j < cell.halfedges.length ; j++ ){
+                var edge=cell.halfedges[j];
+                if (  ids.indexOf( edge.edge.lSite.voronoiId) ==-1 || ids.indexOf( edge.edge.rSite.voronoiId) ==-1  ){
+                    console.log( "look, a single edge")
+                    var vertexa=cell.halfedges[j].getStartpoint();
+                    polyline.moveTo(vertexa.x,vertexa.y);
+                    var vertexb=cell.halfedges[j].getEndpoint();
+                    polyline.lineTo(vertexb.x,vertexb.y);
+                }
+
+                var vertexa=cell.halfedges[j].getStartpoint();
+                var vertexb=cell.halfedges[j].getEndpoint();
+            }    
+        }
+        polyline.lineWidth=2;
+        polyline.strokeStyle="rgba(0,0,255,0.5)";
+        polyline.lineCap = 'butt';
+        polyline.stroke();
+        polyline.closePath();
+
 }
 
 WorldMap.prototype.drawRivers = function(canvas){
@@ -606,7 +667,8 @@ WorldMap.prototype.render = function(canvas){
        
         //First lets draw all of the edges.
         // This can probably be refactored
-        ctx.strokeStyle='#aaaaaa';
+        ctx.strokeStyle="rgba(0,0,0,.5)";
+        ctx.lineWidth=1;
         ctx.beginPath();
         var edges = this.diagram.edges;
         var iEdge = edges.length;
