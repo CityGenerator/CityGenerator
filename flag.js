@@ -15,8 +15,8 @@ function create_flag(seed,letter,colorlist) {
     // Set the base size of the flag; height will 
     // always be 100, but width may change.
     var ratio=set_ratio( flag );
-    var height=100;
-    var width=height*ratio;
+    var width=200;
+    var height=width*ratio;
 
     canvas.height=height;
     canvas.width=width;
@@ -535,7 +535,7 @@ function set_ratio(flag){
     // http://www.crwflags.com/fotw/flags/xf-size.html
     // like, expand your worldview man.
     var ratios=Array(1, 1.15, 1.25, 1.33, 1.32, 1.38, 1.39, 1.50, 1.6, 1.67, 1.9, 2.0, 2.55 );
-    var ratio = ratios[d( ratios.length )]; 
+    var ratio = 1/ratios[d( ratios.length )]; 
     return ratio;
 }
 function set_base_color(flag, width,height){

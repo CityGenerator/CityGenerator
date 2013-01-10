@@ -9,7 +9,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( build_city set_seed d roll_from_array rand_from_array );
+@EXPORT_OK = qw( build_city set_seed d roll_from_array rand_from_array generate_name);
 
 
 use CGI;
@@ -52,8 +52,7 @@ our $city;
 sub build_city {
     my ($newseed) = @_;
     $seed           = set_seed($newseed);
-    $city           = { 'seed' => $seed };
-    $city->{'name'} = parse_object( $xml_data->{'cityname'} )->{'content'};
+    $city->{'name'} = generate_name($newseed);
 
     generate_realm();
     generate_city_core();
@@ -66,6 +65,16 @@ sub build_city {
     generate_people();
     return $city;
 } ## end sub build_city
+
+
+
+sub generate_name {
+
+    my ($newseed) = @_;
+    $seed           = set_seed($newseed);
+    $city           = { 'seed' => $seed };
+    return parse_object( $xml_data->{'cityname'} )->{'content'};
+}
 
 ###############################################################################
 #

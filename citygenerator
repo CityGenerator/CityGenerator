@@ -20,7 +20,7 @@ BEGIN {
 }
 use lib "$Bin/";
 ###################################################
-use City 'build_city', 'd' ;
+use City 'build_city', 'd', 'generate_name' ;
 
 
 my $xml = new XML::Simple;
@@ -103,6 +103,17 @@ sub describe_header{
     my $style=print_style();
     my $flagcolors=get_flag_colors(); 
     my $letter = substr $city->{'name'}, 0,1;
+
+    my $regionseed=$city->{'seed'}-$city->{'seed'}%10 ;
+    my $cityID=0;
+    my $origseed=$city->{'seed'};
+    my @names;
+    while ($cityID <10){
+        my $seed= $regionseed+$cityID;
+        push @names, generate_name($seed);
+        $cityID++
+    }
+    my $names="['".join("', '",@names)."']";
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
@@ -113,9 +124,8 @@ sub describe_header{
             <script src='js/rhill-voronoi-core.js' ></script>
             <script src='js/simplex-noise.js' ></script>
             </head>
-            <body onload=\"create_flag($city->{'seed'}, '$letter', $flagcolors); create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region'));  \">
+            <body onload=\"create_flag($city->{'seed'}, '$letter', $flagcolors); create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region'),$names) ;\">
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
-
 ";
     return $content;
 }
@@ -125,8 +135,8 @@ sub describe_footer{
     my $content="
             </div>
             <div id='rightsidebar'>
-                <div style=''>Region: $regionname ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> </div>
-                <div style=''>City: $city->{'name'} <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> </div>
+                <div >Region: $regionname ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> <div id='continentlegend'></div></div>
+                <div >City: $city->{'name'} <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> <div id='regionlegend'></div> </div>
             </div>
             <footer>
                 

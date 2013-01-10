@@ -2,43 +2,94 @@
 /*  Lets generate a worldmap!
 /* **************************************************************** */
 
-function create_map(seed, continentcanvas,regioncanvas){
+function create_map(seed, continentcanvas,regioncanvas,names){
     console.log(seed);
-    var mod=Math.floor((seed%100)/10)
+    var regionmod=Math.floor((seed%100)/10)
+    var citymod=Math.floor((seed%10))
     var continentseed=seed -  seed%100;
     console.log(continentseed);
     Math.seedrandom(continentseed);
-    var width =350;
+    var width =352;
     var height=300;
     var sites=2000;
     continentcanvas.height=height;continentcanvas.width=width
     var map=new WorldMap(width,height,sites);
-    map.paintBackground(continentcanvas);
-    for (var i=0; i < map.diagram.cells.length ; i++ ){
-        map.colorPolygon(map.diagram.cells[i],continentcanvas,'biomes');
+    map.paintMap(continentcanvas)
+    
+    map.designateKingdoms(continentseed);    
+    map.drawKingdoms(continentcanvas);
+    var box=map.kingdoms[regionmod].regionbox;
+    map.drawbox(box,continentcanvas,'rgba(255,0,255,1)');
+    document.getElementById('continentlegend').innerHTML='Legend:'
+    for ( var name in map.terrain){
+    document.getElementById('continentlegend').innerHTML+='<span style="font-size:10px;background-color:'+map.terrain[name].color+'">'+name +'</span> '
     }
-    map.drawRivers(continentcanvas);
-
-    map.designateKingdoms(continentseed,continentcanvas);    
-    map.boxKingdoms();
-    var box=map.kingdoms[mod].regionbox;
-    map.drawbox(box,continentcanvas,'rgba(255,0,255,1)')
-    //this.kingdom=map.getKingdom(seed,canvas);
-                regioncanvas.height=height;regioncanvas.width=width;
-                map.paintBackground(regioncanvas);
-                map.drawRegion(regioncanvas,mod);
-
+//    regioncanvas=continentcanvas
+    regioncanvas.height=height;regioncanvas.width=width;
+    map.paintBackground(regioncanvas);
+    map.drawRegion(regioncanvas,regionmod);
+    map.drawKingdoms(regioncanvas);
+    for (var cityid=0 ; cityid<10 ; cityid++){
+        map.drawCities(regioncanvas,regionmod,cityid,citymod,names);
+    }
 }
 
 
-WorldMap.prototype.designateKingdoms = function(continentseed,canvas){
+WorldMap.prototype.drawCities = function(canvas,regionmod,cityid,citymod,names){
+    console.log(names[cityid])
+    var regioncount=this.kingdoms[regionmod].cells.length;
+    var cell=this.kingdoms[regionmod].cells[cityid%regioncount]
+    var corners= cell.corners
+    var randomcorner=Math.floor(Math.random()*corners.length);
+    var va=corners.splice(randomcorner ,1)[0];
+    randomcorner=Math.floor(Math.random()*corners.length);
+    var vb=corners.splice(randomcorner ,1)[0];
+    var deltax= Math.max(va.x,vb.x) - Math.min(va.x,vb.x)
+    var deltay=Math.max(va.y,vb.y) - Math.min(va.y,vb.y)
+    var percent=Math.random();
+    var randx = deltax*percent + Math.min(va.x,vb.x)
+    var randy = deltay*percent + Math.min(va.y,vb.y)
+
+//    this.colorPolygon(cell,canvas,'highlight','rgba(255,200,100,0.5)');
+
+    var polyfill = canvas.getContext('2d');
+    var color='#999999'
+    if (cityid == citymod)  {
+        color='#000000'
+    }
+
+    polyfill.strokeStyle=color;
+    polyfill.fillStyle=color;
+    polyfill.beginPath();
+    polyfill.lineTo(randx-2,randy-2);
+    polyfill.lineTo(randx+2,randy-2);
+    polyfill.lineTo(randx+2,randy+2);
+    polyfill.lineTo(randx-2,randy+2);
+
+    polyfill.closePath();
+    polyfill.fill();
+    polyfill.stroke();
+
+
+}
+
+WorldMap.prototype.paintMap = function(canvas){
+    this.paintBackground(canvas);
+    for (var i=0; i < this.diagram.cells.length ; i++ ){
+        this.colorPolygon(this.diagram.cells[i],canvas,'biomes');
+    }
+    this.drawRivers(canvas);
+}
+
+
+WorldMap.prototype.designateKingdoms = function(continentseed){
     var colors = [ '255,105,180', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '95,158,160', '30,144,255', '238,130,238',  '128,0,128'      ];
     this.kingdoms=[];
     for (var i=0 ; i<10 ; i++){
         var kingdom={}
         kingdom.id=i
         kingdom.seed=continentseed+i
-        kingdom.color='rgba('+colors[i]+',.5)';
+        kingdom.color='rgba('+colors[i]+',.3)';
 
         Math.seedrandom( kingdom.seed   ) ;
         kingdom.capital=this.randomLand();
@@ -48,11 +99,15 @@ WorldMap.prototype.designateKingdoms = function(continentseed,canvas){
         }
         kingdom = this.getKingdom( kingdom);
 
-        this.drawKingdom(kingdom,canvas)
-
         this.kingdoms.push(kingdom)
     }
+    this.boxKingdoms();
     
+}
+WorldMap.prototype.drawKingdoms = function(canvas){
+    for (var i=0 ; i<10 ; i++){
+        this.drawKingdom(this.kingdoms[i],canvas)
+    }
 }
 
 WorldMap.prototype.drawKingdom = function(kingdom,canvas){
@@ -350,9 +405,9 @@ WorldMap.prototype.drawRegion = function(canvas,kingdomid){
 
     var box= kingdom.regionbox;
     //console.log(box)
-    this.translateregion(box,canvas,kingdomid);
+    this.translateregion(box,canvas);
 
-    var regions=this.kingdoms[kingdomid].regions;
+    var regions=this.diagram.cells;
 
     var points=this.getKingdomPolygon(kingdom);
 
@@ -360,25 +415,20 @@ WorldMap.prototype.drawRegion = function(canvas,kingdomid){
     for (var i=0; i < regions.length ; i++ ){
         this.colorPolygon(regions[i],canvas,'biomes');
     }
-    this.drawKingdom(kingdom,canvas)
     // translate cell details over
 
 
 }
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
-WorldMap.prototype.translateregion = function(box,canvas,kingdomid){
-     //console.log(this.kingdoms[kingdomid]);
-    for (var i=0; i < this.kingdoms[kingdomid].regions.length ; i++ ){ 
-        var cell=this.kingdoms[kingdomid].regions[i];
+WorldMap.prototype.translateregion = function(box,canvas){
+    for (var i=0; i < this.diagram.cells.length ; i++ ){ 
+        var cell=this.diagram.cells[i];
         
         canvas.height=(box.maxy-box.miny)/(box.maxx-box.minx)*canvas.width
 
-        //console.log("Old X,Y:"+cell.site.x+","+cell.site.y);
         cell.site.x=this.translatePoint(cell.site.x,box.minx,box.maxx,canvas.width);
         cell.site.y=this.translatePoint(cell.site.y,box.miny,box.maxy,canvas.height);
-        cell.site.x=cell.site.x
-        cell.site.y=cell.site.y
         for (var j=0; j < cell.halfedges.length ; j++ ){ 
             var edge=cell.halfedges[j].edge;
             if (edge.va.wastranslated != true){
@@ -392,7 +442,6 @@ WorldMap.prototype.translateregion = function(box,canvas,kingdomid){
                 edge.vb.y=this.translatePoint(edge.vb.y,box.miny,box.maxy,canvas.height);
             }
         }
-        //console.log("New X,Y:"+cell.site.x+","+cell.site.y);
     }
 }
 
