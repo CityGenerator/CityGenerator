@@ -120,12 +120,20 @@ sub describe_header{
     return $content;
 }
 sub describe_footer{
+    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
+    my $regionname=$city->{'realm'};
     my $content="
+            </div>
+            <div id='rightsidebar'>
+                <div style=''>Region: $regionname ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> </div>
+                <div style=''>City: $city->{'name'} <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> </div>
+            </div>
             <footer>
                 
                 <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
                 <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>
             </footer>
+            </div>
             </body>
         </html>\n";
     return $content;
@@ -163,9 +171,9 @@ sub describe_current_events{
                     <section id='currentevents'>
                         <h2>Current Events</h2>
                         <p>You arrive $city->{'time'}->{'content'}, and can find $city->{'visiblepopulation'} citizens wandering the town.</p>
-                        <h3>Weather</h3>
+                        <h3 id='weather'>Weather</h3>
                         <p>The sky $city->{'weather'}->{'clouds'}, the air is $city->{'weather'}->{'air'}, and the wind is $city->{'weather'}->{'wind'}. The temperature is $city->{'weather'}->{'temp'}$precipitation. $thunder</p>
-                        <h3>Events</h3>
+                        <h3 id='events'>Events</h3>
                         <p>Approaching the city, you can find the following events:</p>
                          $events
                     </section>
@@ -226,9 +234,9 @@ sub describe_people{
                     <section id='people'>
                         <h2>People</h2>
                         <p>You can find the following people around $city->{'name'}.</p>
-                        <h3>Citizens</h3>
+                        <h3 id='citizens'>Citizens</h3>
                         $citizens
-                        <h3>Travelers</h3>
+                        <h3 id='travelers'>Travelers</h3>
                         $travelers
                     </section>
 ";
@@ -274,7 +282,7 @@ sub describe_population{
                         <h2>Population</h2>
                         <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'population'}->{'children'}->{'percent'}% ($city->{'population'}->{'children'}->{'population'}), and the elderly account for $city->{'population'}->{'elderly'}->{'percent'}% ($city->{'population'}->{'elderly'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
                         $populations
-                        <h3>Race Relations</h3>
+                        <h3 id='racerelations'>Race Relations</h3>
                         $racerelations 
                     </section>
 ";
@@ -340,11 +348,11 @@ sub describe_economy{
                     <section id='economy'>
                         <h2>Economy</h2>
                         <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.
-                        <h3>Resources</h3>
+                        <h3 id='resources'>Resources</a></h3>
                             <p>$city->{'name'} is known for the following:</p>$resources
-                        <h3>Taverns</h3>
+                        <h3 id='taverns'>Taverns</h3>
                             $taverns
-                        <h3>Local Info</h3>
+                        <h3 id='localinfo'>Local Info</h3>
                          <p>If one were to dig around enough, they could uncover the following:</p>
                         $localinfo 
                     </section>
@@ -430,12 +438,12 @@ sub describe_government{
                         <h2>Government</h2>
                         <p>$city->{'name'} is ruled by the $city->{'govtype'}->{'respect'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} policies in general. Freedom of religion is $freedom, and magic use is $magic. </p>
 
-                        <h3>Diplomatic Ties</h3>
+                        <h3 id='diplomaticties'>Diplomatic Ties</h3>
                         <p>$city->{'name'} has the following diplomatic relations:</p>
                         $relations
-                        <h3>Crime and Punishment</h3>
+                        <h3 id='crimeandpunishment'>Crime and Punishment</h3>
                         <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'population'}->{'imprisonment'}->{'percent'}% of the population ($city->{'population'}->{'imprisonment'}->{'population'} adult[s]).</p>
-                        <h3>Military</h3>
+                        <h3 id='military'>Military</h3>
                         $military
                     </section>
 ";
@@ -457,17 +465,61 @@ sub describe_summary {
     my $districts=describe_district_summary();
     my $previousid=$city->{'seed'}-1;
     my $nextid=$city->{'seed'}+1;
-    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
-    my $regionname=$city->{'realm'};
     my $content="
-                    <header>
-                       <h1><a href='?cityid=$previousid'>&lt;&lt;</a> <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a> <a href='?cityid=$nextid'>&gt;&gt;</a></h1>
-                        <div id='rightsidebar'>
-                            <div style=''>Region: $regionname ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> </div>
-                            <div style=''>City: $city->{'name'} <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> </div>
-                            <div >Official Flag:<br> <canvas id='flagcanvas' > </canvas></div>
+                    <div id='container'>
+
+                        <div id='header'>
+                            <h1><a href='?cityid=$previousid'>&lt;&lt;</a> <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a> <a href='?cityid=$nextid'>&gt;&gt;</a></h1>
                         </div>
-                        <h2>Summary</h2>
+
+                        <div id='leftsidebar'>
+                            <div >Official Flag:</div> <canvas id='flagcanvas' > </canvas>
+                            <ul>
+                                <li><a href='#summary'>Summary</a></li>
+                                <li><a href='#geography'>Geography</a></li>
+                                <li><a href='#cityscape'>CityScape</a>
+                                    <ul>
+                                        <li><a href='#districts'>Districts</a></li>
+                                        <li><a href='#housing'>Housing</a></li>
+                                        <li><a href='#businesses'>Businesses</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#government'>Government</a>
+                                    <ul>
+                                        <li><a href='#diplomaticties'>Diplomatic Ties</a></li>
+                                        <li><a href='#crimeandpunishment'>Crime and Punishment</a></li>
+                                        <li><a href='#military'>Military</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#population'>Population</a>
+                                    <ul>
+                                        <li><a href='#racerelations'>Race Relations</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#economy'>Economy</a>
+                                    <ul>
+                                        <li><a href='#resources'>Resources</a></li>
+                                        <li><a href='#taverns'>Taverns</a></li>
+                                        <li><a href='#localinfo'>Local Info</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#currentevents'>Current Events</a>
+                                    <ul>
+                                        <li><a href='#weather'>Weather</a></li>
+                                        <li><a href='#events'>Events</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#people'>People</a>
+                                    <ul>
+                                        <li><a href='#citizens'>Citizens</a></li>
+                                        <li><a href='#travelers'>Travelers</a></li>
+                                    </ul>
+                                </li>
+                            <ul>
+                        </div>
+                    <div id='centercolumn'>
+                    <header id='summary'>
+                        <h2>Summary</a></h2>
 
                         <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
 
@@ -503,7 +555,7 @@ sub describe_roads {
 }
 sub describe_districts {
     my $content="
-                <h3>Districts</h3>";
+                <h3 id='districts'>Districts</h3>";
     if (scalar(@{ $city->{'districts'}})>0){
          $content.="                   The city contains the following Districts:";
         return $content."<ul><li>".join('</li><li>',@{ $city->{'districts'}})."</li></ul>";
@@ -535,7 +587,7 @@ sub describe_businesses {
             $buildingcount   += $business->{'count'};
         } ## end foreach my $key ( sort keys...)
         return
-              "You can find the following businesses:<ul><li>"
+              "You can find the following businesses:<ul class='business-column'><li>"
             . join( '</li><li>', @businesses )
             . "</li></ul><p>Total: $buildingcount buildings, $specialistcount specialists.</p>";
     } else {
@@ -553,13 +605,13 @@ sub describe_cityscape {
      $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} eq "1" ? "1 is": $city->{'streets'}->{'mainroads'}." are";
      $city->{'streets'}->{'roads'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
     my $content="
-                    <section id='cityscpae'>
+                    <section id='cityscape'>
                         <h2>Cityscape</h2>
                         <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} major.$port$walls$roads</p>
                         $districts
-                        <h3>Housing</h3>
+                        <h3 id='housing'>Housing</h3>
                             The city contains the following housing:$housing
-                        <h3>Businesses</h3>
+                        <h3 id='businesses'>Businesses</h3>
                             $businesses
                     </section>
 ";
@@ -633,40 +685,46 @@ sub print_style{
             }
             section, header{
                 padding:5px;
-                width:800px;
-                margin:auto;
             
             }
-            ul{   
+            #container {
+                width: 100%;
+                margin: 0 auto;
+            }
+            h1{
+                margin-left:auto;
+                margin-right:auto;
+                text-align:center;
+            }
+            .business-column{   
                 -moz-column-width:222px;
                 -webkit-column-width:222px ;
             } 
-            .one-column {
-                -moz-column-width:800px;
-                -webkit-column-width:800px ;
-            } 
-            .one-column li {
-                padding-bottom:5px;
-            } 
-            .two-column ul{
-                -moz-column-width:250px;
-                -webkit-column-width:250px ;
+            #leftsidebar {
+                padding-right:5px;
+                background-color:#44aa22;
+                font-weight:bold;
+                float:left;
+                width:200px;
             }
             #rightsidebar {
                 font-weight:bold;
-                margin:auto;
-                padding:auto;
-                float:right;
-                width:270px;
-            }
-            #leftsidebar {
-                font-weight:bold;
-                margin:auto;
-                padding:auto;
                 float:left;
-                width:270px;
+                width:350px;
             }
-} 
+            #leftsidebar ul{
+                margin-left:0;
+                padding-left:20px;
+                
+            }
+            #centercolumn {
+                font-weight:bold;
+                float:left;
+                width:675px;
+            }
+            footer {
+                clear:both;
+            } 
         </style>
 
 

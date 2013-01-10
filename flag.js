@@ -18,6 +18,8 @@ function create_flag(seed,letter,colorlist) {
     var height=100;
     var width=height*ratio;
 
+    canvas.height=height;
+    canvas.width=width;
     flag=set_shape(flag, width, height);
     flag.clip();
     

@@ -8,8 +8,8 @@ function create_map(seed, continentcanvas,regioncanvas){
     var continentseed=seed -  seed%100;
     console.log(continentseed);
     Math.seedrandom(continentseed);
-    var width =400;
-    var height=400;
+    var width =350;
+    var height=300;
     var sites=2000;
     continentcanvas.height=height;continentcanvas.width=width
     var map=new WorldMap(width,height,sites);
