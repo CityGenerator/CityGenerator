@@ -21,7 +21,7 @@ function create_map(seed, continentcanvas,regioncanvas){
 
     map.designateKingdoms(continentseed,continentcanvas);    
     map.boxKingdoms();
-    var box=map.kingdoms[mod].box;
+    var box=map.kingdoms[mod].regionbox;
     map.drawbox(box,continentcanvas,'rgba(255,0,255,1)')
     //this.kingdom=map.getKingdom(seed,canvas);
                 regioncanvas.height=height;regioncanvas.width=width;
@@ -348,7 +348,7 @@ WorldMap.prototype.drawRegion = function(canvas,kingdomid){
     // First find bounding box
     var kingdom=this.kingdoms[kingdomid];
 
-    var box= kingdom.box;
+    var box= kingdom.regionbox;
     //console.log(box)
     this.translateregion(box,canvas,kingdomid);
 
