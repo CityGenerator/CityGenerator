@@ -2,50 +2,209 @@
 /*  Lets generate a worldmap!
 /* **************************************************************** */
 
-function create_map(seed, canvas){
+function create_map(seed, continentcanvas,regioncanvas){
     console.log(seed);
-    var mod=seed%10
-    var continentseed=seed-mod;
+    var mod=Math.floor((seed%100)/10)
+    var continentseed=seed -  seed%100;
     console.log(continentseed);
     Math.seedrandom(continentseed);
     var width =400;
     var height=400;
     var sites=2000;
-    canvas.height=height;canvas.width=width
+    continentcanvas.height=height;continentcanvas.width=width
     var map=new WorldMap(width,height,sites);
-    map.paintBackground(canvas);
+    map.paintBackground(continentcanvas);
     for (var i=0; i < map.diagram.cells.length ; i++ ){
-        map.colorPolygon(i,canvas,'biomes');
+        map.colorPolygon(map.diagram.cells[i],continentcanvas,'biomes');
     }
-    map.drawRivers(canvas);
+    map.drawRivers(continentcanvas);
 
-    map.drawNeighborKingdoms(continentseed,mod,canvas);    
-
-    
+    map.designateKingdoms(continentseed,continentcanvas);    
+    map.boxKingdoms();
+    var box=map.kingdoms[mod].box;
+    map.drawbox(box,continentcanvas,'rgba(255,0,255,1)')
+    //this.kingdom=map.getKingdom(seed,canvas);
+                regioncanvas.height=height;regioncanvas.width=width;
+                map.paintBackground(regioncanvas);
+                map.drawRegion(regioncanvas,mod);
 
 }
 
-WorldMap.prototype.drawNeighborKingdoms = function(continentseed,mod,canvas){
-    var colors = [   ' 255,105,180 ', ' 139,0,0 ',  ' 255,140,0 ',  ' 255,255,0 ',  ' 124,252,0 ', 
-                     ' 127,255,212 ',  '95,158,160  ',  '  30,144,255 ',  '  238,130,238',  '128,0,128  '      ];
+
+WorldMap.prototype.designateKingdoms = function(continentseed,canvas){
+    var colors = [ '255,105,180', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '95,158,160', '30,144,255', '238,130,238',  '128,0,128'      ];
+    this.kingdoms=[];
     for (var i=0 ; i<10 ; i++){
-        Math.seedrandom( continentseed  + i   )    ;
-        var color='rgba('+colors[i]+',.5)';
-        if (i == mod){
-            color= 'rgba(200,0,0,.3)';
+        var kingdom={}
+        kingdom.id=i
+        kingdom.seed=continentseed+i
+        kingdom.color='rgba('+colors[i]+',.5)';
 
-
-
-        var testcell=this.randomLand();
-        while ( testcell.kingdom){
-            testcell=this.randomLand();
+        Math.seedrandom( kingdom.seed   ) ;
+        kingdom.capital=this.randomLand();
+        while ( kingdom.capital.kingdom ){ // If this cell is already part of a kingdom, choose another
+            console.log('look a new kingdom('+kingdom.seed+")")
+            kingdom.capital=this.randomLand();
         }
-        this.drawKingdom( canvas,color, testcell);
-        }
+        kingdom = this.getKingdom( kingdom);
 
+        this.drawKingdom(kingdom,canvas)
+
+        this.kingdoms.push(kingdom)
     }
-                        
+    
 }
+
+WorldMap.prototype.drawKingdom = function(kingdom,canvas){
+    var polyline = canvas.getContext('2d');
+    polyline.beginPath();
+    for (var i=0; i<kingdom.outline.length; i++){
+        var vertex= kingdom.outline[i];
+        polyline.lineTo(vertex.x,vertex.y);
+    }
+    polyline.lineWidth=2;
+    polyline.strokeStyle="rgba(0,0,255,0.5)";
+    //polyline.fillStyle="rgba(200,0,0,0.3)";
+    polyline.fillStyle=kingdom.color;
+    polyline.lineCap = 'butt';
+    polyline.stroke();
+    polyline.fill();
+    polyline.closePath();
+
+}
+WorldMap.prototype.boxKingdoms = function(){
+    for (var i=0; i < this.kingdoms.length ; i++ ){
+        var kingdom=this.kingdoms[i];
+        kingdom.box={ minx:100000, miny:100000, maxx:0, maxy:0}
+        var fullcellIDs=[];
+        //figure out th
+        for (var k=0; k < kingdom.cells.length ; k++ ){ 
+            var cell=kingdom.cells[k];
+            fullcellIDs.push(cell.site.voronoiId);
+            //check both centers and edges
+            for (var j=0; j < cell.halfedges.length ; j++ ){ 
+                var he=cell.halfedges[j].edge;
+                if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
+                if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
+                kingdom.box.maxx=Math.ceil(Math.max( kingdom.box.maxx,he.va.x,he.vb.x));
+                kingdom.box.maxy=Math.ceil(Math.max( kingdom.box.maxy,he.va.y,he.vb.y));
+                kingdom.box.minx=Math.floor(Math.min(kingdom.box.minx,he.va.x,he.vb.x));
+                kingdom.box.miny=Math.floor(Math.min(kingdom.box.miny,he.va.y,he.vb.y));
+            }
+        }
+        kingdom.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
+        kingdom.regions=[];
+        //console.log(fullcellIDs)
+        for (var k=0; k < fullcellIDs.length ; k++ ){ 
+            var cell=this.diagram.cells[fullcellIDs[k]];
+            kingdom.regions.push(cell);
+            for (var j=0; j < cell.halfedges.length ; j++ ){ 
+                var he=cell.halfedges[j];
+                kingdom.regionbox.maxx=Math.ceil(Math.max( kingdom.regionbox.maxx,he.edge.va.x,he.edge.vb.x));
+                kingdom.regionbox.maxy=Math.ceil(Math.max( kingdom.regionbox.maxy,he.edge.va.y,he.edge.vb.y));
+                kingdom.regionbox.minx=Math.floor(Math.min(kingdom.regionbox.minx,he.edge.va.x,he.edge.vb.x));
+                kingdom.regionbox.miny=Math.floor(Math.min(kingdom.regionbox.miny,he.edge.va.y,he.edge.vb.y));
+            }
+        }
+    //console.log(kingdom.regions.length);
+    }
+}
+
+WorldMap.prototype.boxKingdom = function(box,canvas,color){
+
+
+}
+
+WorldMap.prototype.drawbox = function(box,canvas,color){
+    var polyline = canvas.getContext('2d');
+    polyline.beginPath();
+    polyline.lineTo(box.minx,box.miny);          polyline.lineTo(box.maxx,box.miny);
+    polyline.lineTo(box.maxx,box.maxy);          polyline.lineTo(box.minx,box.maxy);
+    polyline.lineTo(box.minx,box.miny);
+    polyline.lineWidth=2;
+    polyline.strokeStyle=color;
+    polyline.lineCap = 'butt';
+    polyline.stroke();
+    polyline.closePath();
+
+}
+WorldMap.prototype.getKingdom = function(kingdom){
+    var maxkingdom=100;
+    kingdom.cells=[kingdom.capital];
+    for (var i=0; i<maxkingdom; i++){
+        // Select a random cell from the kingdom.cells list
+        var parentCell= kingdom.cells[  Math.floor( Math.random()*kingdom.cells.length) ];
+
+        // select a random side from our parent cell
+        var side=parentCell.halfedges[ Math.floor( Math.random()*parentCell.halfedges.length)  ].edge;
+        var cells=this.diagram.cells;
+        if (         side.lSite != null && kingdom.cells.indexOf(cells[side.lSite.voronoiId]) == -1 && ! cells[side.lSite.voronoiId].ocean && cells[side.lSite.voronoiId].kingdom==false ){
+            cells[side.lSite.voronoiId].kingdom=true
+            kingdom.cells.push(cells[side.lSite.voronoiId]);
+        } else if (  side.rSite != null && kingdom.cells.indexOf(cells[side.rSite.voronoiId]) == -1 &&  ! cells[side.rSite.voronoiId].ocean && cells[side.lSite.voronoiId].kingdom==false){
+            cells[side.rSite.voronoiId].kingdom=true
+            kingdom.cells.push(cells[side.rSite.voronoiId]);
+        }
+        kingdom=this.getKingdomPolygon(kingdom);
+    }
+    return kingdom;
+}
+// Determine if halfedge has a side that is not in the kingdom list
+WorldMap.prototype.isKingdomEdge = function(ids,halfedge){
+    if (  ids.indexOf( halfedge.edge.lSite.voronoiId) ==-1 || ids.indexOf( halfedge.edge.rSite.voronoiId) ==-1  ){
+        return true
+    }else{
+        return false
+    }
+}
+
+WorldMap.prototype.getKingdomPolygon = function(kingdom){
+
+        // Get a list of all IDs for the kingdom
+        var ids=[]
+        for (var i=0; i < kingdom.cells.length ; i++ ){ ids.push(kingdom.cells[i].site.voronoiId)}
+
+        //Get a list of all external edges
+        var edges=[];
+        for (var i=0; i < kingdom.cells.length ; i++ ){
+            var cell=kingdom.cells[i];
+            for (var j=0; j < cell.halfedges.length ; j++ ){
+                var he=cell.halfedges[j];
+                if (  this.isKingdomEdge(ids,he) ){
+                    edges.push(he);
+                }
+            }    
+        }
+
+        //loop through the edges and push them onto the outline list for drawing later
+        var pos=edges[0].edge.va;
+        kingdom.outline=[pos];
+        var maxfail=edges.length;
+        while(edges.length >0){
+            var testedge=edges.pop()
+            if (testedge.edge.va == pos ){
+                    pos=testedge.edge.vb; 
+                    kingdom.outline.push(pos);
+                    maxfail=edges.length;
+            }else if (testedge.edge.vb == pos ){
+                    pos=testedge.edge.va; 
+                    kingdom.outline.push(pos);
+                    maxfail=edges.length;
+            }else{
+                maxfail--;
+                if (maxfail== 0){
+                    break;
+                }
+                edges.unshift(testedge);
+            }
+        }
+        return kingdom;
+}
+
+
+
+
+
 function  WorldMap(width,height,point_count) {
     // Base Parameters
     this.width=width;
@@ -109,7 +268,7 @@ WorldMap.prototype.randomLand = function(){
     var randomcell=null;
     while ( randomcell ==null){
         var cell=this.diagram.cells[ Math.floor(  Math.random()*this.diagram.cells.length  )   ];
-        if (! cell.ocean && ! cell.kingdom){
+        if (! cell.ocean && ! cell.kingdom && (cell.river || cell.lake || Math.random() >.5) ){
             randomcell=cell;
         }
 
@@ -181,74 +340,105 @@ WorldMap.prototype.setDownslope = function(cell){
     }
 }
 
-WorldMap.prototype.drawKingdom = function(canvas,color,basecell){
-        var celllist=this.getKingdom(basecell);
-        var ids=[]
-        for (var i=0; i < celllist.length ; i++ ){ ids.push(celllist[i].site.voronoiId)}
-        //console.log('all IDs'+ids);
-        var edges=[];
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
-        for (var i=0; i < celllist.length ; i++ ){
-            var cell=celllist[i];
-            for (var j=0; j < cell.halfedges.length ; j++ ){
-                var he=cell.halfedges[j];
-                if (  ids.indexOf( he.edge.lSite.voronoiId) ==-1 || ids.indexOf( he.edge.rSite.voronoiId) ==-1  ){
-                    edges.push(he);
-                }
-            }    
-        }
-        var polyfill = canvas.getContext('2d');
-        polyfill.beginPath();
-        var pos=edges[0].edge.va;
-        //console.log("Total edges:"+edges.length+"   starting position")
-        //console.log(pos)
-        var drawndots=0
-        while(edges.length >0){
-            var testedge=edges.pop()
-            //console.log("edges left:"+edges.length+ "test POS: "+pos.voronoiId+" lsite: "+testedge.edge.va.voronoiId+" rsite: "+testedge.edge.vb.voronoiId)
+WorldMap.prototype.drawRegion = function(canvas,kingdomid){
+    // First find bounding box
+    var kingdom=this.kingdoms[kingdomid];
 
-            if (testedge.edge.va == pos ){
-                    polyfill.lineTo(testedge.edge.vb.x,testedge.edge.vb.y);
-                    pos=testedge.edge.vb; 
-                    drawndots++
-            }else if (testedge.edge.vb == pos ){
-                    polyfill.lineTo(testedge.edge.va.x,testedge.edge.va.y);
-                    pos=testedge.edge.va; 
-                    drawndots++
-            }else{
-                edges.unshift(testedge);
+    var box= kingdom.box;
+    //console.log(box)
+    this.translateregion(box,canvas,kingdomid);
+
+    var regions=this.kingdoms[kingdomid].regions;
+
+    var points=this.getKingdomPolygon(kingdom);
+
+
+    for (var i=0; i < regions.length ; i++ ){
+        this.colorPolygon(regions[i],canvas,'biomes');
+    }
+    this.drawKingdom(kingdom,canvas)
+    // translate cell details over
+
+
+}
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+WorldMap.prototype.translateregion = function(box,canvas,kingdomid){
+     //console.log(this.kingdoms[kingdomid]);
+    for (var i=0; i < this.kingdoms[kingdomid].regions.length ; i++ ){ 
+        var cell=this.kingdoms[kingdomid].regions[i];
+        
+        canvas.height=(box.maxy-box.miny)/(box.maxx-box.minx)*canvas.width
+
+        //console.log("Old X,Y:"+cell.site.x+","+cell.site.y);
+        cell.site.x=this.translatePoint(cell.site.x,box.minx,box.maxx,canvas.width);
+        cell.site.y=this.translatePoint(cell.site.y,box.miny,box.maxy,canvas.height);
+        cell.site.x=cell.site.x
+        cell.site.y=cell.site.y
+        for (var j=0; j < cell.halfedges.length ; j++ ){ 
+            var edge=cell.halfedges[j].edge;
+            if (edge.va.wastranslated != true){
+                edge.va.wastranslated=true
+                edge.va.x=this.translatePoint(edge.va.x,box.minx,box.maxx,canvas.width);
+                edge.va.y=this.translatePoint(edge.va.y,box.miny,box.maxy,canvas.height);
+            }
+            if (edge.vb.wastranslated != true){
+                edge.vb.wastranslated=true
+                edge.vb.x=this.translatePoint(edge.vb.x,box.minx,box.maxx,canvas.width);
+                edge.vb.y=this.translatePoint(edge.vb.y,box.miny,box.maxy,canvas.height);
             }
         }
-        polyfill.fillStyle='rgba(255,0,0,0.5)';
-        polyfill.fill();
-        polyfill.closePath()
+        //console.log("New X,Y:"+cell.site.x+","+cell.site.y);
+    }
+}
 
-//--------
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+WorldMap.prototype.translatePoint = function(x,min,max,width){
+    return Math.round(      (x-min)*width/(max-min)    );
+}
 
-        var polyline = canvas.getContext('2d');
-        polyline.beginPath();
-        for (var i=0; i < celllist.length ; i++ ){
-            var cell=celllist[i];
-            for (var j=0; j < cell.halfedges.length ; j++ ){
-                var edge=cell.halfedges[j];
-                if (  ids.indexOf( edge.edge.lSite.voronoiId) ==-1 || ids.indexOf( edge.edge.rSite.voronoiId) ==-1  ){
-                    console.log( "look, a single edge")
-                    var vertexa=cell.halfedges[j].getStartpoint();
-                    polyline.moveTo(vertexa.x,vertexa.y);
-                    var vertexb=cell.halfedges[j].getEndpoint();
-                    polyline.lineTo(vertexb.x,vertexb.y);
-                }
 
-                var vertexa=cell.halfedges[j].getStartpoint();
-                var vertexb=cell.halfedges[j].getEndpoint();
-            }    
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+WorldMap.prototype.box = function(cells){
+    var minx=100000;
+    var miny=100000;
+    var maxx=0;
+    var maxy=0;
+    var fullcellIDs=[]
+    for (var i=0; i < cells.length ; i++ ){ 
+        var cell=cells[i];
+        fullcellIDs.push(cell.site.voronoiId);
+        //check both centers and edges
+        for (var j=0; j < cell.halfedges.length ; j++ ){ 
+            var he=cell.halfedges[j].edge;
+            if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
+            if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
+            maxx=Math.ceil(Math.max(maxx,he.va.x,he.vb.x));
+            maxy=Math.ceil(Math.max(maxy,he.va.y,he.vb.y));
+            minx=Math.floor(Math.min(minx,he.va.x,he.vb.x));
+            miny=Math.floor(Math.min(miny,he.va.y,he.vb.y));
         }
-        polyline.lineWidth=2;
-        polyline.strokeStyle="rgba(0,0,255,0.5)";
-        polyline.lineCap = 'butt';
-        polyline.stroke();
-        polyline.closePath();
+    }
 
+    for (var i=0; i < fullcellIDs.length ; i++ ){ 
+        var cell=this.diagram.cells[fullcellIDs[i]];
+        this.region.push(cell);
+        for (var j=0; j < cell.halfedges.length ; j++ ){ 
+            var he=cell.halfedges[j];
+            maxx=Math.ceil(Math.max(maxx,he.edge.va.x,he.edge.vb.x));
+            maxy=Math.ceil(Math.max(maxy,he.edge.va.y,he.edge.vb.y));
+            minx=Math.floor(Math.min(minx,he.edge.va.x,he.edge.vb.x));
+            miny=Math.floor(Math.min(miny,he.edge.va.y,he.edge.vb.y));
+        }
+    }
+
+    return {minx:minx,miny:miny,maxx:maxx,maxy:maxy};
 }
 
 WorldMap.prototype.drawRivers = function(canvas){
@@ -266,7 +456,7 @@ WorldMap.prototype.drawRivers = function(canvas){
             ctx.stroke();
         }
         if ( cell.lake){
-            this.colorPolygon(cell.site.voronoiId,canvas,'highlight','rgba(128,128,255,0.5)');
+            this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,0.5)');
         }
     }
 }
@@ -298,42 +488,6 @@ WorldMap.prototype.drawDownslopes = function(canvas){
     }
 }
 
-
-
-WorldMap.prototype.getKingdom = function(cell){
-    //choose between 1 and sites/100
-    //var maxkingdom=this.diagram.cells.length/100;
-    var maxkingdom=50;
-    var kingdomlist=[cell];
-    for (var i=0; i<maxkingdom; i++){
-        //console.log('i '+i+" of "+maxkingdom)
-        var parentcellid=Math.floor( Math.random()*kingdomlist.length);
-        //console.log("parentcellid "+parentcellid +" of "+kingdomlist.length);
-
-        var parentCell=kingdomlist[parentcellid];
-        //console.log(parentCell);
-        var sideid=Math.floor( Math.random()*parentCell.halfedges.length); 
-        //console.log(sideid);
-        var side=parentCell.halfedges[ sideid  ];
-        var childcell;
-
-        //console.log("================ lsite:" + side.edge.lSite+" voronoiid "+side.edge.lSite.voronoiId);
-        if (         side.edge.lSite != null &&  kingdomlist.indexOf(this.diagram.cells[side.edge.lSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.lSite.voronoiId].ocean &&this.diagram.cells[side.edge.lSite.voronoiId].kingdom==false ){
-            //console.log("lsite: ")
-            this.diagram.cells[side.edge.lSite.voronoiId].kingdom=true
-            kingdomlist.push(this.diagram.cells[side.edge.lSite.voronoiId]);
-        } else if (  side.edge.rSite != null  && kingdomlist.indexOf(this.diagram.cells[side.edge.rSite.voronoiId]) == -1 && ! this.diagram.cells[side.edge.rSite.voronoiId].ocean && this.diagram.cells[side.edge.lSite.voronoiId].kingdom==false){
-            //console.log("rsite: ")
-            this.diagram.cells[side.edge.rSite.voronoiId].kingdom=true
-            kingdomlist.push(this.diagram.cells[side.edge.rSite.voronoiId]);
-        }else{
-            //console.log("reduce i" +i)
-        }
-        //console.log(kingdomlist);
-    }
-    //select random half-edge
-    return kingdomlist;
-}
 
 /* **************************************************************** */
 /*  generateRandomPoints  generate a random set of points using
@@ -370,8 +524,6 @@ WorldMap.prototype.assignMoisture = function() {
         var y = cell.site.y;
         var centerx = width/2;
         var centery = height/2;
-        var lesser  = width < height ? width : height;
-        var minradius= 1;//Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2))/2 ;
         var adjustedx=x-centerx;
         var adjustedy=y-centery;
 
@@ -380,8 +532,8 @@ WorldMap.prototype.assignMoisture = function() {
         // Pythagorean theorem for the win
         cell.radius=1//+  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2))/30;
 
-        var percent= Math.abs(cell.radius/minradius)  +noise/20;
-        cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"  minradius:"+minradius+" percent: "+percent;
+        var percent= Math.abs(cell.radius)  +noise/20;
+        cell.debug=adjustedx+" "+adjustedy + " radius:"+cell.radius+"   percent: "+percent;
 
         percent=Math.pow(percent,2)-.6+sim.noise2D(x/150,y/150)/2;
         cell.moisture=Math.round( percent*300)/100 ;
@@ -528,7 +680,7 @@ WorldMap.prototype.getSitePercent = function(site, sim){
         var y = site.y;
         var centerx = width/2;
         var centery = height/2;
-        var lesser  = width < height ? width : height;
+        var lesser  = Math.min(width, height);
         var minradius= Math.sqrt(   Math.pow(lesser,2) + Math.pow(lesser,2))/2 ;
         var adjustedx=x-centerx;
         var adjustedy=y-centery;
@@ -594,8 +746,7 @@ WorldMap.prototype.colorCorner = function(corner,canvas,mode,color){
 /*  colorPolygon make a pretty polygon given a cellid and a canvas
 /*  to draw on.
 /* **************************************************************** */
-WorldMap.prototype.colorPolygon = function(cellid,canvas,mode,color,noborder){
-    var cell = this.diagram.cells[cellid];
+WorldMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     if (color == null){
         if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
             //not intentional, but s exxpected.
@@ -709,7 +860,7 @@ WorldMap.prototype.paintBackground = function(canvas){
         ctx.globalAlpha = 1;
         ctx.fillStyle = 'white';
         ctx.beginPath();
-        ctx.rect(0,0,this.width,this.height);
+        ctx.rect(0,0,canvas.width,canvas.height);
         ctx.fill();
 }
 

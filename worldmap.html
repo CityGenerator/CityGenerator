@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src='/js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
-        <script src="map.js"></script>
-        <script src="rhill-voronoi-core.js"></script>
-        <script src="simplex-noise.js"></script>
+        <script src='js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
+        <script src="js/map.js"></script>
+        <script src="js/rhill-voronoi-core.js"></script>
+        <script src="js/simplex-noise.js"></script>
         <script>
             window.seed=Number(getParameterByName('cityid'));
             if (window.seed <=0 || window.seed >=1000000 ){
                 window.seed= Math.floor((Math.random()*1000000)+1); 
             }
             Math.seedrandom(window.seed);
-            var width =600;
-            var height=450;
-            var sites=6000;
+            var width =450;
+            var height=300;
+            var sites=3000;
             var map=new WorldMap(width,height,sites);
 
             window.onload = function(){
@@ -23,25 +23,31 @@
                 map.paintBackground(canvas);
 
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(i,canvas,document.getElementById("mode").value);
+                    map.colorPolygon(map.diagram.cells[i],canvas,document.getElementById("mode").value);
                 }
                 colorlegend();
 
+                map.drawRivers(canvas);
+                var continentseed=window.seed - window.seed%10;
+                map.designateKingdoms(continentseed,canvas);
+                map.boxKingdoms();
 
-                //map.drawRivers(canvas);
-
-                map.drawNeighborKingdoms(seed,1,canvas);
 //                map.render(canvas);
 
+                var box=map.kingdoms[1].box;
+                map.drawbox(box,canvas,'rgba(255,0,255,1)')
+
+//                map.drawbox(box,canvas,'rgba(255,200,0,1)')
 
 
 
+                var canvas = document.getElementById("region");
+                canvas.height=height;canvas.width=width;
+                map.paintBackground(canvas);
+                map.drawRegion(canvas,1);
 
-
-
-
-
-
+//                map.drawRivers(canvas);
+//                map.render(canvas);
 
             };
  
@@ -68,7 +74,7 @@
                 var mode = document.getElementById("mode").value;
                 map.paintBackground(canvas);
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(i,canvas,mode);
+                    map.colorPolygon(map.diagram.cells[i],canvas,mode);
                 }
             }
             function drawCorners(){
@@ -93,7 +99,7 @@
                 if (! cell.ocean){
                     var cells=map.getRegion(cell);
                     for (var i=0; i < cells.length ; i++ ){
-                        map.colorPolygon(cells[i].site.voronoiId,canvas,mode,'#fd0a1d');
+                        map.colorPolygon(cells[i],canvas,mode,'#fd0a1d');
                     }
                 }else{
                     alert("cell "+cellid+' is ocean, so no region for it!');
@@ -106,10 +112,10 @@
                 var cell   = map.diagram.cells[cellid];
                 map.paintBackground(canvas);
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(i,canvas,document.getElementById("mode").value);
+                    map.colorPolygon(map.diagram.cells[i],canvas,document.getElementById("mode").value);
                 }
                 //map.render(canvas);
-                map.colorPolygon(cellid,canvas,'highlight','#0FF');
+                map.colorPolygon(map.diagram.cells[cellid],canvas,'highlight','#0FF');
                 document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+" "+
                                                              "  elevation: " + cell.elevation+"\n"+
                                                              "  x,y: "       + cell.site.x+","+cell.site.y+" "+
@@ -128,6 +134,7 @@
     </head>
     <body>
         <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
+        <canvas id="region"  style="border:1px solid black;float:left;" ></canvas>
 
         <div>
             cityid: <input type='text' id='seedID' />

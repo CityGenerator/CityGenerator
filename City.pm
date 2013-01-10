@@ -55,6 +55,7 @@ sub build_city {
     $city           = { 'seed' => $seed };
     $city->{'name'} = parse_object( $xml_data->{'cityname'} )->{'content'};
 
+    generate_realm();
     generate_city_core();
     generate_city_credence();
     generate_physical_traits();
@@ -108,7 +109,6 @@ sub generate_city_credence {
 ###############################################################################
 
 sub generate_physical_traits {
-    generate_realm();
     generate_location();
     generate_climate();
     generate_housing();
@@ -812,7 +812,7 @@ sub generate_markets {
 ###############################################################################
 sub generate_realm {
     my $oldseed=$seed;
-    $seed=set_seed($seed-$seed%20);
+    $seed=set_seed($seed-$seed%10);
     $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
     $seed=set_seed($oldseed);
 }
