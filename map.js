@@ -29,50 +29,73 @@ function create_map(seed, continentcanvas,regioncanvas,names){
     map.paintBackground(regioncanvas);
     map.drawRegion(regioncanvas,regionmod);
     map.drawKingdoms(regioncanvas);
+    var colors = [ '255,105,180', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '5,158,160', '30,144,255', '238,130,238',  '128,0,128'      ];
     for (var cityid=0 ; cityid<10 ; cityid++){
         map.drawCities(regioncanvas,regionmod,cityid,citymod,names);
     }
 }
 
-
+WorldMap.prototype.triangulatePosition = function(va,vb,vc){
+    var t=Math.random()
+    var s=Math.random()
+    if (t+s > 1){
+        s=1-s
+        t=1-t
+    }
+    var a = 1-s-t
+    var b = s
+    var c = t
+    var randx=va.x*a +vb.x*b + vc.x*c
+    var randy=va.y*a +vb.y*b + vc.y*c
+    return {x:randx,y:randy}
+}
 WorldMap.prototype.drawCities = function(canvas,regionmod,cityid,citymod,names){
-    console.log(names[cityid])
-    var regioncount=this.kingdoms[regionmod].cells.length;
-    var cell=this.kingdoms[regionmod].cells[cityid%regioncount]
-    var corners= cell.corners
-    var randomcorner=Math.floor(Math.random()*corners.length);
-    var va=corners.splice(randomcorner ,1)[0];
-    randomcorner=Math.floor(Math.random()*corners.length);
-    var vb=corners.splice(randomcorner ,1)[0];
-    var deltax= Math.max(va.x,vb.x) - Math.min(va.x,vb.x)
-    var deltay=Math.max(va.y,vb.y) - Math.min(va.y,vb.y)
-    var percent=Math.random();
-    var randx = deltax*percent + Math.min(va.x,vb.x)
-    var randy = deltay*percent + Math.min(va.y,vb.y)
-
-//    this.colorPolygon(cell,canvas,'highlight','rgba(255,200,100,0.5)');
-
-    var polyfill = canvas.getContext('2d');
-    var color='#999999'
-    if (cityid == citymod)  {
+    
+    var color="#888888"
+    if (citymod== cityid){
         color='#000000'
     }
+    console.log(cityid+" "+citymod)
+    // Using the region and cityid, select a cell and get a list of its corners
+    var regioncount=this.kingdoms[regionmod].cells.length;
+    var corners=this.kingdoms[regionmod].cells[cityid%regioncount].corners
+
+    // Select 3 random corners from the list
+    var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+    var vb=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+    var vc=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+
+    var t=Math.random()
+    var s=Math.random()
+    if (t+s > 1){
+        s=1-s
+        t=1-t
+    }
+    var a = 1-s-t
+    var b = s
+    var c = t
+    randx=va.x*a +vb.x*b + vc.x*c
+    randy=va.y*a +vb.y*b + vc.y*c
+
+    this.paintdot(canvas,randx,randy,color);
+
+}
+WorldMap.prototype.paintdot = function(canvas,x,y,color){
+    var polyfill = canvas.getContext('2d');
 
     polyfill.strokeStyle=color;
     polyfill.fillStyle=color;
     polyfill.beginPath();
-    polyfill.lineTo(randx-2,randy-2);
-    polyfill.lineTo(randx+2,randy-2);
-    polyfill.lineTo(randx+2,randy+2);
-    polyfill.lineTo(randx-2,randy+2);
+    
+    polyfill.moveTo(x-2,y-2);
+    polyfill.lineTo(x+2,y-2);
+    polyfill.lineTo(x+2,y+2);
+    polyfill.lineTo(x-2,y+2);
 
     polyfill.closePath();
     polyfill.fill();
     polyfill.stroke();
-
-
 }
-
 WorldMap.prototype.paintMap = function(canvas){
     this.paintBackground(canvas);
     for (var i=0; i < this.diagram.cells.length ; i++ ){
