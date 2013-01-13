@@ -76,15 +76,16 @@ function build_city(  params      ){
     for (var i = 0; i < 20+params.size*2; i++) {
         city.citycells.push(city.findCenterCell(citycanvas))
     }
-    //console.log(city.citycells)
+
+    
     for (var i = 0; i < city.citycells.length; i++) {
         var cell=city.citycells[i];
         city.colorPolygon(cell,citycanvas,'highlight','#ffffff',false);
     }
     city.getCityPolygon()
     city.drawCityPolygon(citycanvas,  Math.ceil(params.wallheight/10)   )
+//    city.render(citycanvas)
     city.drawRoads(citycanvas, params.roads, params.mainroads)
-    city.render(citycanvas)
 }
 
 

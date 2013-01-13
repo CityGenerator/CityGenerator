@@ -167,101 +167,155 @@ CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
         }
 
         var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-        if (i==2){
+//        if (i==2){//XXX remove this iff when done debugging
             this.drawRoad(canvas,va,roadwidth);
-        }
+//        }
     }
 }
 
 
-CityMap.prototype.getCandidates = function(canvas,va){
-    var candidates =[]
 
-    var closex= Math.min( va.x ,  (canvas.width- va.x) )
-    var closey= Math.min( va.y ,  (canvas.height- va.y) )
- 
-    for (var i=0; i < this.diagram.cells.length; i++){
-        var cell=this.diagram.cells[i]
-        if ( ! cell.incity){
-            if (  (closex < closey)    &&  ( (cell.site.x < va.x && va.x < canvas.width - va.x ) ||  (cell.site.x > va.x && va.x > canvas.width - va.x ) )  ){
-                candidates.push(cell)
-            }else if (  (closex > closey)   &&  ((cell.site.y < va.y && va.y < canvas.height - va.y ) ||  (cell.site.y > va.y && va.y > canvas.height - va.y ) )  ){ 
-                candidates.push(cell)
-            }
-        }
-    }
-    return candidates
-}
 
-CityMap.prototype.selectTarget = function(canvas,va,candidates){
-    var closex= Math.min( va.x ,  (canvas.width- va.x) )
-    var closey= Math.min( va.y ,  (canvas.height- va.y) )
-    var target=null
-
-    for (var i=0; i < candidates.length; i++){
-        var cell=candidates[i]
-        this.paintdot(canvas, cell.site.x, cell.site.y, 6,'rgba(20,20,20,.1)') //marks the direction
-
-        for (var j=0; j < cell.corners.length; j++){
-                
-            if ( cell.corners[j] == va   ){
-                if (target == null ||  ( closex<closey && cell.site.x < target.site.x  ) || ( closex>closey && cell.site.y < target.site.y  )  ){
-                    target=cell
-                }//XXX
-            }
-
-        }
-    }
-    return target
-}
-CityMap.prototype.selectTargetCorner = function(target,va){
-    var targetcorner=null
-    for (var j=0; j < target.halfedges.length; j++){
-        var edge=target.halfedges[j].edge;
-        if (edge.va ==va || edge.vb == va ){ // This edge is a potential edge
-            if (edge.va ==va ){
-                if (targetcorner == null || edge.vb.x< targetcorner.x){
-                    targetcorner=edge.vb
-                }
-            }else if (edge.vb == va){
-                if (targetcorner == null || edge.va.x< targetcorner.x){
-                    targetcorner=edge.va
-                }
-            }
-        }
-    }
-    return targetcorner
-    
-}
 CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     var road=[va]
     var loop=30
-    this.paintdot(canvas, va.x, va.y, 6,'rgba(200,100,250,.5)') // Initial gateway
-    while (loop-- >0){ // this loop should never get to 30; this is a failsafe
-        console.log(loop)
-    
-        var candidates=this.getCandidates(canvas,va)
-        var target    =this.selectTarget(canvas,va,candidates)
 
-        if (target == null){
-            break
-        }else{
-            var targetcorner=this.selectTargetCorner(target,va);
-            //this.paintdot(canvas, va.x, va.y, 6,'rgba(200,0,50,.1)')
-            if (targetcorner !=null){
-                console.log(this)
-                if (this.outline.indexOf(targetcorner) == -1){ // targetcorner is allowe because it's not part of the outline
-                    road.push(targetcorner)
-                }else {
-                    road=[targetcorner]
+    var focus;
+    var minx=Math.min(va.x,canvas.width-va.x);
+    var miny=Math.min(va.y,canvas.height-va.y);
+
+    var targetva=null
+    var candidatecells=[]
+    var cells=this.diagram.cells
+    if (minx/canvas.width < miny/canvas.height){ // X is closer than Y
+        if ( minx == va.x ) {
+            while (va.x >0 ){ //bear west
+                for (var i=0; i < cells.length; i++){
+                    if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+                        candidatecells.push(cells[i])
+                    }
                 }
-                va=targetcorner
+                for (var i=0; i < candidatecells.length; i++){
+                    for (var j=0; j < candidatecells[i].halfedges.length; j++){
+                        var edge=candidatecells[i].halfedges[j].edge
+                        if ( edge.va == va  ){
+                            if ( edge.vb.x < va.x){
+                                va=edge.vb
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                    road.push(va)
+                            }
+                        } else if ( edge.vb ==va  ){
+                            if ( edge.va.x < va.x){
+                                va=edge.va
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            while (va.x <canvas.width ){//bear east
+                for (var i=0; i < cells.length; i++){
+                    if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+                        candidatecells.push(cells[i])
+                    }
+                }
+                for (var i=0; i < candidatecells.length; i++){
+                    for (var j=0; j < candidatecells[i].halfedges.length; j++){
+                        var edge=candidatecells[i].halfedges[j].edge
+                        if ( edge.va == va  ){
+                            if ( edge.vb.x > va.x){
+                                va=edge.vb
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        } else if ( edge.vb ==va  ){
+                            if ( edge.va.x > va.x){
+                                va=edge.va
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }else{    
+        if ( miny == va.y ) {
+            while (va.y >0 ){ // bear north
+                for (var i=0; i < cells.length; i++){
+                    if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+                        candidatecells.push(cells[i])
+                    }
+                }
+                for (var i=0; i < candidatecells.length; i++){
+                    for (var j=0; j < candidatecells[i].halfedges.length; j++){
+                        var edge=candidatecells[i].halfedges[j].edge
+                        if ( edge.va == va  ){
+                            if ( edge.vb.y < va.y){
+                                va=edge.vb
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        } else if ( edge.vb ==va  ){
+                            if ( edge.va.y < va.y){
+                                va=edge.va
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        }
+                    }
+                }
+            }
+        }else{
+            while (va.y <canvas.height ){//bear south
+                for (var i=0; i < cells.length; i++){
+                    if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+                        candidatecells.push(cells[i])
+                    }
+                }
+                for (var i=0; i < candidatecells.length; i++){
+                    for (var j=0; j < candidatecells[i].halfedges.length; j++){
+                        var edge=candidatecells[i].halfedges[j].edge
+                        if ( edge.va == va  ){
+                            if ( edge.vb.y > va.y){
+                                va=edge.vb
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        } else if ( edge.vb ==va  ){
+                            if ( edge.va.y > va.y){
+                                va=edge.va
+                                if (this.outline.indexOf(va) != -1){
+                                    road=[]
+                                }
+                                road.push(va)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 
 
-    this.paintdot(canvas, road[0].x, road[0].y, 6,'rgba(100,100,100,.9)') // final gateway
+
+    this.paintdot(canvas, road[0].x, road[0].y, 3,'rgba(100,100,100,.9)') // final gateway
     var c = canvas.getContext('2d');
 
     c.strokeStyle='#5E2605';
@@ -271,13 +325,26 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
         c.lineTo(road[j].x, road[j].y);
     }
     c.stroke()
-    //determine which side is closest
-    // determine which cells are closer to target side
-    // determine which cells share va
-    // determine which cell is closest to target side
-    // determine which edges contain va, determine which
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 CityMap.prototype.paintdot = function(canvas,x,y,radius,color){
     var polyfill = canvas.getContext('2d');
