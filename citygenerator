@@ -114,6 +114,8 @@ sub describe_header{
         $cityID++
     }
     my $names="['".join("', '",@names)."']";
+    my $districts="['".join("', '",@{ $city->{'districts'}})."']";
+
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
@@ -121,10 +123,19 @@ sub describe_header{
             $style
             <script src='js/flag.js' ></script>
             <script src='js/map.js' ></script>
+            <script src='js/CityMap.js' ></script>
             <script src='js/rhill-voronoi-core.js' ></script>
             <script src='js/simplex-noise.js' ></script>
             </head>
-            <body onload=\"create_flag($city->{'seed'}, '$letter', $flagcolors); create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region'),$names) ;\">
+            <body onload=\"create_flag($city->{'seed'}, '$letter', $flagcolors); create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region') ,$names);build_city({    seed:$city->{'seed'},
+                        canvas:document.getElementById('city'),
+                        districts: $districts, 
+                        size:$city->{'size_modifier'}, 
+                        wallheight:$city->{'walls'}->{'height'}, 
+                        protectedpercent:$city->{'walls'}->{'protectedpercent'},
+                        roads:$city->{'streets'}->{'roads'},
+                        mainroads:$city->{'streets'}->{'mainroads'},
+                    }) ;\">
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
 ";
     return $content;
@@ -135,8 +146,9 @@ sub describe_footer{
     my $content="
             </div>
             <div id='rightsidebar'>
-                <div >Region: $regionname ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> <div id='continentlegend'></div></div>
-                <div >City: $city->{'name'} <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> <div id='regionlegend'></div> </div>
+                <div >City: $city->{'name'} <br><canvas id=\"city\"  style=\"border:1px solid black;\" ></canvas> <div id='citylegend'></div> </div>
+                <div >$regionname <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> <div id='regionlegend'></div> </div>
+                <div >World Map ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> <div id='continentlegend'></div></div>
             </div>
             <footer>
                 

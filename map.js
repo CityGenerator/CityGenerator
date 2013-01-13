@@ -1,38 +1,107 @@
 /* **************************************************************** */
 /*  Lets generate a worldmap!
+/*  The first function, create_map is called by citygenerator to
+//* configure all of the maps and add the legend.
 /* **************************************************************** */
 
 function create_map(seed, continentcanvas,regioncanvas,names){
-    console.log(seed);
-    var regionmod=Math.floor((seed%100)/10)
-    var citymod=Math.floor((seed%10))
+    // regionmod determines which of the 10 regions on this continent to use.
+    // With a cityid of 744158, the 5 indications which region to focus on
+    var regionmod=Math.floor(   (seed%100)/10  );
+
+    // citymod determines which of the 10 cities in this region to use.
+    // uses the last  digit of the cityid: 744158 -> 8
+    var citymod=Math.floor((seed%10));
+
+    // continent seed refers to which continent we're on- it essentially
+    // ignores the last two digits of the cityid: 744158 -> 744100 
     var continentseed=seed -  seed%100;
-    console.log(continentseed);
+
+    // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
-    var width =352;
-    var height=300;
+
+    // The number of cells in a given continent.
     var sites=2000;
-    continentcanvas.height=height;continentcanvas.width=width
+
+    // The width and height are hard-coded here
+    var width =350;
+    var height=300;
+    continentcanvas.height=height;
+    continentcanvas.width=width
+
+    // This is the crux of our entire map.
     var map=new WorldMap(width,height,sites);
-    map.paintMap(continentcanvas)
-    
     map.designateKingdoms(continentseed);    
-    map.drawKingdoms(continentcanvas);
+
+    map.paintMap(continentcanvas)
+    map.drawKingdoms(continentcanvas,true);
     var box=map.kingdoms[regionmod].regionbox;
     map.drawbox(box,continentcanvas,'rgba(255,0,255,1)');
+    print_legend(map)
+
+    regioncanvas.height=height;regioncanvas.width=width;
+    map.paintBackground(regioncanvas,'#ffffff');
+    map.drawRegion(regioncanvas,regionmod);
+    map.drawKingdoms(regioncanvas, false);
+
+
+    map.drawCities(regioncanvas,regionmod,citymod,names);
+    document.map=map
+}
+
+
+
+
+
+
+
+
+
+function build_city(  params      ){
+
+    Math.seedrandom(params.seed)
+    var citycanvas=params.canvas
+
+    var width =350;
+    var height=300;
+    citycanvas.height=height;citycanvas.width=width;
+    var citysitecount=100+params.size*10 // should range between 50 cells and 220
+    var city=new CityMap(width, height,citysitecount);
+    city.render(citycanvas)
+
+    //console.log(document.map.currentcitycell)
+    var basecolor=document.map.currentcitycell.color
+    document.map.paintBackground(citycanvas,basecolor);
+    city.citycells=[]
+    for (var i = 0; i < 20+params.size*2; i++) {
+        city.citycells.push(city.findCenterCell(citycanvas))
+    }
+    //console.log(city.citycells)
+    for (var i = 0; i < city.citycells.length; i++) {
+        var cell=city.citycells[i];
+        city.colorPolygon(cell,citycanvas,'highlight','#ffffff',false);
+    }
+    city.getCityPolygon()
+    city.drawCityPolygon(citycanvas,  Math.ceil(params.wallheight/10)   )
+    city.drawRoads(citycanvas, params.roads, params.mainroads)
+    city.render(citycanvas)
+}
+
+
+
+
+
+
+
+
+
+function print_legend(map){
     document.getElementById('continentlegend').innerHTML='Legend:'
     for ( var name in map.terrain){
     document.getElementById('continentlegend').innerHTML+='<span style="font-size:10px;background-color:'+map.terrain[name].color+'">'+name +'</span> '
     }
-//    regioncanvas=continentcanvas
-    regioncanvas.height=height;regioncanvas.width=width;
-    map.paintBackground(regioncanvas);
-    map.drawRegion(regioncanvas,regionmod);
-    map.drawKingdoms(regioncanvas);
-    var colors = [ '255,105,180', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '5,158,160', '30,144,255', '238,130,238',  '128,0,128'      ];
-    for (var cityid=0 ; cityid<10 ; cityid++){
-        map.drawCities(regioncanvas,regionmod,cityid,citymod,names);
-    }
+
+
 }
 
 WorldMap.prototype.triangulatePosition = function(va,vb,vc){
@@ -49,35 +118,60 @@ WorldMap.prototype.triangulatePosition = function(va,vb,vc){
     var randy=va.y*a +vb.y*b + vc.y*c
     return {x:randx,y:randy}
 }
-WorldMap.prototype.drawCities = function(canvas,regionmod,cityid,citymod,names){
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+WorldMap.prototype.drawTexture = function(canvas){
+    var c = canvas.getContext('2d');
+
+    var sim = new SimplexNoise() ;
+    //We're gonna track our min and max so we can resize later.
+    var min=1;
+    var max=0;
+    var imageData = c.getImageData(0, 0, canvas.width, canvas.height);
+///////////////////////////////////////////////////////////////////////////////////////////
+    for (y = 0; y < canvas.height; y++) {
+        for (x = 0; x < canvas.width; x++) {
+            var inpos=(x + y*canvas.width )*4
+            r = imageData.data[inpos]   +( (sim.noise2D(x/50,y/50)*255)-128)*.3     ;
+            g = imageData.data[inpos+1] +( (sim.noise2D(x/50,y/50)*255)-128)*.3     ;
+            b = imageData.data[inpos+2] +( (sim.noise2D(x/50,y/50)*255)-128)*.3     ;
+            a = imageData.data[inpos+3] +( (sim.noise2D(x/50,y/50)*255)-128)*.3     ;
+
+            imageData.data[inpos]   = r;
+            imageData.data[inpos+1] = g;
+            imageData.data[inpos+2] = b;
+            imageData.data[inpos+3] = 128;
+        }
+    }
+        c.putImageData(imageData, 0, 0);
+}
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+WorldMap.prototype.drawCities = function(canvas,regionmod,citymod,names){
     
-    var color="#888888"
-    if (citymod== cityid){
-        color='#000000'
+    for (var cityid=0 ; cityid<10 ; cityid++){
+        //console.log(cityid+" "+citymod)
+        // Using the region and cityid, select a cell and get a list of its corners
+        var regioncount=this.kingdoms[regionmod].cells.length;
+        var cell=this.kingdoms[regionmod].cells[cityid%regioncount]
+        var corners=cell.corners
+    
+        var color="#888888"
+        if (citymod== cityid){
+            color='#000000'
+            this.currentcitycell=cell
+        }
+        // Select 3 random corners from the list
+        var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+        var vb=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+        var vc=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+    
+        var point=this.triangulatePosition(va,vb,vc);
+        this.paintdot(canvas,point.x,point.y,color);
     }
-    console.log(cityid+" "+citymod)
-    // Using the region and cityid, select a cell and get a list of its corners
-    var regioncount=this.kingdoms[regionmod].cells.length;
-    var corners=this.kingdoms[regionmod].cells[cityid%regioncount].corners
-
-    // Select 3 random corners from the list
-    var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-    var vb=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-    var vc=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-
-    var t=Math.random()
-    var s=Math.random()
-    if (t+s > 1){
-        s=1-s
-        t=1-t
-    }
-    var a = 1-s-t
-    var b = s
-    var c = t
-    randx=va.x*a +vb.x*b + vc.x*c
-    randy=va.y*a +vb.y*b + vc.y*c
-
-    this.paintdot(canvas,randx,randy,color);
 
 }
 WorldMap.prototype.paintdot = function(canvas,x,y,color){
@@ -97,7 +191,7 @@ WorldMap.prototype.paintdot = function(canvas,x,y,color){
     polyfill.stroke();
 }
 WorldMap.prototype.paintMap = function(canvas){
-    this.paintBackground(canvas);
+    this.paintBackground(canvas,'#ffffff');
     for (var i=0; i < this.diagram.cells.length ; i++ ){
         this.colorPolygon(this.diagram.cells[i],canvas,'biomes');
     }
@@ -117,7 +211,7 @@ WorldMap.prototype.designateKingdoms = function(continentseed){
         Math.seedrandom( kingdom.seed   ) ;
         kingdom.capital=this.randomLand();
         while ( kingdom.capital.kingdom ){ // If this cell is already part of a kingdom, choose another
-            console.log('look a new kingdom('+kingdom.seed+")")
+            //console.log('look a new kingdom('+kingdom.seed+")")
             kingdom.capital=this.randomLand();
         }
         kingdom = this.getKingdom( kingdom);
@@ -127,13 +221,13 @@ WorldMap.prototype.designateKingdoms = function(continentseed){
     this.boxKingdoms();
     
 }
-WorldMap.prototype.drawKingdoms = function(canvas){
+WorldMap.prototype.drawKingdoms = function(canvas, fill){
     for (var i=0 ; i<10 ; i++){
-        this.drawKingdom(this.kingdoms[i],canvas)
+        this.drawKingdom(this.kingdoms[i],canvas, fill)
     }
 }
 
-WorldMap.prototype.drawKingdom = function(kingdom,canvas){
+WorldMap.prototype.drawKingdom = function(kingdom,canvas, fill){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
     for (var i=0; i<kingdom.outline.length; i++){
@@ -141,58 +235,58 @@ WorldMap.prototype.drawKingdom = function(kingdom,canvas){
         polyline.lineTo(vertex.x,vertex.y);
     }
     polyline.lineWidth=2;
-    polyline.strokeStyle="rgba(0,0,255,0.5)";
+    polyline.strokeStyle="rgba(0,0,0,0.7)";
     //polyline.fillStyle="rgba(200,0,0,0.3)";
     polyline.fillStyle=kingdom.color;
     polyline.lineCap = 'butt';
     polyline.stroke();
-    polyline.fill();
+    if (fill){
+        polyline.fill();
+    }
     polyline.closePath();
 
 }
 WorldMap.prototype.boxKingdoms = function(){
     for (var i=0; i < this.kingdoms.length ; i++ ){
-        var kingdom=this.kingdoms[i];
-        kingdom.box={ minx:100000, miny:100000, maxx:0, maxy:0}
-        var fullcellIDs=[];
-        //figure out th
-        for (var k=0; k < kingdom.cells.length ; k++ ){ 
-            var cell=kingdom.cells[k];
-            fullcellIDs.push(cell.site.voronoiId);
-            //check both centers and edges
-            for (var j=0; j < cell.halfedges.length ; j++ ){ 
-                var he=cell.halfedges[j].edge;
-                if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
-                if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
-                kingdom.box.maxx=Math.ceil(Math.max( kingdom.box.maxx,he.va.x,he.vb.x));
-                kingdom.box.maxy=Math.ceil(Math.max( kingdom.box.maxy,he.va.y,he.vb.y));
-                kingdom.box.minx=Math.floor(Math.min(kingdom.box.minx,he.va.x,he.vb.x));
-                kingdom.box.miny=Math.floor(Math.min(kingdom.box.miny,he.va.y,he.vb.y));
-            }
-        }
-        kingdom.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
-        kingdom.regions=[];
-        //console.log(fullcellIDs)
-        for (var k=0; k < fullcellIDs.length ; k++ ){ 
-            var cell=this.diagram.cells[fullcellIDs[k]];
-            kingdom.regions.push(cell);
-            for (var j=0; j < cell.halfedges.length ; j++ ){ 
-                var he=cell.halfedges[j];
-                kingdom.regionbox.maxx=Math.ceil(Math.max( kingdom.regionbox.maxx,he.edge.va.x,he.edge.vb.x));
-                kingdom.regionbox.maxy=Math.ceil(Math.max( kingdom.regionbox.maxy,he.edge.va.y,he.edge.vb.y));
-                kingdom.regionbox.minx=Math.floor(Math.min(kingdom.regionbox.minx,he.edge.va.x,he.edge.vb.x));
-                kingdom.regionbox.miny=Math.floor(Math.min(kingdom.regionbox.miny,he.edge.va.y,he.edge.vb.y));
-            }
-        }
-    //console.log(kingdom.regions.length);
+        this.boxKingdom(this.kingdoms[i])
     }
 }
 
-WorldMap.prototype.boxKingdom = function(box,canvas,color){
-
-
+WorldMap.prototype.boxKingdom = function(kingdom){
+    kingdom.box={ minx:100000, miny:100000, maxx:0, maxy:0}
+    var fullcellIDs=[];
+    //figure out the box for the kingdom an
+    for (var k=0; k < kingdom.cells.length ; k++ ){ 
+        var cell=kingdom.cells[k];
+        fullcellIDs.push(cell.site.voronoiId);
+        //check both centers and edges
+        for (var j=0; j < cell.halfedges.length ; j++ ){ 
+            var he=cell.halfedges[j].edge;
+            if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
+            if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
+            kingdom.box=this.setbox(kingdom.box,he.va,he.vb)
+        }
+    }
+    kingdom.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
+    kingdom.regions=[];
+    //console.log(fullcellIDs)
+    for (var k=0; k < fullcellIDs.length ; k++ ){ 
+        var cell=this.diagram.cells[fullcellIDs[k]];
+        kingdom.regions.push(cell);
+        for (var j=0; j < cell.halfedges.length ; j++ ){ 
+            var he=cell.halfedges[j];
+            kingdom.regionbox=this.setbox(kingdom.regionbox,he.edge.va,he.edge.vb)
+        }
+    }
 }
 
+WorldMap.prototype.setbox = function(box, va, vb){
+    box.maxx=Math.ceil(Math.max( box.maxx,va.x,vb.x));
+    box.maxy=Math.ceil(Math.max( box.maxy,va.y,vb.y));
+    box.minx=Math.floor(Math.min(box.minx,va.x,vb.x));
+    box.miny=Math.floor(Math.min(box.miny,va.y,vb.y));
+    return box
+}
 WorldMap.prototype.drawbox = function(box,canvas,color){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
@@ -209,22 +303,45 @@ WorldMap.prototype.drawbox = function(box,canvas,color){
 WorldMap.prototype.getKingdom = function(kingdom){
     var maxkingdom=100;
     kingdom.cells=[kingdom.capital];
+
+    if (kingdom.id==2){
+        //console.log(kingdom)
+    }
+
+
     for (var i=0; i<maxkingdom; i++){
         // Select a random cell from the kingdom.cells list
         var parentCell= kingdom.cells[  Math.floor( Math.random()*kingdom.cells.length) ];
 
         // select a random side from our parent cell
         var side=parentCell.halfedges[ Math.floor( Math.random()*parentCell.halfedges.length)  ].edge;
+
         var cells=this.diagram.cells;
-        if (         side.lSite != null && kingdom.cells.indexOf(cells[side.lSite.voronoiId]) == -1 && ! cells[side.lSite.voronoiId].ocean && cells[side.lSite.voronoiId].kingdom==false ){
-            cells[side.lSite.voronoiId].kingdom=true
-            kingdom.cells.push(cells[side.lSite.voronoiId]);
-        } else if (  side.rSite != null && kingdom.cells.indexOf(cells[side.rSite.voronoiId]) == -1 &&  ! cells[side.rSite.voronoiId].ocean && cells[side.lSite.voronoiId].kingdom==false){
-            cells[side.rSite.voronoiId].kingdom=true
-            kingdom.cells.push(cells[side.rSite.voronoiId]);
+
+        if ( side.lSite != null &&  side.rSite != null ) {
+            var target;
+            if (kingdom.cells.indexOf(cells[side.lSite.voronoiId]) == -1) {
+                // if lSite isn't in the list, it's our target
+                target=cells[side.lSite.voronoiId]
+            } else if (kingdom.cells.indexOf(cells[side.rSite.voronoiId]) == -1) {
+                // if rSite isn't in the list, it's our target
+                target=cells[side.rSite.voronoiId]
+            }else{
+                // the left side was found and the right side was found- this was a bunk edge.
+            }
+            if (target.ocean || target.kingdom){
+                // this cell is useless
+            }else{
+                target.kingdom=true
+                kingdom.cells.push(target);
+            }
+        
+        }else{
+            //This cell is of no use to us.
         }
-        kingdom=this.getKingdomPolygon(kingdom);
+
     }
+    kingdom=this.getKingdomPolygon(kingdom);
     return kingdom;
 }
 // Determine if halfedge has a side that is not in the kingdom list
@@ -237,11 +354,9 @@ WorldMap.prototype.isKingdomEdge = function(ids,halfedge){
 }
 
 WorldMap.prototype.getKingdomPolygon = function(kingdom){
-
         // Get a list of all IDs for the kingdom
         var ids=[]
         for (var i=0; i < kingdom.cells.length ; i++ ){ ids.push(kingdom.cells[i].site.voronoiId)}
-
         //Get a list of all external edges
         var edges=[];
         for (var i=0; i < kingdom.cells.length ; i++ ){
@@ -255,7 +370,17 @@ WorldMap.prototype.getKingdomPolygon = function(kingdom){
         }
 
         //loop through the edges and push them onto the outline list for drawing later
-        var pos=edges[0].edge.va;
+        var minx=1000000
+        var pos;
+        for (var i=0; i < edges.length ; i++ ){
+            minx=Math.min(minx,edges[i].edge.va.x, edges[i].edge.va.x)
+            if (edges[i].edge.va.x == minx){
+                pos=edges[i].edge.va
+            } else if (edges[i].edge.vb.x == minx){
+                pos=edges[i].edge.vb
+            }
+        }
+ 
         kingdom.outline=[pos];
         var maxfail=edges.length;
         while(edges.length >0){
@@ -433,7 +558,10 @@ WorldMap.prototype.drawRegion = function(canvas,kingdomid){
     var regions=this.diagram.cells;
 
     var points=this.getKingdomPolygon(kingdom);
+    if (kingdomid==7){
 
+    }
+    //console.log("regionid:"+kingdomid)
 
     for (var i=0; i < regions.length ; i++ ){
         this.colorPolygon(regions[i],canvas,'biomes');
@@ -886,99 +1014,56 @@ WorldMap.prototype.getOceanColor = function(obj){
 /*  render uses the edges from the diagram, then mark the points.
 /* **************************************************************** */
 WorldMap.prototype.render = function(canvas){
-        var ctx = canvas.getContext('2d');
-       
-        //First lets draw all of the edges.
-        // This can probably be refactored
-        ctx.strokeStyle="rgba(0,0,0,.5)";
-        ctx.lineWidth=1;
-        ctx.beginPath();
-        var edges = this.diagram.edges;
-        var iEdge = edges.length;
-        var edge, v;
-        while (iEdge--) {
-            edge = edges[iEdge];
-            v = edge.va;
-            ctx.moveTo(v.x,v.y);
-            v = edge.vb;
-            ctx.lineTo(v.x,v.y);
-            }
-        ctx.stroke();
- 
-        // Now lets draw some red dots at the 
-        // point for each cell (note, not the center)
-        // This can probably be refactored
-        ctx.fillStyle = '#faa';
-        ctx.beginPath();
-        var msites = this.points,
-            iSite = this.points.length;
-        while (iSite--) {
-            v = msites[iSite];
-            //TODO this doesn't need to be a rectangle; simplify with a dot if possible
-            ctx.rect(v.x-2/3,v.y-2/3,2,2);
-            }
-        ctx.fill();
+    var ctx = canvas.getContext('2d');
+   
+    //First lets draw all of the edges.
+    // This can probably be refactored
+    ctx.strokeStyle="rgba(0,0,0,.5)";
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    var edges = this.diagram.edges;
+    var iEdge = edges.length;
+    var edge, v;
+    while (iEdge--) {
+        edge = edges[iEdge];
+        v = edge.va;
+        ctx.moveTo(v.x,v.y);
+        v = edge.vb;
+        ctx.lineTo(v.x,v.y);
+        }
+    ctx.stroke();
 
-        //TODO add the centers to the render list.
-    }
+    // Now lets draw some red dots at the 
+    // point for each cell (note, not the center)
+    // This can probably be refactored
+    ctx.fillStyle = '#faa';
+    ctx.beginPath();
+    var msites = this.points,
+        iSite = this.points.length;
+    while (iSite--) {
+        v = msites[iSite];
+        //TODO this doesn't need to be a rectangle; simplify with a dot if possible
+        ctx.rect(v.x-2/3,v.y-2/3,2,2);
+        }
+    ctx.fill();
+
+    //TODO add the centers to the render list.
+}
 
 
 /* **************************************************************** */
 /*  paintBackground is relatively simple- it just draws the 
 /*  background rectangle.
 /* **************************************************************** */
-WorldMap.prototype.paintBackground = function(canvas){
+WorldMap.prototype.paintBackground = function(canvas,color){
         var ctx = canvas.getContext('2d');
         ctx.globalAlpha = 1;
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = color;
         ctx.beginPath();
         ctx.rect(0,0,canvas.width,canvas.height);
         ctx.fill();
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//    function go(){
-//    
-//        //The go function appears to be the core of the map class
-//        //reset();
-//        //=== Place Points ===
-//            this.points=generateRandomPoints()
-//        //=== Improve Points ===
-//            improveRandomPonts(this.points);
-//        //=== build graph ===
-//            //magic happens here.
-//            //this.voronoi= new Voronoi(points,null,rectangle); // I do not have this!!!
-//            //buildGraph(points,voronoi)
-//            //improveCorners();
-//    
-//        //=== Assign elevations ===
-//            assignCornerElevations();
-//            assignOceanCoastAndLand();
-//            redistributeElevations(landCorners(this.corners));
-//            for ( corner in this.corners){
-//                if (corner.ocean ||corner.coast){
-//                    corner.elevation=0.0;
-//                }
-//            }
-//            assignPolygonElevations();
-//        //=== Assign Moisture ===
-//            calculateDownslopes();
-//            calculate_watersheds();
-//            createRivers();
-//            assignCornerMoisture();
-//            redistributeMoisture(landCorners(this.corners));
-//            assignPolygonMoisture();
-//        //=== Decorate Map
-//            assignBiomes();
-//    }
-//
-//
-//    function improveRandomPonts(){
-//        //TODO use lloyd relaxation on this.points
 WorldMap.prototype.improveRandomPoints = function(){
     var points=[];
     for (var i = 0; i < this.num_lloyd_iterations; i++) {
@@ -1016,75 +1101,3 @@ WorldMap.prototype.improveRandomPoints = function(){
         this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
     }
 }
-//        // requires Voronoi voodoo
-//    }
-//    function improveCorners(){
-//        // TODO This is truthfully icing that isn't needed immediately.
-//
-//    }    
-//
-//    //I do not currently understand the purpose of this method.
-//    function landCorners(){
-//        var locations=Array();
-//        for (corner in this.corners){
-//          if (!corner.ocean && !corner.coast) {
-//            locations.push(corner);
-//          }
-//        }
-//        return locations;
-//    }
-//
-//
-WorldMap.prototype.assignCornerElevations = function(){
-
-
-        // TODO yeah this one as well.
-    }
-//    function redistributeElevations(locations){
-//        // TODO yeah this one as well.
-//    }
-//    function redistributeMoisture(locations){
-//        // TODO yeah this one as well.
-//    }
-//    function assignOceanCoastAndLand(){
-//        // TODO
-//    }
-//    function assignPolygonElevations(){
-//        //TODO
-//    }
-//    function calculateDownslopes(){
-//        for (corner in this.corners){
-//            //tempcorner finds the lowest adjacent corner to mark as a downslope
-//            // and the default is itself.
-//            var tempcorner=corner;
-//            for (adjacent_corner in corner.adjacent){
-//                if (adjacent_corner.elevation <= tempcorner.elevation){
-//                    tempcorner=adjacent_corner;
-//                }
-//            }
-//            corner.downslope=tempcorner;
-//        }
-//    }
-//    function calculateWatersheds(){
-//        for (corner in this.corners){
-//            corner.wathershed=corner
-//            if (!corner.ocean && !corner.coast) {
-//            corner.watershed=corner.downslope;
-//            }
-//        }
-//        //TODO finish this
-//    }
-//    function createRivers(){
-//        //TODO finish this
-//    }
-//    function assignCornerMoisture(){
-//        //TODO finish this
-//    }
-//    function assignPolygonMoisture(){
-//        //TODO finish this
-//    }
-//   
-// 
-//
-//
-//
