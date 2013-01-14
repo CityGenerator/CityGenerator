@@ -57,36 +57,6 @@ function create_map(seed, continentcanvas,regioncanvas,names){
 
 
 
-function build_city(  params      ){
-
-    Math.seedrandom(params.seed)
-    var citycanvas=params.canvas
-
-    var width =350;
-    var height=300;
-    citycanvas.height=height;citycanvas.width=width;
-    var citysitecount=100+params.size*10 // should range between 50 cells and 220
-    var city=new CityMap(width, height,citysitecount);
-    city.render(citycanvas)
-
-    //console.log(document.map.currentcitycell)
-    var basecolor=document.map.currentcitycell.color
-    document.map.paintBackground(citycanvas,basecolor);
-    city.citycells=[]
-    for (var i = 0; i < 20+params.size*2; i++) {
-        city.citycells.push(city.findCenterCell(citycanvas))
-    }
-
-    
-    for (var i = 0; i < city.citycells.length; i++) {
-        var cell=city.citycells[i];
-        city.colorPolygon(cell,citycanvas,'highlight','#ffffff',false);
-    }
-    city.getCityPolygon()
-    city.drawCityPolygon(citycanvas,  Math.ceil(params.wallheight/10)   )
-//    city.render(citycanvas)
-    city.drawRoads(citycanvas, params.roads, params.mainroads)
-}
 
 
 

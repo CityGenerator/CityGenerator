@@ -1,3 +1,52 @@
+
+function build_city(  params      ){
+
+    Math.seedrandom(params.seed)
+    var citycanvas=params.canvas
+
+    var width =350;
+    var height=300;
+    citycanvas.height=height;citycanvas.width=width;
+    //params.size=12
+    var citysitecount=200+params.size*20 // should range between 50 cells and 220
+
+
+
+
+    var city=new CityMap(width, height,citysitecount);
+    city.render(citycanvas)
+
+    var basecolor=document.map.currentcitycell.color
+    document.map.paintBackground(citycanvas,basecolor);
+    city.citycells=[]
+    var citycellcount=Math.floor(citysitecount*(20+params.size)/100);
+    for (var i = 0; i < Math.floor( citycellcount) ; i++) {
+        city.citycells.push(city.findCenterCell(citycanvas))
+    }
+
+    for (var i = 0; i < city.citycells.length; i++) {
+        var cell=city.citycells[i];
+        city.colorPolygon(cell,citycanvas,'highlight','rgba(255,255,255,1)',false);
+    }
+    
+    city.getCityWalls()
+
+    city.drawCityWalls(citycanvas,  Math.ceil(params.wallheight/10)   )
+
+    for (var i = 0; i < params.districts.length; i++) {
+//        city.getDistrict(i,6);
+        console.log(params.districts[i])
+    }
+
+
+    city.render(citycanvas)
+    city.drawRoads(citycanvas, params.roads, params.mainroads)
+}
+
+
+
+
+
 function  CityMap(width,height,point_count) {
     // Base Parameters
     this.width=width;
@@ -37,18 +86,22 @@ CityMap.prototype.findCenterCell = function(canvas){
         var cell=this.diagram.cells[i];
         var x = cell.site.x
         var y = cell.site.y
-        var adjustedx=x-centerx;
-        var adjustedy=y-centery;
+        var randx= (Math.random()*x - x/2)/4
+        var randy= (Math.random()*y - y/2)/4
+
+
+        var adjustedx=x-centerx+randx;
+        var adjustedy=y-centery+randy;
         var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
-        if (shortestradius> radius && ! cell.incity){
+        if (!cell.incity &&    shortestradius> radius ){ // if edge is shared, give a 50% change of allowing
             shortestradius=radius
             closestpoint=cell
         }
-        
     }
     closestpoint.incity=true
     return closestpoint
 }
+
 
 
 CityMap.prototype.generateRandomPoints = function(){
@@ -165,11 +218,8 @@ CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
         }else{
             roadwidth=3
         }
-
         var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-//        if (i==2){//XXX remove this iff when done debugging
-            this.drawRoad(canvas,va,roadwidth);
-//        }
+        this.drawRoad(canvas,va,roadwidth);
     }
 }
 
@@ -314,29 +364,20 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     }
 
 
-
-    this.paintdot(canvas, road[0].x, road[0].y, 3,'rgba(100,100,100,.9)') // final gateway
     var c = canvas.getContext('2d');
 
     c.strokeStyle='#5E2605';
     c.lineWidth=roadwidth;
     c.beginPath();
+    var originalposition=null
     for (var j=0; j < road.length; j++){
         c.lineTo(road[j].x, road[j].y);
     }
+    c.lineCap = 'butt';
     c.stroke()
+    this.paintdot(canvas, road[0].x, road[0].y, roadwidth/2,'rgba(100,100,100,.9)') // final gateway
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -363,7 +404,7 @@ CityMap.prototype.paintdot = function(canvas,x,y,radius,color){
     polyfill.stroke();
 }
 
-CityMap.prototype.drawCityPolygon = function(canvas,wallsize){
+CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
     for (var i=0; i<this.outline.length; i++){
@@ -392,7 +433,7 @@ CityMap.prototype.isKingdomEdge = function(ids,halfedge){
 
 
 //TODO refactor with getKingdomPolygon
-CityMap.prototype.getCityPolygon = function(){
+CityMap.prototype.getCityWalls = function(){
         var ids=[]
         for (var i=0; i < this.citycells.length ; i++ ){ ids.push(this.citycells[i].site.voronoiId)}
         //Get a list of all external edges
@@ -452,7 +493,7 @@ CityMap.prototype.render = function(canvas){
    
     //First lets draw all of the edges.
     // This can probably be refactored
-    ctx.strokeStyle="rgba(0,0,0,.5)";
+    ctx.strokeStyle="rgba(0,0,0,.2)";
     ctx.lineWidth=1;
     ctx.beginPath();
     var edges = this.diagram.edges;
@@ -470,7 +511,7 @@ CityMap.prototype.render = function(canvas){
     // Now lets draw some red dots at the 
     // point for each cell (note, not the center)
     // This can probably be refactored
-    ctx.fillStyle = '#faa';
+    ctx.fillStyle = 'rgba(255,200,200,.2)';
     ctx.beginPath();
     var msites = this.points,
         iSite = this.points.length;
