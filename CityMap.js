@@ -1,143 +1,162 @@
 
-function build_city(  params      ){
 
+/* ========================================================================= */
+/* build_city is called by CityGenerator to build the city map. We pass in
+/* everything via the params object to make things easier.
+/* ========================================================================= */
+
+function build_city(  params  ){
+
+    // Step 1) we need to set our seed to ensure consistency
     Math.seedrandom(params.seed)
+
     var citycanvas=params.canvas
 
-    var width =350;
-    var height=300;
-    citycanvas.height=height;citycanvas.width=width;
-    //params.size=12
-    var citysitecount=200+params.size*20 // should range between 50 cells and 220
+    // hardcoded map sizes
+    citycanvas.height=300;
+    citycanvas.width=350;
 
-    var city=new CityMap(width, height,citysitecount);
-    city.render(citycanvas)
+    //Set the total number of cells and the city cell count
+    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
+    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
 
-    var basecolor=document.map.currentcitycell.color
-    document.map.paintBackground(citycanvas,basecolor);
+    // Generate our base CityMap
+    var city=new CityMap(  citycanvas.width, citycanvas.height, totalcellcount  );
+    // Generate the key parts of the city.
+    city.designateCity(citycanvas,citycellcount);
+    city.generateCityWalls()
+    city.generateDistricts(params.districts);
 
-    city.citycells=[]
-    var citycellcount=Math.floor(citysitecount*(20+params.size)/100);
-    for (var i = 0; i < Math.floor( citycellcount) ; i++) {
-        city.citycells.push(city.findCenterCell(citycanvas))
-    }
-    params.isport=1
-    if (params.isport ){
-        city.drawCoast(citycanvas, params.coastdirection)
-    }
 
-    for (var i = 0; i < city.citycells.length; i++) {
-        var cell=city.citycells[i];
-        city.colorPolygon(cell,citycanvas,'highlight','rgba(255,255,255,1)',false);
-    }
-    
-    city.getCityWalls()
-
+    // This is ugly, but is the easiest way to pull the city color.
+    // From here, draw out all the parts we designated above.
+    city.paintBackground(citycanvas,document.map.currentcitycell.color);
+    city.drawCoast(citycanvas, params.isport, params.coastdirection)
+    city.paintCity(citycanvas)
+ 
     city.drawCityWalls(citycanvas,  Math.ceil(params.wallheight/10)   )
-
-    for (var i = 0; i < params.districts.length; i++) {
-//        city.getDistrict(i,6);
-        console.log(params.districts[i])
-    }
-
 
     city.render(citycanvas)
     city.drawRoads(citycanvas, params.roads, params.mainroads)
 }
 
 
+CityMap.prototype.designateCity = function(canvas,citycellcount){
+    this.citycells=[]
+    for (var i = 0; i < Math.floor( citycellcount) ; i++) {
+        this.citycells.push(this.findCenterCell(canvas))
+    }
+
+
+}
 
 
 
-function  CityMap(width,height,point_count) {
+/* ========================================================================= */
+/* CityMap is the base object for generating the city map. 
+/* TODO This should be abstracted out with WorldMap
+/* ========================================================================= */
+
+function  CityMap(width,height,num_points) {
     // Base Parameters
     this.width=width;
     this.height=height;
-    this.num_points = point_count;
-    //TODO I should add oceans here...    
+    this.num_points = num_points;
+
     // default constant values
-    this.lake_threshold=0.3;
     this.num_lloyd_iterations=2;
 
     // These are important bits to track
-    this.points=Array();
-    this.centers=Array();
     this.voronoi = new Voronoi();
 
-
-    // Now lets actually make stuff. 
     //First generate points,
     this.generateRandomPoints();
+
     // then compute the virinoi
     this.buildGraph();
-    //
 }
 
-CityMap.prototype.drawCoast = function(canvas, coastdirection){
-    var percentwater= ( 25 + Math.round(Math.random()*15))/100;
-    var water=[];
-    console.log(this.diagram)
-    var targetcount=Math.round( this.diagram.cells.length * percentwater ) -this.citycells.length/2
-    while (water.length< targetcount){
+CityMap.prototype.paintCity = function(canvas){
+    for (var i = 0; i < this.citycells.length; i++) {
+        var cell=this.citycells[i];
+        this.colorPolygon(cell,canvas,'highlight','rgba(255,255,255,1)',false);
+    }
+}
+CityMap.prototype.generateDistricts = function(districts){
+    // rainbows and unicorn farts go here.
+}
 
 
 
-        var target={site:{  x:canvas.width/2,  y:canvas.height/2 } }
-        var target=this.findCenterCell(canvas)
 
 
-
-        for (var i=0 ; i< this.diagram.cells.length; i++){
-            var cell=this.diagram.cells[i]
-            var tweak=Math.random()*30
-            if ( ! cell.incity && ! cell.water){
-                if ( coastdirection=='north'){
-                    if ( (  cell.site.y+tweak < target.site.y ) ){
-                        target=cell;
+CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
+    if ( isport ){
+        var percentwater= ( 25 + Math.round(Math.random()*15))/100;
+        var water=[];
+        console.log(this.diagram)
+        var targetcount=Math.round( this.diagram.cells.length * percentwater ) -this.citycells.length/2
+        while (water.length< targetcount){
+    
+    
+    
+            var target={site:{  x:canvas.width/2,  y:canvas.height/2 } }
+            var target=this.findCenterCell(canvas)
+    
+    
+    
+            for (var i=0 ; i< this.diagram.cells.length; i++){
+                var cell=this.diagram.cells[i]
+                var tweak=Math.random()*30
+                if ( ! cell.incity && ! cell.water){
+                    if ( coastdirection=='north'){
+                        if ( (  cell.site.y+tweak < target.site.y ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='south' ){
+                        if ( (  cell.site.y+tweak > target.site.y ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='east' ){
+                        if ( (  cell.site.x+tweak > target.site.x ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='west' ){
+                        if ( (  cell.site.x+tweak < target.site.x ) ){
+                            target=cell;
+                        }
+                    } else if ( coastdirection=='northeast'){
+                        if ( (  cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='southeast' ){
+                        if ( (  cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='northwest' ){
+                        if ( (   cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x ) ){
+                            target=cell;
+                        }
+                    }else if ( coastdirection =='southwest' ){
+                        if (  (  cell.site.y+tweak > target.site.y  && cell.site.x+tweak < target.site.x ) ){
+                            target=cell;
+                        }
                     }
-                }else if ( coastdirection =='south' ){
-                    if ( (  cell.site.y+tweak > target.site.y ) ){
-                        target=cell;
-                    }
-                }else if ( coastdirection =='east' ){
-                    if ( (  cell.site.x+tweak > target.site.x ) ){
-                        target=cell;
-                    }
-                }else if ( coastdirection =='west' ){
-                    if ( (  cell.site.x+tweak < target.site.x ) ){
-                        target=cell;
-                    }
-                } else if ( coastdirection=='northeast'){
-                    if ( (  cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x ) ){
-                        target=cell;
-                    }
-                }else if ( coastdirection =='southeast' ){
-                    if ( (  cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x ) ){
-                        target=cell;
-                    }
-                }else if ( coastdirection =='northwest' ){
-                    if ( (   cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x ) ){
-                        target=cell;
-                    }
-                }else if ( coastdirection =='southwest' ){
-                    if (  (  cell.site.y+tweak > target.site.y  && cell.site.x+tweak < target.site.x ) ){
-                        target=cell;
-                    }
+    
                 }
-
+            }
+            if (target == null){
+                console.log('target was null, no idea why; reduce our goal to prevent infinite loops if things are bad.')
+                targetcount-- // something is wrong if this happens
+            }else{
+                target.water=true
+                water.push(target)
             }
         }
-        if (target == null){
-            console.log('target was null, no idea why; reduce our goal to prevent infinite loops if things are bad.')
-            targetcount-- // something is wrong if this happens
-        }else{
-            target.water=true
-            water.push(target)
+        for (var i=0 ; i< water.length; i++){
+           this.colorPolygon(water[i],canvas,'highlight','rgba(55,55,222,1)',false);
+     
         }
-    }
-    for (var i=0 ; i< water.length; i++){
-       this.colorPolygon(water[i],canvas,'highlight','rgba(55,55,222,1)',false);
- 
     }
 }
 
@@ -278,26 +297,11 @@ CityMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     }
 }
 
-CityMap.prototype.drawRoads2 = function(canvas,roads,mainroads){
-    var corners=[]
-    for(var i=0; i<this.outline.length; i++){
-        corners.push(this.outline[i])
-    }
-    var roadwidth=3
-    for (var i=0; i<roads; i++){
-        if (mainroads-->0){
-            roadwidth=6
-        }else{
-            roadwidth=3
-        }
-        var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
-        this.drawRoad(canvas,va,roadwidth);
-    }
-}
-
 
 CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
     var corners=[]
+    // TODO change this loop to randomly push corners on so
+    // that a single road is not always going west.
     for(var i=0; i<this.outline.length; i++){
         corners.push(this.outline[i])
     }
@@ -310,7 +314,6 @@ CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
             roadwidth=3
         }
         var va= corners[    Math.floor(i/roads*corners.length)     ]
-//        var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
         this.drawRoad(canvas,va,roadwidth);
     }
 }
@@ -548,7 +551,7 @@ CityMap.prototype.isKingdomEdge = function(ids,halfedge){
 
 
 //TODO refactor with getKingdomPolygon
-CityMap.prototype.getCityWalls = function(){
+CityMap.prototype.generateCityWalls = function(){
         var ids=[]
         for (var i=0; i < this.citycells.length ; i++ ){ ids.push(this.citycells[i].site.voronoiId)}
         //Get a list of all external edges
@@ -639,3 +642,18 @@ CityMap.prototype.render = function(canvas){
 
     //TODO add the centers to the render list.
 } 
+
+
+/* **************************************************************** */
+/*  paintBackground is relatively simple- it just draws the 
+/*  background rectangle.
+/* **************************************************************** */
+CityMap.prototype.paintBackground = function(canvas,color){
+        var ctx = canvas.getContext('2d');
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.rect(0,0,canvas.width,canvas.height);
+        ctx.fill();
+}
+
