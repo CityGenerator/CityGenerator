@@ -10,18 +10,20 @@ function build_city(  params      ){
     //params.size=12
     var citysitecount=200+params.size*20 // should range between 50 cells and 220
 
-
-
-
     var city=new CityMap(width, height,citysitecount);
     city.render(citycanvas)
 
     var basecolor=document.map.currentcitycell.color
     document.map.paintBackground(citycanvas,basecolor);
+
     city.citycells=[]
     var citycellcount=Math.floor(citysitecount*(20+params.size)/100);
     for (var i = 0; i < Math.floor( citycellcount) ; i++) {
         city.citycells.push(city.findCenterCell(citycanvas))
+    }
+    params.isport=1
+    if (params.isport ){
+        city.drawCoast(citycanvas, params.coastdirection)
     }
 
     for (var i = 0; i < city.citycells.length; i++) {
@@ -71,6 +73,75 @@ function  CityMap(width,height,point_count) {
     //
 }
 
+CityMap.prototype.drawCoast = function(canvas, coastdirection){
+    var percentwater= ( 25 + Math.round(Math.random()*15))/100;
+    var water=[];
+    console.log(this.diagram)
+    var targetcount=Math.round( this.diagram.cells.length * percentwater ) -this.citycells.length/2
+    while (water.length< targetcount){
+
+
+
+        var target={site:{  x:canvas.width/2,  y:canvas.height/2 } }
+        var target=this.findCenterCell(canvas)
+
+
+
+        for (var i=0 ; i< this.diagram.cells.length; i++){
+            var cell=this.diagram.cells[i]
+            var tweak=Math.random()*30
+            if ( ! cell.incity && ! cell.water){
+                if ( coastdirection=='north'){
+                    if ( (  cell.site.y+tweak < target.site.y ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='south' ){
+                    if ( (  cell.site.y+tweak > target.site.y ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='east' ){
+                    if ( (  cell.site.x+tweak > target.site.x ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='west' ){
+                    if ( (  cell.site.x+tweak < target.site.x ) ){
+                        target=cell;
+                    }
+                } else if ( coastdirection=='northeast'){
+                    if ( (  cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='southeast' ){
+                    if ( (  cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='northwest' ){
+                    if ( (   cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x ) ){
+                        target=cell;
+                    }
+                }else if ( coastdirection =='southwest' ){
+                    if (  (  cell.site.y+tweak > target.site.y  && cell.site.x+tweak < target.site.x ) ){
+                        target=cell;
+                    }
+                }
+
+            }
+        }
+        if (target == null){
+            console.log('target was null, no idea why; reduce our goal to prevent infinite loops if things are bad.')
+            targetcount-- // something is wrong if this happens
+        }else{
+            target.water=true
+            water.push(target)
+        }
+    }
+    for (var i=0 ; i< water.length; i++){
+       this.colorPolygon(water[i],canvas,'highlight','rgba(55,55,222,1)',false);
+ 
+    }
+}
+
+
 CityMap.prototype.findCenterCell = function(canvas){
     var width  = this.width;
     var height = this.height;
@@ -93,7 +164,7 @@ CityMap.prototype.findCenterCell = function(canvas){
         var adjustedx=x-centerx+randx;
         var adjustedy=y-centery+randy;
         var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
-        if (!cell.incity &&    shortestradius> radius ){ // if edge is shared, give a 50% change of allowing
+        if (!cell.incity && !cell.inwater &&    shortestradius> radius ){
             shortestradius=radius
             closestpoint=cell
         }
@@ -191,6 +262,7 @@ CityMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     polyfill.strokeStyle=cell.color;
     polyfill.beginPath();
     // draw a line for each edge, A to B.
+    console.log(cell)
     for (var i=0; i<cell.halfedges.length; i++) {
 
         var vertexa=cell.halfedges[i].getStartpoint();
@@ -206,7 +278,7 @@ CityMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     }
 }
 
-CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
+CityMap.prototype.drawRoads2 = function(canvas,roads,mainroads){
     var corners=[]
     for(var i=0; i<this.outline.length; i++){
         corners.push(this.outline[i])
@@ -224,6 +296,25 @@ CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
 }
 
 
+CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
+    var corners=[]
+    for(var i=0; i<this.outline.length; i++){
+        corners.push(this.outline[i])
+    }
+    var roadwidth=3
+
+    for (var i=0; i<roads; i++){
+        if (mainroads-->0){
+            roadwidth=6
+        }else{
+            roadwidth=3
+        }
+        var va= corners[    Math.floor(i/roads*corners.length)     ]
+//        var va=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
+        this.drawRoad(canvas,va,roadwidth);
+    }
+}
+
 
 
 CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
@@ -237,15 +328,23 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     var targetva=null
     var candidatecells=[]
     var cells=this.diagram.cells
+    var isdry=true
     if (minx/canvas.width < miny/canvas.height){ // X is closer than Y
         if ( minx == va.x ) {
-            while (va.x >0 ){ //bear west
+            while (va.x >0 && isdry ){ //bear west
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+
+
                         candidatecells.push(cells[i])
                     }
                 }
                 for (var i=0; i < candidatecells.length; i++){
+                    if (candidatecells[i].water){
+                        isdry=false
+                        console.log('you hit water!')
+                        break
+                    }
                     for (var j=0; j < candidatecells[i].halfedges.length; j++){
                         var edge=candidatecells[i].halfedges[j].edge
                         if ( edge.va == va  ){
@@ -269,13 +368,18 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
                 }
             }
         }else{
-            while (va.x <canvas.width ){//bear east
+            while (va.x <canvas.width && isdry ){//bear east
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
                         candidatecells.push(cells[i])
                     }
                 }
                 for (var i=0; i < candidatecells.length; i++){
+                    if (candidatecells[i].water){
+                        isdry=false
+                        console.log('you hit water!')
+                        break
+                    }
                     for (var j=0; j < candidatecells[i].halfedges.length; j++){
                         var edge=candidatecells[i].halfedges[j].edge
                         if ( edge.va == va  ){
@@ -301,13 +405,19 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
         }
     }else{    
         if ( miny == va.y ) {
-            while (va.y >0 ){ // bear north
+            while (va.y >0 && isdry ){ // bear north
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
+
                         candidatecells.push(cells[i])
                     }
                 }
                 for (var i=0; i < candidatecells.length; i++){
+                    if (candidatecells[i].water){
+                        isdry=false
+                        console.log('you hit water!')
+                        break
+                    }
                     for (var j=0; j < candidatecells[i].halfedges.length; j++){
                         var edge=candidatecells[i].halfedges[j].edge
                         if ( edge.va == va  ){
@@ -331,13 +441,18 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
                 }
             }
         }else{
-            while (va.y <canvas.height ){//bear south
+            while (va.y <canvas.height && isdry ){//bear south
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
                         candidatecells.push(cells[i])
                     }
                 }
                 for (var i=0; i < candidatecells.length; i++){
+                    if (candidatecells[i].water){
+                        isdry=false
+                        console.log('you hit water!')
+                        break
+                    }
                     for (var j=0; j < candidatecells[i].halfedges.length; j++){
                         var edge=candidatecells[i].halfedges[j].edge
                         if ( edge.va == va  ){

@@ -133,6 +133,8 @@ sub describe_header{
                         size:$city->{'size_modifier'}, 
                         wallheight:$city->{'walls'}->{'height'}, 
                         protectedpercent:$city->{'walls'}->{'protectedpercent'},
+                        coastdirection:'$city->{'location'}->{'coastdirection'}',
+                        isport:'$city->{'location'}->{'port'}',
                         roads:$city->{'streets'}->{'roads'},
                         mainroads:$city->{'streets'}->{'mainroads'},
                     }) ;\">
