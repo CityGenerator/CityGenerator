@@ -24,13 +24,11 @@ function create_map(seed, continentcanvas,regioncanvas,names){
     var sites=2000;
 
     // The width and height are hard-coded here
-    var width =350;
-    var height=300;
-    continentcanvas.height=height;
-    continentcanvas.width=width
+    continentcanvas.height=300;
+    continentcanvas.width=350
 
     // This is the crux of our entire map.
-    var map=new WorldMap(width,height,sites);
+    var map=new WorldMap(continentcanvas.width,continentcanvas.height,sites);
     map.designateKingdoms(continentseed);    
 
     map.paintMap(continentcanvas)
@@ -39,7 +37,8 @@ function create_map(seed, continentcanvas,regioncanvas,names){
     map.drawbox(box,continentcanvas,'rgba(255,0,255,1)');
     print_legend(map)
 
-    regioncanvas.height=height;regioncanvas.width=width;
+    regioncanvas.height=continentcanvas.height;
+    regioncanvas.width=continentcanvas.width;
     map.paintBackground(regioncanvas,'#ffffff');
     map.drawRegion(regioncanvas,regionmod);
     map.drawKingdoms(regioncanvas, false);
@@ -91,7 +90,7 @@ function build_city(  params  ){
     // This is ugly, but is the easiest way to pull the city color.
     city.paintBackground(citycanvas,document.map.currentcitycell.color);
     city.drawCoast(citycanvas, params.isport, params.coastdirection)
-    city.paintCity(citycanvas)
+    city.paintCells(citycanvas,city.citycells,'rgba(255,255,255,1)',false)
 
     city.drawCityWalls(citycanvas,  Math.ceil(params.wallheight/10)   )
 

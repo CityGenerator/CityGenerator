@@ -1,9 +1,23 @@
 
+
+/* ========================================================================= */
+/* VoronoiMap is an abstracted class used to create the world and city maps.
+/* This is roughly based on Amit Patel's Flash Mapgen code
+/*     buildGraph()
+/*     generateRandomPoints( num_points )
+/*     improveRandomPoints()
+/*     paintDot( canvas, x, y, radius, color )
+/*     paintCell( canvas, cell, color, border )
+/*     paintCells( canvas,cells, color, border )
+/*     render(canvas)
+/*     paintBackground(canvas,color)
+/*     triangulatePosition(va,vb,vc)
+/* ========================================================================= */
+
 function  VoronoiMap(width,height,num_points) {
     // Base Parameters
     this.width=width;
     this.height=height;
-    this.num_points = num_points;
 
     // default constant values
     this.num_lloyd_iterations=2;
@@ -12,22 +26,41 @@ function  VoronoiMap(width,height,num_points) {
     this.voronoi = new Voronoi();
 
     //First generate points,
-    this.generateRandomPoints();
+    this.points=this.generateRandomPoints(num_points);
 
     // then compute the virinoi
     this.buildGraph();
+
+    // make those points pretty and more regularly organized
+    this.improveRandomPoints();
 }
 
 
 /* ========================================================================= */
-/* 
+/*  build the actual voronoi diagram  
 /* 
 /* ========================================================================= */
 
 VoronoiMap.prototype.buildGraph = function(){
     this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
-    this.improveRandomPoints();
 }
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.generateRandomPoints = function(num_points){
+    var points = [];
+    var margin=0;
+    for (var i=0; i<num_points; i++) {
+        var x = Math.round((Math.random()*(this.width  -margin*2) )*10)/10 +margin
+        var y = Math.round((Math.random()*(this.height -margin*2) )*10)/10 +margin
+        points.push({ x:x, y:y  }); 
+    }      
+    return points 
+}  
 
 
 /* ========================================================================= */
@@ -36,6 +69,7 @@ VoronoiMap.prototype.buildGraph = function(){
 /* ========================================================================= */
 
 VoronoiMap.prototype.improveRandomPoints = function(){
+    console.log("improve me")
     var points=[];
     for (var i = 0; i < this.num_lloyd_iterations; i++) {
         points=[];
@@ -62,84 +96,12 @@ VoronoiMap.prototype.improveRandomPoints = function(){
             }
             var px = parseInt(cell.site.x / count);
             var py = parseInt(cell.site.y / count);
-            points.push({x:px,
-                        y:py
-                        });
+            points.push({x:px, y:py });
         }
 
         this.voronoi.reset();
         this.points=points;
-        this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
-    }
-}
-
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-VoronoiMap.prototype.generateRandomPoints = function(){
-    var points = [];
-    var margin=0;
-    for (var i=0; i<this.num_points; i++) {
-        points.push({ 
-                    x:Math.round((Math.random()*(this.width  -margin*2) )*10)/10 +margin,
-                    y:Math.round((Math.random()*(this.height -margin*2) )*10)/10 +margin
-                    }); 
-    }       
-    this.points=points;
-}  
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-VoronoiMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
-    if (color == null){
-        if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
-            //not intentional, but s exxpected.
-                var c= parseInt(Math.floor(cell.elevation*128))*2;
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-        }else if (mode=='moisture'){
-            var c= parseInt(Math.floor(cell.moisture*128))*2;
-            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-
-        }else if (mode=='biomes'){
-            if (cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-               cell.color=this.terrain[ cell.terrain].color;
-            }
-        }else if (mode=='land elevation'){
-            if ( cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-                var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-            }
-        }
-    }else{
-        cell.color=color;
-    }
-    var polyfill = canvas.getContext('2d');
-
-    polyfill.fillStyle=cell.color;
-    polyfill.strokeStyle=cell.color;
-    polyfill.beginPath();
-    // draw a line for each edge, A to B.
-    console.log(cell)
-    for (var i=0; i<cell.halfedges.length; i++) {
-
-        var vertexa=cell.halfedges[i].getStartpoint();
-        polyfill.lineTo(vertexa.x,vertexa.y);
-        var vertexb=cell.halfedges[i].getEndpoint();
-        polyfill.lineTo(vertexb.x,vertexb.y);
-    }
-    //close the path and fill it in with the provided color
-    polyfill.closePath();
-    polyfill.fill();
-    if (!noborder){
-        polyfill.stroke();
+        this.buildGraph();
     }
 }
 
@@ -149,67 +111,14 @@ VoronoiMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
 /* 
 /* ========================================================================= */
 
-VoronoiMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
-    if (color == null){
-        if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
-            //not intentional, but s exxpected.
-                var c= parseInt(Math.floor(cell.elevation*128))*2;
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-        }else if (mode=='moisture'){
-            var c= parseInt(Math.floor(cell.moisture*128))*2;
-            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-
-        }else if (mode=='biomes'){
-            if (cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-               cell.color=this.terrain[ cell.terrain].color;
-            }
-        }else if (mode=='land elevation'){
-            if ( cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-                var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-            }
-        }
-    }else{
-        cell.color=color;
-    }
-    var polyfill = canvas.getContext('2d');
-
-    polyfill.fillStyle=cell.color;
-    polyfill.strokeStyle=cell.color;
-    polyfill.beginPath();
-    // draw a line for each edge, A to B.
-    console.log(cell)
-    for (var i=0; i<cell.halfedges.length; i++) {
-
-        var vertexa=cell.halfedges[i].getStartpoint();
-        polyfill.lineTo(vertexa.x,vertexa.y);
-        var vertexb=cell.halfedges[i].getEndpoint();
-        polyfill.lineTo(vertexb.x,vertexb.y);
-    }
-    //close the path and fill it in with the provided color
-    polyfill.closePath();
-    polyfill.fill();
-    if (!noborder){
-        polyfill.stroke();
-    }
-}
-
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-VoronoiMap.prototype.paintdot = function(canvas,x,y,radius,color){
+VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     var polyfill = canvas.getContext('2d');
 
     polyfill.strokeStyle=color;
     polyfill.fillStyle=color;
     polyfill.beginPath();
 
+    //TODO refactor this to use polyfill.rect()
     polyfill.moveTo(x-radius,y-radius);
     polyfill.lineTo(x+radius,y-radius);
     polyfill.lineTo(x+radius,y+radius);
@@ -219,6 +128,55 @@ VoronoiMap.prototype.paintdot = function(canvas,x,y,radius,color){
     polyfill.fill();
     polyfill.stroke();
 }
+
+/* ========================================================================= */
+/* Given a cell on a canvas,
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.paintCell = function( canvas, cell, color, border ){
+    if ( color == null ){
+        color = cell.color
+        if ( color == null ){
+            color = '#ff00ff' // this default color is purposfully ugly.
+        }
+    }
+    var polyfill = canvas.getContext( '2d' );
+
+    polyfill.fillStyle = color;
+    polyfill.strokeStyle = color;
+    polyfill.beginPath() ;
+    // draw a line for each edge, A to B.
+    for ( var i = 0 ; i < cell.halfedges.length ; i++ ) {
+
+        var vertexa = cell.halfedges[i].getStartpoint();
+        polyfill.lineTo( vertexa.x, vertexa.y );
+
+        var vertexb = cell.halfedges[i].getEndpoint();
+        polyfill.lineTo( vertexb.x, vertexb.y);
+    }
+    //close the path and fill it in with the provided color
+    polyfill.closePath();
+
+    polyfill.fill();
+    if ( border ){
+        polyfill.stroke();
+    }
+}
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.paintCells = function(canvas,cells,color,border){
+    for (var i = 0; i < cells.length; i++) {
+        var cell=cells[i];
+        this.paintCell( canvas, cell, color, border );
+    }
+}
+
 
 /* ========================================================================= */
 /*  render uses the edges from the diagram, then mark the points.
@@ -245,16 +203,12 @@ VoronoiMap.prototype.render = function(canvas){
         }
     ctx.stroke();
 
-    // Now lets draw some red dots at the 
-    // point for each cell (note, not the center)
-    // This can probably be refactored
     ctx.fillStyle = 'rgba(255,200,200,.2)';
     ctx.beginPath();
     var msites = this.points,
         iSite = this.points.length;
     while (iSite--) {
         v = msites[iSite];
-        //TODO this doesn't need to be a rectangle; simplify with a dot if possible
         ctx.rect(v.x-2/3,v.y-2/3,2,2);
         }
     ctx.fill();
@@ -278,16 +232,23 @@ VoronoiMap.prototype.paintBackground = function(canvas,color){
 }
 
 
+/* ========================================================================= */
+/* triangulatePosition uses magic to randomly select a point from a triangle.
+/* This is currently used to place cities within cells.
+/* ========================================================================= */
+
 VoronoiMap.prototype.triangulatePosition = function(va,vb,vc){
     var t=Math.random()
     var s=Math.random()
+    // The following awesome magic was taken from the book "Graphic Gems"
+    // I do not understand it, which makes me ashamed.
     if (t+s > 1){
         s=1-s
         t=1-t
     }
-    var a = 1-s-t
-    var b = s
-    var c = t
+    var a = 1-s-t,
+        b = s, 
+        c = t
     var randx=va.x*a +vb.x*b + vc.x*c
     var randy=va.y*a +vb.y*b + vc.y*c
     return {x:randx,y:randy}

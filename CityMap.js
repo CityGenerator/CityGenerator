@@ -24,20 +24,6 @@ CityMap.prototype.designateCity = function(canvas,citycellcount){
 }
 
 
-
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-CityMap.prototype.paintCity = function(canvas){
-    for (var i = 0; i < this.citycells.length; i++) {
-        var cell=this.citycells[i];
-        this.colorPolygon(cell,canvas,'highlight','rgba(255,255,255,1)',false);
-    }
-}
-
-
 /* ========================================================================= */
 /* 
 /* 
@@ -68,40 +54,23 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
                 var cell=this.diagram.cells[i]
                 var tweak=Math.random()*30
                 if ( ! cell.incity && ! cell.water){
-                    if ( coastdirection=='north'){
-                        if ( (  cell.site.y+tweak < target.site.y ) ){
+                    if ( coastdirection=='north' && cell.site.y+tweak < target.site.y ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='south' ){
-                        if ( (  cell.site.y+tweak > target.site.y ) ){
+                    }else if ( coastdirection =='south' && cell.site.y+tweak > target.site.y ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='east' ){
-                        if ( (  cell.site.x+tweak > target.site.x ) ){
+                    }else if ( coastdirection =='east'  && cell.site.x+tweak > target.site.x ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='west' ){
-                        if ( (  cell.site.x+tweak < target.site.x ) ){
+                    }else if ( coastdirection =='west'  && cell.site.x+tweak < target.site.x ){
                             target=cell;
-                        }
-                    } else if ( coastdirection=='northeast'){
-                        if ( (  cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x ) ){
+                    } else if ( coastdirection=='northeast' && cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x  ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='southeast' ){
-                        if ( (  cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x ) ){
+                    }else if ( coastdirection =='southeast' && cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x  ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='northwest' ){
-                        if ( (   cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x ) ){
+                    }else if ( coastdirection =='northwest' && cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x  ){
                             target=cell;
-                        }
-                    }else if ( coastdirection =='southwest' ){
-                        if (  (  cell.site.y+tweak > target.site.y  && cell.site.x+tweak < target.site.x ) ){
+                    }else if ( coastdirection =='southwest' && cell.site.y+tweak > target.site.y && cell.site.x+tweak < target.site.x  ){
                             target=cell;
-                        }
                     }
-    
                 }
             }
             if (target == null){
@@ -113,7 +82,7 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
             }
         }
         for (var i=0 ; i< water.length; i++){
-           this.colorPolygon(water[i],canvas,'highlight','rgba(55,55,222,1)',false);
+            this.paintCell( canvas, water[i] ,'rgba(55,55,222,1)', true );
      
         }
     }
@@ -354,7 +323,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     }
     c.lineCap = 'butt';
     c.stroke()
-    this.paintdot(canvas, road[0].x, road[0].y, roadwidth/2,'rgba(100,100,100,.9)') // final gateway
+    this.paintDot(canvas, road[0].x, road[0].y, roadwidth/2,'rgba(100,100,100,.9)') // final gateway
 
 }
 

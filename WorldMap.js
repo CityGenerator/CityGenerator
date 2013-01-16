@@ -1,3 +1,8 @@
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
 
 WorldMap.prototype = Object.create(VoronoiMap.prototype);
 WorldMap.prototype.constructor = WorldMap;
@@ -6,6 +11,7 @@ WorldMap.prototype.constructor = WorldMap;
 function  WorldMap(width,height,num_points) {
     VoronoiMap.call(this,width,height,num_points)
     // Base Parameters
+
     this.terrain=[];
     this.terrain['Snow']                        ={color:'#F8F8F8'};
     this.terrain['Tundra']                      ={color:'#DDDDBB'};
@@ -24,10 +30,16 @@ function  WorldMap(width,height,num_points) {
 
     this.terrain['Tropical Seasonal Forest']    ={color:'#0D813C'};
     this.terrain['Tropical Rain Forest']        ={color:'#13602D'};
+
+    this.assignElevations();
+    this.assignCoast();
+    this.assignMoisture();
+    this.assignTerrain();
+    this.assignDownslopes();
+    this.assignRivers();
+
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////
 WorldMap.prototype.drawTexture = function(canvas){
     var c = canvas.getContext('2d');
 
@@ -55,8 +67,6 @@ WorldMap.prototype.drawTexture = function(canvas){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////
 WorldMap.prototype.drawCities = function(canvas,regionmod,citymod,names){
     
     for (var cityid=0 ; cityid<10 ; cityid++){
@@ -77,25 +87,9 @@ WorldMap.prototype.drawCities = function(canvas,regionmod,citymod,names){
         var vc=corners.splice( Math.floor(Math.random()*corners.length) ,1)[0];
     
         var point=this.triangulatePosition(va,vb,vc);
-        this.paintdot(canvas,point.x,point.y,color);
+        this.paintDot(canvas,point.x,point.y,color);
     }
 
-}
-WorldMap.prototype.paintdot = function(canvas,x,y,color){
-    var polyfill = canvas.getContext('2d');
-
-    polyfill.strokeStyle=color;
-    polyfill.fillStyle=color;
-    polyfill.beginPath();
-    
-    polyfill.moveTo(x-2,y-2);
-    polyfill.lineTo(x+2,y-2);
-    polyfill.lineTo(x+2,y+2);
-    polyfill.lineTo(x-2,y+2);
-
-    polyfill.closePath();
-    polyfill.fill();
-    polyfill.stroke();
 }
 WorldMap.prototype.paintMap = function(canvas){
     this.paintBackground(canvas,'#ffffff');
@@ -795,11 +789,69 @@ WorldMap.prototype.getOceanColor = function(obj){
 /* **************************************************************** */
 WorldMap.prototype.buildGraph = function(){
     VoronoiMap.prototype.buildGraph.call(this)
-    this.assignElevations();
-    this.assignCoast();
-    this.assignMoisture();
-    this.assignTerrain();
-    this.assignDownslopes();
-    this.assignRivers();
 }
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+WorldMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
+    if (color == null){
+        if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
+            //not intentional, but s exxpected.
+                var c= parseInt(Math.floor(cell.elevation*128))*2;
+                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+        }else if (mode=='moisture'){
+            var c= parseInt(Math.floor(cell.moisture*128))*2;
+            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+
+        }else if (mode=='biomes'){
+            if (cell.ocean){
+                cell.color=this.getOceanColor(cell);
+            }else{
+               cell.color=this.terrain[ cell.terrain].color;
+            }
+        }else if (mode=='land elevation'){
+            if ( cell.ocean){
+                cell.color=this.getOceanColor(cell);
+            }else{
+                var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
+                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
+            }
+        }
+    }else{
+        cell.color=color;
+    }
+    var polyfill = canvas.getContext('2d');
+
+    polyfill.fillStyle=cell.color;
+    polyfill.strokeStyle=cell.color;
+    polyfill.beginPath();
+    // draw a line for each edge, A to B.
+    for (var i=0; i<cell.halfedges.length; i++) {
+
+        var vertexa=cell.halfedges[i].getStartpoint();
+        polyfill.lineTo(vertexa.x,vertexa.y);
+        var vertexb=cell.halfedges[i].getEndpoint();
+        polyfill.lineTo(vertexb.x,vertexb.y);
+    }
+    //close the path and fill it in with the provided color
+    polyfill.closePath();
+    polyfill.fill();
+    if (!noborder){
+        polyfill.stroke();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
