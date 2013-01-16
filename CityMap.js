@@ -1,80 +1,34 @@
 
-
 /* ========================================================================= */
-/* build_city is called by CityGenerator to build the city map. We pass in
-/* everything via the params object to make things easier.
+/* CityMap is the base object for generating the city map. 
+/* TODO This should be abstracted out with WorldMap
 /* ========================================================================= */
+CityMap.prototype = Object.create(VoronoiMap.prototype);
+CityMap.prototype.constructor = CityMap;
 
-function build_city(  params  ){
-
-    // Step 1) we need to set our seed to ensure consistency
-    Math.seedrandom(params.seed)
-
-    var citycanvas=params.canvas
-
-    // hardcoded map sizes
-    citycanvas.height=300;
-    citycanvas.width=350;
-
-    //Set the total number of cells and the city cell count
-    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
-    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
-
-    // Generate our base CityMap
-    var city=new CityMap(  citycanvas.width, citycanvas.height, totalcellcount  );
-    // Generate the key parts of the city.
-    city.designateCity(citycanvas,citycellcount);
-    city.generateCityWalls()
-    city.generateDistricts(params.districts);
-
-
-    // This is ugly, but is the easiest way to pull the city color.
-    // From here, draw out all the parts we designated above.
-    city.paintBackground(citycanvas,document.map.currentcitycell.color);
-    city.drawCoast(citycanvas, params.isport, params.coastdirection)
-    city.paintCity(citycanvas)
- 
-    city.drawCityWalls(citycanvas,  Math.ceil(params.wallheight/10)   )
-
-    city.render(citycanvas)
-    city.drawRoads(citycanvas, params.roads, params.mainroads)
+function  CityMap(width,height,num_points) {
+    VoronoiMap.call(this,width,height,num_points)
 }
 
+
+/* ========================================================================= */
+/* designateCity takes a canvas and a cell count and builds an array
+/* of cells around the center of the canvas.
+/* ========================================================================= */
 
 CityMap.prototype.designateCity = function(canvas,citycellcount){
     this.citycells=[]
     for (var i = 0; i < Math.floor( citycellcount) ; i++) {
         this.citycells.push(this.findCenterCell(canvas))
     }
-
-
 }
 
 
 
 /* ========================================================================= */
-/* CityMap is the base object for generating the city map. 
-/* TODO This should be abstracted out with WorldMap
+/* 
+/* 
 /* ========================================================================= */
-
-function  CityMap(width,height,num_points) {
-    // Base Parameters
-    this.width=width;
-    this.height=height;
-    this.num_points = num_points;
-
-    // default constant values
-    this.num_lloyd_iterations=2;
-
-    // These are important bits to track
-    this.voronoi = new Voronoi();
-
-    //First generate points,
-    this.generateRandomPoints();
-
-    // then compute the virinoi
-    this.buildGraph();
-}
 
 CityMap.prototype.paintCity = function(canvas){
     for (var i = 0; i < this.citycells.length; i++) {
@@ -82,13 +36,22 @@ CityMap.prototype.paintCity = function(canvas){
         this.colorPolygon(cell,canvas,'highlight','rgba(255,255,255,1)',false);
     }
 }
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
 CityMap.prototype.generateDistricts = function(districts){
     // rainbows and unicorn farts go here.
 }
 
 
-
-
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
     if ( isport ){
@@ -98,12 +61,8 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
         var targetcount=Math.round( this.diagram.cells.length * percentwater ) -this.citycells.length/2
         while (water.length< targetcount){
     
-    
-    
             var target={site:{  x:canvas.width/2,  y:canvas.height/2 } }
             var target=this.findCenterCell(canvas)
-    
-    
     
             for (var i=0 ; i< this.diagram.cells.length; i++){
                 var cell=this.diagram.cells[i]
@@ -161,13 +120,15 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
 }
 
 
-CityMap.prototype.findCenterCell = function(canvas){
-    var width  = this.width;
-    var height = this.height;
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
-    var centerx = width/2;
-    var centery = height/2;
-    var lesser  = Math.min(width, height);
+CityMap.prototype.findCenterCell = function(canvas){
+
+    var centerx = canvas.width/2;
+    var centery = canvas.height/2;
 
     var closestpoint;
     var shortestradius=10000;
@@ -176,12 +137,9 @@ CityMap.prototype.findCenterCell = function(canvas){
         var cell=this.diagram.cells[i];
         var x = cell.site.x
         var y = cell.site.y
-        var randx= (Math.random()*x - x/2)/4
-        var randy= (Math.random()*y - y/2)/4
 
-
-        var adjustedx=x-centerx+randx;
-        var adjustedy=y-centery+randy;
+        var adjustedx=x-centerx + (Math.random()*x - x/2)/4 ;
+        var adjustedy=y-centery + (Math.random()*y - y/2)/4 ;
         var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
         if (!cell.incity && !cell.inwater &&    shortestradius> radius ){
             shortestradius=radius
@@ -192,111 +150,10 @@ CityMap.prototype.findCenterCell = function(canvas){
     return closestpoint
 }
 
-
-
-CityMap.prototype.generateRandomPoints = function(){
-    var points = [];
-    var margin=0;
-    for (var i=0; i<this.num_points; i++) {
-        points.push({
-                    x:Math.round((Math.random()*(this.width  -margin*2) )*10)/10 +margin,
-                    y:Math.round((Math.random()*(this.height -margin*2) )*10)/10 +margin
-                    });
-    }
-    this.points=points;
-}
-CityMap.prototype.buildGraph = function(){
-    this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
-    this.improveRandomPoints();
-}
-CityMap.prototype.improveRandomPoints = function(){
-    var points=[];
-    for (var i = 0; i < this.num_lloyd_iterations; i++) {
-        points=[];
-        for(cellid in this.diagram.cells) {
-            var cell = this.diagram.cells[cellid];
-            cell.site.x = 0.0;
-            cell.site.y = 0.0;
-            var count=0;
-            for (hedgeid in cell.halfedges) {
-                var he = cell.halfedges[hedgeid];
-                var hestart=he.getStartpoint();
-                if (hestart.x != NaN && hestart.y != NaN){
-                    cell.site.x += hestart.x||0;
-                    cell.site.y += hestart.y||0;
-                    count++;
-                }
-                var heend=he.getEndpoint();
-                if (heend.x != NaN && heend.y != NaN){
-
-                    cell.site.x += heend.x||0;
-                    cell.site.y += heend.y||0;
-                    count++;
-                }
-            }
-            var px = parseInt(cell.site.x / count);
-            var py = parseInt(cell.site.y / count);
-            points.push({x:px,
-                        y:py
-                        });
-        }
-
-        this.voronoi.reset();
-        this.points=points;
-        this.diagram = this.voronoi.compute(this.points, {xl:0,xr:this.width,yt:0,yb:this.height });
-    }
-}
-
-/* **************************************************************** */
-CityMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
-    if (color == null){
-        if (mode=='elevation'){  //note that there is a two-tone color difference between land and ocean
-            //not intentional, but s exxpected.
-                var c= parseInt(Math.floor(cell.elevation*128))*2;
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-        }else if (mode=='moisture'){
-            var c= parseInt(Math.floor(cell.moisture*128))*2;
-            cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-
-        }else if (mode=='biomes'){
-            if (cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-               cell.color=this.terrain[ cell.terrain].color;
-            }
-        }else if (mode=='land elevation'){
-            if ( cell.ocean){
-                cell.color=this.getOceanColor(cell);
-            }else{
-                var c= parseInt(Math.floor(cell.elevation*128))*2; //The closer the elevation is to 0
-                cell.color= 'rgb(' + c + "," + c + "," + c + ")";
-            }
-        }
-    }else{
-        cell.color=color;
-    }
-    var polyfill = canvas.getContext('2d');
-
-    polyfill.fillStyle=cell.color;
-    polyfill.strokeStyle=cell.color;
-    polyfill.beginPath();
-    // draw a line for each edge, A to B.
-    console.log(cell)
-    for (var i=0; i<cell.halfedges.length; i++) {
-
-        var vertexa=cell.halfedges[i].getStartpoint();
-        polyfill.lineTo(vertexa.x,vertexa.y);
-        var vertexb=cell.halfedges[i].getEndpoint();
-        polyfill.lineTo(vertexb.x,vertexb.y);
-    }
-    //close the path and fill it in with the provided color
-    polyfill.closePath();
-    polyfill.fill();
-    if (!noborder){
-        polyfill.stroke();
-    }
-}
-
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
     var corners=[]
@@ -319,6 +176,10 @@ CityMap.prototype.drawRoads = function(canvas,roads,mainroads){
 }
 
 
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     var road=[va]
@@ -499,28 +360,10 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 
 
-
-
-
-
-
-
-CityMap.prototype.paintdot = function(canvas,x,y,radius,color){
-    var polyfill = canvas.getContext('2d');
-
-    polyfill.strokeStyle=color;
-    polyfill.fillStyle=color;
-    polyfill.beginPath();
-
-    polyfill.moveTo(x-radius,y-radius);
-    polyfill.lineTo(x+radius,y-radius);
-    polyfill.lineTo(x+radius,y+radius);
-    polyfill.lineTo(x-radius,y+radius);
-
-    polyfill.closePath();
-    polyfill.fill();
-    polyfill.stroke();
-}
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     var polyline = canvas.getContext('2d');
@@ -530,9 +373,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
         polyline.lineTo(vertex.x,vertex.y);
     }
     polyline.lineWidth=wallsize;
-    //console.log(wallsize)
     polyline.strokeStyle="rgba(0,0,0,0.7)";
-    //polyline.fillStyle="rgba(200,0,0,0.3)";
     polyline.fillStyle=this.color;
     polyline.lineCap = 'butt';
     polyline.stroke();
@@ -540,7 +381,13 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     polyline.closePath();
 
 }
-// Determine if halfedge has a side that is not in the kingdom list
+
+
+/* ========================================================================= */
+/* Determine if halfedge has a side that is not in the kingdom list
+/* 
+/* ========================================================================= */
+
 CityMap.prototype.isKingdomEdge = function(ids,halfedge){
     if (  ids.indexOf( halfedge.edge.lSite.voronoiId) ==-1 || ids.indexOf( halfedge.edge.rSite.voronoiId) ==-1  ){
         return true
@@ -549,6 +396,11 @@ CityMap.prototype.isKingdomEdge = function(ids,halfedge){
     }
 }
 
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 //TODO refactor with getKingdomPolygon
 CityMap.prototype.generateCityWalls = function(){
@@ -601,59 +453,4 @@ CityMap.prototype.generateCityWalls = function(){
         return this;
 }
 
-
-
-/* **************************************************************** */
-/*  render uses the edges from the diagram, then mark the points.
-/* **************************************************************** */
-CityMap.prototype.render = function(canvas){
-    var ctx = canvas.getContext('2d');
-   
-    //First lets draw all of the edges.
-    // This can probably be refactored
-    ctx.strokeStyle="rgba(0,0,0,.2)";
-    ctx.lineWidth=1;
-    ctx.beginPath();
-    var edges = this.diagram.edges;
-    var iEdge = edges.length;
-    var edge, v;
-    while (iEdge--) {
-        edge = edges[iEdge];
-        v = edge.va;
-        ctx.moveTo(v.x,v.y);
-        v = edge.vb;
-        ctx.lineTo(v.x,v.y);
-        }   
-    ctx.stroke();
-
-    // Now lets draw some red dots at the 
-    // point for each cell (note, not the center)
-    // This can probably be refactored
-    ctx.fillStyle = 'rgba(255,200,200,.2)';
-    ctx.beginPath();
-    var msites = this.points,
-        iSite = this.points.length;
-    while (iSite--) {
-        v = msites[iSite];
-        //TODO this doesn't need to be a rectangle; simplify with a dot if possible
-        ctx.rect(v.x-2/3,v.y-2/3,2,2);
-        }   
-    ctx.fill();
-
-    //TODO add the centers to the render list.
-} 
-
-
-/* **************************************************************** */
-/*  paintBackground is relatively simple- it just draws the 
-/*  background rectangle.
-/* **************************************************************** */
-CityMap.prototype.paintBackground = function(canvas,color){
-        var ctx = canvas.getContext('2d');
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.rect(0,0,canvas.width,canvas.height);
-        ctx.fill();
-}
 

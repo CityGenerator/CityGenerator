@@ -122,10 +122,12 @@ sub describe_header{
                 <title>City Generator: $city->{'name'} ($city->{'seed'})</title>
             $style
             <script src='js/flag.js' ></script>
-            <script src='js/map.js' ></script>
-            <script src='js/CityMap.js' ></script>
             <script src='js/rhill-voronoi-core.js' ></script>
             <script src='js/simplex-noise.js' ></script>
+            <script src='js/VoronoiMap.js' ></script>
+            <script src='js/map.js' ></script>
+            <script src='js/CityMap.js' ></script>
+            <script src='js/WorldMap.js' ></script>
             </head>
             <body onload=\"create_flag($city->{'seed'}, '$letter', $flagcolors); create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region') ,$names);build_city({    seed:$city->{'seed'},
                         canvas:document.getElementById('city'),
