@@ -26,8 +26,8 @@ function create_map( params ){
     var sites=2000;
 
     // The width and height are hard-coded here
-    params.canvas.height=300;
-    params.canvas.width=350
+    params.canvas.height=150;
+    params.canvas.width=180
 
     // This is the crux of our entire map.
     var map=new WorldMap(params.canvas.width,params.canvas.height,sites);
@@ -69,8 +69,8 @@ function build_city(  params  ){
     var citycanvas=params.canvas
 
     // hardcoded map sizes
-    citycanvas.height=300;
-    citycanvas.width=350;
+    citycanvas.height=150;
+    citycanvas.width=180;
 
     //Set the total number of cells and the city cell count
     var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
@@ -121,8 +121,8 @@ function build_region(  params  ){
     var map=params.continentmap;
 
     // hardcoded map sizes
-    canvas.height=300;
-    canvas.width=350;
+    canvas.height=150;
+    canvas.width=180;
 //    regioncanvas.height=continentcanvas.height;
 //    regioncanvas.width=continentcanvas.width;
 

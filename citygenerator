@@ -66,7 +66,9 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print XMLout($xml_data);
 # and if it doesn't match those, do the regular printing of the city.
 }else {
+#    print $q->header( 'text/xml' ); # XXX remove this
     print $q->header;
+
     print describe_city();
 }
         
@@ -128,6 +130,7 @@ sub describe_header{
             <script src='js/map.js' ></script>
             <script src='js/CityMap.js' ></script>
             <script src='js/WorldMap.js' ></script>
+            <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
                 create_flag($city->{'seed'}, '$letter', $flagcolors); 
@@ -155,6 +158,7 @@ sub describe_header{
                                 mainroads:$city->{'streets'}->{'mainroads'},
                             }) ;\">
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
+            
 ";
     return $content;
 }
@@ -162,18 +166,80 @@ sub describe_footer{
     my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
     my $regionname=$city->{'realm'};
     my $content="
+                </div>
+                </div>
+
+                <div class='left' id='subnav'>
+
+                            <ul>
+                                <li><a href='#summary'>Summary</a></li>
+                                <li><a href='#geography'>Geography</a></li>
+                                <li><a href='#cityscape'>CityScape</a>
+                                    <ul>
+                                        <li><a href='#districts'>Districts</a></li>
+                                        <li><a href='#housing'>Housing</a></li>
+                                        <li><a href='#businesses'>Businesses</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#government'>Government</a>
+                                    <ul>
+                                        <li><a href='#diplomaticties'>Diplomatic Ties</a></li>
+                                        <li><a href='#crimeandpunishment'>Crime and Punishment</a></li>
+                                        <li><a href='#military'>Military</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#population'>Population</a>
+                                    <ul>
+                                        <li><a href='#racerelations'>Race Relations</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#economy'>Economy</a>
+                                    <ul>
+                                        <li><a href='#resources'>Resources</a></li>
+                                        <li><a href='#taverns'>Taverns</a></li>
+                                        <li><a href='#localinfo'>Local Info</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#currentevents'>Current Events</a>
+                                    <ul>
+                                        <li><a href='#weather'>Weather</a></li>
+                                        <li><a href='#events'>Events</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href='#people'>People</a>
+                                    <ul>
+                                        <li><a href='#citizens'>Citizens</a></li>
+                                        <li><a href='#travelers'>Travelers</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                </div>
+        </div>
+
+        <div class='right' id='main_right'>
+
+
+            <div class='padded'>
+                            <div >Official Flag:</div>
+                            <canvas id='flagcanvas' > </canvas>
+
+                <div >City: $city->{'name'} <br/><canvas id=\"city\"  style=\"border:1px solid black;\" ></canvas> <div id='citylegend'></div> </div>
+                <div >$regionname <br/><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> <div id='regionlegend'></div> </div>
+                <div >World Map ($continentseed) <br/><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> <div id='continentlegend'></div></div>
             </div>
-            <div id='rightsidebar'>
-                <div >City: $city->{'name'} <br><canvas id=\"city\"  style=\"border:1px solid black;\" ></canvas> <div id='citylegend'></div> </div>
-                <div >$regionname <br><canvas id=\"region\"  style=\"border:1px solid black;\" ></canvas> <div id='regionlegend'></div> </div>
-                <div >World Map ($continentseed) <br><canvas id=\"continent\"  style=\"border:1px solid black;\" ></canvas> <div id='continentlegend'></div></div>
-            </div>
-            <footer>
+
+
+        </div>
+
+        <div class='clearer'>&nbsp;</div>
+            <div id='footer'>
+
                 
                 <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
                 <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>
-            </footer>
             </div>
+
+        </div>
             </body>
         </html>\n";
     return $content;
@@ -387,8 +453,8 @@ sub describe_economy{
     my $content="
                     <section id='economy'>
                         <h2>Economy</h2>
-                        <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.
-                        <h3 id='resources'>Resources</a></h3>
+                        <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.</p>
+                        <h3 id='resources'>Resources</h3>
                             <p>$city->{'name'} is known for the following:</p>$resources
                         <h3 id='taverns'>Taverns</h3>
                             $taverns
@@ -508,62 +574,23 @@ sub describe_summary {
     my $content="
                     <div id='container'>
 
-                        <div id='header'>
-                            <h1><a href='?cityid=$previousid'>&lt;&lt;</a> <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a> <a href='?cityid=$nextid'>&gt;&gt;</a></h1>
-                        </div>
+                        <div class='left' id='main_left'>
 
-                        <div id='leftsidebar'>
-                            <div >Official Flag:</div> <canvas id='flagcanvas' > </canvas>
-                            <ul>
-                                <li><a href='#summary'>Summary</a></li>
-                                <li><a href='#geography'>Geography</a></li>
-                                <li><a href='#cityscape'>CityScape</a>
-                                    <ul>
-                                        <li><a href='#districts'>Districts</a></li>
-                                        <li><a href='#housing'>Housing</a></li>
-                                        <li><a href='#businesses'>Businesses</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#government'>Government</a>
-                                    <ul>
-                                        <li><a href='#diplomaticties'>Diplomatic Ties</a></li>
-                                        <li><a href='#crimeandpunishment'>Crime and Punishment</a></li>
-                                        <li><a href='#military'>Military</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#population'>Population</a>
-                                    <ul>
-                                        <li><a href='#racerelations'>Race Relations</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#economy'>Economy</a>
-                                    <ul>
-                                        <li><a href='#resources'>Resources</a></li>
-                                        <li><a href='#taverns'>Taverns</a></li>
-                                        <li><a href='#localinfo'>Local Info</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#currentevents'>Current Events</a>
-                                    <ul>
-                                        <li><a href='#weather'>Weather</a></li>
-                                        <li><a href='#events'>Events</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#people'>People</a>
-                                    <ul>
-                                        <li><a href='#citizens'>Citizens</a></li>
-                                        <li><a href='#travelers'>Travelers</a></li>
-                                    </ul>
-                                </li>
-                            <ul>
-                        </div>
-                    <div id='centercolumn'>
-                    <header id='summary'>
-                        <h2>Summary</a></h2>
+                            <div id='header'>
+                                <a href='?cityid=$previousid'>&lt;&lt;</a>
+                                <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>
+                                <a href='?cityid=$nextid'>&gt;&gt;</a>
+                            </div>
+
+
+                <div class='right' id='main'>
+                    <div class='padded'>
+
+                        <h2>Summary</h2>
 
                         <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
 
-                    </header>";
+                   ";
 }
 sub describe_geography {
     my $landmarks= print_landmarks();
@@ -610,7 +637,7 @@ sub describe_housing {
             push @housing, "$key: ".$city->{'housing'}->{$key};
         }
     }
-    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.";
+    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.</p>";
 }
 
 sub describe_businesses {
@@ -715,56 +742,6 @@ sub print_style{
 
     return <<EOF
         <style type='text/css'>
-            body{
-                background-color:#44aa44;
-                font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-            }
-            #flagcanvas {
-                margin:0 auto;
-                display:block;
-            }
-            section, header{
-                padding:5px;
-            
-            }
-            #container {
-                width: 100%;
-                margin: 0 auto;
-            }
-            h1{
-                margin-left:auto;
-                margin-right:auto;
-                text-align:center;
-            }
-            .business-column{   
-                -moz-column-width:222px;
-                -webkit-column-width:222px ;
-            } 
-            #leftsidebar {
-                padding-right:5px;
-                background-color:#44aa22;
-                font-weight:bold;
-                float:left;
-                width:200px;
-            }
-            #rightsidebar {
-                font-weight:bold;
-                float:left;
-                width:350px;
-            }
-            #leftsidebar ul{
-                margin-left:0;
-                padding-left:20px;
-                
-            }
-            #centercolumn {
-                font-weight:bold;
-                float:left;
-                width:675px;
-            }
-            footer {
-                clear:both;
-            } 
         </style>
 
 
