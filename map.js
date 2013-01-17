@@ -37,14 +37,7 @@ function create_map(seed, continentcanvas,regioncanvas,names){
     map.drawbox(box,continentcanvas,'rgba(255,0,255,1)');
     print_legend(map)
 
-    regioncanvas.height=continentcanvas.height;
-    regioncanvas.width=continentcanvas.width;
-    map.paintBackground(regioncanvas,'#ffffff');
-    map.drawRegion(regioncanvas,regionmod);
-    map.drawKingdoms(regioncanvas, false);
-
-    map.drawCities(regioncanvas,regionmod,citymod,names);
-    document.map=map
+    return map
 }
 
 function print_legend(map){
@@ -87,8 +80,7 @@ function build_city(  params  ){
 
 
     // From here, draw out all the parts we designated above.
-    // This is ugly, but is the easiest way to pull the city color.
-    city.paintBackground(citycanvas,document.map.currentcitycell.color);
+    city.paintBackground(citycanvas,params.continentmap.currentcitycell.color);
     city.drawCoast(citycanvas, params.isport, params.coastdirection)
     city.paintCells(citycanvas,city.citycells,'rgba(255,255,255,1)',false)
 
@@ -96,5 +88,44 @@ function build_city(  params  ){
 
     city.render(citycanvas)
     city.drawRoads(citycanvas, params.roads, params.mainroads)
+    return city
+}
+
+/* ========================================================================= */
+/* build_region is called by CityGenerator to build the region map. We pass in
+/* everything via the params object to make things easier.
+/* ========================================================================= */
+
+function build_region(  params  ){
+
+    // Step 1) we need to set our seed to ensure consistency
+    Math.seedrandom(params.seed)
+
+    // regionmod determines which of the 10 regions on this continent to use.
+    // With a cityid of 744158, the 5 indications which region to focus on
+    var regionmod=Math.floor(   (params.seed%100)/10  );
+
+    // citymod determines which of the 10 cities in this region to use.
+    // uses the last  digit of the cityid: 744158 -> 8
+    var citymod=Math.floor((params.seed%10));
+
+    var canvas=params.canvas;
+
+    // use our continent map
+    var map=params.continentmap;
+
+    // hardcoded map sizes
+    canvas.height=300;
+    canvas.width=350;
+//    regioncanvas.height=continentcanvas.height;
+//    regioncanvas.width=continentcanvas.width;
+
+    map.paintBackground(canvas,'#ffffff');
+    map.drawRegion(canvas,regionmod);
+    map.drawKingdoms(canvas, false);
+
+    map.drawCities(canvas,regionmod,citymod,params.citynames);
+
+    // Generate our base RegionMap
 }
 
