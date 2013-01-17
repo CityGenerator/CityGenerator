@@ -81,6 +81,7 @@ WorldMap.prototype.drawCities = function(canvas,regionmod,citymod,names){
         //console.log(cityid+" "+citymod)
         // Using the region and cityid, select a cell and get a list of its corners
         var regioncount=this.kingdoms[regionmod].cells.length;
+        //FIXME I think something is wrong with cell selection; cities seem grouped.
         var cell=this.kingdoms[regionmod].cells[cityid%regioncount]
         var corners=cell.corners
     
