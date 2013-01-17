@@ -131,12 +131,16 @@ sub describe_header{
             </head>
             <body onload=\"
                 create_flag($city->{'seed'}, '$letter', $flagcolors); 
-                var continentmap=create_map($city->{'seed'},document.getElementById('continent'),document.getElementById('region') ,$names);
+                var continentmap=create_map({
+                                seed:$city->{'seed'},
+                                canvas:document.getElementById('continent') 
+                            });
                 var regionmap=build_region({
                                 seed:$city->{'seed'},
                                 continentmap:continentmap,
                                 canvas:document.getElementById('region'),
-                                citynames:$names});
+                                citynames:$names
+                            });
                 var citymap=build_city({    
                                 seed:$city->{'seed'},
                                 continentmap:continentmap,

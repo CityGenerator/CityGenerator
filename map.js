@@ -1,21 +1,23 @@
-/* **************************************************************** */
+
+
+/* ========================================================================= */
 /*  Lets generate a worldmap!
 /*  The first function, create_map is called by citygenerator to
-//* configure all of the maps and add the legend.
-/* **************************************************************** */
+/* configure all of the maps and add the legend.
+/* ========================================================================= */
 
-function create_map(seed, continentcanvas,regioncanvas,names){
+function create_map( params ){
     // regionmod determines which of the 10 regions on this continent to use.
     // With a cityid of 744158, the 5 indications which region to focus on
-    var regionmod=Math.floor(   (seed%100)/10  );
+    var regionmod=Math.floor(   (params.seed%100)/10  );
 
     // citymod determines which of the 10 cities in this region to use.
     // uses the last  digit of the cityid: 744158 -> 8
-    var citymod=Math.floor((seed%10));
+    var citymod=Math.floor((params.seed%10));
 
     // continent seed refers to which continent we're on- it essentially
     // ignores the last two digits of the cityid: 744158 -> 744100 
-    var continentseed=seed -  seed%100;
+    var continentseed=params.seed -  params.seed%100;
 
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
@@ -24,21 +26,27 @@ function create_map(seed, continentcanvas,regioncanvas,names){
     var sites=2000;
 
     // The width and height are hard-coded here
-    continentcanvas.height=300;
-    continentcanvas.width=350
+    params.canvas.height=300;
+    params.canvas.width=350
 
     // This is the crux of our entire map.
-    var map=new WorldMap(continentcanvas.width,continentcanvas.height,sites);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,sites);
     map.designateKingdoms(continentseed);    
 
-    map.paintMap(continentcanvas)
-    map.drawKingdoms(continentcanvas,true);
+    map.paintMap(params.canvas)
+    map.drawKingdoms(params.canvas,true);
     var box=map.kingdoms[regionmod].regionbox;
-    map.drawbox(box,continentcanvas,'rgba(255,0,255,1)');
+    map.drawbox(box,params.canvas,'rgba(255,0,255,1)');
     print_legend(map)
 
     return map
 }
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
 function print_legend(map){
     document.getElementById('continentlegend').innerHTML='Legend:'
@@ -46,9 +54,6 @@ function print_legend(map){
     document.getElementById('continentlegend').innerHTML+='<span style="font-size:10px;background-color:'+map.terrain[name].color+'">'+name +'</span> '
     }
 }
-
-
-
 
 
 /* ========================================================================= */
@@ -91,9 +96,10 @@ function build_city(  params  ){
     return city
 }
 
+
 /* ========================================================================= */
-/* build_region is called by CityGenerator to build the region map. We pass in
-/* everything via the params object to make things easier.
+/* build_region is called by CityGenerator to build the region map.
+/* We pass in everything via the params object to make things easier.
 /* ========================================================================= */
 
 function build_region(  params  ){

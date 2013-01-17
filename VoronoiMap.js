@@ -98,7 +98,6 @@ VoronoiMap.prototype.improveRandomPoints = function(){
             var py = parseInt(cell.site.y / count);
             points.push({x:px, y:py });
         }
-
         this.voronoi.reset();
         this.points=points;
         this.buildGraph();
@@ -112,21 +111,21 @@ VoronoiMap.prototype.improveRandomPoints = function(){
 /* ========================================================================= */
 
 VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
-    var polyfill = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
 
-    polyfill.strokeStyle=color;
-    polyfill.fillStyle=color;
-    polyfill.beginPath();
+    ctx.strokeStyle=color;
+    ctx.fillStyle=color;
+    ctx.beginPath();
 
-    //TODO refactor this to use polyfill.rect()
-    polyfill.moveTo(x-radius,y-radius);
-    polyfill.lineTo(x+radius,y-radius);
-    polyfill.lineTo(x+radius,y+radius);
-    polyfill.lineTo(x-radius,y+radius);
+    //TODO refactor this to use ctx.rect()
+    ctx.moveTo(x-radius,y-radius);
+    ctx.lineTo(x+radius,y-radius);
+    ctx.lineTo(x+radius,y+radius);
+    ctx.lineTo(x-radius,y+radius);
 
-    polyfill.closePath();
-    polyfill.fill();
-    polyfill.stroke();
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
 }
 
 /* ========================================================================= */
@@ -223,12 +222,12 @@ VoronoiMap.prototype.render = function(canvas){
 /* ========================================================================= */
 
 VoronoiMap.prototype.paintBackground = function(canvas,color){
-        var ctx = canvas.getContext('2d');
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.rect(0,0,canvas.width,canvas.height);
-        ctx.fill();
+    var ctx = canvas.getContext('2d');
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.rect(0,0,canvas.width,canvas.height);
+    ctx.fill();
 }
 
 
@@ -253,4 +252,15 @@ VoronoiMap.prototype.triangulatePosition = function(va,vb,vc){
     var randy=va.y*a +vb.y*b + vc.y*c
     return {x:randx,y:randy}
 }
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.translatePoint = function(point,min,max,totallength){
+    return Math.round(      (point-min)*totallength/(max-min)    );
+}
+
+
 

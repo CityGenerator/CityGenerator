@@ -55,21 +55,21 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
                 var tweak=Math.random()*30
                 if ( ! cell.incity && ! cell.water){
                     if ( coastdirection=='north' && cell.site.y+tweak < target.site.y ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='south' && cell.site.y+tweak > target.site.y ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='east'  && cell.site.x+tweak > target.site.x ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='west'  && cell.site.x+tweak < target.site.x ){
-                            target=cell;
+                        target=cell;
                     } else if ( coastdirection=='northeast' && cell.site.y+tweak < target.site.y && cell.site.x+tweak > target.site.x  ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='southeast' && cell.site.y+tweak > target.site.y && cell.site.x+tweak > target.site.x  ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='northwest' && cell.site.y+tweak < target.site.y && cell.site.x+tweak < target.site.x  ){
-                            target=cell;
+                        target=cell;
                     }else if ( coastdirection =='southwest' && cell.site.y+tweak > target.site.y && cell.site.x+tweak < target.site.x  ){
-                            target=cell;
+                        target=cell;
                     }
                 }
             }
@@ -83,7 +83,6 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
         }
         for (var i=0 ; i< water.length; i++){
             this.paintCell( canvas, water[i] ,'rgba(55,55,222,1)', true );
-     
         }
     }
 }
@@ -354,7 +353,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
 
 /* ========================================================================= */
 /* Determine if halfedge has a side that is not in the kingdom list
-/* 
+/* TODO this should be refactored to be more generic
 /* ========================================================================= */
 
 CityMap.prototype.isKingdomEdge = function(ids,halfedge){
@@ -373,53 +372,53 @@ CityMap.prototype.isKingdomEdge = function(ids,halfedge){
 
 //TODO refactor with getKingdomPolygon
 CityMap.prototype.generateCityWalls = function(){
-        var ids=[]
-        for (var i=0; i < this.citycells.length ; i++ ){ ids.push(this.citycells[i].site.voronoiId)}
-        //Get a list of all external edges
-        var edges=[];
-        for (var i=0; i < this.citycells.length ; i++ ){
-            var cell=this.citycells[i];
-            for (var j=0; j < cell.halfedges.length ; j++ ){
-                var he=cell.halfedges[j];
-                if (  this.isKingdomEdge(ids,he) ){
-                    edges.push(he);
-                }
+    var ids=[]
+    for (var i=0; i < this.citycells.length ; i++ ){ ids.push(this.citycells[i].site.voronoiId)}
+    //Get a list of all external edges
+    var edges=[];
+    for (var i=0; i < this.citycells.length ; i++ ){
+        var cell=this.citycells[i];
+        for (var j=0; j < cell.halfedges.length ; j++ ){
+            var he=cell.halfedges[j];
+            if (  this.isKingdomEdge(ids,he) ){
+                edges.push(he);
             }
         }
+    }
 
-        //loop through the edges and push them onto the outline list for drawing later
-        var minx=1000000
-        var pos;
-        for (var i=0; i < edges.length ; i++ ){
-            minx=Math.min(minx,edges[i].edge.va.x, edges[i].edge.va.x)
-            if (edges[i].edge.va.x == minx){
-                pos=edges[i].edge.va
-            } else if (edges[i].edge.vb.x == minx){
-                pos=edges[i].edge.vb
-            }
+    //loop through the edges and push them onto the outline list for drawing later
+    var minx=1000000
+    var pos;
+    for (var i=0; i < edges.length ; i++ ){
+        minx=Math.min(minx,edges[i].edge.va.x, edges[i].edge.va.x)
+        if (edges[i].edge.va.x == minx){
+            pos=edges[i].edge.va
+        } else if (edges[i].edge.vb.x == minx){
+            pos=edges[i].edge.vb
         }
+    }
 
-        this.outline=[pos];
-        var maxfail=edges.length;
-        while(edges.length >0){
-            var testedge=edges.pop()
-            if (testedge.edge.va == pos ){
-                    pos=testedge.edge.vb;
-                    this.outline.push(pos);
-                    maxfail=edges.length;
-            }else if (testedge.edge.vb == pos ){
-                    pos=testedge.edge.va;
-                    this.outline.push(pos);
-                    maxfail=edges.length;
-            }else{
-                maxfail--;
-                if (maxfail== 0){
-                    break;
-                }
-                edges.unshift(testedge);
+    this.outline=[pos];
+    var maxfail=edges.length;
+    while(edges.length >0){
+        var testedge=edges.pop()
+        if (testedge.edge.va == pos ){
+                pos=testedge.edge.vb;
+                this.outline.push(pos);
+                maxfail=edges.length;
+        }else if (testedge.edge.vb == pos ){
+                pos=testedge.edge.va;
+                this.outline.push(pos);
+                maxfail=edges.length;
+        }else{
+            maxfail--;
+            if (maxfail== 0){
+                break;
             }
+            edges.unshift(testedge);
         }
-        return this;
+    }
+    return this;
 }
 
 
