@@ -22,21 +22,21 @@ function create_map( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
 
+    var canvas=params.canvas
+
     // The number of cells in a given continent.
     var sites=2000;
 
     // The width and height are hard-coded here
-    params.canvas.height=150;
-    params.canvas.width=180
-
+    console.log(canvas)
     // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,sites);
+    var map=new WorldMap(canvas.width,canvas.height,sites);
     map.designateKingdoms(continentseed);    
 
-    map.paintMap(params.canvas)
-    map.drawKingdoms(params.canvas,true);
+    map.paintMap(canvas)
+    map.drawKingdoms(canvas,true);
     var box=map.kingdoms[regionmod].regionbox;
-    map.drawbox(box,params.canvas,'rgba(255,0,255,1)');
+    map.drawbox(box,canvas,'rgba(255,0,255,1)');
     print_legend(map)
 
     return map
