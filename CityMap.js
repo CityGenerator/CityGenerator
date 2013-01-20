@@ -312,6 +312,8 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 
     var c = canvas.getContext('2d');
+//    c.scale(this.scale,this.scale);
+
 
     c.strokeStyle='#5E2605';
     c.lineWidth=roadwidth;
@@ -335,6 +337,8 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     var polyline = canvas.getContext('2d');
+//    polyline.scale(this.scale,this.scale);
+
     polyline.beginPath();
     for (var i=0; i<this.outline.length; i++){
         var vertex= this.outline[i];

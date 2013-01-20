@@ -7,8 +7,20 @@ RegionMap.prototype = Object.create(VoronoiMap.prototype);
 RegionMap.prototype.constructor = RegionMap;
 
 
-function  RegionMap(width,height,num_points) {
-    VoronoiMap.call(this,width,height,num_points)
+function  RegionMap(width,height,points) {
+//    VoronoiMap.call(this,width,height,num_points)
+    this.width=width;
+    this.height=height;
+    this.num_points=points.length
+    // These are important bits to track
+    this.voronoi = new Voronoi();
+
+    //First generate points,
+    this.points=points;
+
+    // then compute the virinoi
+    this.buildGraph();
+
     // Base Parameters
 
     this.terrain=[];
@@ -392,6 +404,69 @@ RegionMap.prototype.getNeighbors = function(cell){
 }
 
 
+/* ========================================================================= */
+/*  redraw what this should look like on a given canvas 
+/*  
+/* ========================================================================= */
+
+//RegionMap.prototype.redraw = function(canvas,scale){
+//    if (scale == undefined) {
+//        scale=this.scale
+//    }
+//    this.paintBackground(canvas,'#ffffff',scale);
+//    this.paintMap(canvas)
+//    this.drawKingdoms(canvas,true);
+//    this.drawbox(this.kingdoms[this.currentRegion].regionbox,canvas,'rgba(255,0,255,1)');
+//
+//}
+//
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+RegionMap.prototype.clone = function(worldmap){
+    for (var i =0; i<worldmap.diagram.cells.length;i++){
+        var oldcell=worldmap.diagram.cells[i];
+        var newcell=this.diagram.cells[i];
+        newcell.elevation = oldcell.elevation
+        newcell.moisture = oldcell.moisture
+        newcell.radius = oldcell.radius
+        newcell.river = oldcell.river
+        newcell.lake = oldcell.lake
+        newcell.coast = oldcell.coast
+        newcell.kingdom = oldcell.kingdom
+        newcell.upslope = oldcell.upslope
+        newcell.color = oldcell.color
+        newcell.border = oldcell.border
+    }
+    this.kingdoms=[]
+    for (var i =0; i<worldmap.kingdoms.length;i++){
+//        var oldkingdom=worldmap.kingdoms[i];
+//        var newkingdom={cells:[]};
+//        for (var j =0; j<kingdom.cells.length;j++){
+//            var newcell=kingdom.cells[i];
+//            var oldcell=kingdom.cells[i];
+//            newcell.elevation = oldcell.elevation
+//            newcell.moisture = oldcell.moisture
+//            newcell.radius = oldcell.radius
+//            newcell.river = oldcell.river
+//            newcell.lake = oldcell.lake
+//            newcell.coast = oldcell.coast
+//            newcell.kingdom = oldcell.kingdom
+//            newcell.upslope = oldcell.upslope
+//            newcell.color = oldcell.color
+//            newcell.border = oldcell.border
+//            newkingdom.cells.push(newcell)
+//        }
+//        newkingdom.regionbox=worldmap.kingdoms[i].regionbox;
+//        newkingdom.kingdombox=worldmap.kingdoms[i].kingdombox;
+//        this.kingdoms.push[kingdom]
+    }
+
+
+}
 
 /* ========================================================================= */
 /* 

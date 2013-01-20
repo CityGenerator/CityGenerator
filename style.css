@@ -307,23 +307,17 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
 
 
 
-#bigmap {
+#bigcontinent,#bigregion,#bigcity {
     border:1px solid black;
     position:fixed;
+    display:none;
     top:100px;
-    left:30%;    
+    left:30%;
 }
 
-
-
-
-
-
-
-
-
-
-
+#continent,#region,#city,#bigcontinent,#bigregion,#bigcity { 
+    cursor:pointer;
+}
 
 
 

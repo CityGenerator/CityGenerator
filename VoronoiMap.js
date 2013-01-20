@@ -21,7 +21,7 @@ function  VoronoiMap(width,height,num_points) {
 
     // default constant values
     this.num_lloyd_iterations=2;
-
+//    this.scale=1
     // These are important bits to track
     this.voronoi = new Voronoi();
 
@@ -35,6 +35,41 @@ function  VoronoiMap(width,height,num_points) {
     this.improveRandomPoints();
 }
 
+/* ========================================================================= */
+/*  
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.resizeGraph = function(width,height){
+    for (var i=0; i<this.points.length; i++) {
+        var point = this.points[i]
+        point.x = this.translatePoint( point.x, 0, this.width,  width);
+        point.y = this.translatePoint( point.y, 0, this.height, height);
+        this.points[i]=point
+    }
+
+    var diagram = this.voronoi.compute(this.points, {xl:0,xr:width,yt:0,yb:height });
+    for (var i=0; i<this.diagram.cells.length; i++) {
+        diagram.cells[i].elevation=this.diagram.cells[i].elevation
+        diagram.cells[i].moisture=this.diagram.cells[i].moisture
+        diagram.cells[i].radius=this.diagram.cells[i].radius
+        diagram.cells[i].ocean=this.diagram.cells[i].ocean
+        diagram.cells[i].river=this.diagram.cells[i].river
+        diagram.cells[i].lake=this.diagram.cells[i].lake
+        diagram.cells[i].coast=this.diagram.cells[i].coast
+        diagram.cells[i].kingdom=this.diagram.cells[i].kingdom
+        diagram.cells[i].upslope=this.diagram.cells[i].upslope
+        diagram.cells[i].color=this.diagram.cells[i].color
+        diagram.cells[i].terrain=this.diagram.cells[i].terrain
+        diagram.cells[i].border=this.diagram.cells[i].border
+    
+    }
+    this.diagram=diagram
+
+    this.width  = width
+    this.height = height
+
+}
 
 /* ========================================================================= */
 /*  build the actual voronoi diagram  
@@ -69,7 +104,7 @@ VoronoiMap.prototype.generateRandomPoints = function(num_points){
 /* ========================================================================= */
 
 VoronoiMap.prototype.improveRandomPoints = function(){
-    console.log("improve me")
+    //    console.log("improve me")
     var points=[];
     for (var i = 0; i < this.num_lloyd_iterations; i++) {
         points=[];
@@ -112,6 +147,8 @@ VoronoiMap.prototype.improveRandomPoints = function(){
 
 VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     var ctx = canvas.getContext('2d');
+//    ctx.scale(this.scale,this.scale);
+
 
     ctx.strokeStyle=color;
     ctx.fillStyle=color;
@@ -141,6 +178,7 @@ VoronoiMap.prototype.paintCell = function( canvas, cell, color, border ){
         }
     }
     var polyfill = canvas.getContext( '2d' );
+//    ctx.scale(this.scale,this.scale);
 
     polyfill.fillStyle = color;
     polyfill.strokeStyle = color;
@@ -184,6 +222,7 @@ VoronoiMap.prototype.paintCells = function(canvas,cells,color,border){
 
 VoronoiMap.prototype.render = function(canvas){
     var ctx = canvas.getContext('2d');
+//    ctx.scale(this.scale,this.scale);
 
     //First lets draw all of the edges.
     // This can probably be refactored
@@ -221,8 +260,13 @@ VoronoiMap.prototype.render = function(canvas){
 /*  background rectangle.
 /* ========================================================================= */
 
-VoronoiMap.prototype.paintBackground = function(canvas,color){
+VoronoiMap.prototype.paintBackground = function(canvas,color,scale,region){
     var ctx = canvas.getContext('2d');
+    ctx.scale(scale,scale);
+//        console.log(region)
+    if (region != undefined){
+        ctx.translate(-region.minx, -region.miny);
+    }
     ctx.globalAlpha = 1;
     ctx.fillStyle = color;
     ctx.beginPath();
@@ -260,6 +304,12 @@ VoronoiMap.prototype.triangulatePosition = function(va,vb,vc){
 
 VoronoiMap.prototype.translatePoint = function(point,min,max,totallength){
     return Math.round(      (point-min)*totallength/(max-min)    );
+}
+VoronoiMap.prototype.translatePoint2 = function(point,oldmin,oldmax,newmin,newmax){
+    //TODO integrate newmin; currently 0 is used
+    point.x= Math.round(      (point.x-oldmin.x)*newmax.x/(oldmax.x-oldmin.x)    );
+    point.y= Math.round(      (point.y-oldmin.y)*newmax.y/(oldmax.y-oldmin.y)    );
+    return point
 }
 
 

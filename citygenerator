@@ -20,6 +20,7 @@ BEGIN {
 }
 use lib "$Bin/";
 ###################################################
+#TODO it would be cool if it could rain frogs or potatoes
 use City 'build_city', 'd', 'generate_name' ;
 
 
@@ -126,28 +127,29 @@ sub describe_header{
             <script src='js/flag.js' ></script>
             <script src='js/rhill-voronoi-core.js' ></script>
             <script src='js/simplex-noise.js' ></script>
-            <script src='js/VoronoiMap.js' ></script>
             <script src='js/map.js' ></script>
+            <script src='js/VoronoiMap.js' ></script>
             <script src='js/CityMap.js' ></script>
             <script src='js/WorldMap.js' ></script>
+            <script src='js/RegionMap.js' ></script>
+
             <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
                 create_flag($city->{'seed'}, '$letter', $flagcolors); 
-                var continentmap=create_map({
+                build_continent({
                                 seed:$city->{'seed'},
-                                canvas:document.getElementById('bigmap') 
+                                canvas:document.getElementById('bigcontinent') 
                             });
-//                var regionmap=build_region({
+                build_region({
+                                seed:$city->{'seed'},
+                                canvas:document.getElementById('bigregion'),
+                                citynames:$names
+                            });
+//              build_city({    
 //                                seed:$city->{'seed'},
 //                                continentmap:continentmap,
-//                                canvas:document.getElementById('region'),
-//                                citynames:$names
-//                            });
-//                var citymap=build_city({    
-//                                seed:$city->{'seed'},
-//                                continentmap:continentmap,
-//                                canvas:document.getElementById('city'),
+//                                canvas:document.getElementById('bigcity'),
 //                                districts: $districts, 
 //                                size:$city->{'size_modifier'}, 
 //                                wallheight:$city->{'walls'}->{'height'}, 
@@ -159,7 +161,6 @@ sub describe_header{
 //                            })
  ;\">
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
-                <canvas id=\"bigmap\" width='540px' height='450px'></canvas>
             
 ";
     return $content;
@@ -223,14 +224,20 @@ sub describe_footer{
 
             <div class='padded'>
                             <div >Official Flag:</div>
-                            <canvas id='flagcanvas' > </canvas>
+                            <canvas id='flagcanvas' onclick='embiggen(this);' style='display:none' > </canvas>
 
                 <div >City: $city->{'name'} <br/>
-                    <canvas id=\"city\"      style=\"border:1px solid black;\" width='180px' height='150px'></canvas> <div id='citylegend'>     </div> </div>
+                    <canvas id=\"city\"      style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <div id='citylegend'>     </div> </div>
                 <div >$regionname <br/>
-                    <canvas id=\"region\"    style=\"border:1px solid black;\" width='180px' height='150px'></canvas> <div id='regionlegend'>   </div> </div>
+                    <canvas id=\"region\"    style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <div id='regionlegend'>   </div> </div>
                 <div >World Map ($continentseed) <br/>
-                    <canvas id=\"continent\" style=\"border:1px solid black;\" width='180px' height='150px'></canvas> <div id='continentlegend'></div></div>
+                    <canvas id=\"continent\" style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <div id='continentlegend'></div></div>
+                <canvas id=\"bigcontinent\" width='540px' height='450px' onclick='embiggen(this);'></canvas>
+                <canvas id=\"bigregion\"    width='540px' height='450px' onclick='embiggen(this);'></canvas>
+                <canvas id=\"bigcity\"      width='540px' height='450px' onclick='embiggen(this);'></canvas>
             </div>
 
 
@@ -586,7 +593,6 @@ sub describe_summary {
                                 <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>
                                 <a href='?cityid=$nextid'>&gt;&gt;</a>
                             </div>
-
 
                 <div class='right' id='main'>
                     <div class='padded'>
