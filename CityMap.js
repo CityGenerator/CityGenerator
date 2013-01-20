@@ -187,21 +187,22 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     var loop=30
 
     var focus;
-    var minx=Math.min(va.x,canvas.width-va.x);
-    var miny=Math.min(va.y,canvas.height-va.y);
+    var minx=Math.min(va.x,this.width-va.x);
+    var miny=Math.min(va.y,this.height-va.y);
 
     var targetva=null
     var candidatecells=[]
     var cells=this.diagram.cells
     var isdry=true
-    // for the love of cthulu, refactor this!!!
-    if (minx/canvas.width < miny/canvas.height){ // X is closer than Y
+
+
+
+    if (minx/this.width < miny/this.height){ // X is closer than Y
                 console.log('refactorin the road')
         if ( minx == va.x ) {
             while (va.x >0 && isdry ){ //bear west
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
-
 
                         candidatecells.push(cells[i])
                     }
@@ -235,7 +236,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
                 }
             }
         }else{
-            while (va.x <canvas.width && isdry ){//bear east
+            while (va.x <this.width && isdry ){//bear east
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
                         candidatecells.push(cells[i])
@@ -308,7 +309,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
                 }
             }
         }else{
-            while (va.y <canvas.height && isdry ){//bear south
+            while (va.y <this.height && isdry ){//bear south
                 for (var i=0; i < cells.length; i++){
                     if ( cells[i].corners.indexOf(va) != -1   ){// va is found on this cell, make it a candidate
                         candidatecells.push(cells[i])
@@ -351,7 +352,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 
     c.strokeStyle='#5E2605';
-    c.lineWidth=roadwidth;
+    c.lineWidth=roadwidth*this.xmultiplier;
     c.beginPath();
     var originalposition=null
     for (var j=0; j < road.length; j++){
