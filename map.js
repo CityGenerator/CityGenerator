@@ -146,31 +146,20 @@ function build_city(  params  ){
     var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
 
     // Generate our base CityMap
-    var city=new CityMap(  canvas.width, canvas.height, totalcellcount, params, document.continentmap.currentcitycell.color  );
+    var map=new CityMap(  canvas.width, canvas.height, totalcellcount, params, document.continentmap.currentcitycell.color  );
     // Generate the key parts of the city.
-    city.designateCity(canvas,citycellcount);
-    city.generateCityWalls()
-    city.generateDistricts(params.districts);
+    map.designateCity(canvas,citycellcount);
+    map.generateCityWalls()
+    map.generateDistricts(params.districts);
 
 
 
-    city.xmultiplier=1/3
-    city.ymultiplier=1/3
-    city.redraw(document.getElementById('city'))
-    city.xmultiplier=1
-    city.ymultiplier=1
+    map.xmultiplier=1/3
+    map.ymultiplier=1/3
+    map.redraw(document.getElementById('city'))
+    map.xmultiplier=1
+    map.ymultiplier=1
 
-
-//    // From here, draw out all the parts we designated above.
-//    city.paintBackground(canvas,params.continentmap.currentcitycell.color);
-//    city.drawCoast(canvas, params.isport, params.coastdirection)
-//    city.paintCells(canvas,city.citycells,'rgba(255,255,255,1)',false)
-//
-//    city.drawCityWalls(canvas,  Math.ceil(params.wallheight/10)   )
-//
-//    city.render(canvas)
-//    city.drawRoads(canvas, params.roads, params.mainroads)
-
-    document.citymap=city
+    document.citymap=map
 }
 
