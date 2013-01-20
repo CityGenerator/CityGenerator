@@ -502,6 +502,11 @@ Voronoi.prototype.Cell.prototype.getNeighborIDs = function() {
     }
     return neighbors;
 }
+Voronoi.prototype.Cell.prototype.getRandomNeighborID = function() {
+    var neighborids=this.getNeighborIDs()
+    
+    return neighborsids[Math.floor(Math.random()*neighborids.length )];
+}
 
 Voronoi.prototype.Cell.prototype.prepare = function() {
 	var halfedges = this.halfedges,

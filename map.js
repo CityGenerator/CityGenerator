@@ -129,6 +129,18 @@ function print_legend(map){
     }
 }
 
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+function print_Citylegend(map){
+    document.getElementById('citylegend').innerHTML='Legend:'
+    for (var i=0; i < map.districts.length; i++ ){
+        var district=map.districts[i];
+        document.getElementById('citylegend').innerHTML+='<span style="font-size:10px;color:#000;background-color:'+district.color+'">'+district.name +'</span> '
+    }
+}
 
 /* ========================================================================= */
 /* build_city is called by CityGenerator to build the city map. We pass in
@@ -142,24 +154,16 @@ function build_city(  params  ){
 
     var canvas=params.canvas
 
-    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
-    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
-
     // Generate our base CityMap
-    var map=new CityMap(  canvas.width, canvas.height, totalcellcount, params, document.continentmap.currentcitycell.color  );
+    var map=new CityMap(  canvas.width, canvas.height, params, document.continentmap.currentcitycell.color  );
     // Generate the key parts of the city.
-    map.designateCity(canvas,citycellcount);
-    map.generateCityWalls()
-    map.generateDistricts(params.districts);
-
-
 
     map.xmultiplier=1/3
     map.ymultiplier=1/3
     map.redraw(document.getElementById('city'))
     map.xmultiplier=1
     map.ymultiplier=1
-
+    print_Citylegend(map)
     document.citymap=map
 }
 

@@ -6,19 +6,25 @@
 CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
-function  CityMap(width,height,num_points,params,color) {
-    VoronoiMap.call(this,width,height,num_points)
+function  CityMap(width,height,params,color) {
+    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
+    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
+    VoronoiMap.call(this,width,height,totalcellcount)
+
+
     this.isport=params.isport
     this.coastdirection=params.coastdirection
     this.wallheight=params.wallheight
     this.roads=params.roads
     this.mainroads=params.mainroads
+    this.districts=params.districts
     this.color=color
+
+    this.designateCity(citycellcount);
+    this.generateCityWalls()
+    this.generateDistricts(params.districts);
+    
 }
-
-
-
-
 
 
 
@@ -27,10 +33,10 @@ function  CityMap(width,height,num_points,params,color) {
 /* of cells around the center of the canvas.
 /* ========================================================================= */
 
-CityMap.prototype.designateCity = function(canvas,citycellcount){
+CityMap.prototype.designateCity = function(citycellcount){
     this.citycells=[]
     for (var i = 0; i < Math.floor( citycellcount) ; i++) {
-        this.citycells.push(this.findCenterCell(canvas))
+        this.citycells.push(this.findCenterCell())
     }
 }
 
@@ -45,18 +51,56 @@ CityMap.prototype.redraw = function(canvas){
     this.paintBackground(canvas,this.color);
 //    this.drawCoast(canvas, this.isport, this.coastdirection)
     this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',true)
+    this.drawDistricts(canvas);
 
     this.drawCityWalls(canvas,  Math.ceil(this.wallheight/10)   )
 
 //    this.render(canvas)
     this.drawRoads(canvas, this.roads, this.mainroads)
-
     // rainbows and unicorn farts go here.
 }
+ 
+ 
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+ 
+CityMap.prototype.drawDistricts = function(canvas){
 
+    for (var i=0; i < this.districts.length; i++ ){
+        this.paintCells(canvas,this.districts[i].cells,"rgba("+this.colors[i]+',1)',true);
+    }
 
+}
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
 
+CityMap.prototype.assignDistrictCores = function(districts){
+    this.districts=[];
 
+    var cellIDlist=[]
+    for (var i=0; i<this.citycells.length ; i++){ cellIDlist.push(i); }
+
+    for (var i=0; i < districts.length; i++ ){
+        var district={
+                        name:districts[i],
+                        cells:[],
+                        color:"rgba("+this.colors[i]+',1)'
+            
+                    };
+        
+        var targetcellid= cellIDlist.splice( Math.floor(Math.random()*cellIDlist ) ,1)[0]
+        var targetcell=this.citycells[ cellIDlist[targetcellid]]
+        targetcell.indistrict=district.name
+        targetcell.color=district.color;
+        district.cells.push(targetcell)
+        this.districts.push(district)
+   }
+    return cellIDlist
+}
 /* ========================================================================= */
 /* 
 /* 
@@ -64,8 +108,42 @@ CityMap.prototype.redraw = function(canvas){
 
 CityMap.prototype.generateDistricts = function(districts){
     // rainbows and unicorn farts go here.
+    var percentused=.50
+    var totalcells=this.citycells.length
+
+    var cellIDlist=this.assignDistrictCores(districts);
+    var claimedcells=districts.length
+
+    var districtid=0
+    while(claimedcells/totalcells<percentused){
+        var currentdistrict=this.districts[districtid];
+
+        cellIDlist=this.growDistrict(currentdistrict, cellIDlist)
+        claimedcells++
+        districtid = ++districtid % districts.length
+    }
 }
 
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+CityMap.prototype.growDistrict = function(district,cellIDlist){
+    console.log('lets try to grow '+district.name)
+    var neighborids=district.cells[district.cells.length-1].getNeighborIDs()
+    for (var i=0; i < neighborids.length; i++ ){
+        var targetcell=this.diagram.cells[neighborids[i]]
+        if (! targetcell.indistrict  && targetcell.incity ){
+            console.log('look, '+neighborids[i]+' is not indistrict and is incity')
+            targetcell.indistrict=district.name
+            targetcell.color=district.color;
+            district.cells.push(targetcell)
+        }
+    }
+
+    return cellIDlist
+}
 
 /* ========================================================================= */
 /* 
@@ -81,7 +159,7 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
         while (water.length< targetcount){
     
             var target={site:{  x:canvas.width/2,  y:canvas.height/2 } }
-            var target=this.findCenterCell(canvas)
+            var target=this.findCenterCell()
     
             for (var i=0 ; i< this.diagram.cells.length; i++){
                 var cell=this.diagram.cells[i]
@@ -126,10 +204,10 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
 /* 
 /* ========================================================================= */
 
-CityMap.prototype.findCenterCell = function(canvas){
+CityMap.prototype.findCenterCell = function(){
 
-    var centerx = canvas.width/2;
-    var centery = canvas.height/2;
+    var centerx = this.width/2;
+    var centery = this.height/2;
 
     var closestpoint;
     var shortestradius=10000;

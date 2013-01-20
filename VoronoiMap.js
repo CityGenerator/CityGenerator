@@ -15,6 +15,7 @@
 /* ========================================================================= */
 
 function  VoronoiMap(width,height,num_points) {
+
     // Base Parameters
     this.width=width;
     this.height=height;
@@ -24,6 +25,8 @@ function  VoronoiMap(width,height,num_points) {
     this.ymultiplier=1
     this.xoffset=0
     this.yoffset=0
+    // colors are used by world and regional maps.
+    this.colors = [ '255,105,100', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '95,158,160', '30,144,255', '238,130,238',  '128,0,128','12,12,120','220,12,12','220,100,12'      ];
 
     // default constant values
     this.num_lloyd_iterations=2;
@@ -167,11 +170,6 @@ VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     ctx.lineTo(this.xoffset+this.xmultiplier*(x+radius),this.yoffset+this.ymultiplier*(y-radius))
     ctx.lineTo(this.xoffset+this.xmultiplier*(x+radius),this.yoffset+this.ymultiplier*(y+radius))
     ctx.lineTo(this.xoffset+this.xmultiplier*(x-radius),this.yoffset+this.ymultiplier*(y+radius))
-//    ctx.moveTo(xa-radius,ya-radius);
-//    ctx.lineTo(xa+radius,ya-radius);
-//    ctx.lineTo(xa+radius,ya+radius);
-//    ctx.lineTo(xa-radius,ya+radius);
-
 
     ctx.closePath();
     ctx.fill();
