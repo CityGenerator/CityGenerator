@@ -307,7 +307,7 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
 
 
 
-#bigcontinent,#bigregion,#bigcity {
+#bigcontinent,#bigregion,#bigcity,#bigmap {
     border:1px solid black;
     position:fixed;
     display:none;
@@ -315,7 +315,7 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
     left:30%;
 }
 
-#continent,#region,#city,#bigcontinent,#bigregion,#bigcity { 
+#continent,#region,#city,#bigcontinent,#bigregion,#bigcity,#bigmap { 
     cursor:pointer;
 }
 

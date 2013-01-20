@@ -6,9 +6,15 @@
 CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
-function  CityMap(width,height,num_points) {
+function  CityMap(width,height,num_points,color) {
     VoronoiMap.call(this,width,height,num_points)
+    this.color=color
 }
+
+
+
+
+
 
 
 /* ========================================================================= */
@@ -22,6 +28,28 @@ CityMap.prototype.designateCity = function(canvas,citycellcount){
         this.citycells.push(this.findCenterCell(canvas))
     }
 }
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+CityMap.prototype.redraw = function(canvas){
+    // From here, draw out all the parts we designated above.
+    this.paintBackground(canvas,this.color);
+//    this.drawCoast(canvas, params.isport, params.coastdirection)
+    this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',false)
+
+//    this.drawCityWalls(canvas,  Math.ceil(params.wallheight/10)   )
+
+    this.render(canvas)
+//    city.drawRoads(canvas, params.roads, params.mainroads)
+
+    // rainbows and unicorn farts go here.
+}
+
+
 
 
 /* ========================================================================= */
@@ -320,7 +348,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     c.beginPath();
     var originalposition=null
     for (var j=0; j < road.length; j++){
-        c.lineTo(road[j].x, road[j].y);
+        c.lineTo(this.xoffset+this.xmultiplier*road[j].x, this.yoffset+this.ymultiplier*road[j].y);
     }
     c.lineCap = 'butt';
     c.stroke()
@@ -342,7 +370,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     polyline.beginPath();
     for (var i=0; i<this.outline.length; i++){
         var vertex= this.outline[i];
-        polyline.lineTo(vertex.x,vertex.y);
+        polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,s.yoffset+this.ymultiplier*vertex.y);
     }
     polyline.lineWidth=wallsize;
     polyline.strokeStyle="rgba(0,0,0,0.7)";

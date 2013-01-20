@@ -21,9 +21,6 @@ function  WorldMap(width,height,num_points,seed) {
     // ignores the last two digits of the cityid: 744158 -> 744100 
     this.currentContinentId = seed -  seed%100;
     this.maxkingdom=10*Math.ceil( Math.random()*100)
-
-    this.xmultiplier=1
-    this.ymultiplier=1
     // Base Parameters
     //TODO refactor terrain
     this.terrain=[];
@@ -68,7 +65,6 @@ WorldMap.prototype.redraw = function(canvas,scale,region){
     this.paintMap(canvas)
     this.drawKingdoms(canvas,true); 
     this.drawCities(canvas);
-    //this.drawbox(this.kingdoms[this.currentRegionId].regionbox,canvas,'rgba(255,0,255,1)');
     var citybox=this.kingdoms[this.currentRegionId].cities[this.currentCityId].box
     this.drawbox( citybox,  canvas,'rgba(255,0,255,1)'  )
 //ype.setbox = function(box, va, vb){
@@ -233,10 +229,10 @@ WorldMap.prototype.drawKingdom = function(kingdom,canvas, fill){
     polyline.beginPath();
     for (var i=0; i<kingdom.outline.length; i++){
         var vertex= kingdom.outline[i];
-        polyline.lineTo(vertex.x,vertex.y);
+        polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,this.yoffset+this.ymultiplier*vertex.y);
     }
-    polyline.lineWidth=2;
-    polyline.strokeStyle="rgba(0,0,0,0.7)";
+    polyline.lineWidth=1;
+    polyline.strokeStyle="rgba(0,0,0,1)";
     //polyline.fillStyle="rgba(200,0,0,0.3)";
     polyline.fillStyle=kingdom.color;
     polyline.lineCap = 'butt';
@@ -302,8 +298,10 @@ WorldMap.prototype.setbox = function(box, va, vb){
 WorldMap.prototype.drawbox = function(box,canvas,color){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
-    polyline.lineTo(box.minx,box.miny);          polyline.lineTo(box.maxx,box.miny);
-    polyline.lineTo(box.maxx,box.maxy);          polyline.lineTo(box.minx,box.maxy);
+    polyline.lineTo(this.xoffset+this.xmultiplier*box.minx,this.yoffset+this.ymultiplier*box.miny);          
+    polyline.lineTo(this.xoffset+this.xmultiplier*box.maxx,this.yoffset+this.ymultiplier*box.miny);
+    polyline.lineTo(this.xoffset+this.xmultiplier*box.maxx,this.yoffset+this.ymultiplier*box.maxy);
+    polyline.lineTo(this.xoffset+this.xmultiplier*box.minx,this.yoffset+this.ymultiplier*box.maxy);
     polyline.closePath();
     polyline.lineWidth=2;
     polyline.strokeStyle=color;
@@ -654,8 +652,8 @@ WorldMap.prototype.drawRivers = function(canvas){
             ctx.strokeStyle='rgba(128,128,255,0.5)';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(cell.site.x,cell.site.y);
-            ctx.lineTo(cell.downslope.site.x,cell.downslope.site.y);
+            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,this.yoffset+this.ymultiplier*cell.site.y);
+            ctx.lineTo(this.xoffset+this.xmultiplier*cell.downslope.site.x,this.yoffset+this.ymultiplier*cell.downslope.site.y);
             ctx.closePath();
             ctx.stroke();
         }
@@ -688,8 +686,8 @@ WorldMap.prototype.drawDownslopes = function(canvas){
             ctx.lineCap = 'round';
             ctx.lineWidth = 5;
             ctx.beginPath();
-            ctx.moveTo(cell.site.x,cell.site.y);
-            ctx.lineTo(cell.site.x+3,cell.site.y+3);
+            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,this.yoffset+this.ymultiplier*cell.site.y);
+            ctx.lineTo(this.xoffset+this.xmultiplier*cell.site.x+3,this.yoffset+this.ymultiplier*cell.site.y+3);
             ctx.closePath();
             ctx.stroke();
         }
@@ -953,9 +951,9 @@ WorldMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     for (var i=0; i<cell.halfedges.length; i++) {
 
         var vertexa=cell.halfedges[i].getStartpoint();
-        polyfill.lineTo(vertexa.x,vertexa.y);
+        polyfill.lineTo(this.xoffset+this.xmultiplier*vertexa.x,this.yoffset+this.ymultiplier*vertexa.y);
         var vertexb=cell.halfedges[i].getEndpoint();
-        polyfill.lineTo(vertexb.x,vertexb.y);
+        polyfill.lineTo(this.xoffset+this.xmultiplier*vertexb.x,this.yoffset+this.ymultiplier*vertexb.y);
     }
     //close the path and fill it in with the provided color
     polyfill.closePath();

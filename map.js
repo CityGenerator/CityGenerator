@@ -20,19 +20,22 @@ function build_continent( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
 
-    var canvas=params.canvas
 
     // The number of cells in a given continent.
     var sites=2000;
 
     // This is the crux of our entire map.
-    var map=new WorldMap(canvas.width,canvas.height,sites,params.seed);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,sites,params.seed);
 
     // Note that we're scaling the sidebar maps to 1/3rd their true size.
-    map.redraw(document.getElementById('continent'),1/3)
+    map.xmultiplier=1/3
+    map.ymultiplier=1/3
+    map.redraw(document.getElementById('continent'))
     print_legend(map)
 
     document.continentmap=map
+
+
 }
 
 
@@ -42,42 +45,21 @@ function build_continent( params ){
 /* ========================================================================= */
 
 function build_region( params ){
-    // regionmod determines which of the 10 regions on this continent to use.
-    // With a cityid of 744158, the 5 indications which region to focus on
-    var regionmod=Math.floor(   (params.seed%100)/10  );
-
-    // citymod determines which of the 10 cities in this region to use.
-    // uses the last  digit of the cityid: 744158 -> 8
-    var citymod=Math.floor((params.seed%10));
-
-    // continent seed refers to which continent we're on- it essentially
-    // ignores the last two digits of the cityid: 744158 -> 744100 
-    var continentseed=params.seed -  params.seed%100;
-
-    // Begin seeding with the continent seed!
-    Math.seedrandom(continentseed);
-
-    var canvas  = params.canvas;
+    var map=document.continentmap
+    var citybox=map.kingdoms[map.currentRegionId].cities[map.currentCityId].box
+    map.xoffset=-citybox.minx*2.5
+    map.yoffset=-citybox.miny*2.5
+    map.xmultiplier=2.5
+    map.ymultiplier=2.5
+    map.redraw(document.getElementById('region'))
 
 
-    var map     = document.continentmap;
-//    console.log('in map.js')
-//    console.log(map)
-//
-//    var regionbox=map.kingdoms[map.currentRegion].regionbox
-//    document.getElementById('region').width=regionbox.maxx-regionbox.minx
-//    document.getElementById('region').width=regionbox.maxy-regionbox.miny
-//
-//    map.redraw(document.getElementById('region'),1,regionbox)
-//    map.drawCities(document.getElementById('bigregion'),regionmod,citymod,[])
-//
-//    map.redraw(document.getElementById('bigregion'),3,regionbox)
-//  
-//
-//    map.redraw(document.getElementById('region'),1)
-//
-//
-   document.regionmap=map
+    map.xmultiplier=1
+    map.ymultiplier=1
+    map.xoffset=0
+    map.yoffset=0
+
+
 }
 
 
@@ -87,35 +69,43 @@ function build_region( params ){
 /* ========================================================================= */
 
 function embiggen( canvas ){
-    var bigcontinent=document.getElementById('bigcontinent')
-    var bigregion=document.getElementById('bigregion')
-    var bigcity=document.getElementById('bigcity')
-    if (canvas.id == 'continent' && ! document.continentmap.embiggen){
-            document.continentmap.embiggen=true   
-            bigcontinent.style.display  ='block'
-            bigregion.style.display     ='none'
-            bigcity.style.display       ='none'
-
-            document.continentmap.redraw(bigcontinent)
+    var bigcanvas=document.getElementById('bigmap')
+    var worldmap=document.continentmap
+    var citymap=document.citymap
+    console.log(bigcanvas)
+    if (canvas.id == 'continent' && ! worldmap.embiggen){
+            worldmap.embiggen=true   
+            bigcanvas.style.display  ='block'
+            worldmap.redraw(bigcanvas)
             console.log('continent small, make big!')
 
 
-    }else if (canvas.id == 'region' && ! document.regionmap.embiggen){
-//            document.regionmap.embiggen=true   
-            bigcontinent.style.display  ='none'
-            bigregion.style.display     ='block'
-            bigcity.style.display       ='none'
+    }else if (canvas.id == 'region' && ! worldmap.embiggen){
+            var citybox=worldmap.kingdoms[worldmap.currentRegionId].cities[worldmap.currentCityId].box
+            worldmap.xoffset=-citybox.minx*2.5*3
+            worldmap.yoffset=-citybox.miny*2.5*3
+            worldmap.xmultiplier=2.5*3
+            worldmap.ymultiplier=2.5*3
+            worldmap.embiggen=true   
+            bigcanvas.style.display  ='block'
+            worldmap.redraw(bigcanvas)
+            worldmap.xoffset=0
+            worldmap.yoffset=0
+            worldmap.xmultiplier=1
+            worldmap.ymultiplier=1
 
+    }else if (canvas.id == 'city' && ! worldmap.embiggen){
+            worldmap.embiggen=true   
+            bigcanvas.style.display  ='block'
+            citymap.xmultiplier=1
+            citymap.ymultiplier=1
+            citymap.redraw(bigcanvas)
+            console.log('city small, make big!')
 
-            document.regionmap.redraw(bigregion)
-            console.log('region small, make big!')
     }else{
-            document.continentmap.embiggen  =false
-//            document.regionmap.embiggen     =false
+            document.continentmap.embiggen=false
 
-            bigcontinent.style.display  ='none'
-            bigregion.style.display     ='none'
-            bigcity.style.display       ='none'
+            bigcanvas.style.display  ='none'
 
 
 
@@ -145,38 +135,40 @@ function print_legend(map){
 /* everything via the params object to make things easier.
 /* ========================================================================= */
 
-//function build_city(  params  ){
-//
-//    // Step 1) we need to set our seed to ensure consistency
-//    Math.seedrandom(params.seed)
-//
-//    var citycanvas=params.canvas
-//
-//    // hardcoded map sizes
-//    citycanvas.height=150;
-//    citycanvas.width=180;
-//
-//    //Set the total number of cells and the city cell count
-//    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
-//    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
-//
-//    // Generate our base CityMap
-//    var city=new CityMap(  citycanvas.width, citycanvas.height, totalcellcount  );
-//    // Generate the key parts of the city.
-//    city.designateCity(citycanvas,citycellcount);
-//    city.generateCityWalls()
-//    city.generateDistricts(params.districts);
-//
-//
+function build_city(  params  ){
+
+    // Step 1) we need to set our seed to ensure consistency
+    Math.seedrandom(params.seed)
+
+    var canvas=params.canvas
+
+    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
+    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
+
+    // Generate our base CityMap
+    var city=new CityMap(  canvas.width, canvas.height, totalcellcount, document.continentmap.currentcitycell.color  );
+    // Generate the key parts of the city.
+    city.designateCity(canvas,citycellcount);
+    city.generateCityWalls()
+    city.generateDistricts(params.districts);
+
+
+
+    city.xmultiplier=1/3
+    city.ymultiplier=1/3
+    city.redraw(document.getElementById('city'))
+
+
 //    // From here, draw out all the parts we designated above.
-//    city.paintBackground(citycanvas,params.continentmap.currentcitycell.color);
-//    city.drawCoast(citycanvas, params.isport, params.coastdirection)
-//    city.paintCells(citycanvas,city.citycells,'rgba(255,255,255,1)',false)
+//    city.paintBackground(canvas,params.continentmap.currentcitycell.color);
+//    city.drawCoast(canvas, params.isport, params.coastdirection)
+//    city.paintCells(canvas,city.citycells,'rgba(255,255,255,1)',false)
 //
-//    city.drawCityWalls(citycanvas,  Math.ceil(params.wallheight/10)   )
+//    city.drawCityWalls(canvas,  Math.ceil(params.wallheight/10)   )
 //
-//    city.render(citycanvas)
-//    city.drawRoads(citycanvas, params.roads, params.mainroads)
-//    return city
-//}
+//    city.render(canvas)
+//    city.drawRoads(canvas, params.roads, params.mainroads)
+
+    document.citymap=city
+}
 

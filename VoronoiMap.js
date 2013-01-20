@@ -19,6 +19,12 @@ function  VoronoiMap(width,height,num_points) {
     this.width=width;
     this.height=height;
 
+
+    this.xmultiplier=1
+    this.ymultiplier=1
+    this.xoffset=0
+    this.yoffset=0
+
     // default constant values
     this.num_lloyd_iterations=2;
 //    this.scale=1
@@ -155,10 +161,17 @@ VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     ctx.beginPath();
 
     //TODO refactor this to use ctx.rect()
-    ctx.moveTo(x-radius,y-radius);
-    ctx.lineTo(x+radius,y-radius);
-    ctx.lineTo(x+radius,y+radius);
-    ctx.lineTo(x-radius,y+radius);
+    var xa=this.xoffset+this.xmultiplier*x
+    var ya=this.yoffset+this.ymultiplier*y
+    ctx.lineTo(this.xoffset+this.xmultiplier*(x-radius),this.yoffset+this.ymultiplier*(y-radius))
+    ctx.lineTo(this.xoffset+this.xmultiplier*(x+radius),this.yoffset+this.ymultiplier*(y-radius))
+    ctx.lineTo(this.xoffset+this.xmultiplier*(x+radius),this.yoffset+this.ymultiplier*(y+radius))
+    ctx.lineTo(this.xoffset+this.xmultiplier*(x-radius),this.yoffset+this.ymultiplier*(y+radius))
+//    ctx.moveTo(xa-radius,ya-radius);
+//    ctx.lineTo(xa+radius,ya-radius);
+//    ctx.lineTo(xa+radius,ya+radius);
+//    ctx.lineTo(xa-radius,ya+radius);
+
 
     ctx.closePath();
     ctx.fill();
@@ -187,10 +200,10 @@ VoronoiMap.prototype.paintCell = function( canvas, cell, color, border ){
     for ( var i = 0 ; i < cell.halfedges.length ; i++ ) {
 
         var vertexa = cell.halfedges[i].getStartpoint();
-        polyfill.lineTo( vertexa.x, vertexa.y );
+        polyfill.lineTo( this.xoffset+this.xmultiplier*vertexa.x, this.yoffset+this.ymultiplier*vertexa.y );
 
         var vertexb = cell.halfedges[i].getEndpoint();
-        polyfill.lineTo( vertexb.x, vertexb.y);
+        polyfill.lineTo( this.xoffset+this.xmultiplier*vertexb.x, this.yoffset+this.ymultiplier*vertexb.y);
     }
     //close the path and fill it in with the provided color
     polyfill.closePath();
@@ -235,9 +248,9 @@ VoronoiMap.prototype.render = function(canvas){
     while (iEdge--) {
         edge = edges[iEdge];
         v = edge.va;
-        ctx.moveTo(v.x,v.y);
+        ctx.moveTo(this.xoffset+this.xmultiplier*v.x,this.yoffset+this.ymultiplier*v.y);
         v = edge.vb;
-        ctx.lineTo(v.x,v.y);
+        ctx.lineTo(this.xoffset+this.xmultiplier*v.x,this.yoffset+this.ymultiplier*v.y);
         }
     ctx.stroke();
 
@@ -247,7 +260,7 @@ VoronoiMap.prototype.render = function(canvas){
         iSite = this.points.length;
     while (iSite--) {
         v = msites[iSite];
-        ctx.rect(v.x-2/3,v.y-2/3,2,2);
+        ctx.rect(this.xoffset+this.xmultiplier*v.x-2/3,this.yoffset+this.ymultiplier*v.y-2/3,2,2);
         }
     ctx.fill();
 
