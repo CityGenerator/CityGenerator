@@ -6,8 +6,13 @@
 CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
-function  CityMap(width,height,num_points,color) {
+function  CityMap(width,height,num_points,params,color) {
     VoronoiMap.call(this,width,height,num_points)
+    this.isport=params.isport
+    this.coastdirection=params.coastdirection
+    this.wallheight=params.wallheight
+    this.roads=params.roads
+    this.mainroads=params.mainroads
     this.color=color
 }
 
@@ -38,13 +43,13 @@ CityMap.prototype.designateCity = function(canvas,citycellcount){
 CityMap.prototype.redraw = function(canvas){
     // From here, draw out all the parts we designated above.
     this.paintBackground(canvas,this.color);
-//    this.drawCoast(canvas, params.isport, params.coastdirection)
+//    this.drawCoast(canvas, this.isport, this.coastdirection)
     this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',false)
 
-//    this.drawCityWalls(canvas,  Math.ceil(params.wallheight/10)   )
+    this.drawCityWalls(canvas,  Math.ceil(this.wallheight/10)   )
 
-    this.render(canvas)
-//    city.drawRoads(canvas, params.roads, params.mainroads)
+//    this.render(canvas)
+    this.drawRoads(canvas, this.roads, this.mainroads)
 
     // rainbows and unicorn farts go here.
 }
@@ -189,7 +194,9 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     var candidatecells=[]
     var cells=this.diagram.cells
     var isdry=true
+    // for the love of cthulu, refactor this!!!
     if (minx/canvas.width < miny/canvas.height){ // X is closer than Y
+                console.log('refactorin the road')
         if ( minx == va.x ) {
             while (va.x >0 && isdry ){ //bear west
                 for (var i=0; i < cells.length; i++){
@@ -370,7 +377,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     polyline.beginPath();
     for (var i=0; i<this.outline.length; i++){
         var vertex= this.outline[i];
-        polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,s.yoffset+this.ymultiplier*vertex.y);
+        polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,this.yoffset+this.ymultiplier*vertex.y);
     }
     polyline.lineWidth=wallsize;
     polyline.strokeStyle="rgba(0,0,0,0.7)";

@@ -233,7 +233,6 @@ WorldMap.prototype.drawKingdom = function(kingdom,canvas, fill){
     }
     polyline.lineWidth=1;
     polyline.strokeStyle="rgba(0,0,0,1)";
-    //polyline.fillStyle="rgba(200,0,0,0.3)";
     polyline.fillStyle=kingdom.color;
     polyline.lineCap = 'butt';
     polyline.stroke();

@@ -131,7 +131,6 @@ sub describe_header{
             <script src='js/VoronoiMap.js' ></script>
             <script src='js/CityMap.js' ></script>
             <script src='js/WorldMap.js' ></script>
-            <script src='js/RegionMap.js' ></script>
 
             <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>

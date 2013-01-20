@@ -146,7 +146,7 @@ function build_city(  params  ){
     var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
 
     // Generate our base CityMap
-    var city=new CityMap(  canvas.width, canvas.height, totalcellcount, document.continentmap.currentcitycell.color  );
+    var city=new CityMap(  canvas.width, canvas.height, totalcellcount, params, document.continentmap.currentcitycell.color  );
     // Generate the key parts of the city.
     city.designateCity(canvas,citycellcount);
     city.generateCityWalls()
@@ -157,6 +157,8 @@ function build_city(  params  ){
     city.xmultiplier=1/3
     city.ymultiplier=1/3
     city.redraw(document.getElementById('city'))
+    city.xmultiplier=1
+    city.ymultiplier=1
 
 
 //    // From here, draw out all the parts we designated above.
