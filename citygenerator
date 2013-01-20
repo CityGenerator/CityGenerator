@@ -135,7 +135,7 @@ sub describe_header{
             <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
-                create_flag($city->{'seed'}, '$letter', $flagcolors); 
+                create_flag(document.getElementById('flag') ,$city->{'seed'}, '$letter', $flagcolors); 
                 build_continent({
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap') 
@@ -221,8 +221,8 @@ sub describe_footer{
 
 
             <div class='padded'>
-                            <div >Official Flag:</div>
-                            <canvas id='flagcanvas' onclick='embiggen(this);' style='display:none' > </canvas>
+                <div >Official Flag:</div>
+                <canvas id='flag' style=\"border:1px solid black;\" width='180px' height='150px'  onclick='embiggen(this);'  > </canvas>
 
                 <div >City: $city->{'name'} <br/>
                     <canvas id=\"city\"      style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
@@ -579,6 +579,10 @@ sub describe_summary {
     my $districts=describe_district_summary();
     my $previousid=$city->{'seed'}-1;
     my $nextid=$city->{'seed'}+1;
+    my $previouscontinent=$city->{'seed'}-10;
+    my $nextcontinent=$city->{'seed'}+10;
+    my $previousregion=$city->{'seed'}-100;
+    my $nextregion=$city->{'seed'}+100;
     my $content="
                     <div id='container'>
 
@@ -588,6 +592,13 @@ sub describe_summary {
                                 <a href='?cityid=$previousid'>&lt;&lt;</a>
                                 <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>
                                 <a href='?cityid=$nextid'>&gt;&gt;</a>
+                            </div>
+                            <div id='subheader'>
+                                <a href='?cityid=$previouscontinent'>&lt;&lt; Last Continent</a>
+                                <a href='?cityid=$previousregion'>&lt;&lt; Last Region</a>
+                                &nbsp;&nbsp;
+                                <a href='?cityid=$nextcontinent'>Next Region&gt;&gt;</a>
+                                <a href='?cityid=$nextregion'>Next Continent&gt;&gt;</a>
                             </div>
 
                 <div class='right' id='main'>

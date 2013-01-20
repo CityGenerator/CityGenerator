@@ -2,11 +2,10 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(seed,letter,colorlist) {
+function create_flag(canvas,seed,letter,colorlist) {
     Math.seedrandom(seed);
 
 
-    var canvas=document.getElementById('flagcanvas');
     var flag=canvas.getContext('2d');
 
     //This is the flag's colorscheme; at most it'll have a 3 color background
@@ -15,7 +14,7 @@ function create_flag(seed,letter,colorlist) {
     // Set the base size of the flag; height will 
     // always be 100, but width may change.
     var ratio=set_ratio( flag );
-    var width=200;
+    var width=180;
     var height=width*ratio;
 
     canvas.height=height;

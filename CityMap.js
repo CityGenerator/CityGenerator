@@ -44,7 +44,7 @@ CityMap.prototype.redraw = function(canvas){
     // From here, draw out all the parts we designated above.
     this.paintBackground(canvas,this.color);
 //    this.drawCoast(canvas, this.isport, this.coastdirection)
-    this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',false)
+    this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',true)
 
     this.drawCityWalls(canvas,  Math.ceil(this.wallheight/10)   )
 
