@@ -73,20 +73,20 @@ function embiggen( canvas ){
     var worldmap=document.continentmap
     var citymap=document.citymap
     console.log(bigcanvas)
-    if (canvas.id == 'continent' && ! worldmap.embiggen){
-            worldmap.embiggen=true   
+    if (canvas.id == 'continent' && worldmap.embiggen !='continent'){
+            worldmap.embiggen='continent'
             bigcanvas.style.display  ='block'
             worldmap.redraw(bigcanvas)
             console.log('continent small, make big!')
 
 
-    }else if (canvas.id == 'region' && ! worldmap.embiggen){
+    }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
             var citybox=worldmap.kingdoms[worldmap.currentRegionId].cities[worldmap.currentCityId].box
             worldmap.xoffset=-citybox.minx*2.5*3
             worldmap.yoffset=-citybox.miny*2.5*3
             worldmap.xmultiplier=2.5*3
             worldmap.ymultiplier=2.5*3
-            worldmap.embiggen=true   
+            worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
             worldmap.redraw(bigcanvas)
             worldmap.xoffset=0
@@ -94,8 +94,8 @@ function embiggen( canvas ){
             worldmap.xmultiplier=1
             worldmap.ymultiplier=1
 
-    }else if (canvas.id == 'city' && ! worldmap.embiggen){
-            worldmap.embiggen=true   
+    }else if (canvas.id == 'city' && worldmap.embiggen != 'city'){
+            worldmap.embiggen='city'
             bigcanvas.style.display  ='block'
             citymap.xmultiplier=1
             citymap.ymultiplier=1
@@ -103,7 +103,7 @@ function embiggen( canvas ){
             console.log('city small, make big!')
 
     }else{
-            document.continentmap.embiggen=false
+            document.continentmap.embiggen=""
 
             bigcanvas.style.display  ='none'
 
@@ -125,7 +125,7 @@ function embiggen( canvas ){
 function print_legend(map){
     document.getElementById('continentlegend').innerHTML='Legend:'
     for ( var name in map.terrain){
-        document.getElementById('continentlegend').innerHTML+='<span style="font-size:10px;background-color:'+map.terrain[name].color+'">'+name +'</span> '
+        document.getElementById('continentlegend').innerHTML+='<span style="font-size:10px;color:#000;background-color:'+map.terrain[name].color+'">'+name +'</span> '
     }
 }
 
