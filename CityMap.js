@@ -11,7 +11,7 @@ function  CityMap(width,height,params,color) {
     var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
     VoronoiMap.call(this,width,height,totalcellcount)
 
-
+    this.maxdistrictpercent=.9
     this.isport=params.isport
     this.coastdirection=params.coastdirection
     this.wallheight=params.wallheight
@@ -84,16 +84,17 @@ CityMap.prototype.assignDistrictCores = function(districts){
     var cellIDlist=[]
     for (var i=0; i<this.citycells.length ; i++){ cellIDlist.push(i); }
 
+
     for (var i=0; i < districts.length; i++ ){
         var district={
                         name:districts[i],
                         cells:[],
                         color:"rgba("+this.colors[i]+',1)'
-            
                     };
         
-        var targetcellid= cellIDlist.splice( Math.floor(Math.random()*cellIDlist ) ,1)[0]
-        var targetcell=this.citycells[ cellIDlist[targetcellid]]
+        var targetcellid= cellIDlist.splice( Math.floor(Math.random()*cellIDlist.length ) ,1)[0]
+        var targetcell=this.citycells[targetcellid]
+
         targetcell.indistrict=district.name
         targetcell.color=district.color;
         district.cells.push(targetcell)
@@ -108,18 +109,18 @@ CityMap.prototype.assignDistrictCores = function(districts){
 
 CityMap.prototype.generateDistricts = function(districts){
     // rainbows and unicorn farts go here.
-    var percentused=.50
     var totalcells=this.citycells.length
 
     var cellIDlist=this.assignDistrictCores(districts);
     var claimedcells=districts.length
 
     var districtid=0
-    while(claimedcells/totalcells<percentused){
+    while(claimedcells/totalcells<this.maxdistrictpercent){
+    console.log("claimedcells "+(claimedcells/totalcells)+" percentused: "+this.maxdistrictpercent+" claimedcells:"+claimedcells)
         var currentdistrict=this.districts[districtid];
 
         cellIDlist=this.growDistrict(currentdistrict, cellIDlist)
-        claimedcells++
+        claimedcells+=this.districts.length
         districtid = ++districtid % districts.length
     }
 }
@@ -130,15 +131,14 @@ CityMap.prototype.generateDistricts = function(districts){
 /* ========================================================================= */
 
 CityMap.prototype.growDistrict = function(district,cellIDlist){
-    console.log('lets try to grow '+district.name)
     var neighborids=district.cells[district.cells.length-1].getNeighborIDs()
     for (var i=0; i < neighborids.length; i++ ){
         var targetcell=this.diagram.cells[neighborids[i]]
         if (! targetcell.indistrict  && targetcell.incity ){
-            console.log('look, '+neighborids[i]+' is not indistrict and is incity')
             targetcell.indistrict=district.name
             targetcell.color=district.color;
             district.cells.push(targetcell)
+            break;
         }
     }
 
@@ -154,7 +154,6 @@ CityMap.prototype.drawCoast = function(canvas, isport, coastdirection){
     if ( isport ){
         var percentwater= ( 25 + Math.round(Math.random()*15))/100;
         var water=[];
-        console.log(this.diagram)
         var targetcount=Math.round( this.diagram.cells.length * percentwater ) -this.citycells.length/2
         while (water.length< targetcount){
     
@@ -276,7 +275,6 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 
     if (minx/this.width < miny/this.height){ // X is closer than Y
-                console.log('refactorin the road')
         if ( minx == va.x ) {
             while (va.x >0 && isdry ){ //bear west
                 for (var i=0; i < cells.length; i++){

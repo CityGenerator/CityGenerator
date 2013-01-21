@@ -184,13 +184,12 @@ WorldMap.prototype.paintMap = function(canvas){
 /* ========================================================================= */
 
 WorldMap.prototype.assignKingdoms = function(){
-    var colors = [ '255,105,180', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '95,158,160', '30,144,255', '238,130,238',  '128,0,128'      ];
     this.kingdoms=[];
     for (var i=0 ; i<10 ; i++){
         var kingdom={
                         id:i,
                         seed:this.currentContinentId+(i*10),
-                        color:'rgba('+colors[i]+',.3)'
+                        color:'rgba('+this.colors[i]+',.3)'
                     }
 
         Math.seedrandom( kingdom.seed   ) ;

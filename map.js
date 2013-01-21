@@ -5,6 +5,7 @@
 /* ========================================================================= */
 
 function build_continent( params ){
+    console.log('start building continent')
     // regionmod determines which of the 10 regions on this continent to use.
     // With a cityid of 744158, the 5 indications which region to focus on
     var regionmod=Math.floor(   (params.seed%100)/10  );
