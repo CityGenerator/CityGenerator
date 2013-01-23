@@ -2,60 +2,29 @@
 <html>
     <head>
         <script src='js/flag.js' ></script><!-- included for the awesome math seedrandom function-->
-        <script src="js/map.js"></script>
-        <script src="js/rhill-voronoi-core.js"></script>
-        <script src="js/simplex-noise.js"></script>
+            <script src='js/rhill-voronoi-core.js' ></script>
+            <script src='js/simplex-noise.js' ></script>
+            <script src='js/map.js' ></script>
+            <script src='js/VoronoiMap.js' ></script>
+            <script src='js/CityMap.js' ></script>
+            <script src='js/WorldMap.js' ></script>
+
         <script>
             window.seed=Number(getParameterByName('cityid'));
             if (window.seed <=0 || window.seed >=1000000 ){
                 window.seed= Math.floor((Math.random()*1000000)+1); 
             }
             Math.seedrandom(window.seed);
-            var width =450;
-            var height=300;
-            var sites=3000;
-            var map=new WorldMap(width,height,sites);
 
             window.onload = function(){
-                document.getElementById("seedID").value=window.seed;
-                var canvas = document.getElementById("worldmapCanvas1");
-                canvas.height=height;canvas.width=width;
-                map.paintBackground(canvas);
-
-                for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(map.diagram.cells[i],canvas,document.getElementById("mode").value);
-                }
-                colorlegend();
-
-                map.drawRivers(canvas);
-                var continentseed=window.seed - window.seed%10;
-                map.designateKingdoms(continentseed,canvas);
-                map.boxKingdoms();
-
-//                map.render(canvas);
-
-                var box=map.kingdoms[1].box;
-                map.drawbox(box,canvas,'rgba(255,0,255,1)')
-
-//                map.drawbox(box,canvas,'rgba(255,200,0,1)')
-
-
-
-//                var canvas = document.getElementById("region");
-//                canvas.height=height;canvas.width=width;
-//                map.paintBackground(canvas);
-//                map.drawRegion(canvas,1);
-//
-////                map.drawRivers(canvas);
-////                map.render(canvas);
-
+                document.continentmap=build_continent({
+                                seed:window.seed,
+                                sites:3000,
+                                canvas:document.getElementById('map') 
+                            });
+                document.continentmap.redraw(document.getElementById('map') )
             };
  
-            function colorlegend(){
-                for (terrain in map.terrain){
-                    document.getElementById(terrain).style.background = map.getTerrainColor(terrain);
-                }
-            } 
  
             function getParameterByName(name){
                 name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -70,16 +39,18 @@
 
 
             function changeMode(){
-                var canvas = document.getElementById("worldmapCanvas1");
+                var canvas = document.getElementById("map");
                 var mode = document.getElementById("mode").value;
+                var map=document.continentmap;
                 map.paintBackground(canvas);
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
                     map.colorPolygon(map.diagram.cells[i],canvas,mode);
                 }
             }
             function drawCorners(){
+                var map=document.continentmap;
                 var cellid = document.getElementById("cellid").value;
-                var canvas = document.getElementById("worldmapCanvas1");
+                var canvas = document.getElementById("map");
                 //changeMode();
                 for (var i=0; i < map.diagram.cells.length ; i++ ){
                     var cell=map.diagram.cells[i];
@@ -93,8 +64,9 @@
 
             function locateRegion(){
                 Math.seedrandom(window.seed);
+                var map=document.continentmap;
                 var cellid = document.getElementById("cellid").value;
-                var canvas = document.getElementById("worldmapCanvas1");
+                var canvas = document.getElementById("map");
                 var cell   = map.diagram.cells[cellid];
                 if (! cell.ocean){
                     var cells=map.getRegion(cell);
@@ -107,13 +79,11 @@
             }
             
             function examineCell(){
+                var map=document.continentmap;
                 var cellid = document.getElementById("cellid").value;
-                var canvas = document.getElementById("worldmapCanvas1");
+                var canvas = document.getElementById("map");
                 var cell   = map.diagram.cells[cellid];
-                map.paintBackground(canvas);
-                for (var i=0; i < map.diagram.cells.length ; i++ ){
-                    map.colorPolygon(map.diagram.cells[i],canvas,document.getElementById("mode").value);
-                }
+                document.continentmap.redraw(document.getElementById('map') );
                 //map.render(canvas);
                 map.colorPolygon(map.diagram.cells[cellid],canvas,'highlight','#0FF');
                 document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+" "+
@@ -133,9 +103,10 @@
         <title> CityGenerator's Worldmap</title>
     </head>
     <body>
-        <canvas id="worldmapCanvas1"  style="border:1px solid black;float:left;" ></canvas>
-        <canvas id="region"  style="border:1px solid black;float:left;" ></canvas>
-
+        <div style=float:left;width:540'>
+            <div><canvas id="map" style="border:1px solid black;" width='540px' height='450px' ></canvas></div>
+           <div id='continentlegend'></div>
+        </div>
         <div>
             cityid: <input type='text' id='seedID' />
             mode:
@@ -152,17 +123,17 @@
                 <input type='text' id='cellid' value='962'/>
                 <input type='button' value='examine' onclick='examineCell();'/>
                 <input type='button' value='>>' onclick='document.getElementById("cellid").value++;examineCell();'/>
-                <input type='button' value='downslopes' onclick='map.drawDownslopes(document.getElementById("worldmapCanvas1"));'  />
-                <input type='button' value='rivers' onclick='map.drawRivers(document.getElementById("worldmapCanvas1"));'  />
-                <input type='button' value='show kingdoms' onclick='map.drawKingdoms();'  />
+                <input type='button' value='downslopes' onclick='document.continentmap.drawDownslopes(document.getElementById("map"));'  />
+                <input type='button' value='rivers' onclick='document.continentmap.drawRivers(document.getElementById("map"));'  />
+                <input type='button' value='show kingdoms' onclick='document.continentmap.drawKingdoms();'  />
 
                 <input type='button' value='colorCorners' onclick='drawCorners();'  /><br>
 
-                <input type='button' value='950' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
-                <input type='button' value='962' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
-                <input type='button' value='992' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='950'  onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='962'  onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
+                <input type='button' value='992'  onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
                 <input type='button' value='1007' onclick='document.getElementById("cellid").value=this.value;examineCell();'/>
-                <textarea id='celldetails'  rows="12" cols="70">cell info</textarea>
+                <textarea id='celldetails'  rows="12" cols="50">cell info</textarea>
 
         </div>
 <div>
