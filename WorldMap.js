@@ -20,7 +20,14 @@ function  WorldMap(width,height,num_points,seed) {
     // continent seed refers to which continent we're on- it essentially
     // ignores the last two digits of the cityid: 744158 -> 744100 
     this.currentContinentId = seed -  seed%100;
-    this.maxkingdom=10*Math.ceil( Math.random()*100)
+
+    var minkingdom=num_points/200
+    var maxkingdom=num_points/2
+
+
+    this.maxkingdom= Math.random()*(maxkingdom-minkingdom)+minkingdom
+    console.log('max kingdom size: ' +this.maxkingdom)
+//*Math.ceil( Math.random()*100)
     // Base Parameters
     //TODO refactor terrain
     this.terrain=[];
@@ -52,21 +59,35 @@ function  WorldMap(width,height,num_points,seed) {
     this.assignRivers();
 }
 
+
+WorldMap.prototype.redrawRegion = function(canvas){
+
+    var citybox=this.kingdoms[this.currentRegionId].cities[this.currentCityId].box
+    this.xoffset=-citybox.minx*2.5
+    this.yoffset=-citybox.miny*2.5
+    this.setMultiplier(2.5)
+    this.redraw(canvas)
+    this.setMultiplier(1)
+    this.xoffset=0
+    this.yoffset=0
+
+}
 /* ========================================================================= */ 
 /*  redraw what this should look like on a given canvas 
 /*  
 /* ========================================================================= */ 
  
-WorldMap.prototype.redraw = function(canvas,scale,region){
-    if (scale == undefined) {
-        scale=this.scale
+WorldMap.prototype.redraw = function(canvas,scale){
+    if (scale !=undefined){
+        this.setMultiplier(scale)
     }
-    this.paintBackground(canvas,'#ffffff',scale,region);
+    this.paintBackground(canvas,'#ffffff');
     this.paintMap(canvas)
     this.drawKingdoms(canvas,true); 
     this.drawCities(canvas);
     var citybox=this.kingdoms[this.currentRegionId].cities[this.currentCityId].box
     this.drawbox( citybox,  canvas,'rgba(255,0,255,1)'  )
+    this.setMultiplier(1)
 //ype.setbox = function(box, va, vb){
 } 
 
@@ -642,15 +663,15 @@ WorldMap.prototype.box = function(cells){
 /* ========================================================================= */
 
 WorldMap.prototype.drawRivers = function(canvas){
-    var ctx = canvas.getContext('2d');
 
     for (var i=0; i<this.diagram.cells.length; i++){
+        var ctx = canvas.getContext('2d');
         var cell=this.diagram.cells[i];
         if ( cell.river ){
             ctx.strokeStyle='rgba(128,128,255,0.5)';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,this.yoffset+this.ymultiplier*cell.site.y);
+            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,          this.yoffset+this.ymultiplier*cell.site.y);
             ctx.lineTo(this.xoffset+this.xmultiplier*cell.downslope.site.x,this.yoffset+this.ymultiplier*cell.downslope.site.y);
             ctx.closePath();
             ctx.stroke();
@@ -676,17 +697,15 @@ WorldMap.prototype.drawDownslopes = function(canvas){
             ctx.lineCap = 'round';
             ctx.lineWidth = 1;
             ctx.beginPath();
-            ctx.moveTo(cell.site.x,cell.site.y);
-            ctx.lineTo(cell.downslope.site.x,cell.downslope.site.y);
-            ctx.closePath();
+            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,           this.yoffset+this.ymultiplier*cell.site.y);
+            ctx.lineTo(this.xoffset+this.xmultiplier*cell.downslope.site.x, this.yoffset+this.ymultiplier*cell.downslope.site.y);
             ctx.stroke();
         } else if ( ! cell.ocean && cell.site == cell.downslope.site){
             ctx.lineCap = 'round';
             ctx.lineWidth = 5;
             ctx.beginPath();
-            ctx.moveTo(this.xoffset+this.xmultiplier*cell.site.x,this.yoffset+this.ymultiplier*cell.site.y);
-            ctx.lineTo(this.xoffset+this.xmultiplier*cell.site.x+3,this.yoffset+this.ymultiplier*cell.site.y+3);
-            ctx.closePath();
+            ctx.lineTo(this.xoffset+this.xmultiplier*cell.site.x,    this.yoffset+this.ymultiplier*cell.site.y);
+            ctx.lineTo(this.xoffset+this.xmultiplier*(cell.site.x+3),this.yoffset+this.ymultiplier*(cell.site.y+3));
             ctx.stroke();
         }
     }

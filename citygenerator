@@ -102,6 +102,21 @@ sub get_flag_colors{
     return "['". join("','",@colors)."']";
 
 }
+sub format_neighbors{
+    my $content="[";
+    foreach my $neighbor ( @{$city->{'neighbors'}} ){
+        $content.="{".
+                "id:'".      $neighbor->{'id'}."',".
+                "name:'".    $neighbor->{'name'}."',".
+                "relation:'".$neighbor->{'relation'}."',".
+                "size:'".    $neighbor->{'population'}->{'size'}."',".
+                "size_modifier:'".    $neighbor->{'size_modifier'}."',".
+            "},\n"
+    }
+    $content.="]";
+    return $content;
+}
+
 sub describe_header{
     my $style=print_style();
     my $flagcolors=get_flag_colors(); 
@@ -118,7 +133,7 @@ sub describe_header{
     }
     my $names="['".join("', '",@names)."']";
     my $districts="['".join("', '",@{ $city->{'districts'}})."']";
-
+    my $neighbors=format_neighbors();
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
@@ -136,16 +151,20 @@ sub describe_header{
             </head>
             <body onload=\"
                 create_flag(document.getElementById('flag') ,$city->{'seed'}, '$letter', $flagcolors); 
-                build_continent({
+                document.continentmap=build_continent({
                                 seed:$city->{'seed'},
-                                canvas:document.getElementById('bigmap') 
+                                sites:3000,
+                                canvas:document.getElementById('bigmap'),
+                                neighbors:$neighbors
                             });
+                document.continentmap.redraw(document.getElementById('continent'),1/3)
+
                 build_region({
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap'),
                                 citynames:$names
                             });
-              build_city({    
+                document.citymap=build_city({    
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap'),
                                 districts: $districts, 
@@ -156,7 +175,9 @@ sub describe_header{
                                 isport:'$city->{'location'}->{'port'}',
                                 roads:$city->{'streets'}->{'roads'},
                                 mainroads:$city->{'streets'}->{'mainroads'},
-                            })
+                            });
+                document.citymap.redraw(document.getElementById('city'),1/3)
+
  ;\">
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
             
@@ -554,7 +575,7 @@ sub describe_government{
 
                         <h3 id='diplomaticties'>Diplomatic Ties</h3>
                         <p>$city->{'name'} has the following diplomatic relations:</p>
-                        $relations
+                        <div id='diplimatic_ties_text'></div>
                         <h3 id='crimeandpunishment'>Crime and Punishment</h3>
                         <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'population'}->{'imprisonment'}->{'percent'}% of the population ($city->{'population'}->{'imprisonment'}->{'population'} adult[s]).</p>
                         <h3 id='military'>Military</h3>
@@ -606,7 +627,7 @@ sub describe_summary {
 
                         <h2>Summary</h2>
 
-                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts It has a $city->{'climate'}->{'content'} climate.</p>
+                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts</p>
 
                    ";
 }
@@ -617,7 +638,7 @@ sub describe_geography {
     my $content="
                     <section id='geography'>
                         <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. $neighbors</p>
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. Neighboring cities include</p><div id='neighboring_cities'></div>
                     </section>
 ";
 }

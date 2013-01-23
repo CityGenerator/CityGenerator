@@ -21,22 +21,12 @@ function build_continent( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
 
-
-    // The number of cells in a given continent.
-    var sites=2000;
-
     // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,sites,params.seed);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed);
 
-    // Note that we're scaling the sidebar maps to 1/3rd their true size.
-    map.xmultiplier=1/3
-    map.ymultiplier=1/3
-    map.redraw(document.getElementById('continent'))
     print_legend(map)
 
-    document.continentmap=map
-
-
+    return map
 }
 
 
@@ -47,22 +37,28 @@ function build_continent( params ){
 
 function build_region( params ){
     var map=document.continentmap
-    var citybox=map.kingdoms[map.currentRegionId].cities[map.currentCityId].box
-    map.xoffset=-citybox.minx*2.5
-    map.yoffset=-citybox.miny*2.5
-    map.xmultiplier=2.5
-    map.ymultiplier=2.5
-    map.redraw(document.getElementById('region'))
-
-
-    map.xmultiplier=1
-    map.ymultiplier=1
-    map.xoffset=0
-    map.yoffset=0
-
-
+    map.redrawRegion(document.getElementById('region'))
 }
 
+
+/* ========================================================================= */
+/* build_city is called by CityGenerator to build the city map. We pass in
+/* everything via the params object to make things easier.
+/* ========================================================================= */
+
+function build_city(  params  ){
+
+    // Step 1) we need to set our seed to ensure consistency
+    Math.seedrandom(params.seed)
+
+    // Generate our base CityMap
+    var map=new CityMap(  params.canvas.width, params.canvas.height, params, document.continentmap.currentcitycell.color  );
+    // Generate the key parts of the city.
+
+    map.redraw(document.getElementById('city'),1/3)
+    print_Citylegend(map)
+    return map
+}
 
 /* ========================================================================= */
 /* 
@@ -83,24 +79,19 @@ function embiggen( canvas ){
 
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
             var citybox=worldmap.kingdoms[worldmap.currentRegionId].cities[worldmap.currentCityId].box
-            worldmap.xoffset=-citybox.minx*2.5*3
-            worldmap.yoffset=-citybox.miny*2.5*3
-            worldmap.xmultiplier=2.5*3
-            worldmap.ymultiplier=2.5*3
+            var multiplier=2.5*3
+            worldmap.xoffset=-citybox.minx*multiplier
+            worldmap.yoffset=-citybox.miny*multiplier
             worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
-            worldmap.redraw(bigcanvas)
+            worldmap.redraw(bigcanvas,multiplier)
             worldmap.xoffset=0
             worldmap.yoffset=0
-            worldmap.xmultiplier=1
-            worldmap.ymultiplier=1
 
     }else if (canvas.id == 'city' && worldmap.embiggen != 'city'){
             worldmap.embiggen='city'
             bigcanvas.style.display  ='block'
-            citymap.xmultiplier=1
-            citymap.ymultiplier=1
-            citymap.redraw(bigcanvas)
+            citymap.redraw(bigcanvas,1)
             console.log('city small, make big!')
 
     }else{
@@ -141,30 +132,5 @@ function print_Citylegend(map){
         var district=map.districts[i];
         document.getElementById('citylegend').innerHTML+='<span style="font-size:10px;color:#000;background-color:'+district.color+'">'+district.name +'</span> '
     }
-}
-
-/* ========================================================================= */
-/* build_city is called by CityGenerator to build the city map. We pass in
-/* everything via the params object to make things easier.
-/* ========================================================================= */
-
-function build_city(  params  ){
-
-    // Step 1) we need to set our seed to ensure consistency
-    Math.seedrandom(params.seed)
-
-    var canvas=params.canvas
-
-    // Generate our base CityMap
-    var map=new CityMap(  canvas.width, canvas.height, params, document.continentmap.currentcitycell.color  );
-    // Generate the key parts of the city.
-
-    map.xmultiplier=1/3
-    map.ymultiplier=1/3
-    map.redraw(document.getElementById('city'))
-    map.xmultiplier=1
-    map.ymultiplier=1
-    print_Citylegend(map)
-    document.citymap=map
 }
 

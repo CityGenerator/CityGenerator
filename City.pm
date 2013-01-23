@@ -55,6 +55,7 @@ sub build_city {
     $city->{'name'} = generate_name($newseed);
 
     generate_realm();
+    generate_continent();
     generate_city_core();
     generate_city_credence();
     generate_physical_traits();
@@ -816,13 +817,25 @@ sub generate_markets {
 ###############################################################################
 #
 # generate_realm - Determine the realm of the city
-
 #
 ###############################################################################
 sub generate_realm {
     my $oldseed=$seed;
     $seed=set_seed($seed-$seed%10);
     $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
+    $seed=set_seed($oldseed);
+}
+
+
+###############################################################################
+#
+# generate_Continent - Determine the name of the Continent
+#
+###############################################################################
+sub generate_continent {
+    my $oldseed=$seed;
+    $seed=set_seed($seed-$seed%100);
+    $city->{'continent'}=parse_object($xml_data->{'continent'})->{'content'};
     $seed=set_seed($oldseed);
 }
 
@@ -850,27 +863,37 @@ sub generate_topography {
 # generate_neighbors - Determine information about the neighbors. 
 #
 ###############################################################################
+
 sub generate_neighbors {
 
-    # up to 6 neighbors, but one is always you.
-    my $neighbortotal=&d(5);
-    $city->{'neighbors'}=[];
-    my $neighborid=$seed- int($neighbortotal/2);
-
-    #save this guy for later
+    #FIXME since set_ctiy_size acts on the global city, we temporarily switch origcity and city around
+    # This is a hack, but it works.
+    my $origcity=$city;
     my $oldseed=$seed;
-    while($neighbortotal >0){
+    my $continentseed=set_seed($seed-$seed%100);
+    for (my $i = 0 ; $i < 100; $i++){
+        my $neighborid=$continentseed+$i;
+        my $regionid=$neighborid-$neighborid%10;
+
         if ($neighborid != $oldseed){
             $seed=set_seed($neighborid);
-            my $neighbor->{'id'}=$seed;
-            $neighbor->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
-            $neighbor->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
-            push @{$city->{'neighbors'}}, $neighbor;
+            $city={}; 
+            $city->{'id'}=$seed;
+            $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
+            set_city_size();
+            set_city_type();
+            generate_pop_type();
+            assign_races();
+            generate_pop_counts();
+            # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
+            $seed=set_seed($neighborid+$oldseed);
+            $city->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+
+            push @{$origcity->{'neighbors'}}, $city;
             $seed=set_seed($oldseed);
-            $neighbortotal--;
         }
-        $neighborid++;
     }
+    $city=$origcity
 }
 
 

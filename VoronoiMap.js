@@ -44,6 +44,18 @@ function  VoronoiMap(width,height,num_points) {
     this.improveRandomPoints();
 }
 
+
+/* ========================================================================= */
+/*  
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.setMultiplier = function(xmult,ymult){
+    this.xmultiplier = xmult
+    this.ymultiplier = (ymult != undefined) ? ymult : xmult;
+}
+
+
 /* ========================================================================= */
 /*  
 /* 

@@ -40,14 +40,16 @@ CityMap.prototype.designateCity = function(citycellcount){
     }
 }
 
-
 /* ========================================================================= */
 /* 
 /* 
 /* ========================================================================= */
 
-CityMap.prototype.redraw = function(canvas){
+CityMap.prototype.redraw = function(canvas,scale){
     // From here, draw out all the parts we designated above.
+    if (scale !=undefined){
+        this.setMultiplier(scale)
+    }
     this.paintBackground(canvas,this.color);
 //    this.drawCoast(canvas, this.isport, this.coastdirection)
     this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',true)
