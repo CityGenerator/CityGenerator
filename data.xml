@@ -2010,6 +2010,30 @@
 </realm>
 
 
+<continent post_chance='30' title_chance='10'>
+    <title>North</title>
+    <title>South</title>
+    <title>East</title>
+    <title>West</title>
+    <pre>As</pre>
+    <pre>Eur</pre>
+    <pre>An</pre>
+    <pre>Del</pre>
+    <pre>Mon</pre>
+    <pre>Na</pre>
+    <pre>Ko</pre>
+    <root>sar</root>
+    <root>gar</root>
+    <root>bel</root>
+    <root>por</root>
+    <root>ama</root>
+    <root>lax</root>
+    <post>ica</post>
+    <post>iv</post>
+    <post>ek</post>
+    <post>ar</post>
+
+</continent>
 
 
 
