@@ -490,18 +490,23 @@ Voronoi.prototype.Cell = function(site) {
 	this.halfedges = [];
 	};
 
+// Return a list of the Neighbor IDs
+
 Voronoi.prototype.Cell.prototype.getNeighborIDs = function() {
-    var neighbors=[];
-    for (var i=0; i<this.halfedges.length; i++){
-        var edge=this.halfedges[i].edge;
-        if ( edge.lSite != null && edge.lSite.voronoiId != this.site.voronoiId){
-            neighbors.push(edge.lSite.voronoiId );
+    var neighbors = [];
+    for (var i = 0 ; i < this.halfedges.length ; i++){
+        var edge = this.halfedges[i].edge;
+        if ( edge.lSite != null && edge.lSite.voronoiId != this.site.voronoiId) {
+            neighbors.push( edge.lSite.voronoiId );
         }else if ( edge.rSite != null && edge.rSite.voronoiId != this.site.voronoiId){
-            neighbors.push(edge.rSite.voronoiId );
+            neighbors.push( edge.rSite.voronoiId );
         }
     }
     return neighbors;
 }
+
+// Return a random neighbor's ID
+
 Voronoi.prototype.Cell.prototype.getRandomNeighborID = function() {
     var neighborids=this.getNeighborIDs()
     
@@ -522,7 +527,11 @@ Voronoi.prototype.Cell.prototype.prepare = function() {
 			halfedges.splice(iHalfedge,1);
 			}
 		}
-    this.corners=this.corners.filter(function(val) { return val !== null; });
+    // This is an ugly hack to remove null corners
+    this.corners = this.corners.filter(
+                        function(val) { 
+                            return val !== null; 
+                        });
 
 	// rhill 2011-05-26: I tried to use a binary search at insertion
 	// time to keep the array sorted on-the-fly (in Cell.addHalfedge()).
@@ -629,8 +638,7 @@ Voronoi.prototype.setEdgeEndpoint = function(edge, lSite, rSite, vertex) {
 
 // rhill 2011-06-07: For some reasons, performance suffers significantly
 // when instanciating a literal object instead of an empty ctor
-Voronoi.prototype.Beachsection = function(site) {
-	this.site = site;
+Voronoi.prototype.Beachsection = function() {
 	};
 
 // rhill 2011-06-02: A lot of Beachsection instanciations
@@ -643,12 +651,10 @@ Voronoi.prototype.Beachsection = function(site) {
 // performance gain.
 Voronoi.prototype.createBeachsection = function(site) {
 	var beachsection = this.beachsectionJunkyard.pop();
-	if (beachsection) {
-		beachsection.site = site;
+	if (!beachsection) {
+		beachsection = new this.Beachsection();
 		}
-	else {
-		beachsection = new this.Beachsection(site);
-		}
+	beachsection.site = site;
 	return beachsection;
 	};
 
@@ -1392,12 +1398,13 @@ Voronoi.prototype.closeCells = function(bbox) {
 				edge = this.createBorderEdge(cell.site, va, vb);
 				halfedges.splice(iLeft+1, 0, new this.Halfedge(edge, cell.site, null));
 				nHalfedges = halfedges.length;
-            cell.border=true;
+                cell.border=true;
 				}
 			iLeft++;
 			}
 		}
 	};
+
 // ---------------------------------------------------------------------------
 // Top-level Fortune loop
 
@@ -1406,7 +1413,6 @@ Voronoi.prototype.closeCells = function(bbox) {
 //   user to freely modify content. At compute time,
 //   *references* to sites are copied locally.
 Voronoi.prototype.compute = function(sites, bbox) {
-    
 	// to measure execution time
 	var startTime = new Date();
 
@@ -1489,6 +1495,3 @@ Voronoi.prototype.compute = function(sites, bbox) {
 
 	return result;
 	};
-
-
-
