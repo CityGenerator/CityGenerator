@@ -118,20 +118,15 @@ CityMap.prototype.generateDistricts = function(districts){
     var claimedcells=districts.length
 
     var districtid=0
-    // While my claimed cells are less than the max percentage (90% of the city)
     while(claimedcells/totalcells<this.maxdistrictpercent){
-        // Grab a district
         var currentdistrict=this.districts[districtid];
+        console.log("claimedcells "+(claimedcells/totalcells)+" percentused: "+this.maxdistrictpercent+" claimedcells: "+claimedcells+" maxsingle: "+this.maxsingledistrictpercent+" currentmaxsingle: "+ (currentdistrict.cells.length/totalcells)   )
 
-        //console.log("claimedcells "+(claimedcells/totalcells)+" percentused: "+this.maxdistrictpercent+" claimedcells: "+claimedcells+" maxsingle: "+this.maxsingledistrictpercent+" currentmaxsingle: "+ (currentdistrict.cells.length/totalcells)   )
-
-        // If the district's size is less than the max single district percent (30%)
         if ( currentdistrict.cells.length/totalcells <this.maxsingledistrictpercent) {
-            // Grow the district
+            console.log('adding it!')
             cellIDlist=this.growDistrict(currentdistrict, cellIDlist);
         }
-        //regardless of whether or not you grow it, add that district's length to the claimed cells.... oh this is wrong.
-        claimedcells+=currentdistrict.cells.length
+        claimedcells+=this.districts.length
         districtid = ++districtid % districts.length
     }
 }

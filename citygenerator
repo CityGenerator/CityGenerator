@@ -106,11 +106,11 @@ sub format_neighbors{
     my $content="[";
     foreach my $neighbor ( @{$city->{'neighbors'}} ){
         $content.="{".
-                "id:'".      $neighbor->{'id'}."',".
+                "seed:'".      $neighbor->{'id'}."',".
                 "name:'".    $neighbor->{'name'}."',".
                 "relation:'".$neighbor->{'relation'}."',".
                 "size:'".    $neighbor->{'population'}->{'size'}."',".
-                "size_modifier:'".    $neighbor->{'size_modifier'}."',".
+                "size_modifier:'".    $neighbor->{'size_modifier'}."'".
             "},\n"
     }
     $content.="]";
@@ -179,6 +179,7 @@ sub describe_header{
                 document.citymap.redraw(document.getElementById('city'),1/3)
 
  ;\">
+<div style='color:red'>$city->{'debug'}</div>
                 <script src='http://code.jquery.com/jquery-latest.js'></script>
             
 ";
@@ -254,7 +255,7 @@ sub describe_footer{
                 <div >World Map ($continentseed) <br/>
                     <canvas id=\"continent\" style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
                     <div id='continentlegend'></div></div>
-                <canvas id=\"bigmap\" width='540px' height='450px' onclick='embiggen(this);'></canvas>
+                <div id='bigmapdiv'><canvas id=\"bigmap\" width='540px' height='450px' onclick='embiggen(this);'></canvas></div>
             </div>
 
 
@@ -531,14 +532,6 @@ sub describe_magic{
         return "looked upon with suspicion"
     }
 }
-sub describe_relations {
-    my @relations;
-#print Dumper $city->{'neighbors'} ; 
-    foreach my $neighbor (  @{$city->{'neighbors'}}  ){
-        push @relations, $neighbor->{'relation'}." ".$neighbor->{'name'};
-    }
-    return "<ul class='two-column'><li>".join('</li><li>',@relations)."</li></ul>";
-}
 sub define_tactics{
     if (defined $city->{'tactics'}->{'content'}){
         return " $city->{'tactics'}->{'respect'} for their $city->{'tactics'}->{'content'} and are"
@@ -566,7 +559,6 @@ sub describe_government{
     my $approval=describe_approval();
     my $freedom=describe_freedom();
     my $magic=describe_magic();
-    my $relations=describe_relations();
     my $military=describe_military();
     my $content="
                     <section id='government'>
@@ -574,8 +566,7 @@ sub describe_government{
                         <p>$city->{'name'} is ruled by the $city->{'govtype'}->{'respect'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} policies in general. Freedom of religion is $freedom, and magic use is $magic. </p>
 
                         <h3 id='diplomaticties'>Diplomatic Ties</h3>
-                        <p>$city->{'name'} has the following diplomatic relations:</p>
-                        <div id='diplimatic_ties_text'></div>
+                        <p id='diplomatic_ties_text'></p>
                         <h3 id='crimeandpunishment'>Crime and Punishment</h3>
                         <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'population'}->{'imprisonment'}->{'percent'}% of the population ($city->{'population'}->{'imprisonment'}->{'population'} adult[s]).</p>
                         <h3 id='military'>Military</h3>
@@ -600,26 +591,26 @@ sub describe_summary {
     my $districts=describe_district_summary();
     my $previousid=$city->{'seed'}-1;
     my $nextid=$city->{'seed'}+1;
-    my $previouscontinent=$city->{'seed'}-10;
-    my $nextcontinent=$city->{'seed'}+10;
-    my $previousregion=$city->{'seed'}-100;
-    my $nextregion=$city->{'seed'}+100;
+    my $previouscontinent=$city->{'seed'}-100;
+    my $nextcontinent=$city->{'seed'}+100;
+    my $previousregion=$city->{'seed'}-10;
+    my $nextregion=$city->{'seed'}+10;
     my $content="
                     <div id='container'>
 
                         <div class='left' id='main_left'>
 
                             <div id='header'>
-                                <a href='?cityid=$previousid'>&lt;&lt;</a>
                                 <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>
-                                <a href='?cityid=$nextid'>&gt;&gt;</a>
                             </div>
                             <div id='subheader'>
                                 <a href='?cityid=$previouscontinent'>&lt;&lt; Last Continent</a>
                                 <a href='?cityid=$previousregion'>&lt;&lt; Last Region</a>
+                                <a href='?cityid=$previousid'>&lt;&lt; Last City</a>
                                 &nbsp;&nbsp;
-                                <a href='?cityid=$nextcontinent'>Next Region&gt;&gt;</a>
-                                <a href='?cityid=$nextregion'>Next Continent&gt;&gt;</a>
+                                <a href='?cityid=$nextid'>Next City&gt;&gt;</a>
+                                <a href='?cityid=$nextregion'>Next Region&gt;&gt;</a>
+                                <a href='?cityid=$nextcontinent'>Next Continent&gt;&gt;</a>
                             </div>
 
                 <div class='right' id='main'>
@@ -633,12 +624,11 @@ sub describe_summary {
 }
 sub describe_geography {
     my $landmarks= print_landmarks();
-    my $neighbors= print_neighbors();
     my $port= ( $city->{'location'}->{'port'} ) ? ' and is a port town' : '';
     my $content="
                     <section id='geography'>
                         <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}. Neighboring cities include</p><div id='neighboring_cities'></div>
+                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}.<p id='neighboring_cities'></p>
                     </section>
 ";
 }
@@ -723,34 +713,6 @@ sub describe_cityscape {
 ";
 }
 
-###############################################################################
-#
-# print_neighbors - return the neighbors in an easy-to-display sentence.
-#
-###############################################################################
-sub print_neighbors {
-#    print "$seed\n";
-    my $neighbors=$city->{'neighbors'};
-    if(ref($neighbors) eq 'ARRAY'){
-        if (scalar(@$neighbors) eq 1 ){
-            return "<a href='?cityid=$neighbors->[0]->{'id'}'> $neighbors->[0]->{'name'}</a> is a neighbor. ";
-        
-        }elsif(scalar(@$neighbors) >1 ){
-       #     print Dumper @$neighbors;
-            my @neighborlist=@$neighbors;
-            my $lastneighbor=pop(@neighborlist);
-            my $content="Neighboring cities include ";
-            foreach my $neighbor (@neighborlist){
-                $content.="<a href='?cityid=$neighbor->{'id'}'> $neighbor->{'name'}</a>, ";
-            }
-            $content.=" and <a href='?cityid=$lastneighbor->{'id'}'> $lastneighbor->{'name'}</a>. ";
-
-            return $content; 
-        }else{
-            return "";
-        }
-    }
-}
 ###############################################################################
 #
 # print_landmarks - return the landmarks in an easy-to-display sentence.

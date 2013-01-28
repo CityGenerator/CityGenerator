@@ -7,7 +7,7 @@ WorldMap.prototype = Object.create(VoronoiMap.prototype);
 WorldMap.prototype.constructor = WorldMap;
 
 
-function  WorldMap(width,height,num_points,seed) {
+function  WorldMap(width,height,num_points,seed,cities) {
     VoronoiMap.call(this,width,height,num_points)
     // regionmod determines which of the 10 regions on this continent to use.
     // With a cityid of 744158, the 5 indications which region to focus on
@@ -15,7 +15,11 @@ function  WorldMap(width,height,num_points,seed) {
 
     // citymod determines which of the 10 cities in this region to use.
     // uses the last  digit of the cityid: 744158 -> 8
-    this.currentCityId=Math.floor(seed%10);
+    this.currentCityId=Math.floor(seed%100);
+
+    this.seed=seed
+
+    this.cities=cities;
 
     // continent seed refers to which continent we're on- it essentially
     // ignores the last two digits of the cityid: 744158 -> 744100 
@@ -24,10 +28,8 @@ function  WorldMap(width,height,num_points,seed) {
     var minkingdom=num_points/200
     var maxkingdom=num_points/2
 
-
     this.maxkingdom= Math.random()*(maxkingdom-minkingdom)+minkingdom
     console.log('max kingdom size: ' +this.maxkingdom)
-//*Math.ceil( Math.random()*100)
     // Base Parameters
     //TODO refactor terrain
     this.terrain=[];
@@ -57,12 +59,36 @@ function  WorldMap(width,height,num_points,seed) {
     this.assignKingdoms()
     this.assignCities();
     this.assignRivers();
+    this.closeneighbors=this.findNeighborCities(this.currentCityId,4);
 }
 
+WorldMap.prototype.findNeighborCities = function(cityid,count){
+    var city=this.cities[cityid];
+    var neighbors=[]
+    for (var i = 0; i<this.cities.length ; i++){
+        if (i != this.currentCityId){
+            var neighbor = this.cities[i];
+            neighbor.distance = Math.sqrt( Math.pow(city.point.x - neighbor.point.x,2) +  Math.pow(city.point.y - neighbor.point.y ,2)    );
+            neighbors.push( neighbor );
+        }
+    }
+    neighbors.sort(compare)
+
+    neighbors.shift()// the closest city is itself, so cut it out.
+
+    if (count != undefined){
+        return neighbors.splice( 0 ,count);
+    }
+    return neighbors
+
+}
+    function compare(a,b) {
+        return  (a.distance < b.distance) ? -1 : 1
+    }
 
 WorldMap.prototype.redrawRegion = function(canvas){
 
-    var citybox=this.kingdoms[this.currentRegionId].cities[this.currentCityId].box
+    var citybox=this.cities[this.currentCityId].box
     this.xoffset=-citybox.minx*2.5
     this.yoffset=-citybox.miny*2.5
     this.setMultiplier(2.5)
@@ -85,7 +111,8 @@ WorldMap.prototype.redraw = function(canvas,scale){
     this.paintMap(canvas)
     this.drawKingdoms(canvas,true); 
     this.drawCities(canvas);
-    var citybox=this.kingdoms[this.currentRegionId].cities[this.currentCityId].box
+    var citybox=this.cities[this.currentCityId].box
+    
     this.drawbox( citybox,  canvas,'rgba(255,0,255,1)'  )
     this.setMultiplier(1)
 //ype.setbox = function(box, va, vb){
@@ -128,44 +155,42 @@ WorldMap.prototype.drawTexture = function(canvas){
 /* ========================================================================= */
 
 WorldMap.prototype.assignCities = function(){
-    for (var regionid=0 ; regionid<10 ; regionid++){
-        var kingdom=this.kingdoms[regionid]
-        kingdom.cities=[]
-        for (var cityid=0 ; cityid<10 ; cityid++){
-            var city={}
-            // Using the region and cityid, select a cell and get a list of its corners
-            var cellcount=this.kingdoms[regionid].cells.length;
-            //FIXME I think something is wrong with cell selection; cities seem grouped.
-            var randomCellID=Math.floor( Math.random()*cellcount  )
-            city.cell=kingdom.cells[randomCellID]
+    for (var cityid=0 ; cityid<this.cities.length ; cityid++){
+        var city=this.cities[cityid];
+        var cityregionID=Math.floor(   (city.seed%100)/10  );
 
-            var corners=[]
-            for (var i=0; i<city.cell.corners.length ; i++){
-                corners.push(i);
-            }
-            city.color="rgba(0,0,0,.2)"
-            if (  this.currentCityId == cityid   &&   this.currentRegionId == regionid  ){
-                city.color="rgba(250,0,0,1)"
-                this.currentcitycell=city.cell
-            } else if ( this.currentRegionId == regionid ){
-                city.color="rgba(0,0,0,.5)"
+        var cellcount=this.kingdoms[cityregionID].cells.length;
 
-            }
+        var randomCellID=Math.floor( Math.random()*cellcount  )
+        city.cell=this.kingdoms[cityregionID].cells[randomCellID]
 
-            var cornerIDa =Math.floor(Math.random()*corners.length)
-            var va=city.cell.corners[ corners.splice( cornerIDa ,1)[0]];
-            var cornerIDb =Math.floor(Math.random()*corners.length)
-            var vb=city.cell.corners[ corners.splice( cornerIDb ,1)[0]];
-            var cornerIDc =Math.floor(Math.random()*corners.length)
-            var vc=city.cell.corners[ corners.splice( cornerIDc ,1)[0]];
-
-            city.point=this.triangulatePosition(va,vb,vc);
-            city.box={  minx:city.point.x-36,
-                        maxx:city.point.x+36, 
-                        miny:city.point.y-30,
-                        maxy:city.point.y+30}
-            kingdom.cities.push(city)
+        var corners=[]
+        for (var i=0; i<city.cell.corners.length ; i++){
+            corners.push(i);
         }
+        city.color="rgba(0,0,0,.2)"
+        if (  this.seed == city.seed  ){
+            city.color="rgba(250,0,0,1)"
+            this.currentcitycell=city.cell
+        } else if ( this.currentRegionId == cityregionID ){
+            city.color="rgba(0,0,0,.5)"
+
+        }
+
+        var cornerIDa =Math.floor(Math.random()*corners.length)
+        var va=city.cell.corners[ corners.splice( cornerIDa ,1)[0]];
+        var cornerIDb =Math.floor(Math.random()*corners.length)
+        var vb=city.cell.corners[ corners.splice( cornerIDb ,1)[0]];
+        var cornerIDc =Math.floor(Math.random()*corners.length)
+        var vc=city.cell.corners[ corners.splice( cornerIDc ,1)[0]];
+
+        city.point=this.triangulatePosition(va,vb,vc);
+        city.box={  minx:city.point.x-36,
+                    maxx:city.point.x+36, 
+                    miny:city.point.y-30,
+                    maxy:city.point.y+30}
+        //kingdom.cities.push(city)
+        this.cities[cityid]=city
     }
 }
 
@@ -176,12 +201,9 @@ WorldMap.prototype.assignCities = function(){
 /* ========================================================================= */
 
 WorldMap.prototype.drawCities = function(canvas){
-    for (var regionid=0 ; regionid<this.kingdoms.length ; regionid++){
-        var kingdom=this.kingdoms[regionid];
-        for (var cityid=0 ; cityid<kingdom.cities.length ; cityid++){
-            var city=kingdom.cities[cityid]
-            this.paintDot(canvas,city.point.x,city.point.y,1,city.color);
-        }
+    for (var cityid=0 ; cityid<this.cities.length ; cityid++){
+        var city=this.cities[cityid]
+        this.paintDot(canvas,city.point.x,city.point.y,1,city.color);
     }
 }
 

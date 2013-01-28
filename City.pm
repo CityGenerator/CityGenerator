@@ -23,6 +23,7 @@ my $xml = new XML::Simple;
 our $xml_data   = $xml->XMLin( "../data.xml",  ForceContent => 1, ForceArray => ['option'] );
 our $names_data = $xml->XMLin( "../names.xml", ForceContent => 1, ForceArray => [] );
 our $seed;
+our $originalseed;
 our $city;
 
 #TODO generate trivia
@@ -50,12 +51,13 @@ our $city;
 ###############################################################################
 
 sub build_city {
-    my ($newseed) = @_;
-    $seed           = set_seed($newseed);
-    $city->{'name'} = generate_name($newseed);
-
+     ($originalseed) = @_;
+    $seed           = set_seed($originalseed);
+    $city->{'name'} = generate_name($seed);
+    $city->{'debug'}='';
     generate_realm();
     generate_continent();
+
     generate_city_core();
     generate_city_credence();
     generate_physical_traits();
@@ -70,7 +72,6 @@ sub build_city {
 
 
 sub generate_name {
-
     my ($newseed) = @_;
     $seed           = set_seed($newseed);
     $city           = { 'seed' => $seed };
@@ -146,6 +147,7 @@ sub generate_economics {
     generate_taverns();
     generate_economic_description();
     generate_education_description();
+    print "======== $seed\n";
     generate_magic_description();
 } ## end sub generate_economics
 
@@ -207,7 +209,6 @@ sub generate_people {
 sub generate_citizens {
 
     my $limit = $city->{'specialisttotal'};
-
     # no less than 0, no more than specialisttotal.
     my $citizencount = min( $city->{'specialisttotal'}, int( &d( 6 + $city->{'size_modifier'} ) - 1 ) );
 
@@ -231,6 +232,7 @@ sub generate_citizens {
         }
         push @{ $city->{'citizens'} }, $citizen;
     } ## end while ( $citizencount-- >...)
+    set_seed($originalseed);
 } ## end sub generate_citizens
 
 ###############################################################################
@@ -304,6 +306,7 @@ sub generate_flag_colors {
         delete $color->{'shade'};
         push @{$city->{'flag'}->{'colors'}}, $color ;
     }
+    set_seed($originalseed);
 }
 
 
@@ -449,6 +452,7 @@ sub generate_events {
             $limit--;
         }
     }
+    set_seed($originalseed);
 
 }
 
@@ -594,7 +598,6 @@ sub generate_travelers{
             }
         }
         my $motivation=rand_from_array($xml_data->{'travelermotivation'}->{'motive'});
-print Dumper $motivation;
         if (defined $motivation->{'option'}){
             $traveler->{'motivation'}=$motivation->{'type'}." ".rand_from_array($motivation->{'option'})->{'content'};
         }else{
@@ -603,6 +606,7 @@ print Dumper $motivation;
         push @{$city->{'travelers'}}, $traveler;
 
     }
+    set_seed($originalseed);
 }
 ###############################################################################
 #
@@ -644,6 +648,7 @@ sub generate_taverns{
 
         push @{$city->{'taverns'}}, $tavern;
     }
+    set_seed($originalseed);
 }
 
 ###############################################################################
@@ -733,7 +738,6 @@ print Dumper  $xml_data->{'nameoptions'}->{'race'}->{$race};
 sub generate_resources{
     #ensure that the resource count is at most 13 and at least 2
     my $resource_count=min( max($city->{'size_modifier'}+$city->{'economy'}, 2 ),13) ;
-
     #shift from 2-13 to 1-12
     $city->{'resourcecountb'}= $resource_count;
     $resource_count = &d($resource_count);
@@ -746,6 +750,7 @@ sub generate_resources{
         push @{ $city->{'resources'} }, parse_object($resource);
     }
 
+    set_seed($originalseed);
 }
 
 
@@ -758,7 +763,6 @@ sub generate_resources{
 sub generate_markets {
 
     $city->{'markets'}=[];
-
     # minimum of 2 markets, max of size modifier(9)
     my $marketcount= max(2, &d( int(6 + $city->{'size_modifier'})/2     ));
 
@@ -804,7 +808,7 @@ sub generate_markets {
        } 
 
     }
-
+    set_seed($originalseed);
 }
 
 
@@ -820,10 +824,9 @@ sub generate_markets {
 #
 ###############################################################################
 sub generate_realm {
-    my $oldseed=$seed;
-    $seed=set_seed($seed-$seed%10);
+    set_seed($originalseed-$originalseed%10);
     $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
-    $seed=set_seed($oldseed);
+    set_seed($originalseed);
 }
 
 
@@ -833,10 +836,9 @@ sub generate_realm {
 #
 ###############################################################################
 sub generate_continent {
-    my $oldseed=$seed;
-    $seed=set_seed($seed-$seed%100);
+    set_seed($originalseed-$originalseed%100);
     $city->{'continent'}=parse_object($xml_data->{'continent'})->{'content'};
-    $seed=set_seed($oldseed);
+    set_seed($originalseed);
 }
 
 ###############################################################################
@@ -869,30 +871,27 @@ sub generate_neighbors {
     #FIXME since set_ctiy_size acts on the global city, we temporarily switch origcity and city around
     # This is a hack, but it works.
     my $origcity=$city;
-    my $oldseed=$seed;
-    my $continentseed=set_seed($seed-$seed%100);
+    my $continentseed=$originalseed-$originalseed%100;
     for (my $i = 0 ; $i < 100; $i++){
         my $neighborid=$continentseed+$i;
-        my $regionid=$neighborid-$neighborid%10;
 
-        if ($neighborid != $oldseed){
-            $seed=set_seed($neighborid);
-            $city={}; 
-            $city->{'id'}=$seed;
-            $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
-            set_city_size();
-            set_city_type();
-            generate_pop_type();
-            assign_races();
-            generate_pop_counts();
-            # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
-            $seed=set_seed($neighborid+$oldseed);
-            $city->{'relation'} = rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+        set_seed($neighborid);
+        $city={}; 
+        $city->{'id'}=$neighborid;
+        $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
+        set_city_size();
+        set_city_type();
+        generate_pop_type();
+        assign_races();
+#        generate_pop_counts();
+        # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
+       my $mixseed=$neighborid+$originalseed;
+        set_seed($mixseed);
+        $city->{'relation'} =" $neighborid + $originalseed  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
 
-            push @{$origcity->{'neighbors'}}, $city;
-            $seed=set_seed($oldseed);
-        }
+        push @{$origcity->{'neighbors'}}, $city;
     }
+    set_seed($originalseed);
     $city=$origcity
 }
 
@@ -1458,7 +1457,6 @@ sub assign_races {
     my $base_pop        = $city->{'base_pop'};
     my @races;
 
-
     # Get all of the available race options
     my @available_races = get_races($base_pop);
 
@@ -1488,6 +1486,7 @@ sub assign_races {
     }
     #replace race percentages with full race breakdowns.
     $city->{'races'} = \@races;
+    set_seed($originalseed);
 }
 
 
@@ -1598,7 +1597,7 @@ sub set_city_type {
 #
 ###############################################################################
 sub set_city_size {
-    srand $seed;
+    set_seed( $seed);
     my $citysizelist=$xml_data->{'citysize'}->{'city'} ;
     my $citysize = roll_from_array( &d(100), $citysizelist );
 
@@ -1632,6 +1631,7 @@ sub set_seed{
         $newseed = int rand(1000000);
     }
     srand $newseed;
+    $seed=$newseed;
     return $newseed;
 }
 

@@ -20,12 +20,12 @@ function build_continent( params ){
 
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
-
     // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors);
 
     print_legend(map)
-
+    print_neighbors(map);
+    print_diplomatic_ties(map);
     return map
 }
 
@@ -78,7 +78,7 @@ function embiggen( canvas ){
 
 
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
-            var citybox=worldmap.kingdoms[worldmap.currentRegionId].cities[worldmap.currentCityId].box
+            var citybox=worldmap.cities[worldmap.currentCityId].box
             var multiplier=2.5*3
             worldmap.xoffset=-citybox.minx*multiplier
             worldmap.yoffset=-citybox.miny*multiplier
@@ -106,6 +106,39 @@ function embiggen( canvas ){
     }
 
 
+}
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+function print_diplomatic_ties(map){
+    var diplomaticdiv=document.getElementById('diplomatic_ties_text')
+    diplomaticdiv.innerHTML=map.cities[map.currentCityId].name+" has the following diplomatic relations:<ul> \n"
+    for ( var i = 0 ; i < map.closeneighbors.length ; i++){
+        var neighbor=map.closeneighbors[i];
+        diplomaticdiv.innerHTML+="<li> "+neighbor.relation+" <a href='?cityid="+neighbor.seed+"'> "+neighbor.name+"</a></li> \n"
+    }
+    diplomaticdiv.innerHTML+="</ul> \n"
+}
+
+
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+function print_neighbors(map){
+    var neighbordiv=document.getElementById('neighboring_cities')
+    neighbordiv.innerHTML="Neighboring cities include: \n"
+    for ( var i = 0 ; i < map.closeneighbors.length ; i++){
+        var neighbor=map.closeneighbors[i];
+        neighbordiv.innerHTML+="<a href='?cityid="+neighbor.seed+"'> "+neighbor.name+"</a> \n"
+    }
 }
 
 

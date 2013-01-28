@@ -319,16 +319,19 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
 
 #bigcontinent,#bigregion,#bigcity,#bigmap {
     border:1px solid black;
-    position:fixed;
+  height: 80%;
     display:none;
-    top:100px;
-    left:30%;
 }
 
 #continent,#region,#city,#bigcontinent,#bigregion,#bigcity,#bigmap { 
     cursor:pointer;
 }
-
+#bigmap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+}
 
 
 
