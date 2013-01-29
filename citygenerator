@@ -188,6 +188,7 @@ sub describe_header{
 sub describe_footer{
     my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
     my $regionname=$city->{'realm'};
+    my $continentname=$city->{'continent'};
     my $content="
                 </div>
                 </div>
@@ -252,7 +253,7 @@ sub describe_footer{
                 <div >$regionname <br/>
                     <canvas id=\"region\"    style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
                     <div id='regionlegend'>   </div> </div>
-                <div >World Map ($continentseed) <br/>
+                <div >Continent of $continentname ($continentseed) <br/>
                     <canvas id=\"continent\" style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
                     <div id='continentlegend'></div></div>
                 <div id='bigmapdiv'><canvas id=\"bigmap\" width='540px' height='450px' onclick='embiggen(this);'></canvas></div>

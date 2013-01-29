@@ -26,6 +26,7 @@ function build_continent( params ){
     print_legend(map)
     print_neighbors(map);
     print_diplomatic_ties(map);
+    console.log(map.diagram.cells[0])
     return map
 }
 

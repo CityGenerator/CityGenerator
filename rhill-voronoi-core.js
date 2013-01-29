@@ -1,8 +1,9 @@
 /*!
-Author: Raymond Hill (rhill@raymondhill.net), modified by Jesse Morgan (morgajel@gmail.com)
+Author: Raymond Hill (rhill@raymondhill.net)
+Contributor: Jesse Morgan (morgajel@gmail.com)
 File: rhill-voronoi-core.js
-Version: 0.96-m1
-Date: December 26, 2012
+Version: 0.96-morg1
+Date: January 21, 2013
 Description: This is my personal Javascript implementation of
 Steven Fortune's algorithm to compute Voronoi diagrams.
 
@@ -503,14 +504,6 @@ Voronoi.prototype.Cell.prototype.getNeighborIDs = function() {
         }
     }
     return neighbors;
-}
-
-// Return a random neighbor's ID
-
-Voronoi.prototype.Cell.prototype.getRandomNeighborID = function() {
-    var neighborids=this.getNeighborIDs()
-    
-    return neighborsids[Math.floor(Math.random()*neighborids.length )];
 }
 
 Voronoi.prototype.Cell.prototype.prepare = function() {
@@ -1405,6 +1398,23 @@ Voronoi.prototype.closeCells = function(bbox) {
 		}
 	};
 
+// http://www.wikihow.com/Calculate-the-Area-of-a-Polygon
+Voronoi.prototype.computeAreas = function() {
+    for (var i = 0 ; i < this.cells.length ; i++){
+        var Stotal=0
+        var Ttotal=0
+        var cell=this.cells[i];
+        for ( var j = 0 ; j < cell.halfedges.length ; j++ ) {
+            var vertexa = cell.halfedges[j].getStartpoint();
+            var vertexb = cell.halfedges[j].getEndpoint();
+            Stotal+=vertexa.x*vertexb.y
+            Ttotal+=vertexa.y*vertexb.x
+        }
+        cell.area=(Ttotal-Stotal)/2
+    }
+    
+}
+
 // ---------------------------------------------------------------------------
 // Top-level Fortune loop
 
@@ -1478,7 +1488,7 @@ Voronoi.prototype.compute = function(sites, bbox) {
 
 	//   add missing edges in order to close opened cells
 	this.closeCells(bbox);
-
+    this.computeAreas();
 	// to measure execution time
 	var stopTime = new Date();
 

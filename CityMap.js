@@ -143,8 +143,13 @@ CityMap.prototype.generateDistricts = function(districts){
 
 CityMap.prototype.growDistrict = function(district,cellIDlist){
     var neighborids=district.cells[district.cells.length-1].getNeighborIDs()
-    for (var i=0; i < neighborids.length; i++ ){
-        var targetcell=this.diagram.cells[neighborids[i]]
+
+    var neighborIDlist=[]
+    for (var i=0; i<neighborids.length ; i++){ neighborIDlist.push(i); }
+
+    for (var i=0; i < neighborIDlist.length; i++ ){
+        var targetcellid= neighborIDlist.splice( Math.floor(Math.random()*neighborIDlist.length ) ,1)[0]
+        var targetcell=this.diagram.cells[neighborids[targetcellid]]
         if (! targetcell.indistrict  && targetcell.incity ){
             targetcell.indistrict=district.name
             targetcell.color=district.color;
