@@ -51,8 +51,9 @@ our $city;
 ###############################################################################
 
 sub build_city {
-     ($originalseed) = @_;
-    $seed           = set_seed($originalseed);
+    my ($newseed) = @_;
+    $originalseed=set_seed($newseed);
+
     $city->{'name'} = generate_name($seed);
     $city->{'debug'}='';
     generate_realm();
@@ -132,6 +133,7 @@ sub generate_physical_traits {
     generate_watchtowers();
     generate_shape();
     generate_neighbors();
+    generate_neighborRealms();
     generate_topography();
 } ## end sub generate_physical_traits
 
@@ -824,7 +826,8 @@ sub generate_markets {
 #
 ###############################################################################
 sub generate_realm {
-    set_seed($originalseed-$originalseed%10);
+    my $realmseed= $originalseed - ($originalseed % 10);
+    set_seed($realmseed);
     $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
     set_seed($originalseed);
 }
@@ -862,6 +865,29 @@ sub generate_topography {
 
 ###############################################################################
 #
+# generate_neighborRealms - Determine information about the neighbor Realms. 
+#
+###############################################################################
+
+sub generate_neighborRealms {
+
+    $city->{'realms'}=[];
+    my $continentseed=$originalseed-$originalseed%100;
+    for (my $i = 0 ; $i < 10; $i++){
+        my $realmseed=$continentseed+$i*10;
+        set_seed($realmseed);
+        my $realm={}; 
+        $realm->{'id'}=$realmseed;
+        $realm->{'name'}= parse_object($xml_data->{'realm'})->{'content'};
+        #$city->{'relation'} =" $neighborid + $originalseed  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+        push @{$city->{'realms'}}, $realm;
+    }
+    set_seed($originalseed);
+}
+
+
+###############################################################################
+#
 # generate_neighbors - Determine information about the neighbors. 
 #
 ###############################################################################
@@ -887,7 +913,7 @@ sub generate_neighbors {
         # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
        my $mixseed=$neighborid+$originalseed;
         set_seed($mixseed);
-        $city->{'relation'} =" $neighborid + $originalseed  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+        $city->{'relation'} =" $neighborid + ".$originalseed."  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
 
         push @{$origcity->{'neighbors'}}, $city;
     }

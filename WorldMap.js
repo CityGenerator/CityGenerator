@@ -59,7 +59,18 @@ function  WorldMap(width,height,num_points,seed,cities) {
     this.assignKingdoms()
     this.assignCities();
     this.assignRivers();
+    this.area=this.sumLandArea(this.diagram.cells);
     this.closeneighbors=this.findNeighborCities(this.currentCityId,4);
+}
+WorldMap.prototype.sumLandArea = function(cells){
+    var area=0
+    for (var i = 0; i<cells.length ; i++){
+        var cell=cells[i]
+        if (!cell.ocean){
+            area+=Math.abs(cell.area);
+        }
+    }
+    return area
 }
 
 WorldMap.prototype.findNeighborCities = function(cityid,count){
@@ -243,12 +254,23 @@ WorldMap.prototype.assignKingdoms = function(){
 
         kingdom = this.getKingdom( kingdom);
         this.boxKingdom(kingdom)
+        kingdom.area=this.sumLandArea(kingdom.cells);
+        kingdom.center=this.calculateCenter(kingdom);
         this.kingdoms.push(kingdom)
     }
     
 }
+WorldMap.prototype.calculateCenter = function(kingdom){
+    var x=0
+    var y=0
+    for (var i=0; i<kingdom.outline.length; i++){
+        var vertex= kingdom.outline[i];
+        x+=vertex.x
+        y+=vertex.y
+    }
+    return {x:x/kingdom.outline.length, y:y/kingdom.outline.length}
 
-
+}
 /* ========================================================================= */
 /* 
 /* 
@@ -277,12 +299,14 @@ WorldMap.prototype.drawKingdom = function(kingdom,canvas, fill){
     polyline.strokeStyle="rgba(0,0,0,1)";
     polyline.fillStyle=kingdom.color;
     polyline.lineCap = 'butt';
+    polyline.closePath();
     polyline.stroke();
     if (fill){
         polyline.fill();
     }
-    polyline.closePath();
-
+    polyline.fillStyle="rgba(0,0,0,1)";
+    polyline.font = "bold Arial";
+    polyline.fillText(kingdom.name, this.xoffset+this.xmultiplier*kingdom.center.x-20, this.yoffset+this.ymultiplier*kingdom.center.y);
 }
 /* ========================================================================= */
 /* 

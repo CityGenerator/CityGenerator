@@ -21,12 +21,12 @@ function build_continent( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
     // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRealms);
 
     print_legend(map)
     print_neighbors(map);
     print_diplomatic_ties(map);
-    console.log(map.diagram.cells[0])
+    console.log(map)
     return map
 }
 
