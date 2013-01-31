@@ -6,8 +6,7 @@
 WorldMap.prototype = Object.create(VoronoiMap.prototype);
 WorldMap.prototype.constructor = WorldMap;
 
-
-function  WorldMap(width,height,num_points,seed,cities) {
+function  WorldMap(width,height,num_points,seed,cities,regions) {
     VoronoiMap.call(this,width,height,num_points)
     // regionmod determines which of the 10 regions on this continent to use.
     // With a cityid of 744158, the 5 indications which region to focus on
@@ -20,16 +19,17 @@ function  WorldMap(width,height,num_points,seed,cities) {
     this.seed=seed
 
     this.cities=cities;
+    this.regions=regions;
 
     // continent seed refers to which continent we're on- it essentially
     // ignores the last two digits of the cityid: 744158 -> 744100 
     this.currentContinentId = seed -  seed%100;
 
-    var minkingdom=num_points/200
-    var maxkingdom=num_points/2
+    var minregion=num_points/200
+    var maxregion=num_points/2
 
-    this.maxkingdom= Math.random()*(maxkingdom-minkingdom)+minkingdom
-    console.log('max kingdom size: ' +this.maxkingdom)
+    this.maxregion= Math.random()*(maxregion-minregion)+minregion
+    console.log('max region size: ' +this.maxregion)
     // Base Parameters
     //TODO refactor terrain
     this.terrain=[];
@@ -56,7 +56,7 @@ function  WorldMap(width,height,num_points,seed,cities) {
     this.assignMoisture();
     this.assignTerrain();
     this.assignDownslopes();
-    this.assignKingdoms()
+    this.assignRegions()
     this.assignCities();
     this.assignRivers();
     this.area=this.sumLandArea(this.diagram.cells);
@@ -98,15 +98,31 @@ WorldMap.prototype.findNeighborCities = function(cityid,count){
     }
 
 WorldMap.prototype.redrawRegion = function(canvas){
-
+//XXX
     var citybox=this.cities[this.currentCityId].box
     this.xoffset=-citybox.minx*2.5
     this.yoffset=-citybox.miny*2.5
     this.setMultiplier(2.5)
     this.redraw(canvas)
+    this.setMultiplier(2.5)
+    this.drawCityName(canvas,this.cities[this.currentCityId])
     this.setMultiplier(1)
     this.xoffset=0
     this.yoffset=0
+
+}
+ 
+WorldMap.prototype.drawCityName = function(canvas,city){
+    var context = canvas.getContext('2d');
+    context.fillStyle="rgba(0,0,0,1)";
+    context.font = "bold 12px Arial" ;
+    var nameoffset= city.name.length*12/4
+    //context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x-nameoffset, this.yoffset+this.ymultiplier*city.cell.site.y);
+    context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x -nameoffset , this.yoffset+this.ymultiplier*city.cell.site.y+10 );
+    console.log( city.name )
+    console.log( this.xoffset+" "+this.xmultiplier+" "+city.cell.site.x+" ="+(   this.xoffset+this.xmultiplier*city.cell.site.x) )
+    console.log( this.yoffset+" "+this.ymultiplier+" "+city.cell.site.y+" ="+(   this.yoffset+this.ymultiplier*city.cell.site.y) )
+    console.log( city.cell.site.x )
 
 }
 /* ========================================================================= */ 
@@ -120,7 +136,7 @@ WorldMap.prototype.redraw = function(canvas,scale){
     }
     this.paintBackground(canvas,'#ffffff');
     this.paintMap(canvas)
-    this.drawKingdoms(canvas,true); 
+    this.drawRegions(canvas,true); 
     this.drawCities(canvas);
     var citybox=this.cities[this.currentCityId].box
     
@@ -170,10 +186,10 @@ WorldMap.prototype.assignCities = function(){
         var city=this.cities[cityid];
         var cityregionID=Math.floor(   (city.seed%100)/10  );
 
-        var cellcount=this.kingdoms[cityregionID].cells.length;
+        var cellcount=this.regions[cityregionID].cells.length;
 
         var randomCellID=Math.floor( Math.random()*cellcount  )
-        city.cell=this.kingdoms[cityregionID].cells[randomCellID]
+        city.cell=this.regions[cityregionID].cells[randomCellID]
 
         var corners=[]
         for (var i=0; i<city.cell.corners.length ; i++){
@@ -237,38 +253,35 @@ WorldMap.prototype.paintMap = function(canvas){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.assignKingdoms = function(){
-    this.kingdoms=[];
-    for (var i=0 ; i<10 ; i++){
-        var kingdom={
-                        id:i,
-                        seed:this.currentContinentId+(i*10),
-                        color:'rgba('+this.colors[i]+',.3)'
-                    }
+WorldMap.prototype.assignRegions = function(){
+    for (var i=0 ; i<this.regions.length ; i++){
+        var region=this.regions[i]
+        region.id=i
+        region.color='rgba('+this.colors[i]+',.3)'
 
-        Math.seedrandom( kingdom.seed   ) ;
-        kingdom.capital=this.randomLand();
-        while ( kingdom.capital.kingdom ){ // If this cell is already part of a kingdom, choose another
-            kingdom.capital=this.randomLand();
+        Math.seedrandom( region.seed   ) ;
+        region.capital=this.randomLand();
+        while ( region.capital.region ){ // If this cell is already part of a kingdom, choose another
+            region.capital=this.randomLand();
         }
 
-        kingdom = this.getKingdom( kingdom);
-        this.boxKingdom(kingdom)
-        kingdom.area=this.sumLandArea(kingdom.cells);
-        kingdom.center=this.calculateCenter(kingdom);
-        this.kingdoms.push(kingdom)
+        region = this.getRegion( region);
+        this.boxRegion(region)
+        region.area=this.sumLandArea(region.cells);
+        region.center=this.calculateCenter(region);
+        this.regions[i]=region
     }
     
 }
-WorldMap.prototype.calculateCenter = function(kingdom){
+WorldMap.prototype.calculateCenter = function(region){
     var x=0
     var y=0
-    for (var i=0; i<kingdom.outline.length; i++){
-        var vertex= kingdom.outline[i];
+    for (var i=0; i<region.outline.length; i++){
+        var vertex= region.outline[i];
         x+=vertex.x
         y+=vertex.y
     }
-    return {x:x/kingdom.outline.length, y:y/kingdom.outline.length}
+    return {x:x/region.outline.length, y:y/region.outline.length}
 
 }
 /* ========================================================================= */
@@ -276,9 +289,9 @@ WorldMap.prototype.calculateCenter = function(kingdom){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.drawKingdoms = function(canvas, fill){
+WorldMap.prototype.drawRegions = function(canvas, fill){
     for (var i=0 ; i<10 ; i++){
-        this.drawKingdom(this.kingdoms[i],canvas, fill)
+        this.drawRegion(this.regions[i],canvas, fill)
     }
 }
 
@@ -288,54 +301,56 @@ WorldMap.prototype.drawKingdoms = function(canvas, fill){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.drawKingdom = function(kingdom,canvas, fill){
+WorldMap.prototype.drawRegion = function(region,canvas, fill){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
-    for (var i=0; i<kingdom.outline.length; i++){
-        var vertex= kingdom.outline[i];
+    for (var i=0; i<region.outline.length; i++){
+        var vertex= region.outline[i];
         polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,this.yoffset+this.ymultiplier*vertex.y);
     }
     polyline.lineWidth=1;
     polyline.strokeStyle="rgba(0,0,0,1)";
-    polyline.fillStyle=kingdom.color;
+    polyline.fillStyle=region.color;
     polyline.lineCap = 'butt';
     polyline.closePath();
     polyline.stroke();
     if (fill){
         polyline.fill();
     }
-    polyline.fillStyle="rgba(0,0,0,1)";
-    polyline.font = "bold Arial";
-    polyline.fillText(kingdom.name, this.xoffset+this.xmultiplier*kingdom.center.x-20, this.yoffset+this.ymultiplier*kingdom.center.y);
+    polyline.fillStyle="rgba(0,0,0,"+(1/this.xmultiplier*4)+")";
+    polyline.font = "bold "+(this.xmultiplier*3+9  )+"px Arial" ;
+
+    var nameoffset= region.name.length*(this.xmultiplier*3+9)/4
+    polyline.fillText(region.name, this.xoffset+this.xmultiplier*region.center.x-nameoffset, this.yoffset+this.ymultiplier*region.center.y);
 }
 /* ========================================================================= */
 /* 
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.boxKingdom = function(kingdom){
-    kingdom.box={ minx:100000, miny:100000, maxx:0, maxy:0}
+WorldMap.prototype.boxRegion = function(region){
+    region.box={ minx:100000, miny:100000, maxx:0, maxy:0}
     var fullcellIDs=[];
     //figure out the box for the kingdom an
-    for (var k=0; k < kingdom.cells.length ; k++ ){ 
-        var cell=kingdom.cells[k];
+    for (var k=0; k < region.cells.length ; k++ ){ 
+        var cell=region.cells[k];
         fullcellIDs.push(cell.site.voronoiId);
         //check both centers and edges
         for (var j=0; j < cell.halfedges.length ; j++ ){ 
             var he=cell.halfedges[j].edge;
             if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
             if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
-            kingdom.box=this.setbox(kingdom.box,he.va,he.vb)
+            region.box=this.setbox(region.box,he.va,he.vb)
         }
     }
-    kingdom.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
-    kingdom.regions=[];
+    region.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
+    region.regions=[];
     for (var k=0; k < fullcellIDs.length ; k++ ){ 
         var cell=this.diagram.cells[fullcellIDs[k]];
-        kingdom.regions.push(cell);
+        region.regions.push(cell);
         for (var j=0; j < cell.halfedges.length ; j++ ){ 
             var he=cell.halfedges[j];
-            kingdom.regionbox=this.setbox(kingdom.regionbox,he.edge.va,he.edge.vb)
+            region.regionbox=this.setbox(region.regionbox,he.edge.va,he.edge.vb)
         }
     }
 }
@@ -381,12 +396,12 @@ WorldMap.prototype.drawbox = function(box,canvas,color){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.getKingdom = function(kingdom){
-    kingdom.cells=[kingdom.capital];
+WorldMap.prototype.getRegion = function(region){
+    region.cells=[region.capital];
 
-    for (var i=0; i<this.maxkingdom; i++){
-        // Select a random cell from the kingdom.cells list
-        var parentCell= kingdom.cells[  Math.floor( Math.random()*kingdom.cells.length) ];
+    for (var i=0; i<this.maxregion; i++){
+        // Select a random cell from the region.cells list
+        var parentCell= region.cells[  Math.floor( Math.random()*region.cells.length) ];
 
         // select a random side from our parent cell
         var side=parentCell.halfedges[ Math.floor( Math.random()*parentCell.halfedges.length)  ].edge;
@@ -395,22 +410,22 @@ WorldMap.prototype.getKingdom = function(kingdom){
 
         if ( side.lSite != null &&  side.rSite != null ) {
             var target;
-            if (kingdom.cells.indexOf(cells[side.lSite.voronoiId]) == -1) {
+            if (region.cells.indexOf(cells[side.lSite.voronoiId]) == -1) {
                 // if lSite isn't in the list, it's our target
                 target=cells[side.lSite.voronoiId]
-            } else if (kingdom.cells.indexOf(cells[side.rSite.voronoiId]) == -1) {
+            } else if (region.cells.indexOf(cells[side.rSite.voronoiId]) == -1) {
                 // if rSite isn't in the list, it's our target
                 target=cells[side.rSite.voronoiId]
             }
-            if ( ! target.ocean && ! target.kingdom){
-                target.kingdom=true
-                kingdom.cells.push(target);
+            if ( ! target.ocean && ! target.region){
+                target.region=true
+                region.cells.push(target);
             }
         }
 
     }
-    kingdom=this.getKingdomPolygon(kingdom);
-    return kingdom;
+    region=this.getRegionPolygon(region);
+    return region;
 }
 
 
@@ -419,8 +434,8 @@ WorldMap.prototype.getKingdom = function(kingdom){
 /* 
 /* ========================================================================= */
 
-// Determine if halfedge has a side that is not in the kingdom list
-WorldMap.prototype.isKingdomEdge = function(ids,halfedge){
+// Determine if halfedge has a side that is not in the region list
+WorldMap.prototype.isRegionEdge = function(ids,halfedge){
     if (  ids.indexOf( halfedge.edge.lSite.voronoiId) ==-1 || ids.indexOf( halfedge.edge.rSite.voronoiId) ==-1  ){
         return true
     }else{
@@ -434,17 +449,17 @@ WorldMap.prototype.isKingdomEdge = function(ids,halfedge){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.getKingdomPolygon = function(kingdom){
-    // Get a list of all IDs for the kingdom
+WorldMap.prototype.getRegionPolygon = function(region){
+    // Get a list of all IDs for the region
     var ids=[]
-    for (var i=0; i < kingdom.cells.length ; i++ ){ ids.push(kingdom.cells[i].site.voronoiId)}
+    for (var i=0; i < region.cells.length ; i++ ){ ids.push(region.cells[i].site.voronoiId)}
     //Get a list of all external edges
     var edges=[];
-    for (var i=0; i < kingdom.cells.length ; i++ ){
-        var cell=kingdom.cells[i];
+    for (var i=0; i < region.cells.length ; i++ ){
+        var cell=region.cells[i];
         for (var j=0; j < cell.halfedges.length ; j++ ){
             var he=cell.halfedges[j];
-            if (  this.isKingdomEdge(ids,he) ){
+            if (  this.isRegionEdge(ids,he) ){
                 edges.push(he);
             }
         }    
@@ -462,17 +477,17 @@ WorldMap.prototype.getKingdomPolygon = function(kingdom){
         }
     }
  
-    kingdom.outline=[pos];
+    region.outline=[pos];
     var maxfail=edges.length;
     while(edges.length >0){
         var testedge=edges.pop()
         if (testedge.edge.va == pos ){
                 pos=testedge.edge.vb; 
-                kingdom.outline.push(pos);
+                region.outline.push(pos);
                 maxfail=edges.length;
         }else if (testedge.edge.vb == pos ){
                 pos=testedge.edge.va; 
-                kingdom.outline.push(pos);
+                region.outline.push(pos);
                 maxfail=edges.length;
         }else{
             maxfail--;
@@ -482,7 +497,7 @@ WorldMap.prototype.getKingdomPolygon = function(kingdom){
             edges.unshift(testedge);
         }
     }
-    return kingdom;
+    return region;
 }
 
 
@@ -495,7 +510,7 @@ WorldMap.prototype.randomLand = function(){
     var randomcell=null;
     while ( randomcell ==null){
         var cell=this.diagram.cells[ Math.floor(  Math.random()*this.diagram.cells.length  )   ];
-        if (! cell.ocean && ! cell.kingdom && (cell.river || cell.lake || Math.random() >.5) ){
+        if (! cell.ocean && ! cell.region && (cell.river || cell.lake || Math.random() >.5) ){
             randomcell=cell;
         }
 
@@ -608,27 +623,6 @@ WorldMap.prototype.setDownslope = function(cell){
 }
 
 
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-WorldMap.prototype.drawRegion = function(canvas,kingdomid){
-    // First find bounding box
-    var kingdom=this.kingdoms[kingdomid];
-
-    var box= kingdom.regionbox;
-    this.translateregion(box,canvas);
-
-    var regions=this.diagram.cells;
-
-    var points=this.getKingdomPolygon(kingdom);
-
-    for (var i=0; i < regions.length ; i++ ){
-        this.colorPolygon(regions[i],canvas,'biomes');
-    }
-
-}
 
 
 /* ========================================================================= */

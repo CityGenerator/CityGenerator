@@ -170,7 +170,7 @@ sub describe_header{
                                 sites:3000,
                                 canvas:document.getElementById('bigmap'),
                                 neighbors:$neighbors,
-                                neighborRealms:$neighborrealms
+                                neighborRegions:$neighborrealms
                             });
                 document.continentmap.redraw(document.getElementById('continent'),1/3)
 

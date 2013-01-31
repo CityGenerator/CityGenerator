@@ -21,7 +21,7 @@ function build_continent( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
     // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRealms);
+    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRegions);
 
     print_legend(map)
     print_neighbors(map);
@@ -74,6 +74,7 @@ function embiggen( canvas ){
     if (canvas.id == 'continent' && worldmap.embiggen !='continent'){
             worldmap.embiggen='continent'
             bigcanvas.style.display  ='block'
+            worldmap.setMultiplier(1)
             worldmap.redraw(bigcanvas)
             console.log('continent small, make big!')
 
@@ -86,6 +87,9 @@ function embiggen( canvas ){
             worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
             worldmap.redraw(bigcanvas,multiplier)
+            worldmap.setMultiplier(multiplier)
+            worldmap.drawCityName(bigcanvas,worldmap.cities[worldmap.currentCityId])
+
             worldmap.xoffset=0
             worldmap.yoffset=0
 

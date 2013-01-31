@@ -488,7 +488,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
 /* TODO this should be refactored to be more generic
 /* ========================================================================= */
 
-CityMap.prototype.isKingdomEdge = function(ids,halfedge){
+CityMap.prototype.isRegionEdge = function(ids,halfedge){
     if (  ids.indexOf( halfedge.edge.lSite.voronoiId) ==-1 || ids.indexOf( halfedge.edge.rSite.voronoiId) ==-1  ){
         return true
     }else{
@@ -512,7 +512,7 @@ CityMap.prototype.generateCityWalls = function(){
         var cell=this.citycells[i];
         for (var j=0; j < cell.halfedges.length ; j++ ){
             var he=cell.halfedges[j];
-            if (  this.isKingdomEdge(ids,he) ){
+            if (  this.isRegionEdge(ids,he) ){
                 edges.push(he);
             }
         }
