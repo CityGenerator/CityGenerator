@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+
+    <location_type>
+    
+        <location type='battleground'>
+        </location>
+        <location type='ruins'>
+            <option>castle</option>
+            <option>village</option>
+            <option>keep</option>
+            <option>tower</option>
+        </location>
+        <location type='sculpture'>
+            <option>bust</option>
+            <option>statue</option>
+            <option>relief</option>
+            <option>monument</option>
+        </location>
+        <location type='monolith'>
+            <option>unmarked</option>
+            <option>ancient</option>
+            <option>alien</option>
+        </location>
+    
+        <location type='odd vegitation'>
+            <option>dead zone</option>
+            <option>overgrowth</option>
+            <option>strange patterns</option>
+        </location>
+        <location type='animal trail'>
+            <option>slightly visible trail</option>
+            <option>signs of a large animal</option>
+        </location>
+        <location type='random building'>       
+            <option>windmill</option>
+            <option>tower</option>
+            <option>tavern</option>
+            <option>inn</option>
+        </location>
+        <location type='random object'>         
+            <option>toy</option>
+            <option>weapon</option>
+        </location>
+        <location type='herd'>
+        </location>
+        <location type='horde'>
+        </location>
+        <location type='religious location'>
+            <option>temple</option>
+            <option>shrine</option>
+            <option>monastery</option>
+        </location>
+        <location type='Signpost'>
+        </location>
+        <location type='historical site'>
+        </location>
+        <location type='geographic feature'>
+            <option>cavern</option>
+            <option>cliff</option>
+        </location>
+    </location_type>
+
+
+</data>
