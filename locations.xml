@@ -4,128 +4,176 @@
 
     <location_type>
         <location type='battleground'>
-            <option>recent</option>
-            <option>ancient</option>
-            <option>bloody</option>
-            <option></option>
+            <option type='recent' />
+            <option type='ancient' />
+            <option type='bloody' />
         </location>
         <location type='ruins'>
-            <option>castle</option>
-            <option>village</option>
-            <option>keep</option>
-            <option>tower</option>
-            <option></option>
+            <option type='castle' />
+            <option type='village' />
+            <option type='keep' />
+            <option type='tower' />
+            <option type='' />
         </location>
         <location type='sculpture'>
-            <option>bust</option>
-            <option>statue</option>
-            <option>relief</option>
-            <option>monument</option>
-            <option></option>
+            <option type='bust' />
+            <option type='statue' />
+            <option type='relief' />
+            <option type='monument' />
+            <option type='' />
         </location>
         <location type='monolith'>
-            <option>unmarked</option>
-            <option>ancient</option>
-            <option>alien</option>
-            <option></option>
+            <option type='unmarked' />
+            <option type='ancient' />
+            <option type='alien' />
+            <option type='' />
         </location>
     
         <location type='odd vegetation'>
-            <option>dead zone</option>
-            <option>overgrowth</option>
-            <option>strange patterns</option>
-            <option></option>
+            <option type='dead zone' />
+            <option type='overgrowth' />
+            <option type='strange patterns' />
+            <option type='' />
         </location>
         <location type='animal trail'>
-            <option>slightly visible trail</option>
-            <option>signs of a large animal</option>
-            <option></option>
+            <option type='slightly visible trail' />
+            <option type='signs of a large animal' />
+            <option type='' />
         </location>
         <location type='random building'>       
-            <option>windmill</option>
-            <option>tower</option>
-            <option>tavern</option>
-            <option>inn</option>
-            <option>brothel</option>
-            <option>farmhouse</option>
-            <option>bridge</option>
-            <option></option>
+            <option type='windmill' />
+            <option type='tower' />
+            <option type='tavern' />
+            <option type='inn' />
+            <option type='brothel' />
+            <option type='farmhouse' />
+            <option type='bridge' />
+            <option type='' />
         </location>
         <location type='random object'>         
-            <option>toy</option>
-            <option>broken cart</option>
-            <option>weapon</option>
-            <option>blue police box</option>
-            <option></option>
+            <option type='toy' />
+            <option type='broken cart' />
+            <option type='weapon' />
+            <option type='blue police box' />
+            <option type='sack' />
+            <option type='farm equipment' />
+            <option type='dreamcatcher' />
+            <option type='book' />
+            <option type='' />
         </location>
         <location type='herd'><!-- a herd of thousands cattle -->
-            <size type='thousands of'/>
-            <size type='hundreds of'/>
-            <size type='dozens of'/>
-            <size type='several'/>
-            <option>cattle</option>
-            <option>horses</option>
-            <option>buffalo</option>
-            <option></option>
+            <option type='cattle' />
+            <option type='horses' />
+            <option type='buffalo' />
+            <option type='' />
         </location>
         <location type='travelers'>
-            <attitude type='friendly'/>
-            <attitude type='hostile'/>
-            <attitude type='untrusting'/>
-            <attitude type='uninterested'/>
-            <option>caravan</option>
-            <option>gypsies</option>
-            <option>single traveler</option>
-            <option>merchant</option>
-            <option>military unit</option>
-            <option>deserters</option>
-            <option></option>
-            <option></option>
+            <option type='caravan' />
+            <option type='gypsies' />
+            <option type='single traveler' />
+            <option type='merchant' />
+            <option type='military unit' />
+            <option type='deserters' />
+            <option type='' />
+            <option type='' />
 
         </location>
         <location type='magical event'>
-            <option>random portal</option>
-            <option></option>
+            <option type='random portal' />
+            <option type='unnatural mist' />
+            <option type='unnatural shadows' />
+            <option type='unnatural noises' />
+            <option type='odd smell' />
         </location>
         <location type='disaster'>
-            <option>magical</option>
-            <option>natural</option>
-            <option></option>
+            <option type='magical' />
+            <option type='natural' />
+            <option type='' />
         </location>
         <location type='horde'>
-            <option></option>
+            <option type='' />
         </location>
         <location type='religious location'>
-            <option>temple</option>
-            <option>graveyard</option>
-            <option>crypt</option>
-            <option>shrine</option>
-            <option>monastery</option>
-            <option>holy site</option>
-            <option></option>
+            <option type='temple' />
+            <option type='graveyard' />
+            <option type='crypt' />
+            <option type='shrine' />
+            <option type='monastery' />
+            <option type='holy site' />
+            <option type='cairn' />
+            <option type='barrow' />
+            <option type='' />
+            <option type='' />
         </location>
         <location type='Signpost'>
-            <option>mile marker</option>
-            <option>quarantine marker</option>
-            <option>warning</option>
-            <option></option>
+            <option type='mile marker' />
+            <option type='quarantine marker' />
+            <option type='warning' />
+            <option type='' />
         </location>
         <location type='historical site'>
-            <option></option>
-            <option></option>
+            <option type='' />
+            <option type='' />
         </location>
         <location type='geographic feature'>
-            <option>cavern</option>
-            <option>cliff</option>
-            <option>watering hole</option>
-            <option>pond</option>
-            <option>brook</option>
-            <option>stream</option>
-            <option>quicksand</option>
-            <option>bog</option>
-            <option>swamp</option>
-            <option></option>
+            <option type='cavern' />
+            <option type='cliff' />
+            <option type='watering hole' />
+            <option type='pond' />
+            <option type='brook' />
+            <option type='stream' />
+            <option type='quicksand' />
+            <option type='bog' />
+            <option type='swamp' />
+            <option type='' />
         </location>
     </location_type>
-
+    <descriptor>
+        <time>
+            <option type='minutes'/>
+            <option type='hours'/>
+            <option type='days'/>
+            <option type='weeks'/>
+            <option type='months'/>
+            <option type='years'/>
+            <option type='decades'/>
+            <option type='centuries'/>
+        </time>
+        <size>
+            <option type='tiny'/>
+            <option type='small'/>
+            <option type='mediume'/>
+            <option type='large'/>
+            <option type='huge'/>
+            <option type=''/>
+        </size>
+        <quantity><!-- a herd/army of ___  ___    -->
+            <option type='thousands of'/>
+            <option type='hundreds of'/>
+            <option type='dozens of'/>
+            <option type='several'/>
+            <option type='two'/>
+            <option type='one'/>
+        </quantity>
+        <attitude>
+			<option type='aggressive'/>
+			<option type='angry'/>
+			<option type='cautious'/>
+			<option type='confrontational'/>
+			<option type='friendly'/>
+			<option type='hostile'/>
+			<option type='indifferent'/>
+			<option type='intersted'/>
+			<option type='leery'/>
+			<option type='menacing'/>
+			<option type='mistrustful'/>
+			<option type='neutral'/>
+			<option type='suspicious'/>
+			<option type='unfriendly'/>
+			<option type='uninterested'/>
+			<option type='untrusting'/>
+			<option type='wary'/>
+            <option type=''/>
+        </attitude>
+    </descriptor>
 </data>
