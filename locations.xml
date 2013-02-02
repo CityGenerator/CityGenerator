@@ -20,27 +20,22 @@
             <option type='statue' />
             <option type='relief' />
             <option type='monument' />
-            <option type='' />
-        </location>
-        <location type='monolith'>
-            <option type='unmarked' />
-            <option type='ancient' />
-            <option type='alien' />
+            <option type='monolith' />
             <option type='' />
         </location>
     
-        <location type='odd vegetation'>
+        <location type='vegetation'>
             <option type='dead zone' />
             <option type='overgrowth' />
             <option type='strange patterns' />
             <option type='' />
         </location>
-        <location type='animal trail'>
+        <location type='trail'>
             <option type='slightly visible trail' />
             <option type='signs of a large animal' />
             <option type='' />
         </location>
-        <location type='random building'>       
+        <location type='building'>       
             <option type='windmill' />
             <option type='tower' />
             <option type='tavern' />
@@ -50,7 +45,7 @@
             <option type='bridge' />
             <option type='' />
         </location>
-        <location type='random object'>         
+        <location type='object'>         
             <option type='toy' />
             <option type='broken cart' />
             <option type='weapon' />
@@ -72,13 +67,10 @@
             <option type='gypsies' />
             <option type='single traveler' />
             <option type='merchant' />
-            <option type='military unit' />
-            <option type='deserters' />
             <option type='' />
             <option type='' />
-
         </location>
-        <location type='magical event'>
+        <location type='magical'>
             <option type='random portal' />
             <option type='unnatural mist' />
             <option type='unnatural shadows' />
@@ -90,10 +82,14 @@
             <option type='natural' />
             <option type='' />
         </location>
-        <location type='horde'>
+        <location type='military'>
+            <option type='unit' />
+            <option type='deserters' />
+            <option type='outpost' />
+            <option type='horde' />
             <option type='' />
         </location>
-        <location type='religious location'>
+        <location type='holy'>
             <option type='temple' />
             <option type='graveyard' />
             <option type='crypt' />
@@ -111,11 +107,7 @@
             <option type='warning' />
             <option type='' />
         </location>
-        <location type='historical site'>
-            <option type='' />
-            <option type='' />
-        </location>
-        <location type='geographic feature'>
+        <location type='landform'>
             <option type='cavern' />
             <option type='cliff' />
             <option type='watering hole' />
