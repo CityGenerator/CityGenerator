@@ -8,17 +8,7 @@ use POSIX;
 use XML::Simple;
 ###################################################
 # Using findbin to locate our new City.pm module
-use FindBin qw/$Bin/;
-BEGIN {
-    # A rather useless regex, but whatever. 
-    # Who woulda throught checking for taint stinks? :D
-    if ($Bin =~ m!([\w\.\-/]+)!) {
-        $Bin = $1;
-    } else {
-        print STDOUT "Bad directory $Bin\n";
-    }
-}
-use lib "$Bin/";
+use lib "lib/";
 ###################################################
 #TODO it would be cool if it could rain frogs or potatoes
 use City 'build_city', 'd', 'generate_name' ;
@@ -30,8 +20,8 @@ my $xml = new XML::Simple;
 # Yes, this is sloppy. I am aware, but it's also unique.
 # Unique, Ubiquitous Singletons.
 our $q = CGI->new;
-our $xml_data = $xml->XMLin(   "data.xml", ForceContent => 1, ForceArray  =>[]  );
-our $names_data = $xml->XMLin(   "names.xml", ForceContent => 1, ForceArray  =>[]  );
+our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
+our $names_data = $xml->XMLin(   "xml/names.xml", ForceContent => 1, ForceArray  =>[]  );
 
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,

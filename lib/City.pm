@@ -20,8 +20,8 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $xml_data   = $xml->XMLin( "data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $names_data = $xml->XMLin( "names.xml", ForceContent => 1, ForceArray => [] );
+our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => [] );
 our $seed;
 our $originalseed;
 our $city;
