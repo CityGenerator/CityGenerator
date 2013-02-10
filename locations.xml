@@ -1,136 +1,313 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <data>
-
+<!-- During your travels, you stumble across location.desc. It appears to be  -->
     <location_type>
-        <location type='battleground'>
-            <option type='recent' />
-            <option type='ancient' />
-            <option type='bloody' />
+        <location type='ruins' desc='some ruins'>
+            <option type='castle' >
+            </option>
+            <option type='village' >
+            </option>
+            <option type='keep' >
+            </option>
+            <option type='tower' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='ruins'>
-            <option type='castle' />
-            <option type='village' />
-            <option type='keep' />
-            <option type='tower' />
-            <option type='' />
+        <location type='battleground' desc='a battleground'>
+            <option type='recent battle' >
+            </option>
+            <option type='ancient' >
+            </option>
+            <option type='bloody' >
+            </option>
         </location>
-        <location type='sculpture'>
-            <option type='bust' />
-            <option type='statue' />
-            <option type='relief' />
-            <option type='monument' />
-            <option type='monolith' />
-            <option type='' />
+        <location type='sculpture' desc=''>
+            <option type='bust' >
+            </option>
+            <option type='statue' >
+            </option>
+            <option type='well' >
+            </option>
+            <option type='relief' >
+            </option>
+            <option type='monument' >
+            </option>
+            <option type='monolith' >
+            </option>
+            <option type='' >
+            </option>
         </location>
     
-        <location type='vegetation'>
-            <option type='dead zone' />
-            <option type='overgrowth' />
-            <option type='strange patterns' />
-            <option type='' />
+        <location type='vegetation' desc=''>
+            <option type='dead zone' >
+            </option>
+            <option type='overgrowth' >
+            </option>
+            <option type='strange patterns' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='trail'>
-            <option type='slightly visible trail' />
-            <option type='signs of a large animal' />
-            <option type='' />
+        <location type='trail' desc=''>
+            <option type='slightly visible trail' >
+            </option>
+            <option type='signs of a large animal' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='building'>       
-            <option type='windmill' />
-            <option type='tower' />
-            <option type='tavern' />
-            <option type='inn' />
-            <option type='brothel' />
-            <option type='farmhouse' />
-            <option type='bridge' />
-            <option type='' />
+        <location type='building' desc=''>       
+            <option type='windmill' >
+            </option>
+            <option type='tower' >
+            </option>
+            <option type='tavern' >
+            </option>
+            <option type='inn' >
+            </option>
+            <option type='brothel' >
+            </option>
+            <option type='farmhouse' >
+            </option>
+            <option type='bridge' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='object'>         
-            <option type='toy' />
-            <option type='broken cart' />
-            <option type='weapon' />
-            <option type='blue police box' />
-            <option type='sack' />
-            <option type='farm equipment' />
-            <option type='dreamcatcher' />
-            <option type='book' />
-            <option type='' />
+        <location type='object' desc=''>
+            <option type='toy' >
+            </option>
+            <option type='broken cart' >
+            </option>
+            <option type='weapon' >
+            </option>
+            <option type='blue police box' >
+            </option>
+            <option type='sack' >
+            </option>
+            <option type='farm equipment' >
+            </option>
+            <option type='dreamcatcher' >
+            </option>
+            <option type='book' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='herd'><!-- a herd of thousands cattle -->
-            <option type='cattle' />
-            <option type='horses' />
-            <option type='buffalo' />
-            <option type='' />
+        <location type='herd' desc=''><!-- a herd of thousands cattle -->
+            <option type='cattle' >
+            </option>
+            <option type='horses' >
+            </option>
+            <option type='buffalo' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='travelers'>
-            <option type='caravan' />
-            <option type='gypsies' />
-            <option type='single traveler' />
-            <option type='merchant' />
-            <option type='' />
-            <option type='' />
+        <location type='traveler' desc=''>
+            <option type='caravan' >
+            </option>
+            <option type='gypsies' >
+            </option>
+            <option type='single traveler' >
+            </option>
+            <option type='merchant' >
+            </option>
+            <option type='' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='magical'>
-            <option type='random portal' />
-            <option type='unnatural mist' />
-            <option type='unnatural shadows' />
-            <option type='unnatural noises' />
-            <option type='odd smell' />
+        <location type='magical' desc=''>
+            <option type='random portal' >
+            </option>
+            <option type='unnatural mist' >
+            </option>
+            <option type='unnatural shadows' >
+            </option>
+            <option type='unnatural noises' >
+            </option>
+            <option type='odd smell' >
+            </option>
         </location>
-        <location type='disaster'>
-            <option type='magical' />
-            <option type='natural' />
-            <option type='' />
+        <location type='disaster' desc=''>
+            <option type='magical' >
+            </option>
+            <option type='natural' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='military'>
-            <option type='unit' />
-            <option type='deserters' />
-            <option type='outpost' />
-            <option type='horde' />
-            <option type='' />
+        <location type='military' desc=''>
+            <option type='unit' >
+            </option>
+            <option type='deserters' >
+            </option>
+            <option type='guard tower' >
+            </option>
+            <option type='outpost' >
+            </option>
+            <option type='horde' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='holy'>
-            <option type='temple' />
-            <option type='graveyard' />
-            <option type='crypt' />
-            <option type='shrine' />
-            <option type='monastery' />
-            <option type='holy site' />
-            <option type='cairn' />
-            <option type='barrow' />
-            <option type='' />
-            <option type='' />
+        <location type='holy' desc=''>
+            <option type='temple' >
+            </option>
+            <option type='graveyard' >
+            </option>
+            <option type='crypt' >
+            </option>
+            <option type='shrine' >
+            </option>
+            <option type='monastery' >
+            </option>
+            <option type='holy site' >
+            </option>
+            <option type='cairn' >
+            </option>
+            <option type='barrow' >
+            </option>
+            <option type='altar' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='Signpost'>
-            <option type='mile marker' />
-            <option type='quarantine marker' />
-            <option type='warning' />
-            <option type='' />
+        <location type='Sign' desc=''>
+            <option type='mile marker' >
+            </option>
+            <option type='quarantine marker' >
+            </option>
+            <option type='warning' >
+            </option>
+            <option type='' >
+            </option>
         </location>
-        <location type='landform'>
-            <option type='cavern' />
-            <option type='cliff' />
-            <option type='watering hole' />
-            <option type='pond' />
-            <option type='brook' />
-            <option type='stream' />
-            <option type='quicksand' />
-            <option type='bog' />
-            <option type='swamp' />
-            <option type='' />
+        <location type='landform' desc=''>
+            <option type='cavern' >
+            </option>
+            <option type='cliff' >
+            </option>
+            <option type='watering hole' >
+            </option>
+            <option type='pond' >
+            </option>
+            <option type='brook' >
+            </option>
+            <option type='stream' >
+            </option>
+            <option type='quicksand' >
+            </option>
+            <option type='bog' >
+            </option>
+            <option type='swamp' >
+            </option>
+            <option type='spring' >
+            </option>
+            <option type='' >
+            </option>
         </location>
     </location_type>
     <descriptor>
-        <time>
+        <rumorsource>
+            <option type='local rumors'/>
+            <option type='bard tales'/>
+            <option type='legends'/>
+            <option type=''/>
+        </rumorsource>
+        <appearance>
+            <option type='beautiful'/>
+            <option type='hideous'/>
+            <option type='unique'/>
+            <option type='healthy'/>
+            <option type='sickly'/>
+            <option type='alive'/>
+            <option type='near death'/>
+            <option type='deathly'/>
+            <option type='faltering'/>
+            <option type='strong'/>
+            <option type='peculiar'/>
+            <option type='ruined'/>
+            <option type=''/>
+        </appearance>
+        <unity>
+            <option type='devisive'/>
+            <option type='uniting'/>
+            <option type='fragmenting'/>
+            <option type='unifying'/>
+            <option type=''/>
+        </unity>
+        <trait>
+            <option type='brave'/>
+            <option type='coward'/>
+            <option type='slime'/>
+            <option type='old'/>
+            <option type='simple'/>
+            <option type='strong'/>
+            <option type='clever'/>
+            <option type=''/>
+        </trait>
+        <rarity>
+            <option type='rare'/>
+            <option type='plentiful'/>
+            <option type='common'/>
+            <option type='commonplace'/>
+            <option type='unique'/>
+            <option type=''/>
+        </rarity>
+        <win>
+            <option type='slim'/>
+            <option type='narrow'/>
+            <option type='grueling'/>
+            <option type='decisive'/>
+            <option type='miniscule'/>
+            <option type='massive'/>
+            <option type='overwhelming'/>
+            <option type=''/>
+        </win>
+        <warcause>
+            <option type='taxes'/>
+            <option type='politics'/>
+            <option type='an assassination'/>
+            <option type='soverignty'/>
+            <option type='territory'/>
+            <option type='resources'/>
+            <option type='land'/>
+            <option type='a bride'/>
+        </warcause>
+        <used>
+            <option type='recently used'/>
+            <option type='never used'/>
+            <option type='occasionally used'/>
+            <option type='often used'/>
+            <option type='rarely used'/>
+            <option type='long abandoned'/>
+        <used>
+        <smalltime>
+            <option type='seconds'/>
             <option type='minutes'/>
             <option type='hours'/>
             <option type='days'/>
+        </smalltime>
+        <bigtime>
             <option type='weeks'/>
             <option type='months'/>
             <option type='years'/>
             <option type='decades'/>
             <option type='centuries'/>
-        </time>
+            <option type='millennia'/>
+        </bigtime>
+        <signs>
+            <option type='recent'/>
+            <option type='ancient'/>
+            <option type='no'/>
+            <option type='minimal'/>
+            <option type='obvious'/>
+            <option type='hidden'/>
+        </signs>
         <size>
             <option type='tiny'/>
             <option type='small'/>
@@ -139,14 +316,18 @@
             <option type='huge'/>
             <option type=''/>
         </size>
-        <quantity><!-- a herd/army of ___  ___    -->
+        <smallquantity><!-- you see ___ corpses litering the floor    -->
+            <option type='a couple'/>
+            <option type='several'/>
+            <option type='two'/>
+            <option type='one' singlular='true'/>
+        </smallquantity>
+        <bigquantity><!-- a herd/army of ___  ___    -->
             <option type='thousands of'/>
             <option type='hundreds of'/>
             <option type='dozens of'/>
             <option type='several'/>
-            <option type='two'/>
-            <option type='one'/>
-        </quantity>
+        </bigquantity>
         <attitude>
 			<option type='aggressive'/>
 			<option type='angry'/>
@@ -167,5 +348,70 @@
 			<option type='wary'/>
             <option type=''/>
         </attitude>
+        <wear>
+            <option type='like new'/>
+            <option type='pristine'/>
+            <option type='aged'/>
+            <option type='worn'/>
+            <option type='battle-scarred'/>
+            <option type='well maintained'/>
+            <option type='immaculate'/>
+            <option type='on the verge of ruin'/>
+            <option type='heavily battered'/>
+            <option type=''/>
+        </wear>
+        <wind>
+            <option type='breezy'/>
+            <option type='dead'/>
+            <option type='soft'/>
+            <option type='heavy'/>
+            <option type='strong'/>
+            <option type='incredibly strong'/>
+        </wind>
+        <air>
+            <option type='fresh'/>
+            <option type='thin'/>
+            <option type='thick'/>
+            <option type='heavy'/>
+            <option type='humid'/>
+            <option type='sticky'/>
+            <option type=''/>
+        </air>
+        <sky> <!-- The Sky is _____ $skydistance-->
+            <option type='overcast'     clouds='true'/>
+            <option type='cloudy'       clouds='true'/>
+            <option type='dark'         clouds='true'/>
+            <option type='brooding'     clouds='true'/>
+            <option type='clear'/>
+            <option type='bright'       clouds='true'/>
+            <option type='foreboding'   clouds='true'/>
+            <option type='ominous'      clouds='true'/>
+            <option type=''/>
+        </sky>
+        <cloudtype>
+            <option type='whispy'/>
+            <option type='thick'/>
+            <option type='thin'/>
+            <option type='soupy'/>
+            <option type='nebulous'/>
+            <option type='nimbus'/>
+            <option type='gentle'/>
+            <option type=''/>
+        </cloudtype>
+        <cloudcolor>
+            <option type='white'/>
+            <option type='gray'/>
+            <option type='multi-colored'/>
+            <option type='black'/>
+            <option type='red'/>
+            <option type='purple'/>
+        </cloudcolor>
+        <skydistance> 
+            <option type='overhead'/>
+            <option type='above'/>
+            <option type='nearby'/>
+            <option type='in the distance'/>
+            <option type=''/>
+        </skydistance>
     </descriptor>
 </data>
