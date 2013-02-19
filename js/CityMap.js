@@ -142,7 +142,7 @@ CityMap.prototype.generateDistricts = function(districts){
 /* ========================================================================= */
 
 CityMap.prototype.growDistrict = function(district,cellIDlist){
-    var neighborids=district.cells[district.cells.length-1].getNeighborIDs()
+    var neighborids=district.cells[district.cells.length-1].getNeighborIds()
 
     var neighborIDlist=[]
     for (var i=0; i<neighborids.length ; i++){ neighborIDlist.push(i); }

@@ -20,17 +20,25 @@ function build_continent( params ){
 
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
-    // This is the crux of our entire map.
-    var map=new WorldMap(params.canvas.width,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRegions);
 
+console.log("fuuu"+continentseed)
+
+
+
+    // This is the crux of our entire map.
+    var map=new WorldMap(params,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRegions);
+
+    return map
+}
+
+function print_text( map ){
     print_legend(map)
     print_neighbors(map);
     print_diplomatic_ties(map);
     console.log(map)
-    return map
+
+
 }
-
-
 /* ========================================================================= */
 /* build_region is called by CityGenerator to build the region map.
 /* We pass in everything via the params object to make things easier.
@@ -76,6 +84,7 @@ function embiggen( canvas ){
             bigcanvas.style.display  ='block'
             worldmap.setMultiplier(1)
             worldmap.redraw(bigcanvas)
+            worldmap.drawbox( worldmap.cities[worldmap.currentCityId].box ,  bigcanvas,'rgba(255,0,255,1)'  )
             console.log('continent small, make big!')
 
 
@@ -171,4 +180,17 @@ function print_Citylegend(map){
         document.getElementById('citylegend').innerHTML+='<span style="font-size:10px;color:#000;background-color:'+district.color+'">'+district.name +'</span> '
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -6,7 +6,22 @@
 WorldMap.prototype = Object.create(VoronoiMap.prototype);
 WorldMap.prototype.constructor = WorldMap;
 
-function  WorldMap(width,height,num_points,seed,cities,regions) {
+function  WorldMap(params) {
+    var width=params.canvas.width
+    var height=params.canvas.height
+    var num_points=params.sites
+    var seed=params.seed
+    var regions=params.regions
+    var cities=params.cities
+
+
+    this.seed=seed
+    this.regionseed=(seed- seed%10)/10
+    this.continentseed=(seed- seed%100)/100
+    this.regionid=this.regionseed%10
+
+    console.log("seed:"+seed+" region:"+this.regionseed+" continent:"+this.continentseed)
+
     VoronoiMap.call(this,width,height,num_points)
     // regionmod determines which of the 10 regions on this continent to use.
     // With a cityid of 744158, the 5 indications which region to focus on
@@ -16,11 +31,11 @@ function  WorldMap(width,height,num_points,seed,cities,regions) {
     // uses the last  digit of the cityid: 744158 -> 8
     this.currentCityId=Math.floor(seed%100);
 
-    this.seed=seed
+    this.bbox= {xl:0,xr:width,yt:0,yb:height},
 
     this.cities=cities;
     this.regions=regions;
-
+    this.treemap=null
     // continent seed refers to which continent we're on- it essentially
     // ignores the last two digits of the cityid: 744158 -> 744100 
     this.currentContinentId = seed -  seed%100;
@@ -98,14 +113,28 @@ WorldMap.prototype.findNeighborCities = function(cityid,count){
     }
 
 WorldMap.prototype.redrawRegion = function(canvas){
-//XXX
-    var citybox=this.cities[this.currentCityId].box
-    this.xoffset=-citybox.minx*2.5
-    this.yoffset=-citybox.miny*2.5
-    this.setMultiplier(2.5)
-    this.redraw(canvas)
-    this.setMultiplier(2.5)
-    this.drawCityName(canvas,this.cities[this.currentCityId])
+    var region=this.regions[this.regionid]
+
+    var smx=  region.box.maxx-region.box.minx
+    var bmx=  this.bbox.xr - this.bbox.xl
+    var multx= bmx/smx
+    console.log("smx"+smx+"  bmx"+bmx+" multx "+multx)
+    var smy=  region.box.maxy-region.box.miny
+    var bmy=  this.bbox.yb - this.bbox.yt
+    var multy= bmy/smy
+    console.log("smy"+smy+"  bmy"+bmx+" multy "+multy)
+    var mult= Math.min(multx,multy)
+    this.setMultiplier(mult)
+    this.xoffset=-region.box.minx*mult
+    this.yoffset=-region.box.miny*mult
+    this.paintBackground(canvas,'#ffffff');
+    this.paintBiomes(canvas)
+    this.drawRivers(canvas);
+    this.drawLakes(canvas);
+    this.paintRegions(canvas,true); 
+    this.drawRegionBorders(canvas,true); 
+    //this.drawCities(canvas);
+    
     this.setMultiplier(1)
     this.xoffset=0
     this.yoffset=0
@@ -115,7 +144,7 @@ WorldMap.prototype.redrawRegion = function(canvas){
 WorldMap.prototype.drawCityName = function(canvas,city){
     var context = canvas.getContext('2d');
     context.fillStyle="rgba(0,0,0,1)";
-    context.font = "bold 12px Arial" ;
+    context.font = "bold "+(12*this.xmultiplier)+"px Arial" ;
     var nameoffset= city.name.length*12/4
     //context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x-nameoffset, this.yoffset+this.ymultiplier*city.cell.site.y);
     context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x -nameoffset , this.yoffset+this.ymultiplier*city.cell.site.y+10 );
@@ -135,12 +164,33 @@ WorldMap.prototype.redraw = function(canvas,scale){
         this.setMultiplier(scale)
     }
     this.paintBackground(canvas,'#ffffff');
-    this.paintMap(canvas)
+    this.paintBiomes(canvas)
+    this.drawRivers(canvas);
+    this.drawLakes(canvas);
     this.drawRegions(canvas,true); 
     this.drawCities(canvas);
-    var citybox=this.cities[this.currentCityId].box
     
-    this.drawbox( citybox,  canvas,'rgba(255,0,255,1)'  )
+    this.setMultiplier(1)
+//ype.setbox = function(box, va, vb){
+} 
+
+/* ========================================================================= */ 
+/*  redrawMap what this should look like on a given canvas 
+/*  
+/* ========================================================================= */ 
+ 
+WorldMap.prototype.redrawMap = function(canvas,scale){
+    if (scale !=undefined){
+        this.setMultiplier(scale)
+    }
+    this.paintBackground(canvas,'#ffffff');
+    this.paintBiomes(canvas)
+    this.drawRivers(canvas);
+    this.drawLakes(canvas);
+    this.paintRegions(canvas,true); 
+    this.drawRegionBorders(canvas,true); 
+    //this.drawCities(canvas);
+    
     this.setMultiplier(1)
 //ype.setbox = function(box, va, vb){
 } 
@@ -236,15 +286,14 @@ WorldMap.prototype.drawCities = function(canvas){
 
 
 /* ========================================================================= */
-/* 
+/* Paint map colors each of the cells according to biomes 
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.paintMap = function(canvas){
+WorldMap.prototype.paintBiomes = function(canvas){
     for (var i=0; i < this.diagram.cells.length ; i++ ){
         this.colorPolygon(this.diagram.cells[i],canvas,'biomes');
     }
-    this.drawRivers(canvas);
 }
 
 
@@ -257,7 +306,6 @@ WorldMap.prototype.assignRegions = function(){
     for (var i=0 ; i<this.regions.length ; i++){
         var region=this.regions[i]
         region.id=i
-        region.color='rgba('+this.colors[i]+',.3)'
 
         Math.seedrandom( region.seed   ) ;
         region.capital=this.randomLand();
@@ -289,9 +337,19 @@ WorldMap.prototype.calculateCenter = function(region){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.drawRegions = function(canvas, fill){
+WorldMap.prototype.drawRegionBorders = function(canvas, fill){
     for (var i=0 ; i<10 ; i++){
-        this.drawRegion(this.regions[i],canvas, fill)
+        this.drawRegionBorder(this.regions[i],canvas)
+    }
+}
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+WorldMap.prototype.paintRegions = function(canvas, fill){
+    for (var i=0 ; i<10 ; i++){
+        this.paintRegion(this.regions[i],canvas, fill)
     }
 }
 
@@ -301,7 +359,8 @@ WorldMap.prototype.drawRegions = function(canvas, fill){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.drawRegion = function(region,canvas, fill){
+WorldMap.prototype.drawRegionBorder = function(region,canvas, fill){
+
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
     for (var i=0; i<region.outline.length; i++){
@@ -309,16 +368,41 @@ WorldMap.prototype.drawRegion = function(region,canvas, fill){
         polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,this.yoffset+this.ymultiplier*vertex.y);
     }
     polyline.lineWidth=1;
+    if (this.activeregion==region.id){
+        polyline.lineWidth=2;
+    }
     polyline.strokeStyle="rgba(0,0,0,1)";
-    polyline.fillStyle=region.color;
     polyline.lineCap = 'butt';
     polyline.closePath();
     polyline.stroke();
-    if (fill){
-        polyline.fill();
+
+}
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+WorldMap.prototype.paintRegion = function(region,canvas, fill,bold){
+
+    var polyline = canvas.getContext('2d');
+    polyline.beginPath();
+    for (var i=0; i<region.outline.length; i++){
+        var vertex= region.outline[i];
+        polyline.lineTo(this.xoffset+this.xmultiplier*vertex.x,this.yoffset+this.ymultiplier*vertex.y);
     }
-    polyline.fillStyle="rgba(0,0,0,"+(1/this.xmultiplier*4)+")";
-    polyline.font = "bold "+(this.xmultiplier*3+9  )+"px Arial" ;
+    polyline.font= (12*this.xmultiplier)+"px Arial" ;
+    polyline.closePath();
+    if (this.activeregion==region.id){
+        polyline.fillStyle='rgba('+this.colors[region.id]+',.3)'
+        polyline.fill();
+        polyline.fillStyle="rgba(0,0,0,1)";
+    }else{
+        polyline.fillStyle='rgba('+this.colors[region.id]+',.2)'
+        polyline.fill();
+        polyline.fillStyle="rgba(0,0,0,.5)";
+
+    }
 
     var nameoffset= region.name.length*(this.xmultiplier*3+9)/4
     polyline.fillText(region.name, this.xoffset+this.xmultiplier*region.center.x-nameoffset, this.yoffset+this.ymultiplier*region.center.y);
@@ -398,7 +482,7 @@ WorldMap.prototype.drawbox = function(box,canvas,color){
 
 WorldMap.prototype.getRegion = function(region){
     region.cells=[region.capital];
-
+    region.cells[0].regionid=region.id
     for (var i=0; i<this.maxregion; i++){
         // Select a random cell from the region.cells list
         var parentCell= region.cells[  Math.floor( Math.random()*region.cells.length) ];
@@ -419,6 +503,7 @@ WorldMap.prototype.getRegion = function(region){
             }
             if ( ! target.ocean && ! target.region){
                 target.region=true
+                target.regionid=region.id
                 region.cells.push(target);
             }
         }
@@ -589,7 +674,7 @@ WorldMap.prototype.assignDownslopes = function(){
 /* ========================================================================= */
 
 WorldMap.prototype.getNeighbors = function(cell){
-    var neighborIDs = cell.getNeighborIDs();
+    var neighborIDs = cell.getNeighborIds();
     var neighbors=[];
     for (var i=0; i<neighborIDs.length; i++){
         neighbors.push(this.diagram.cells[neighborIDs[i]]);
@@ -604,7 +689,7 @@ WorldMap.prototype.getNeighbors = function(cell){
 /* ========================================================================= */
 
 WorldMap.prototype.setDownslope = function(cell){
-    var neighborIDs = cell.getNeighborIDs();
+    var neighborIDs = cell.getNeighborIds();
     cell.downslope=cell;
     for (var i=0; i<neighborIDs.length; i++){
         var neighbor=this.diagram.cells[neighborIDs[i]];
@@ -702,6 +787,22 @@ WorldMap.prototype.box = function(cells){
 /* 
 /* ========================================================================= */
 
+WorldMap.prototype.drawLakes = function(canvas){
+
+    for (var i=0; i<this.diagram.cells.length; i++){
+        var cell=this.diagram.cells[i];
+        if ( cell.lake){
+            this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,1)');
+        }
+    }
+}
+
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
 WorldMap.prototype.drawRivers = function(canvas){
 
     for (var i=0; i<this.diagram.cells.length; i++){
@@ -715,9 +816,6 @@ WorldMap.prototype.drawRivers = function(canvas){
             ctx.lineTo(this.xoffset+this.xmultiplier*cell.downslope.site.x,this.yoffset+this.ymultiplier*cell.downslope.site.y);
             ctx.closePath();
             ctx.stroke();
-        }
-        if ( cell.lake){
-            this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,0.5)');
         }
     }
 }
@@ -966,6 +1064,165 @@ WorldMap.prototype.getOceanColor = function(obj){
     var c= parseInt(Math.floor((obj.elevation)*128));
     return 'rgb(' + c + "," + c + ", 255)";
 }
+
+
+
+WorldMap.prototype.buildTreemap = function() {
+        var treemap = new QuadTree({
+            x: this.bbox.xl,
+            y: this.bbox.yt,
+            width: this.bbox.xr-this.bbox.xl,
+            height: this.bbox.yb-this.bbox.yt
+            });
+        var cells = this.diagram.cells,
+            iCell = cells.length;
+        // iterate through all cells
+        while (iCell--) {
+            bbox = cells[iCell].getBbox();
+            bbox.cellid = iCell;
+            treemap.insert(bbox);
+            }
+        return treemap;
+        }
+
+
+WorldMap.prototype.gotoRegion = function(ev,canvas) {
+    // >>> http://www.quirksmode.org/js/events_properties.html#position
+    var x = 0;
+    var y = 0;
+    // Ensure that ev is not null
+    if (!ev) {  ev = window.event;    }
+
+    if (ev.pageX || ev.pageY) {
+        x = ev.pageX;
+        y = ev.pageY;
+    } else if (e.clientX || e.clientY) {
+        // I have no idea where e comes from.
+        x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    // <<< http://www.quirksmode.org/js/events_properties.html#position
+    x -= canvas.offsetLeft;
+    y -= canvas.offsetTop;
+    cellid = this.cellIdFromPoint(x,y);
+    if (cellid !== undefined) {
+        var cell=this.diagram.cells[cellid]
+        if (cell.regionid !== undefined){
+            window.location="/regionmap?region="+this.continentseed+""+ this.activeregion 
+        }
+    }
+}
+
+
+WorldMap.prototype.setCurrentRegion = function(ev,canvas) {
+    // >>> http://www.quirksmode.org/js/events_properties.html#position
+    var x = 0;
+    var y = 0;
+    // Ensure that ev is not null
+    if (!ev) {  ev = window.event;    }
+
+    if (ev.pageX || ev.pageY) {
+        x = ev.pageX;
+        y = ev.pageY;
+    } else if (e.clientX || e.clientY) {
+        // I have no idea where e comes from.
+        x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    // <<< http://www.quirksmode.org/js/events_properties.html#position
+    x -= canvas.offsetLeft;
+    y -= canvas.offsetTop;
+    cellid = this.cellIdFromPoint(x,y);
+    if (this.lastCell !== cellid) {
+        if (cellid !== undefined) {
+        // cellID is the current acive cell; mark it as such
+        // along with it's region and then walk away casually to be redrawn later.
+            this.activecell = cellid;
+            var cell=this.diagram.cells[cellid]
+            if (cell.regionid !== undefined){
+                this.activeregion =cell.regionid;
+                canvas.style.cursor='pointer';
+
+            }else{
+                this.activeregion = undefined;
+                canvas.style.cursor='auto';
+            }
+        }else{
+            this.activecell = undefined;
+            this.activeregion = undefined;
+            canvas.style.cursor='auto';
+        }
+    }
+}
+
+
+WorldMap.prototype.cellUnderMouse = function(ev,canvas) {
+        if (!this.diagram) {return;}
+        if (!canvas) {
+            return;
+            }
+        // >>> http://www.quirksmode.org/js/events_properties.html#position
+        var x = 0,
+            y = 0;
+        if (!ev) {
+            ev = window.event;
+            }
+        if (ev.pageX || ev.pageY) {
+            x = ev.pageX;
+            y = ev.pageY;
+            }
+        else if (e.clientX || e.clientY) {
+            x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+            }
+        // <<< http://www.quirksmode.org/js/events_properties.html#position
+        x -= canvas.offsetLeft;
+        y -= canvas.offsetTop;
+        cellid = this.cellIdFromPoint(x,y);
+        if (this.lastCell !== cellid) {
+            if (this.lastCell !== undefined) {
+//                this.renderCell(this.lastCell, '#fff', '#000');
+                var cell=this.diagram.cells[this.lastCell]
+                if (cell.regionid !== undefined) {
+                    this.drawRegion(this.regions[cell.regionid],canvas, true)
+                }else{
+                    this.paintCell( canvas, cell, cell.color ,true )
+                }
+            }
+            if (cellid !== undefined) {
+                this.lastCell = cellid;
+                var cell=this.diagram.cells[this.lastCell]
+                if (cell.regionid !== undefined) {
+                    this.drawRegion(this.regions[cell.regionid],canvas, true,true)
+                }else{
+                    this.paintCell( canvas, cell, cell.color ,true )
+                }
+                }
+            }
+        }
+
+
+
+WorldMap.prototype.cellIdFromPoint = function(x, y) {
+        // We build the treemap on-demand
+        if (this.treemap === null) {
+            this.treemap = this.buildTreemap();
+            }
+        // Get the Voronoi cells from the tree map given x,y
+        var items = this.treemap.retrieve({x:x,y:y}),
+            iItem = items.length,
+            cells = this.diagram.cells,
+            cell, cellid;
+        while (iItem--) {
+            cellid = items[iItem].cellid;
+            cell = cells[cellid];
+            if (cell.pointIntersection(x,y) > 0) {
+                return cellid;
+                }
+            }
+        return undefined;
+        }
+
 
 /* ========================================================================= */
 /* 
