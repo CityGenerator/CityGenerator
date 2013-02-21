@@ -118,11 +118,9 @@ WorldMap.prototype.redrawRegion = function(canvas){
     var smx=  region.box.maxx-region.box.minx
     var bmx=  this.bbox.xr - this.bbox.xl
     var multx= bmx/smx
-    console.log("smx"+smx+"  bmx"+bmx+" multx "+multx)
     var smy=  region.box.maxy-region.box.miny
     var bmy=  this.bbox.yb - this.bbox.yt
     var multy= bmy/smy
-    console.log("smy"+smy+"  bmy"+bmx+" multy "+multy)
     var mult= Math.min(multx,multy)
     this.setMultiplier(mult)
     this.xoffset=-region.box.minx*mult
@@ -133,7 +131,8 @@ WorldMap.prototype.redrawRegion = function(canvas){
     this.drawLakes(canvas);
     this.paintRegions(canvas,true); 
     this.drawRegionBorders(canvas,true); 
-    //this.drawCities(canvas);
+    this.drawCities(canvas);
+    this.drawCityNames(canvas);
     
     this.setMultiplier(1)
     this.xoffset=0
@@ -141,17 +140,23 @@ WorldMap.prototype.redrawRegion = function(canvas){
 
 }
  
+WorldMap.prototype.drawCityNames = function(canvas){
+    for (i = 0; i < this.cities.length; i++) {
+        this.drawCityName(canvas,this.cities[i])
+
+    }
+    
+}
 WorldMap.prototype.drawCityName = function(canvas,city){
     var context = canvas.getContext('2d');
+    context.save();
+
     context.fillStyle="rgba(0,0,0,1)";
-    context.font = "bold "+(12*this.xmultiplier)+"px Arial" ;
+    context.font =  (6*this.xmultiplier)+"px Arial" ;
     var nameoffset= city.name.length*12/4
     //context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x-nameoffset, this.yoffset+this.ymultiplier*city.cell.site.y);
     context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x -nameoffset , this.yoffset+this.ymultiplier*city.cell.site.y+10 );
-    console.log( city.name )
-    console.log( this.xoffset+" "+this.xmultiplier+" "+city.cell.site.x+" ="+(   this.xoffset+this.xmultiplier*city.cell.site.x) )
-    console.log( this.yoffset+" "+this.ymultiplier+" "+city.cell.site.y+" ="+(   this.yoffset+this.ymultiplier*city.cell.site.y) )
-    console.log( city.cell.site.x )
+    context.restore();
 
 }
 /* ========================================================================= */ 
@@ -262,10 +267,15 @@ WorldMap.prototype.assignCities = function(){
         var vc=city.cell.corners[ corners.splice( cornerIDc ,1)[0]];
 
         city.point=this.triangulatePosition(va,vb,vc);
-        city.box={  minx:city.point.x-36,
-                    maxx:city.point.x+36, 
-                    miny:city.point.y-30,
-                    maxy:city.point.y+30}
+        city.radius=        (parseInt(city.size_modifier)+10)
+
+        city.box={  minx:city.point.x-city.radius,
+                    maxx:city.point.x+city.radius, 
+                    miny:city.point.y-city.radius,
+                    maxy:city.point.y+city.radus}
+
+
+
         //kingdom.cities.push(city)
         this.cities[cityid]=city
     }
@@ -280,7 +290,7 @@ WorldMap.prototype.assignCities = function(){
 WorldMap.prototype.drawCities = function(canvas){
     for (var cityid=0 ; cityid<this.cities.length ; cityid++){
         var city=this.cities[cityid]
-        this.paintDot(canvas,city.point.x,city.point.y,1,city.color);
+        this.paintDot(canvas,city.point.x,city.point.y, 1  );
     }
 }
 
