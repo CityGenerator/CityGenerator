@@ -115,16 +115,16 @@ WorldMap.prototype.findNeighborCities = function(cityid,count){
 WorldMap.prototype.redrawRegion = function(canvas){
     var region=this.regions[this.regionid]
 
-    var smx=  region.box.maxx-region.box.minx
+    var smx=  region.bbox.xr-region.bbox.xl
     var bmx=  this.bbox.xr - this.bbox.xl
     var multx= bmx/smx
-    var smy=  region.box.maxy-region.box.miny
+    var smy=  region.bbox.yb-region.bbox.yt
     var bmy=  this.bbox.yb - this.bbox.yt
     var multy= bmy/smy
     var mult= Math.min(multx,multy)
     this.setMultiplier(mult)
-    this.xoffset=-region.box.minx*mult
-    this.yoffset=-region.box.miny*mult
+    this.xoffset=-region.bbox.xl*mult
+    this.yoffset=-region.bbox.yt*mult
     this.paintBackground(canvas,'#ffffff');
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
@@ -176,7 +176,6 @@ WorldMap.prototype.redraw = function(canvas,scale){
     this.drawCities(canvas);
     
     this.setMultiplier(1)
-//ype.setbox = function(box, va, vb){
 } 
 
 /* ========================================================================= */ 
@@ -197,7 +196,6 @@ WorldMap.prototype.redrawMap = function(canvas,scale){
     //this.drawCities(canvas);
     
     this.setMultiplier(1)
-//ype.setbox = function(box, va, vb){
 } 
 
 /* ========================================================================= */
@@ -269,10 +267,10 @@ WorldMap.prototype.assignCities = function(){
         city.point=this.triangulatePosition(va,vb,vc);
         city.radius=        (parseInt(city.size_modifier)+10)
 
-        city.box={  minx:city.point.x-city.radius,
-                    maxx:city.point.x+city.radius, 
-                    miny:city.point.y-city.radius,
-                    maxy:city.point.y+city.radus}
+        city.bbox={  xl:city.point.x-city.radius,
+                    xr:city.point.x+city.radius, 
+                    yt:city.point.y-city.radius,
+                    yb:city.point.y+city.radus}
 
 
 
@@ -423,9 +421,9 @@ WorldMap.prototype.paintRegion = function(region,canvas, fill,bold){
 /* ========================================================================= */
 
 WorldMap.prototype.boxRegion = function(region){
-    region.box={ minx:100000, miny:100000, maxx:0, maxy:0}
+    region.bbox={ xl:100000, yt:100000, xr:0, yb:0}
     var fullcellIDs=[];
-    //figure out the box for the kingdom an
+    //figure out the bbox for the kingdom an
     for (var k=0; k < region.cells.length ; k++ ){ 
         var cell=region.cells[k];
         fullcellIDs.push(cell.site.voronoiId);
@@ -434,10 +432,10 @@ WorldMap.prototype.boxRegion = function(region){
             var he=cell.halfedges[j].edge;
             if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
             if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
-            region.box=this.setbox(region.box,he.va,he.vb)
+            region.bbox=this.setbox(region.bbox,he.va,he.vb)
         }
     }
-    region.regionbox={ minx:100000, miny:100000, maxx:0, maxy:0}
+    region.regionbox={ xl:100000, yt:100000, xr:0, yb:0}
     region.regions=[];
     for (var k=0; k < fullcellIDs.length ; k++ ){ 
         var cell=this.diagram.cells[fullcellIDs[k]];
@@ -455,12 +453,12 @@ WorldMap.prototype.boxRegion = function(region){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.setbox = function(box, va, vb){
-    box.maxx=Math.ceil(Math.max( box.maxx,va.x,vb.x));
-    box.maxy=Math.ceil(Math.max( box.maxy,va.y,vb.y));
-    box.minx=Math.floor(Math.min(box.minx,va.x,vb.x));
-    box.miny=Math.floor(Math.min(box.miny,va.y,vb.y));
-    return box
+WorldMap.prototype.setbox = function(bbox, va, vb){
+    bbox.xr=Math.ceil(Math.max( bbox.xr,va.x,vb.x));
+    bbox.yb=Math.ceil(Math.max( bbox.yb,va.y,vb.y));
+    bbox.xl=Math.floor(Math.min(bbox.xl,va.x,vb.x));
+    bbox.yt=Math.floor(Math.min(bbox.yt,va.y,vb.y));
+    return bbox
 }
 
 
@@ -469,13 +467,13 @@ WorldMap.prototype.setbox = function(box, va, vb){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.drawbox = function(box,canvas,color){
+WorldMap.prototype.drawbox = function(bbox,canvas,color){
     var polyline = canvas.getContext('2d');
     polyline.beginPath();
-    polyline.lineTo(this.xoffset+this.xmultiplier*box.minx,this.yoffset+this.ymultiplier*box.miny);          
-    polyline.lineTo(this.xoffset+this.xmultiplier*box.maxx,this.yoffset+this.ymultiplier*box.miny);
-    polyline.lineTo(this.xoffset+this.xmultiplier*box.maxx,this.yoffset+this.ymultiplier*box.maxy);
-    polyline.lineTo(this.xoffset+this.xmultiplier*box.minx,this.yoffset+this.ymultiplier*box.maxy);
+    polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xl,this.yoffset+this.ymultiplier*bbox.yt);          
+    polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xr,this.yoffset+this.ymultiplier*bbox.yt);
+    polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xr,this.yoffset+this.ymultiplier*bbox.yb);
+    polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xl,this.yoffset+this.ymultiplier*bbox.yb);
     polyline.closePath();
     polyline.lineWidth=2;
     polyline.strokeStyle=color;
@@ -561,13 +559,13 @@ WorldMap.prototype.getRegionPolygon = function(region){
     }
 
     //loop through the edges and push them onto the outline list for drawing later
-    var minx=1000000
+    var xl=1000000
     var pos;
     for (var i=0; i < edges.length ; i++ ){
-        minx=Math.min(minx,edges[i].edge.va.x, edges[i].edge.va.x)
-        if (edges[i].edge.va.x == minx){
+        xl=Math.min(xl,edges[i].edge.va.x, edges[i].edge.va.x)
+        if (edges[i].edge.va.x == xl){
             pos=edges[i].edge.va
-        } else if (edges[i].edge.vb.x == minx){
+        } else if (edges[i].edge.vb.x == xl){
             pos=edges[i].edge.vb
         }
     }
@@ -725,25 +723,25 @@ WorldMap.prototype.setDownslope = function(cell){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.translateregion = function(box,canvas){
+WorldMap.prototype.translateregion = function(bbox,canvas){
     for (var i=0; i < this.diagram.cells.length ; i++ ){ 
         var cell=this.diagram.cells[i];
         
-        canvas.height=(box.maxy-box.miny)/(box.maxx-box.minx)*canvas.width
+        canvas.height=(bbox.yb-bbox.yt)/(bbox.xr-bbox.xl)*canvas.width
 
-        cell.site.x=this.translatePoint(cell.site.x,box.minx,box.maxx,canvas.width);
-        cell.site.y=this.translatePoint(cell.site.y,box.miny,box.maxy,canvas.height);
+        cell.site.x=this.translatePoint(cell.site.x,bbox.xl,bbox.xr,canvas.width);
+        cell.site.y=this.translatePoint(cell.site.y,bbox.yt,bbox.yb,canvas.height);
         for (var j=0; j < cell.halfedges.length ; j++ ){ 
             var edge=cell.halfedges[j].edge;
             if (edge.va.wastranslated != true){
                 edge.va.wastranslated=true
-                edge.va.x=this.translatePoint(edge.va.x,box.minx,box.maxx,canvas.width);
-                edge.va.y=this.translatePoint(edge.va.y,box.miny,box.maxy,canvas.height);
+                edge.va.x=this.translatePoint(edge.va.x,bbox.xl,bbox.xr,canvas.width);
+                edge.va.y=this.translatePoint(edge.va.y,bbox.yt,bbox.yb,canvas.height);
             }
             if (edge.vb.wastranslated != true){
                 edge.vb.wastranslated=true
-                edge.vb.x=this.translatePoint(edge.vb.x,box.minx,box.maxx,canvas.width);
-                edge.vb.y=this.translatePoint(edge.vb.y,box.miny,box.maxy,canvas.height);
+                edge.vb.x=this.translatePoint(edge.vb.x,bbox.xl,bbox.xr,canvas.width);
+                edge.vb.y=this.translatePoint(edge.vb.y,bbox.yt,bbox.yb,canvas.height);
             }
         }
     }
@@ -755,11 +753,11 @@ WorldMap.prototype.translateregion = function(box,canvas){
 /* 
 /* ========================================================================= */
 
-WorldMap.prototype.box = function(cells){
-    var minx=100000;
-    var miny=100000;
-    var maxx=0;
-    var maxy=0;
+WorldMap.prototype.bbox = function(cells){
+    var xl=100000;
+    var yt=100000;
+    var xr=0;
+    var yb=0;
     var fullcellIDs=[]
     for (var i=0; i < cells.length ; i++ ){ 
         var cell=cells[i];
@@ -769,10 +767,10 @@ WorldMap.prototype.box = function(cells){
             var he=cell.halfedges[j].edge;
             if (he.rSite != null && fullcellIDs.indexOf(he.rSite.voronoiId) ==-1){fullcellIDs.push(he.rSite.voronoiId);}
             if (he.lSite != null && fullcellIDs.indexOf(he.lSite.voronoiId) ==-1){fullcellIDs.push(he.lSite.voronoiId);}
-            maxx=Math.ceil(Math.max(maxx,he.va.x,he.vb.x));
-            maxy=Math.ceil(Math.max(maxy,he.va.y,he.vb.y));
-            minx=Math.floor(Math.min(minx,he.va.x,he.vb.x));
-            miny=Math.floor(Math.min(miny,he.va.y,he.vb.y));
+            xr=Math.ceil(Math.max(xr,he.va.x,he.vb.x));
+            yb=Math.ceil(Math.max(yb,he.va.y,he.vb.y));
+            xl=Math.floor(Math.min(xl,he.va.x,he.vb.x));
+            yt=Math.floor(Math.min(yt,he.va.y,he.vb.y));
         }
     }
 
@@ -781,14 +779,14 @@ WorldMap.prototype.box = function(cells){
         this.region.push(cell);
         for (var j=0; j < cell.halfedges.length ; j++ ){ 
             var he=cell.halfedges[j];
-            maxx=Math.ceil(Math.max(maxx,he.edge.va.x,he.edge.vb.x));
-            maxy=Math.ceil(Math.max(maxy,he.edge.va.y,he.edge.vb.y));
-            minx=Math.floor(Math.min(minx,he.edge.va.x,he.edge.vb.x));
-            miny=Math.floor(Math.min(miny,he.edge.va.y,he.edge.vb.y));
+            xr=Math.ceil(Math.max(xr,he.edge.va.x,he.edge.vb.x));
+            yb=Math.ceil(Math.max(yb,he.edge.va.y,he.edge.vb.y));
+            xl=Math.floor(Math.min(xl,he.edge.va.x,he.edge.vb.x));
+            yt=Math.floor(Math.min(yt,he.edge.va.y,he.edge.vb.y));
         }
     }
 
-    return {minx:minx,miny:miny,maxx:maxx,maxy:maxy};
+    return {xl:xl,yt:yt,xr:xr,yb:yb};
 }
 
 

@@ -288,7 +288,7 @@ VoronoiMap.prototype.paintBackground = function(canvas,color,scale,region){
     ctx.scale(scale,scale);
 //        console.log(region)
     if (region != undefined){
-        ctx.translate(-region.minx, -region.miny);
+        ctx.translate(-region.xl, -region.yt);
     }
     ctx.globalAlpha = 1;
     ctx.fillStyle = color;

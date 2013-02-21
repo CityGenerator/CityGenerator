@@ -164,7 +164,7 @@ sub describe_header{
                             });
                 document.continentmap.redraw(document.getElementById('continent'),1/3)
                 document.continentmap.setMultiplier(1/3)
-                document.continentmap.drawbox( document.continentmap.cities[document.continentmap.currentCityId].box , document.getElementById('continent'),'rgba(255,0,255,1)'  )
+                document.continentmap.drawbox( document.continentmap.cities[document.continentmap.currentCityId].bbox , document.getElementById('continent'),'rgba(255,0,255,1)'  )
 
                 build_region({
                                 seed:$city->{'seed'},

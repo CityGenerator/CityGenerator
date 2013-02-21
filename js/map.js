@@ -84,15 +84,15 @@ function embiggen( canvas ){
             bigcanvas.style.display  ='block'
             worldmap.setMultiplier(1)
             worldmap.redraw(bigcanvas)
-            worldmap.drawbox( worldmap.cities[worldmap.currentCityId].box ,  bigcanvas,'rgba(255,0,255,1)'  )
+            worldmap.drawbox( worldmap.cities[worldmap.currentCityId].bbox ,  bigcanvas,'rgba(255,0,255,1)'  )
             console.log('continent small, make big!')
 
 
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
-            var citybox=worldmap.cities[worldmap.currentCityId].box
+            var citybox=worldmap.cities[worldmap.currentCityId].bbox
             var multiplier=2.5*3
-            worldmap.xoffset=-citybox.minx*multiplier
-            worldmap.yoffset=-citybox.miny*multiplier
+            worldmap.xoffset=-citybox.xl*multiplier
+            worldmap.yoffset=-citybox.yt*multiplier
             worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
             worldmap.redraw(bigcanvas,multiplier)
