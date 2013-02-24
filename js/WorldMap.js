@@ -113,18 +113,7 @@ WorldMap.prototype.findNeighborCities = function(cityid,count){
     }
 
 WorldMap.prototype.redrawRegion = function(canvas){
-    var region=this.regions[this.regionid]
-
-    var smx=  region.bbox.xr-region.bbox.xl
-    var bmx=  this.bbox.xr - this.bbox.xl
-    var multx= bmx/smx
-    var smy=  region.bbox.yb-region.bbox.yt
-    var bmy=  this.bbox.yb - this.bbox.yt
-    var multy= bmy/smy
-    var mult= Math.min(multx,multy)
-    this.setMultiplier(mult)
-    this.xoffset=-region.bbox.xl*mult
-    this.yoffset=-region.bbox.yt*mult
+    this.calculateRegionMap(this.regionid)
     this.paintBackground(canvas,'#ffffff');
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
@@ -134,9 +123,20 @@ WorldMap.prototype.redrawRegion = function(canvas){
     this.drawCities(canvas);
     this.drawCityNames(canvas);
     this.drawgrid(canvas); 
-    this.setMultiplier(1)
-    this.xoffset=0
-    this.yoffset=0
+}
+
+WorldMap.prototype.calculateRegionMap = function(regionid){
+    var region=this.regions[regionid]
+    var smx=  region.bbox.xr-region.bbox.xl
+    var bmx=  this.bbox.xr - this.bbox.xl
+    var multx= bmx/smx
+    var smy=  region.bbox.yb-region.bbox.yt
+    var bmy=  this.bbox.yb - this.bbox.yt
+    var multy= bmy/smy
+    var mult= Math.min(multx,multy)
+    this.xoffset=-region.bbox.xl*mult
+    this.yoffset=-region.bbox.yt*mult
+    this.setMultiplier(mult)
 
 }
  
@@ -210,6 +210,7 @@ VoronoiMap.prototype.drawCity = function(canvas,x,y,radius,color){
 
 WorldMap.prototype.drawgrid = function(canvas){
     var grid = canvas.getContext('2d');
+    grid.save()
     grid.lineCap = 'butt';
     for (i = 0; i < canvas.width; i+=50) {
         grid.beginPath();
@@ -238,6 +239,7 @@ WorldMap.prototype.drawgrid = function(canvas){
         }
         grid.stroke();
     }
+    grid.restore()
     
 }
 /* ========================================================================= */ 
@@ -245,10 +247,7 @@ WorldMap.prototype.drawgrid = function(canvas){
 /*  
 /* ========================================================================= */ 
  
-WorldMap.prototype.redrawMap = function(canvas,scale){
-    if (scale !=undefined){
-        this.setMultiplier(scale)
-    }
+WorldMap.prototype.redrawMap = function(canvas){
     this.paintBackground(canvas,'#ffffff');
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
@@ -258,7 +257,6 @@ WorldMap.prototype.redrawMap = function(canvas,scale){
     //this.drawCities(canvas);
     this.drawgrid(canvas); 
     
-    this.setMultiplier(1)
 } 
 
 /* ========================================================================= */
@@ -268,7 +266,7 @@ WorldMap.prototype.redrawMap = function(canvas,scale){
 
 WorldMap.prototype.drawTexture = function(canvas){
     var c = canvas.getContext('2d');
-
+    c.save()
     var sim = new SimplexNoise() ;
     //We're gonna track our min and max so we can resize later.
     var min=1;
@@ -289,6 +287,7 @@ WorldMap.prototype.drawTexture = function(canvas){
         }
     }
         c.putImageData(imageData, 0, 0);
+    c.restore()
 }
 
 
@@ -420,6 +419,7 @@ WorldMap.prototype.paintRegions = function(canvas, fill){
 WorldMap.prototype.drawRegionBorder = function(region,canvas, fill){
 
     var polyline = canvas.getContext('2d');
+    polyline.save()
     polyline.beginPath();
     for (var i=0; i<region.outline.length; i++){
         var vertex= region.outline[i];
@@ -433,7 +433,7 @@ WorldMap.prototype.drawRegionBorder = function(region,canvas, fill){
     polyline.lineCap = 'butt';
     polyline.closePath();
     polyline.stroke();
-
+    polyline.restore()
 }
 
 /* ========================================================================= */
@@ -444,6 +444,7 @@ WorldMap.prototype.drawRegionBorder = function(region,canvas, fill){
 WorldMap.prototype.paintRegion = function(region,canvas, fill,bold){
 
     var polyline = canvas.getContext('2d');
+    polyline.save()
     polyline.beginPath();
     for (var i=0; i<region.outline.length; i++){
         var vertex= region.outline[i];
@@ -464,6 +465,7 @@ WorldMap.prototype.paintRegion = function(region,canvas, fill,bold){
 
     var nameoffset= region.name.length*(this.xmultiplier*3+9)/4
     polyline.fillText(region.name, this.xoffset+this.xmultiplier*region.center.x-nameoffset, this.yoffset+this.ymultiplier*region.center.y);
+    polyline.restore()
 }
 /* ========================================================================= */
 /* 
@@ -519,6 +521,7 @@ WorldMap.prototype.setbox = function(bbox, va, vb){
 
 WorldMap.prototype.drawbox = function(bbox,canvas,color){
     var polyline = canvas.getContext('2d');
+    polyline.save()
     polyline.beginPath();
     polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xl,this.yoffset+this.ymultiplier*bbox.yt);          
     polyline.lineTo(this.xoffset+this.xmultiplier*bbox.xr,this.yoffset+this.ymultiplier*bbox.yt);
@@ -529,7 +532,7 @@ WorldMap.prototype.drawbox = function(bbox,canvas,color){
     polyline.strokeStyle=color;
     polyline.lineCap = 'butt';
     polyline.stroke();
-
+    polyline.restore()
 }
 
 
@@ -863,10 +866,11 @@ WorldMap.prototype.drawLakes = function(canvas){
 
 WorldMap.prototype.drawRivers = function(canvas){
 
+    var ctx = canvas.getContext('2d');
     for (var i=0; i<this.diagram.cells.length; i++){
-        var ctx = canvas.getContext('2d');
         var cell=this.diagram.cells[i];
         if ( cell.river ){
+            ctx.save()
             ctx.strokeStyle='rgba(128,128,255,0.5)';
             ctx.lineWidth = 1;
             ctx.beginPath();
@@ -874,6 +878,7 @@ WorldMap.prototype.drawRivers = function(canvas){
             ctx.lineTo(this.xoffset+this.xmultiplier*cell.downslope.site.x,this.yoffset+this.ymultiplier*cell.downslope.site.y);
             ctx.closePath();
             ctx.stroke();
+            ctx.restore()
         }
     }
 }
@@ -886,6 +891,7 @@ WorldMap.prototype.drawRivers = function(canvas){
 
 WorldMap.prototype.drawDownslopes = function(canvas){
     var ctx = canvas.getContext('2d');
+    ctx.save()
 
     for (var i=0; i<this.diagram.cells.length; i++){
         var cell=this.diagram.cells[i];
@@ -905,6 +911,7 @@ WorldMap.prototype.drawDownslopes = function(canvas){
             ctx.stroke();
         }
     }
+    ctx.restore()
 }
 
 
@@ -1162,18 +1169,19 @@ WorldMap.prototype.gotoCity = function(ev,canvas) {
     // <<< http://www.quirksmode.org/js/events_properties.html#position
     x -= canvas.offsetLeft;
     y -= canvas.offsetTop;
-    cellid = this.cellIdFromPoint((this.xoffset+this.xmultiplier*x),(this.yoffset+this.ymultiplier*y));
+
+
+    cellid = this.cellIdFromPoint((x-this.xoffset)/this.xmultiplier,(y-this.yoffset)/this.ymultiplier);
+//    cellid = this.cellIdFromPoint((this.xoffset+this.xmultiplier*x),(this.yoffset+this.ymultiplier*y));
     console.log(cellid)
     if (cellid !== undefined) {
         var cell=this.diagram.cells[cellid]
         for (var i=0; i<this.cities.length; i++) {
             var city=this.cities[i]
+            this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,1)');
             if (city.cell.site.voronoiId == cell.site.voronoiId){
-                console.log("a match")
-                console.log("cellid "+cell.site.voronoiId+" VoronoiId "+city.cell.site.voronoiId  )
-                console.log(city)
+                window.location="/citygenerator?cityid="+city.seed 
             }
-//            window.location="/regionmap?region="+this.continentseed+""+ this.activeregion 
         }
     }
 }
@@ -1351,7 +1359,7 @@ WorldMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
         cell.color=color;
     }
     var polyfill = canvas.getContext('2d');
-
+    polyfill.save()
     polyfill.fillStyle=cell.color;
     polyfill.strokeStyle=cell.color;
     polyfill.beginPath();
@@ -1369,6 +1377,7 @@ WorldMap.prototype.colorPolygon = function(cell,canvas,mode,color,noborder){
     if (!noborder){
         polyfill.stroke();
     }
+    polyfill.restore()
 }
 
 

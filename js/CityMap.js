@@ -46,11 +46,8 @@ CityMap.prototype.designateCity = function(citycellcount){
 /* 
 /* ========================================================================= */
 
-CityMap.prototype.redraw = function(canvas,scale){
+CityMap.prototype.redraw = function(canvas){
     // From here, draw out all the parts we designated above.
-    if (scale !=undefined){
-        this.setMultiplier(scale)
-    }
     this.paintBackground(canvas,this.color);
 //    this.drawCoast(canvas, this.isport, this.coastdirection)
     this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',true)
@@ -440,6 +437,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 
     var c = canvas.getContext('2d');
+    c.save()
 //    c.scale(this.scale,this.scale);
 
 
@@ -453,7 +451,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
     c.lineCap = 'butt';
     c.stroke()
     this.paintDot(canvas, road[0].x, road[0].y, roadwidth/2,'rgba(100,100,100,.9)') // final gateway
-
+    c.restore()
 }
 
 
@@ -465,6 +463,7 @@ CityMap.prototype.drawRoad = function(canvas,va,roadwidth){
 
 CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     var polyline = canvas.getContext('2d');
+    polyline.save()
 //    polyline.scale(this.scale,this.scale);
 
     polyline.beginPath();
@@ -479,7 +478,7 @@ CityMap.prototype.drawCityWalls = function(canvas,wallsize){
     polyline.stroke();
     //    polyline.fill();
     polyline.closePath();
-
+    polyline.restore()
 }
 
 

@@ -55,6 +55,9 @@ VoronoiMap.prototype.setMultiplier = function(xmult,ymult){
     this.ymultiplier = (ymult != undefined) ? ymult : xmult;
 }
 
+VoronoiMap.prototype.getMultiplier = function(){
+    return this.xmultiplier
+}
 
 /* ========================================================================= */
 /*  
@@ -168,6 +171,7 @@ VoronoiMap.prototype.improveRandomPoints = function(){
 
 VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     var ctx = canvas.getContext('2d');
+    ctx.save()
 //    ctx.scale(this.scale,this.scale);
 
 
@@ -186,6 +190,7 @@ VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
+    ctx.restore()
 }
 
 /* ========================================================================= */
@@ -201,8 +206,7 @@ VoronoiMap.prototype.paintCell = function( canvas, cell, color, border ){
         }
     }
     var polyfill = canvas.getContext( '2d' );
-//    ctx.scale(this.scale,this.scale);
-
+    polyfill.save()
     polyfill.fillStyle = color;
     polyfill.strokeStyle = color;
     polyfill.beginPath() ;
@@ -222,6 +226,7 @@ VoronoiMap.prototype.paintCell = function( canvas, cell, color, border ){
     if ( border ){
         polyfill.stroke();
     }
+    polyfill.restore()
 }
 
 
@@ -245,8 +250,7 @@ VoronoiMap.prototype.paintCells = function(canvas,cells,color,border){
 
 VoronoiMap.prototype.render = function(canvas){
     var ctx = canvas.getContext('2d');
-//    ctx.scale(this.scale,this.scale);
-
+    ctx.save()
     //First lets draw all of the edges.
     // This can probably be refactored
     ctx.strokeStyle="rgba(0,0,0,.2)";
@@ -273,7 +277,7 @@ VoronoiMap.prototype.render = function(canvas){
         ctx.rect(this.xoffset+this.xmultiplier*v.x-2/3,this.yoffset+this.ymultiplier*v.y-2/3,2,2);
         }
     ctx.fill();
-
+    ctx.restore()
     //TODO add the centers to the render list.
 }
 
@@ -285,6 +289,7 @@ VoronoiMap.prototype.render = function(canvas){
 
 VoronoiMap.prototype.paintBackground = function(canvas,color,scale,region){
     var ctx = canvas.getContext('2d');
+    ctx.save()
     ctx.scale(scale,scale);
 //        console.log(region)
     if (region != undefined){
@@ -295,6 +300,7 @@ VoronoiMap.prototype.paintBackground = function(canvas,color,scale,region){
     ctx.beginPath();
     ctx.rect(0,0,canvas.width,canvas.height);
     ctx.fill();
+    ctx.restore()
 }
 
 
