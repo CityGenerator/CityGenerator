@@ -21,8 +21,8 @@ function build_continent( params ){
     // Begin seeding with the continent seed!
     Math.seedrandom(continentseed);
 
-console.log("fuuu"+continentseed)
-
+    
+    console.log("fuuu"+params.seed)
 
 
     // This is the crux of our entire map.

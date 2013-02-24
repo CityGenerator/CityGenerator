@@ -133,7 +133,7 @@ WorldMap.prototype.redrawRegion = function(canvas){
     this.drawRegionBorders(canvas,true); 
     this.drawCities(canvas);
     this.drawCityNames(canvas);
-    
+    this.drawgrid(canvas); 
     this.setMultiplier(1)
     this.xoffset=0
     this.yoffset=0
@@ -147,37 +147,99 @@ WorldMap.prototype.drawCityNames = function(canvas){
     }
     
 }
+
 WorldMap.prototype.drawCityName = function(canvas,city){
     var context = canvas.getContext('2d');
     context.save();
 
     context.fillStyle="rgba(0,0,0,1)";
     context.font =  (6*this.xmultiplier)+"px Arial" ;
-    var nameoffset= city.name.length*12/4
-    //context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x-nameoffset, this.yoffset+this.ymultiplier*city.cell.site.y);
-    context.fillText(city.name, this.xoffset+this.xmultiplier*city.cell.site.x -nameoffset , this.yoffset+this.ymultiplier*city.cell.site.y+10 );
+    var nameoffsetx= 0
+    var nameoffsety=0
+    var xa=(this.xoffset)+city.point.x*this.xmultiplier+10
+    var ya=(this.yoffset)+city.point.y*this.ymultiplier
+    context.translate(xa,ya);
+    context.rotate(Math.PI / 180*-20);
+    context.translate(-xa,-ya);
+
+    context.fillText(city.name, xa , ya );
     context.restore();
+}
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+WorldMap.prototype.drawCities = function(canvas){
+    for (var cityid=0 ; cityid<this.cities.length ; cityid++){
+        var city=this.cities[cityid]
+        this.drawCity(canvas,city.point.x,city.point.y, city.radius  );
+    }
+}
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+VoronoiMap.prototype.drawCity = function(canvas,x,y,radius,color){
+    var ctx = canvas.getContext('2d');
+    ctx.save()
+
+    color='rgb(200,0,0)';
+    ctx.strokeStyle=color;
+    ctx.fillStyle=color;
+    ctx.beginPath();
+
+    //TODO refactor this to use ctx.rect()
+    var xa=(this.xoffset)+x*this.xmultiplier
+    var ya=(this.yoffset)+y*this.ymultiplier
+
+    //console.log( "x,y=" +x+","+y  + "xy offset  "+this.xoffset+","+this.yoffset +  "     mult:"+this.xmultiplier+","+this.ymultiplier      +  "    xa,ya=" +xa+","+ya    )
+
+
+    ctx.fillRect(xa-radius,ya-radius,radius*2,radius*2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore()
+
+
 
 }
-/* ========================================================================= */ 
-/*  redraw what this should look like on a given canvas 
-/*  
-/* ========================================================================= */ 
- 
-WorldMap.prototype.redraw = function(canvas,scale){
-    if (scale !=undefined){
-        this.setMultiplier(scale)
-    }
-    this.paintBackground(canvas,'#ffffff');
-    this.paintBiomes(canvas)
-    this.drawRivers(canvas);
-    this.drawLakes(canvas);
-    this.drawRegions(canvas,true); 
-    this.drawCities(canvas);
-    
-    this.setMultiplier(1)
-} 
 
+
+WorldMap.prototype.drawgrid = function(canvas){
+    var grid = canvas.getContext('2d');
+    grid.lineCap = 'butt';
+    for (i = 0; i < canvas.width; i+=50) {
+        grid.beginPath();
+        grid.lineTo(i,0);
+        grid.lineTo(i,canvas.height);
+        if (i%200 ==0){
+            grid.strokeStyle="rgba(0,0,0,.2)";
+            grid.lineWidth=2;
+        }else{
+            grid.strokeStyle="rgba(0,0,0,.1)";
+            grid.lineWidth=1;
+        }
+        grid.stroke();
+    }
+
+    for (i = 0; i < canvas.height; i+=50) {
+        grid.beginPath();
+        grid.lineTo(0,i);
+        grid.lineTo(canvas.width,i);
+        if (i%200 ==0){
+            grid.strokeStyle="rgba(0,0,0,.2)";
+            grid.lineWidth=2;
+        }else{
+            grid.strokeStyle="rgba(0,0,0,.1)";
+            grid.lineWidth=1;
+        }
+        grid.stroke();
+    }
+    
+}
 /* ========================================================================= */ 
 /*  redrawMap what this should look like on a given canvas 
 /*  
@@ -194,6 +256,7 @@ WorldMap.prototype.redrawMap = function(canvas,scale){
     this.paintRegions(canvas,true); 
     this.drawRegionBorders(canvas,true); 
     //this.drawCities(canvas);
+    this.drawgrid(canvas); 
     
     this.setMultiplier(1)
 } 
@@ -265,7 +328,7 @@ WorldMap.prototype.assignCities = function(){
         var vc=city.cell.corners[ corners.splice( cornerIDc ,1)[0]];
 
         city.point=this.triangulatePosition(va,vb,vc);
-        city.radius=        (parseInt(city.size_modifier)+10)
+        city.radius=        (parseInt(city.size_modifier)+10)/3
 
         city.bbox={  xl:city.point.x-city.radius,
                     xr:city.point.x+city.radius, 
@@ -276,19 +339,6 @@ WorldMap.prototype.assignCities = function(){
 
         //kingdom.cities.push(city)
         this.cities[cityid]=city
-    }
-}
-
-
-/* ========================================================================= */
-/* 
-/* 
-/* ========================================================================= */
-
-WorldMap.prototype.drawCities = function(canvas){
-    for (var cityid=0 ; cityid<this.cities.length ; cityid++){
-        var city=this.cities[cityid]
-        this.paintDot(canvas,city.point.x,city.point.y, 1  );
     }
 }
 
@@ -1076,24 +1126,57 @@ WorldMap.prototype.getOceanColor = function(obj){
 
 
 WorldMap.prototype.buildTreemap = function() {
-        var treemap = new QuadTree({
-            x: this.bbox.xl,
-            y: this.bbox.yt,
-            width: this.bbox.xr-this.bbox.xl,
-            height: this.bbox.yb-this.bbox.yt
-            });
-        var cells = this.diagram.cells,
-            iCell = cells.length;
-        // iterate through all cells
-        while (iCell--) {
-            bbox = cells[iCell].getBbox();
-            bbox.cellid = iCell;
-            treemap.insert(bbox);
-            }
-        return treemap;
+    var treemap = new QuadTree({
+        x: this.bbox.xl,
+        y: this.bbox.yt,
+        width: this.bbox.xr-this.bbox.xl,
+        height: this.bbox.yb-this.bbox.yt
+        });
+    var cells = this.diagram.cells,
+        iCell = cells.length;
+    // iterate through all cells
+    while (iCell--) {
+        bbox = cells[iCell].getBbox();
+        bbox.cellid = iCell;
+        treemap.insert(bbox);
         }
+    return treemap;
+}
 
 
+WorldMap.prototype.gotoCity = function(ev,canvas) {
+    // >>> http://www.quirksmode.org/js/events_properties.html#position
+    var x = 0;
+    var y = 0;
+    // Ensure that ev is not null
+    if (!ev) {  ev = window.event;    }
+
+    if (ev.pageX || ev.pageY) {
+        x = ev.pageX;
+        y = ev.pageY;
+    } else if (e.clientX || e.clientY) {
+        // I have no idea where e comes from.
+        x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    // <<< http://www.quirksmode.org/js/events_properties.html#position
+    x -= canvas.offsetLeft;
+    y -= canvas.offsetTop;
+    cellid = this.cellIdFromPoint((this.xoffset+this.xmultiplier*x),(this.yoffset+this.ymultiplier*y));
+    console.log(cellid)
+    if (cellid !== undefined) {
+        var cell=this.diagram.cells[cellid]
+        for (var i=0; i<this.cities.length; i++) {
+            var city=this.cities[i]
+            if (city.cell.site.voronoiId == cell.site.voronoiId){
+                console.log("a match")
+                console.log("cellid "+cell.site.voronoiId+" VoronoiId "+city.cell.site.voronoiId  )
+                console.log(city)
+            }
+//            window.location="/regionmap?region="+this.continentseed+""+ this.activeregion 
+        }
+    }
+}
 WorldMap.prototype.gotoRegion = function(ev,canvas) {
     // >>> http://www.quirksmode.org/js/events_properties.html#position
     var x = 0;
@@ -1121,6 +1204,9 @@ WorldMap.prototype.gotoRegion = function(ev,canvas) {
     }
 }
 
+WorldMap.prototype.setCurrentCity = function(ev,canvas) {
+
+}
 
 WorldMap.prototype.setCurrentRegion = function(ev,canvas) {
     // >>> http://www.quirksmode.org/js/events_properties.html#position
