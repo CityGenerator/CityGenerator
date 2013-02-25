@@ -23,11 +23,24 @@ our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $names_data = $xml->XMLin(   "xml/names.xml", ForceContent => 1, ForceArray  =>[]  );
 
+
+my $testcityid=City::set_seed();
+if (defined $q->param('cityid')){
+    $testcityid=$q->param('cityid');
+}elsif (defined $q->param('continent')){
+    $testcityid=$q->param('continent').'00';
+}elsif (defined $q->param('region')){
+    $testcityid=$q->param('region').'0';
+}
+
+
+
+
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
-our $city=build_city($q->param('cityid'));
+our $city=build_city($testcityid);
 
 
 #########################################################################
@@ -138,6 +151,7 @@ sub describe_header{
     my $districts="['".join("', '",@{ $city->{'districts'}})."']";
     my $neighbors=format_neighbors();
     my $neighborrealms=format_neighborRealms();
+    my $regions=$neighborrealms;
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
@@ -157,21 +171,23 @@ sub describe_header{
                 create_flag(document.getElementById('flag') ,$city->{'seed'}, '$letter', $flagcolors); 
                 document.continentmap=build_continent({
                                 seed:$city->{'seed'},
-                                sites:3000,
+                                sites:9000,
                                 canvas:document.getElementById('bigmap'),
-                                neighbors:$neighbors,
+                                cities:$neighbors,
+                                regions:$regions,
                                 neighborRegions:$neighborrealms
                             });
-                document.continentmap.redraw(document.getElementById('continent'),1/3)
-                document.continentmap.setMultiplier(1/3)
-                document.continentmap.drawbox( document.continentmap.cities[document.continentmap.currentCityId].bbox , document.getElementById('continent'),'rgba(255,0,255,1)'  )
+                document.continentmap.redrawMap(document.getElementById('bigmap'));
+                document.continentmap.setMultiplier(1/6)
+                document.continentmap.redrawMap(document.getElementById('continent'))
+                document.continentmap.setMultiplier(1)
 
-                build_region({
-                                seed:$city->{'seed'},
-                                canvas:document.getElementById('bigmap'),
-                                citynames:$names
-                            });
-                document.citymap=build_city({    
+                document.continentmap.redrawRegion(document.getElementById('bigmap'))
+                document.continentmap.redrawRegion(document.getElementById('region'),1/6)
+
+
+
+               document.citymap=build_city({    
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap'),
                                 districts: $districts, 
@@ -183,7 +199,11 @@ sub describe_header{
                                 roads:$city->{'streets'}->{'roads'},
                                 mainroads:$city->{'streets'}->{'mainroads'},
                             });
-                document.citymap.redraw(document.getElementById('city'),1/3)
+                document.citymap.redraw(document.getElementById('bigmap'))
+                document.citymap.setMultiplier(1/6)
+                document.citymap.redraw(document.getElementById('city'))
+
+
 
  ;\">
 <div style='color:red'>$city->{'debug'}</div>
@@ -252,18 +272,18 @@ sub describe_footer{
 
             <div class='padded'>
                 <div >Official Flag:</div>
-                <canvas id='flag' style=\"border:1px solid black;\" width='180px' height='150px'  onclick='embiggen(this);'  > </canvas>
+                <canvas id='flag' style=\"border:1px solid black;\" width='180' height='150'  onclick='embiggen(this);'  > </canvas>
 
                 <div >City: $city->{'name'} <br/>
-                    <canvas id=\"city\"      style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <canvas id=\"city\"      style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
                     <div id='citylegend'>     </div> </div>
                 <div >$regionname <br/>
-                    <canvas id=\"region\"    style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <canvas id=\"region\"    style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
                     <div id='regionlegend'>   </div> </div>
                 <div >Continent of $continentname ($continentseed) <br/>
-                    <canvas id=\"continent\" style=\"border:1px solid black;\" width='180px' height='150px' onclick='embiggen(this);'></canvas>
+                    <canvas id=\"continent\" style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
                     <div id='continentlegend'></div></div>
-                <div id='bigmapdiv'><canvas id=\"bigmap\" width='540px' height='450px' onclick='embiggen(this);'></canvas></div>
+                <div id='bigmapdiv'><canvas id=\"bigmap\" width='1080' height='650' onclick='embiggen(this);'></canvas></div>
             </div>
 
 

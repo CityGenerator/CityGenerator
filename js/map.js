@@ -39,15 +39,6 @@ function print_text( map ){
 
 
 }
-/* ========================================================================= */
-/* build_region is called by CityGenerator to build the region map.
-/* We pass in everything via the params object to make things easier.
-/* ========================================================================= */
-
-function build_region( params ){
-    var map=document.continentmap
-    map.redrawRegion(document.getElementById('region'))
-}
 
 
 /* ========================================================================= */
@@ -64,7 +55,6 @@ function build_city(  params  ){
     var map=new CityMap(  params.canvas.width, params.canvas.height, params, document.continentmap.currentcitycell.color  );
     // Generate the key parts of the city.
 
-    map.redraw(document.getElementById('city'),1/3)
     print_Citylegend(map)
     return map
 }
@@ -83,29 +73,26 @@ function embiggen( canvas ){
             worldmap.embiggen='continent'
             bigcanvas.style.display  ='block'
             worldmap.setMultiplier(1)
-            worldmap.redraw(bigcanvas)
+            worldmap.xoffset=0
+            worldmap.yoffset=0
+            worldmap.redrawMap(bigcanvas)
             worldmap.drawbox( worldmap.cities[worldmap.currentCityId].bbox ,  bigcanvas,'rgba(255,0,255,1)'  )
             console.log('continent small, make big!')
 
 
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
             var citybox=worldmap.cities[worldmap.currentCityId].bbox
-            var multiplier=2.5*3
-            worldmap.xoffset=-citybox.xl*multiplier
-            worldmap.yoffset=-citybox.yt*multiplier
             worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
-            worldmap.redraw(bigcanvas,multiplier)
-            worldmap.setMultiplier(multiplier)
-            worldmap.drawCityName(bigcanvas,worldmap.cities[worldmap.currentCityId])
+            worldmap.redrawRegion(bigcanvas)
+            worldmap.setMultiplier(1)
 
-            worldmap.xoffset=0
-            worldmap.yoffset=0
 
     }else if (canvas.id == 'city' && worldmap.embiggen != 'city'){
             worldmap.embiggen='city'
             bigcanvas.style.display  ='block'
-            citymap.redraw(bigcanvas,1)
+            citymap.setMultiplier(1)
+            citymap.redraw(bigcanvas)
             console.log('city small, make big!')
 
     }else{

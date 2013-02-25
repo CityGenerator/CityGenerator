@@ -55,10 +55,6 @@ VoronoiMap.prototype.setMultiplier = function(xmult,ymult){
     this.ymultiplier = (ymult != undefined) ? ymult : xmult;
 }
 
-VoronoiMap.prototype.getMultiplier = function(){
-    return this.xmultiplier
-}
-
 /* ========================================================================= */
 /*  
 /* 

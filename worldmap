@@ -23,11 +23,24 @@ our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $names_data = $xml->XMLin(   "xml/names.xml", ForceContent => 1, ForceArray  =>[]  );
 
+
+
+my $testcityid=City::set_seed();
+if (defined $q->param('cityid')){
+    $testcityid=$q->param('cityid');
+}elsif (defined $q->param('continent')){
+    $testcityid=$q->param('continent').'00';
+}elsif (defined $q->param('region')){
+    $testcityid=$q->param('region').'0';
+}
+
+
+
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
-our $city=build_city($q->param('continent')."00");
+our $city=build_city($testcityid);
 
 
 #########################################################################
@@ -120,7 +133,7 @@ sub describe_header{
     my $districts="['".join("', '",@{ $city->{'districts'}})."']";
     my $neighbors=format_neighbors();
     my $regions=format_regions();
-    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
+    my $continentseed=($city->{'seed'}-$city->{'seed'}%100)/100 ;
     my $continentname=$city->{'continent'};
     my $content="        <!DOCTYPE html> 
         <html>
@@ -148,6 +161,7 @@ sub describe_header{
                             });
                 continentmap.redrawMap(canvas);
              ;\">
+                <h1><a href='worldmap?continent=$continentseed'>Continent of $continentname ($continentseed)</a></h1>
                 <canvas id=\"worldmap\" width='1080' height='650' onclick='continentmap.gotoRegion(event,this)' onmousemove='continentmap.setCurrentRegion(event,this); continentmap.redrawMap(canvas)  '></canvas>
                 <div id='regionlegend'>   </div>
                 <div id='continentlegend'></div>

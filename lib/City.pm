@@ -149,7 +149,6 @@ sub generate_economics {
     generate_taverns();
     generate_economic_description();
     generate_education_description();
-    print "======== $seed\n";
     generate_magic_description();
 } ## end sub generate_economics
 
@@ -691,12 +690,10 @@ sub generate_npc_name{
     # ensure it's lowercase
     my $npc;
 
-print Dumper $race;
     #check to see if there is a "half-elf section in the names_data"
     if (! defined $names_data->{'race'}->{ $race} ){
         #half-elves don't exist, in the names_data file, so lets see if a names option exists.
         if (defined $xml_data->{'nameoptions'}->{'race'}->{$race}){
-print Dumper  $xml_data->{'nameoptions'}->{'race'}->{$race};
             #if it does, steal a random race option from here and use it.
             $race= rand_from_array( $xml_data->{'nameoptions'}->{'race'}->{$race}->{'option'})->{'content'};
         }

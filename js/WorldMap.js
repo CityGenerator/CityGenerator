@@ -112,8 +112,9 @@ WorldMap.prototype.findNeighborCities = function(cityid,count){
         return  (a.distance < b.distance) ? -1 : 1
     }
 
-WorldMap.prototype.redrawRegion = function(canvas){
-    this.calculateRegionMap(this.regionid)
+WorldMap.prototype.redrawRegion = function(canvas,scale){
+    if (scale ==undefined) {scale=1}
+    this.calculateRegionMap(this.regionid,scale)
     this.paintBackground(canvas,'#ffffff');
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
@@ -122,10 +123,10 @@ WorldMap.prototype.redrawRegion = function(canvas){
     this.drawRegionBorders(canvas,true); 
     this.drawCities(canvas);
     this.drawCityNames(canvas);
-    this.drawgrid(canvas); 
+    this.drawgrid(canvas);
 }
 
-WorldMap.prototype.calculateRegionMap = function(regionid){
+WorldMap.prototype.calculateRegionMap = function(regionid,scale){
     var region=this.regions[regionid]
     var smx=  region.bbox.xr-region.bbox.xl
     var bmx=  this.bbox.xr - this.bbox.xl
@@ -133,7 +134,7 @@ WorldMap.prototype.calculateRegionMap = function(regionid){
     var smy=  region.bbox.yb-region.bbox.yt
     var bmy=  this.bbox.yb - this.bbox.yt
     var multy= bmy/smy
-    var mult= Math.min(multx,multy)
+    var mult= Math.min(multx,multy)*scale
     this.xoffset=-region.bbox.xl*mult
     this.yoffset=-region.bbox.yt*mult
     this.setMultiplier(mult)
@@ -153,7 +154,7 @@ WorldMap.prototype.drawCityName = function(canvas,city){
     context.save();
 
     context.fillStyle="rgba(0,0,0,1)";
-    context.font =  (6*this.xmultiplier)+"px Arial" ;
+    context.font = "18px Arial" ;
     var nameoffsetx= 0
     var nameoffsety=0
     var xa=(this.xoffset)+city.point.x*this.xmultiplier+10
@@ -297,14 +298,21 @@ WorldMap.prototype.drawTexture = function(canvas){
 /* ========================================================================= */
 
 WorldMap.prototype.assignCities = function(){
+    // Loop through each city
     for (var cityid=0 ; cityid<this.cities.length ; cityid++){
         var city=this.cities[cityid];
         var cityregionID=Math.floor(   (city.seed%100)/10  );
+        var region=this.regions[cityregionID]
+        var viableregioncells=[]
+        for (var i=0; i<region.cells.length; i++){
+            if (region.cells[i].city ==undefined && ! region.cells[i].lake){
+               viableregioncells.push(region.cells[i])
+            }
+        }
+        //TODO FIXME ensure regions are a minimum of 10 cells
+        city.cell=viableregioncells[Math.floor( Math.random()*viableregioncells.length  )]
 
-        var cellcount=this.regions[cityregionID].cells.length;
-
-        var randomCellID=Math.floor( Math.random()*cellcount  )
-        city.cell=this.regions[cityregionID].cells[randomCellID]
+        city.cell.city=true
 
         var corners=[]
         for (var i=0; i<city.cell.corners.length ; i++){
@@ -326,16 +334,9 @@ WorldMap.prototype.assignCities = function(){
         var cornerIDc =Math.floor(Math.random()*corners.length)
         var vc=city.cell.corners[ corners.splice( cornerIDc ,1)[0]];
 
-        city.point=this.triangulatePosition(va,vb,vc);
+        //city.point=this.triangulatePosition(va,vb,vc);
+        city.point=city.cell.site
         city.radius=        (parseInt(city.size_modifier)+10)/3
-
-        city.bbox={  xl:city.point.x-city.radius,
-                    xr:city.point.x+city.radius, 
-                    yt:city.point.y-city.radius,
-                    yb:city.point.y+city.radus}
-
-
-
         //kingdom.cities.push(city)
         this.cities[cityid]=city
     }
@@ -1150,6 +1151,41 @@ WorldMap.prototype.buildTreemap = function() {
     return treemap;
 }
 
+WorldMap.prototype.setCurrentCity = function(ev,canvas) {
+    // >>> http://www.quirksmode.org/js/events_properties.html#position
+    var x = 0;
+    var y = 0;
+    // Ensure that ev is not null
+    if (!ev) {  ev = window.event;    }
+
+    if (ev.pageX || ev.pageY) {
+        x = ev.pageX;
+        y = ev.pageY;
+    } else if (e.clientX || e.clientY) {
+        // I have no idea where e comes from.
+        x = ev.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        y = ev.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+    // <<< http://www.quirksmode.org/js/events_properties.html#position
+    x -= canvas.offsetLeft;
+    y -= canvas.offsetTop;
+
+
+    cellid = this.cellIdFromPoint((x-this.xoffset)/this.xmultiplier,(y-this.yoffset)/this.ymultiplier);
+    canvas.style.cursor='auto';
+    if (cellid !== undefined) {
+        var cell=this.diagram.cells[cellid]
+        for (var i=0; i<this.cities.length; i++) {
+            var city=this.cities[i]
+            if (city.cell.site.voronoiId == cell.site.voronoiId){
+                this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,.3)');
+                canvas.style.cursor='pointer';
+            }            
+        }
+    }
+
+}
+
 
 WorldMap.prototype.gotoCity = function(ev,canvas) {
     // >>> http://www.quirksmode.org/js/events_properties.html#position
@@ -1210,10 +1246,6 @@ WorldMap.prototype.gotoRegion = function(ev,canvas) {
             window.location="/regionmap?region="+this.continentseed+""+ this.activeregion 
         }
     }
-}
-
-WorldMap.prototype.setCurrentCity = function(ev,canvas) {
-
 }
 
 WorldMap.prototype.setCurrentRegion = function(ev,canvas) {
