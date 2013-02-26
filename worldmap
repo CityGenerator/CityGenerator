@@ -152,7 +152,7 @@ sub describe_header{
             </head>
             <body onload=\"
                 canvas=document.getElementById('worldmap')
-                continentmap=build_continent({
+                continentmap=new WorldMap({
                                 seed:$city->{'seed'},
                                 sites:9000,
                                 canvas:canvas,

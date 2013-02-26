@@ -4,60 +4,6 @@
 /* configure all of the maps and add the legend.
 /* ========================================================================= */
 
-function build_continent( params ){
-    console.log('start building continent on '+params.seed)
-    // regionmod determines which of the 10 regions on this continent to use.
-    // With a cityid of 744158, the 5 indications which region to focus on
-    var regionmod=Math.floor(   (params.seed%100)/10  );
-
-    // citymod determines which of the 10 cities in this region to use.
-    // uses the last  digit of the cityid: 744158 -> 8
-    var citymod=Math.floor(params.seed%10);
-
-    // continent seed refers to which continent we're on- it essentially
-    // ignores the last two digits of the cityid: 744158 -> 744100 
-    var continentseed=params.seed -  params.seed%100;
-
-    // Begin seeding with the continent seed!
-    Math.seedrandom(continentseed);
-
-    
-    console.log("fuuu"+params.seed)
-
-
-    // This is the crux of our entire map.
-    var map=new WorldMap(params,params.canvas.height,params.sites,params.seed,params.neighbors,params.neighborRegions);
-
-    return map
-}
-
-function print_text( map ){
-    print_legend(map)
-    print_neighbors(map);
-    print_diplomatic_ties(map);
-    console.log(map)
-
-
-}
-
-
-/* ========================================================================= */
-/* build_city is called by CityGenerator to build the city map. We pass in
-/* everything via the params object to make things easier.
-/* ========================================================================= */
-
-function build_city(  params  ){
-
-    // Step 1) we need to set our seed to ensure consistency
-    Math.seedrandom(params.seed)
-
-    // Generate our base CityMap
-    var map=new CityMap(  params.canvas.width, params.canvas.height, params, document.continentmap.currentcitycell.color  );
-    // Generate the key parts of the city.
-
-    print_Citylegend(map)
-    return map
-}
 
 /* ========================================================================= */
 /* 
@@ -79,14 +25,12 @@ function embiggen( canvas ){
             worldmap.drawbox( worldmap.cities[worldmap.currentCityId].bbox ,  bigcanvas,'rgba(255,0,255,1)'  )
             console.log('continent small, make big!')
 
-
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
             var citybox=worldmap.cities[worldmap.currentCityId].bbox
             worldmap.embiggen='region'  
             bigcanvas.style.display  ='block'
             worldmap.redrawRegion(bigcanvas)
             worldmap.setMultiplier(1)
-
 
     }else if (canvas.id == 'city' && worldmap.embiggen != 'city'){
             worldmap.embiggen='city'
@@ -100,13 +44,23 @@ function embiggen( canvas ){
 
             bigcanvas.style.display  ='none'
 
-
-
             console.log('hide all the things')
 
     }
 
+}
 
+
+/* ========================================================================= */
+/* 
+/* 
+/* ========================================================================= */
+
+function print_text( map ){
+    print_legend(map)
+    print_neighbors(map);
+    print_diplomatic_ties(map);
+    console.log(map)
 }
 
 
@@ -124,8 +78,6 @@ function print_diplomatic_ties(map){
     }
     diplomaticdiv.innerHTML+="</ul> \n"
 }
-
-
 
 
 /* ========================================================================= */
@@ -167,17 +119,5 @@ function print_Citylegend(map){
         document.getElementById('citylegend').innerHTML+='<span style="font-size:10px;color:#000;background-color:'+district.color+'">'+district.name +'</span> '
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 

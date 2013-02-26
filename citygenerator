@@ -169,7 +169,7 @@ sub describe_header{
             </head>
             <body onload=\"
                 create_flag(document.getElementById('flag') ,$city->{'seed'}, '$letter', $flagcolors); 
-                document.continentmap=build_continent({
+                document.continentmap=new WorldMap({
                                 seed:$city->{'seed'},
                                 sites:9000,
                                 canvas:document.getElementById('bigmap'),
@@ -187,7 +187,7 @@ sub describe_header{
 
 
 
-               document.citymap=build_city({    
+               document.citymap=new CityMap({    
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap'),
                                 districts: $districts, 
@@ -198,7 +198,9 @@ sub describe_header{
                                 isport:'$city->{'location'}->{'port'}',
                                 roads:$city->{'streets'}->{'roads'},
                                 mainroads:$city->{'streets'}->{'mainroads'},
+                                color:document.continentmap.currentcitycell.color
                             });
+                print_Citylegend(document.citymap);
                 document.citymap.redraw(document.getElementById('bigmap'))
                 document.citymap.setMultiplier(1/6)
                 document.citymap.redraw(document.getElementById('city'))

@@ -155,7 +155,7 @@ sub describe_header{
             <body onload=\"
                 canvas=document.getElementById('regionmap')
                 console.log('cityseed:'+'$city->{'seed'}' )
-                continentmap=build_continent({
+                continentmap=new WorldMap({
                                 seed:'$city->{'seed'}',
                                 sites:9000,
                                 canvas:canvas,

@@ -19,6 +19,7 @@ function  WorldMap(params) {
     this.regionseed=(seed- seed%10)/10
     this.continentseed=(seed- seed%100)/100
     this.regionid=this.regionseed%10
+    Math.seedrandom(this.continentseed);
 
     console.log("seed:"+seed+" region:"+this.regionseed+" continent:"+this.continentseed)
 

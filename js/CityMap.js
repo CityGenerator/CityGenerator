@@ -6,10 +6,12 @@
 CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
-function  CityMap(width,height,params,color) {
+function  CityMap(params) {
+    Math.seedrandom(params.seed)
+
     var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
     var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
-    VoronoiMap.call(this,width,height,totalcellcount)
+    VoronoiMap.call(this,params.canvas.width,params.canvas.height,totalcellcount)
 
     this.maxdistrictpercent=.9
     this.maxsingledistrictpercent=.3
@@ -19,7 +21,7 @@ function  CityMap(width,height,params,color) {
     this.roads=params.roads
     this.mainroads=params.mainroads
     this.districts=params.districts
-    this.color=color
+    this.color=params.color
 
     this.designateCity(citycellcount);
     this.generateCityWalls()
