@@ -9,7 +9,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( build_location set_seed d roll_from_array rand_from_array);
+@EXPORT_OK = qw( build_location generate_location_type set_seed d roll_from_array rand_from_array);
 
 
 use CGI;
@@ -20,7 +20,8 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $xml_data   = $xml->XMLin( "../locations.xml",  ForceContent => 1, ForceArray => ['option'] );
+our $xml_data   = $xml->XMLin( "xml/locations.xml",  ForceContent => 1, ForceArray => ['option'] );
+
 our $seed;
 our $originalseed;
 our $loc;
@@ -30,7 +31,7 @@ sub build_location{
     my ($newseed) = @_;
     $originalseed=set_seed($newseed);
     generate_location_type();
-    print Dumper $xml_data;
+    return $xml_data;
 }
 
 
@@ -40,6 +41,10 @@ sub build_location{
 #
 ###############################################################################
 sub generate_location_type {
+    my ($seed)=@_;
+    if (defined $seed){
+        set_seed($seed);
+    }
     my $type=rand_from_array($xml_data->{'location_type'}->{'location'});
     $loc->{'type'}=$type->{'type'};
 

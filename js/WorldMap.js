@@ -13,6 +13,7 @@ function  WorldMap(params) {
     var seed=params.seed
     var regions=params.regions
     var cities=params.cities
+    var locations=params.locations
 
 
     this.seed=seed
@@ -35,6 +36,7 @@ function  WorldMap(params) {
     this.bbox= {xl:0,xr:width,yt:0,yb:height},
 
     this.cities=cities;
+    this.locations=locations;
     this.regions=regions;
     this.treemap=null
     // continent seed refers to which continent we're on- it essentially
@@ -75,9 +77,28 @@ function  WorldMap(params) {
     this.assignRegions()
     this.assignCities();
     this.assignRivers();
+    this.assignLocations();
     this.area=this.sumLandArea(this.diagram.cells);
     this.closeneighbors=this.findNeighborCities(this.currentCityId,4);
 }
+
+WorldMap.prototype.assignLocations = function(){
+   var viablecellIDs=[];
+    for (var i = 0; i<this.diagram.cells.length; i++){
+        var cell=this.diagram.cells[i];
+        if (cell.city === undefined && cell.lake != true  && cell.ocean != true && cell.location === undefined ){
+            viablecellIDs.push(i);
+        }
+    }
+    for (var i = 0; i<this.locations.length; i++){
+        var locationID= this.continentseed+i
+        var myLocation=this.locations[i]
+        var randomviablecellID=viablecellIDs.splice( Math.floor( Math.random()*viablecellIDs.length  ),1)[0];
+        this.diagram.cells[randomviablecellID].location=myLocation;
+        this.locations[i].cellid=randomviablecellID;
+    }
+}
+
 WorldMap.prototype.sumLandArea = function(cells){
     var area=0
     for (var i = 0; i<cells.length ; i++){
@@ -120,6 +141,7 @@ WorldMap.prototype.redrawRegion = function(canvas,scale){
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
     this.drawLakes(canvas);
+    this.drawLocations(canvas);
     this.paintRegions(canvas,true); 
     this.drawRegionBorders(canvas,true); 
     this.drawCities(canvas);
@@ -149,6 +171,21 @@ WorldMap.prototype.drawCityNames = function(canvas){
     }
     
 }
+WorldMap.prototype.drawLocations = function(canvas){
+    var context = canvas.getContext('2d');
+    context.save();
+    for (var locationid=0 ; locationid<this.locations.length ; locationid++){
+        var mylocation=this.locations[locationid];
+        var cell=this.diagram.cells[mylocation.cellid]
+        var drawing = new Image() 
+        drawing.src = "icons/"+mylocation.type+".png"
+        var xa=(this.xoffset)+cell.site.x*this.xmultiplier-16
+        var ya=(this.yoffset)+cell.site.y*this.ymultiplier-16
+        context.drawImage(drawing, xa,ya);
+    }
+    context.restore();
+}
+
 
 WorldMap.prototype.drawCityName = function(canvas,city){
     var context = canvas.getContext('2d');
@@ -1176,12 +1213,18 @@ WorldMap.prototype.setCurrentCity = function(ev,canvas) {
     canvas.style.cursor='auto';
     if (cellid !== undefined) {
         var cell=this.diagram.cells[cellid]
-        for (var i=0; i<this.cities.length; i++) {
-            var city=this.cities[i]
-            if (city.cell.site.voronoiId == cell.site.voronoiId){
-                this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,.3)');
-                canvas.style.cursor='pointer';
-            }            
+        if (cell.location !== undefined){
+                    this.colorPolygon(cell,canvas,'highlight','rgba(128,255,128,.3)');
+                    canvas.style.cursor='pointer';
+
+        }else{
+            for (var i=0; i<this.cities.length; i++) {
+                var city=this.cities[i]
+                if (city.cell.site.voronoiId == cell.site.voronoiId){
+                    this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,.3)');
+                    canvas.style.cursor='pointer';
+                }            
+            }
         }
     }
 
@@ -1213,11 +1256,16 @@ WorldMap.prototype.gotoCity = function(ev,canvas) {
     console.log(cellid)
     if (cellid !== undefined) {
         var cell=this.diagram.cells[cellid]
-        for (var i=0; i<this.cities.length; i++) {
-            var city=this.cities[i]
-            this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,1)');
-            if (city.cell.site.voronoiId == cell.site.voronoiId){
-                window.location="/citygenerator?cityid="+city.seed 
+        if (cell.location !== undefined){
+                    window.location="/locationgenerator?seed="+cell.location.seed
+        
+        }else{
+            for (var i=0; i<this.cities.length; i++) {
+                var city=this.cities[i]
+                this.colorPolygon(cell,canvas,'highlight','rgba(128,128,255,1)');
+                if (city.cell.site.voronoiId == cell.site.voronoiId){
+                    window.location="/citygenerator?cityid="+city.seed 
+                }
             }
         }
     }

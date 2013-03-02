@@ -157,7 +157,8 @@ sub describe_header{
                                 sites:9000,
                                 canvas:canvas,
                                 cities:$neighbors,
-                                regions:$regions
+                                regions:$regions,
+                                locations:[]
                             });
                 continentmap.redrawMap(canvas);
              ;\">

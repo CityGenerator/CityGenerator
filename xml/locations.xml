@@ -176,7 +176,7 @@
             <option type='' >
             </option>
         </location>
-        <location type='Sign' desc=''>
+        <location type='sign' desc=''>
             <option type='mile marker' >
             </option>
             <option type='quarantine marker' >
@@ -285,7 +285,7 @@
             <option type='often used'/>
             <option type='rarely used'/>
             <option type='long abandoned'/>
-        <used>
+        </used>
         <smalltime>
             <option type='seconds'/>
             <option type='minutes'/>

@@ -67,7 +67,7 @@ VoronoiMap.prototype.resizeGraph = function(width,height){
         point.y = this.translatePoint( point.y, 0, this.height, height);
         this.points[i]=point
     }
-
+    // FIXME wtf did I do this, it looks inefficient as shit.
     var diagram = this.voronoi.compute(this.points, {xl:0,xr:width,yt:0,yb:height });
     for (var i=0; i<this.diagram.cells.length; i++) {
         diagram.cells[i].elevation=this.diagram.cells[i].elevation
@@ -168,8 +168,6 @@ VoronoiMap.prototype.improveRandomPoints = function(){
 VoronoiMap.prototype.paintDot = function(canvas,x,y,radius,color){
     var ctx = canvas.getContext('2d');
     ctx.save()
-//    ctx.scale(this.scale,this.scale);
-
 
     ctx.strokeStyle=color;
     ctx.fillStyle=color;

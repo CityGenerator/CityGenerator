@@ -2,7 +2,14 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(canvas,seed,letter,colorlist) {
+function create_flag(params) {
+console.log(params)
+    var canvas=params.canvas
+    var seed=params.seed
+    var letter=params.letter
+    var colorlist=params.colorlist
+
+
     Math.seedrandom(seed);
 
 
@@ -14,7 +21,7 @@ function create_flag(canvas,seed,letter,colorlist) {
     // Set the base size of the flag; height will 
     // always be 100, but width may change.
     var ratio=set_ratio( flag );
-    var width=180;
+    var width=canvas.width;
     var height=width*ratio;
 
     canvas.height=height;

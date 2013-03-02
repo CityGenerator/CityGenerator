@@ -11,8 +11,8 @@ use XML::Simple;
 use lib "lib/";
 ###################################################
 #TODO it would be cool if it could rain frogs or potatoes
-use City 'build_city', 'd', 'generate_name', 'set_seed' ;
-use Location;
+use City 'build_city', 'd', 'generate_name' ;
+
 
 my $xml = new XML::Simple;
 
@@ -23,7 +23,8 @@ our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
 our $names_data = $xml->XMLin(   "xml/names.xml", ForceContent => 1, ForceArray  =>[]  );
 
-my $testcityid=0;
+
+my $testcityid=City::set_seed();
 if (defined $q->param('cityid')){
     $testcityid=$q->param('cityid');
 }elsif (defined $q->param('continent')){
@@ -34,12 +35,12 @@ if (defined $q->param('cityid')){
 
 
 
+
 #########################################################################
 # First thing we need to do is establish a city skeleton of information,
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
 our $city=build_city($testcityid);
-our @locations=generate_location_types($testcityid);
 
 
 #########################################################################
@@ -88,6 +89,12 @@ exit;
 sub describe_city {
     my $content=describe_header();
 }
+sub get_flag_colors{
+
+    my @colors=shuffle map {  $_->{'hex'} } @{ $city->{'flag'}->{'colors'} };
+    return "['". join("','",@colors)."']";
+
+}
 
 sub format_regions{
     my $content="[";
@@ -110,17 +117,6 @@ sub format_neighbors{
                 "relation:'".$neighbor->{'relation'}."',".
                 "size:'".    $neighbor->{'population'}->{'size'}."',".
                 "size_modifier:'".    $neighbor->{'size_modifier'}."'".
-            "},\n";
-        }
-    $content.="]";
-    return $content;
-}
-sub format_locations{
-    my $content="[";
-    foreach my $location ( @locations ){
-        $content.="{".
-                "seed:'".    $location->{'id'}."',".
-                "type:'".    $location->{'type'}."',".
             "},\n"
     }
     $content.="]";
@@ -128,6 +124,7 @@ sub format_locations{
 }
 
 sub describe_header{
+    my $flagcolors=get_flag_colors(); 
     my $letter = substr $city->{'name'}, 0,1;
 
     my $regionseed=$city->{'seed'}-$city->{'seed'}%10 ;
@@ -143,17 +140,12 @@ sub describe_header{
     my $districts="['".join("', '",@{ $city->{'districts'}})."']";
     my $neighbors=format_neighbors();
     my $regions=format_regions();
-    my $locations=format_locations();
-    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
-    
-
-    my $regionname=[  grep {$_->{'id'} eq $regionseed }    @{$city->{'realms'}}  ]->[0]->{'name'} ;
-
-
+    my $continentseed=($city->{'seed'}-$city->{'seed'}%100)/100 ;
+    my $continentname=$city->{'continent'};
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
-                <title>City Generator: $regionname ($regionseed)</title>
+                <title>City Generator: Continent of $continentname ($continentseed)</title>
                 <script src='js/flag.js' ></script>
                 <script src='js/rhill-voronoi-core.js' ></script>
                 <script src='js/simplex-noise.js' ></script>
@@ -166,43 +158,10 @@ sub describe_header{
                 <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
-                canvas=document.getElementById('regionmap')
-                console.log('cityseed:'+'$city->{'seed'}' )
-                continentmap=new WorldMap({
-                                seed:'$city->{'seed'}',
-                                sites:9000,
-                                canvas:canvas,
-                                cities:$neighbors,
-                                regions:$regions,
-                                locations:$locations,
-                            });
-                console.log(continentmap);
-                continentmap.redrawRegion(canvas);
-
-
+                create_flag({canvas:document.getElementById('flag') ,seed:$city->{'seed'}, letter:'$letter', colorlist:$flagcolors}); 
              ;\">
-                <canvas id=\"regionmap\" width='1080' height='650' onclick='continentmap.gotoCity(event,this)' onmousemove=' continentmap.redrawRegion(canvas);continentmap.setCurrentCity(event,this);  '></canvas>
-                <div style='display:inline; width:32px;float:left;'>
-                    <img title='battleground'   src='icons/battleground.png'/>
-                    <img title='building'       src='icons/building.png'/>
-                    <img title='disaster'       src='icons/disaster.png'/>
-                    <img title='herd'           src='icons/herd.png'/>
-                    <img title='holy'           src='icons/holy.png'/>
-                    <img title='landform'       src='icons/landform.png'/>
-                    <img title='magical'        src='icons/magical.png'/>
-                    <img title='military'       src='icons/military.png'/>
-                    <img title='object'         src='icons/object.png'/>
-                    <img title='ruins'          src='icons/ruins.png'/>
-                    <img title='sculpture'      src='icons/sculpture.png'/>
-                    <img title='sign'           src='icons/sign.png'/>
-                    <img title='trail'          src='icons/trail.png'/>
-                    <img title='traveler'       src='icons/traveler.png'/>
-                    <img title='vegetation'     src='icons/vegetation.png'/>
-                </div>
-                <div id='regionlegend'>   </div>
-                <div id='continentlegend'></div>
-                <div id='neighboring_cities'></div>
-                <div id='diplomatic_ties_text'></div>
+                <h1><a href='citygenerator?=$city->{'seed'}'>Flag of $city->{'name'} ($city->{'seed'})</a></h1>
+                <canvas id='flag' style=\"border:1px solid black;\" width='600' height='600'   > </canvas>
 
                 <div id='footer'>
                 
@@ -236,19 +195,3 @@ sub print_landmarks {
 }
 
 
-###############################################################################
-#
-# generate_location_names - return the locations to be used by the map
-#
-###############################################################################
-sub generate_location_types{
-    my ($cityid)= @_;
-    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
-    my @locations;
-    for (my $i=0; $i <100; $i++){
-        my $locationseed=$continentseed+$i;
-        push @locations, {'id'=>$locationseed, 'type'=> Location::generate_location_type($locationseed) }
-    }
-
-    return @locations;
-}

@@ -168,14 +168,16 @@ sub describe_header{
             <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
-                create_flag(document.getElementById('flag') ,$city->{'seed'}, '$letter', $flagcolors); 
+                create_flag({canvas:document.getElementById('flag') ,seed:$city->{'seed'}, letter:'$letter', colorlist:$flagcolors}); 
                 document.continentmap=new WorldMap({
                                 seed:$city->{'seed'},
                                 sites:9000,
                                 canvas:document.getElementById('bigmap'),
                                 cities:$neighbors,
                                 regions:$regions,
-                                neighborRegions:$neighborrealms
+                                neighborRegions:$neighborrealms,
+                                locations:[]
+
                             });
                 document.continentmap.redrawMap(document.getElementById('bigmap'));
                 document.continentmap.setMultiplier(1/6)

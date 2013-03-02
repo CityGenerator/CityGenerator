@@ -483,8 +483,7 @@ Voronoi.prototype.RBTree.prototype.getLast = function(node) {
 // ---------------------------------------------------------------------------
 // Diagram methods
 
-Voronoi.prototype.Diagram = function(site) {
-	this.site = site;
+Voronoi.prototype.Diagram = function() {
 	this.halfedges = [];
 	};
 
