@@ -145,7 +145,7 @@ sub describe_header{
     my $content="        <!DOCTYPE html> 
         <html>
             <head>
-                <title>City Generator: Continent of $continentname ($continentseed)</title>
+                <title>City Generator: Flag of  $city->{'name'} ($city->{'seed'})</title>
                 <script src='js/flag.js' ></script>
                 <script src='js/rhill-voronoi-core.js' ></script>
                 <script src='js/simplex-noise.js' ></script>
