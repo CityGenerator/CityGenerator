@@ -8,7 +8,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( set_seed rand_from_array roll_from_array d parse_object);
+@EXPORT_OK = qw( set_seed rand_from_array roll_from_array d parse_object seed);
 
 
 use Data::Dumper;
@@ -61,6 +61,7 @@ sub roll_from_array {
     my ( $roll, $items ) = @_;
     my $selected_item = $items->[0];
     for my $item (@$items) {
+
         if (defined $item->{'min'} and defined $item->{'max'} ){
             if ( $item->{'min'} <= $roll and $item->{'max'} >= $roll ) {
                 $selected_item = $item;
