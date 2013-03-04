@@ -1490,7 +1490,6 @@ sub assign_races {
         push @races, add_race_features( $racepercentage, $newrace );
     }
 
-
     # If the base_pop has an "off" race, add it.
     if ( $city->{'add_other'} eq 'true' ) {
         my $newrace              = get_other_race($base_pop);

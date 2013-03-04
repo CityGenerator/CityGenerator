@@ -40,16 +40,6 @@ subtest 'test rand_from_array' => sub {
     done_testing();
 };
 
-#sub rand_from_array {
-#    my ($array) = @_;
-#    srand $seed;
-#    my $index = int( rand( scalar @{ $array} ) );
-#    return $array->[$index];
-#}
-#
-
-
-
 subtest 'test set_seed' => sub {
     my $result;
     srand(1);
@@ -245,8 +235,5 @@ subtest 'test parse_object parts' => sub {
 
 
 
-
-
-    done_testing();
 1;
 
