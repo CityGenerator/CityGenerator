@@ -14,7 +14,7 @@ require Exporter;
 
 use CGI;
 use Data::Dumper;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
@@ -23,7 +23,6 @@ my $xml = new XML::Simple;
 
 our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => [] );
-our $seed;
 our $originalseed;
 our $city;
 
@@ -44,7 +43,7 @@ our $city;
 
 ###############################################################################
 #
-# build_city - This is the primary method for building a city. using $seed,
+# build_city - This is the primary method for building a city. using $GenericGenerator::seed,
 # generate the city name, then the core, creedence, physical traits, economy,
 # military and current events. Once that's finished you have a fully
 # funcitonal city.
@@ -55,7 +54,7 @@ sub build_city {
     my ($newseed) = @_;
     $originalseed=set_seed($newseed);
 
-    $city->{'name'} = generate_name($seed);
+    $city->{'name'} = generate_name($GenericGenerator::seed);
     $city->{'debug'}='';
     generate_realm();
     generate_continent();
@@ -75,8 +74,8 @@ sub build_city {
 
 sub generate_name {
     my ($newseed) = @_;
-    $seed           = set_seed($newseed);
-    $city           = { 'seed' => $seed };
+    $GenericGenerator::seed           = set_seed($newseed);
+    $city           = { 'seed' => $GenericGenerator::seed };
     return parse_object( $xml_data->{'cityname'} )->{'content'};
 }
 
@@ -217,7 +216,7 @@ sub generate_citizens {
     $city->{'citizens'} = [];
     my $businesslist = $city->{'business'};
     while ( $citizencount-- > 0 ) {
-        $seed++;
+        $GenericGenerator::seed++;
         my $race    = rand_from_array( $city->{'races'} );
         my $citizen = generate_npc_name( lc $race->{'content'} );
         $citizen->{'skill'}    = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
@@ -292,7 +291,7 @@ sub generate_flag_colors {
     my $colorcount=5;
     my @colors=shuffle @{$xml_data->{'flagcolors'}->{'color'}};
     while ($colorcount-- >0){
-        $seed++;
+        $GenericGenerator::seed++;
         my $color=pop @colors;
         if ( ref( $color->{'meaning'}) eq 'ARRAY'){
             $color->{'meaning'}=rand_from_array($color->{'meaning'})->{'content'};
@@ -446,7 +445,7 @@ sub generate_events {
     $city->{'events'}=[];
     my @events;
     for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
-        $seed++;
+        $GenericGenerator::seed++;
         if ($limit > 0 ){
             my $eventname=$event->{'type'};
             my $desc = rand_from_array(  $event->{'option'}  )->{'content'};
@@ -578,7 +577,7 @@ sub generate_travelers{
     my $travelercount= int( ( 6 +  $city->{'size_modifier'} )/2);
     $city->{'travelers'}=[];
     while ($travelercount-- ){
-        $seed++;
+        $GenericGenerator::seed++;
         #TODO switch to roll_from_array
         my $travelerclass= rand_from_array( [ keys %{$xml_data->{'classes'}->{'class'}}] );
         my $traveler=$xml_data->{'classes'}->{'class'}->{$travelerclass};
@@ -624,7 +623,7 @@ sub generate_taverns{
     $taverncount=min(5 ,  $taverncount);
     $city->{'taverns'}=[];
     while ($taverncount-- > 0){
-        $seed++;
+        $GenericGenerator::seed++;
         my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
         $tavern->{'cost'}=$city->{'economy'};
         $tavern->{'population'}=0;
@@ -745,7 +744,7 @@ sub generate_resources{
 
     $city->{'resources'}=[];
     while ($resource_count-- > 0 ){
-        $seed++;
+        $GenericGenerator::seed++;
         my $resource=rand_from_array($xml_data->{'resources'}->{'resource'});
         push @{ $city->{'resources'} }, parse_object($resource);
     }
@@ -771,7 +770,7 @@ sub generate_markets {
     # this allows us to get "duplicates"
     my $tries=scalar( @{ $xml_data->{'markets'}->{'option'} })*2;
     while ( $marketcount > 0 and $tries-- >0){
-        $seed++;
+        $GenericGenerator::seed++;
         # get a shuffled list of markets
         my @markets=shuffle @{ $xml_data->{'markets'}->{'option'} };
 
@@ -877,7 +876,7 @@ sub generate_neighborRealms {
         my $realm={}; 
         $realm->{'id'}=$realmseed;
         $realm->{'name'}= parse_object($xml_data->{'realm'})->{'content'};
-        #$city->{'relation'} =" $neighborid + $originalseed  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+        #$city->{'relation'} =" $neighborid + $originalseed  = $GenericGenerator::seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
         push @{$city->{'realms'}}, $realm;
     }
     set_seed($originalseed);
@@ -911,7 +910,7 @@ sub generate_neighbors {
         # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
        my $mixseed=$neighborid+$originalseed;
         set_seed($mixseed);
-        $city->{'relation'} =" $neighborid + ".$originalseed."  = $seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
+        $city->{'relation'} =" $neighborid + ".$originalseed."  = $GenericGenerator::seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
 
         push @{$origcity->{'neighbors'}}, $city;
     }
@@ -1503,7 +1502,7 @@ sub assign_races {
     # things added up to 99% for a reason.
     push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
     for my $race ( @races ) {
-        $seed++;
+        $GenericGenerator::seed++;
         my $roll= &d(10)-5 + $race->{'tolerance'} ;
         my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerancealignment'}->{'option'} );
         $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
@@ -1621,7 +1620,7 @@ sub set_city_type {
 #
 ###############################################################################
 sub set_city_size {
-    set_seed( $seed);
+    set_seed( $GenericGenerator::seed);
     my $citysizelist=$xml_data->{'citysize'}->{'city'} ;
     my $citysize = roll_from_array( &d(100), $citysizelist );
 

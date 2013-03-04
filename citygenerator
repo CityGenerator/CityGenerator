@@ -168,6 +168,7 @@ sub describe_header{
             <link  href='css/style.css' type='text/css' rel='stylesheet'/>
             </head>
             <body onload=\"
+            console.log('city seed'+$city->{'seed'})
                 create_flag({canvas:document.getElementById('flag') ,seed:$city->{'seed'}, letter:'$letter', colorlist:$flagcolors}); 
                 document.continentmap=new WorldMap({
                                 seed:$city->{'seed'},
@@ -187,7 +188,7 @@ sub describe_header{
                 document.continentmap.redrawRegion(document.getElementById('bigmap'))
                 document.continentmap.redrawRegion(document.getElementById('region'),1/6)
 
-
+                console.log(document.continentmap)
 
                document.citymap=new CityMap({    
                                 seed:$city->{'seed'},

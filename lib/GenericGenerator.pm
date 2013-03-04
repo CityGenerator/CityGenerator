@@ -67,19 +67,19 @@ sub roll_from_array {
                 $selected_item = $item;
                 last;
             }
-        }elsif ( defined $item->{'min'}   and ! defined $item->{'max'} ){
-            if ( $item->{'min'} <= $roll ) {
+        }elsif ( ! defined $item->{'min'} and !  defined $item->{'max'} ){
                 $selected_item = $item;
                 last;
-            }
-        }elsif ( ! defined $item->{'min'} and   defined $item->{'max'} ){
+        }elsif ( ! defined $item->{'min'}  ){
             if ( $item->{'max'} >= $roll ) {
                 $selected_item = $item;
                 last;
             }
-        }elsif ( ! defined $item->{'min'} and !  defined $item->{'max'} ){
+        }elsif ( ! defined $item->{'max'} ){
+            if ( $item->{'min'} <= $roll ) {
                 $selected_item = $item;
                 last;
+            }
         }
     }
     return $selected_item;
@@ -144,7 +144,7 @@ sub parse_object {
                         (!defined $object->{$part.'_chance'}) or
                         # If chance is defined, compare it to
                         # the roll, and add it to the list.
-                        (defined $object->{$part.'_chance'} and &d(100) <= $object->{$part.'_chance'}) ) {
+                        ( &d(100) <= $object->{$part.'_chance'}) ) {
 
                     $newobj->{$part}=$newpart->{'content'};
                     if ($part eq 'title'){
