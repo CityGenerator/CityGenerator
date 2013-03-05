@@ -1334,6 +1334,7 @@ sub generate_secondary_power {
     my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
     my $power = rand_from_array(  $powerlist );
     $city->{'secondarypower'}->{'power'} = rand_from_array(  $powerlist )->{'type'};
+    $city->{'secondarypower'}->{'subplot_chance'}=$power->{'subplot_chance'};
     if ( &d(100) <= $power->{'subplot_chance'} ){
         $city->{'secondarypower'}->{'subplot'} = rand_from_array(  $power->{'subplot'}  )->{'content'};
     }
@@ -1396,6 +1397,7 @@ sub set_laws {
 ###############################################################################
 sub generate_city_ethics {
     foreach my $mod ( qw/ moral order/ ) {
+        $GenericGenerator::seed++;
         $city->{$mod} = &d(100);
         # adjust all modifiers for each race
         for my $race ( @{ $city->{'races'} } ) {
@@ -1407,6 +1409,7 @@ sub generate_city_ethics {
         my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
         $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
     }
+    $GenericGenerator::seed=set_seed($originalseed);
 }
 ###############################################################################
 #
@@ -1418,7 +1421,8 @@ sub generate_city_beliefs {
 
     # set the baseline random modifier
     foreach my $mod (qw/ magic authority economy education travel tolerance military / ){
-        $city->{$mod} =&d(4)-2;
+        $GenericGenerator::seed++;
+        $city->{$mod} =&d(5)-3;
         # adjust all modifiers for each race
         for my $race ( @{ $city->{'races'} } ) {
             $city->{$mod} += $race->{$mod};
@@ -1429,7 +1433,7 @@ sub generate_city_beliefs {
         my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
         $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
     }
-
+    $GenericGenerator::seed=set_seed($originalseed);
 
 }
 
@@ -1448,7 +1452,7 @@ sub generate_pop_counts {
 
     # Loop through each race percentage, and get a rough count based
     # on population total
-    for my $race ( sort @{ $city->{'races'} } ) {
+    for my $race ( sort {$a->{'percent'} <=> $b->{'percent'}  }   @{ $city->{'races'} } ) {
         $race->{'count'} = ceil( $population * $race->{'percent'} / 100 );
         $newpop += $race->{'count'};
         push @races, $race;
@@ -1459,7 +1463,7 @@ sub generate_pop_counts {
     $city->{'races'}      = \@races;
 
     # Loop through the races a second time, recalulating percentages.
-    for my $race ( sort @{ $city->{'races'} } ) {
+    for my $race ( sort {$a->{'percent'} <=> $b->{'percent'}  }   @{ $city->{'races'} } ) {
         $race->{'percent'} = int( $race->{'count'} / $newpop * 1000 ) / 10;
         push @newraces, $race;
     }
