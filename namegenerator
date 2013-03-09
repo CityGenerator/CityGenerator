@@ -67,7 +67,7 @@ sub print_page {
 
     $tt->process('nameform.tmpl', $vars, \$form) || die $tt->error(), "\n";
     $vars = {
-        'header'        => 'Name Generator',
+        'title'        => 'Name Generator',
         'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$originalseed.'</a>',
         'content'       => $form,
     };
