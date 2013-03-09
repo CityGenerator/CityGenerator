@@ -52,11 +52,7 @@ h1,h2,h3,h4,h5,h6 {
 h4,h5,h6 {font-weight: bold;}
 
 h1 {font-size: 1.6em;}
-h2 {font-size: 1.5em;}
-h3 {font-size: 1.4em;}
-h4 {font-size: 1.2em;}
-h5 {font-size: 1em;}
-h6 {font-size: 0.9em;}
+h2 {font-size: 1em;}
 
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin: 0;}
 
@@ -291,13 +287,17 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
         border-bottom: 1px solid #696755;
         list-style: none;
 }
-#subnav li a {
+#subnav li a,#subnav li div {
         background: #89866F;
         color: #111;
         display: block;
         padding: 8px 0 8px 12px;
         width: 148px;
         text-decoration: none;
+}
+#subnav li div {
+        font:bold 1.1em Verdana,sans-serif;
+        padding: 8px 6px; 8px 4px;
 }
 #subnav li a:hover {
         background: #9C997C;

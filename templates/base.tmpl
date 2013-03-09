@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <title>CityGenerator: [% title %]</title>
+        <script src='/js/flag.js' ></script>
+        <script src='/js/rhill-voronoi-core.js' ></script>
+        <script src='/js/simplex-noise.js' ></script>
+        <script src='/js/map.js' ></script>
+        <script src='/js/VoronoiMap.js' ></script>
+        <script src='/js/CityMap.js' ></script>
+        <script src='/js/WorldMap.js' ></script>
+        <script src='http://code.jquery.com/jquery-latest.js'></script>
+        <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
+    </head>
+    <body onload="[% onload %]">
+
+        <div style='color:red' id='debugconsole' >[% debug %]</div>
+        <div id='container'>
+            <div class='left' id='main_left'>
+                <div id='header'>
+                <img src="/icons/cityGenerator.png" style="float:left;"/>
+                    <h1>[% header %]</h1>
+                    <h2>[% subheader %]</h2>
+                </div>
+                <div class='right' id='main'>
+                    <div class='padded'>
+                        [% content %]
+                    </div>
+                </div>
+                <div class='left' id='subnav' style="height:300px">
+                     <ul>
+                        <li> <div> Main</div>
+                            <ul>
+                                <li><a href='/citygenerator'>CityGenerator</a></li>
+                                <li><a href='/worldmap'>WorldMap</a></li>
+                                <li><a href='/regionmap'>RegionMap</a>
+                                <li><a href='/namegenerator'>NameGenerator</a></li>
+                                <li><a href='/flaggenerator'>FlagGenerator</a></li>
+                            </ul>
+                        </li>
+                        [% navigation %]
+                    </ul>
+                </div>
+            </div>
+            <div class='right' id='main_right'>
+                <div class='padded'>
+                    [% rightnav %]
+                </div>
+            </div>
+            <div class='clearer'>&nbsp;</div>
+            <div id='footer'>
+                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
+                <p>[% footerlinks %]</p>
+                <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
+            </div>
+        </div>
+    </body>
+</html>    
+
+
+

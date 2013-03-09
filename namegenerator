@@ -1,0 +1,79 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use CGI;
+use Data::Dumper;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use Template;
+use XML::Simple;
+###################################################
+# Using findbin to locate our new City.pm module
+use lib "lib/";
+###################################################
+#TODO it would be cool if it could rain frogs or potatoes
+use NameGenerator ;
+use GenericGenerator;
+
+
+
+###########################################################
+# Yes, this is sloppy. I am aware, but it's also unique.
+# Unique, Ubiquitous Singletons.
+our $q = CGI->new;
+
+GenericGenerator::set_seed($q->param('seed')  );
+our $originalseed=$GenericGenerator::seed;
+my $namegen=NameGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($namegen);
+}elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $namegen;
+}elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
+
+}else {
+    print $q->header;
+    print print_page($namegen, $q->param('race'));
+}
+        
+exit;
+
+
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+#######################################################################################################################
+
+sub print_page {
+    my ($namegen,$race)=@_;
+    my $tt = Template->new({
+        INCLUDE_PATH => 'templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+    my $vars = {    
+        'races'         =>  NameGenerator::get_races() ,
+        'selectedrace'  =>  $race ,
+        'names'         =>  $namegen,
+    };
+    my $form;
+    my $qstring=$ENV{'QUERY_STRING'};
+    $qstring.="&seed=".$originalseed   if (! defined $q->param('seed'));
+
+    $tt->process('nameform.tmpl', $vars, \$form) || die $tt->error(), "\n";
+    $vars = {
+        'header'        => 'Name Generator',
+        'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$originalseed.'</a>',
+        'content'       => $form,
+    };
+    
+    $tt->process('base.tmpl', $vars) || die $tt->error(), "\n";
+}
+
+
+

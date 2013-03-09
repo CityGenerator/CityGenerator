@@ -1,0 +1,35 @@
+
+
+
+
+
+
+<div>
+    <p>Select a race and the number of names you wish to generate.</p>
+    <form>
+        <label>Race:</label>
+        <select name="race">
+            [% FOREACH racename = races %]
+                [% IF selectedrace == racename %]
+                     <option value='[% racename %]' selected>[% racename %]</option>
+                [% ELSE %]
+                     <option value='[% racename %]'>[% racename %]</option>
+                [% END %]
+
+            [% END %]
+        </select>
+        <label>Number of Names:</label>
+        <select name="count">
+             <option value='1'>1</option>
+             <option value='10' selected >10</option>
+             <option value='20'>20</option>
+             <option value='100'>100</option>
+        </select>
+        <input type='submit' value=' Generate! ' style='padding:2px;margin-left:5px;'/>
+    </form><br>
+        <ol>
+            [% FOREACH name = names %]
+             <li> [% name %]</li>
+            [% END %]
+        </ol>
+</div>

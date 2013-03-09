@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <names>
+    <race name='any'>
+        <allow>human</allow>
+        <allow>halfling</allow>
+        <allow>lizardfolk</allow>
+        <allow>ogre</allow>
+        <allow>troglodyte</allow>
+        <allow>elf</allow>
+        <allow>dwarf</allow>
+        <allow>gnome</allow>
+    </race>
+    
+    <race name='other'>
+        <allow>human</allow>
+        <allow>elf</allow>
+        <allow>half-orc</allow>
+        <allow>dwarf</allow>
+        <allow>gnome</allow>
+    </race>
+    <race name='half-elf'>
+        <allow>human</allow>
+        <allow>elf</allow>
+    </race>
+    <race name='half-orc'>
+        <allow>human</allow>
+        <allow>orc</allow>
+    </race>
+    <race name='half-dwarf'>
+        <allow>human</allow>
+        <allow>dwarf</allow>
+    </race>
+     <race name='deep dwarf'>
+        <allow>dwarf</allow>
+    </race>
+     <race name='drow'>
+        <allow>elf</allow>
+    </race>
+     <race name='lycanthrope'>
+        <allow>human</allow>
+    </race>
+
     <race name='lizardfolk'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
         <firstname>
@@ -1022,7 +1062,7 @@
             <post>er</post>
         </lastname>
     </race>
-    <race name='half-orc'>
+    <race name='orc'>
         <firstname title_chance='5' post_chance='70'>
             <title>Chief</title>
             <title>Shaman</title>

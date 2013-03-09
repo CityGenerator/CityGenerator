@@ -120,4 +120,51 @@ function print_Citylegend(map){
     }
 }
 
+function threedee(continentmap){
+    var camera, scene, renderer;
+    var geometry, material, mesh;
 
+    init();
+
+    function init() {
+
+        camera = new THREE.PerspectiveCamera( 45, continentmap.width / continentmap.height, 1, 1080 );
+
+        camera.position.z = 1000;
+        scene = new THREE.Scene();
+        var xres=1
+        var yres=1
+
+        var geometry = new THREE.PlaneGeometry(
+            continentmap.width, continentmap.height, // Width and Height
+            xres,yres     // Terrain resolution
+        );
+        geometry.vertices=[]
+        geometry.faces=[]
+//        for (var i =0 ; i< 1000; i++){
+//            var x=continentmap.points[i].x
+//            var y=continentmap.points[i].y
+//            console.log(x+" "+y)
+//            geometry.vertices.push(new THREE.Vector3(x-continentmap.width/2, y+continentmap.height/2, 0))
+//        }
+       geometry.vertices.push(new THREE.Vector3(-100, -100, 0))
+       geometry.vertices.push(new THREE.Vector3(-100, 100, 0))
+       geometry.vertices.push(new THREE.Vector3(100, -100, 0))
+
+        var normal = new THREE.Vector3( 0, 1, 0 );
+        geometry.vertices.push(normal);
+
+
+        material = new THREE.MeshBasicMaterial( { color: 0xffff00, wireframe: true } );
+
+        mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        renderer = new THREE.CanvasRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.getElementById('3dmap').appendChild( renderer.domElement );
+
+        renderer.render( scene, camera );
+    console.log('done');
+    }
+}
