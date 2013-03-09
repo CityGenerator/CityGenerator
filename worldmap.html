@@ -17,12 +17,15 @@
             Math.seedrandom(window.seed);
 
             window.onload = function(){
-                document.continentmap=build_continent({
+                document.continentmap= new WorldMap({
                                 seed:window.seed,
                                 sites:3000,
-                                canvas:document.getElementById('map') 
+                                canvas:document.getElementById('map'),
+                                regions: [],
+                                cities: [],
+                                locations: []
                             });
-                document.continentmap.redraw(document.getElementById('map') )
+                document.continentmap.redrawMap(document.getElementById('map') )
             };
  
  
@@ -83,7 +86,7 @@
                 var cellid = document.getElementById("cellid").value;
                 var canvas = document.getElementById("map");
                 var cell   = map.diagram.cells[cellid];
-                document.continentmap.redraw(document.getElementById('map') );
+                document.continentmap.redrawMap(document.getElementById('map') );
                 //map.render(canvas);
                 map.colorPolygon(map.diagram.cells[cellid],canvas,'highlight','#0FF');
                 document.getElementById('celldetails').value="CellID: "      + cell.site.voronoiId+" "+

@@ -291,8 +291,10 @@ WorldMap.prototype.redrawMap = function(canvas){
     this.paintBiomes(canvas)
     this.drawRivers(canvas);
     this.drawLakes(canvas);
-    this.paintRegions(canvas,true); 
-    this.drawRegionBorders(canvas,true); 
+    if (this.regions.length > 0) {
+      this.paintRegions(canvas,true); 
+      this.drawRegionBorders(canvas,true);       
+    }
     //this.drawCities(canvas);
     this.drawgrid(canvas); 
     
@@ -444,9 +446,9 @@ WorldMap.prototype.drawRegionBorders = function(canvas, fill){
 /* ========================================================================= */
 
 WorldMap.prototype.paintRegions = function(canvas, fill){
-    for (var i=0 ; i<10 ; i++){
-        this.paintRegion(this.regions[i],canvas, fill)
-    }
+  for (var i=0 ; i<10 ; i++){
+      this.paintRegion(this.regions[i],canvas, fill)
+  }
 }
 
 
