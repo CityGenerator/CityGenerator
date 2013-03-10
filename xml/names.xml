@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <names>
-    <race name='any'>
-        <allow>human</allow>
-        <allow>halfling</allow>
-        <allow>lizardfolk</allow>
-        <allow>ogre</allow>
-        <allow>troglodyte</allow>
-        <allow>elf</allow>
-        <allow>dwarf</allow>
-        <allow>gnome</allow>
-    </race>
-    
-    <race name='other'>
-        <allow>human</allow>
-        <allow>elf</allow>
-        <allow>half-orc</allow>
-        <allow>dwarf</allow>
-        <allow>gnome</allow>
-    </race>
+<!--
+#################################################################################
+
+  Races without their own Naming traditions
+
+#################################################################################
+-->
     <race name='half-elf'>
         <allow>human</allow>
         <allow>elf</allow>
@@ -40,6 +29,23 @@
      <race name='lycanthrope'>
         <allow>human</allow>
     </race>
+    <race name='any'>
+        <allow>human</allow>
+        <allow>halfling</allow>
+        <allow>lizardfolk</allow>
+        <allow>ogre</allow>
+        <allow>troglodyte</allow>
+        <allow>elf</allow>
+        <allow>dwarf</allow>
+        <allow>gnome</allow>
+    </race>
+<!--
+#################################################################################
+
+  Races with their own Naming traditions
+
+#################################################################################
+-->
 
     <race name='lizardfolk'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
