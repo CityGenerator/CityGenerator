@@ -5,6 +5,7 @@ use CGI;
 use Data::Dumper;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
+use Template;
 use XML::Simple;
 ###################################################
 # Using findbin to locate our new City.pm module
@@ -15,6 +16,11 @@ use City 'build_city', 'd', 'generate_name' ;
 
 
 my $xml = new XML::Simple;
+my $templates = Template->new({
+    INCLUDE_PATH => 'templates/',
+    INTERPOLATE  => 1,
+}) || die "$Template::ERROR\n";
+
 
 ###########################################################
 # Yes, this is sloppy. I am aware, but it's also unique.
@@ -41,6 +47,7 @@ if (defined $q->param('cityid')){
 # then fill it in as needed by each subsection of the sample text.
 #########################################################################
 our $city=build_city($testcityid);
+my $content= describe_city();
 
 
 #########################################################################
@@ -62,7 +69,7 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print Dumper $city->{'citizens'};
 # run describe city, but don't print it- useful for debugging
 }elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
-    describe_city();
+    print_page($templates,$content);
 # show the data.xml xml content
 }elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
     print $q->header( 'text/xml' );
@@ -70,10 +77,8 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print XMLout($xml_data);
 # and if it doesn't match those, do the regular printing of the city.
 }else {
-#    print $q->header( 'text/xml' ); # XXX remove this
     print $q->header;
-
-    print describe_city();
+    print print_page($templates,$content);
 }
         
 exit;
@@ -86,9 +91,34 @@ exit;
 #######################################################################################################################
 #######################################################################################################################
 
+sub print_page {
+    my ($tempates,$content)=@_;
+
+    my $citynav;
+    my $vars={};
+    $templates->process('citynav.tmpl', $vars, \$citynav) || die $templates->error(), "\n";
+
+    $vars = {
+        'title'         => "<a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>",
+        'subheader'     => describe_subheader(),
+        'content'       => $content,
+        'navigation'    => $citynav,
+        'onload'        => describe_onload(),
+        'rightnav'      => describe_right_column(),
+        'footerlinks'   => describe_footer_links(),
+    };
+    my $output;
+    $templates->process('base.tmpl', $vars,\$output) || die $templates->error(), "\n";
+
+    return $output;
+}
+
+
+
+
+
 sub describe_city {
-    my $content=describe_header();
-    $content.=describe_summary();
+    my $content=describe_summary();
     $content.=describe_geography();
     $content.=describe_cityscape();
     $content.=describe_government();
@@ -96,7 +126,7 @@ sub describe_city {
     $content.=describe_economy();
     $content.=describe_current_events();
     $content.=describe_people();
-    $content.=describe_footer();
+    return $content;
 }
 
 sub get_flag_colors{
@@ -133,7 +163,7 @@ sub format_neighbors{
     return $content;
 }
 
-sub describe_header{
+sub describe_onload{
     my $style=print_style();
     my $flagcolors=get_flag_colors(); 
     my $letter = substr $city->{'name'}, 0,1;
@@ -152,23 +182,7 @@ sub describe_header{
     my $neighbors=format_neighbors();
     my $neighborrealms=format_neighborRealms();
     my $regions=$neighborrealms;
-    my $content="        <!DOCTYPE html> 
-        <html>
-            <head>
-                <title>City Generator: $city->{'name'} ($city->{'seed'})</title>
-            $style
-            <script src='js/flag.js' ></script>
-            <script src='js/rhill-voronoi-core.js' ></script>
-            <script src='js/simplex-noise.js' ></script>
-            <script src='js/map.js' ></script>
-            <script src='js/VoronoiMap.js' ></script>
-            <script src='js/CityMap.js' ></script>
-            <script src='js/WorldMap.js' ></script>
-
-            <link  href='css/style.css' type='text/css' rel='stylesheet'/>
-            </head>
-            <body onload=\"
-            console.log('city seed'+$city->{'seed'})
+    my $content="
                 create_flag({canvas:document.getElementById('flag') ,seed:$city->{'seed'}, letter:'$letter', colorlist:$flagcolors}); 
                 document.continentmap=new WorldMap({
                                 seed:$city->{'seed'},
@@ -188,8 +202,6 @@ sub describe_header{
                 document.continentmap.redrawRegion(document.getElementById('bigmap'))
                 document.continentmap.redrawRegion(document.getElementById('region'),1/6)
 
-                console.log(document.continentmap)
-
                document.citymap=new CityMap({    
                                 seed:$city->{'seed'},
                                 canvas:document.getElementById('bigmap'),
@@ -207,75 +219,16 @@ sub describe_header{
                 document.citymap.redraw(document.getElementById('bigmap'))
                 document.citymap.setMultiplier(1/6)
                 document.citymap.redraw(document.getElementById('city'))
-
-
-
- ;\">
-<div style='color:red'>$city->{'debug'}</div>
-                <script src='http://code.jquery.com/jquery-latest.js'></script>
             
 ";
     return $content;
 }
-sub describe_footer{
+
+sub describe_right_column {
     my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
     my $regionname=$city->{'realm'};
     my $continentname=$city->{'continent'};
     my $content="
-                </div>
-                </div>
-
-                <div class='left' id='subnav'>
-
-                            <ul>
-                                <li><a href='#summary'>Summary</a></li>
-                                <li><a href='#geography'>Geography</a></li>
-                                <li><a href='#cityscape'>CityScape</a>
-                                    <ul>
-                                        <li><a href='#districts'>Districts</a></li>
-                                        <li><a href='#housing'>Housing</a></li>
-                                        <li><a href='#businesses'>Businesses</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#government'>Government</a>
-                                    <ul>
-                                        <li><a href='#diplomaticties'>Diplomatic Ties</a></li>
-                                        <li><a href='#crimeandpunishment'>Crime and Punishment</a></li>
-                                        <li><a href='#military'>Military</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#population'>Population</a>
-                                    <ul>
-                                        <li><a href='#racerelations'>Race Relations</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#economy'>Economy</a>
-                                    <ul>
-                                        <li><a href='#resources'>Resources</a></li>
-                                        <li><a href='#taverns'>Taverns</a></li>
-                                        <li><a href='#localinfo'>Local Info</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#currentevents'>Current Events</a>
-                                    <ul>
-                                        <li><a href='#weather'>Weather</a></li>
-                                        <li><a href='#events'>Events</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href='#people'>People</a>
-                                    <ul>
-                                        <li><a href='#citizens'>Citizens</a></li>
-                                        <li><a href='#travelers'>Travelers</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                </div>
-        </div>
-
-        <div class='right' id='main_right'>
-
-
-            <div class='padded'>
                 <div >Official Flag:</div>
                 <canvas id='flag' style=\"border:1px solid black;\" width='180' height='150'  onclick='embiggen(this);'  > </canvas>
 
@@ -288,24 +241,32 @@ sub describe_footer{
                 <div >Continent of $continentname ($continentseed) <br/>
                     <canvas id=\"continent\" style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
                     <div id='continentlegend'></div></div>
-                <div id='bigmapdiv'><canvas id=\"bigmap\" width='1080' height='650' onclick='embiggen(this);'></canvas></div>
-            </div>
+                <div id='bigmapdiv'><canvas id=\"bigmap\" width='1080' height='650' onclick='embiggen(this);'></canvas></div>";
+    return $content;
+}
 
+sub describe_subheader {
+    my $previousid=$city->{'seed'}-1;
+    my $nextid=$city->{'seed'}+1;
+    my $previouscontinent=$city->{'seed'}-100;
+    my $nextcontinent=$city->{'seed'}+100;
+    my $previousregion=$city->{'seed'}-10;
+    my $nextregion=$city->{'seed'}+10;
+    my $content="
+                                <a href='?cityid=$previouscontinent'>&lt;&lt; Last Continent</a>
+                                <a href='?cityid=$previousregion'>&lt;&lt; Last Region</a>
+                                <a href='?cityid=$previousid'>&lt;&lt; Last City</a>
+                                &nbsp;&nbsp;
+                                <a href='?cityid=$nextid'>Next City&gt;&gt;</a>
+                                <a href='?cityid=$nextregion'>Next Region&gt;&gt;</a>
+                                <a href='?cityid=$nextcontinent'>Next Continent&gt;&gt;</a>
+                            ";
+    return $content;
+}
 
-        </div>
-
-        <div class='clearer'>&nbsp;</div>
-            <div id='footer'>
-
-                
-                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
-                <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>
-                <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
-            </div>
-
-        </div>
-            </body>
-        </html>\n";
+sub describe_footer_links {
+    my $content="                
+                <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>";
     return $content;
 }
 #######################################################################################################################
@@ -362,16 +323,11 @@ sub describe_citizens{
             $content.="<li>";
             if ( defined $citizen->{'fullname'}){
                 $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race'}->{'article'}." ".lc($citizen->{'race'}->{'content'})." ";
-            }else{
-                $content.="A ".$citizen->{'noname'}." ";
             }
             $content.="who is known in ".$citizen->{'scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'job'}.". ".ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
             
             $content.="</li>\n";
-#print Dumper $content;
-#print Dumper $citizen;
         }
-#exit;
         $content.="</ul>\n";
     }
     return $content;
@@ -623,33 +579,7 @@ sub describe_district_summary {
 sub describe_summary {
     if ($city->{'dominant_race'}){$city->{'dominant_race'}=" (which is overwhelmingly ".$city->{'dominant_race'}.")"; }else{$city->{'dominant_race'}=""}
     my $districts=describe_district_summary();
-    my $previousid=$city->{'seed'}-1;
-    my $nextid=$city->{'seed'}+1;
-    my $previouscontinent=$city->{'seed'}-100;
-    my $nextcontinent=$city->{'seed'}+100;
-    my $previousregion=$city->{'seed'}-10;
-    my $nextregion=$city->{'seed'}+10;
     my $content="
-                    <div id='container'>
-
-                        <div class='left' id='main_left'>
-
-                            <div id='header'>
-                                <a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>
-                            </div>
-                            <div id='subheader'>
-                                <a href='?cityid=$previouscontinent'>&lt;&lt; Last Continent</a>
-                                <a href='?cityid=$previousregion'>&lt;&lt; Last Region</a>
-                                <a href='?cityid=$previousid'>&lt;&lt; Last City</a>
-                                &nbsp;&nbsp;
-                                <a href='?cityid=$nextid'>Next City&gt;&gt;</a>
-                                <a href='?cityid=$nextregion'>Next Region&gt;&gt;</a>
-                                <a href='?cityid=$nextcontinent'>Next Continent&gt;&gt;</a>
-                            </div>
-
-                <div class='right' id='main'>
-                    <div class='padded'>
-
                         <h2>Summary</h2>
 
                         <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts</p>
@@ -731,13 +661,13 @@ sub describe_cityscape {
     my $districts=describe_districts();
     my $housing=describe_housing();
     my $businesses=describe_businesses();
-     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-     $city->{'streets'}->{'mainroads'} = $city->{'streets'}->{'mainroads'} eq "1" ? "1 is": $city->{'streets'}->{'mainroads'}." are";
-     $city->{'streets'}->{'roads'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
+     $city->{'streets'}->{'mainroadtext'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
+     $city->{'streets'}->{'mainroadtext'} = $city->{'streets'}->{'mainroads'} eq "1" ? "1 is": $city->{'streets'}->{'mainroads'}." are";
+     $city->{'streets'}->{'roadtext'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
     my $content="
                     <section id='cityscape'>
                         <h2>Cityscape</h2>
-                        <p>There $city->{'streets'}->{'roads'} leading to $city->{'name'}; $city->{'streets'}->{'mainroads'} major.$port$walls$roads</p>
+                        <p>There $city->{'streets'}->{'roadtext'} leading to $city->{'name'}; $city->{'streets'}->{'mainroadtext'} major.$port$walls$roads</p>
                         $districts
                         <h3 id='housing'>Housing</h3>
                             The city contains the following housing:$housing

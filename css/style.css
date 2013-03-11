@@ -13,6 +13,7 @@ http://templates.arcsin.se/license/
 
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, textarea, input, select {margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;}
+
 table {border-collapse: collapse; border-spacing: 0;}
 caption, th, td {text-align: left; font-weight: normal;}
 table, td, th {vertical-align: middle;}
@@ -52,7 +53,6 @@ h1,h2,h3,h4,h5,h6 {
 h4,h5,h6 {font-weight: bold;}
 
 h1 {font-size: 1.6em;}
-h2 {font-size: 1em;}
 
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin: 0;}
 
@@ -233,7 +233,7 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
 /* Header */
 #header {
         float: left;
-        width: 640px;
+        width: 540px;
         background-color:#dddddd;
         font: normal 2.4em Verdana,sans-serif;
         line-height: 60px;
@@ -243,10 +243,10 @@ img.alignright, img.right {margin: 0 0 1em 1.5em;}
 /* Subheader */
 #subheader {
         float: left;
-        width: 640px;
+        width: 540px;
         background-color:#dddddd;
         font: normal .5 Verdana,sans-serif;
-        line-height: 50px;
+        line-height: 40px;
         text-align: center;
 }
 

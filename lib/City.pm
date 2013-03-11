@@ -15,6 +15,7 @@ require Exporter;
 use CGI;
 use Data::Dumper;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use NameGenerator ;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
@@ -687,42 +688,10 @@ sub generate_bartender{
 
 sub generate_npc_name{
     my($race)=@_;
-    # ensure it's lowercase
-    my $npc;
 
-    #check to see if there is a "half-elf section in the names_data"
-    if (! defined $names_data->{'race'}->{ $race} ){
-        #half-elves don't exist, in the names_data file, so lets see if a names option exists.
-        if (defined $xml_data->{'nameoptions'}->{'race'}->{$race}){
-            #if it does, steal a random race option from here and use it.
-            $race= rand_from_array( $xml_data->{'nameoptions'}->{'race'}->{$race}->{'option'})->{'content'};
-        }
-    }
+    my $npc={ 'fullname' =>NameGenerator::generate_npc_name(  $race) };
 
-
-    $race= lc $race;
-    if (defined $names_data->{'race'}->{ $race}     ){
-        my $racenames=$names_data->{'race'}->{ $race} ;
-        if ( defined $racenames->{'firstname'} ){
-            $npc->{'firstname'}= parse_object(    $racenames->{'firstname'}         )->{'content'};
-            if ($npc->{'firstname'} ne ''){
-                $npc->{'fullname'}=$npc->{'firstname'};
-            }
-        }
-        if ( defined $racenames->{'lastname'} ){
-            $npc->{'lastname'}= parse_object(    $racenames->{'lastname'}         )->{'content'};
-            if ($npc->{'lastname'} ne ''){
-                $npc->{'fullname'}=$npc->{'lastname'};
-            }
-        }
-        if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
-            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
-        }
-    }else{
-        $npc->{'noname'}="random $race";
-    }
-
-
+    
     $npc->{'sex'}= roll_from_array( &d(100),    $xml_data->{'sex'}->{'option'}    );
 
     return $npc;

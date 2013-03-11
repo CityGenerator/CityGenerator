@@ -17,11 +17,11 @@
         <div style='color:red' id='debugconsole' >[% debug %]</div>
         <div id='container'>
             <div class='left' id='main_left'>
-                <div id='header'>
-                <img src="/icons/cityGenerator.png" style="float:left;"/>
-                    <h1>[% title %]</h1>
-                    <h2>[% subheader %]</h2>
-                </div>
+                <header>
+                    <img src="/icons/cityGenerator.png" style="float:left;"/>
+                    <div id='header'>[% title %]</div>
+                    <div id='subheader'>[% subheader %]</div>
+                </header>
                 <div class='right' id='main'>
                     <div class='padded'>
                         [% content %]

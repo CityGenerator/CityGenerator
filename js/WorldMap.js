@@ -351,7 +351,6 @@ WorldMap.prototype.assignCities = function(){
         }
         //TODO FIXME ensure regions are a minimum of 10 cells
         city.cell=viableregioncells[Math.floor( Math.random()*viableregioncells.length  )]
-
         city.cell.city=true
 
         var corners=[]

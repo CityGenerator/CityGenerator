@@ -73,8 +73,6 @@ sub generate_npc_name{
         $race= rand_from_array($names_data->{'race'}->{ $race}->{'allow'})->{'content'};
     }
     my $npc;
-    print Dumper $race ;
-    #print Dumper $names_data->{'race'}->{ $race}  ;
     if (defined $names_data->{'race'}->{ $race}     ){
         my $racenameparts=$names_data->{'race'}->{ $race} ;
 
@@ -96,11 +94,8 @@ sub generate_npc_name{
             $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
         }
     }else{
-        $npc->{'noname'}="unnamed $race";
+        $npc->{'fullname'}="unnamed $race";
     }
-
-
-    $npc->{'sex'}= roll_from_array( &d(100),    $xml_data->{'sex'}->{'option'}    );
     return $npc->{'fullname'}."   ($race)";
 }
 

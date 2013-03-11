@@ -15,6 +15,10 @@ use lib "lib/";
 use NameGenerator ;
 use GenericGenerator;
 
+my $templates = Template->new({
+    INCLUDE_PATH => 'templates/',
+    INTERPOLATE  => 1,
+}) || die "$Template::ERROR\n";
 
 
 ###########################################################
@@ -37,7 +41,7 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
 
 }else {
     print $q->header;
-    print print_page($namegen, $q->param('race'));
+    print print_page($templates, $namegen, $q->param('race'));
 }
         
 exit;
@@ -51,28 +55,26 @@ exit;
 #######################################################################################################################
 
 sub print_page {
-    my ($namegen,$race)=@_;
-    my $tt = Template->new({
-        INCLUDE_PATH => 'templates/',
-        INTERPOLATE  => 1,
-    }) || die "$Template::ERROR\n";
+    my ($templates,$namegen,$race)=@_;
+    my $qstring=$ENV{'QUERY_STRING'};
+    $qstring.="&seed=".$originalseed   if (! defined $q->param('seed'));
+
+
+
+    my $formtmpl;
     my $vars = {    
         'races'         =>  NameGenerator::get_races() ,
         'selectedrace'  =>  $race ,
         'names'         =>  $namegen,
     };
-    my $form;
-    my $qstring=$ENV{'QUERY_STRING'};
-    $qstring.="&seed=".$originalseed   if (! defined $q->param('seed'));
+    $templates->process('nameform.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
-    $tt->process('nameform.tmpl', $vars, \$form) || die $tt->error(), "\n";
     $vars = {
         'title'        => 'Name Generator',
         'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$originalseed.'</a>',
-        'content'       => $form,
+        'content'       => $formtmpl,
     };
-    
-    $tt->process('base.tmpl', $vars) || die $tt->error(), "\n";
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }
 
 
