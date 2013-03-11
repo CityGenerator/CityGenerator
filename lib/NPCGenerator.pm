@@ -1,7 +1,7 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 #
-package NameGenerator;
+package NPCGenerator;
 
 
 use strict;

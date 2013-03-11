@@ -15,7 +15,7 @@ require Exporter;
 use CGI;
 use Data::Dumper;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NameGenerator ;
+use NPCGenerator ;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
@@ -689,7 +689,7 @@ sub generate_bartender{
 sub generate_npc_name{
     my($race)=@_;
 
-    my $npc={ 'fullname' =>NameGenerator::generate_npc_name(  $race) };
+    my $npc={ 'fullname' =>NPCGenerator::generate_npc_name(  $race) };
 
     
     $npc->{'sex'}= roll_from_array( &d(100),    $xml_data->{'sex'}->{'option'}    );

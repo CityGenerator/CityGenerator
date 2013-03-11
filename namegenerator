@@ -12,7 +12,7 @@ use XML::Simple;
 use lib "lib/";
 ###################################################
 #TODO it would be cool if it could rain frogs or potatoes
-use NameGenerator ;
+use NPCGenerator ;
 use GenericGenerator;
 
 my $templates = Template->new({
@@ -28,7 +28,7 @@ our $q = CGI->new;
 
 GenericGenerator::set_seed($q->param('seed')  );
 our $originalseed=$GenericGenerator::seed;
-my $namegen=NameGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
+my $namegen=NPCGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
@@ -63,7 +63,7 @@ sub print_page {
 
     my $formtmpl;
     my $vars = {    
-        'races'         =>  NameGenerator::get_races() ,
+        'races'         =>  NPCGenerator::get_races() ,
         'selectedrace'  =>  $race ,
         'names'         =>  $namegen,
     };
