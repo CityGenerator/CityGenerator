@@ -1,16 +1,13 @@
 #!/usr/bin/perl -wT
 ###############################################################################
-#
 package NPCGenerator;
-
 
 use strict;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races );
-
+@EXPORT_OK = qw( generate_npc_names get_races names_data);
 
 use CGI;
 use Data::Dumper;
@@ -22,7 +19,18 @@ use XML::Simple;
 my $xml = new XML::Simple;
 
 our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => ['allow'] );
-our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => [] );
+our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => [] );
+
+
+###############################################################################
+#
+# get_races - pull a list of supported races
+#
+###############################################################################
+
+sub get_races{
+    return [ sort keys %{ $names_data->{'race'}}];
+}
 
 
 ###############################################################################
@@ -31,10 +39,46 @@ our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => []
 #
 ###############################################################################
 
-sub get_races{
-    return [ sort keys %{ $names_data->{'race'}}];
+sub generate_npc_name{
+    my($race)=@_;
+    $race= lc $race;
+
+    # Check to see if this is a mutt race like any
+    if ( defined $names_data->{'race'}->{ $race} and defined $names_data->{'race'}->{ $race}->{'allow'} ){
+        $race= rand_from_array($names_data->{'race'}->{ $race}->{'allow'})->{'content'};
+    }
+
+    my $npc;
+
+    if (defined $names_data->{'race'}->{ $race}     ){
+        my $racenameparts=$names_data->{'race'}->{ $race} ;
+
+        if ( defined $racenameparts->{'firstname'} ){
+            $npc->{'firstname'}= parse_object(    $racenameparts->{'firstname'}         )->{'content'};
+            if ($npc->{'firstname'} ne ''){
+                $npc->{'fullname'}=$npc->{'firstname'};
+            }
+        }
+        if ( defined $racenameparts->{'lastname'} ){
+            $npc->{'lastname'}= parse_object(    $racenameparts->{'lastname'}         )->{'content'};
+            if ($npc->{'lastname'} ne ''){
+                $npc->{'fullname'}=$npc->{'lastname'};
+            }
+        }
+        if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
+            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
+        }
+    }else{
+        $npc->{'fullname'}="unnamed $race";
+    }
+    return $npc->{'fullname'}."   ($race)";
 }
 
+###############################################################################
+#
+# generate_npc_name - generate an npc name if they're available for that race
+#
+###############################################################################
 
 sub generate_npc_names{
     my($race,$count)=@_;
@@ -60,44 +104,6 @@ sub generate_npc_names{
 
 
 
-
-
-sub generate_npc_name{
-    my($race)=@_;
-    $race= lc $race;
-
-
-
-    # Check to see if this is a mutt race like other or any.
-    if ( defined $names_data->{'race'}->{ $race} and defined $names_data->{'race'}->{ $race}->{'allow'} ){
-        $race= rand_from_array($names_data->{'race'}->{ $race}->{'allow'})->{'content'};
-    }
-    my $npc;
-    if (defined $names_data->{'race'}->{ $race}     ){
-        my $racenameparts=$names_data->{'race'}->{ $race} ;
-
-        #TODO can we use parse_object here?
-
-        if ( defined $racenameparts->{'firstname'} ){
-            $npc->{'firstname'}= parse_object(    $racenameparts->{'firstname'}         )->{'content'};
-            if ($npc->{'firstname'} ne ''){
-                $npc->{'fullname'}=$npc->{'firstname'};
-            }
-        }
-        if ( defined $racenameparts->{'lastname'} ){
-            $npc->{'lastname'}= parse_object(    $racenameparts->{'lastname'}         )->{'content'};
-            if ($npc->{'lastname'} ne ''){
-                $npc->{'fullname'}=$npc->{'lastname'};
-            }
-        }
-        if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
-            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
-        }
-    }else{
-        $npc->{'fullname'}="unnamed $race";
-    }
-    return $npc->{'fullname'}."   ($race)";
-}
 
 
 1;
