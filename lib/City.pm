@@ -23,7 +23,7 @@ use XML::Simple;
 my $xml = new XML::Simple;
 
 our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $names_data         = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => [] );
+our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
 our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
 our $realmnames_data    = $xml->XMLin( "xml/realmnames.xml", ForceContent => 1, ForceArray => [] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );

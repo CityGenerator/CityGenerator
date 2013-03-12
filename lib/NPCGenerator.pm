@@ -31,7 +31,7 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => ['allow'] );
+our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
 our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => [] );
 
 

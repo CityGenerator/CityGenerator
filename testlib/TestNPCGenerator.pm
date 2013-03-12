@@ -19,7 +19,7 @@ require Exporter;
 @EXPORT_OK = qw( );
 
 my $xml = new XML::Simple;
-our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => ['allow'] );
+our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
 our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => [] );
 
 my $pod=Pod::Coverage->new(package => 'NPCGenerator');

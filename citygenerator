@@ -27,7 +27,7 @@ my $templates = Template->new({
 # Unique, Ubiquitous Singletons.
 our $q = CGI->new;
 our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
-our $names_data = $xml->XMLin(   "xml/names.xml", ForceContent => 1, ForceArray  =>[]  );
+our $names_data = $xml->XMLin(   "xml/npcnames.xml", ForceContent => 1, ForceArray  =>[]  );
 
 
 my $testcityid=City::set_seed();
