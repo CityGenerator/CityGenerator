@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<realm post_chance='30' title_chance='22'>
+    <title>Greater</title>
+    <title>Lesser</title>
+    <title>Eastern</title>
+    <title>Western</title>
+    <pre>Don</pre>
+    <pre>Ber</pre>
+    <pre>Cap</pre>
+    <pre>Ful</pre>
+    <pre>Mool</pre>
+    <pre>Nill</pre>
+    <pre>Kon</pre>
+    <root>sak</root>
+    <root>bor</root>
+    <root>kil</root>
+    <root>bor</root>
+    <root>ark</root>
+    <root>lak</root>
+    <post>or</post>
+    <post>at</post>
+    <post>ep</post>
+    <post>ak</post>
+
+    <trailer>Province</trailer>
+    <trailer>District</trailer>
+    <trailer>Domain</trailer>
+    <trailer>Region</trailer>
+    <trailer>Territory</trailer>
+
+</realm>
+

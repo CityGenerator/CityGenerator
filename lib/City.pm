@@ -22,8 +22,11 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
-our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => [] );
+our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+our $names_data         = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => [] );
+our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
+our $realmnames_data    = $xml->XMLin( "xml/realmnames.xml", ForceContent => 1, ForceArray => [] );
+our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 our $originalseed;
 our $city;
 
@@ -77,7 +80,7 @@ sub generate_name {
     my ($newseed) = @_;
     $GenericGenerator::seed           = set_seed($newseed);
     $city           = { 'seed' => $GenericGenerator::seed };
-    return parse_object( $xml_data->{'cityname'} )->{'content'};
+    return parse_object( $citynames_data )->{'content'};
 }
 
 ###############################################################################
@@ -794,7 +797,7 @@ sub generate_markets {
 sub generate_realm {
     my $realmseed= $originalseed - ($originalseed % 10);
     set_seed($realmseed);
-    $city->{'realm'}=parse_object($xml_data->{'realm'})->{'content'};
+    $city->{'realm'}=parse_object($realmnames_data)->{'content'};
     set_seed($originalseed);
 }
 
@@ -806,7 +809,7 @@ sub generate_realm {
 ###############################################################################
 sub generate_continent {
     set_seed($originalseed-$originalseed%100);
-    $city->{'continent'}=parse_object($xml_data->{'continent'})->{'content'};
+    $city->{'continent'}=parse_object($continentnames_data)->{'content'};
     set_seed($originalseed);
 }
 
