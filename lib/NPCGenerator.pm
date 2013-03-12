@@ -1,6 +1,19 @@
 #!/usr/bin/perl -wT
-###############################################################################
 package NPCGenerator;
+
+###############################################################################
+
+=head1 NAME
+
+    NPCGenerator - used to generate NPCs
+
+=head1 DESCRIPTION
+
+ Use this to create NPCs.
+
+=cut
+
+###############################################################################
 
 use strict;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
@@ -23,9 +36,13 @@ our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray =>
 
 
 ###############################################################################
-#
-# get_races - pull a list of supported races
-#
+
+=head2 get_races( )
+
+Return a list of supported races.
+
+=cut
+
 ###############################################################################
 
 sub get_races{
@@ -34,9 +51,13 @@ sub get_races{
 
 
 ###############################################################################
-#
-# generate_npc_name - generate an npc name if they're available for that race
-#
+
+=head2 generate_npc_name( race )
+
+generate an npc name if they're available for that race.
+
+=cut
+
 ###############################################################################
 
 sub generate_npc_name{
@@ -75,9 +96,13 @@ sub generate_npc_name{
 }
 
 ###############################################################################
-#
-# generate_npc_name - generate an npc name if they're available for that race
-#
+
+=head2 generate_npc_names( race, count )
+
+Return a list of count names from the given race.
+
+=cut
+
 ###############################################################################
 
 sub generate_npc_names{
@@ -102,8 +127,7 @@ sub generate_npc_names{
     return \@names;
 }   
 
-
-
-
-
 1;
+
+__END__
+

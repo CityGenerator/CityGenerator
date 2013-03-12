@@ -5,6 +5,8 @@ package TestNPCGenerator;
 
 use strict;
 use Test::More;
+use Pod::Coverage;
+
 use NPCGenerator;
 use GenericGenerator qw( set_seed );
 
@@ -19,6 +21,8 @@ require Exporter;
 my $xml = new XML::Simple;
 our $names_data = $xml->XMLin( "xml/names.xml", ForceContent => 1, ForceArray => ['allow'] );
 our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => [] );
+
+my $pod=Pod::Coverage->new(package => 'NPCGenerator');
 
 
 
