@@ -2078,6 +2078,184 @@
     <level min='99'          >legendary</level>
 
 </skill>
+<attitude>
+    <option type="Love">
+		<option type="Affection">
+	 		<option type="Adoration"/>
+	 		<option type="Fondness"/>
+	 		<option type="Liking"/>
+	 		<option type="Attractiveness"/>
+	 		<option type="Caring"/>
+	 		<option type="Tenderness"/>
+	 		<option type="Compassion"/>
+	 		<option type="Sentimentality"/>
+	    </option>
+		<option type="Lust/Sexual desire">
+	 		<option type="Desire"/>
+	 		<option type="Passion"/>
+	 		<option type="Infatuation"/>
+	    </option>
+		<option type="Longing">
+	 		<option type="Longing"/>
+	    </option>
+    </option>
+	<option type="Joy">
+		<option type="Cheerfulness">
+	 		<option type="Amusement"/>
+	 		<option type="Bliss"/>
+	 		<option type="Gaiety"/>
+	 		<option type="Glee"/>
+	 		<option type="Jolliness"/>
+	 		<option type="Joviality"/>
+	 		<option type="Joy"/>
+	 		<option type="Delight"/>
+	 		<option type="Enjoyment"/>
+	 		<option type="Gladness"/>
+	 		<option type="Happiness"/>
+	 		<option type="Jubilation"/>
+	 		<option type="Elation"/>
+	 		<option type="Satisfaction"/>
+	 		<option type="Ecstasy"/>
+	 		<option type="Euphoria"/>
+	    </option>
+		<option type="Zest">
+	 		<option type="Enthusiasm"/>
+	 		<option type="Zeal"/>
+	 		<option type="Excitement"/>
+	 		<option type="Thrill"/>
+	 		<option type="Exhilaration"/>
+	    </option>
+		<option type="Contentment">
+	 		<option type="Pleasure"/>
+	    </option>
+		<option type="Pride">
+	 		<option type="Triumph"/>
+	    </option>
+		<option type="Optimism">
+	 		<option type="Eagerness"/>
+	 		<option type="Hope"/>
+	    </option>
+		<option type="Enthrallment">
+	 		<option type="Enthrallment"/>
+	 		<option type="Rapture"/>
+	    </option>
+		<option type="Relief">
+	 		<option type="Relief"/>
+	    </option>
+    </option>
+	<option type="Surprise">
+		<option type="Surprise">
+	 		<option type="Amazement"/>
+	 		<option type="Astonishment"/>
+	    </option>
+    </option>
+	<option type="Anger">
+		<option type="Irritability">
+	 		<option type="Aggravation"/>
+	 		<option type="Agitation"/>
+	 		<option type="Annoyance"/>
+	 		<option type="Grouchy"/>
+	 		<option type="Grumpy"/>
+	 		<option type="Crosspatch"/>
+	    </option>
+		<option type="Exasperation">
+	 		<option type="Frustration"/>
+	    </option>
+		<option type="Rage">
+	 		<option type="Anger"/>
+	 		<option type="Outrage"/>
+	 		<option type="Fury"/>
+	 		<option type="Wrath"/>
+	 		<option type="Hostility"/>
+	 		<option type="Ferocity"/>
+	 		<option type="Bitter"/>
+	 		<option type="Hatred"/>
+	 		<option type="Scorn"/>
+	 		<option type="Spite"/>
+	 		<option type="Vengefulness"/>
+	 		<option type="Dislike"/>
+	 		<option type="Resentment"/>
+	    </option>
+		<option type="Disgust">
+	 		<option type="Revulsion"/>
+	 		<option type="Contempt"/>
+	 		<option type="Loathing"/>
+	    </option>
+		<option type="Envy">
+	 		<option type="Jealousy"/>
+	    </option>
+		<option type="Torment">
+	 		<option type="Torment"/>
+	    </option>
+    </option>
+	<option type="Sadness">
+		<option type="Suffering">
+	 		<option type="Agony"/>
+	 		<option type="Anguish"/>
+	 		<option type="Hurt"/>
+	    </option>
+		<option type="Sadness">
+	 		<option type="Depression"/>
+	 		<option type="Despair"/>
+	 		<option type="Gloom"/>
+	 		<option type="Glumness"/>
+	 		<option type="Unhappy"/>
+	 		<option type="Grief"/>
+	 		<option type="Sorrow"/>
+	 		<option type="Woe"/>
+	 		<option type="Misery"/>
+	 		<option type="Melancholy'"/>
+	    </option>
+		<option type="Disappointment">
+	 		<option type="Dismay"/>
+	 		<option type="Displeasure"/>
+	    </option>
+		<option type="Shame">
+	 		<option type="Guilt"/>
+	 		<option type="Regret"/>
+	 		<option type="Remorse"/>
+	    </option>
+		<option type="Neglect">
+	 		<option type="Alienation"/>
+	 		<option type="Defeatism"/>
+	 		<option type="Dejection"/>
+	 		<option type="Embarrassment"/>
+	 		<option type="Homesickness"/>
+	 		<option type="Humiliation"/>
+	 		<option type="Insecurity"/>
+	 		<option type="Insult"/>
+	 		<option type="Isolation"/>
+	 		<option type="Loneliness"/>
+	 		<option type="Rejection"/>
+	    </option>
+		<option type="Sympathy">
+	 		<option type="Pity"/>
+	 		<option type="Sympathy"/>
+	    </option>
+    </option>
+	<option type="Fear">
+		<option type="Horror">
+	 		<option type="Alarm"/>
+	 		<option type="Shock"/>
+	 		<option type="Fear"/>
+	 		<option type="Fright"/>
+	 		<option type="Horror"/>
+	 		<option type="Terror"/>
+	 		<option type="Panic"/>
+	 		<option type="Hysteria"/>
+	 		<option type="Mortification"/>
+	    </option>
+		<option type="Nervousness">
+	 		<option type="Anxiety"/>
+	 		<option type="Suspense"/>
+	 		<option type="Uneasiness"/>
+	 		<option type="Apprehension"/>
+	 		<option type="Worry"/>
+	 		<option type="Distress"/>
+	 		<option type="Dread"/>
+	    </option>
+	</option>
+</attitude>
 <area>
     <scope>the neighborhood</scope>
     <scope>that part of town</scope>
