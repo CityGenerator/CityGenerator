@@ -221,21 +221,19 @@ sub generate_citizens {
     my $businesslist = $city->{'business'};
     while ( $citizencount-- > 0 ) {
         $GenericGenerator::seed++;
-        my $race    = rand_from_array( $city->{'races'} );
-        my $citizen = generate_npc_name( lc $race->{'content'} );
-        $citizen->{'skill'}    = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
-        $citizen->{'behavior'} = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
-        $citizen->{'scope'}    = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
-        $citizen->{'race'}     = $race;
+        my $npc=NPCGenerator::create_npc({seed=>$GenericGenerator::seed    });
+
+
+
         my @keys         = shuffle keys %$businesslist;
         my $businessname = pop @keys;
-        $citizen->{'job'} = $businesslist->{$businessname}->{'profession'} || $businessname;
+        $npc->{'job'} = $businesslist->{$businessname}->{'profession'} || $businessname;
         delete $businesslist->{$businessname};
 
         if ( scalar keys %$businesslist == 0 ) {
             $businesslist = $city->{'business'};
         }
-        push @{ $city->{'citizens'} }, $citizen;
+        push @{ $city->{'citizens'} }, $npc;
     } ## end while ( $citizencount-- >...)
     set_seed($originalseed);
 } ## end sub generate_citizens

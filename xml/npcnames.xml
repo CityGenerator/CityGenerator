@@ -8,28 +8,28 @@
 
 #################################################################################
 -->
-    <race name='half-elf'>
+    <race name='half-elf' article="a"  plural='half-elves'>
         <allow>human</allow>
         <allow>elf</allow>
     </race>
-    <race name='half-orc'>
+    <race name='half-orc' article="a"  plural='half-orcs'>
         <allow>human</allow>
         <allow>orc</allow>
     </race>
-    <race name='half-dwarf'>
+    <race name='half-dwarf' article="a"  plural='half-dwarves'>
         <allow>human</allow>
         <allow>dwarf</allow>
     </race>
-     <race name='deep dwarf'>
+     <race name='deep dwarf' article="a"  plural='deep dwarves'>
         <allow>dwarf</allow>
     </race>
-     <race name='drow'>
+     <race name='drow' article="a"  plural='drow'>>
         <allow>elf</allow>
     </race>
-     <race name='lycanthrope'>
+     <race name='lycanthrope' article="a"  plural='lycanthropes'>
         <allow>human</allow>
     </race>
-    <race name='any'>
+    <race name='any' article=""  plural='any'>
         <allow>human</allow>
         <allow>halfling</allow>
         <allow>lizardfolk</allow>
@@ -47,7 +47,7 @@
 #################################################################################
 -->
 
-    <race name='lizardfolk'>
+    <race name='lizardfolk' article="a"  plural='lizardfolk'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
         <firstname>
             <pre>S'her</pre>
@@ -81,7 +81,7 @@
             <post>zor</post>
         </lastname>
     </race>
-    <race name='gnome'>
+    <race name='gnome' rticle="a"  plural='gnomes'>
         <firstname post_chance='70'>
             <pre>Ada</pre>
             <pre>Ai</pre>
@@ -164,7 +164,7 @@
 
         </lastname>
     </race>
-    <race name='troglodyte'>
+    <race name='troglodyte' article="a"  plural='troglodytes'>
         <firstname>
             <pre>An</pre>
             <pre>Cee</pre>
@@ -186,7 +186,7 @@
             <post>karo</post>
         </firstname>
     </race>
-    <race name='halfling'>
+    <race name='halfling' article="a"  plural='halflings'>
         <firstname root_chance='50' post_chance='50'>
             <pre>Ada</pre>
             <pre>Ama</pre>
@@ -413,7 +413,7 @@
             <post>wolf</post> 
         </lastname>
     </race>
-    <race name='dwarf'>
+    <race name='dwarf' article="a"  plural='dwarves'>
         <firstname>
 
             <pre>Aba</pre>
@@ -665,7 +665,7 @@
             <post>vest</post>
         </lastname>
     </race>
-    <race name='elf'>
+    <race name='elf' article="an" plural='elves'>
         <firstname>
 
             <pre>Aba</pre>
@@ -876,7 +876,7 @@
 
         </lastname>
     </race>
-    <race name='ogre'>
+    <race name='ogre' article="an" plural='ogres'>
         <firstname>
 
             <root>Po</root>
@@ -916,7 +916,7 @@
             <post>nut</post>
         </lastname>
     </race>
-    <race name='human'>
+    <race name='human' article="a"  plural='humans'>
         <firstname title_chance='5' pre_chance='1' post_chance='70'>
             <title>Sir</title>
             <title>Pastor</title>
@@ -1068,7 +1068,7 @@
             <post>er</post>
         </lastname>
     </race>
-    <race name='orc'>
+    <race name='orc'  article="an" plural='orcs'>
         <firstname title_chance='5' post_chance='70'>
             <title>Chief</title>
             <title>Shaman</title>

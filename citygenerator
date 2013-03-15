@@ -316,13 +316,9 @@ sub describe_citizens{
     if (scalar @{$city->{'citizens'}} >0){
         $content="<p>The following citizens are worth mentioning:</p><ul class='one-column'>";
         foreach my $citizen ( @{$city->{'citizens'}} ){
-            if ($citizen->{'race'}->{'content'} eq 'other'){
-                $citizen->{'race'}->{'article'}="an";
-                $citizen->{'race'}->{'content'}="oddball";
-            }
             $content.="<li>";
             if ( defined $citizen->{'fullname'}){
-                $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race'}->{'article'}." ".lc($citizen->{'race'}->{'content'})." ";
+                $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race_article'}." ".lc($citizen->{'race'})." ";
             }
             $content.="who is known in ".$citizen->{'scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'job'}.". ".ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
             
@@ -339,9 +335,9 @@ sub describe_traveler{
         foreach my $traveler ( @{$city->{'travelers'}} ){
             $content.="<li>";
             if ( defined $traveler->{'fullname'}){
-                $content.="<b>".$traveler->{'fullname'}."</b>, ".$traveler->{'sex'}->{'content'}." ".lc($traveler->{'race'}->{'content'}).". ";
+                $content.="<b>".$traveler->{'fullname'}."</b>, ".$traveler->{'sex'}->{'content'}." ".lc($traveler->{'race'}).". ";
             } else {
-                $content.=ucfirst($traveler->{'sex'}->{'content'})." ".lc($traveler->{'race'}->{'content'}).". ";
+                $content.=ucfirst($traveler->{'sex'}->{'content'})." ".lc($traveler->{'race'}).". ";
             }
             $content.=ucfirst($traveler->{'sex'}->{'pronoun'})." is ".$traveler->{'article'}." ".lc($traveler->{'class'})." who has come to ".$traveler->{'motivation'}.".";
             $content.="</li>\n";
@@ -454,7 +450,7 @@ sub describe_tavern{
     }
     my $name="";
     if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
-    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by $tavern->{'bartender'}->{'race'}->{'article'} ".lc($tavern->{'bartender'}->{'race'}->{'content'})."$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
+    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by $tavern->{'bartender'}->{'race_article'} ".lc($tavern->{'bartender'}->{'race'})."$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
 }
 
 sub describe_localinfo{

@@ -55,6 +55,8 @@ sub create_npc{
     $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
     if (! defined $npc->{'race'}){
         $npc->{'race'}=GenericGenerator::rand_from_array( [ keys %{$names_data->{'race'}}] );
+        $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
+        $npc->{'race_plural'}=$names_data->{'race'}->{$npc->{'race'}}->{'plural'}   ;
     }
     generate_npc_name($npc->{'race'},$npc);
     $npc->{'skill'}             = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
