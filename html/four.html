@@ -1,0 +1,168 @@
+
+        <!DOCTYPE html> 
+        <html>
+            <head>
+                <title>City Generator: Continent of Anporar (4885)</title>
+                <script src='js/flag.js' ></script>
+                <script src='js/rhill-voronoi-core.js' ></script>
+                <script src='js/simplex-noise.js' ></script>
+                <script src='js/map.js' ></script>
+                <script src='js/VoronoiMap.js' ></script>
+                <script src='js/CityMap.js' ></script>
+                <script src='js/WorldMap.js' ></script>
+                <script src='js/QuadTree.js' ></script>
+                <script src="js/three.min.js"></script>
+                <script src='http://code.jquery.com/jquery-latest.js'></script>
+                <link  href='css/style.css' type='text/css' rel='stylesheet'/>
+            </head>
+            <body onload="
+                canvas=document.getElementById('worldmap')
+                continentmap=new WorldMap({
+                                seed:488510,
+                                sites:9000,
+                                canvas:canvas,
+                                cities:[{seed:'488500',name:'Gillshall',relation:' 488500 + 488510  = 977010  is embargoing',size:'29',size_modifier:'-5'},
+{seed:'488501',name:'Iremouth',relation:' 488501 + 488510  = 977011  is at war with',size:'29171',size_modifier:'10'},
+{seed:'488502',name:'Libertyfield',relation:' 488502 + 488510  = 977012  is cordial towards ',size:'6803',size_modifier:'4'},
+{seed:'488503',name:'Bellebridge',relation:' 488503 + 488510  = 977013  is watchful of',size:'3959',size_modifier:'2'},
+{seed:'488504',name:'Coralains',relation:' 488504 + 488510  = 977014  is cautious of',size:'1007',size_modifier:'0'},
+{seed:'488505',name:'Earstein',relation:' 488505 + 488510  = 977015  has strained relations with',size:'1358',size_modifier:'0'},
+{seed:'488506',name:'Great Gilbnac Crest',relation:' 488506 + 488510  = 977016  is oblivious of',size:'543',size_modifier:'-3'},
+{seed:'488507',name:'Iofun',relation:' 488507 + 488510  = 977017  is allied with',size:'151',size_modifier:'-4'},
+{seed:'488508',name:'LeLiberdale',relation:' 488508 + 488510  = 977018  is on the verge of war with',size:'85',size_modifier:'-5'},
+{seed:'488509',name:'Upper Bedana',relation:' 488509 + 488510  = 977019  is friendly with',size:'18732',size_modifier:'8'},
+{seed:'488510',name:'Cortle',relation:' 488510 + 488510  = 977020  is distrustful of',size:'5714',size_modifier:'4'},
+{seed:'488511',name:'Eaglenow',relation:' 488511 + 488510  = 977021  is in a trade war with',size:'3385',size_modifier:'1'},
+{seed:'488512',name:'New Gilhall',relation:' 488512 + 488510  = 977022  is wary of ',size:'1324',size_modifier:'0'},
+{seed:'488513',name:'Inndef Stone',relation:' 488513 + 488510  = 977023  has a neutral relationship with',size:'839',size_modifier:'-1'},
+{seed:'488514',name:'Libary',relation:' 488514 + 488510  = 977024  is ready for war with',size:'124',size_modifier:'-4'},
+{seed:'488515',name:'Baytop',relation:' 488515 + 488510  = 977025  is embargoing',size:'405',size_modifier:'-4'},
+{seed:'488516',name:'Copperpar',relation:' 488516 + 488510  = 977026  is on the verge of war with',size:'53',size_modifier:'-5'},
+{seed:'488517',name:'Duskholt',relation:' 488517 + 488510  = 977027  is friendly with',size:'16189',size_modifier:'8'},
+{seed:'488518',name:'Gibdew',relation:' 488518 + 488510  = 977028  is distrustful of',size:'4812',size_modifier:'2'},
+{seed:'488519',name:'Indber  Stone',relation:' 488519 + 488510  = 977029  is in a trade war with',size:'2659',size_modifier:'1'},
+{seed:'488520',name:'New  Lewisvale Lock',relation:' 488520 + 488510  = 977030  is wary of ',size:'1143',size_modifier:'0'},
+{seed:'488521',name:'Baxpost',relation:' 488521 + 488510  = 977031  has a neutral relationship with',size:'749',size_modifier:'-2'},
+{seed:'488522',name:'Copland',relation:' 488522 + 488510  = 977032  is ready for war with',size:'378',size_modifier:'-4'},
+{seed:'488523',name:'Big Dushduk',relation:' 488523 + 488510  = 977033  is embargoing',size:'260',size_modifier:'-4'},
+{seed:'488524',name:'Gerbert',relation:' 488524 + 488510  = 977034  is at war with',size:'32039',size_modifier:'12'},
+{seed:'488525',name:'Invita',relation:' 488525 + 488510  = 977035  is cordial towards ',size:'13646',size_modifier:'6'},
+{seed:'488526',name:'Lewridge Keep',relation:' 488526 + 488510  = 977036  is watchful of',size:'4268',size_modifier:'2'},
+{seed:'488527',name:'Battlemead',relation:' 488527 + 488510  = 977037  is cautious of',size:'1933',size_modifier:'1'},
+{seed:'488528',name:'Cooperers',relation:' 488528 + 488510  = 977038  has strained relations with',size:'1461',size_modifier:'0'},
+{seed:'488529',name:'Durlbor',relation:' 488529 + 488510  = 977039  is oblivious of',size:'695',size_modifier:'-2'},
+{seed:'488530',name:'Gerwater',relation:' 488530 + 488510  = 977040  is allied with',size:'233',size_modifier:'-4'},
+{seed:'488531',name:'Imoshall',relation:' 488531 + 488510  = 977041  is on the verge of war with',size:'15',size_modifier:'-5'},
+{seed:'488532',name:'Lettmore',relation:' 488532 + 488510  = 977042  is at war with',size:'27909',size_modifier:'10'},
+{seed:'488533',name:'Battlefalls City',relation:' 488533 + 488510  = 977043  is cordial towards ',size:'6331',size_modifier:'4'},
+{seed:'488534',name:'Port Coonbridge',relation:' 488534 + 488510  = 977044  is watchful of',size:'3723',size_modifier:'2'},
+{seed:'488535',name:'Durkwood',relation:' 488535 + 488510  = 977045  is cautious of',size:'1427',size_modifier:'0'},
+{seed:'488536',name:'Geostein',relation:' 488536 + 488510  = 977046  has strained relations with',size:'890',size_modifier:'-1'},
+{seed:'488537',name:'Great  Idana',relation:' 488537 + 488510  = 977047  is oblivious of',size:'527',size_modifier:'-3'},
+{seed:'488538',name:'Letfun',relation:' 488538 + 488510  = 977048  is allied with',size:'487',size_modifier:'-4'},
+{seed:'488539',name:'Batcreek',relation:' 488539 + 488510  = 977049  is on the verge of war with',size:'71',size_modifier:'-5'},
+{seed:'488540',name:'Conana Rock',relation:' 488540 + 488510  = 977050  is friendly with',size:'17628',size_modifier:'8'},
+{seed:'488541',name:'Durinstone',relation:' 488541 + 488510  = 977051  is distrustful of',size:'5241',size_modifier:'4'},
+{seed:'488542',name:'Gennow',relation:' 488542 + 488510  = 977052  is in a trade war with',size:'3070',size_modifier:'1'},
+{seed:'488543',name:'DeIceglade',relation:' 488543 + 488510  = 977053  is wary of ',size:'1246',size_modifier:'0'},
+{seed:'488544',name:'Lestdef',relation:' 488544 + 488510  = 977054  has a neutral relationship with',size:'800',size_modifier:'-1'},
+{seed:'488545',name:'Great   Barnax',relation:' 488545 + 488510  = 977055  is ready for war with',size:'460',size_modifier:'-4'},
+{seed:'488546',name:'Colltop',relation:' 488546 + 488510  = 977056  is embargoing',size:'342',size_modifier:'-4'},
+{seed:'488547',name:'Durovka Junction',relation:' 488547 + 488510  = 977057  is at war with',size:'39',size_modifier:'-5'},
+{seed:'488548',name:'Upper  Gavenhead',relation:' 488548 + 488510  = 977058  is cordial towards ',size:'8086',size_modifier:'6'},
+{seed:'488549',name:'Huxdew',relation:' 488549 + 488510  = 977059  is distrustful of',size:'4576',size_modifier:'2'},
+{seed:'488550',name:'Lesbar',relation:' 488550 + 488510  = 977060  is in a trade war with',size:'2343',size_modifier:'1'},
+{seed:'488551',name:'New   Bankvale',relation:' 488551 + 488510  = 977061  is wary of ',size:'1064',size_modifier:'0'},
+{seed:'488552',name:'Clivepool',relation:' 488552 + 488510  = 977062  has a neutral relationship with',size:'725',size_modifier:'-2'},
+{seed:'488553',name:'Dunkland  Junction',relation:' 488553 + 488510  = 977063  is ready for war with',size:'315',size_modifier:'-4'},
+{seed:'488554',name:'Gavdorf Center',relation:' 488554 + 488510  = 977064  is embargoing',size:'197',size_modifier:'-4'},
+{seed:'488555',name:'Humberbert',relation:' 488555 + 488510  = 977065  is at war with',size:'48884',size_modifier:'12'},
+{seed:'488556',name:'Lendvista',relation:' 488556 + 488510  = 977066  is cordial towards ',size:'12542',size_modifier:'6'},
+{seed:'488557',name:'Banridge',relation:' 488557 + 488510  = 977067  is watchful of',size:'4031',size_modifier:'2'},
+{seed:'488558',name:'Clintlia',relation:' 488558 + 488510  = 977068  is cautious of',size:'1617',size_modifier:'1'},
+{seed:'488559',name:'Mount Dun ers',relation:' 488559 + 488510  = 977069  has strained relations with',size:'1382',size_modifier:'0'},
+{seed:'488560',name:'LeGaurbon Branch',relation:' 488560 + 488510  = 977070  is oblivious of',size:'548',size_modifier:'-3'},
+{seed:'488561',name:'Hullwater',relation:' 488561 + 488510  = 977071  is allied with',size:'170',size_modifier:'-4'},
+{seed:'488562',name:'Bad Lenron',relation:' 488562 + 488510  = 977072  is on the verge of war with',size:'89',size_modifier:'-5'},
+{seed:'488563',name:'Ballmer',relation:' 488563 + 488510  = 977073  is friendly with',size:'26648',size_modifier:'10'},
+{seed:'488564',name:'Clemfalls',relation:' 488564 + 488510  = 977074  is distrustful of',size:'5858',size_modifier:'4'},
+{seed:'488565',name:'Dun bova',relation:' 488565 + 488510  = 977075  is watchful of',size:'4986',size_modifier:'2'},
+{seed:'488566',name:'Garnwood',relation:' 488566 + 488510  = 977076  is cautious of',size:'1348',size_modifier:'0'},
+{seed:'488567',name:'Hudski River',relation:' 488567 + 488510  = 977077  has strained relations with',size:'851',size_modifier:'-1'},
+{seed:'488568',name:'Lenna',relation:' 488568 + 488510  = 977078  is oblivious of',size:'512',size_modifier:'-3'},
+{seed:'488569',name:'Baldford',relation:' 488569 + 488510  = 977079  is allied with',size:'424',size_modifier:'-4'},
+{seed:'488570',name:'Alta Clegcreek',relation:' 488570 + 488510  = 977080  is on the verge of war with',size:'57',size_modifier:'-5'},
+{seed:'488571',name:'Dumald',relation:' 488571 + 488510  = 977081  is friendly with',size:'16525',size_modifier:'8'},
+{seed:'488572',name:'Gardenstone',relation:' 488572 + 488510  = 977082  is distrustful of',size:'4884',size_modifier:'2'},
+{seed:'488573',name:'Port  Hubbman',relation:' 488573 + 488510  = 977083  is in a trade war with',size:'2754',size_modifier:'1'},
+{seed:'488574',name:'Ledglade Heights',relation:' 488574 + 488510  = 977084  is wary of ',size:'1167',size_modifier:'0'},
+{seed:'488575',name:'Bagdar',relation:' 488575 + 488510  = 977085  has a neutral relationship with',size:'760',size_modifier:'-1'},
+{seed:'488576',name:'Great    Clearax',relation:' 488576 + 488510  = 977086  is ready for war with',size:'397',size_modifier:'-4'},
+{seed:'488577',name:'Dubton',relation:' 488577 + 488510  = 977087  is embargoing',size:'279',size_modifier:'-4'},
+{seed:'488578',name:'DeGardny',relation:' 488578 + 488510  = 977088  is at war with',size:'25',size_modifier:'-5'},
+{seed:'488579',name:'Hubhead',relation:' 488579 + 488510  = 977089  is cordial towards ',size:'13981',size_modifier:'6'},
+{seed:'488580',name:'Leden',relation:' 488580 + 488510  = 977090  is watchful of',size:'4339',size_modifier:'2'},
+{seed:'488581',name:'Badenbar Bluff',relation:' 488581 + 488510  = 977091  is in a trade war with',size:'2028',size_modifier:'1'},
+{seed:'488582',name:'Claytow',relation:' 488582 + 488510  = 977092  is wary of ',size:'1485',size_modifier:'0'},
+{seed:'488583',name:'Drakepool',relation:' 488583 + 488510  = 977093  has a neutral relationship with',size:'702',size_modifier:'-2'},
+{seed:'488584',name:'Grand Garblag',relation:' 488584 + 488510  = 977094  is ready for war with',size:'252',size_modifier:'-4'},
+{seed:'488585',name:'Houghdorf',relation:' 488585 + 488510  = 977095  is embargoing',size:'134',size_modifier:'-4'},
+{seed:'488586',name:'Lawberg',relation:' 488586 + 488510  = 977096  is at war with',size:'28292',size_modifier:'10'},
+{seed:'488587',name:'South Badvista  Bluff',relation:' 488587 + 488510  = 977097  is cordial towards ',size:'11438',size_modifier:'6'},
+{seed:'488588',name:'Clarkrard Ridge',relation:' 488588 + 488510  = 977098  is watchful of',size:'3795',size_modifier:'2'},
+{seed:'488589',name:'Downlia',relation:' 488589 + 488510  = 977099  is cautious of',size:'3301',size_modifier:'1'},
+{seed:'488590',name:'Mount  Gardun',relation:' 488590 + 488510  = 977100  has strained relations with',size:'1303',size_modifier:'0'},
+{seed:'488591',name:'Hospbon',relation:' 488591 + 488510  = 977101  is oblivious of',size:'532',size_modifier:'-3'},
+{seed:'488592',name:'Laurenwall',relation:' 488592 + 488510  = 977102  is allied with',size:'107',size_modifier:'-4'},
+{seed:'488593',name:'Atrun',relation:' 488593 + 488510  = 977103  is on the verge of war with',size:'75',size_modifier:'-5'},
+{seed:'488594',name:'Clarmer Rapids',relation:' 488594 + 488510  = 977104  is friendly with',size:'25387',size_modifier:'10'},
+{seed:'488595',name:'LeDowesti Grove',relation:' 488595 + 488510  = 977105  is distrustful of',size:'5385',size_modifier:'4'},
+{seed:'488596',name:'Ganbova',relation:' 488596 + 488510  = 977106  is in a trade war with',size:'3165',size_modifier:'1'},
+{seed:'488597',name:'Hornwell',relation:' 488597 + 488510  = 977107  is cautious of',size:'1269',size_modifier:'0'},
+{seed:'488598',name:'Lower Laurelski',relation:' 488598 + 488510  = 977108  has strained relations with',size:'812',size_modifier:'-1'},
+{seed:'488599',name:'Ashmouth',relation:' 488599 + 488510  = 977109  is oblivious of',size:'595',size_modifier:'-3'},
+],
+                                regions:[{seed:'488500',name:'Capborak Domain',},
+{seed:'488510',name:'Berarkak  Province',},
+{seed:'488520',name:'Eastern Berarkep Region',},
+{seed:'488530',name:'Donark District',},
+{seed:'488540',name:'Konlak Territory',},
+{seed:'488550',name:'Eastern  Nilllak  Domain',},
+{seed:'488560',name:'Moollak   Province',},
+{seed:'488570',name:'Fulsak   Domain',},
+{seed:'488580',name:'Western Fulsak    Province',},
+{seed:'488590',name:'Capsak  Region',},
+],
+                                locations:[]
+                            });
+                //continentmap.redrawMap(canvas);
+                threedee(continentmap);
+             ;">
+
+
+<script>
+
+
+
+</script>
+                <h1><a href='worldmap?continent=4885'>Continent of Anporar (4885)</a></h1>
+                <div id='3dmap'></div>
+                <canvas id="worldmap" style="display:none" width='1080' height='650' ></canvas>
+                <div id='regionlegend'>   </div>
+                <div id='continentlegend'></div>
+                <div id='neighboring_cities'></div>
+                <div id='diplomatic_ties_text'></div>
+
+                <div id='footer'>
+                
+                    <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
+                    <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
+                </div>
+
+            </body>
+        </html>
+
+
+
+
+

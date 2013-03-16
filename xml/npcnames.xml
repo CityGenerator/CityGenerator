@@ -46,6 +46,13 @@
 
 #################################################################################
 -->
+    <race name='mindflayer' article="a"  plural='mindflayers'>    </race>
+    <race name='minotaur'   article="a"  plural='minotaur'>       </race>
+    <race name='kobold' article="a"  plural='kobold'>     </race>
+    <race name='goblin' article="a"  plural='goblins'>    </race>
+    <race name='bugbear' article="a"  plural='bugbear'>    </race>
+    <race name='hobgoblin' article="a"  plural='hobgoblins'>    </race>
+    <race name='other' article="an"  plural='others'>    </race>
 
     <race name='lizardfolk' article="a"  plural='lizardfolk'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
@@ -81,7 +88,7 @@
             <post>zor</post>
         </lastname>
     </race>
-    <race name='gnome' rticle="a"  plural='gnomes'>
+    <race name='gnome' article="a"  plural='gnomes'>
         <firstname post_chance='70'>
             <pre>Ada</pre>
             <pre>Ai</pre>

@@ -24,6 +24,7 @@ my $xml = new XML::Simple;
 
 our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
+our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
 our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
 our $realmnames_data    = $xml->XMLin( "xml/realmnames.xml", ForceContent => 1, ForceArray => [] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
@@ -223,12 +224,9 @@ sub generate_citizens {
         $GenericGenerator::seed++;
         my $npc=NPCGenerator::create_npc({seed=>$GenericGenerator::seed    });
 
+        NPCGenerator::set_profession($npc, [shuffle keys %$businesslist] );
 
-
-        my @keys         = shuffle keys %$businesslist;
-        my $businessname = pop @keys;
-        $npc->{'job'} = $businesslist->{$businessname}->{'profession'} || $businessname;
-        delete $businesslist->{$businessname};
+        delete $businesslist->{ $npc->{'business'}  };
 
         if ( scalar keys %$businesslist == 0 ) {
             $businesslist = $city->{'business'};
@@ -661,20 +659,13 @@ sub generate_taverns{
 ###############################################################################
 sub generate_bartender{
 
-    my $bartender;
-    $bartender->{'behavior'}=rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
+
     my @races=get_races(   $city->{'base_pop'}    );
-    $bartender->{'race'}= pop(@races) ;
-    $bartender->{'level'}= min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) ) ;
+    shuffle @races;
 
-    my $names=generate_npc_name(  $bartender->{'race'}->{'content'}  );
-
-    foreach my $nametype (qw/ firstname lastname fullname noname/ ){
-        if (defined $names->{$nametype}){
-            $bartender->{$nametype}= $names->{$nametype};
-        }
-    }
-
+    my $bartender=NPCGenerator::create_npc({ 'race'   => pop(@races)->{'content'},
+                                'level' => min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) )
+                            });
     return $bartender;
 }
 
@@ -1022,7 +1013,9 @@ sub generate_businesses{
     my $businesspriorities={};
 
     # Loop throuch each type of building
-    for my $business (  @{ $xml_data->{'buildings'}->{'building'} }   ){
+    for my $businessname ( sort keys  %{ $business_data->{'building'} }   ){
+        my $business=$business_data->{'building'}->{$businessname };
+        $business->{'content'}=$businessname ; # This is a kludge workaround.
         #Note that we're sortiny by priority.
         my $priority= $business->{'priority'};
         if (!defined $businesspriorities->{$priority}){

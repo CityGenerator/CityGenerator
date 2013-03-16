@@ -32,6 +32,7 @@ use XML::Simple;
 my $xml = new XML::Simple;
 
 our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
+our $business_data = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
 our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -55,9 +56,12 @@ sub create_npc{
     $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
     if (! defined $npc->{'race'}){
         $npc->{'race'}=GenericGenerator::rand_from_array( [ keys %{$names_data->{'race'}}] );
-        $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
-        $npc->{'race_plural'}=$names_data->{'race'}->{$npc->{'race'}}->{'plural'}   ;
     }
+    $npc->{'race'}=lc $npc->{'race'};
+    
+    $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
+    $npc->{'race_plural'}=$names_data->{'race'}->{$npc->{'race'}}->{'plural'}   ;
+    
     generate_npc_name($npc->{'race'},$npc);
     $npc->{'skill'}             = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
     $npc->{'behavior'}          = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
@@ -66,6 +70,31 @@ sub create_npc{
     return $npc;
 }
 
+
+###############################################################################
+
+=head2 set_profession( npc, businesslist )
+
+Take a provided NPC and select a profession from the list of available choices.
+
+=cut
+
+###############################################################################
+
+sub set_profession{
+    my ($npc,@businesslist)=@_;
+    if (scalar(@businesslist) == 0){
+        @businesslist= keys %{$business_data->{'building'}};
+    }
+        shuffle(@businesslist);
+        $npc->{'business'}    = pop @businesslist;
+        if (defined $business_data->{'building'}->{  $npc->{'business'}  } and defined $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'}  ){
+            $npc->{'profession'} = $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'};
+        }else{
+            $npc->{'profession'} =  $npc->{'business'};
+        }
+
+}
 
 ###############################################################################
 

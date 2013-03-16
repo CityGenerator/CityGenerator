@@ -63,7 +63,35 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'race'},'elf' , "race is elf when set" );
 	    is($npc->{'seed'}, 1 , "seed is 1 when set." );
 	    is($npc->{'fullname'}, 'Abaartlleu Heartwing' , "fullname is set" );
-	    is($npc->{'fullname'}, 'Abaartlleu Heartwing' , "fullname is set" );
+	    done_testing();
+    };
+    subtest 'test create_npc profession' => sub {
+        my $npc;
+
+        $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
+        NPCGenerator::set_profession($npc, 'cobbler'  );
+        is($npc->{'profession'},'cobbler');
+        is($npc->{'business'},'cobbler');
+
+        $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
+        NPCGenerator::set_profession($npc, 'church', 'cobbler'  );
+        is($npc->{'profession'},'cobbler');
+        is($npc->{'business'},'cobbler');
+
+        $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
+        NPCGenerator::set_profession($npc, 'cobbler', 'church'  );
+        is($npc->{'profession'},'priest');
+        is($npc->{'business'},'church');
+
+        $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
+        NPCGenerator::set_profession($npc, 'cobblerone', 'churchle'  );
+        is($npc->{'profession'},'churchle');
+        is($npc->{'business'},'churchle');
+
+        $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
+        NPCGenerator::set_profession($npc,  );
+        is($npc->{'profession'},'furrier');
+        is($npc->{'business'},'furrier');
 	    done_testing();
     };
     subtest 'test create_npc attitudes' => sub {

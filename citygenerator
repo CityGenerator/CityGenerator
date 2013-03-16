@@ -320,7 +320,9 @@ sub describe_citizens{
             if ( defined $citizen->{'fullname'}){
                 $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race_article'}." ".lc($citizen->{'race'})." ";
             }
-            $content.="who is known in ".$citizen->{'scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'job'}.". ".ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
+            
+            $content.="who is known in ".$citizen->{'reputation_scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'profession'}.". ";
+            $content.=ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
             
             $content.="</li>\n";
         }
@@ -450,7 +452,14 @@ sub describe_tavern{
     }
     my $name="";
     if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
-    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by $tavern->{'bartender'}->{'race_article'} ".lc($tavern->{'bartender'}->{'race'})."$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
+    my $content ="<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. ";
+    $content   .="The bar is owned by $tavern->{'bartender'}->{'race_article'} ";
+    $content   .=lc($tavern->{'bartender'}->{'race'});
+    $content   .="$name who seems $tavern->{'bartender'}->{'behavior'}. ";
+    $content   .="The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. ";
+    $content   .="Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.";
+
+    return ($content, $tavernpoptotal);
 }
 
 sub describe_localinfo{

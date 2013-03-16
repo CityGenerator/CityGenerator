@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<buildings>
+    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops" name="alchemist" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  profession="social worker" district="poor" name="almshouse" />
+    <building weight='1' priority='8'  perbuilding='2'  requires_size="0"  district="fineshops" name="apothecary" />
+    <building weight='2' priority='3'  perbuilding='3'  requires_size="-2" district="trade" name="armorer" />
+    <building weight='2' priority='10' perbuilding='5'  requires_size="6"  district="trade" name="bounty hunter" />
+    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops" name="astrologer" />
+    <building weight='2' priority='4'  perbuilding='4'  requires_size="-4" district="trade" name="baker" />
+    <building weight='1' priority='4'  perbuilding='10' requires_size="0"  district="professional" name="banker" />
+    <building weight='2' priority='5'  perbuilding='3'  requires_size="0"  district="professional" name="barber" />
+    <building weight='1' priority='5'  perbuilding='20' requires_size="-1" profession="soldier" district="military" name="barracks" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="2"  profession="lawyer" district="civic" name="barrister" />
+    <building weight='2' priority='2'  perbuilding='3'  requires_size="-5"  district="trade" name="blacksmith" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="-1" profession="ship captain" district="port" name="boat for hire" />
+    <building weight='1' priority='9'  perbuilding='2'  requires_size="0"  district="fineshops" name="bookseller" />
+    <building weight='1' priority='3'  perbuilding='4'  requires_size="-3" district="trade" name="bowyer" />
+    <building weight='1' priority='5'  perbuilding='5'  requires_size="-1" district="trade" name="brewer" />
+    <building weight='2' priority='4'  perbuilding='10' requires_size="-1" profession="prostitute" district="poor" name="brothel" />
+    <building weight='2' priority='2'  perbuilding='5'  requires_size="-3" district="trade" name="butcher" />
+    <building weight='1' priority='7'  perbuilding='10' requires_size="-3" district="trade" name="carpenter" />
+    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade" name="cartwright" />
+    <building weight='1' priority='10' perbuilding='50' requires_size="6"  profession="noble" district="wealthy" name="castle" />
+    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="trade" name="chandler" />
+    <building weight='1' priority='7'  perbuilding='3'  requires_size="0"  district="trade" name="cheesemaker" />
+    <building weight='3' priority='3'  perbuilding='6'  requires_size="-3" profession="priest" district="mercy" name="church" />
+    <building weight='1' priority='7'  perbuilding='2'  requires_size="-3" district="shops" name="cobbler" />
+    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" district="trade" name="cooper" />
+    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade" name="dyer" />
+    <building weight='1' priority='10' perbuilding='7'  requires_size="6"  district="professional" name="engineer" />
+    <building weight='1' priority='10' perbuilding='6'  requires_size="4"  district="professional" name="entertainer" />
+    <building weight='1' priority='8'  perbuilding='3'  requires_size="0"  district="market" name="fishmonger" />
+    <building weight='1' priority='5'  perbuilding='20' requires_size="6"  profession="commander" district="civic" name="fortress" />
+    <building weight='1' priority='7'  perbuilding='3'  requires_size="-3" district="trade" name="furrier" />
+    <building weight='1' priority='9'  perbuilding='6'  requires_size="-1" district="trade" name="glassblower" />
+    <building weight='1' priority='1'  perbuilding='10' requires_size="-6" profession="undertaker" district="civic" name="graveyard" />
+    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="market" name="grocer" />
+    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" profession="doctor" district="mercy" name="healer" />
+    <building weight='1' priority='6'  perbuilding='4'  requires_size="-4" district="shops" name="herbalist" />
+    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  profession="good samaritan" district="embassy" name="hostel" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="6"  district="embassy" name="interpreter" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="0"  profession="jailer" district="civic" name="jailhouse" />
+    <building weight='1' priority='8'  perbuilding='4'  requires_size="-2" district="fineshops" name="jeweler" />
+    <building weight='3' priority='6'  perbuilding='10' requires_size="-2" district="industry" name="laborer" />
+    <building weight='1' priority='8'  perbuilding='20' requires_size="4"  district="trade" name="mercenary" />
+    <building weight='2' priority='3'  perbuilding='4'  requires_size="-4" district="trade" name="leatherworker" />
+    <building weight='5' priority='2'  perbuilding='4'  requires_size="-5" profession="sheriff" district="official" name="law enforcement" />
+    <building weight='1' priority='7'  perbuilding='4'  requires_size="-2" profession="librarian" district="education" name="library" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="professional" name="locksmith" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="-2" profession="lumberjack" district="industry" name="lumbermill" />
+    <building weight='1' priority='6'  perbuilding='2'  requires_size="4"  profession="merchant" district="shops" name="magic store" />
+    <building weight='1' priority='3'  perbuilding='10' requires_size="-3" district="industry" name="mason" />
+    <building weight='1' priority='2'  perbuilding='10' requires_size="-4" district="market" name="merchant" />
+    <building weight='1' priority='10' perbuilding='5'  requires_size="0"  district="embassy" name="messenger" />
+    <building weight='1' priority='1'  perbuilding='6'  requires_size="-6" district="trade" name="miller" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="professional" name="navigator" />
+    <building weight='2' priority='3'  perbuilding='5'  requires_size="-4" district="civic" name="official" />
+    <building weight='1' priority='7'  perbuilding='4'  requires_size="0"  profession="social worker" district="mercy" name="orphanage" />
+    <building weight='1' priority='4'  perbuilding='4'  requires_size="-2" district="mercy" name="physician" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="professional" name="porter" />
+    <building weight='1' priority='6'  perbuilding='4'  requires_size="-2" district="trade" name="potter" />
+    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="market" name="provisioner" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="8"  profession="merchant" district="market" name="rare crafts and trades" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="trade" name="saddler" />
+    <building weight='1' priority='3'  perbuilding='2'  requires_size="-4" district="professional" name="sage" />
+    <building weight='1' priority='5'  perbuilding='4'  requires_size="-4" profession="teacher" district="educational" name="school" />
+    <building weight='1' priority='6'  perbuilding='10' requires_size="2"  district="professional" name="scribe" />
+    <building weight='1' priority='10' perbuilding='20' requires_size="6"  profession="ship builder" district="port" name="shipyard" />
+    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  profession="priest" district="mercy" name="shrine" />
+    <building weight='2' priority='1'  perbuilding='4'  requires_size="-5" district="trade" name="smith" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="fineshops" name="specialty smith" />
+    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" profession="stablehand" district="trade" name="stable" />
+    <building weight='1' priority='7'  perbuilding='6'  requires_size="-1" district="professional" name="tailor/seamstress" />
+    <building weight='1' priority='4'  perbuilding='3'  requires_size="-3" district="trade" name="tanner" />
+    <building weight='2' priority='2'  perbuilding='4'  requires_size="-5" profession="innkeeper" district="" name="tavern/inn" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="-1" district="professional" name="teamster" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="-3" profession="priest" district="mercy" name="temple" />
+    <building weight='1' priority='10' perbuilding='10' requires_size="4"  profession="actor" district="entertainment" name="theatre" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="6"  district="industry" name="tilemaker" />
+    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="market" name="trader" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  profession="coach driver" district="industrial" name="transportation" />
+    <building weight='1' priority='10' perbuilding='20' requires_size="10" district="education" name="university" />
+    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade" name="vintner" />
+    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  profession="wagoneer" district="industrial" name="wagon yard" />
+    <building weight='2' priority='6'  perbuilding='2'  requires_size="6"  profession="warehouse worker" district="industrial" name="warehouse" />
+    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade" name="weaponsmith" />
+    <building weight='1' priority='5'  perbuilding='4'  requires_size="-3" district="trade" name="weaver" />
+    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" district="trade" name="woodworker" />
+    <building weight='10' priority='10' perbuilding='10' requires_size="-6" district="" profession="handyman" name="misc." />
+</buildings>
