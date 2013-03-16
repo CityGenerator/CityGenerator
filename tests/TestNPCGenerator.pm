@@ -47,7 +47,7 @@ subtest 'test create_npc' => sub {
 	
 	    GenericGenerator::set_seed(2);
 	    $npc=NPCGenerator::create_npc();
-	    is($npc->{'race'},'lizardfolk', "random race is lizardfolk when set_seed is at 2"  );
+	    is($npc->{'race'},'bugbear', "random race is bugbear when set_seed is at 2"  );
 	    is($npc->{'seed'}, 912432, "This is the random seed selected when set_seed is at 2"  );
 	    
 	    $npc=NPCGenerator::create_npc({'seed'=>1,'race'=>'elf'});
@@ -196,7 +196,7 @@ subtest 'test get_races' => sub {
 
     my $races=NPCGenerator::get_races();
 
-    is(scalar(@$races),16, "Total of 16 races allowed.");
+    is(scalar(@$races),23, "Total of 23 races allowed.");
 
     done_testing();
 };

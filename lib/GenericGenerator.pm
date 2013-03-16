@@ -20,10 +20,14 @@ our $seed;
 
 
 ###############################################################################
-#
-# set_seed - check the parameters for cityID and set the seed accordingly.
-# This is what allows us to return to previously generated hosts.
-#
+
+=head2 set_seed()
+
+Check the parameters for cityID and set the seed accordingly.
+This is what allows us to return to previously generated hosts.
+
+=cut
+
 ###############################################################################
 sub set_seed{
     my ($newseed)=@_;
@@ -39,9 +43,13 @@ sub set_seed{
 
 
 ###############################################################################
-#
-# rand_from_array - select a random item from an array.
-#
+
+=head2 rand_from_array()
+
+Select a random item from an array.
+
+=cut
+
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
@@ -51,11 +59,14 @@ sub rand_from_array {
 }
 
 ###############################################################################
-#
-# roll_from_array - When passed a roll and a list of items, check the
-# min and max properties of each and select the one that $roll best fits
-# otherwise use the first item.
-# 
+
+=head2 roll_from_array()
+
+When passed a roll and a list of items, check the min and max properties of 
+each and select the one that $roll best fits otherwise use the first item.
+
+=cut
+
 ###############################################################################
 sub roll_from_array {
     my ( $roll, $items ) = @_;
@@ -86,9 +97,13 @@ sub roll_from_array {
 }
 
 ###############################################################################
-#
-# d - this serves the function of rolling a dice- a d6, d10, etc.
-#
+
+=head2 d()
+
+This serves the function of rolling a dice- a d6, d10, etc.
+
+=cut
+
 ###############################################################################
 sub d {
     my ($die) = @_;
@@ -108,16 +123,20 @@ sub d {
     }
 }
 
-#####################################################
-#
-# Parse Object - a horribly named subroutine to parse
-# out and randomly select the parts.
-#
-#####################################################
+###############################################################################
+
+=head2 parse_object()
+
+A horribly named subroutine to parse out and randomly select the parts. This
+method is really the crux of the name generation stuff.
+
+=cut
+
+###############################################################################
 sub parse_object {
     my ($object)=@_;
     my $newobj= { 'content'=>'' };
-    # We currently only care about 4 parts
+    # We currently only care about 4 parts; FIXME to pull this list dynamically
     foreach my $part (qw/title pre root post trailer/){
         # Make sure that the part exists for this object.
         if(defined $object->{$part}){

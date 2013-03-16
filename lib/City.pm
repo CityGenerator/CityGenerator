@@ -3,6 +3,19 @@
 #
 package City;
 
+###############################################################################
+
+=head1 NAME
+
+    City - used to generate Cities
+
+=head1 DESCRIPTION
+
+ This can be used to generate Cities.
+
+=cut
+
+###############################################################################
 
 use strict;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
@@ -22,6 +35,30 @@ use XML::Simple;
 
 my $xml = new XML::Simple;
 
+###############################################################################
+
+=head2 Data files
+
+=over
+
+=item F<xml/data.xml>
+
+=item F<xml/npcnames.xml>
+
+=item F<xml/business.xml>
+
+=item F<xml/citynames.xml>
+
+=item F<xml/realmnames.xml>
+
+=item F<xml/continentnames.xml>
+
+=back
+
+=cut
+
+###############################################################################
+# FIXME This needs to stop using our
 our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
 our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
@@ -47,14 +84,17 @@ our $city;
 
 
 ###############################################################################
-#
-# build_city - This is the primary method for building a city. using $GenericGenerator::seed,
-# generate the city name, then the core, creedence, physical traits, economy,
-# military and current events. Once that's finished you have a fully
-# funcitonal city.
-#
-###############################################################################
 
+=head2 build_city()
+
+This is the primary method for building a city. using $GenericGenerator::seed,
+generate the city name, then the core, creedence, physical traits, economy,
+military and current events. Once that's finished you have a fully
+funcitonal city.
+
+=cut
+
+###############################################################################
 sub build_city {
     my ($newseed) = @_;
     $originalseed=set_seed($newseed);
@@ -76,7 +116,15 @@ sub build_city {
 } ## end sub build_city
 
 
+###############################################################################
 
+=head2 generate_name()
+
+    generate a name for the city.
+
+=cut
+
+###############################################################################
 sub generate_name {
     my ($newseed) = @_;
     $GenericGenerator::seed           = set_seed($newseed);
@@ -85,12 +133,15 @@ sub generate_name {
 }
 
 ###############################################################################
-#
-# generate_city_core - select the size, type, population, races and population
-# breakdown. This is the core of the city stats, everything else is icing.
-#
-###############################################################################
 
+=head2 generate_city_core()
+
+Select the size, type, population, races and population
+breakdown. This is the core of the city stats, everything else is icing.
+
+=cut
+
+###############################################################################
 sub generate_city_core {
     set_city_size();
     set_city_type();
@@ -102,12 +153,16 @@ sub generate_city_core {
     generate_elderly();
 } ## end sub generate_city_core
 
-###############################################################################
-#
-# generate_city_credence - select government, ethics, tolerance, etc.
-#
+
 ###############################################################################
 
+=head2 generate_city_credence()
+
+Select government, ethics, tolerance, etc.
+
+=cut
+
+###############################################################################
 sub generate_city_credence {
     generate_city_ethics();
     generate_city_beliefs();
@@ -118,11 +173,15 @@ sub generate_city_credence {
     generate_imprisonment_rate();
 } ## end sub generate_city_credence
 
+
 ###############################################################################
-#
-# generate_physical_traits - Generate the location, size, support area,
-# landmarks,
-#
+
+=head2 generate_physical_traits()
+
+Generate the location, size, support area,
+
+=cut
+
 ###############################################################################
 
 sub generate_physical_traits {
@@ -143,11 +202,14 @@ sub generate_physical_traits {
 } ## end sub generate_physical_traits
 
 ###############################################################################
-#
-# generate_economics - generate various markets, organizations and resources
-#
-###############################################################################
 
+=head2 generate_economics()
+
+generate various markets, organizations and resources
+
+=cut
+
+###############################################################################
 sub generate_economics {
     generate_markets();
     generate_resources();
@@ -158,9 +220,13 @@ sub generate_economics {
 } ## end sub generate_economics
 
 ###############################################################################
-#
-# generate_military - generate military, fortifications, wars, etc
-#
+
+=head2 generate_military()
+
+generate military, fortifications, wars, etc
+
+=cut
+
 ###############################################################################
 
 sub generate_military {
@@ -175,20 +241,13 @@ sub generate_military {
 } ## end sub generate_military
 
 ###############################################################################
-#
-# generate_culture - generate cultural things
-#
-###############################################################################
-sub generate_culture {
-    generate_flag_colors();
-    generate_city_crest();
-} ## end sub generate_culture
 
-###############################################################################
-#
-# generate_current_events - generate weather conditions, visible population,
-# and ongoing events.
-#
+=head2 generate_current_events()
+
+generate time, weather, visible pop and events
+
+=cut
+
 ###############################################################################
 sub generate_current_events {
     generate_time();
@@ -198,9 +257,13 @@ sub generate_current_events {
 } ## end sub generate_current_events
 
 ###############################################################################
-#
-# generate_people - generate citizens and travelers of note.
-#
+
+=head2 generate_people()
+
+generate citizens and travelers of note.
+
+=cut
+
 ###############################################################################
 sub generate_people {
     generate_citizens();
@@ -208,9 +271,13 @@ sub generate_people {
 }
 
 ###############################################################################
-#
-# generate_citizens - given all of our specialists, are any noteworhy?
-#
+
+=head2 generate_citizens()
+
+given all of our specialists, are any noteworhy?
+
+=cut
+
 ###############################################################################
 sub generate_citizens {
 
@@ -237,15 +304,18 @@ sub generate_citizens {
 } ## end sub generate_citizens
 
 ###############################################################################
-#
-# generate_watchtowers
-#
-###############################################################################
 
+=head2 generate_watchtowers()
+
+ come up with a list of towers
+
+=cut
+
+###############################################################################
 sub generate_watchtowers {
 
-# inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
-# outer wall is 1320 with 18 towers, meaning every 73
+    # inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
+    # outer wall is 1320 with 18 towers, meaning every 73
 
     # Determine  walled area - only the city core is walled;
     # best way to calculate that is population@ max density 
@@ -260,9 +330,13 @@ sub generate_watchtowers {
 }
 
 ###############################################################################
-#
-# generate_city_crest - generate colors and the design
-#
+
+=head2 generate_city_crest()
+
+generate colors and the design
+
+=cut
+
 ###############################################################################
 
 sub generate_city_crest {
@@ -271,9 +345,13 @@ sub generate_city_crest {
 
 }
 ###############################################################################
-#
-# generate_shape - generate the rough shape of the city.
-#
+
+=head2 generate_shape()
+
+generate the rough shape of the city.
+
+=cut
+
 ###############################################################################
 
 sub generate_shape {
@@ -281,9 +359,13 @@ sub generate_shape {
 
 }
 ###############################################################################
-#
-# generate_flag_colors - generate colors and their meanings
-#
+
+=head2 generate_flag_colors()
+
+generate colors and their meanings
+
+=cut
+
 ###############################################################################
 
 sub generate_flag_colors {
@@ -312,9 +394,13 @@ sub generate_flag_colors {
 
 
 ###############################################################################
-#
-# generate_military_skill - generate favored_tactic, fortifications, wars, etc
-#
+
+=head2 generate_military_skill()
+
+generate favored_tactic, fortifications, wars, etc
+
+=cut
+
 ###############################################################################
 
 sub generate_military_skill {
@@ -334,9 +420,13 @@ sub generate_military_skill {
 }
 
 ###############################################################################
-#
-# generate_favored_tactic - generate favored_tactic, fortifications, wars, etc
-#
+
+=head2 generate_favored_tactic()
+
+generate favored_tactic, fortifications, wars, etc
+
+=cut
+
 ###############################################################################
 
 sub generate_favored_tactic {
@@ -356,9 +446,13 @@ sub generate_favored_tactic {
 
 }
 ###############################################################################
-#
-# generate_favored_weapon - generate favored_weapon, fortifications, wars, etc
-#
+
+=head2 generate_favored_weapon()
+
+generate favored_weapon, fortifications, wars, etc
+
+=cut
+
 ###############################################################################
 
 sub generate_favored_weapon {
@@ -374,9 +468,13 @@ sub generate_favored_weapon {
 }
 
 ###############################################################################
-#
-# generate_kingdom_troops - generate troops dedicated to protecting the kingdom.
-#
+
+=head2 generate_kingdom_troops()
+
+generate troops dedicated to protecting the kingdom.
+
+=cut
+
 ###############################################################################
 
 sub generate_kingdom_troops {
@@ -388,27 +486,13 @@ sub generate_kingdom_troops {
 }
 
 ###############################################################################
-#
-# generate_fortifications - generate fortifications
-#
-###############################################################################
 
-sub generate_fortifications {
-    my $roll;
-    if ($city->{'walls'}->{'content'} eq 'none' ){
-        $roll=&d(45);
-        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'preparation'}->{'option'}) ;
-    }else{
-        $roll=&d(100) + $city->{'walls'}->{'height'};
-        $city->{'fortification'}=roll_from_array( $roll  ,$xml_data->{'preparation'}->{'option'}) ;
-    }
-    $city->{'fortification'}->{'roll'}=$roll;
-}
+=head2 generate_military_stats()
 
-###############################################################################
-#
-# generate_military_stats - generate percentage of militant population
-#
+generate statistics on active, para, reserve, etc of the military
+
+=cut
+
 ###############################################################################
 
 sub generate_military_stats {
@@ -434,9 +518,13 @@ sub generate_military_stats {
 }
 
 ###############################################################################
-#
-# generate_events - determine what is going on in the city currently.
-#
+
+=head2 generate_events()
+
+determine what is going on in the city currently.
+
+=cut
+
 ###############################################################################
 sub generate_events {
     my $event_chance=$xml_data->{'events'}->{'chance'};
@@ -459,10 +547,13 @@ sub generate_events {
 
 
 ###############################################################################
-#
-# generate_visible_population - determine what percentage of the population is
-# out and about.
-#
+
+=head2 generate_visible_population()
+
+determine what percentage of the population is out and about.
+
+=cut
+
 ###############################################################################
 sub generate_visible_population {
 
@@ -498,9 +589,13 @@ sub generate_visible_population {
     $city->{'visiblepopulation'}=$visiblepop;
 }
 ###############################################################################
-#
-# generate_weather - set the weather, which determines visible population
-#
+
+=head2 generate_weather()
+
+set the weather, which determines visible population
+
+=cut
+
 ###############################################################################
 sub generate_weather {
     $city->{'weather'} ={};
@@ -526,9 +621,13 @@ sub generate_weather {
 }
 
 ###############################################################################
-#
-# generate_time - set the current time, which determines visible population
-#
+
+=head2 generate_time()
+
+set the current time, which determines visible population
+
+=cut
+
 ###############################################################################
 sub generate_time {
     $city->{'time'} = rand_from_array( $xml_data->{'time'}->{'option'} );
@@ -536,9 +635,13 @@ sub generate_time {
 
 
 ###############################################################################
-#
-# generate_education_description - generate the economic description
-#
+
+=head2 generate_education_description()
+
+generate the economic description
+
+=cut
+
 ###############################################################################
 sub generate_education_description {
     my $educationtype     = roll_from_array( $city->{'education'}, $xml_data->{'educationalignment'}->{'option'} );
@@ -547,9 +650,13 @@ sub generate_education_description {
 }
 
 ###############################################################################
-#
-# generate_magic_description - generate the economic description
-#
+
+=head2 generate_magic_description()
+
+generate the economic description
+
+=cut
+
 ###############################################################################
 sub generate_magic_description {
     my $magictype     = roll_from_array( $city->{'magic'}, $xml_data->{'magicalignment'}->{'option'} );
@@ -558,9 +665,13 @@ sub generate_magic_description {
 }
 
 ###############################################################################
-#
-# generate_economic_description - generate the economic description
-#
+
+=head2 generate_economic_description()
+
+generate the economic description
+
+=cut
+
 ###############################################################################
 sub generate_economic_description {
     my $econtype     = roll_from_array( $city->{'economy'}, $xml_data->{'economyalignment'}->{'option'} );
@@ -569,9 +680,13 @@ sub generate_economic_description {
 }
 
 ###############################################################################
-#
-# generate_travelers - generate a few travelers
-#
+
+=head2 generate_travelers()
+
+generate a few travelers
+
+=cut
+
 ###############################################################################
 sub generate_travelers{
     my $travelercount= int( ( 6 +  $city->{'size_modifier'} )/2);
@@ -610,9 +725,13 @@ sub generate_travelers{
     set_seed($originalseed);
 }
 ###############################################################################
-#
-# generate_taverns - generate a few taverns;
-#
+
+=head2 generate_taverns()
+
+generate a few taverns;
+
+=cut
+
 ###############################################################################
 
 sub generate_taverns{
@@ -653,9 +772,13 @@ sub generate_taverns{
 }
 
 ###############################################################################
-#
-# generate_bartender - generate a bartender
-#
+
+=head2 generate_bartender()
+
+generate a bartender
+
+=cut
+
 ###############################################################################
 sub generate_bartender{
 
@@ -673,9 +796,13 @@ sub generate_bartender{
 
 
 ###############################################################################
-#
-# generate_npc_name - generate an npc name if they're available for that race
-#
+
+=head2 generate_npc_name()
+
+generate an npc name if they're available for that race
+
+=cut
+
 ###############################################################################
 
 sub generate_npc_name{
@@ -690,9 +817,13 @@ sub generate_npc_name{
 }
 
 ###############################################################################
-#
-# generate_resources - select resources modified by city size.
-#
+
+=head2 generate_resources()
+
+select resources modified by city size.
+
+=cut
+
 ###############################################################################
 
 sub generate_resources{
@@ -715,10 +846,14 @@ sub generate_resources{
 
 
 ###############################################################################
-#
-# generate_markets - select some markets according to their chance of 
-# appearance modified by city size.
-#
+
+=head2 generate_markets()
+
+select some markets according to their chance of 
+ appearance modified by city size.
+
+=cut
+
 ###############################################################################
 sub generate_markets {
 
@@ -779,9 +914,13 @@ sub generate_markets {
 
 
 ###############################################################################
-#
-# generate_realm - Determine the realm of the city
-#
+
+=head2 generate_realm()
+
+Determine the realm of the city
+
+=cut
+
 ###############################################################################
 sub generate_realm {
     my $realmseed= $originalseed - ($originalseed % 10);
@@ -792,9 +931,13 @@ sub generate_realm {
 
 
 ###############################################################################
-#
-# generate_Continent - Determine the name of the Continent
-#
+
+=head2 generate_continent()
+
+Determine the name of the Continent
+
+=cut
+
 ###############################################################################
 sub generate_continent {
     set_seed($originalseed-$originalseed%100);
@@ -803,9 +946,13 @@ sub generate_continent {
 }
 
 ###############################################################################
-#
-# generate_climate - Determine the climate of the city
-#
+
+=head2 generate_climate()
+
+Determine the climate of the city
+
+=cut
+
 ###############################################################################
 sub generate_climate {
     $city->{'climate'}=rand_from_array($xml_data->{'climate'}->{'option'});
@@ -813,18 +960,26 @@ sub generate_climate {
 
 
 ###############################################################################
-#
-# generate_topography - Determine information about the neighbors. 
-#
+
+=head2 generate_topography()
+
+Determine information about the neighbors. 
+
+=cut
+
 ###############################################################################
 sub generate_topography {
     $city->{'topography'}=rand_from_array($xml_data->{'topography'}->{'region'})->{'content'};
 }
 
 ###############################################################################
-#
-# generate_neighborRealms - Determine information about the neighbor Realms. 
-#
+
+=head2 generate_neighborRealms()
+
+Determine information about the neighbor Realms. 
+
+=cut
+
 ###############################################################################
 
 sub generate_neighborRealms {
@@ -845,9 +1000,13 @@ sub generate_neighborRealms {
 
 
 ###############################################################################
-#
-# generate_neighbors - Determine information about the neighbors. 
-#
+
+=head2 generate_neighbors()
+
+Determine information about the neighbors. 
+
+=cut
+
 ###############################################################################
 
 sub generate_neighbors {
@@ -881,9 +1040,13 @@ sub generate_neighbors {
 
 
 ###############################################################################
-#
-# generate_walls - Determine information about the streets. 
-#
+
+=head2 generate_walls()
+
+Determine information about the streets. 
+
+=cut
+
 ###############################################################################
 sub generate_walls {
     #Chance of there being a wall
@@ -902,9 +1065,13 @@ sub generate_walls {
 }
 
 ###############################################################################
-#
-# generate_streets - Determine information about the streets. 
-#
+
+=head2 generate_streets()
+
+Determine information about the streets. 
+
+=cut
+
 ###############################################################################
 sub generate_streets {
     $city->{'streets'}=parse_object($xml_data->{'streets'});
@@ -915,11 +1082,30 @@ sub generate_streets {
 
 }
 
+###############################################################################
+
+=head2 adjust_chance_for_port()
+
+If the city location has the port value set, git the port district an 80% chance.
+
+=cut
+
+###############################################################################
 sub adjust_chance_for_port{
     if ( $city->{'location'}->{'port'}  ) {
         $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
     }
 }
+
+###############################################################################
+
+=head2 specialists_influence_districts()
+
+Use the city buildings and businesses to influence the corresponding districts chance. 
+
+=cut
+
+###############################################################################
 sub specialists_influence_districts{
 
     foreach my $business (@{$city->{'buildings'}}){
@@ -930,10 +1116,13 @@ sub specialists_influence_districts{
 }
 
 ###############################################################################
-#
-# generate_districts - using population size and professionals, determine
-# the most likely districts.
-#
+
+=head2 generate_districts()
+
+using population size and professionals, determine the most likely districts.
+
+=cut
+
 ###############################################################################
 sub generate_districts {
 
@@ -996,10 +1185,13 @@ sub generate_districts {
 }
 
 ###############################################################################
-#
-# generate_business - using population size and professionals, determine
-# the most likely districts.
-#
+
+=head2 generate_businesses()
+
+using population size and professionals, determine the most likely districts.
+
+=cut
+
 ###############################################################################
 sub generate_businesses{
 
@@ -1088,10 +1280,14 @@ sub generate_businesses{
 
 
 ###############################################################################
-#
-# generate_support_area - using population size, determine the size of the
-# area needed to support the city. results is in square miles.
-#
+
+=head2 generate_support_area()
+
+using population size, determine the size of the area needed to support 
+the city. results is in square miles.
+
+=cut
+
 ###############################################################################
 sub generate_support_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
@@ -1109,10 +1305,14 @@ sub generate_support_area {
 
 
 ###############################################################################
-#
-# generate_area - using population size and density, determine the size of 
-# the city. results is in hectares.
-#
+
+=head2 generate_area()
+
+using population size and density, determine the size of the city. 
+Results is in hectares.
+
+=cut
+
 ###############################################################################
 sub generate_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
@@ -1121,9 +1321,13 @@ sub generate_area {
 }
 
 ###############################################################################
-#
-# generate_housing - generate the types of housing and how much there is.
-#
+
+=head2 generate_housing()
+
+generate the types of housing and how much there is.
+
+=cut
+
 ###############################################################################
 sub generate_housing {
     $city->{'housing'}={};
@@ -1162,11 +1366,14 @@ sub generate_housing {
 }
 
 ###############################################################################
-#
-# generate_location - select the location we wish to use and any landmarks.
-#
-###############################################################################
 
+=head2 generate_location()
+
+select the location we wish to use and any landmarks.
+
+=cut
+
+###############################################################################
 
 sub generate_location {
     $city->{'location'} = { 'landmarks'=>[]  };
@@ -1186,6 +1393,15 @@ sub generate_location {
     }
 }
 
+###############################################################################
+
+=head2 generate_crime()
+
+Generate crime statistics and details
+
+=cut
+
+###############################################################################
 
 sub generate_crime{
     #higher means more crime
@@ -1199,10 +1415,14 @@ sub generate_crime{
 }
 
 ###############################################################################
-#
-# generate_imprisonment_rate - city size, authority, order and education
-# determine what percentage of the city is in jail. 0.05% to  01.815%
-#
+
+=head2 generate_imprisonment_rate()
+
+city size, authority, order and education determine what percentage 
+of the city is in jail. 0.05% to  01.815%
+
+=cut
+
 ###############################################################################
 
 sub generate_imprisonment_rate{
@@ -1226,10 +1446,13 @@ sub generate_imprisonment_rate{
 
 
 ###############################################################################
-#
-# generate_elderly - set the percentage of the population that are elderly, 
-# modified by the age of the city
-#
+
+=head2 generate_elderly()
+
+set the percentage of the population that are elderly, modified by the age of the city
+
+=cut
+
 ###############################################################################
 sub generate_elderly {
 
@@ -1248,10 +1471,13 @@ sub generate_elderly {
 
 
 ###############################################################################
-#
-# generate_children - set the percentage of the population that are children, 
-# modified by the age of the city
-#
+
+=head2 generate_children()
+
+set the percentage of the population that are children, modified by the age of the city
+
+=cut
+
 ###############################################################################
 sub generate_children {
 
@@ -1270,9 +1496,13 @@ sub generate_children {
 
 
 ###############################################################################
-#
-# generate_city_age - a simple selector
-#
+
+=head2 generate_city_age()
+
+a simple selector
+
+=cut
+
 ###############################################################################
 sub generate_city_age {
     my $agelist=$xml_data->{'cityages'}->{'cityage'};
@@ -1282,9 +1512,13 @@ sub generate_city_age {
 
 
 ###############################################################################
-#
-# Generate Secondary Power - select a plot, a power and a subplot.
-#
+
+=head2 generate_secondary_power()
+
+select a plot, a power and a subplot.
+
+=cut
+
 ###############################################################################
 sub generate_secondary_power {
     $city->{'secondarypower'}={};
@@ -1305,9 +1539,13 @@ sub generate_secondary_power {
 
 
 ###############################################################################
-#
-# set_govt_type - fairly simple; select a type of govt from the list.
-#
+
+=head2 set_govt_type()
+
+fairly simple; select a type of govt from the list.
+
+=cut
+
 ###############################################################################
 sub set_govt_type {
     my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
@@ -1337,10 +1575,13 @@ sub set_govt_type {
 
 
 ###############################################################################
-#
-# Set Laws - Laws have three facets- enforcement, trial and punishment. 
-# Select these from arrays.
-#
+
+=head2 set_laws()
+
+Laws have three facets- enforcement, trial and punishment. Select these from arrays.
+
+=cut
+
 ###############################################################################
 
 sub set_laws {
@@ -1354,9 +1595,13 @@ sub set_laws {
 
 
 ###############################################################################
-#
-# generate_city_ethics - Intended for morals and order (classic alignment).
-#
+
+=head2 generate_city_ethics()
+
+Intended for morals and order (classic alignment).
+
+=cut
+
 ###############################################################################
 sub generate_city_ethics {
     foreach my $mod ( qw/ moral order/ ) {
@@ -1375,10 +1620,13 @@ sub generate_city_ethics {
     $GenericGenerator::seed=set_seed($originalseed);
 }
 ###############################################################################
-#
-# generate_city_beliefs - This includes other scales, such as determining if 
-# the city is a trade hub, etc. 
-#
+
+=head2 generate_city_beliefs()
+
+This includes other scales, such as determining if the city is a trade hub, etc. 
+
+=cut
+
 ###############################################################################
 sub generate_city_beliefs {
 
@@ -1401,11 +1649,14 @@ sub generate_city_beliefs {
 }
 
 ###############################################################################
-#
-# generate_population_counts - for each race percentage. After getting 
-# population counts, recalulate total population, then final percentages.
-# note that actual races are not yet associated.
-#
+
+=head2 generate_pop_counts()
+
+For each race percentage. After getting  population counts, recalulate total 
+population, then final percentages. Note that actual races are not yet associated.
+
+=cut
+
 ###############################################################################
 sub generate_pop_counts {
     my $population = $city->{'population'}->{'size'};
@@ -1435,13 +1686,26 @@ sub generate_pop_counts {
 
 
 ###############################################################################
-#
-# Assign races. This consists of 
-#   * looking at the base population type to gather available base races 
-#   * looping through the race percentages and assigning an available race
-#   * adding an "off race" if applicable.
-#   * adding 1% other    
-#
+
+=head2 assign_races()
+
+Assigning a race consists of several different phases
+
+=over
+
+=item * looking at the base population type to gather available base races
+
+=item * looping through the race percentages and assigning an available race
+
+=item * adding an "off race" if applicable.
+
+=item * adding 1% other
+
+=back
+
+=cut
+
+
 ###############################################################################
 sub assign_races {
     my $base_pop        = $city->{'base_pop'};
@@ -1480,10 +1744,13 @@ sub assign_races {
 
 
 ###############################################################################
-#
-# add_race_features - copy the features over for a given races. Effectively
-# merges percent onto the race.
-#
+
+=head2 add_race_features()
+
+copy the features over for a given races. Effectively merges percent onto the race.
+
+=cut
+
 ###############################################################################
 
 sub add_race_features {
@@ -1511,10 +1778,14 @@ sub add_race_features {
 
 
 ###############################################################################
-#
-# get races - get the races that match the given population type.
-# If the type is mixed, add the race as long as it's not an other race.
-#
+
+=head2 get_races()
+
+get the races that match the given population type.
+ If the type is mixed, add the race as long as it's not an other race.
+
+=cut
+
 ###############################################################################
 
 sub get_races {
@@ -1529,10 +1800,14 @@ sub get_races {
 } 
 
 ###############################################################################
-#
-# get_other_race - get the races that doesn't match the given population type.
-# make sure to exclude other.
-#
+
+=head2 get_other_race()
+
+get the races that doesn't match the given population type.
+ make sure to exclude other.
+
+=cut
+
 ###############################################################################
 
 sub get_other_race {
@@ -1546,10 +1821,14 @@ sub get_other_race {
 } 
 
 ###############################################################################
-#
-# Generate a Population Type, then populate the population type, population 
-# density, and a list of unassigned race percentages.
-#
+
+=head2 generate_pop_type()
+
+Generate a Population Type, then populate the population type, population 
+ density, and a list of unassigned race percentages.
+
+=cut
+
 ###############################################################################
 sub generate_pop_type {
     my $poptype     = roll_from_array( &d(100), $xml_data->{'poptypes'}->{'population'} );
@@ -1562,11 +1841,14 @@ sub generate_pop_type {
 
 
 ###############################################################################
-#
-# set_city_type - Find the type of city by selecting it from the citytype list,
-# Then populate the base population, type, description and whether 
-# or not it's a mixed city.
-#
+
+=head2 set_city_type()
+
+Find the type of city by selecting it from the citytype list, Then populate 
+the base population, type, description and whether or not it's a mixed city.
+
+=cut
+
 ###############################################################################
 sub set_city_type {
     my $citytypelist=$xml_data->{'citytype'}->{'city'};
@@ -1580,10 +1862,14 @@ sub set_city_type {
 
 
 ###############################################################################
-#
-# set_city_size - Find the size of the city by selecting from the citysize 
-# list, then populate the size, gp limit, population, and size modifier.
-#
+
+=head2 set_city_size()
+
+Find the size of the city by selecting from the citysize 
+ list, then populate the size, gp limit, population, and size modifier.
+
+=cut
+
 ###############################################################################
 sub set_city_size {
     set_seed( $GenericGenerator::seed);
