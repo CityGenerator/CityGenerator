@@ -5,7 +5,7 @@ package TestGenericGenerator;
 
 use strict;
 use Test::More;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
+use GenericGenerator;
 
 use Data::Dumper;
 use XML::Simple;
@@ -24,17 +24,17 @@ my $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => 
 subtest 'test rand_from_array' => sub {
     my $result;
     srand(1);
-    set_seed(1);
+    GenericGenerator::set_seed(1);
     my $testarray=[ 'foo','bar','baz'  ];
     my $loop=10;
     while ($loop-- > 0 ){
-        $result=rand_from_array($testarray);
+        $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'foo', 'test array results');
     }
-    set_seed(2);
+    GenericGenerator::set_seed(2);
     $loop=10;
     while ($loop-- > 0 ){
-        $result=rand_from_array($testarray);
+        $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'baz', 'test array results');
     }
     done_testing();
@@ -44,15 +44,17 @@ subtest 'test set_seed' => sub {
     my $result;
     srand(1);
 
-    $result=set_seed(3);
+    $result=GenericGenerator::set_seed();
+    is( $result, '41630', 'a random number' );
+    is( $GenericGenerator::seed, 41630, 'the resulting seed' );
+    $result=GenericGenerator::set_seed(3);
     is( $result, 3 , 'the given number');
     is( $GenericGenerator::seed, 3, 'the resulting seed' );
-    $result=set_seed('broken');
+    $result=GenericGenerator::set_seed('broken');
     is( $result, 783234, 'a random number' );
     is( $GenericGenerator::seed, 783234, 'the resulting seed' );
-    $result=set_seed();
-    is( $result, 146253, 'a random number' );
-    is( $GenericGenerator::seed, 146253, 'the resulting seed' );
+
+
 
     done_testing();
 };
@@ -61,15 +63,15 @@ subtest 'test set_seed' => sub {
 subtest 'test single d() ' => sub {
     my $result;
     srand(1);
-    $result=d(3);
+    $result=GenericGenerator::d(3);
     is( $result, 1 );
-    $result=d(3);
+    $result=GenericGenerator::d(3);
     is( $result, 2 );
-    $result=d(3);
+    $result=GenericGenerator::d(3);
     is( $result, 3 );
-    $result=d(3);
+    $result=GenericGenerator::d(3);
     is( $result, 2 );
-    $result=d('pie');
+    $result=GenericGenerator::d('pie');
     is( $result, 1 );
     done_testing();
 
@@ -78,17 +80,17 @@ subtest 'test single d() ' => sub {
 subtest 'test multi d() ' => sub {
     my $result;
     srand(1);
-    $result=d('1d6');
+    $result=GenericGenerator::d('1d6');
     is( $result, 1 );
-    $result=d('4d6');
+    $result=GenericGenerator::d('4d6');
     is( $result, 16 );
-    $result=d('4d6');
+    $result=GenericGenerator::d('4d6');
     is( $result, 14 );
-    $result=d('0d6');
+    $result=GenericGenerator::d('0d6');
     is( $result, 0 );
-    $result=d('1d0');
+    $result=GenericGenerator::d('1d0');
     is( $result, 1 );
-    $result=d('0d0');
+    $result=GenericGenerator::d('0d0');
     is( $result, 0 );
 
     done_testing();
@@ -108,29 +110,14 @@ subtest 'test multi d() ' => sub {
 ######################################33
 subtest 'test parse_object parts' => sub {
     my $testObject={
-        'title'=>[
-                    {'content'=>'titlefoo'},
-                    {'content'=>'titlebar'},
-                 ],
-        'pre'=>[
-                    {'content'=>'prefoo'},
-                    {'content'=>'prebar'},
-                 ],
-        'root'=>[
-                    {'content'=>'rootfoo'},
-                    {'content'=>'rootbar'},
-                 ],
-        'post'=>[
-                    {'content'=>'postfoo'},
-                    {'content'=>'postbar'},
-                 ],
-        'trailer'=>[
-                    {'content'=>'trailerfoo'},
-                    {'content'=>'trailerbar'},
-                 ],
+            'title'=>[   {'content'=>'titlefoo'},   {'content'=>'titlebar'},  ],
+            'pre'=>[     {'content'=>'prefoo'},     {'content'=>'prebar'},    ],
+            'root'=>[    {'content'=>'rootfoo'},    {'content'=>'rootbar'},   ],
+            'post'=>[    {'content'=>'postfoo'},    {'content'=>'postbar'},   ],
+            'trailer'=>[ {'content'=>'trailerfoo'}, {'content'=>'trailerbar'},],
     };
     srand(1);
-    my $result=parse_object($testObject) ;
+    my $result=GenericGenerator::parse_object($testObject) ;
     is( $result->{'content'},   'titlefoo prefoorootbarpostfoo trailerbar' );
     is( $result->{'title'},     'titlefoo' );
     is( $result->{'pre'},       'prefoo' );
@@ -138,39 +125,71 @@ subtest 'test parse_object parts' => sub {
     is( $result->{'post'},      'postfoo');
     is( $result->{'trailer'},   'trailerbar' );
     srand(2);
-    $result=parse_object($testObject) ;
+    $result=GenericGenerator::parse_object($testObject) ;
     is( $result->{'content'}, 'titlebar prefoorootbarpostbar  trailerbar'  );
     done_testing();
 
   };
 
   subtest 'test parse_object chance' => sub {
+    my $result;
     my $testObject={
         'title_chance'=>'50',
-        'title'=>[
-                    {'content'=>'titlefoo'},
-                 ],
+        'title'=>[ {'content'=>'titlefoo'}, ],
         'pre_chance'=>'50',
-        'pre'=>[
-                    {'content'=>'prefoo'},
-                 ],
+        'pre'=>[   {'content'=>'prefoo'},   ],
         'root'=>'rootfoo'
     };
     srand(1);
-    my $result=parse_object($testObject) ;
+    $result=GenericGenerator::parse_object($testObject) ;
     is( $result->{'content'},   'titlefoo prefoo' );
     is( $result->{'title'},     'titlefoo'  );
     is( $result->{'pre'},       'prefoo'  );
     srand(2);
-    $result=parse_object($testObject) ;
+    $result=GenericGenerator::parse_object($testObject) ;
     is( $result->{'content'}, 'prefoo'  );
     isnt( defined $result->{'title'}  , 'test title not defined, as expected');
     is( $result->{'pre'},       'prefoo'  );
+
+    $testObject={
+        'title_chance'=>'50',
+        'title'=>[ ],
+        'pre_chance'=>'50',
+        'pre'=>[   {'content'=>'prefoo'},   ],
+    };
+    srand(1);
+    $result=GenericGenerator::parse_object($testObject) ;
+    is( $result->{'content'},   'prefoo' );
+    is( $result->{'title'},     undef  );
+    is( $result->{'pre'},       'prefoo'  );
+
+
+    $testObject={
+        'title_chance'=>'50',
+        'title'=>{     },
+    };
+    srand(1);
+    $result=GenericGenerator::parse_object($testObject) ;
+    is( $result->{'content'},   '' );
+    is( $result->{'title'},     undef  );
+    is( $result->{'pre'},       undef  );
+
+    $testObject={
+        'title_chance'=>'50',
+        'title'=>{ 'content'=>'test'    },
+    };
+    srand(1);
+    $result=GenericGenerator::parse_object($testObject) ;
+    is( $result->{'content'},   'test ' );
+    is( $result->{'title'},     'test'  );
+    is( $result->{'pre'},       undef  );
+
+
     done_testing();
   };
 
 
-  subtest 'test roll from array' => sub {
+  subtest 'test roll_from_array' => sub {
     my $result;
     srand(1);
     my $testdata={
@@ -181,15 +200,15 @@ subtest 'test parse_object parts' => sub {
                     ]
 
     };
-    $result=roll_from_array(-1,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(-1,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(3,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(3,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(10,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(10,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(11,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(11,$testdata->{'option'})->{'content'};
     is( $result, 'rare'  );
-    $result=roll_from_array(110,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(110,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of', 'if it is beyond the max' );
     $testdata={
           'option' => [
@@ -199,33 +218,45 @@ subtest 'test parse_object parts' => sub {
                     ]
 
     };
-    $result=roll_from_array(1,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(1,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(20,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(20,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(21,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(21,$testdata->{'option'})->{'content'};
     is( $result, 'rare'  );
-    $result=roll_from_array(30,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(30,$testdata->{'option'})->{'content'};
     is( $result, 'rare'  );
-    $result=roll_from_array(31,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(31,$testdata->{'option'})->{'content'};
     is( $result, 'unusual'  );
-    $result=roll_from_array(101,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(101,$testdata->{'option'})->{'content'};
     is( $result, 'unusual'  );
     $testdata={
           'option' => [
                       { 'content' => 'unheard of'  },
                     ]
     };
-    $result=roll_from_array(101,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(101,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
-    $result=roll_from_array(11,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(11,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
     $testdata={
           'option' => [
                       { 'min' =>'10','content' => 'unheard of'  },
                     ]
     };
-    $result=roll_from_array(1,$testdata->{'option'})->{'content'};
+    $result=GenericGenerator::roll_from_array(1,$testdata->{'option'})->{'content'};
+    is( $result, 'unheard of'  );
+
+
+    $testdata={
+          'option' => [
+                      { 'min' =>'9','content' => 'unheard of'  },
+                      {             'content' => 'no idea'  },
+                    ]
+    };
+    $result=GenericGenerator::roll_from_array(1,$testdata->{'option'})->{'content'};
+    is( $result, 'no idea'  );
+    $result=GenericGenerator::roll_from_array(40,$testdata->{'option'})->{'content'};
     is( $result, 'unheard of'  );
 
 

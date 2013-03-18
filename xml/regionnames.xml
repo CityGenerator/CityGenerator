@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<realm post_chance='30' title_chance='22'>
+<region post_chance='30' title_chance='22'>
     <title>Greater</title>
     <title>Lesser</title>
     <title>Eastern</title>
@@ -29,5 +29,5 @@
     <trailer>Region</trailer>
     <trailer>Territory</trailer>
 
-</realm>
+</region>
 

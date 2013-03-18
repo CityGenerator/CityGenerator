@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<conditions>
+
+    <temp>
+        <option pop_mod="0.10" >unbearably cold</option>
+        <option pop_mod="0.20" >freezing</option>
+        <option pop_mod="0.30" >cold</option>
+        <option pop_mod="0.50" >chilly</option>
+        <option pop_mod="0.90" >cool</option>
+        <option pop_mod="0.95" >mild</option>
+        <option pop_mod="1.00" >pleasant</option>
+        <option pop_mod="1.10" >warm</option>
+        <option pop_mod="0.90" >hot</option>
+        <option pop_mod="0.50" >unbearably hot</option>
+    </temp>
+    <air>
+        <option pop_mod="1.10" >fresh</option>
+        <option pop_mod="1.00" >thin</option>
+        <option pop_mod="1.00" >thick</option>
+        <option pop_mod="0.90" >humid</option>
+    </air>
+    <wind>
+        <option pop_mod="1.00" >breezy</option>
+        <option pop_mod="1.00" >dead</option>
+        <option pop_mod="1.00" >soft</option>
+        <option pop_mod="0.95" >heavy</option>
+        <option pop_mod="0.90" >strong</option>
+        <option pop_mod="0.85" >incredibly strong</option>
+    </wind>
+    <precip chance="65">
+        <option description="sprinkling"></option>
+        <option description="misty"></option>
+        <option description="foggy">
+            <option></option>
+            <option>lightly </option>
+            <option>moderately </option>
+            <option>heavily </option>
+        </option>
+        <option description="raining">
+            <option></option>
+            <option>lightly </option>
+            <option>moderately </option>
+            <option>heavily </option>
+        </option>
+        <option description="downpouring"></option>
+        <option description="sleeting"></option>
+        <option description="hail">
+            <option>raining small (pea size) </option>
+            <option>raining medium (walnut size) </option>
+            <option>raining large (orange size) </option>
+        </option>
+    </precip>
+    <storm>
+        <thunder chance='20'>
+            <option>in the distance</option>
+            <option>nearby</option>
+            <option>overhead</option>
+        </thunder>
+        <lightning chance='20'>
+            <option>in the distance</option>
+            <option>nearby</option>
+            <option>overhead</option>
+        </lightning>
+    </storm>
+    <clouds> There are ______ clouds.
+        <option>whispy</option>
+        <option>light</option>
+        <option>thick</option>
+        <option>dark</option>
+        <option>brooding</option>
+    </clouds>
+    <forecast>
+        <option>clear</option>
+        <option>overcast</option>
+        <option>stormy</option>
+    </forecast>
+    <time>
+        <option time="06:00" pop_mod="1"    bar_mod="0"  >at daybreak</option>
+        <option time="10:00" pop_mod="1.5"  bar_mod="2"  >mid-morning</option>
+        <option time="12:00" pop_mod="3.0"  bar_mod="4"  >around noon</option>
+        <option time="02:00" pop_mod="3.0"  bar_mod="2"  >in the afternoon</option>
+        <option time="04:00" pop_mod="2.0"  bar_mod="4"  >mid-day</option>
+        <option time="06:00" pop_mod="1.5"  bar_mod="6"  >in the early evening</option>
+        <option time="08:00" pop_mod="1"    bar_mod="8"  >before nightfall</option>
+        <option time="10:00" pop_mod=".75"  bar_mod="10" >after nightfall</option>
+        <option time="00:00" pop_mod=".5"   bar_mod="8"  >at midnight</option>
+        <option time="02:00" pop_mod=".25"  bar_mod="4"  >in the dead of night</option>
+        <option time="04:00" pop_mod=".5"   bar_mod="0"  >before dawn</option>
+    </time>
+</conditions>
+

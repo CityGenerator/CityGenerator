@@ -31,7 +31,8 @@ This is what allows us to return to previously generated hosts.
 ###############################################################################
 sub set_seed{
     my ($newseed)=@_;
-    if (defined $newseed and  $newseed=~/(\d+)/){
+
+    if (defined $newseed and $newseed=~m/^(\d+)$/){
         $newseed= $1;
     }else{
         $newseed = int rand(1000000);
@@ -86,7 +87,7 @@ sub roll_from_array {
                 $selected_item = $item;
                 last;
             }
-        }elsif ( ! defined $item->{'max'} ){
+        }else{
             if ( $item->{'min'} <= $roll ) {
                 $selected_item = $item;
                 last;

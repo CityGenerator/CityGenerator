@@ -49,7 +49,7 @@ my $xml = new XML::Simple;
 
 =item F<xml/citynames.xml>
 
-=item F<xml/realmnames.xml>
+=item F<xml/regionmnames.xml>
 
 =item F<xml/continentnames.xml>
 
@@ -63,7 +63,7 @@ our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, Force
 our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
 our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
 our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
-our $realmnames_data    = $xml->XMLin( "xml/realmnames.xml", ForceContent => 1, ForceArray => [] );
+our $regionnames_data    = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 our $originalseed;
 our $city;
@@ -101,7 +101,7 @@ sub build_city {
 
     $city->{'name'} = generate_name($GenericGenerator::seed);
     $city->{'debug'}='';
-    generate_realm();
+    generate_region();
     generate_continent();
 
     generate_city_core();
@@ -915,17 +915,17 @@ sub generate_markets {
 
 ###############################################################################
 
-=head2 generate_realm()
+=head2 generate_region()
 
-Determine the realm of the city
+Determine the region where the city resides
 
 =cut
 
 ###############################################################################
-sub generate_realm {
-    my $realmseed= $originalseed - ($originalseed % 10);
-    set_seed($realmseed);
-    $city->{'realm'}=parse_object($realmnames_data)->{'content'};
+sub generate_region {
+    my $regionseed= $originalseed - ($originalseed % 10);
+    set_seed($regionseed);
+    $city->{'region'}=parse_object($regionnames_data)->{'content'};
     set_seed($originalseed);
 }
 
@@ -984,16 +984,16 @@ Determine information about the neighbor Realms.
 
 sub generate_neighborRealms {
 
-    $city->{'realms'}=[];
+    $city->{'regions'}=[];
     my $continentseed=$originalseed-$originalseed%100;
     for (my $i = 0 ; $i < 10; $i++){
-        my $realmseed=$continentseed+$i*10;
-        set_seed($realmseed);
-        my $realm={}; 
-        $realm->{'id'}=$realmseed;
-        $realm->{'name'}= parse_object($xml_data->{'realm'})->{'content'};
+        my $regionseed=$continentseed+$i*10;
+        set_seed($regionseed);
+        my $region={}; 
+        $region->{'id'}=$regionseed;
+        $region->{'name'}= parse_object($xml_data->{'region'})->{'content'};
         #$city->{'relation'} =" $neighborid + $originalseed  = $GenericGenerator::seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
-        push @{$city->{'realms'}}, $realm;
+        push @{$city->{'regions'}}, $region;
     }
     set_seed($originalseed);
 }
@@ -1858,28 +1858,6 @@ sub set_city_type {
     $city->{'type'}        = $citytype->{'type'};
     $city->{'description'} = $citytype->{'content'};
     $city->{'add_other'}   = $citytype->{'add_other'};
-}
-
-
-###############################################################################
-
-=head2 set_city_size()
-
-Find the size of the city by selecting from the citysize 
- list, then populate the size, gp limit, population, and size modifier.
-
-=cut
-
-###############################################################################
-sub set_city_size {
-    set_seed( $GenericGenerator::seed);
-    my $citysizelist=$xml_data->{'citysize'}->{'city'} ;
-    my $citysize = roll_from_array( &d(100), $citysizelist );
-
-    $city->{'size'}                 = $citysize->{'size'};
-    $city->{'gplimit'}              = $citysize->{'gplimit'};
-    $city->{'population'}->{'size'} = $citysize->{'minpop'} + &d( $citysize->{'maxpop'} - $citysize->{'minpop'} );
-    $city->{'size_modifier'}        = $citysize->{'size_modifier'};
 }
 
 1;
