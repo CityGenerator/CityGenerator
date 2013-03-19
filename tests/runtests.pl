@@ -5,11 +5,11 @@ use lib "lib/";
 use lib "tests/";
 use Test::More;
 #use TestGenericGenerator;
-#use TestCityGenerator;
+use TestCityGenerator;
 #use TestRegionGenerator;
 #use TestContinentGenerator;
 #use TestNPCGenerator;
-use TestConditionGenerator;
+#use TestConditionGenerator;
 
 
 done_testing();

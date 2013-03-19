@@ -47,9 +47,9 @@ subtest 'test set_time' => sub {
     is($condition->{'seed'},40);
     is($condition->{'time_description'},'at daybreak');
     is($condition->{'time_exact'},'07:52');
-    is($condition->{'time_pop_mod'},1);
+    is($condition->{'time_pop_mod'},"1.0");
     is($condition->{'time_bar_mod'},0);
-    is(Dumper($condition->{'pop_mod'}),Dumper( {'time'=>'1'}) );
+    is(Dumper($condition->{'pop_mod'}),Dumper( {'time'=>'1.0'}) );
     is(Dumper($condition->{'bar_mod'}),Dumper( {'time'=>'0'}) );
 
     $condition={'seed'=>40, 'time_description'=>'foo1','time_exact'=>'foo2','time_pop_mod'=>'foo3','time_bar_mod'=>'foo4' };
@@ -236,20 +236,46 @@ subtest 'test set_storm' => sub {
     $condition={'seed'=>1,'storm_chance'=>'1','storm_description'=>'foo','lightning_chance'=>'2','lightning_description'=>'bar','thunder_chance'=>'10','thunder_description'=>'baz',};
     ConditionGenerator::set_storm($condition);
     is($condition->{'seed'},1);
-    is($condition->{'storm_chance'},1);
+    is($condition->{'storm_chance'},1.0);
     is($condition->{'storm_description'},"foo");
     is($condition->{'lightning_chance'},2);
     is($condition->{'lightning_description'},"bar");
     is($condition->{'thunder_chance'},10);
     is($condition->{'thunder_description'},"baz");
 
-
-
-
-
-
     done_testing();
 };
+
+subtest 'test flesh_out_condition' => sub {
+    my $condition;
+    set_seed(1);
+
+    $condition={};
+    ConditionGenerator::create_condition($condition);
+    ConditionGenerator::flesh_out_condition($condition);
+
+    is($condition->{'storm_chance'}, 77);
+    is(Dumper ($condition->{'bar_mod'}), Dumper {  'time'=> '0'});
+    is($condition->{'time_description'}, 'at daybreak');
+    is($condition->{'clouds_description'}, 'brooding');
+    is($condition->{'wind_description'}, 'strong');
+    is($condition->{'time_pop_mod'}, '1.0');
+    is($condition->{'precip_chance'}, 88);
+    is($condition->{'wind_pop_mod'}, '0.90');
+    is($condition->{'time_bar_mod'}, '0');
+    is($condition->{'temp_description'}, 'unbearably cold');
+    is($condition->{'air_description'}, 'thick');
+    is($condition->{'time_exact'}, '07:59');
+    is($condition->{'temp_pop_mod'}, '0.10');
+    is(Dumper ($condition->{'pop_mod'}), Dumper {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'});
+    is($condition->{'air_pop_mod'}, '1.0');
+    is($condition->{'forecast_description'}, 'clear');
+
+
+
+};
+
+
 
 1;
 

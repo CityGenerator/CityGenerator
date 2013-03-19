@@ -1,0 +1,51 @@
+
+<flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
+    <color type="red" >
+        <shade type="Very light red"    red="255" green="102" blue="102" symbol="R--"/>
+        <shade type="Light red"         red="255" green="51"  blue="51"  symbol="R-"/>
+        <shade type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
+        <shade type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
+        <shade type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
+        <meaning>vibrancy</meaning>
+        <meaning>revolution</meaning>
+        <meaning>religion</meaning>
+        <meaning>war</meaning>
+        <meaning>love</meaning>
+        <meaning>leadership</meaning>
+    </color>
+    <color type="blue" >
+        <shade type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
+        <shade type="Light blue"        red="51"  green="153" blue="255" symbol="B-"/>
+        <shade type="Blue"              red="0"   green="0"   blue="255" symbol="B"/>
+        <shade type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"/>
+        <shade type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"/>
+        <meaning>liberty</meaning>
+        <meaning>determination</meaning>
+        <meaning>good fortune</meaning>
+        <meaning>truth</meaning>
+        <meaning>loyalty</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="green" >
+        <shade type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"/>
+        <shade type="Light green"       red="0"   green="204" blue="0"   symbol="V-"/>
+        <shade type="Green"             red="0"   green="153" blue="0"   symbol="V"/>
+        <shade type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"/>
+        <shade type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"/>
+        <meaning>agriculture</meaning>
+        <meaning>religion</meaning>
+        <meaning>growth</meaning>
+        <meaning>prosperity</meaning>
+        <meaning>hope</meaning>
+        <meaning>endurance</meaning>
+    </color>
+    <color type="yellow" >
+        <shade type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"/>
+        <shade type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"/>
+        <shade type="Yellow"            red="255" green="255" blue="0"   symbol="Y"/>
+        <shade type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"/>
+        <meaning>energy</meaning>
+        <meaning>happiness</meaning>
+        <meaning>religion</meaning>
+    </color>
+    <color type="orange" >

@@ -91,6 +91,30 @@ sub create_condition {
 
 ###############################################################################
 
+=head2 flesh_out_condition()
+
+    Flesh out all of the functionality of the condition.
+
+=cut
+
+###############################################################################
+sub flesh_out_condition {
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+    create_condition($condition);
+    set_time($condition);
+    set_temp($condition);
+    set_air($condition);
+    set_wind($condition);
+    set_forecast($condition);
+    set_clouds($condition);
+    set_precip($condition);
+    set_storm($condition);
+
+}
+
+###############################################################################
+
 =head2 set_time()
 
     Set the current time of the conditions.

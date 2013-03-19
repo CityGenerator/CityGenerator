@@ -131,8 +131,58 @@ subtest 'test generate_pop_type' => sub {
     is($city->{'poptype'}, 'quartered');
     is(scalar @{$city->{'races'}}, 4);
 
+    set_seed(1);
+    $city=CityGenerator::create_city({ 'popdensity'=>'foobard','poptype'=>'dumb', 'races'=>1    });
+    CityGenerator::generate_pop_type($city);
+    is($city->{'popdensity'}->{'feetpercapita'}, 1500);
+    is($city->{'poptype'}, 'dumb' );
+    is(scalar @{$city->{'races'}}, 4);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({ 'popdensity'=>{'feetpercapita'=>2000},'poptype'=>'dumb', 'races'=>[1,2]    });
+    CityGenerator::generate_pop_type($city);
+    is($city->{'popdensity'}->{'feetpercapita'}, 2000);
+    is($city->{'poptype'}, 'dumb' );
+    is(scalar @{$city->{'races'}}, 2);
+
     done_testing();
 };
+
+subtest 'test generate_walls' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_walls($city);
+    is($city->{'size_modifier'},'-5');
+    is($city->{'wall_chance_roll'},'109');
+    is($city->{'wall_size_roll'},undef);
+    is($city->{'walls'}->{'content'},'none');
+    is($city->{'walls'}->{'height'},'0');
+
+    $city=CityGenerator::create_city({'seed'=>'2'});
+    CityGenerator::generate_walls($city);
+    is($city->{'size_modifier'},'8');
+    is($city->{'wall_chance_roll'},'18');
+    is($city->{'wall_size_roll'},'89');
+    is($city->{'walls'}->{'content'},'thick marble enclosure');
+    is($city->{'walls'}->{'height'},'41');
+
+    $city={};
+    $city=CityGenerator::create_city({'seed'=>'2'});
+    $city->{'size_modifier'}=undef;
+    CityGenerator::generate_walls($city);
+    is($city->{'size_modifier'},undef);
+    is($city->{'wall_chance_roll'},'58');
+    is($city->{'wall_size_roll'},undef);
+    is($city->{'walls'}->{'content'},'none');
+    is($city->{'walls'}->{'height'},'0');
+
+    done_testing();
+};
+
+
+
+
 
 
 1;

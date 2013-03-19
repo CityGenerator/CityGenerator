@@ -56,109 +56,6 @@
 
 
 </crest>
-<flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
-    <color type="red" >
-        <shade type="Very light red"    red="255" green="102" blue="102" symbol="R--"/>
-        <shade type="Light red"         red="255" green="51"  blue="51"  symbol="R-"/>
-        <shade type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
-        <shade type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
-        <shade type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
-        <meaning>vibrancy</meaning>
-        <meaning>revolution</meaning>
-        <meaning>religion</meaning>
-        <meaning>war</meaning>
-        <meaning>love</meaning>
-        <meaning>leadership</meaning>
-    </color>
-    <color type="blue" >
-        <shade type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
-        <shade type="Light blue"        red="51"  green="153" blue="255" symbol="B-"/>
-        <shade type="Blue"              red="0"   green="0"   blue="255" symbol="B"/>
-        <shade type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"/>
-        <shade type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"/>
-        <meaning>liberty</meaning>
-        <meaning>determination</meaning>
-        <meaning>good fortune</meaning>
-        <meaning>truth</meaning>
-        <meaning>loyalty</meaning>
-        <meaning>religion</meaning>
-    </color>
-    <color type="green" >
-        <shade type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"/>
-        <shade type="Light green"       red="0"   green="204" blue="0"   symbol="V-"/>
-        <shade type="Green"             red="0"   green="153" blue="0"   symbol="V"/>
-        <shade type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"/>
-        <shade type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"/>
-        <meaning>agriculture</meaning>
-        <meaning>religion</meaning>
-        <meaning>growth</meaning>
-        <meaning>prosperity</meaning>
-        <meaning>hope</meaning>
-        <meaning>endurance</meaning>
-    </color>
-    <color type="yellow" >
-        <shade type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"/>
-        <shade type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"/>
-        <shade type="Yellow"            red="255" green="255" blue="0"   symbol="Y"/>
-        <shade type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"/>
-        <meaning>energy</meaning>
-        <meaning>happiness</meaning>
-        <meaning>religion</meaning>
-    </color>
-    <color type="orange" >
-        <shade type="Light orange"      red="255" green="153" blue="0"   symbol="O-"/>
-        <shade type="Orange"            red="255" green="102" blue="0"   symbol="O"/>
-        <meaning>enthusiasm</meaning>
-        <meaning>distrust</meaning>
-        <meaning>ambition</meaning>
-    </color>
-    <color type="gold" >
-        <shade type="Gold"              red="255" green="204" blue="51"  symbol="Au"/>
-        <meaning>prestige</meaning>
-        <meaning>wisdom</meaning>
-        <meaning>wealth</meaning>
-        <meaning>quality</meaning>
-        <meaning>generosity</meaning>
-
-    </color>
-    <color type="grey" >
-        <shade type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
-        <shade type="Grey"              red="153" green="153" blue="153" symbol="G"/>
-        <shade type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
-        <shade type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
-    </color>
-    <color type="brown" >
-        <shade type="Light brown"       red="153" green="102" blue="0"   symbol="M-"/>
-        <shade type="Brown"             red="102" green="51"  blue="0"   symbol="M"/>
-        <shade type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+"/>
-        <meaning>nature</meaning>
-        <meaning>strength</meaning>
-    </color>
-    <color type="purple" >
-        <shade type="Purple"            red="102" green="0"   blue="153" symbol="P"/>
-        <meaning>majesty</meaning>
-        <meaning>justice</meaning>
-        <meaning>sovereignty</meaning>
-    </color>
-    <color type="black" >
-        <shade type="Black"             red="0"   green="0"   blue="0"   symbol="N"/>
-        <meaning>power</meaning>
-        <meaning>loss</meaning>
-        <meaning>purpose</meaning>
-        <meaning>victory</meaning>
-        <meaning>control</meaning>
-        <meaning>religion</meaning>
-    </color>
-    <color type="white" >
-        <shade type="White"             red="255" green="255" blue="255" symbol="W"/>
-        <meaning>purity</meaning>
-        <meaning>peace</meaning>
-        <meaning>harmony</meaning>
-        <meaning>religion</meaning>
-    </color>
-
-
-</flagcolors>
 <trivia>their official _______ is the ________
     <fact type='tree'>
         <title>red</title>
@@ -659,7 +556,7 @@
     <trailer>in a wheel and spoke pattern</trailer>
 </streets>
 
-<walls chance='8' >
+<walls chance='40' >
     <wall          max='10' type='rubble' heightmin='4' heightmax='6' >
         <title></title>
         <title>low</title>

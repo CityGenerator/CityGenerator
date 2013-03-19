@@ -9,15 +9,15 @@
         <option pop_mod="0.50" >chilly</option>
         <option pop_mod="0.90" >cool</option>
         <option pop_mod="0.95" >mild</option>
-        <option pop_mod="1.00" >pleasant</option>
+        <option pop_mod="1.0" >pleasant</option>
         <option pop_mod="1.10" >warm</option>
         <option pop_mod="0.90" >hot</option>
         <option pop_mod="0.50" >unbearably hot</option>
     </temp>
     <air>
         <option pop_mod="1.10" >fresh</option>
-        <option pop_mod="1.00" >thin</option>
-        <option pop_mod="1.00" >thick</option>
+        <option pop_mod="1.0" >thin</option>
+        <option pop_mod="1.0" >thick</option>
         <option pop_mod="0.90" >humid</option>
     </air>
     <wind>
@@ -79,17 +79,17 @@
         <option>stormy</option>
     </forecast>
     <time>
-        <option time="06:00" pop_mod="1"    bar_mod="0"  >at daybreak</option>
+        <option time="06:00" pop_mod="1.0"  bar_mod="0"  >at daybreak</option>
         <option time="10:00" pop_mod="1.5"  bar_mod="2"  >mid-morning</option>
         <option time="12:00" pop_mod="3.0"  bar_mod="4"  >around noon</option>
         <option time="02:00" pop_mod="3.0"  bar_mod="2"  >in the afternoon</option>
         <option time="04:00" pop_mod="2.0"  bar_mod="4"  >mid-day</option>
         <option time="06:00" pop_mod="1.5"  bar_mod="6"  >in the early evening</option>
-        <option time="08:00" pop_mod="1"    bar_mod="8"  >before nightfall</option>
-        <option time="10:00" pop_mod=".75"  bar_mod="10" >after nightfall</option>
-        <option time="00:00" pop_mod=".5"   bar_mod="8"  >at midnight</option>
-        <option time="02:00" pop_mod=".25"  bar_mod="4"  >in the dead of night</option>
-        <option time="04:00" pop_mod=".5"   bar_mod="0"  >before dawn</option>
+        <option time="08:00" pop_mod="1.0"  bar_mod="8"  >before nightfall</option>
+        <option time="10:00" pop_mod="0.75" bar_mod="10" >after nightfall</option>
+        <option time="00:00" pop_mod="0.5"  bar_mod="8"  >at midnight</option>
+        <option time="02:00" pop_mod="0.25" bar_mod="4"  >in the dead of night</option>
+        <option time="04:00" pop_mod="0.5"  bar_mod="0"  >before dawn</option>
     </time>
 </conditions>
 

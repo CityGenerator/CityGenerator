@@ -214,13 +214,39 @@ sub generate_pop_type {
     my ($city)=@_;
     my $poptype     = roll_from_array( &d(100), $xml_data->{'poptypes'}->{'population'} );
 
-    $city->{'popdensity'}   = rand_from_array( $xml_data->{'popdensity'}->{'option'} ) if (!defined $city->{'popdensity'}  );
+    $city->{'popdensity'}   = rand_from_array( $xml_data->{'popdensity'}->{'option'} ) if (!defined $city->{'popdensity'} or ref $city->{'popdensity'} ne 'HASH'   );
     $city->{'poptype'}      = $poptype->{'type'}    if (!defined $city->{'poptype'}  );
-    $city->{'races'}        = $poptype->{'option'}  if (!defined $city->{'races'}  );
+    $city->{'races'}        = $poptype->{'option'}  if (!defined $city->{'races'} or ref $city->{'races'} ne 'ARRAY' );
 }
 
 
+###############################################################################
 
+=head2 generate_walls()
+
+Determine information about the streets. 
+
+=cut
+
+###############################################################################
+sub generate_walls {
+    my($city)=@_;
+    # chance of -25 to +60
+    my $modifier=$city->{'size_modifier'}||0;
+
+    $city->{'wall_chance_roll'}=&d(100)- ($modifier)*5 ;
+
+    if($city->{'wall_chance_roll'}   <=  $xml_data->{'walls'}->{'chance'}){
+        $city->{'wall_size_roll'}=&d(100) + $modifier;
+        my $wall=roll_from_array( $city->{'wall_size_roll'} , $xml_data->{'walls'}->{'wall'}     );
+        $city->{'walls'}=parse_object($wall);
+        $city->{'walls'}->{'height'}= $wall->{'heightmin'}+  &d($wall->{'heightmax'}-$wall->{'heightmin'})   + $modifier;
+
+    }else{
+        $city->{'walls'}->{'content'}="none";
+        $city->{'walls'}->{'height'}=0;
+    }
+}
 
 
 
