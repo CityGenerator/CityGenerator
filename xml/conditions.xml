@@ -21,46 +21,49 @@
         <option pop_mod="0.90" >humid</option>
     </air>
     <wind>
-        <option pop_mod="1.00" >breezy</option>
-        <option pop_mod="1.00" >dead</option>
-        <option pop_mod="1.00" >soft</option>
+        <option pop_mod="1.0" >breezy</option>
+        <option pop_mod="1.0" >dead</option>
+        <option pop_mod="1.0" >soft</option>
         <option pop_mod="0.95" >heavy</option>
         <option pop_mod="0.90" >strong</option>
         <option pop_mod="0.85" >incredibly strong</option>
     </wind>
     <precip chance="65">
-        <option description="sprinkling"></option>
-        <option description="misty"></option>
-        <option description="foggy">
-            <option></option>
-            <option>lightly </option>
-            <option>moderately </option>
-            <option>heavily </option>
+        <option type="sprinkling"/>
+        <option type="misty"/>
+        <option type="foggy">
+            <option type=""/>
+            <option type="lightly"/>
+            <option type="moderately"/>
+            <option type="heavily"/>
         </option>
-        <option description="raining">
-            <option></option>
-            <option>lightly </option>
-            <option>moderately </option>
-            <option>heavily </option>
+        <option type="raining">
+            <option type=""/>
+            <option type="lightly"/>
+            <option type="moderately"/>
+            <option type="heavily"/>
         </option>
-        <option description="downpouring"></option>
-        <option description="sleeting"></option>
-        <option description="hail">
-            <option>raining small (pea size) </option>
-            <option>raining medium (walnut size) </option>
-            <option>raining large (orange size) </option>
+        <option type="downpouring"/>
+        <option type="sleeting"/>
+        <option type="hail">
+            <option type="raining small (pea size)"/>
+            <option type="raining medium (walnut size)"/>
+            <option type="raining large (orange size)"/>
         </option>
     </precip>
-    <storm>
-        <thunder chance='20'>
-            <option>in the distance</option>
-            <option>nearby</option>
-            <option>overhead</option>
+    <storm chance="20">
+        <option>in the distance</option>
+        <option>nearby</option>
+        <option>overhead</option>
+        <thunder chance='50'>
+            <option>barely audible</option>
+            <option>roaring</option>
+            <option>rumbling</option>
         </thunder>
-        <lightning chance='20'>
-            <option>in the distance</option>
-            <option>nearby</option>
-            <option>overhead</option>
+        <lightning chance='50'>
+            <option>terrifying</option>
+            <option>explosive</option>
+            <option>blinding</option>
         </lightning>
     </storm>
     <clouds> There are ______ clouds.

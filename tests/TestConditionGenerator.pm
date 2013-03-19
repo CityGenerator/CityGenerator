@@ -101,5 +101,155 @@ subtest 'test set_air' => sub {
     done_testing();
 };
 
+subtest 'test set_wind' => sub {
+    my $condition;
+    set_seed(1);
+    $condition={'seed'=>40};
+    ConditionGenerator::set_wind($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'wind_description'},'breezy');
+    is($condition->{'wind_pop_mod'},'1.0');
+
+    $condition={'seed'=>40, 'wind_description'=>'foo1','wind_pop_mod'=>'foo2' };
+    ConditionGenerator::set_wind($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'wind_description'},'foo1');
+    is($condition->{'wind_pop_mod'},'foo2');
+
+    done_testing();
+};
+
+subtest 'test set_forecast' => sub {
+    my $condition;
+    set_seed(1);
+    $condition={'seed'=>40};
+    ConditionGenerator::set_forecast($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'forecast_description'},'clear');
+
+    $condition={'seed'=>40, 'forecast_description'=>'foo1' };
+    ConditionGenerator::set_forecast($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'forecast_description'},'foo1');
+
+    done_testing();
+};
+
+subtest 'test set_clouds' => sub {
+    my $condition;
+    set_seed(1);
+    $condition={'seed'=>40};
+    ConditionGenerator::set_clouds($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'clouds_description'},'whispy');
+
+    $condition={'seed'=>40, 'clouds_description'=>'foo1' };
+    ConditionGenerator::set_clouds($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'clouds_description'},'foo1');
+
+    done_testing();
+};
+
+subtest 'test set_precip' => sub {
+    my $condition;
+    set_seed(1);
+
+    $condition={'seed'=>40};
+    ConditionGenerator::set_precip($condition);
+    is($condition->{'seed'},40);
+    is($condition->{'precip_chance'},1);
+    is($condition->{'precip_description'},"sprinkling");
+
+    $condition={'seed'=>41};
+    ConditionGenerator::set_precip($condition);
+    is($condition->{'seed'},41);
+    is($condition->{'precip_chance'},88);
+    is($condition->{'precip_description'},undef);
+
+    $condition={'seed'=>44};
+    ConditionGenerator::set_precip($condition);
+    is($condition->{'seed'},44);
+    is($condition->{'precip_chance'},49);
+    is($condition->{'precip_description'},"raining");
+    is($condition->{'precip_subdescription'},"lightly");
+
+    $condition={'seed'=>44,'precip_chance'=>'22','precip_description'=>'foo','precip_subdescription'=>'bar'};
+    ConditionGenerator::set_precip($condition);
+    is($condition->{'seed'},44);
+    is($condition->{'precip_chance'},22);
+    is($condition->{'precip_description'},"foo");
+    is($condition->{'precip_subdescription'},"bar");
+
+
+    done_testing();
+};
+
+
+
+subtest 'test set_storm' => sub {
+    my $condition;
+    set_seed(1);
+
+
+    $condition={'seed'=>2};
+    ConditionGenerator::set_storm($condition);
+    is($condition->{'seed'},2);
+    is($condition->{'storm_chance'},92);
+    is($condition->{'storm_description'},undef);
+    is($condition->{'lightning_chance'},undef);
+    is($condition->{'lightning_description'},undef);
+    is($condition->{'thunder_chance'},undef);
+    is($condition->{'thunder_description'},undef);
+
+    $condition={'seed'=>9};
+    ConditionGenerator::set_storm($condition);
+    is($condition->{'seed'},9);
+    is($condition->{'storm_chance'},1);
+    is($condition->{'storm_description'},"in the distance");
+    is($condition->{'lightning_chance'},"59");
+    is($condition->{'lightning_description'},undef);
+    is($condition->{'thunder_chance'},24);
+    is($condition->{'thunder_description'},"rumbling");
+
+    $condition={'seed'=>8};
+    ConditionGenerator::set_storm($condition);
+    is($condition->{'seed'},8);
+    is($condition->{'storm_chance'},14);
+    is($condition->{'storm_description'},"in the distance");
+    is($condition->{'lightning_chance'},22);
+    is($condition->{'lightning_description'},"blinding");
+    is($condition->{'thunder_chance'},58);
+    is($condition->{'thunder_description'},undef);
+
+    $condition={'seed'=>9954};
+    ConditionGenerator::set_storm($condition);
+    is($condition->{'seed'},9954);
+    is($condition->{'storm_chance'},14);
+    is($condition->{'storm_description'},"nearby");
+    is($condition->{'lightning_chance'},5);
+    is($condition->{'lightning_description'},"explosive");
+    is($condition->{'thunder_chance'},27);
+    is($condition->{'thunder_description'},"rumbling");
+
+
+    $condition={'seed'=>1,'storm_chance'=>'1','storm_description'=>'foo','lightning_chance'=>'2','lightning_description'=>'bar','thunder_chance'=>'10','thunder_description'=>'baz',};
+    ConditionGenerator::set_storm($condition);
+    is($condition->{'seed'},1);
+    is($condition->{'storm_chance'},1);
+    is($condition->{'storm_description'},"foo");
+    is($condition->{'lightning_chance'},2);
+    is($condition->{'lightning_description'},"bar");
+    is($condition->{'thunder_chance'},10);
+    is($condition->{'thunder_description'},"baz");
+
+
+
+
+
+
+    done_testing();
+};
+
 1;
 

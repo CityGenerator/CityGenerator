@@ -156,8 +156,134 @@ sub set_air {
 }
 
 
+###############################################################################
+
+=head2 set_wind()
+
+    Set the current wind condition.
+
+=cut
+
+###############################################################################
+sub set_wind {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+
+    my $windobj= rand_from_array( $condition_data->{'wind'}->{'option'} );
+    $condition->{'wind_description'}=$windobj->{'content'}  if (!defined $condition->{'wind_description'} );
+    $condition->{'wind_pop_mod'}=$windobj->{'pop_mod'}  if (!defined $condition->{'wind_pop_mod'} );
+    $condition->{'pop_mod'}->{'wind'}=$condition->{'wind_pop_mod'};
+}
 
 
+###############################################################################
+
+=head2 set_forecast()
+
+    Set the current forecast condition.
+
+=cut
+
+###############################################################################
+sub set_forecast {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+
+    my $forecastobj= rand_from_array( $condition_data->{'forecast'}->{'option'} );
+    $condition->{'forecast_description'}=$forecastobj->{'content'}  if (!defined $condition->{'forecast_description'} );
+}
+
+
+###############################################################################
+
+=head2 set_clouds()
+
+    Set the current clouds condition.
+
+=cut
+
+###############################################################################
+sub set_clouds {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+
+    my $cloudsobj= rand_from_array( $condition_data->{'clouds'}->{'option'} );
+    $condition->{'clouds_description'}=$cloudsobj->{'content'}  if (!defined $condition->{'clouds_description'} );
+}
+
+
+
+###############################################################################
+
+=head2 set_precip()
+
+    Set the current precipitation.
+
+=cut
+
+###############################################################################
+sub set_precip {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+    $condition->{'precip_chance'}=d(100) if (! defined $condition->{'precip_chance'});
+
+    if ( $condition->{'precip_chance'} <= $condition_data->{'precip'}->{'chance'}  ){
+        my $precipobj= rand_from_array( $condition_data->{'precip'}->{'option'} );
+        $condition->{'precip_description'}=$precipobj->{'type'}  if (!defined $condition->{'precip_description'} );
+        
+        if (defined $precipobj->{'option'}){
+            my $subobj= rand_from_array( $precipobj->{'option'} );
+            $condition->{'precip_subdescription'}=$subobj->{'type'}  if (!defined $condition->{'precip_subdescription'} );
+
+        }
+
+    }
+
+}
+
+
+###############################################################################
+
+=head2 set_storm()
+
+    Set the current storm conditions if there is one, as well as flagging lightning and thunder.
+
+=cut
+
+###############################################################################
+sub set_storm {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+    $condition->{'storm_chance'}=d(100) if (! defined $condition->{'storm_chance'});
+    set_seed();
+    if ( $condition->{'storm_chance'} <= $condition_data->{'storm'}->{'chance'}  ){
+        my $stormobj= rand_from_array( $condition_data->{'storm'}->{'option'} );
+        $condition->{'storm_description'}=$stormobj->{'content'}  if (!defined $condition->{'storm_description'} );
+
+        set_seed();
+        $condition->{'thunder_chance'}=d(100) if (! defined $condition->{'thunder_chance'});
+        if ( $condition->{'thunder_chance'} <= $condition_data->{'storm'}->{'thunder'}->{'chance'}  ){
+            set_seed();
+            my $thunderobj= rand_from_array( $condition_data->{'storm'}->{'thunder'}->{'option'} );
+            $condition->{'thunder_description'}=$thunderobj->{'content'}  if (!defined $condition->{'thunder_description'} );
+        }    
+
+        set_seed();
+        $condition->{'lightning_chance'}=d(100) if (! defined $condition->{'lightning_chance'});
+        if ( $condition->{'lightning_chance'} <= $condition_data->{'storm'}->{'lightning'}->{'chance'}  ){
+            set_seed();
+            my $lightningobj= rand_from_array( $condition_data->{'storm'}->{'lightning'}->{'option'} );
+            $condition->{'lightning_description'}=$lightningobj->{'content'}  if (!defined $condition->{'lightning_description'} );
+        }    
+
+    }
+
+}
 
 
 
