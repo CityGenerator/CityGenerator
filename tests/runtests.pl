@@ -4,11 +4,11 @@ use strict;
 use lib "lib/";
 use lib "tests/";
 use Test::More;
-use TestGenericGenerator;
-use TestCityGenerator;
-use TestRegionGenerator;
-use TestContinentGenerator;
-use TestNPCGenerator;
+#use TestGenericGenerator;
+#use TestCityGenerator;
+#use TestRegionGenerator;
+#use TestContinentGenerator;
+#use TestNPCGenerator;
 use TestConditionGenerator;
 
 

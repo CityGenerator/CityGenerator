@@ -83,7 +83,8 @@ sub create_condition {
         $condition->{'seed'}=set_seed();
     }
     $condition->{'original_seed'}=$condition->{'seed'};
-
+    $condition->{'pop_mod'}={} if(!defined $condition->{'pop_mod'} or ref $condition->{'pop_mod'} ne 'HASH');
+    $condition->{'bar_mod'}={} if(!defined $condition->{'bar_mod'} or ref $condition->{'bar_mod'} ne 'HASH');
     return $condition;
 }
 
@@ -108,6 +109,8 @@ sub set_time {
     $condition->{'time_exact'}=time2str('%H:%M', str2time($timeobj->{'time'})+( d(120)-1)*60   )   if (!defined $condition->{'time_exact'} );
     $condition->{'time_bar_mod'}=$timeobj->{'bar_mod'}  if (!defined $condition->{'time_bar_mod'} );
     $condition->{'time_pop_mod'}=$timeobj->{'pop_mod'}  if (!defined $condition->{'time_pop_mod'} );
+    $condition->{'pop_mod'}->{'time'}=$condition->{'time_pop_mod'};
+    $condition->{'bar_mod'}->{'time'}=$condition->{'time_bar_mod'};
 }
 
 
@@ -128,6 +131,49 @@ sub set_temp {
     my $tempobj= rand_from_array( $condition_data->{'temp'}->{'option'} );
     $condition->{'temp_description'}=$tempobj->{'content'}  if (!defined $condition->{'temp_description'} );
     $condition->{'temp_pop_mod'}=$tempobj->{'pop_mod'}  if (!defined $condition->{'temp_pop_mod'} );
+    $condition->{'pop_mod'}->{'temp'}=$condition->{'temp_pop_mod'};
 }
+
+
+###############################################################################
+
+=head2 set_air()
+
+    Set the current air condition.
+
+=cut
+
+###############################################################################
+sub set_air {
+
+    my ($condition) = @_;
+    set_seed($condition->{'seed'});
+
+    my $airobj= rand_from_array( $condition_data->{'air'}->{'option'} );
+    $condition->{'air_description'}=$airobj->{'content'}  if (!defined $condition->{'air_description'} );
+    $condition->{'air_pop_mod'}=$airobj->{'pop_mod'}  if (!defined $condition->{'air_pop_mod'} );
+    $condition->{'pop_mod'}->{'air'}=$condition->{'air_pop_mod'};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1;
