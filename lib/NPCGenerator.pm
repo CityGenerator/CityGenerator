@@ -73,6 +73,22 @@ sub create_npc{
 
 ###############################################################################
 
+=head2 set_sex()
+
+Take a provided NPC and select a sex from the list of available choices.
+
+=cut
+
+###############################################################################
+
+sub set_sex{
+    my ($npc)=@_;
+    $npc->{'sex'}=roll_from_array( &d(100),$xml_data->{'sex'}->{'option'}) if (!defined $npc->{'sex'})   ;
+}
+
+
+###############################################################################
+
 =head2 set_profession( npc, businesslist )
 
 Take a provided NPC and select a profession from the list of available choices.

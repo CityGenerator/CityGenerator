@@ -25,6 +25,34 @@ our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => []
 my $pod=Pod::Coverage->new(package => 'NPCGenerator');
 
 
+subtest 'test set_sex' => sub {
+    my $npc;
+    GenericGenerator::set_seed(1);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'she');
+
+    GenericGenerator::set_seed(4);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'it');
+
+    GenericGenerator::set_seed(5);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'he');
+
+    GenericGenerator::set_seed(1);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'she');
+    $npc->{'sex'}->{'pronoun'}='he';
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'he');
+
+    done_testing();
+};
+
 
 subtest 'test create_npc' => sub {
     subtest 'test create_npc race and seed' => sub {
@@ -94,6 +122,7 @@ subtest 'test create_npc' => sub {
         is($npc->{'business'},'furrier');
 	    done_testing();
     };
+
     subtest 'test create_npc attitudes' => sub {
         my $npc;
 
@@ -192,6 +221,7 @@ subtest 'test create_npc' => sub {
 
 
 
+
 subtest 'test get_races' => sub {
 
     my $races=NPCGenerator::get_races();
@@ -274,6 +304,14 @@ subtest 'test generate_npc_name' => sub {
 
         done_testing();
     };
+
+
+
+
+
+
+
+
     subtest 'test generating race with full name' => sub {
 
         GenericGenerator::set_seed(1);
