@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<resources>
+    <resource type="beaches">
+        <title>pristine</title>
+        <title>plentiful</title>
+        <title>ruined</title>
+        <title>stoney</title>
+        <title>rocky</title>
+        <title>wreckage strewn</title>
+        <title>narrow</title>
+        <title></title>
+        <root>yellow</root>
+        <root>red</root>
+        <root>white</root>
+        <root>black</root>
+        <root></root>
+        <trailer>sandy beaches</trailer>
+    </resource>
+    <resource type="wildlife">
+        <title>wild</title>
+        <title>dangerous</title>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
+        <title>tame</title>
+        <title></title>
+        <root>carnivorous</root>
+        <root>poisonous</root>
+        <root>timid</root>
+        <root>woodland</root>
+        <root>aquatic</root>
+        <root>marine</root>
+        <root></root>
+        <trailer>wildlife</trailer>
+        <trailer>caterpillar</trailer>
+        <trailer>spiders</trailer>
+    </resource>
+    <resource types="foods">
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
+        <root>cocoa bean</root>
+        <root>basil</root>
+        <root>carrot</root>
+        <root>catnip</root>
+        <root>cauliflower</root>
+        <root>celery</root>
+        <root>fruit</root>
+        <root>garlic</root>
+        <root>okra</root>
+        <root>parsley</root>
+        <root>peanuts</root>
+        <root>peas</root>
+        <root>rye</root>
+        <root>squash</root>
+        <root>zucchini</root>
+        <root>brussels sprout</root>
+        <root>cotton</root>
+        <root>coconut</root>
+        <root>grain</root>
+        <root>oat</root>
+        <root>pumice</root>
+        <root>rice</root>
+        <root>seaweed/kelp</root>
+        <root>sugarcane</root>
+        <root>sunflower</root>
+        <root>fruit</root>
+        <root>vegetable</root>
+        <trailer>fields</trailer>
+        <trailer>crops</trailer>
+        <trailer>plantations</trailer>
+    </resource>
+    <resource type="metals">
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>abandoned</title>
+        <title>deep</title>
+        <title>ancient</title>
+        <title>creepy</title>
+        <root>copper</root>
+        <root>gold</root>
+        <root>iron</root>
+        <root>lead</root>
+        <root>precious metal</root>
+        <root>nickel</root>
+        <root>platinum</root>
+        <root>silver</root>
+        <root>tin</root>
+        <root>titanium</root>
+        <root>vanadium</root>
+        <root>zinc</root>
+        <root>nonferrous metal</root>
+        <trailer>works</trailer>
+        <trailer>smithing</trailer>
+        <trailer>ore</trailer>
+        <trailer>deposits</trailer>
+        <trailer>mines</trailer>
+    </resource>
+    <resource type="gem">
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>long-abandoned</title>
+        <title>deep</title>
+        <title>ancient</title>
+        <title>creepy</title>
+        <root>diamond</root>
+        <root>emerald</root>
+        <root>ruby</root>
+        <root>saphire</root>
+        <root>feldspar</root>
+        <root>fluorspar</root>
+        <root>gem</root>
+        <root>gemstone</root>
+        <root>semiprecious stone</root>
+        <root>precious stone</root>
+        <root>pyrite</root>
+        <root>quartz</root>
+        <trailer>cutting</trailer>
+        <trailer>deposits</trailer>
+        <trailer>mines</trailer>
+    </resource>
+    <resource type="minerals">
+        <title>plentiful</title>
+        <title>crucial</title>
+        <title>abandoned</title>
+        <title>deep</title>
+        <title>ancient</title>
+        <title>creepy</title>
+        <root>gravel</root>
+        <root>coal</root>
+        <root>graphite</root>
+        <root>bauxite</root>
+        <root>chalk</root>
+        <root>guano</root>
+        <root>gypsum</root>
+        <root>hard coal</root>
+        <root>magnesium</root>
+        <root>manganese</root>
+        <root>peat</root>
+        <root>potash</root>
+        <root>salt</root>
+        <root>soda ash</root>
+        <root>soft coal</root>
+        <root>sulfur</root>
+        <root>talc</root>
+        <root>rare earth element</root>
+        <root>rock salt</root>
+        <root>minor minerals</root>
+        <root>calcified seaweed</root>
+        <trailer>mines</trailer>
+        <trailer>deposits</trailer>
+    </resource>
+
+    <resource type='harvests'>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
+        <title>daily</title>
+        <title>yearly</title>
+        <title>seasonal</title>
+        <root>reptile</root>
+        <root>serpent</root>
+        <root>lizard</root>
+        <root>whale</root>
+        <root>baby seal</root>
+        <root>panda</root>
+        <root>kitten</root>
+        <root>puppy</root>
+        <root>polar bear</root>
+        <root>dragon</root>
+        <root>crab</root>
+        <root>crayfish</root>
+        <root>finfish</root>
+        <root>lobster</root>
+        <root>octopi</root>
+        <root>pearls</root>
+        <root>rubber</root>
+        <root>shrimp</root>
+        <root>squid</root>
+        <root>spiny lobster</root>
+        <trailer>harvests</trailer>
+    </resource>
+
+    <resource type='herd animals'>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
+        <title>daily</title>
+        <title>yearly</title>
+        <title>seasonal</title>
+        <root>cattle</root>
+        <root>goat</root>
+        <root>sheep</root>
+        <root>baby seal</root>
+        <root>llama</root>
+        <root>horse</root>
+        <root>pig</root>
+        <root>alligator</root>
+        <root>bison</root>
+        <root>deer</root>
+        <root>furry giraffe</root>
+        <root>kangaroo</root>
+        <trailer>herds</trailer>
+    </resource>
+    <resource type='wood'>
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>endangered</title>
+        <title>unique</title>
+        <title>ancient</title>
+        <title>creepy</title>
+        <root>hardwood</root>
+        <root>softwood</root>
+        <root>oak</root>
+        <root>pine</root>
+        <root>mahogany</root>
+        <root>cork</root>
+        <root>rare wood</root>
+        <root>cinnamon</root>
+        <root>coffee</root>
+        <root>cork</root>
+        <root>miro</root>
+        <root>willow</root>
+        <root>ash</root>
+        <root>fruit</root>
+        <root>cedar</root>
+        <root>cypress</root>
+        <root>banyon</root>
+        <root>chokeberry</root>
+        <root>cottonwood</root>
+        <root>crabapple</root>
+        <root>buckeye</root>
+        <root>eucalyptus</root>
+        <root>ironwood</root>
+        <root>holly</root>
+        <root>hickory</root>
+        <root>hickory</root>
+        <root>black locust</root>
+        <root>magnolia</root>
+        <root>willow</root>
+        <root>witchhazel</root>
+        <root>walnut</root>
+        <root>redbud</root>
+        <root>redwood</root>
+        <root>tulip</root>
+        <trailer>trees</trailer>
+        <trailer>forests</trailer>
+        <trailer>lumbermills</trailer>
+        <trailer>woodworkers</trailer>
+    </resource>
+
+    <resource type="quarries">
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
+        <title>ancient</title>
+        <title>creepy</title>
+        <root>granite</root>
+        <root>gravel and sand</root>
+        <root>building stone</root>
+        <root>gravel</root>
+        <root>limestone</root>
+        <root>marble</root>
+        <root>slate</root>
+        <root>petroleum</root>
+        <root>napitha</root>
+        <root>oil</root>
+        <root></root>
+        <trailer>mines</trailer>
+        <trailer>quarries</trailer>
+    </resource>
+
+    <resource type="locales">
+        <title></title>
+        <title>nearby</title>
+        <title>renowned</title>
+        <title>famous</title>
+        <title>amazing</title>
+        <root>glaciers</root>
+        <root>deepwater harbors</root>
+        <root>freshwater lakes</root>
+        <root>saltwater lakes</root>
+        <root>bays</root>
+        <root>beaches</root>
+        <root>forests</root>
+        <root>waterfalls</root>
+        <root>volcanoes</root>
+        <root>icebergs</root>
+        <root>costal areas</root>
+        <root>freshwater marshes</root>
+        <root>saltwater marshes</root>
+        <root>agricultural lands</root>
+        <root>arable lands</root>
+        <root>grazing lands</root>
+        <root>mineral springs</root>
+        <root>geothermal vents</root>
+        <root>deepwater ports</root>
+        <root>tar sands</root>
+        <root>coral reefs</root>
+    </resource>
+
+    <resource type="professionals">
+        <root>cheesemakers</root>
+        <root>beekeepers</root>
+        <root>bookmakers</root>
+        <root>weavers</root>
+        <root>smiths</root>
+        <root>whalers</root>
+        <root>fishers</root>
+        <root>loggers</root>
+        <root>artists</root>
+        <root>alchemists</root>
+        <root>apothecaries</root>
+        <root>armorers</root>
+        <root>bounty hunters</root>
+        <root>bakers</root>
+        <root>blacksmiths</root>
+        <root>brewers</root>
+        <root>brothels</root>
+        <root>chandlers</root>
+        <root>church</root>
+        <root>cobblers</root>
+        <root>engineers</root>
+        <root>entertainers</root>
+        <root>glassblowers</root>
+        <root>healers</root>
+        <root>laborers</root>
+        <root>leatherworkers</root>
+        <root>library</root>
+        <root>lumbermill</root>
+        <root>masons</root>
+        <root>merchants</root>
+        <root>millers</root>
+        <root>physicians</root>
+        <root>potters</root>
+        <root>sages</root>
+        <root>scribes</root>
+        <root>specialty smiths</root>
+        <root>tailors</root>
+        <root>temples</root>
+        <root>vintners</root>
+        <root>weaponsmiths</root>
+        <root>weaver</root>
+        <root>woodworkers</root>
+    </resource>
+
+    <resource type="product">
+        <title>plentiful</title>
+        <title>now scarce</title>
+        <title>unique</title>
+        <title>exceptional</title>
+        <title>decorative</title>
+        <title>expensive</title>
+        <title>cheap</title>
+
+        <root>marbles</root>
+        <root>pottery</root>
+        <root>construction materials</root>
+        <root>petroleum jelly</root>
+        <root>palm oils</root>
+        <root>wax</root>
+        <root>mineral water</root>
+        <root>coffins</root>
+        <root>boxes</root>
+        <root>barrels</root>
+        <root>torches</root>
+        <root>wheels</root>
+        <root>flutes</root>
+        <root>drums</root>
+        <root>dolls</root>
+        <root>codpieces</root>
+        <root>chasity belts</root>
+        <root>iron maidens</root>
+        <root>penis sheathes</root>
+        <root>kitten mittens</root>
+        <root>monkey wrenches</root>
+        <root>small lyres</root>
+        <root>small bits of string</root>
+        <root>rocks</root>
+        <root>carrier pigeons</root>
+        <root>courtesans</root>
+        <root>singing frogs</root>
+        <root>horney toads</root>
+        <root>knives</root>
+        <root>swords</root>
+        <root>axes</root>
+        <root>maces</root>
+        <root>bows</root>
+        <root>saws</root>
+        <root>picks</root>
+        <root>shovels</root>
+        <root>clubs</root>
+        <root>dreamcatchers</root>
+        <root>poems</root>
+        <root>quilts</root>
+        <root>beer</root>
+        <root>wine</root>
+        <root>spirits</root>
+    </resource>
+</resources>

@@ -54,6 +54,8 @@ The following datafiles are used by CityGenerator.pm:
 
 =item F<xml/regionnames.xml>
 
+=item F<xml/resources.xml>
+
 =item F<xml/continentnames.xml>
 
 =back
@@ -67,6 +69,7 @@ our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, Fo
 our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
 our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
 our $regionnames_data   = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
+our $resource_data      = $xml->XMLin( "xml/resources.xml", ForceContent => 1, ForceArray => [] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
@@ -290,6 +293,40 @@ sub set_age {
     $city->{'age_mod'}=$result->{'age_mod'} if (!defined $city->{'age_mod'});
 }
 
+
+
+###############################################################################
+
+=head2 generate_resources()
+
+select resources modified by city size.
+TODO How do I really want to weight resource allocation
+
+=cut
+
+###############################################################################
+
+sub generate_resources{
+    my($city)=@_;
+
+    set_seed( $city->{'seed'});
+    #ensure that the resource count is at most 13 and at least 2
+    #shift from 2-13 to 1-12, then take a number from 1-12 total.
+    my $resource_count=d( min( max($city->{'size_modifier'}+($city->{'economy'}||0), 2 ),13) ) ;
+
+    $city->{'resourcecount'}= $resource_count if (!defined $city->{'resourcecount'} );
+    #resetting $resource_count to reflect potential existing value.
+    $resource_count=$city->{'resourcecount'};
+
+    if (!defined $city->{'resources'} or ref $city->{'resources'} ne 'ARRAY' ){
+        $city->{'resources'}=[];
+        while ($resource_count-- > 0 ){
+            $GenericGenerator::seed++;
+            my $resource=rand_from_array($resource_data->{'resource'});
+            push @{ $city->{'resources'} }, parse_object($resource);
+        }
+    }
+}
 
 
 1;

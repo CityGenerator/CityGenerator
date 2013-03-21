@@ -203,7 +203,6 @@ subtest 'test set_laws' => sub {
     done_testing();
 };
 
-
 subtest 'test set_age' => sub {
     my $city;
     set_seed(1);
@@ -218,6 +217,44 @@ subtest 'test set_age' => sub {
     is($city->{'age_description'}, 'foo');
     is($city->{'age_mod'}, '12');
     is($city->{'age_roll'}, '1');
+
+    done_testing();
+};
+
+
+
+subtest 'test generate_resources' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 1);
+    is(@{$city->{'resources'}}, 1);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'economy'=>20});
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 1);
+    is(@{$city->{'resources'}}, 1);
+
+    $city=CityGenerator::create_city({'seed'=>'2'  } );
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 8);
+    is(@{$city->{'resources'}}, 8);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6   } );
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 6);
+    is(@{$city->{'resources'}}, 6);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6, 'resources'=>1   } );
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 6);
+    is(@{$city->{'resources'}}, 6);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6, 'resources'=>[]   } );
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 6);
+    is(@{$city->{'resources'}}, 0);
 
 
     done_testing();
