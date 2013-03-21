@@ -180,8 +180,48 @@ subtest 'test generate_walls' => sub {
     done_testing();
 };
 
+subtest 'test set_laws' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::set_laws($city);
+    is($city->{'laws'}->{'punishment'}, 'fines');
+    is($city->{'laws'}->{'enforcement'}, 'but are loosely enforced');
+    is($city->{'laws'}->{'trial'}, 'without trial');
+    is($city->{'laws'}->{'enforcer'}, 'city guard');
+    is($city->{'laws'}->{'commoncrime'}, 'petty theft');
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'laws'=>{'punishment' => 'a','enforcement' => 'b','trial' => 'c','enforcer' => 'd','commoncrime' => 'e'}} );
+    CityGenerator::set_laws($city);
+    is($city->{'laws'}->{'punishment'}, 'a');
+    is($city->{'laws'}->{'enforcement'}, 'b');
+    is($city->{'laws'}->{'trial'}, 'c');
+    is($city->{'laws'}->{'enforcer'}, 'd');
+    is($city->{'laws'}->{'commoncrime'}, 'e');
 
 
+    done_testing();
+};
+
+
+subtest 'test set_age' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::set_age($city);
+    is($city->{'age_description'}, 'old');
+    is($city->{'age_mod'}, '-5');
+    is($city->{'age_roll'}, '79');
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'age_description'=>'foo','age_mod'=>12, 'age_roll'=>'1'   } );
+    CityGenerator::set_age($city);
+    is($city->{'age_description'}, 'foo');
+    is($city->{'age_mod'}, '12');
+    is($city->{'age_roll'}, '1');
+
+
+    done_testing();
+};
 
 
 

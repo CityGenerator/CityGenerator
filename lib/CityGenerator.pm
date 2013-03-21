@@ -251,4 +251,45 @@ sub generate_walls {
 
 
 
+###############################################################################
+
+=head2 set_laws()
+
+Set the laws for the city.
+
+=cut
+
+###############################################################################
+
+sub set_laws {
+    my($city)=@_;
+
+    for my $facet (keys %{$xml_data->{'laws'}}){
+        my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
+        $city->{'laws'}->{$facet} = rand_from_array(  $facetlist  )->{'content'} if (!defined $city->{'laws'}->{$facet} )  ;
+    }
+}
+
+###############################################################################
+
+=head2 set_age()
+
+Set the current age of the city
+
+=cut
+
+###############################################################################
+sub set_age {
+    my($city)=@_;
+
+    my $agelist=$xml_data->{'cityages'}->{'cityage'};
+    $city->{'age_roll'}=d(100)+$city->{'size_modifier'} if (!defined $city->{'age_roll'});
+
+    my $result= roll_from_array( $city->{'age_roll'}  , $agelist  );
+    $city->{'age_description'}=$result->{'content'} if (!defined $city->{'age_description'});
+    $city->{'age_mod'}=$result->{'age_mod'} if (!defined $city->{'age_mod'});
+}
+
+
+
 1;

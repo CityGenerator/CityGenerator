@@ -887,15 +887,15 @@
 </govtypes>
 
 <cityages>
-    <cityage agemod='10'  >young</cityage>
-    <cityage agemod='8'   >youthful</cityage>
-    <cityage agemod='5'   >new</cityage>
-    <cityage agemod='3'   >established</cityage>
-    <cityage agemod='0'   >modern</cityage>
-    <cityage agemod='-3'  >mature</cityage>
-    <cityage agemod='-5'  >old</cityage>
-    <cityage agemod='-8'  >elderly</cityage>
-    <cityage agemod='-10' >ancient</cityage>
+    <cityage          max='10' age_mod='10'  >young</cityage>
+    <cityage min='11' max='20' age_mod='8'   >youthful</cityage>
+    <cityage min='21' max='30' age_mod='5'   >new</cityage>
+    <cityage min='31' max='40' age_mod='3'   >established</cityage>
+    <cityage min='41' max='60' age_mod='0'   >modern</cityage>
+    <cityage min='61' max='70' age_mod='-3'  >mature</cityage>
+    <cityage min='71' max='80' age_mod='-5'  >old</cityage>
+    <cityage min='81' max='90' age_mod='-8'  >elderly</cityage>
+    <cityage min='91'          age_mod='-10' >ancient</cityage>
 </cityages>
 
 <locations>
