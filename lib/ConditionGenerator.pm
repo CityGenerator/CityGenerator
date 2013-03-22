@@ -18,6 +18,7 @@ package ConditionGenerator;
 ###############################################################################
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -33,7 +34,7 @@ use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 
 ###############################################################################
 
@@ -83,8 +84,8 @@ sub create_condition {
         $condition->{'seed'}=set_seed();
     }
     $condition->{'original_seed'}=$condition->{'seed'};
-    $condition->{'pop_mod'}={} if(!defined $condition->{'pop_mod'} or ref $condition->{'pop_mod'} ne 'HASH');
-    $condition->{'bar_mod'}={} if(!defined $condition->{'bar_mod'} or ref $condition->{'bar_mod'} ne 'HASH');
+    $condition->{'pop_mod'}={} if(!defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH');
+    $condition->{'bar_mod'}={} if(!defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH');
     return $condition;
 }
 
@@ -110,7 +111,7 @@ sub flesh_out_condition {
     set_clouds($condition);
     set_precip($condition);
     set_storm($condition);
-
+    return $condition;
 }
 
 ###############################################################################
@@ -135,6 +136,7 @@ sub set_time {
     $condition->{'time_pop_mod'}=$timeobj->{'pop_mod'}  if (!defined $condition->{'time_pop_mod'} );
     $condition->{'pop_mod'}->{'time'}=$condition->{'time_pop_mod'};
     $condition->{'bar_mod'}->{'time'}=$condition->{'time_bar_mod'};
+    return $condition;
 }
 
 
@@ -156,6 +158,7 @@ sub set_temp {
     $condition->{'temp_description'}=$tempobj->{'content'}  if (!defined $condition->{'temp_description'} );
     $condition->{'temp_pop_mod'}=$tempobj->{'pop_mod'}  if (!defined $condition->{'temp_pop_mod'} );
     $condition->{'pop_mod'}->{'temp'}=$condition->{'temp_pop_mod'};
+    return $condition;
 }
 
 
@@ -177,6 +180,7 @@ sub set_air {
     $condition->{'air_description'}=$airobj->{'content'}  if (!defined $condition->{'air_description'} );
     $condition->{'air_pop_mod'}=$airobj->{'pop_mod'}  if (!defined $condition->{'air_pop_mod'} );
     $condition->{'pop_mod'}->{'air'}=$condition->{'air_pop_mod'};
+    return $condition;
 }
 
 
@@ -198,6 +202,7 @@ sub set_wind {
     $condition->{'wind_description'}=$windobj->{'content'}  if (!defined $condition->{'wind_description'} );
     $condition->{'wind_pop_mod'}=$windobj->{'pop_mod'}  if (!defined $condition->{'wind_pop_mod'} );
     $condition->{'pop_mod'}->{'wind'}=$condition->{'wind_pop_mod'};
+    return $condition;
 }
 
 
@@ -217,6 +222,7 @@ sub set_forecast {
 
     my $forecastobj= rand_from_array( $condition_data->{'forecast'}->{'option'} );
     $condition->{'forecast_description'}=$forecastobj->{'content'}  if (!defined $condition->{'forecast_description'} );
+    return $condition;
 }
 
 
@@ -236,6 +242,7 @@ sub set_clouds {
 
     my $cloudsobj= rand_from_array( $condition_data->{'clouds'}->{'option'} );
     $condition->{'clouds_description'}=$cloudsobj->{'content'}  if (!defined $condition->{'clouds_description'} );
+    return $condition;
 }
 
 
@@ -267,6 +274,7 @@ sub set_precip {
 
     }
 
+    return $condition;
 }
 
 
@@ -306,20 +314,9 @@ sub set_storm {
         }    
 
     }
+    return $condition;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

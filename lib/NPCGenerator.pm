@@ -16,6 +16,7 @@ package NPCGenerator;
 ###############################################################################
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -29,7 +30,7 @@ use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 
 our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
 our $business_data = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
@@ -84,6 +85,7 @@ Take a provided NPC and select a sex from the list of available choices.
 sub set_sex{
     my ($npc)=@_;
     $npc->{'sex'}=roll_from_array( &d(100),$xml_data->{'sex'}->{'option'}) if (!defined $npc->{'sex'})   ;
+    return $npc;
 }
 
 
@@ -110,6 +112,7 @@ sub set_profession{
             $npc->{'profession'} =  $npc->{'business'};
         }
 
+    return $npc;
 }
 
 ###############################################################################
@@ -141,6 +144,7 @@ sub set_attitudes{
             }
         }
     }
+    return $npc;
 }
 
 
@@ -219,7 +223,7 @@ Return a list of count names from the given race.
 sub generate_npc_names{
     my($race,$count)=@_;
 
-    if (!  grep( /^$race$/, @{ get_races()} ) ) {
+    if (!  grep { /^$race$/ } @{get_races()} ) {
         $race='any';
     }
 
@@ -240,5 +244,4 @@ sub generate_npc_names{
 
 1;
 
-__END__
 

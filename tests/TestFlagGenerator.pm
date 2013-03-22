@@ -4,6 +4,7 @@
 package TestFlagGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use FlagGenerator;
 use GenericGenerator qw( set_seed );

@@ -18,6 +18,7 @@ package CityGenerator;
 ###############################################################################
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -34,7 +35,7 @@ use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 
 ###############################################################################
 
@@ -135,7 +136,7 @@ sub generate_city_name {
     set_seed($city->{'seed'});
     my $nameobj= parse_object( $citynames_data );
     $city->{'name'}=$nameobj->{'content'}   if (!defined $city->{'name'} );
-    
+    return $city;    
 }
 
 ###############################################################################
@@ -160,6 +161,7 @@ sub set_city_size {
     $city->{'gplimit'}          = $citysize->{'gplimit'}                        if (!defined $city->{'gplimit'}  );
     $city->{'pop_estimate'}     = $citysize->{'minpop'} + &d( $sizedelta )      if (!defined $city->{'pop_estimate'}  );
     $city->{'size_modifier'}    = $citysize->{'size_modifier'}                  if (!defined $city->{'size_modifier'}  );
+    return $city;    
 }
 
 
@@ -181,6 +183,7 @@ sub flesh_out_city {
     $city->{'region'}=RegionGenerator::create_region($city->{'seed'});
     $city->{'continent'}=ContinentGenerator::create_continent($city->{'seed'});
 
+    return $city;    
 }
 
 ###############################################################################
@@ -201,6 +204,7 @@ sub set_city_type {
     $city->{'type'}        = $citytype->{'type'}        if (!defined $city->{'type'}  );
     $city->{'description'} = $citytype->{'content'}     if (!defined $city->{'description'}  );
     $city->{'add_other'}   = $citytype->{'add_other'}   if (!defined $city->{'add_other'}  );
+    return $city;    
 }
 
 ###############################################################################
@@ -217,9 +221,10 @@ sub generate_pop_type {
     my ($city)=@_;
     my $poptype     = roll_from_array( &d(100), $xml_data->{'poptypes'}->{'population'} );
 
-    $city->{'popdensity'}   = rand_from_array( $xml_data->{'popdensity'}->{'option'} ) if (!defined $city->{'popdensity'} or ref $city->{'popdensity'} ne 'HASH'   );
+    $city->{'popdensity'}   = rand_from_array( $xml_data->{'popdensity'}->{'option'} ) if (!defined $city->{'popdensity'} || ref $city->{'popdensity'} ne 'HASH'   );
     $city->{'poptype'}      = $poptype->{'type'}    if (!defined $city->{'poptype'}  );
-    $city->{'races'}        = $poptype->{'option'}  if (!defined $city->{'races'} or ref $city->{'races'} ne 'ARRAY' );
+    $city->{'races'}        = $poptype->{'option'}  if (!defined $city->{'races'} || ref $city->{'races'} ne 'ARRAY' );
+    return $city;    
 }
 
 
@@ -249,6 +254,7 @@ sub generate_walls {
         $city->{'walls'}->{'content'}="none";
         $city->{'walls'}->{'height'}=0;
     }
+    return $city;    
 }
 
 
@@ -271,6 +277,7 @@ sub set_laws {
         my $facetlist=$xml_data->{'laws'}->{$facet}->{'option'};
         $city->{'laws'}->{$facet} = rand_from_array(  $facetlist  )->{'content'} if (!defined $city->{'laws'}->{$facet} )  ;
     }
+    return $city;    
 }
 
 ###############################################################################
@@ -291,6 +298,7 @@ sub set_age {
     my $result= roll_from_array( $city->{'age_roll'}  , $agelist  );
     $city->{'age_description'}=$result->{'content'} if (!defined $city->{'age_description'});
     $city->{'age_mod'}=$result->{'age_mod'} if (!defined $city->{'age_mod'});
+    return $city;    
 }
 
 
@@ -318,7 +326,7 @@ sub generate_resources{
     #resetting $resource_count to reflect potential existing value.
     $resource_count=$city->{'resourcecount'};
 
-    if (!defined $city->{'resources'} or ref $city->{'resources'} ne 'ARRAY' ){
+    if (!defined $city->{'resources'} || ref $city->{'resources'} ne 'ARRAY' ){
         $city->{'resources'}=[];
         while ($resource_count-- > 0 ){
             $GenericGenerator::seed++;
@@ -326,6 +334,7 @@ sub generate_resources{
             push @{ $city->{'resources'} }, parse_object($resource);
         }
     }
+    return $city;    
 }
 
 

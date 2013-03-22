@@ -4,6 +4,7 @@
 package TestCityGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use CityGenerator;
 use GenericGenerator qw( set_seed );

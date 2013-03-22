@@ -18,6 +18,7 @@ package FlagGenerator;
 ###############################################################################
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -32,7 +33,7 @@ use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 
 ###############################################################################
 
@@ -119,6 +120,7 @@ sub generate_colors {
 
         push @{$flag->{'colors'}}, $color ;
     }
+    return $flag;
 }
 
 

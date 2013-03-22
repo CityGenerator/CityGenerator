@@ -4,6 +4,7 @@
 package TestRegionGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use RegionGenerator;
 use GenericGenerator qw( set_seed );

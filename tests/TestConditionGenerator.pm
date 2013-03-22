@@ -4,6 +4,7 @@
 package TestConditionGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use ConditionGenerator;
 use GenericGenerator qw( set_seed );
@@ -267,7 +268,7 @@ subtest 'test flesh_out_condition' => sub {
     is($condition->{'air_description'}, 'thick');
     is($condition->{'time_exact'}, '07:59');
     is($condition->{'temp_pop_mod'}, '0.10');
-    is(Dumper ($condition->{'pop_mod'}), Dumper {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'});
+    is(Dumper ($condition->{'pop_mod'}), Dumper( {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'}));
     is($condition->{'air_pop_mod'}, '1.0');
     is($condition->{'forecast_description'}, 'clear');
 

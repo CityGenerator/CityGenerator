@@ -4,6 +4,7 @@
 package TestNPCGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use Pod::Coverage;
 
@@ -18,7 +19,7 @@ require Exporter;
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw( );
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
 our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => [] );
 

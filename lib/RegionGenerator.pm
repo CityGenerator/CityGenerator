@@ -18,6 +18,7 @@ package RegionGenerator;
 ###############################################################################
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -32,7 +33,7 @@ use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
-my $xml = new XML::Simple;
+my $xml = XML::Simple->new();
 
 ###############################################################################
 
@@ -121,7 +122,7 @@ sub generate_region_name {
     set_seed($region->{'seed'});
     my $nameobj= parse_object( $regionnames_data );
     $region->{'name'}=$nameobj->{'content'}   if (!defined $region->{'name'} );
-    
+    return $region;
 }
 
 

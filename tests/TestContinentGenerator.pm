@@ -4,6 +4,7 @@
 package TestContinentGenerator;
 
 use strict;
+use warnings;
 use Test::More;
 use ContinentGenerator;
 use GenericGenerator qw( set_seed );

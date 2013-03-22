@@ -4,6 +4,7 @@
 package GenericGenerator;
 
 use strict;
+use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
@@ -79,7 +80,7 @@ sub roll_from_array {
                 $selected_item = $item;
                 last;
             }
-        }elsif ( ! defined $item->{'min'} and !  defined $item->{'max'} ){
+        }elsif ( ! defined $item->{'min'} && !  defined $item->{'max'} ){
                 $selected_item = $item;
                 last;
         }elsif ( ! defined $item->{'min'}  ){
