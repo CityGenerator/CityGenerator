@@ -11,6 +11,7 @@ use TestRegionGenerator;
 use TestContinentGenerator;
 use TestNPCGenerator;
 use TestConditionGenerator;
+use TestMilitaryGenerator;
 
 
 done_testing();
