@@ -100,9 +100,88 @@ sub create_military {
 } ## end sub create_military
 
 
+###############################################################################
+
+=head2 generate_preparation()
+    
+Determine how well prepared they are, which is influenced by the "military" stat
+for the provided source.
+
+=cut
+
+###############################################################################
+
+sub generate_preparation {
+    my ($military)=@_;
+
+    if (!defined $military->{'preparation_roll'}){
+        if (defined $military->{'mil_mod'} &&  $military->{'mil_mod'} < -1 ) {
+            $military->{'preparation_roll'}=&d(45);
+        }elsif ($military->{'mil_mod'} &&  $military->{'mil_mod'} > 1 ) {
+            $military->{'preparation_roll'}=56+ &d(45);
+        }else{
+            $military->{'preparation_roll'}=&d(100);
+        }
+    }
+    $military->{'preparation'}=roll_from_array( $military->{'preparation_roll'} , $xml_data->{'preparation'}->{'option'})->{'content'} if (!defined $military->{'preparation'});
+    return $military;
+}
+
+###############################################################################
+
+=head2 generate_favored_tactic()
+
+    generate favored_tactics in battle
+
+=cut
+
+###############################################################################
+
+sub generate_favored_tactic {
+    my ($military)=@_;
+    
+     my $tactic=rand_from_array(    $xml_data->{'tactictypes'}->{'option'} )->{'content'};
+     $military->{'favored tactic'}= $tactic if (!defined $military->{'favored tactic'});
+    return $military;
+}
+
+###############################################################################
+
+=head2 generate_reputation()
+
+    generate favored_tactics in battle
+
+=cut
+
+###############################################################################
+
+sub generate_reputation {
+    my ($military)=@_;
+    
+    my $rep = rand_from_array(  $xml_data->{'reputation'}->{'option'}  )->{'content'};
+    $military->{'reputation'}=$rep if (!defined $military->{'reputation'});
+    return $military;
+}
 
 
+###############################################################################
 
+=head2 generate_favored_weapon()
+
+generate favored_weapon preferred by the military.
+
+=cut
+
+###############################################################################
+
+sub generate_favored_weapon {
+    my ($military)=@_;
+
+    my $weaponclass=rand_from_array(    $xml_data->{'weapontypes'}->{'weapon'} );
+    $military->{'favored weapon'}    = rand_from_array(    $weaponclass->{'option'} )->{'content'} if  (!defined $military->{'favored weapon'} );
+
+    return $military;
+} 
 
 
 

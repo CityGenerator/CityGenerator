@@ -24,7 +24,7 @@ use base qw(Exporter);
 
 ###############################################################################
 
-
+#TODO treat certain data as stats, mil, auth, edu, etc.
 use Carp;
 use CGI;
 use Data::Dumper;

@@ -227,6 +227,17 @@
     <option min='91' max='95'>spectacularly</option>
     <option min='96'         >perfectly</option>
 </preparation>
+<reputation>
+    <option approval_mod='-5'>hated</option>
+    <option approval_mod='-4'>despised</option>
+    <option approval_mod='-3'>much maligned</option>
+    <option approval_mod='-2'>ridiculed</option>
+    <option approval_mod='-1'>mocked</option>
+    <option approval_mod='2' >much loved</option>
+    <option approval_mod='3' >praised</option>
+    <option approval_mod='4' >respected</option>
+    <option approval_mod='5' >revered</option>
+</reputation>
 <specialties>
     <specialty>farming</specialty>
     <specialty>military</specialty>
@@ -331,7 +342,7 @@
         <option>throwing axes</option>
         <option>throwing hammers</option>
         <option>thrown weapons</option>
-        <option>slings weapons</option>
+        <option>slings</option>
         <option>Javelins</option>
     </weapon>
     <weapon type="polearms">
@@ -430,17 +441,6 @@
     <option min="34"  max="66"  >neutral</option>
     <option min="67"  max="100" >lawful</option>
 </order>
-<respect>
-    <option approval_mod='-5'>hated</option>
-    <option approval_mod='-4'>despised</option>
-    <option approval_mod='-3'>much maligned</option>
-    <option approval_mod='-2'>ridiculed</option>
-    <option approval_mod='-1'>mocked</option>
-    <option approval_mod='2' >much loved</option>
-    <option approval_mod='3' >praised</option>
-    <option approval_mod='4' >respected</option>
-    <option approval_mod='5' >revered</option>
-</respect>
 <govtypes>
     <govt approval_mod='0'  religion='2'  mil_mod='-1' >council</govt>
     <govt approval_mod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
