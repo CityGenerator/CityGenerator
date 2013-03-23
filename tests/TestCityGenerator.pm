@@ -212,22 +212,22 @@ subtest 'test generate_resources' => sub {
 
     $city=CityGenerator::create_city({'seed'=>'2'  } );
     CityGenerator::generate_resources($city);
-    is($city->{'resourcecount'}, 8);
-    is(@{$city->{'resources'}}, 8);
-
-    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6   } );
-    CityGenerator::generate_resources($city);
     is($city->{'resourcecount'}, 6);
     is(@{$city->{'resources'}}, 6);
 
-    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6, 'resources'=>1   } );
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>4   } );
     CityGenerator::generate_resources($city);
-    is($city->{'resourcecount'}, 6);
-    is(@{$city->{'resources'}}, 6);
+    is($city->{'resourcecount'}, 4);
+    is(@{$city->{'resources'}}, 4);
 
-    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>6, 'resources'=>[]   } );
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>4, 'resources'=>1   } );
     CityGenerator::generate_resources($city);
-    is($city->{'resourcecount'}, 6);
+    is($city->{'resourcecount'}, 4);
+    is(@{$city->{'resources'}}, 4);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>4, 'resources'=>[]   } );
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 4);
     is(@{$city->{'resources'}}, 0);
 
 
@@ -243,6 +243,23 @@ subtest 'test generate_city_crest' => sub {
 
     done_testing();
 };
+
+
+subtest 'test generate_base_stats' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_base_stats($city);
+    is($city->{'education'}, -4);
+    is($city->{'authority'}, 0);
+    is($city->{'magic'}    , 5);
+    is($city->{'military'} , -1);
+    is($city->{'tolerance'}, 2);
+    is($city->{'economy'}  , -4);
+
+    done_testing();
+};
+
 
 subtest 'test generate_shape' => sub {
     my $city;

@@ -122,11 +122,34 @@ sub create_city {
     $city->{'original_seed'} = $city->{'seed'};
 
     generate_city_name($city);
-
+    generate_base_stats($city);
     set_city_size($city);
 
     return $city;
 } ## end sub create_city
+
+###############################################################################
+
+=head3 generate_base_stats()
+
+    generate basic stats for a city.
+
+=cut
+
+###############################################################################
+sub generate_base_stats {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+    $city->{'education'} = d(11) - 5 if ( !defined $city->{'educatiion'} );
+    $city->{'authority'} = d(11) - 5 if ( !defined $city->{'authority'} );
+    $city->{'magic'}     = d(11) - 5 if ( !defined $city->{'magic'} );
+    $city->{'military'}  = d(11) - 5 if ( !defined $city->{'military'} );
+    $city->{'tolerance'} = d(11) - 5 if ( !defined $city->{'tolerance'} );
+    $city->{'economy'}   = d(11) - 5 if ( !defined $city->{'economy'} );
+
+    return $city;
+} ## end sub generate_base_stats
+
 
 
 ###############################################################################

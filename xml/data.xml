@@ -17,45 +17,6 @@
     <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000"  gplimit="30000"/>    
     <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="50000"  gplimit="50000"/>    
 </citysize>
-<crest>
-    <linetype>Nebuly Line</linetype>
-    <linetype>Wavy Line</linetype>
-    <linetype>Embattled Line</linetype>
-    <linetype>Engrailed Line</linetype>
-    <linetype>Invecked Line</linetype>
-    <linetype>Indented Line</linetype>
-    <shield>Chief</shield>
-    <shield>Pale</shield>
-    <shield>Bend</shield>
-    <shield>Fess</shield>
-    <shield>Chevron</shield>
-    <shield>Cross</shield>
-    <shield>Saltire</shield>
-    <shield>Pile</shield>
-    <shield>Canton</shield>
-    <shield>Bordure</shield>
-    <animal>Lion</animal>
-    <animal>Tiger</animal>
-    <animal>Fish</animal>
-    <animal>Bear</animal>
-    <animal>Wolf</animal>
-    <animal>Leopard</animal>
-    <animal>Horse</animal>
-    <animal>Bull</animal>
-    <animal>Boar</animal>
-    <animal>Boars</animal>
-    <animal>Conies</animal>
-    <animal>Fox</animal>
-    <animal>Dog</animal>
-    <animal>Dolphin</animal>
-    <animal>Tortoise</animal>
-    <animal>Griffin</animal>
-    <animal>Dragon</animal>
-    <animal>Stag</animal>
-    <animal>Snake</animal>
-
-
-</crest>
 <trivia>their official _______ is the ________
     <fact type='tree'>
         <title>red</title>
