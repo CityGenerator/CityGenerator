@@ -99,52 +99,25 @@ subtest 'test flesh_out_city' => sub {
 };
 
 
-subtest 'test set_city_type' => sub {
+subtest 'test set_pop_type' => sub {
     my $city;
     set_seed(1);
 
     $city=CityGenerator::create_city();
-    CityGenerator::set_city_type($city);
+    CityGenerator::set_pop_type($city);
     is($city->{'name'},'Port    Janville'); #FIXME spaces!
     is($city->{'base_pop'},'basic');
     is($city->{'type'},'basic+1');
     is($city->{'description'},'fairly normal population (with one monstrous race)');
     is($city->{'add_other'},'true');
     $city={'base_pop'=>'foo1','type'=>'foo2','description'=>'foo3','add_other'=>'foo4', };
-    CityGenerator::set_city_type($city);
+    CityGenerator::set_pop_type($city);
     is($city->{'name'},undef);
     is($city->{'base_pop'},'foo1');
     is($city->{'type'},'foo2');
     is($city->{'description'},'foo3');
     is($city->{'add_other'},'foo4');
 
-
-    done_testing();
-};
-
-
-subtest 'test generate_pop_type' => sub {
-    my $city;
-    set_seed(1);
-    $city=CityGenerator::create_city();
-    CityGenerator::generate_pop_type($city);
-    is($city->{'popdensity'}->{'feetpercapita'}, '1500');
-    is($city->{'poptype'}, 'quartered');
-    is(scalar @{$city->{'races'}}, 4);
-
-    set_seed(1);
-    $city=CityGenerator::create_city({ 'popdensity'=>'foobard','poptype'=>'dumb', 'races'=>1    });
-    CityGenerator::generate_pop_type($city);
-    is($city->{'popdensity'}->{'feetpercapita'}, 1500);
-    is($city->{'poptype'}, 'dumb' );
-    is(scalar @{$city->{'races'}}, 4);
-
-    set_seed(1);
-    $city=CityGenerator::create_city({ 'popdensity'=>{'feetpercapita'=>2000},'poptype'=>'dumb', 'races'=>[1,2]    });
-    CityGenerator::generate_pop_type($city);
-    is($city->{'popdensity'}->{'feetpercapita'}, 2000);
-    is($city->{'poptype'}, 'dumb' );
-    is(scalar @{$city->{'races'}}, 2);
 
     done_testing();
 };
@@ -261,6 +234,29 @@ subtest 'test generate_resources' => sub {
     done_testing();
 };
 
+subtest 'test generate_city_crest' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_city_crest($city);
+    is(Dumper($city->{'crest'}), Dumper({}));
 
+    done_testing();
+};
+
+subtest 'test generate_shape' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_shape($city);
+    is($city->{'shape'},'a circular');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1','shape'=>'fool'});
+    CityGenerator::generate_shape($city);
+    is($city->{'shape'},'fool');
+
+    done_testing();
+};
 
 1;

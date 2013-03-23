@@ -234,13 +234,14 @@
     <specialty>logging</specialty>
 </specialties>
 
-<citytype>
-    <city type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</city>
-    <city type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monstrous race)</city>
-    <city type="monstrous"   min="81"  max="91"  base_pop="monster" add_other="false" >monstrous population</city>
-    <city type="monstrous+1" min="91"  max="95"  base_pop="monster" add_other="true"  >monstrous population (with one common race)</city>
-    <city type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</city>
-</citytype>
+<pop_types>
+    <pop_type type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</pop_type>
+    <pop_type type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monstrous race)</pop_type>
+    <pop_type type="monstrous"    min="81"  max="91"  base_pop="monster" add_other="false" >monstrous population</pop_type>
+    <pop_type type="monstrous+1"  min="91"  max="95"  base_pop="monster" add_other="true"  >monstrous population (with one common race)</pop_type>
+    <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</pop_type>
+</pop_types>
+
 <districts>
     <district name="civic"        chance='12' stat="authority"/>
     <district name="embassy"      chance='5'  stat="travel" />
@@ -357,40 +358,8 @@
     <option type="sparsely"  feetpercapita="5000"/>
     <option type="lightly"   feetpercapita="3000"/>
     <option type="nominally" feetpercapita="1500"/>
-    <option type="densly"    feetpercapita="1000"/>
+    <option type="densely"   feetpercapita="1000"/>
 </popdensity>
-<poptypes>
-    <population type="isolated" min='1' max='35' haspest='5' >
-        <option percent="98" dominant='true'/>
-        <option percent="1" />
-    </population>
-    <population type="split" min='35' max='50' haspest='10' >
-        <option percent="49" />
-        <option percent="48" />
-        <option percent="2" />
-    </population>
-    <population type="quartered" min='51' max='70' haspest='30'>
-        <option percent="27" />
-        <option percent="26" />
-        <option percent="23" />
-        <option percent="23" />
-    </population>
-    <population type="assimilated" min='71' max='85' haspest='50' >
-        <option percent="70" dominant='true' />
-        <option percent="16" />
-        <option percent="8" />
-        <option percent="3" />
-        <option percent="2" />
-    </population>
-    <population type="unified" min='86' max='100' haspest='70'>
-        <option percent="35" />
-        <option percent="29" />
-        <option percent="19" />
-        <option percent="11" />
-        <option percent="3" />
-        <option percent="2" />
-    </population>
-</poptypes>
 
 <races>
     <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  mil='1'  article="a"  plural='Humans'>Human</race>
