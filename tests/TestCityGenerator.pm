@@ -210,6 +210,12 @@ subtest 'test generate_resources' => sub {
     is($city->{'resourcecount'}, 1);
     is(@{$city->{'resources'}}, 1);
 
+    $city=CityGenerator::create_city({'seed'=>'1', 'economy'=>20});
+    $city->{'economy'}=undef;
+    CityGenerator::generate_resources($city);
+    is($city->{'resourcecount'}, 1);
+    is(@{$city->{'resources'}}, 1);
+
     $city=CityGenerator::create_city({'seed'=>'2'  } );
     CityGenerator::generate_resources($city);
     is($city->{'resourcecount'}, 6);

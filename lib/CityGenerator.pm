@@ -140,7 +140,7 @@ sub create_city {
 sub generate_base_stats {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'education'} = d(11) - 5 if ( !defined $city->{'educatiion'} );
+    $city->{'education'} = d(11) - 5 if ( !defined $city->{'education'} );
     $city->{'authority'} = d(11) - 5 if ( !defined $city->{'authority'} );
     $city->{'magic'}     = d(11) - 5 if ( !defined $city->{'magic'} );
     $city->{'military'}  = d(11) - 5 if ( !defined $city->{'military'} );
