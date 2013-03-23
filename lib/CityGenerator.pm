@@ -361,7 +361,23 @@ sub generate_shape {
     my ($city) = @_;
     $city->{'shape'}=rand_from_array($xml_data->{'cityshape'}->{'option'})->{'content'}  if (!defined  $city->{'shape'} )  ;
     return $city;
+}
 
+
+###############################################################################
+
+=head2 generate_city_age()
+
+a simple selector
+
+=cut
+
+###############################################################################
+sub generate_city_age {
+    my ($city) = @_;
+
+    $city->{'city_age'}= rand_from_array(   $xml_data->{'cityages'}->{'cityage'}  ) if (!defined  $city->{'city_age'});
+    return $city;
 }
 
 

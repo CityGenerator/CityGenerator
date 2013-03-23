@@ -259,4 +259,19 @@ subtest 'test generate_shape' => sub {
     done_testing();
 };
 
+subtest 'test generate_city_age' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::generate_city_age($city);
+    is($city->{'city_age'}->{'content'},'young');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1','city_age'=>{ 'content'=>'new'   }});
+    CityGenerator::generate_city_age($city);
+    is($city->{'city_age'}->{'content'},'new');
+
+    done_testing();
+};
+
 1;
