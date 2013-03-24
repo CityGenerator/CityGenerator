@@ -12,6 +12,7 @@ use TestContinentGenerator;
 use TestNPCGenerator;
 use TestConditionGenerator;
 use TestMilitaryGenerator;
+use TestTavernGenerator;
 
 
 done_testing();

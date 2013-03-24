@@ -127,7 +127,7 @@ subtest 'test parse_object parts' => sub {
     is( $result->{'trailer'},   'trailerbar' );
     srand(2);
     $result=GenericGenerator::parse_object($testObject) ;
-    is( $result->{'content'}, 'titlebar prefoorootbarpostbar  trailerbar'  );
+    is( $result->{'content'}, 'titlebar prefoorootbarpostbar trailerbar'  );
     done_testing();
 
   };

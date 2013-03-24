@@ -192,6 +192,8 @@ sub parse_object {
             }
         }
     }
+    #FIXME Sloppy as hell but it resolves the multiplying spaces issue
+    $newobj->{'content'}=~s/ +/ /g;
     # return the slimmed down version
     return $newobj;
 }

@@ -27,7 +27,6 @@ subtest 'test create_flag' => sub {
     is(@{$flag->{'colors'}},5);
     is($flag->{'colors'}[0]->{'meaning'},undef);
     is($flag->{'colors'}[1]->{'meaning'},'happiness');
-    print Dumper $flag;
 
 
     $flag=FlagGenerator::create_flag({'seed'=>12345});

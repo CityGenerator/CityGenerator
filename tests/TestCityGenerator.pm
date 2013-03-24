@@ -53,7 +53,7 @@ subtest 'test generate_city_name' => sub {
 
     $city={};
     CityGenerator::generate_city_name($city);
-    is($city->{'name'},'Port  Janville'); #FIXME spaces!
+    is($city->{'name'},'Port Janville'); #FIXME spaces!
 
     $city={'seed'=>20, 'name'=>'foo'};
     CityGenerator::generate_city_name($city);
@@ -90,7 +90,7 @@ subtest 'test flesh_out_city' => sub {
     $city={};
     CityGenerator::generate_city_name($city);
     CityGenerator::flesh_out_city($city);
-    is($city->{'name'},'Port   Janville'); #FIXME spaces!
+    is($city->{'name'},'Port Janville'); #FIXME spaces!
     is($city->{'region'}->{'name'}, 'Konsak Territory');
     is($city->{'continent'}->{'name'}, 'Asporek');
 
@@ -105,7 +105,7 @@ subtest 'test set_pop_type' => sub {
 
     $city=CityGenerator::create_city();
     CityGenerator::set_pop_type($city);
-    is($city->{'name'},'Port    Janville'); #FIXME spaces!
+    is($city->{'name'},'Port Janville'); #FIXME spaces!
     is($city->{'base_pop'},'basic');
     is($city->{'type'},'basic+1');
     is($city->{'description'},'fairly normal population (with one monstrous race)');
@@ -194,7 +194,6 @@ subtest 'test set_age' => sub {
 
     done_testing();
 };
-
 
 
 subtest 'test generate_resources' => sub {
