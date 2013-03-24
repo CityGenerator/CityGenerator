@@ -296,4 +296,14 @@ subtest 'test generate_city_age' => sub {
     done_testing();
 };
 
+subtest 'test set_available_races' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    CityGenerator::set_available_races($city);
+    is(1,1);
+
+    done_testing();
+};
+
 1;

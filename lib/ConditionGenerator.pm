@@ -3,42 +3,47 @@
 
 package ConditionGenerator;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( create_condition );
+
 ###############################################################################
 
 =head1 NAME
 
     ConditionGenerator - used to generate Conditions
 
-=head1 DESCRIPTION
+=head1 SYNOPSIS
 
- This can be used to create a Condition
+    use ConditionGenerator;
+    my $condition=ConditionGenerator::create_condition();
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
 
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( create_condition );
-
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use Date::Format qw(time2str);
 use Date::Parse qw( str2time );
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
 
 ###############################################################################
 
-=head1 Data files
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
 
 The following datafiles are used by ConditionGenerator.pm:
 
@@ -48,6 +53,9 @@ The following datafiles are used by ConditionGenerator.pm:
 
 =back
 
+=head1 INTERFACE 
+
+
 =cut
 
 ###############################################################################
@@ -56,8 +64,12 @@ our $condition_data= $xml->XMLin( "xml/conditions.xml", ForceContent => 1, Force
 
 ###############################################################################
 
+=head2 Core Methods
 
-=head2 create_condition()
+The following methods are used to create the core of the city structure.
+
+
+=head3 create_condition()
 
 This method is used to create a simple condition with nothing more than:
 
@@ -72,27 +84,27 @@ This method is used to create a simple condition with nothing more than:
 ###############################################################################
 sub create_condition {
     my ($params) = @_;
-    my $condition={};
+    my $condition = {};
 
-    if (ref $params eq 'HASH'){
-        foreach my $key (sort keys %$params){
-            $condition->{$key}=$params->{$key};
+    if ( ref $params eq 'HASH' ) {
+        foreach my $key ( sort keys %$params ) {
+            $condition->{$key} = $params->{$key};
         }
     }
 
-    if(!defined $condition->{'seed'}){
-        $condition->{'seed'}=set_seed();
+    if ( !defined $condition->{'seed'} ) {
+        $condition->{'seed'} = set_seed();
     }
-    $condition->{'original_seed'}=$condition->{'seed'};
-    $condition->{'pop_mod'}={} if(!defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH');
-    $condition->{'bar_mod'}={} if(!defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH');
+    $condition->{'original_seed'} = $condition->{'seed'};
+    $condition->{'pop_mod'}       = {} if ( !defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH' );
+    $condition->{'bar_mod'}       = {} if ( !defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH' );
     return $condition;
-}
+} ## end sub create_condition
 
 
 ###############################################################################
 
-=head2 flesh_out_condition()
+=head3 flesh_out_condition()
 
     Flesh out all of the functionality of the condition.
 
@@ -101,7 +113,7 @@ sub create_condition {
 ###############################################################################
 sub flesh_out_condition {
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
     create_condition($condition);
     set_time($condition);
     set_temp($condition);
@@ -112,11 +124,11 @@ sub flesh_out_condition {
     set_precip($condition);
     set_storm($condition);
     return $condition;
-}
+} ## end sub flesh_out_condition
 
 ###############################################################################
 
-=head2 set_time()
+=head3 set_time()
 
     Set the current time of the conditions.
 
@@ -142,7 +154,7 @@ sub set_time {
 
 ###############################################################################
 
-=head2 set_temp()
+=head3 set_temp()
 
     Set the current temp of the conditions.
 
@@ -164,7 +176,7 @@ sub set_temp {
 
 ###############################################################################
 
-=head2 set_air()
+=head3 set_air()
 
     Set the current air condition.
 
@@ -186,7 +198,7 @@ sub set_air {
 
 ###############################################################################
 
-=head2 set_wind()
+=head3 set_wind()
 
     Set the current wind condition.
 
@@ -208,7 +220,7 @@ sub set_wind {
 
 ###############################################################################
 
-=head2 set_forecast()
+=head3 set_forecast()
 
     Set the current forecast condition.
 
@@ -228,7 +240,7 @@ sub set_forecast {
 
 ###############################################################################
 
-=head2 set_clouds()
+=head3 set_clouds()
 
     Set the current clouds condition.
 
@@ -249,7 +261,7 @@ sub set_clouds {
 
 ###############################################################################
 
-=head2 set_precip()
+=head3 set_precip()
 
     Set the current precipitation.
 
@@ -280,7 +292,7 @@ sub set_precip {
 
 ###############################################################################
 
-=head2 set_storm()
+=head3 set_storm()
 
     Set the current storm conditions if there is one, as well as flagging lightning and thunder.
 
@@ -322,5 +334,43 @@ sub set_storm {
 
 
 
-
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENCE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
+YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
+NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+=cut

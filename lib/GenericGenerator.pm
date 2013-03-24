@@ -1,23 +1,62 @@
 #!/usr/bin/perl -wT
 ###############################################################################
-#
+
 package GenericGenerator;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object seed);
 
+###############################################################################
 
+=head1 NAME
+
+    GenericGenerator - Base package used by other Generators
+
+=head1 SYNOPSIS
+
+    use GenericGenerator;
+    GenericGenerator::set_seed();
+
+=cut
+
+###############################################################################
+
+
+use Carp;
 use Data::Dumper;
+use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 
+###############################################################################
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
+
+No datafiles are directly used by GenericGenerator.
+
+=cut
 
 our $seed;
+
+
+=head1 INTERFACE
+
+
+=cut
+
+###############################################################################
+
+=head2 Core Methods
+
+The following methods are used to create the core of the city structure.
+
+
 
 
 ###############################################################################
@@ -200,3 +239,42 @@ sub parse_object {
 
 
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENCE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
+YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
+NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+=cut

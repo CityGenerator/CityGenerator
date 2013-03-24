@@ -214,28 +214,6 @@
     <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</pop_type>
 </pop_types>
 
-<districts>
-    <district name="civic"        chance='12' stat="authority"/>
-    <district name="embassy"      chance='5'  stat="travel" />
-    <district name="wealthy"      chance='34' stat="economy" />
-    <district name="middleclass"  chance='30' stat="economy" />
-    <district name="racial"       chance='10' stat="tolerance" />
-    <district name="fineshops "   chance='5'  stat="economy" />
-    <district name="arena"        chance='5'  stat="education" />
-    <district name="poor"         chance='30' stat="economy" />
-    <district name="slums"        chance='10' stat="economy" />
-    <district name="warehouse"    chance='5'  stat="economy" />
-    <district name="industry"     chance='5'  stat="economy" />
-    <district name="trade"        chance='32'  stat="economy" />
-    <district name="professional" chance='30' stat="economy" />
-    <district name="shops"        chance='20' stat="economy" />
-    <district name="market"       chance='70' stat="economy" />
-    <district name="prison"       chance='7'  stat="authority" />
-    <district name="education"    chance='5'  stat="education" />
-    <district name="military"     chance='7'  stat="authority" />
-    <district name="mercy"        chance='20' stat="tolerance" />
-    <district name="port"         chance='0'  stat="travel" />
-</districts>
 
 
 <tactictypes>
@@ -815,52 +793,6 @@
     <option min="91"  max="100">rampant</option>
 </crime>
 
-
-<events>
-    <event type="festival">
-        <option>a religious </option>
-        <option>a trade </option>
-    </event>
-    <event type="celebration">
-        <option>a birthday </option> 
-        <option>a wedding </option> 
-        <option>a new year </option> 
-        <option>a holiday </option> 
-        <option>a victory </option> 
-    </event>
-    <event type="trial">
-        <option>a murder </option>
-        <option>a witch </option>
-        <option>a spy </option>
-        <option>a briggand </option>
-        <option>a thief </option>
-    </event>
-    <event type="war">
-        <option>preparations for </option>
-        <option>on ongoing </option>
-        <option>the aftermath of a </option> 
-    </event>
-    <event type="raid">
-        <option>the midst of a </option>
-        <option>the aftermath of a </option>
-    </event>
-    <event type="hunt">
-        <option>lost child </option>
-        <option>wandering monster </option>
-        <option>escaped prisoner </option>
-        <option>food </option>
-    </event>
-    <event type="disaster">
-        <option>tornado </option>
-        <option>flood </option>
-        <option>earthquake </option>
-        <option>massive storm </option>
-        <option>tarrasque </option>
-        <option>genocide </option>
-        <option>riots </option>
-        <option>drought </option>
-    </event>
-</events>
 
 <markets>
     <option type="guild" chance="62" marketname="Thieves" secret="100">

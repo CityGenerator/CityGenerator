@@ -13,6 +13,9 @@ use TestNPCGenerator;
 use TestConditionGenerator;
 use TestMilitaryGenerator;
 use TestTavernGenerator;
+use TestEventGenerator;
+use TestDistrictGenerator;
+use TestMythGenerator;
 
 
 done_testing();

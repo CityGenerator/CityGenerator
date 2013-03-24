@@ -19,20 +19,20 @@ use base qw(Exporter);
 
     use CityGenerator;
     my $city=CityGenerator::create_city();
-  
-=cut 
+
+=cut
 
 ###############################################################################
 
 #TODO treat certain data as stats, mil, auth, edu, etc.
 use Carp;
 use CGI;
+use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use NPCGenerator;
 use RegionGenerator;
-use ContinentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -66,7 +66,7 @@ The following datafiles are used by CityGenerator.pm:
 
 =back
 
-=head1 INTERFACE 
+=head1 INTERFACE
 
 
 =cut
@@ -400,6 +400,24 @@ sub generate_city_age {
     my ($city) = @_;
 
     $city->{'city_age'}= rand_from_array(   $xml_data->{'cityages'}->{'cityage'}  ) if (!defined  $city->{'city_age'});
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 set_available_races()
+
+select the races that are available for the city's poptype.
+
+=cut
+
+###############################################################################
+sub set_available_races {
+    my ($city) = @_;
+    #FIXME TODO finish this.
+
+
     return $city;
 }
 
