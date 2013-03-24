@@ -274,73 +274,7 @@ sub generate_travelers{
     }
     set_seed($originalseed);
 }
-###############################################################################
 
-=head2 generate_taverns()
-
-generate a few taverns;
-
-=cut
-
-###############################################################################
-
-sub generate_taverns{
-    my $taverncount=0;
-    if (defined $city->{'business'}->{'tavern/inn'}){
-        $taverncount+=$city->{'business'}->{'tavern/inn'}->{'count'};
-    }
-    $taverncount=min(5 ,  $taverncount);
-    $city->{'taverns'}=[];
-    while ($taverncount-- > 0){
-        $GenericGenerator::seed++;
-        my $tavern->{'name'}= parse_object($xml_data->{'taverns'} )->{'content'};
-        $tavern->{'cost'}=$city->{'economy'};
-        $tavern->{'population'}=0;
-
-        $tavern->{'size'}=rand_from_array( $xml_data->{'taverns'}->{'size'}   );
-        $tavern->{'cost'}+=$tavern->{'size'}->{'cost_mod'};
-        $tavern->{'population'}+=$tavern->{'size'}->{'pop_mod'};
-        $tavern->{'size'}=$tavern->{'size'}->{'content'};
-
-        $tavern->{'condition'}=rand_from_array( $xml_data->{'taverns'}->{'condition'}   );
-        $tavern->{'cost'}+=$tavern->{'condition'}->{'cost_mod'};
-        $tavern->{'condition'}=$tavern->{'condition'}->{'content'};
-
-        $tavern->{'class'}=roll_from_array( &d(100),$xml_data->{'taverns'}->{'class'}   );
-        $tavern->{'cost'}+=max(-5,min(5,$tavern->{'class'}->{'cost_mod'}));
-        $tavern->{'class'}=$tavern->{'class'}->{'content'};
-
-        $tavern->{'violence'}=rand_from_array( $xml_data->{'taverns'}->{'violence'}   )->{'content'};
-        $tavern->{'legal'}=rand_from_array( $xml_data->{'taverns'}->{'legal'}   )->{'content'};
-
-        $tavern->{'costdescription'}=roll_from_array( $tavern->{'cost'}, $xml_data->{'taverns'}->{'cost'}   )->{'content'};
-        $tavern->{'bartender'}=generate_bartender();
-
-        push @{$city->{'taverns'}}, $tavern;
-    }
-    set_seed($originalseed);
-}
-
-###############################################################################
-
-=head2 generate_bartender()
-
-generate a bartender
-
-=cut
-
-###############################################################################
-sub generate_bartender{
-
-
-    my @races=get_races(   $city->{'base_pop'}    );
-    shuffle @races;
-
-    my $bartender=NPCGenerator::create_npc({ 'race'   => pop(@races)->{'content'},
-                                'level' => min( 20 ,max(1, &d("3d4")+ &d( $city->{'size_modifier'} )) )
-                            });
-    return $bartender;
-}
 
 
 ###############################################################################
@@ -404,26 +338,6 @@ sub generate_markets {
     set_seed($originalseed);
 }
 
-
-
-
-
-
-
-
-
-###############################################################################
-
-=head2 generate_climate()
-
-Determine the climate of the city
-
-=cut
-
-###############################################################################
-sub generate_climate {
-    $city->{'climate'}=rand_from_array($xml_data->{'climate'}->{'option'});
-}
 
 
 ###############################################################################

@@ -17,10 +17,6 @@ require Exporter;
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw( );
 
-my $xml = XML::Simple->new();
-my $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-
-
 
 subtest 'test set_city_size' => sub {
     my $result;

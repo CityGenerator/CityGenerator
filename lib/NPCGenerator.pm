@@ -74,6 +74,29 @@ sub create_npc{
 
 ###############################################################################
 
+=head2 set_level()
+
+Take a provided NPC and set their level.
+
+=cut
+
+###############################################################################
+
+sub set_level{
+    my ($npc)=@_;
+    my $size_modifier=$npc->{'size_modifier'} || 0;
+
+    $npc->{'level'}=d('3d4')+$size_modifier if (!defined $npc->{'level'})   ;
+    #keep levels between 1 and 20.
+    $npc->{'level'}=max(1, min(20,$npc->{'level'})  );
+    return $npc;
+}
+
+
+
+
+###############################################################################
+
 =head2 set_sex()
 
 Take a provided NPC and select a sex from the list of available choices.

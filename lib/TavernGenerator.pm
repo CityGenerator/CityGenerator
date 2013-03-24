@@ -159,7 +159,83 @@ sub generate_condition {
 
 }
 
+###############################################################################
+ 
+=head2 generate_violence()
+ 
+generate the violence category of the tavern
+ 
+=cut
+ 
+###############################################################################
+ 
+sub generate_violence {
+    my ($tavern)=@_;
 
+    $tavern->{'violence'} = rand_from_array( $tavern_data->{'violence'}->{'option'}  )->{'type'} if (!defined $tavern->{'violence'});
+    return $tavern;
+
+}
+
+
+###############################################################################
+ 
+=head2 generate_law()
+ 
+generate the law category of the tavern
+ 
+=cut
+ 
+###############################################################################
+ 
+sub generate_law {
+    my ($tavern)=@_;
+
+    $tavern->{'law'} = rand_from_array( $tavern_data->{'law'}->{'option'}  )->{'type'} if (!defined $tavern->{'law'});
+    return $tavern;
+
+}
+
+###############################################################################
+ 
+=head2 generate_entertainment()
+ 
+generate the entertainment category of the tavern
+ 
+=cut
+ 
+###############################################################################
+ 
+sub generate_entertainment {
+    my ($tavern)=@_;
+
+    $tavern->{'entertainment'} = rand_from_array( $tavern_data->{'entertainment'}->{'option'}  )->{'type'} if (!defined $tavern->{'entertainment'});
+    return $tavern;
+
+}
+
+###############################################################################
+ 
+=head2 generate_bartender()
+ 
+generate the bartender for the tavern
+ 
+=cut
+ 
+###############################################################################
+ 
+sub generate_bartender {
+    my ($tavern)=@_;
+
+    if (!defined $tavern->{'bartender'}){
+
+        $tavern->{'bartender'}=NPCGenerator::create_npc();
+        #TODO flesh out npc here, need to add to NPCGenerator.
+    }
+
+    return $tavern;
+
+}
 
 
 1;

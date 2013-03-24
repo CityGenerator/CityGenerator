@@ -92,9 +92,9 @@ subtest 'test generate_condition' => sub {
     TavernGenerator::generate_condition($tavern);
     is($tavern->{'seed'},41630);
     is($tavern->{'name'},'Hungry Bag Roadhouse');
-    is($tavern->{'condition'},'decent');
-    is($tavern->{'cost_mod'}->{'condition'}, '0');
-    is($tavern->{'condition_cost_mod'},'0');
+    is($tavern->{'condition'},'poor');
+    is($tavern->{'cost_mod'}->{'condition'}, '-2');
+    is($tavern->{'condition_cost_mod'},'-2');
 
     set_seed(1);
     $tavern=TavernGenerator::create_tavern({'seed'=>22});
@@ -126,6 +126,109 @@ subtest 'test generate_condition' => sub {
     done_testing();
 };
 
+subtest 'test generate_violence' => sub {
+    my $tavern;
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern();
+    TavernGenerator::generate_violence($tavern);
+    is($tavern->{'seed'},41630);
+    is($tavern->{'name'},'Hungry Bag Roadhouse');
+    is($tavern->{'violence'},'swift justice');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22});
+    TavernGenerator::generate_violence($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'violence'},'throwing the loser out');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'violence'=>'dirty'});
+    TavernGenerator::generate_violence($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'violence'},'dirty');
+
+    done_testing();
+};
+
+subtest 'test generate_law' => sub {
+    my $tavern;
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern();
+    TavernGenerator::generate_law($tavern);
+    is($tavern->{'seed'},41630);
+    is($tavern->{'name'},'Hungry Bag Roadhouse');
+    is($tavern->{'law'},'accepts bribes from');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22});
+    TavernGenerator::generate_law($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'law'},'ignores');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'law'=>'dirty'});
+    TavernGenerator::generate_law($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'law'},'dirty');
+
+    done_testing();
+};
+
+subtest 'test generate_entertainment' => sub {
+    my $tavern;
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern();
+    TavernGenerator::generate_entertainment($tavern);
+    is($tavern->{'seed'},41630);
+    is($tavern->{'name'},'Hungry Bag Roadhouse');
+    is($tavern->{'entertainment'},'blackjack');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22});
+    TavernGenerator::generate_entertainment($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'entertainment'},'poker');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'entertainment'=>'dirty'});
+    TavernGenerator::generate_entertainment($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'entertainment'},'dirty');
+
+    done_testing();
+};
+
+subtest 'test generate_bartender' => sub {
+    my $tavern;
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern();
+    TavernGenerator::generate_bartender($tavern);
+    is($tavern->{'seed'},41630);
+    is($tavern->{'name'},'Hungry Bag Roadhouse');
+    is($tavern->{'bartender'}->{'race'},'goblin');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22});
+    TavernGenerator::generate_bartender($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'bartender'}->{'race'},'elf');
+
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'bartender'=>{'race'=>'dwarf'}});
+    TavernGenerator::generate_bartender($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'bartender'}->{'race'},'dwarf');
+
+    done_testing();
+};
 
 
 

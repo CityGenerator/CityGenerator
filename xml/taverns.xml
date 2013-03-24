@@ -57,8 +57,6 @@
         <option name="high-class"   cost_mod="2" />
         <option name="wealthy"      cost_mod="4" />
     </condition>
-    <class>
-    </class>
     <violence>
         <option type="ignoring it"/>
         <option type="throwing the loser out"/>
@@ -71,12 +69,12 @@
         <option type="accepts bribes from"/>
         <option type="protects"/>
     </law>
-    <entertainment limit="2">
+    <entertainment >
         <option type="whores"/>
-        <option type="Poker"/>
-        <option type="Craps"/>
-        <option type="Blackjack"/>
-        <option type="Dice"/>
+        <option type="poker"/>
+        <option type="craps"/>
+        <option type="blackjack"/>
+        <option type="dice"/>
     </entertainment>
     <cost>
         <option min='-5' max='-4' type="insanely cheap"/>

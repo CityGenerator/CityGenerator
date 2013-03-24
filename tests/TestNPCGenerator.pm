@@ -20,11 +20,6 @@ require Exporter;
 @EXPORT_OK = qw( );
 
 my $xml = XML::Simple->new();
-our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
-our $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => [] );
-
-my $pod=Pod::Coverage->new(package => 'NPCGenerator');
-
 
 subtest 'test set_sex' => sub {
     my $npc;
@@ -50,6 +45,48 @@ subtest 'test set_sex' => sub {
     $npc->{'sex'}->{'pronoun'}='he';
     NPCGenerator::set_sex($npc);
     is($npc->{'sex'}->{'pronoun'},'he');
+
+    done_testing();
+};
+
+subtest 'test set_level' => sub {
+    my $npc;
+    GenericGenerator::set_seed(1);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'10');
+
+    GenericGenerator::set_seed(4);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'11');
+
+    GenericGenerator::set_seed(5);
+    $npc=NPCGenerator::create_npc();
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'5');
+
+
+    GenericGenerator::set_seed(5);
+    $npc=NPCGenerator::create_npc({'size_modifier'=>12});
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'17');
+
+    GenericGenerator::set_seed(5);
+    $npc=NPCGenerator::create_npc({'size_modifier'=>20});
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'20');
+
+    GenericGenerator::set_seed(5);
+    $npc=NPCGenerator::create_npc({'size_modifier'=>-20});
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'1');
+
+    GenericGenerator::set_seed(1);
+    $npc=NPCGenerator::create_npc();
+    $npc->{'level'}=4;
+    NPCGenerator::set_level($npc);
+    is($npc->{'level'},'4');
 
     done_testing();
 };
@@ -126,6 +163,7 @@ subtest 'test create_npc' => sub {
 
     subtest 'test create_npc attitudes' => sub {
         my $npc;
+        my $tempdata=$NPCGenerator::xml_data;
 
         $npc={};
 	    GenericGenerator::set_seed(1);
@@ -134,7 +172,6 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'secondary_attitude'},'Affection' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  'Adoration' ,   "emotional state" );
 
-
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => [  {'type' => 'Astonishment' }], 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
         $npc={};
 	    GenericGenerator::set_seed(1);
@@ -142,6 +179,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  'Astonishment' ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{  'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
         $npc={};
@@ -150,6 +188,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => 1, 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
         $npc={};
@@ -158,6 +197,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => 1,  'type' => 'Shock'}, ] } };
         $npc={};
@@ -166,6 +206,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{}, ] } };
         $npc={};
@@ -174,6 +215,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => {},  'type' => 'Shock'}, ] } };
         $npc={};
@@ -182,6 +224,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>1  } };
         $npc={};
@@ -190,6 +233,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{ } };
         $npc={};
@@ -198,6 +242,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
         
         $NPCGenerator::xml_data={ 'attitude'=>1 };
         $npc={};
@@ -206,6 +251,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={  };
         $npc={};
@@ -214,6 +260,7 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
+        $NPCGenerator::xml_data=$tempdata;
 	    done_testing();
     };
 	done_testing();
@@ -269,6 +316,7 @@ subtest 'test generate_npc_name' => sub {
     };
     subtest 'test generating race with no first name' => sub {
         GenericGenerator::set_seed(1);
+        my $tempdata=$NPCGenerator::names_data;
         my $names_data= {
                             'race' => {
                                         'lamo' => {
@@ -282,12 +330,14 @@ subtest 'test generate_npc_name' => sub {
 
         $NPCGenerator::names_data=$names_data;
         is(NPCGenerator::generate_npc_name('lamo'),'ey');
+        $NPCGenerator::names_data=$tempdata;
 
         done_testing();
     };
     subtest 'test generating race with no last name' => sub {
 
         GenericGenerator::set_seed(1);
+        my $tempdata=$NPCGenerator::names_data;
         my $names_data= {
                             'race' => {
                                         'lamo' => {
@@ -301,6 +351,7 @@ subtest 'test generate_npc_name' => sub {
 
         $NPCGenerator::names_data=$names_data;
         is(NPCGenerator::generate_npc_name('lamo'),'dee');
+        $NPCGenerator::names_data=$tempdata;
 
 
         done_testing();
@@ -316,6 +367,7 @@ subtest 'test generate_npc_name' => sub {
     subtest 'test generating race with full name' => sub {
 
         GenericGenerator::set_seed(1);
+        my $tempdata=$NPCGenerator::names_data;
         my $names_data= {
                             'race' => {
                                         'lamo' => {
@@ -338,6 +390,7 @@ subtest 'test generate_npc_name' => sub {
 
         $NPCGenerator::names_data=$names_data;
         is(NPCGenerator::generate_npc_name('lamo'),'sea');
+        $NPCGenerator::names_data=$tempdata;
 
 
         GenericGenerator::set_seed(1);
@@ -363,6 +416,7 @@ subtest 'test generate_npc_name' => sub {
 
         $NPCGenerator::names_data=$names_data;
         is(NPCGenerator::generate_npc_name('lamo'),'dee');
+        $NPCGenerator::names_data=$tempdata;
 
 
         done_testing();
