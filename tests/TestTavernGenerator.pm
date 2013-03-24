@@ -82,10 +82,46 @@ subtest 'test generate_size' => sub {
     is($tavern->{'pop_mod'}->{'size'}, 'bar');
     is($tavern->{'size_pop_mod'},'5');
 
+    done_testing();
+};
 
+subtest 'test generate_condition' => sub {
+    my $tavern;
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern();
+    TavernGenerator::generate_condition($tavern);
+    is($tavern->{'seed'},41630);
+    is($tavern->{'name'},'Hungry Bag Roadhouse');
+    is($tavern->{'condition'},'decent');
+    is($tavern->{'cost_mod'}->{'condition'}, '0');
+    is($tavern->{'condition_cost_mod'},'0');
 
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22});
+    TavernGenerator::generate_condition($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'condition'},'dirty');
+    is($tavern->{'cost_mod'}->{'condition'}, '-2');
+    is($tavern->{'condition_cost_mod'},'-2');
 
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'condition'=>'dirty'});
+    TavernGenerator::generate_condition($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'condition'},'dirty');
+    is($tavern->{'cost_mod'}->{'condition'}, '-2');
+    is($tavern->{'condition_cost_mod'},'-2');
 
+    set_seed(1);
+    $tavern=TavernGenerator::create_tavern({'seed'=>22, 'condition'=>'dirty', 'condition_cost_mod'=>'6','condition_pop_mod'=>5, 'cost_mod'=>{'condition'=>'foo'},    });
+    TavernGenerator::generate_condition($tavern);
+    is($tavern->{'seed'},22);
+    is($tavern->{'name'},'White Urchin Bar');
+    is($tavern->{'condition'},'dirty');
+    is($tavern->{'cost_mod'}->{'condition'}, 'foo');
+    is($tavern->{'condition_cost_mod'},'6');
 
     done_testing();
 };

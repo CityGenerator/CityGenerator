@@ -45,39 +45,44 @@
         <option name="large"   cost_mod="-2" pop_mod="4" />
     </size>
     <condition>
-        <option cost_mod="-3" type="filthy"     />
-        <option cost_mod="-2" type="dirty"      />
-        <option cost_mod="-1" type="seedy"      />
-        <option cost_mod="0"  type="decent"     />
-        <option cost_mod="1"  type="respectable"/>
-        <option cost_mod="2"  type="upscale"    />
-        <option cost_mod="4"  type="beloved"    />
+        <option name="filthy"       cost_mod="-3"/>
+        <option name="dirty"        cost_mod="-2"/>
+        <option name="poor"         cost_mod="-2"/>
+        <option name="seedy"        cost_mod="-1"/>
+        <option name="low-class"    cost_mod="-1"/>
+        <option name="decent"       cost_mod="0" />
+        <option name="middle-class" cost_mod="0" />
+        <option name="respectable"  cost_mod="1" />
+        <option name="upscale"      cost_mod="2" />
+        <option name="high-class"   cost_mod="2" />
+        <option name="wealthy"      cost_mod="4" />
     </condition>
     <class>
-        <option cost_mod="-4" min='1'  max='25'  type="poor"        />
-        <option cost_mod="-2" min='26' max='45'  type="low-class"   />
-        <option cost_mod="0"  min='46' max='85'  type="middle-class"/>
-        <option cost_mod="2"  min='86' max='95'  type="high-class"  />
-        <option cost_mod="4"  min='96' max='100' type="wealthy"     />
     </class>
-    <violence >ignoring it</violence>
-    <violence >throwing the loser out</violence>
-    <violence >swift justice</violence>
-    <violence >calling the city watch</violence>
-    <legal>harasses</legal>
-    <legal>ignores</legal>
-    <legal>accepts bribes from</legal>
-    <legal>protects</legal>
+    <violence>
+        <option type="ignoring it"/>
+        <option type="throwing the loser out"/>
+        <option type="swift justice"/>
+        <option type="calling the city watch"/>
+    </violence>
+    <law>
+        <option type="harasses"/>
+        <option type="ignores"/>
+        <option type="accepts bribes from"/>
+        <option type="protects"/>
+    </law>
     <entertainment limit="2">
-        <option>whores</option>
-        <option>Poker</option>
-        <option>Craps</option>
-        <option>Blackjack</option>
-        <option>Dice</option>
+        <option type="whores"/>
+        <option type="Poker"/>
+        <option type="Craps"/>
+        <option type="Blackjack"/>
+        <option type="Dice"/>
     </entertainment>
-    <cost min='-5' max='-4'>insanely cheap</cost>
-    <cost min='-3' max='-2'>well priced</cost>
-    <cost min='-1' max='1'>reasonably priced</cost>
-    <cost min='2' max='3'>somewhat expensive</cost>
-    <cost min='4' max='5'>insanely expensive</cost>
+    <cost>
+        <option min='-5' max='-4' type="insanely cheap"/>
+        <option min='-3' max='-2' type="well priced"/>
+        <option min='-1' max='1'  type="reasonably priced"/>
+        <option min='2' max='3'   type="somewhat expensive"/>
+        <option min='4' max='5'   type="insanely expensive"/>
+    </cost>
 </taverns>

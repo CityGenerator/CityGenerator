@@ -134,19 +134,30 @@ sub generate_size {
     $tavern->{'pop_mod'}->{'size'} = $size->{'pop_mod'}   if  (!defined $tavern->{'pop_mod'}->{'size'} );
     
     return $tavern;
-
 }
 
+###############################################################################
+ 
+=head2 generate_condition()
+ 
+generate the condition category of the tavern
+ 
+=cut
+ 
+###############################################################################
+ 
+sub generate_condition {
+    my ($tavern)=@_;
 
+    $tavern->{'condition'} = rand_from_array( [keys %{  $tavern_data->{'condition'}->{'option'} }] ) if (!defined $tavern->{'condition'});
 
+    my $condition= $tavern_data->{'condition'}->{'option'} ->{ $tavern->{'condition'}  };
+    $tavern->{'condition_cost_mod'}      = $condition->{'cost_mod'}   if  (!defined $tavern->{'condition_cost_mod'} );
+    $tavern->{'cost_mod'}->{'condition'} = $condition->{'cost_mod'}   if  (!defined $tavern->{'cost_mod'}->{'condition'} );
 
-#        <option cost_mod="-2" pop_mod="4" type="large"   />
+    return $tavern;
 
-
-
-
-
-
+}
 
 
 
