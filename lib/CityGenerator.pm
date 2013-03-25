@@ -417,7 +417,52 @@ sub set_available_races {
     my ($city) = @_;
     #FIXME TODO finish this.
 
+    if (! defined $city->{'available races'} ){
+        $city->{'available races'}=[];
+        foreach my $racename ( keys %{ $names_data->{'race'} }  ){
+            my $race=$names_data->{'race'}->{$racename}; 
+            if ($race->{'type'} eq $city->{'base_pop'}  or $city->{'base_pop'} eq 'any'){
+                push @{$city->{'available races'}}, $racename;
+            }
+        }
+    }
+    shuffle @{$city->{'available races'}};
 
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 generate_race_percentages
+
+select the percentages used for each race.
+
+=cut
+
+###############################################################################
+sub generate_race_percentages {
+    my ($city) = @_;
+    #FIXME TODO finish this.
+
+    if (! defined $city->{'race percentages'} ){
+
+        $city->{'race percentages'}=[];
+        my $total_percent=0;
+        my $race_limit=6;
+        while ( $total_percent < 98 and scalar(@{$city->{'race percentages'}}) < $race_limit ){
+ 
+            # Of the total amount or percentage left, how much is for this race?
+            my $race_percent= max( 1, int( rand()*(100-$total_percent)*10)/10);
+ 
+            # Add to percentage
+            $total_percent +=$race_percent;
+ 
+            # Add it to our array for later usage
+            push @{$city->{'race percentages'}}, $race_percent;
+        }
+    }
+    $city->{'race percentages'} = [ sort @{$city->{'race percentages'}}];
     return $city;
 }
 

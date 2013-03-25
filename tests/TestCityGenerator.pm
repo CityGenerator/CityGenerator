@@ -109,7 +109,7 @@ subtest 'test set_pop_type' => sub {
     is($city->{'base_pop'},'basic');
     is($city->{'type'},'basic+1');
     is($city->{'description'},'fairly normal population (with one monstrous race)');
-    is($city->{'add_other'},'true');
+    is($city->{'add_other'},'monster');
     $city={'base_pop'=>'foo1','type'=>'foo2','description'=>'foo3','add_other'=>'foo4', };
     CityGenerator::set_pop_type($city);
     is($city->{'name'},undef);
@@ -299,11 +299,52 @@ subtest 'test generate_city_age' => sub {
 subtest 'test set_available_races' => sub {
     my $city;
     set_seed(1);
-    $city=CityGenerator::create_city({'seed'=>'1'});
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'monster'});
     CityGenerator::set_available_races($city);
-    is(1,1);
+    is(scalar(@{$city->{'available races'}}), 13);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'basic'});
+    CityGenerator::set_available_races($city);
+    is(scalar(@{$city->{'available races'}}), 8);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'any'});
+    CityGenerator::set_available_races($city);
+    is(scalar(@{$city->{'available races'}}), 23);
+
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'any', 'available races'=>[2,2,2]});
+    CityGenerator::set_available_races($city);
+    is(scalar(@{$city->{'available races'}}), 3);
 
     done_testing();
 };
+
+
+subtest 'test generate_race_percentages' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'monster'});
+    CityGenerator::generate_race_percentages($city);
+    is(scalar(@{$city->{'race percentages'}}), 6);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'3', 'base_pop'=>'monster'});
+    CityGenerator::generate_race_percentages($city);
+    is(scalar(@{$city->{'race percentages'}}), 6);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'monster', 'race percentages'=>[75,20,4]});
+    CityGenerator::generate_race_percentages($city);
+    is(scalar(@{$city->{'race percentages'}}), 3);
+
+
+
+
+
+
+
+
+    done_testing();
+};
+
 
 1;
