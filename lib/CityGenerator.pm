@@ -421,7 +421,7 @@ sub set_available_races {
         $city->{'available races'}=[];
         foreach my $racename ( keys %{ $names_data->{'race'} }  ){
             my $race=$names_data->{'race'}->{$racename}; 
-            if ($race->{'type'} eq $city->{'base_pop'}  or $city->{'base_pop'} eq 'any'){
+            if ($race->{'type'} eq $city->{'base_pop'}  or $city->{'base_pop'} eq 'mixed'){
                 push @{$city->{'available races'}}, $racename;
             }
         }

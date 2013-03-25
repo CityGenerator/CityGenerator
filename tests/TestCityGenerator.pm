@@ -307,11 +307,11 @@ subtest 'test set_available_races' => sub {
     CityGenerator::set_available_races($city);
     is(scalar(@{$city->{'available races'}}), 8);
 
-    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'any'});
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'mixed'});
     CityGenerator::set_available_races($city);
     is(scalar(@{$city->{'available races'}}), 23);
 
-    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'any', 'available races'=>[2,2,2]});
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'mixed', 'available races'=>[2,2,2]});
     CityGenerator::set_available_races($city);
     is(scalar(@{$city->{'available races'}}), 3);
 

@@ -627,93 +627,6 @@
     <option>a hexagonal</option>
     <option>a octagonal</option>
 </cityshape>
-<weather>
-    <forecast>
-        <option>clear</option>
-        <option>overcast</option>
-        <option>stormy</option>
-    </forecast>
-
-    <temp>
-        <option modifier="0.10" >freezing</option>
-        <option modifier="0.20" >cold</option>
-        <option modifier="0.40" >chilly</option>
-        <option modifier="0.80" >cool</option>
-        <option modifier="0.90" >mild</option>
-        <option modifier="1.00" >pleasant</option>
-        <option modifier="1.10" >warm</option>
-        <option modifier="0.90" >hot</option>
-        <option modifier="0.50" >unbearably hot</option>
-    </temp>
-
-    <air>
-        <option>fresh</option>
-        <option>thin</option>
-        <option>thick</option>
-        <option>humid</option>
-    </air>
-    <wind>
-        <option>breezy</option>
-        <option>dead</option>
-        <option>soft</option>
-        <option>heavy</option>
-        <option>strong</option>
-        <option>incredibly strong</option>
-    </wind>
-
-    <precip chance="65"> 
-        <option description="sprinkling"></option>
-        <option description="misty"></option>
-        <option description="foggy">
-            <type></type>
-            <type>lightly </type>
-            <type>moderately </type>
-            <type>heavily </type>
-        </option>
-        <option description="raining">
-            <type></type>
-            <type>lightly </type>
-            <type>moderately </type>
-            <type>heavily </type>
-        </option>
-        <option description="downpouring"></option>
-        <option description="sleeting"></option>
-        <option description="hail">
-            <type>raining small (pea size) </type>
-            <type>raining medium (walnut size) </type>
-            <type>raining large (orange size) </type>
-        </option>
-    </precip>
-    <thunder chance='20'> 
-        <option>There is thunder in the distance.</option>
-        <option>There is thunder nearby.</option>
-        <option>There is thunder overhead.</option>
-        <option>Thunder rumbles in the distance.</option>
-        <option>Thunder and lighting approach.</option>
-        <option>There is powerful storm approaching.</option>
-        <option>Lightning lights the sky.</option>
-    </thunder>
-    <clouds>
-        <option>is slightly cloudy</option>
-        <option>is cloudly</option>
-        <option>is dark with clouds</option>
-        <option>is overcast</option>
-    </clouds>
-</weather>
-
-<time>
-    <option time="06:00" public_modifier="0"  bar_mod="0"  >at daybreak</option>
-    <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4"  >around noon</option>
-    <option time="02:00" public_modifier="3"  bar_mod="2"  >in the afternoon</option>
-    <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
-    <option time="06:00" public_modifier="1"  bar_mod="6"  >in the early evening</option>
-    <option time="08:00" public_modifier="0"  bar_mod="8"  >before nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10" >after nightfall</option>
-    <option time="00:00" public_modifier="-3" bar_mod="8"  >at midnight</option>
-    <option time="02:00" public_modifier="-4" bar_mod="4"  >in the dead of night</option>
-    <option time="04:00" public_modifier="-2" bar_mod="0"  >before dawn</option>
-</time>
 
 <laws>
     <enforcer>
@@ -1123,20 +1036,6 @@
         <adjective>hates</adjective>
     </option>
 </tolerancealignment>
-<travelalignment>
-    <option type="positive" min='2' >
-        <adjective>is a travel hub</adjective>
-        <adjective>has many travelers</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>has some travelers</adjective>
-        <adjective>has occasional travelers</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>has few travelers</adjective>
-        <adjective>has no travelers</adjective>
-    </option>
-</travelalignment>
 <authorityalignment>
     <option type="positive" min='2' >
         <adjective>is very authoritarian</adjective>
