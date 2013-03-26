@@ -3,15 +3,6 @@
 #
 package City;
 
-###############################################################################
-
-=head2 generate_citizens()
-
-given all of our specialists, are any noteworhy?
-
-=cut
-
-###############################################################################
 sub generate_citizens {
 
     my $limit = $city->{'specialisttotal'};
@@ -36,15 +27,6 @@ sub generate_citizens {
     set_seed($originalseed);
 } ## end sub generate_citizens
 
-###############################################################################
-
-=head2 generate_watchtowers()
-
- come up with a list of towers
-
-=cut
-
-###############################################################################
 sub generate_watchtowers {
 
     # inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
@@ -62,16 +44,6 @@ sub generate_watchtowers {
     $city->{'walls'}->{'towercount'}=int($city->{'walls'}->{'towercount'} * (1+ ($city->{'economy'}*2/100  ) ));
 }
 
-###############################################################################
-
-=head2 generate_kingdom_troops()
-
-generate troops dedicated to protecting the kingdom.
-
-=cut
-
-###############################################################################
-
 sub generate_kingdom_troops {
     $city->{'militarystats'}->{'kingdompercent'}=max(0, &d(8)*5 + $city->{'size_modifier'});
     
@@ -80,15 +52,6 @@ sub generate_kingdom_troops {
     
 }
 
-###############################################################################
-
-=head2 generate_military_stats()
-
-generate statistics on active, para, reserve, etc of the military
-
-=cut
-
-###############################################################################
 
 sub generate_military_stats {
     $city->{'militarystats'}={};
@@ -112,15 +75,6 @@ sub generate_military_stats {
     
 }
 
-###############################################################################
-
-=head2 generate_events()
-
-determine what is going on in the city currently.
-
-=cut
-
-###############################################################################
 sub generate_events {
     my $event_chance=$xml_data->{'events'}->{'chance'};
     my $limit=max(2, $city->{'size_modifier'}/2);
@@ -141,15 +95,6 @@ sub generate_events {
 }
 
 
-###############################################################################
-
-=head2 generate_visible_population()
-
-determine what percentage of the population is out and about.
-
-=cut
-
-###############################################################################
 sub generate_visible_population {
 
     my $pop=$city->{'population'}->{'size'};
@@ -184,60 +129,6 @@ sub generate_visible_population {
     $city->{'visiblepopulation'}=$visiblepop;
 }
 
-###############################################################################
-
-=head2 generate_education_description()
-
-generate the economic description
-
-=cut
-
-###############################################################################
-sub generate_education_description {
-    my $educationtype     = roll_from_array( $city->{'education'}, $xml_data->{'educationalignment'}->{'option'} );
-    my $adjective     = rand_from_array( $educationtype->{'adjective'} )->{'content'};
-    $city->{'educationdescription'}=$adjective;
-}
-
-###############################################################################
-
-=head2 generate_magic_description()
-
-generate the economic description
-
-=cut
-
-###############################################################################
-sub generate_magic_description {
-    my $magictype     = roll_from_array( $city->{'magic'}, $xml_data->{'magicalignment'}->{'option'} );
-    my $adjective     = rand_from_array( $magictype->{'adjective'} )->{'content'};
-    $city->{'magicdescription'}=$adjective;
-}
-
-###############################################################################
-
-=head2 generate_economic_description()
-
-generate the economic description
-
-=cut
-
-###############################################################################
-sub generate_economic_description {
-    my $econtype     = roll_from_array( $city->{'economy'}, $xml_data->{'economyalignment'}->{'option'} );
-    my $adjective     = rand_from_array( $econtype->{'adjective'} )->{'content'};
-    $city->{'economydescription'}=$adjective;
-}
-
-###############################################################################
-
-=head2 generate_travelers()
-
-generate a few travelers
-
-=cut
-
-###############################################################################
 sub generate_travelers{
     my $travelercount= int( ( 6 +  $city->{'size_modifier'} )/2);
     $city->{'travelers'}=[];
@@ -276,17 +167,6 @@ sub generate_travelers{
 }
 
 
-
-###############################################################################
-
-=head2 generate_markets()
-
-select some markets according to their chance of 
- appearance modified by city size.
-
-=cut
-
-###############################################################################
 sub generate_markets {
 
     $city->{'markets'}=[];
@@ -339,29 +219,10 @@ sub generate_markets {
 }
 
 
-
-###############################################################################
-
-=head2 generate_topography()
-
-Determine information about the neighbors. 
-
-=cut
-
-###############################################################################
 sub generate_topography {
     $city->{'topography'}=rand_from_array($xml_data->{'topography'}->{'region'})->{'content'};
 }
 
-###############################################################################
-
-=head2 generate_neighborRealms()
-
-Determine information about the neighbor Realms. 
-
-=cut
-
-###############################################################################
 
 sub generate_neighborRealms {
 
@@ -380,15 +241,6 @@ sub generate_neighborRealms {
 }
 
 
-###############################################################################
-
-=head2 generate_neighbors()
-
-Determine information about the neighbors. 
-
-=cut
-
-###############################################################################
 
 sub generate_neighbors {
 
@@ -420,15 +272,6 @@ sub generate_neighbors {
 }
 
 
-###############################################################################
-
-=head2 generate_streets()
-
-Determine information about the streets. 
-
-=cut
-
-###############################################################################
 sub generate_streets {
     $city->{'streets'}=parse_object($xml_data->{'streets'});
 
@@ -438,30 +281,12 @@ sub generate_streets {
 
 }
 
-###############################################################################
-
-=head2 adjust_chance_for_port()
-
-If the city location has the port value set, git the port district an 80% chance.
-
-=cut
-
-###############################################################################
 sub adjust_chance_for_port{
     if ( $city->{'location'}->{'port'}  ) {
         $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
     }
 }
 
-###############################################################################
-
-=head2 specialists_influence_districts()
-
-Use the city buildings and businesses to influence the corresponding districts chance. 
-
-=cut
-
-###############################################################################
 sub specialists_influence_districts{
 
     foreach my $business (@{$city->{'buildings'}}){
@@ -471,15 +296,6 @@ sub specialists_influence_districts{
 
 }
 
-###############################################################################
-
-=head2 generate_districts()
-
-using population size and professionals, determine the most likely districts.
-
-=cut
-
-###############################################################################
 sub generate_districts {
 
     $city->{'districts'}=[];
@@ -540,15 +356,6 @@ sub generate_districts {
 
 }
 
-###############################################################################
-
-=head2 generate_businesses()
-
-using population size and professionals, determine the most likely districts.
-
-=cut
-
-###############################################################################
 sub generate_businesses{
 
     $city->{'business'}={};
@@ -635,16 +442,6 @@ sub generate_businesses{
 }
 
 
-###############################################################################
-
-=head2 generate_support_area()
-
-using population size, determine the size of the area needed to support 
-the city. results is in square miles.
-
-=cut
-
-###############################################################################
 sub generate_support_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
     # low fpp = successful
@@ -659,32 +456,12 @@ sub generate_support_area {
 }
 
 
-
-###############################################################################
-
-=head2 generate_area()
-
-using population size and density, determine the size of the city. 
-Results is in hectares.
-
-=cut
-
-###############################################################################
 sub generate_area {
     # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
     $city->{'area'}=   int( $city->{'population'}->{'size'}*( $city->{'popdensity'}->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
 
 }
 
-###############################################################################
-
-=head2 generate_housing()
-
-generate the types of housing and how much there is.
-
-=cut
-
-###############################################################################
 sub generate_housing {
     $city->{'housing'}={};
 
@@ -721,15 +498,6 @@ sub generate_housing {
 
 }
 
-###############################################################################
-
-=head2 generate_location()
-
-select the location we wish to use and any landmarks.
-
-=cut
-
-###############################################################################
 
 sub generate_location {
     $city->{'location'} = { 'landmarks'=>[]  };
@@ -749,16 +517,6 @@ sub generate_location {
     }
 }
 
-###############################################################################
-
-=head2 generate_crime()
-
-Generate crime statistics and details
-
-=cut
-
-###############################################################################
-
 sub generate_crime{
     #higher means more crime
     # random -education + authority averaged with reversed morality.
@@ -769,17 +527,6 @@ sub generate_crime{
     $city->{'crime'}->{'roll'}=$crime_roll;
 
 }
-
-###############################################################################
-
-=head2 generate_imprisonment_rate()
-
-city size, authority, order and education determine what percentage 
-of the city is in jail. 0.05% to  01.815%
-
-=cut
-
-###############################################################################
 
 sub generate_imprisonment_rate{
     # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
@@ -799,17 +546,6 @@ sub generate_imprisonment_rate{
 
 }
 
-
-
-###############################################################################
-
-=head2 generate_elderly()
-
-set the percentage of the population that are elderly, modified by the age of the city
-
-=cut
-
-###############################################################################
 sub generate_elderly {
 
     $city->{'population'}->{'elderly'}={};
@@ -826,15 +562,6 @@ sub generate_elderly {
 }
 
 
-###############################################################################
-
-=head2 generate_children()
-
-set the percentage of the population that are children, modified by the age of the city
-
-=cut
-
-###############################################################################
 sub generate_children {
 
     $city->{'population'}->{'children'}={};
@@ -851,15 +578,6 @@ sub generate_children {
 }
 
 
-###############################################################################
-
-=head2 generate_secondary_power()
-
-select a plot, a power and a subplot.
-
-=cut
-
-###############################################################################
 sub generate_secondary_power {
     $city->{'secondarypower'}={};
 
@@ -877,16 +595,6 @@ sub generate_secondary_power {
     }
 }
 
-
-###############################################################################
-
-=head2 set_govt_type()
-
-fairly simple; select a type of govt from the list.
-
-=cut
-
-###############################################################################
 sub set_govt_type {
     my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
     $city->{'govtype'} = rand_from_array(  $govttypelist  );
@@ -912,15 +620,6 @@ sub set_govt_type {
 
 }
 
-###############################################################################
-
-=head2 generate_city_ethics()
-
-Intended for morals and order (classic alignment).
-
-=cut
-
-###############################################################################
 sub generate_city_ethics {
     foreach my $mod ( qw/ moral order/ ) {
         $GenericGenerator::seed++;
@@ -937,15 +636,7 @@ sub generate_city_ethics {
     }
     $GenericGenerator::seed=set_seed($originalseed);
 }
-###############################################################################
 
-=head2 generate_city_beliefs()
-
-This includes other scales, such as determining if the city is a trade hub, etc. 
-
-=cut
-
-###############################################################################
 sub generate_city_beliefs {
 
     # set the baseline random modifier
@@ -966,16 +657,6 @@ sub generate_city_beliefs {
 
 }
 
-###############################################################################
-
-=head2 generate_pop_counts()
-
-For each race percentage. After getting  population counts, recalulate total 
-population, then final percentages. Note that actual races are not yet associated.
-
-=cut
-
-###############################################################################
 sub generate_pop_counts {
     my $population = $city->{'population'}->{'size'};
     my $newpop     = 0;
@@ -1003,28 +684,6 @@ sub generate_pop_counts {
 }
 
 
-###############################################################################
-
-=head2 assign_races()
-
-Assigning a race consists of several different phases
-
-=over
-
-=item * looking at the base population type to gather available base races
-
-=item * looping through the race percentages and assigning an available race
-
-=item * adding an "off race" if applicable.
-
-=item * adding 1% other
-
-=back
-
-=cut
-
-
-###############################################################################
 sub assign_races {
     my $base_pop        = $city->{'base_pop'};
     my @races;
@@ -1061,15 +720,6 @@ sub assign_races {
 }
 
 
-###############################################################################
-
-=head2 add_race_features()
-
-copy the features over for a given races. Effectively merges percent onto the race.
-
-=cut
-
-###############################################################################
 
 sub add_race_features {
     my ( $race, $newrace ) = @_;
@@ -1093,19 +743,6 @@ sub add_race_features {
     return $race;
 }
 
-
-
-###############################################################################
-
-=head2 get_races()
-
-get the races that match the given population type.
- If the type is mixed, add the race as long as it's not an other race.
-
-=cut
-
-###############################################################################
-
 sub get_races {
     my ( $type ) = @_;
     my @races;
@@ -1116,17 +753,6 @@ sub get_races {
     }
     return shuffle @races;
 } 
-
-###############################################################################
-
-=head2 get_other_race()
-
-get the races that doesn't match the given population type.
- make sure to exclude other.
-
-=cut
-
-###############################################################################
 
 sub get_other_race {
     my ($type) = @_;

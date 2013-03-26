@@ -217,8 +217,8 @@ subtest 'test generate_resources' => sub {
 
     $city=CityGenerator::create_city({'seed'=>'2'  } );
     CityGenerator::generate_resources($city);
-    is($city->{'resourcecount'}, 6);
-    is(@{$city->{'resources'}}, 6);
+    is($city->{'resourcecount'}, 8);
+    is(@{$city->{'resources'}}, 8);
 
     $city=CityGenerator::create_city({'seed'=>'1', 'resourcecount'=>4   } );
     CityGenerator::generate_resources($city);
@@ -255,12 +255,12 @@ subtest 'test generate_base_stats' => sub {
     set_seed(1);
     $city=CityGenerator::create_city({'seed'=>'1'});
     CityGenerator::generate_base_stats($city);
-    is($city->{'education'}, -4);
-    is($city->{'authority'}, 0);
-    is($city->{'magic'}    , 5);
-    is($city->{'military'} , -1);
-    is($city->{'tolerance'}, 2);
-    is($city->{'economy'}  , -4);
+    is($city->{'stats'}->{'education'}, -4);
+    is($city->{'stats'}->{'authority'}, 0);
+    is($city->{'stats'}->{'magic'}    , 5);
+    is($city->{'stats'}->{'military'} , -1);
+    is($city->{'stats'}->{'tolerance'}, 2);
+    is($city->{'stats'}->{'economy'}  , -4);
 
     done_testing();
 };
@@ -336,12 +336,59 @@ subtest 'test generate_race_percentages' => sub {
     CityGenerator::generate_race_percentages($city);
     is(scalar(@{$city->{'race percentages'}}), 3);
 
+    done_testing();
+};
 
 
+subtest 'test set_stat_descriptions' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::set_stat_descriptions($city);
+    is($city->{'education_description'}, 'flourishing');
+    is($city->{'authority_description'}, 'is very strict');
+    is($city->{'magic_description'}    , 'flourishing');
+    is($city->{'military_description'} , 'laid back');
+    is($city->{'tolerance_description'}, 'loves');
+    is($city->{'economy_description'}  , 'resiliant');
 
+    set_seed(1);
+    $city=CityGenerator::create_city({ 'stats'=>{ 'education'=>0, 'authority'=>0, 'magic'=>0,
+                                        'military'=>0,  'tolerance'=>0, 'economy'=>0}});
+    CityGenerator::set_stat_descriptions($city);
+    is($city->{'education_description'}, 'mediocre');
+    is($city->{'authority_description'}, 'ignores');
+    is($city->{'magic_description'}    , 'allowed');
+    is($city->{'military_description'} , 'laid back');
+    is($city->{'tolerance_description'}, 'ignores');
+    is($city->{'economy_description'}  , 'resiliant');
 
+    set_seed(1);
+    $city=CityGenerator::create_city({  'education_description'=>'foo1','authority_description'=>'foo2','magic_description'=>'foo3',
+                                        'military_description'=>'foo4','tolerance_description'=>'foo5','economy_description'=>'foo6'});
+    CityGenerator::set_stat_descriptions($city);
+    is($city->{'education_description'}, 'foo1');
+    is($city->{'authority_description'}, 'foo2');
+    is($city->{'magic_description'}    , 'foo3');
+    is($city->{'military_description'} , 'foo4');
+    is($city->{'tolerance_description'}, 'foo5');
+    is($city->{'economy_description'}  , 'foo6');
 
-
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'} = undef;
+    $city->{'stats'}->{'authority'} = undef;
+    $city->{'stats'}->{'magic'}     = undef;
+    $city->{'stats'}->{'military'}  = undef;
+    $city->{'stats'}->{'tolerance'} = undef;
+    $city->{'stats'}->{'economy'}   = undef;
+    CityGenerator::set_stat_descriptions($city);
+    is($city->{'education_description'}, 'mediocre');
+    is($city->{'authority_description'}, 'ignores');
+    is($city->{'magic_description'}    , 'allowed');
+    is($city->{'military_description'} , 'laid back');
+    is($city->{'tolerance_description'}, 'ignores');
+    is($city->{'economy_description'}  , 'resiliant');
 
     done_testing();
 };

@@ -140,12 +140,12 @@ sub create_city {
 sub generate_base_stats {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'education'} = d(11) - 5 if ( !defined $city->{'education'} );
-    $city->{'authority'} = d(11) - 5 if ( !defined $city->{'authority'} );
-    $city->{'magic'}     = d(11) - 5 if ( !defined $city->{'magic'} );
-    $city->{'military'}  = d(11) - 5 if ( !defined $city->{'military'} );
-    $city->{'tolerance'} = d(11) - 5 if ( !defined $city->{'tolerance'} );
-    $city->{'economy'}   = d(11) - 5 if ( !defined $city->{'economy'} );
+    $city->{'stats'}->{'education'} = d(11) - 5 if ( !defined $city->{'stats'}->{'education'} );
+    $city->{'stats'}->{'authority'} = d(11) - 5 if ( !defined $city->{'stats'}->{'authority'} );
+    $city->{'stats'}->{'magic'}     = d(11) - 5 if ( !defined $city->{'stats'}->{'magic'} );
+    $city->{'stats'}->{'military'}  = d(11) - 5 if ( !defined $city->{'stats'}->{'military'} );
+    $city->{'stats'}->{'tolerance'} = d(11) - 5 if ( !defined $city->{'stats'}->{'tolerance'} );
+    $city->{'stats'}->{'economy'}   = d(11) - 5 if ( !defined $city->{'stats'}->{'economy'} );
 
     return $city;
 } ## end sub generate_base_stats
@@ -465,6 +465,30 @@ sub generate_race_percentages {
     $city->{'race percentages'} = [ sort @{$city->{'race percentages'}}];
     return $city;
 }
+
+###############################################################################
+
+=head2 set_stat_descriptions
+
+select the stat descriptions for the 6 major stats.
+
+=cut
+
+###############################################################################
+sub set_stat_descriptions {
+    my ($city) = @_;
+    #FIXME TODO finish this.
+
+
+    foreach my $stat (sort keys %{ $city->{'stats'} } ){
+        $city->{'stats'}->{$stat}=0 if (! defined $city->{'stats'}->{$stat});
+        my $statoption =roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{$stat."_description"}->{'option'});
+        $city->{$stat."_description"}=rand_from_array($statoption->{'option'} )->{'content'} if (!defined $city->{$stat."_description"});
+    }
+
+    return $city;
+}
+
 
 
 

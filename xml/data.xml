@@ -977,119 +977,124 @@
         <adjective>virtuous</adjective>
     </option>
 </moralalignment>
-
-<economyalignment>
-    <option type="positive" min='2'    >
-        <adjective>vibrant</adjective>
-        <adjective>healthy</adjective>
-        <adjective>good</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>lively</adjective>
-        <adjective>growing</adjective>
+<!-- ============================================================== -->
+<education_description>
+    <option type="positive" min='2'      >
+        <option>high</option>
+        <option>expected</option>
+        <option>enforced</option>
+        <option>flourishing</option>
+        <option>growing</option>
     </option>
     <option type="neutral" min='-1' max='1'>
-        <adjective>stable</adjective>
-        <adjective>insulated</adjective>
-        <adjective>calm</adjective>
-        <adjective>unwavering</adjective>
-        <adjective>resiliant</adjective>
-        <adjective>steadfast</adjective>
-        <adjective>steady</adjective>
+        <option>instutionalized</option>
+        <option>middling</option>
+        <option>mediocre</option>
+        <option>allowed, but not enforced</option>
+    </option>
+    <option type="negative"         max='-2'>
+        <option>mocked</option>
+        <option>low</option>
+        <option>poor</option>
+        <option>rare</option>
+    </option>
+</education_description>
+<authority_description>
+    <option type="positive" min='2' >
+        <option>is very authoritarian</option>
+        <option>is very strict</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>is neutral towards</option>
+        <option>ignores</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>is chaotic</option>
+        <option>is a mess</option>
+    </option>
+</authority_description>
+<magic_description>
+    <option type="positive" min='2'      >
+        <option>common</option>
+        <option>plentiful</option>
+        <option>accepted</option>
+        <option>flourishing</option>
+        <option>growing</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>instutionalized</option>
+        <option>rare but accepted</option>
+        <option>allowed</option>
+    </option>
+    <option type="negative"         max='-2'>
+        <option>not a factor</option>
+        <option>rarely used</option>
+        <option>rare</option>
+    </option>
+</magic_description>
+<military_description>
+    <option type="positive" min='2' >
+        <option>positive</option>
+        <option>reverent</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>neutral</option>
+        <option>laid back</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>disinterested</option>
+        <option>negative</option>
+    </option>
+</military_description>
+<tolerance_description>
+    <option type="positive" min='2' >
+        <option>is accepting of</option>
+        <option>accepts</option>
+        <option>loves</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>is neutral towards</option>
+        <option>ignores</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>is critical of</option>
+        <option>despises</option>
+        <option>hates</option>
+    </option>
+</tolerance_description>
+<economy_description>
+    <option type="positive" min='2'    >
+        <option>vibrant</option>
+        <option>healthy</option>
+        <option>good</option>
+        <option>flourishing</option>
+        <option>lively</option>
+        <option>growing</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>stable</option>
+        <option>insulated</option>
+        <option>calm</option>
+        <option>unwavering</option>
+        <option>resiliant</option>
+        <option>steadfast</option>
+        <option>steady</option>
     </option>
     <option type="negative"      max='-2'>
-        <adjective>weak</adjective>
-        <adjective>failing</adjective>
-        <adjective>shaky</adjective>
-        <adjective>uncertain</adjective>
-        <adjective>crumbling</adjective>
+        <option>weak</option>
+        <option>failing</option>
+        <option>shaky</option>
+        <option>uncertain</option>
+        <option>crumbling</option>
     </option>
-</economyalignment>
+</economy_description>
 
-<militaryalignment>
-    <option type="positive" min='2' >
-        <adjective>positive</adjective>
-        <adjective>reverent</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>neutral</adjective>
-        <adjective>laid back</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>disinterested</adjective>
-        <adjective>negative</adjective>
-    </option>
-</militaryalignment>
+<!-- ============================================================== -->
 
-<tolerancealignment>
-    <option type="positive" min='2' >
-        <adjective>is accepting of</adjective>
-        <adjective>accepts</adjective>
-        <adjective>loves</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>is neutral towards</adjective>
-        <adjective>ignores</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>is critical of</adjective>
-        <adjective>despises</adjective>
-        <adjective>hates</adjective>
-    </option>
-</tolerancealignment>
-<authorityalignment>
-    <option type="positive" min='2' >
-        <adjective>is very authoritarian</adjective>
-        <adjective>is very strict</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>is neutral towards</adjective>
-        <adjective>ignores</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>is chaotic</adjective>
-        <adjective>is a mess</adjective>
-    </option>
-</authorityalignment>
-<educationalignment>
-    <option type="positive" min='2'      >
-        <adjective>high</adjective>
-        <adjective>expected</adjective>
-        <adjective>enforced</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>growing</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>instutionalized</adjective>
-        <adjective>middling</adjective>
-        <adjective>mediocre</adjective>
-        <adjective>allowed, but not enforced</adjective>
-    </option>
-    <option type="negative"         max='-2'>
-        <adjective>mocked</adjective>
-        <adjective>low</adjective>
-        <adjective>poor</adjective>
-        <adjective>rare</adjective>
-    </option>
-</educationalignment>
-<magicalignment>
-    <option type="positive" min='2'      >
-        <adjective>common</adjective>
-        <adjective>plentiful</adjective>
-        <adjective>accepted</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>growing</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>instutionalized</adjective>
-        <adjective>rare but accepted</adjective>
-        <adjective>allowed</adjective>
-    </option>
-    <option type="negative"         max='-2'>
-        <adjective>not a factor</adjective>
-        <adjective>rarely used</adjective>
-        <adjective>rare</adjective>
-    </option>
-</magicalignment>
+
+
+
+
 
 <climate>
         <option pop_support="180" >moist tropical</option>
