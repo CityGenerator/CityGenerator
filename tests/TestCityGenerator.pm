@@ -394,4 +394,45 @@ subtest 'test set_stat_descriptions' => sub {
 };
 
 
+subtest 'test set_races' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'available_races'}= ['dwarf','human','halfling'];
+    $city->{'race percentages'}= [85,10,3];
+    $city->{'pop_estimate'}=100;
+    CityGenerator::set_races($city);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                                    { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
+                                    { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
+                                    { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                                ] );
+
+
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'races'}= [ 
+                         { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                         { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
+                         { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
+                         { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                       ]; 
+    CityGenerator::set_races($city);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                                    { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
+                                    { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
+                                    { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                                ] );
+
+
+
+
+
+
+    done_testing();
+};
+
+
 1;

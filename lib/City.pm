@@ -743,17 +743,6 @@ sub add_race_features {
     return $race;
 }
 
-sub get_races {
-    my ( $type ) = @_;
-    my @races;
-    for my $race ( @{ $xml_data->{'races'}->{'race'} } ) {
-        if (   ($race->{'type'} eq $type)  or   (($type eq 'mixed') and  ($race->{'type'} ne 'other')) ) {
-            push @races, $race;
-        }
-    }
-    return shuffle @races;
-} 
-
 sub get_other_race {
     my ($type) = @_;
     my @races;

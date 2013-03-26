@@ -477,13 +477,45 @@ select the stat descriptions for the 6 major stats.
 ###############################################################################
 sub set_stat_descriptions {
     my ($city) = @_;
-    #FIXME TODO finish this.
-
 
     foreach my $stat (sort keys %{ $city->{'stats'} } ){
         $city->{'stats'}->{$stat}=0 if (! defined $city->{'stats'}->{$stat});
         my $statoption =roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{$stat."_description"}->{'option'});
         $city->{$stat."_description"}=rand_from_array($statoption->{'option'} )->{'content'} if (!defined $city->{$stat."_description"});
+    }
+
+    return $city;
+}
+###############################################################################
+
+=head2 set_races
+
+set the races and percentages with the population
+
+=cut
+
+###############################################################################
+sub set_races {
+    my ($city) = @_;
+
+    if (! defined $city->{'races'} ){
+        my $totalpercent=0;
+        my $totalpop=0;
+        $city->{'races'}=[];
+        my @racenames= shuffle @{ $city->{'available_races'}  };
+        foreach my $racepercent ( sort {$b <=> $a} @{ $city->{'race percentages'} } ){
+            print "percent $racepercent\n";
+            my $racename= pop @racenames;
+            my $population=int($racepercent*$city->{'pop_estimate'}/100) ;
+            my $race={'race'=>$racename, 'percent'=>$racepercent, 'population'=>$population };
+
+            $totalpercent+=$racepercent;
+            $totalpop+=$population;
+            push @{$city->{'races'}}, $race;
+        }
+        my $other={'race'=>'other', 'percent'=>(100-$totalpercent), 'population'=>($city->{'pop_estimate'}-$totalpop) };
+        push @{$city->{'races'}}, $other;
+
     }
 
     return $city;
