@@ -587,6 +587,7 @@ sub assign_race_stats {
 
     return $city;
 }
+
 ###############################################################################
 
 =head2 recalculate_populations
@@ -605,6 +606,39 @@ sub recalculate_populations {
     }
     return $city;
 }
+
+
+###############################################################################
+
+=head2 generate_streets
+
+Gienerate details on the streets
+
+=cut
+
+###############################################################################
+sub generate_streets {
+    #TODO needs to account for existing values
+    my ($city) = @_;
+
+    $city->{'streets'}->{'content'}=parse_object($xml_data->{'streets'})->{'content'} if  (!defined $city->{'streets'}->{'content'} );
+    my $roads=int(($city->{'stats'}->{'tolerance'}+$city->{'stats'}->{'economy'})/3);
+
+    $city->{'streets'}->{'mainroads'}   = $roads                                        if  (!defined $city->{'streets'}->{'mainroads'} );
+    $city->{'streets'}->{'roads'}       = $roads + $city->{'streets'}->{'mainroads'}    if  (!defined $city->{'streets'}->{'roads'} );
+
+    $city->{'streets'}->{'mainroads'}   = max(0, $city->{'streets'}->{'mainroads'});
+    $city->{'streets'}->{'roads'}       = max(1, $city->{'streets'}->{'roads'} );
+
+    return $city;
+}
+
+
+
+
+
+
+
 
 
 1;

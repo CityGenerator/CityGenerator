@@ -525,4 +525,41 @@ subtest 'test recalculate_populations' => sub {
 };
 
 
+
+
+subtest 'test generate_streets' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::generate_streets($city);
+
+    is($city->{'streets'}->{'content'}, 'crude dirt roads in a looped pattern');
+    is($city->{'streets'}->{'mainroads'}, 1);
+    is($city->{'streets'}->{'roads'}, 2);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'streets'=>{'content'=>'foo','mainroads'=>-1,'roads'=>-1}});
+    CityGenerator::generate_streets($city);
+    is($city->{'streets'}->{'content'}, 'foo');
+    is($city->{'streets'}->{'mainroads'}, 0);
+    is($city->{'streets'}->{'roads'}, 1);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'streets'=>{'content'=>'foo','mainroads'=>-1,'roads'=>-1}});
+    CityGenerator::generate_streets($city);
+    is($city->{'streets'}->{'content'}, 'foo');
+    is($city->{'streets'}->{'mainroads'}, 0);
+    is($city->{'streets'}->{'roads'}, 1);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'streets'=>{'content'=>'foo','mainroads'=>5,'roads'=>5}});
+    CityGenerator::generate_streets($city);
+    is($city->{'streets'}->{'content'}, 'foo');
+    is($city->{'streets'}->{'mainroads'}, 5);
+    is($city->{'streets'}->{'roads'}, 5);
+
+    done_testing();
+};
+
+
 1;
