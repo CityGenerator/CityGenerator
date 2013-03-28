@@ -262,8 +262,10 @@ subtest 'test generate_base_stats' => sub {
     is($city->{'stats'}->{'tolerance'}, 2);
     is($city->{'stats'}->{'economy'}  , -4);
 
+
     done_testing();
 };
+
 
 
 subtest 'test generate_shape' => sub {
@@ -426,10 +428,98 @@ subtest 'test set_races' => sub {
                                     { 'race' => 'other',    'percent' => 2,  'population' => 2 }
                                 ] );
 
+    done_testing();
+};
+
+subtest 'test assign_race_stats' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({ 'stats'=>{   'education'=>0, 'authority'=>0, 'magic'=>0,
+                                                    'military'=>0,  'tolerance'=>0, 'economy'=>0}});
+    $city->{'races'}= [ 
+                         { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                         { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
+                         { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
+                         { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                       ]; 
+    CityGenerator::assign_race_stats($city);
+    
+    is($city->{'races'}->[0]->{'race'}, 'human');
+    is($city->{'races'}->[0]->{'education'}, 2);
+    is($city->{'races'}->[0]->{'authority'}, 1);
+    is($city->{'races'}->[0]->{'magic'},     0);
+    is($city->{'races'}->[0]->{'military'},  1);
+    is($city->{'races'}->[0]->{'tolerance'}, 3);
+    is($city->{'races'}->[0]->{'economy'},   1);
 
 
 
+    is($city->{'races'}->[1]->{'race'}, 'halfling');
+    is($city->{'races'}->[2]->{'race'}, 'dwarf');
+    is($city->{'races'}->[3]->{'race'}, 'other');
+    is($city->{'stats'}->{'education'}, 3);
+    is($city->{'stats'}->{'authority'}, 1);
+    is($city->{'stats'}->{'magic'},     -3);
+    is($city->{'stats'}->{'military'},  3);
+    is($city->{'stats'}->{'tolerance'}, 5);
+    is($city->{'stats'}->{'economy'},   3);
 
+    is($city->{'moral'}, 98);
+    is($city->{'order'}, 77);
+
+    done_testing();
+};
+
+subtest 'test generate_alignment' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1'});
+    is($city->{'order'}, 5);
+    is($city->{'moral'}  , 46);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1','order'=>50,'moral'=>50});
+    is($city->{'order'}, 50);
+    is($city->{'moral'}  , 50);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1','order'=>-14,'moral'=>-12});
+    is($city->{'order'}, 0);
+    is($city->{'moral'}  , 0);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>'1','order'=>114,'moral'=>112});
+    is($city->{'order'}, 100);
+    is($city->{'moral'}  , 100);
+
+    done_testing();
+};
+
+
+subtest 'test recalculate_populations' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'available_races'}= ['dwarf','human','halfling'];
+    $city->{'race percentages'}= [85,10,3];
+
+    $city->{'pop_estimate'}=93;
+    CityGenerator::set_races($city);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'human',    'percent' => 85, 'population' => 79 },
+                                    { 'race' => 'halfling', 'percent' => 10, 'population' => 9 },
+                                    { 'race' => 'dwarf',    'percent' => 3,  'population' => 2 },
+                                    { 'race' => 'other',    'percent' => 2,  'population' => 3 }
+                                ] );
+    CityGenerator::recalculate_populations($city);
+    
+    is($city->{'population_total'}, 93);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'human',    'percent' => 84.9,  'population' => 79 },
+                                    { 'race' => 'halfling', 'percent' => 9.6,    'population' => 9 },
+                                    { 'race' => 'dwarf',    'percent' => 2.1,   'population' => 2 },
+                                    { 'race' => 'other',    'percent' => 3.2,   'population' => 3 }
+                                ] );
 
     done_testing();
 };

@@ -123,6 +123,7 @@ sub create_city {
 
     generate_city_name($city);
     generate_base_stats($city);
+    generate_alignment($city);
     set_city_size($city);
 
     return $city;
@@ -146,6 +147,29 @@ sub generate_base_stats {
     $city->{'stats'}->{'military'}  = d(11) - 5 if ( !defined $city->{'stats'}->{'military'} );
     $city->{'stats'}->{'tolerance'} = d(11) - 5 if ( !defined $city->{'stats'}->{'tolerance'} );
     $city->{'stats'}->{'economy'}   = d(11) - 5 if ( !defined $city->{'stats'}->{'economy'} );
+
+    return $city;
+} ## end sub generate_base_stats
+
+
+
+###############################################################################
+
+=head3 generate_alignment()
+
+    generate core alignment for the city
+
+=cut
+
+###############################################################################
+sub generate_alignment {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+    $city->{'order'} = d(100) if ( !defined $city->{'order'} );
+    $city->{'moral'} = d(100) if ( !defined $city->{'moral'} );
+
+    $city->{'order'} =min(100,max(0,$city->{'order'}));
+    $city->{'moral'} =min(100,max(0,$city->{'moral'}));
 
     return $city;
 } ## end sub generate_base_stats
@@ -486,6 +510,7 @@ sub set_stat_descriptions {
 
     return $city;
 }
+
 ###############################################################################
 
 =head2 set_races
@@ -497,10 +522,11 @@ set the races and percentages with the population
 ###############################################################################
 sub set_races {
     my ($city) = @_;
+#FIXME should account for existing values
 
     if (! defined $city->{'races'} ){
         my $totalpercent=0;
-        my $totalpop=0;
+        $city->{'population_total'}=0;
         $city->{'races'}=[];
         my @racenames= shuffle @{ $city->{'available_races'}  };
         foreach my $racepercent ( sort {$b <=> $a} @{ $city->{'race percentages'} } ){
@@ -510,20 +536,75 @@ sub set_races {
             my $race={'race'=>$racename, 'percent'=>$racepercent, 'population'=>$population };
 
             $totalpercent+=$racepercent;
-            $totalpop+=$population;
+            $city->{'population_total'}+=$population;
             push @{$city->{'races'}}, $race;
         }
-        my $other={'race'=>'other', 'percent'=>(100-$totalpercent), 'population'=>($city->{'pop_estimate'}-$totalpop) };
+        my $other={'race'=>'other', 'percent'=>(100-$totalpercent), 'population'=>($city->{'pop_estimate'}-$city->{'population_total'}   ) };
         push @{$city->{'races'}}, $other;
+        $city->{'population_total'}+=$other->{'population'};
 
     }
 
     return $city;
 }
 
+###############################################################################
 
+=head2 assign_race_stats
 
+assign the racial stats to the race objects and update the city stats
 
+=cut
+
+###############################################################################
+sub assign_race_stats {
+#TODO needs to account for existing values
+    my ($city) = @_;
+    my @newracelist;
+    foreach my $race (@{$city->{'races'}}){
+        my $racename=$race->{'race'};
+        my $racestats=$names_data->{'race'}->{$racename};
+        foreach my $stat (qw/ plural article type / ){
+            $race->{$stat}=$racestats->{$stat};
+        }
+        foreach my $stat (qw/ magic economy authority education military tolerance / ){
+            $race->{$stat}=$racestats->{$stat};
+            $city->{'stats'}->{$stat}+=$racestats->{$stat};
+        }
+        foreach my $stat (qw/ moral order / ){
+            $race->{$stat}=$racestats->{$stat};
+            $city->{$stat}+=$racestats->{$stat};
+        }
+        push @newracelist, $race;
+    }
+    $city->{'races'}=\@newracelist;
+    foreach my $stat (qw/ magic economy authority education military tolerance / ){
+        $city->{'stats'}->{$stat}=  min(5, max(-5,$city->{'stats'}->{$stat})) ;
+    }
+    foreach my $stat (qw/ moral order / ){
+            $city->{$stat} =min(100,max(0,$city->{$stat}));
+    }
+
+    return $city;
+}
+###############################################################################
+
+=head2 recalculate_populations
+
+Given the races and percentages, recalculate the total number of each.
+
+=cut
+
+###############################################################################
+sub recalculate_populations {
+    #TODO needs to account for existing values
+    my ($city) = @_;
+    foreach my $race (@{$city->{'races'}}){
+        $race->{'percent'}= $race->{'population'}/ $city->{'population_total'} ;
+        $race->{'percent'}=  int( $race->{'percent'}*1000 )/10
+    }
+    return $city;
+}
 
 
 1;
