@@ -123,6 +123,25 @@ subtest 'test create_npc' => sub {
 	
 	    done_testing();
     };
+    subtest 'test create_npc_acceptable_races' => sub {
+	    my $npc;
+
+	    GenericGenerator::set_seed(1);
+	    $npc=NPCGenerator::create_npc();
+	    is($npc->{'race'},'deep dwarf',  );
+	
+	    GenericGenerator::set_seed(1);
+	    $npc=NPCGenerator::create_npc({'available_races'=>['deep dwarf']});
+	    is($npc->{'race'},'deep dwarf',  );
+
+	    GenericGenerator::set_seed(1);
+	    $npc=NPCGenerator::create_npc({'available_races'=>['deep dwarf','human','halfling']});
+	    is_deeply($npc->{'available_races'},['deep dwarf','human','halfling'] );
+	    is($npc->{'race'},'halfling'  );
+
+	    done_testing();
+    };
+
     subtest 'test create_npc name' => sub {
         my $npc;
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});

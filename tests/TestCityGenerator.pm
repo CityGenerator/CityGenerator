@@ -720,6 +720,130 @@ subtest 'test generate_popdensity' => sub {
 };
 
 
+subtest 'test generate_citizens' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::generate_citizens($city);
+    is($city->{'citizen_count'}, 7);
+    is(scalar(@{$city->{'citizens'}}), 7);
+    is($city->{'citizens'}->[0]->{'race'}, 'drow');
+    is($city->{'citizens'}->[1]->{'race'}, 'ogre');
+    is($city->{'citizens'}->[2]->{'race'}, 'half-dwarf');
+
+    $city=CityGenerator::create_city({'size_modifier'=>-5});
+    CityGenerator::generate_citizens($city);
+    is($city->{'citizen_count'}, 5);
+    is(scalar(@{$city->{'citizens'}}), 5);
+    is($city->{'citizens'}->[0]->{'race'}, 'minotaur');
+    is($city->{'citizens'}->[1]->{'race'}, 'half-elf');
+    is($city->{'citizens'}->[2]->{'race'}, 'half-elf');
+
+    $city=CityGenerator::create_city({'size_modifier'=>12});
+    CityGenerator::generate_citizens($city);
+    is($city->{'citizen_count'}, 13);
+    is(scalar(@{$city->{'citizens'}}), 13);
+    is($city->{'citizens'}->[0]->{'race'}, 'half-orc');
+    is($city->{'citizens'}->[1]->{'race'}, 'minotaur');
+    is($city->{'citizens'}->[2]->{'race'}, 'dwarf');
+
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'citizen_count'=>2});
+    CityGenerator::generate_citizens($city);
+    is($city->{'citizen_count'}, 2);
+    is(scalar(@{$city->{'citizens'}}), 2);
+    is($city->{'citizens'}->[0]->{'race'}, 'goblin');
+    is($city->{'citizens'}->[1]->{'race'}, 'human');
+    is($city->{'citizens'}->[2]->{'race'}, undef);
+
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'citizen_count'=>2, 'citizens'=>[] });
+    CityGenerator::generate_citizens($city);
+    is($city->{'citizen_count'}, 2);
+    is(scalar(@{$city->{'citizens'}}), 0);
+
+#TODO test if they're a specialist, once I add specialists
+    done_testing();
+};
+
+
+subtest 'test generate_travelers' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 9);
+    is(scalar(@{$city->{'travelers'}}), 9);
+    is($city->{'travelers'}->[0]->{'race'}, 'drow');
+    is($city->{'travelers'}->[1]->{'race'}, 'ogre');
+    is($city->{'travelers'}->[2]->{'race'}, 'half-dwarf');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'stats'=>{'tolerance'=>-5}});
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 0);
+    is(scalar(@{$city->{'travelers'}}), 0);
+    is($city->{'travelers'}->[0]->{'race'}, undef);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'stats'=>{'tolerance'=>0}});
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 5);
+    is(scalar(@{$city->{'travelers'}}), 5);
+    is($city->{'travelers'}->[0]->{'race'}, 'drow');
+    is($city->{'travelers'}->[1]->{'race'}, 'ogre');
+    is($city->{'travelers'}->[2]->{'race'}, 'half-dwarf');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'stats'=>{'tolerance'=>0}});
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 5);
+    is(scalar(@{$city->{'travelers'}}), 5);
+    is($city->{'travelers'}->[0]->{'race'}, 'drow');
+    is($city->{'travelers'}->[1]->{'race'}, 'ogre');
+    is($city->{'travelers'}->[2]->{'race'}, 'half-dwarf');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'traveler_count'=>2});
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 2);
+    is(scalar(@{$city->{'travelers'}}), 2);
+    is($city->{'travelers'}->[0]->{'race'}, 'drow');
+    is($city->{'travelers'}->[1]->{'race'}, 'ogre');
+    is($city->{'travelers'}->[2]->{'race'}, undef);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'traveler_count'=>2, 'stats'=>{'tolerance'=>5}});
+    CityGenerator::generate_travelers($city);
+    is_deeply($city->{'available_traveler_races'}, [ 'human', 'bugbear', 'mindflayer', 'lizardfolk', 'minotaur', 'half-elf', 'hobgoblin', 'elf', 'troglodyte', 'drow', 'lycanthrope', 'halfling', 'half-orc', 'kobold', 'any', 'deep dwarf', 'half-dwarf', 'orc', 'gnome', 'other', 'goblin', 'dwarf', 'ogre']);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'traveler_count'=>2, 'stats'=>{'tolerance'=>-5}, 'available_races'=>[ 'human','half-elf','elf','halfling','half-orc','half-dwarf','gnome','dwarf']});
+    CityGenerator::generate_travelers($city);
+    is_deeply($city->{'available_traveler_races'},[ 'human','half-elf','elf','halfling','half-orc','half-dwarf','gnome','dwarf']);
+
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'traveler_count'=>2, 'travelers'=>[] });
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 2);
+    is(scalar(@{$city->{'travelers'}}), 0);
+
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12, 'traveler_count'=>6, 'available_traveler_races'=>['human'] });
+    CityGenerator::generate_travelers($city);
+    is($city->{'traveler_count'}, 6);
+    is($city->{'travelers'}->[0]->{'race'}, 'human');
+    is($city->{'travelers'}->[1]->{'race'}, 'human');
+    is($city->{'travelers'}->[2]->{'race'}, 'human');
+    is($city->{'travelers'}->[3]->{'race'}, 'human');
+    is($city->{'travelers'}->[4]->{'race'}, 'human');
+    is($city->{'travelers'}->[5]->{'race'}, 'human');
+
+
+#TODO test if they're a specialist, once I add specialists
+    done_testing();
+};
+
 
 
 

@@ -685,6 +685,59 @@ sub generate_popdensity {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_citizens
+
+Generate a list of citizens.
+
+=cut
+
+###############################################################################
+sub generate_citizens {
+    my ($city) = @_;
+
+    $city->{'citizen_count'}= 7 + int($city->{'size_modifier'}/2) if (!defined $city->{'citizen_count'});
+    if (!defined $city->{'citizens'}){
+        $city->{'citizens'}= [];
+        for (my $i=0 ; $i<$city->{'citizen_count'} ; $i++){
+            push @{$city->{'citizens'}},NPCGenerator::create_npc({'available_races'=>$city->{'available_races'}}); 
+        }
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_travelers
+
+Generate a list of travelers.
+
+=cut
+
+###############################################################################
+sub generate_travelers {
+    my ($city) = @_;
+
+    $city->{'traveler_count'}= 5 + $city->{'stats'}->{'tolerance'} if (!defined $city->{'traveler_count'});
+    if (!defined $city->{'available_traveler_races'}){
+        #If tolerance is negative, only city races are allowed inside.
+        if ($city->{'stats'}->{'tolerance'} <0){
+            $city->{'available_traveler_races'}= $city->{'available_races'};
+        }else{
+            $city->{'available_traveler_races'}= [keys %{ $names_data->{'race'} } ];
+        }
+    }
+
+    if (!defined $city->{'travelers'}){
+        $city->{'travelers'}= [];
+        for (my $i=0 ; $i<$city->{'traveler_count'} ; $i++){
+            push @{$city->{'travelers'}},NPCGenerator::create_npc({'available_races'=>$city->{'available_traveler_races'}} ); 
+        }
+    }
+    return $city;
+}
+
 
 
 1;

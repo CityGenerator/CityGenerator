@@ -55,9 +55,9 @@ sub create_npc{
         }
     }
     $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
-    if (! defined $npc->{'race'}){
-        $npc->{'race'}=GenericGenerator::rand_from_array( [ keys %{$names_data->{'race'}}] );
-    }
+    $npc->{'available_races'}= [ keys %{$names_data->{'race'}}] if (!defined $npc->{'available_races'});
+
+    $npc->{'race'}=rand_from_array( $npc->{'available_races'} ) if (! defined $npc->{'race'});
     $npc->{'race'}=lc $npc->{'race'};
     
     $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
