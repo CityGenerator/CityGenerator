@@ -738,6 +738,25 @@ sub generate_travelers {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_crime
+
+Generate the crime rate
+
+=cut
+
+###############################################################################
+sub generate_crime {
+    my ($city) = @_;
+
+    my $moralmod=int( ($city->{'moral'} - 50 ) /10);
+
+    $city->{'crime_roll'} = int(&d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod)    if (!defined $city->{'crime_roll'});
+    $city->{'crime_description'}=roll_from_array($city->{'crime_roll'}, $xml_data->{'crime'}->{'option'})->{'content'}      if (!defined $city->{'crime_description'});
+
+    return $city;
+}
 
 
 1;

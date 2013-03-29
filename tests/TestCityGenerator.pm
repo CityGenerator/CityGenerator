@@ -845,7 +845,76 @@ subtest 'test generate_travelers' => sub {
 };
 
 
+subtest 'test generate_crime' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 64);
+    is($city->{'crime_description'}, 'unusual');
 
+    set_seed(1);
+    $city=CityGenerator::create_city({'crime_roll'=>99});
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 99);
+    is($city->{'crime_description'}, 'unheard of');
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=0;
+    $city->{'stats'}->{'authority'}=0;
+    $city->{'moral'}=50;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 59);
+    is($city->{'crime_description'}, 'unusual');
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=0;
+    $city->{'stats'}->{'authority'}=0;
+    $city->{'moral'}=100;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 64);
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=5;
+    $city->{'stats'}->{'authority'}=0;
+    $city->{'moral'}=50;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 54);
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=0;
+    $city->{'stats'}->{'authority'}=5;
+    $city->{'moral'}=50;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 64);
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=5;
+    $city->{'stats'}->{'authority'}=-5;
+    $city->{'moral'}=0;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 44);
+
+    set_seed(1);
+    $city=CityGenerator::create_city();
+    $city->{'stats'}->{'education'}=-5;
+    $city->{'stats'}->{'authority'}=5;
+    $city->{'moral'}=100;
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_roll'}, 74);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'crime_description'=>'fun'});
+    CityGenerator::generate_crime($city);
+    is($city->{'crime_description'}, 'fun');
+
+    done_testing();
+};
 
 
 

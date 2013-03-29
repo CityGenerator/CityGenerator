@@ -671,12 +671,12 @@
 </laws>
 
 <crime>
-    <option min="1"   max="10">unheard of</option>
-    <option min="11"  max="30">rare</option>
-    <option min="31"  max="50">unusual</option>
-    <option min="51"  max="70">occasional</option>
-    <option min="71"  max="90">common</option>
-    <option min="91"  max="100">rampant</option>
+    <option min="1"   max="10">rampant</option>
+    <option min="11"  max="30">common</option>
+    <option min="31"  max="50">occasional</option>
+    <option min="51"  max="70">unusual</option>
+    <option min="71"  max="90">rare</option>
+    <option min="91" max="100">unheard of</option>
 </crime>
 
 
@@ -1378,6 +1378,38 @@
         <option>sibling</option>
         <option>friend</option>
         <option>distant relative</option>
+    </motive>
+    <motive type="Clean out a">
+        <option>monster infestation</option>
+        <option>wealthy person</option>
+        <option>bug infestation</option>
+        <option>slum</option>
+    </motive>
+    <motive type="deliver a message to a ">
+        <option>ruler</option>
+        <option>merchant</option>
+        <option>peasant</option>
+        <option>scholar</option>
+        <option>thug</option>
+    </motive>
+    <motive type="secretly assassinate a ">
+        <option>ruler</option>
+        <option>merchant</option>
+        <option>peasant</option>
+        <option>scholar</option>
+        <option>thug</option>
+    </motive>
+    <motive type="find work as ">
+        <option>a skilled laborer</option>
+        <option>a merchant</option>
+        <option>a mercenary</option>
+        <option>a healer</option>
+        <option>a spy</option>
+    </motive>
+    <motive type="destroy ">
+        <option>an artifact</option>
+        <option>a misconception</option>
+        <option>a rumor</option>
     </motive>
 </travelermotivation>
 <sex>
