@@ -87,13 +87,120 @@ subtest 'test flesh_out_city' => sub {
     my $city;
     set_seed(1);
 
-    $city={};
-    CityGenerator::generate_city_name($city);
-    CityGenerator::flesh_out_city($city);
-    is($city->{'name'},'Port Janville'); #FIXME spaces!
-    is($city->{'region'}->{'name'}, 'Konsak Territory');
-    is($city->{'continent'}->{'name'}, 'Asporek');
+    $city=CityGenerator::create_city({'seed'=>100});
+    is($city->{'seed'}, '100');
+    is($city->{'name'},'Bedhead Lock');
+    is($city->{'stats'}->{'economy'},0);
+    is($city->{'stats'}->{'education'},-2);
+    is($city->{'stats'}->{'tolerance'},0);
+    is($city->{'stats'}->{'authority'},-2);
+    is($city->{'stats'}->{'magic'},6);
+    is($city->{'stats'}->{'military'},0);
+    is($city->{'order'},26);
+    is($city->{'moral'},21);
+    is($city->{'size'},'hamlet');
+    is($city->{'gplimit'},500);
+    is($city->{'pop_estimate'},185);
+    is($city->{'size_modifier'},-4);
+    is($city->{'region'}->{'name'}, undef);
+    is($city->{'continent'}->{'name'}, undef);
+    is($city->{'base_pop'},undef);
+    is($city->{'type'},undef);
+    is($city->{'description'},undef);
+    is($city->{'add_other'},undef);
+    is($city->{'wall_chance_roll'},undef);
+    is($city->{'wall_size_roll'},undef);
+    is($city->{'walls'}->{'height'},undef);
+    is($city->{'walls'}->{'content'},undef);
+    is($city->{'laws'}->{'enforcer'},undef);
+    is($city->{'laws'}->{'enforcement'},undef);
+    is($city->{'laws'}->{'punishment'},undef);
+    is($city->{'laws'}->{'commoncrime'},undef);
+    is($city->{'laws'}->{'trial'},undef);
+    is($city->{'age_roll'},undef);
+    is($city->{'age_description'},undef);
+    is($city->{'age_mod'},undef);
+    is($city->{'resourcecount'},undef);
+    is($city->{'resources'},undef);
+    is($city->{'crest'},undef);
+    is($city->{'shape'},undef);
+    is($city->{'city_age'},undef);
+    is($city->{'available_races'},undef);
+    is($city->{'race percentages'},undef);
+    is($city->{'economy_description'},undef);
+    is($city->{'education_description'},undef);
+    is($city->{'tolerance_description'},undef);
+    is($city->{'authority_description'},undef);
+    is($city->{'magic_description'},undef);
+    is($city->{'military_description'},undef);
+    is($city->{'population_total'},undef);
+    is($city->{'races'},undef);
+    is($city->{'streets'}->{'content'},undef);
+    is($city->{'streets'}->{'mainroads'},undef);
+    is($city->{'streets'}->{'roads'},undef);
+    is($city->{'area'},undef);
+    is($city->{'density'},undef);
+    is($city->{'feetpercapita'},undef);
 
+    CityGenerator::flesh_out_city($city);
+
+
+
+#FIXME seeds for region and continent aren't right
+    is($city->{'seed'}, '100');
+    is($city->{'name'},'Bedhead Lock');
+    is($city->{'stats'}->{'economy'},0);
+    is($city->{'stats'}->{'education'},-2);
+    is($city->{'stats'}->{'tolerance'},5);
+    is($city->{'stats'}->{'authority'},-4);
+    is($city->{'stats'}->{'magic'},1);
+    is($city->{'stats'}->{'military'},5);
+    is($city->{'order'},23);
+    is($city->{'moral'},40);
+    is($city->{'size'},'hamlet');
+    is($city->{'gplimit'},500);
+    is($city->{'pop_estimate'},185);
+    is($city->{'size_modifier'},-4);
+    is($city->{'region'}->{'name'}, 'Moolborak Region');
+    is($city->{'continent'}->{'name'}, 'Mongar');
+    is($city->{'base_pop'},'basic');
+    is($city->{'type'},'basic');
+    is($city->{'description'},'normal population');
+    is($city->{'add_other'},'');
+    is($city->{'wall_chance_roll'},89);
+    is($city->{'wall_size_roll'},undef);
+    is($city->{'walls'}->{'height'},0);
+    is($city->{'walls'}->{'content'},'none');
+    is($city->{'laws'}->{'enforcer'},'city guard');
+    is($city->{'laws'}->{'enforcement'},'but are loosely enforced');
+    is($city->{'laws'}->{'punishment'},'community service');
+    is($city->{'laws'}->{'commoncrime'},'petty theft');
+    is($city->{'laws'}->{'trial'},'without trial');
+    is($city->{'age_roll'},88);
+    is($city->{'age_description'},'elderly');
+    is($city->{'age_mod'},-8);
+    is($city->{'resourcecount'},1);
+    is($city->{'resources'}->[0]->{'content'},'timid caterpillar');
+    is_deeply($city->{'crest'},{});
+    is($city->{'shape'},'a circular');
+    is($city->{'city_age'}->{'content'},'youthful');
+    is_deeply($city->{'available_races'},[ 'human','half-elf','elf','halfling','half-orc','half-dwarf','gnome','dwarf']);
+    is_deeply($city->{'race percentages'},[ 1,'11.9','32.8','37.9','6.1','6.9']);
+    is($city->{'economy_description'},'stable');
+    is($city->{'education_description'},'mocked');
+    is($city->{'tolerance_description'},'is accepting of');
+    is($city->{'authority_description'},'is chaotic');
+    is($city->{'magic_description'},'instutionalized');
+    is($city->{'military_description'},'positive');
+    is($city->{'population_total'},185);
+    is(scalar(@{$city->{'races'}}),7);
+    is($city->{'streets'}->{'content'},'muddy cobblestone streets in a fragmented parallel pattern');
+    is($city->{'streets'}->{'mainroads'},1);
+    is($city->{'streets'}->{'roads'},2);
+    is($city->{'area'},2.64);
+    is($city->{'density'},'nominally');
+    is($city->{'feetpercapita'},1500);
+print Dumper $city;
 
     done_testing();
 };
@@ -105,7 +212,7 @@ subtest 'test set_pop_type' => sub {
 
     $city=CityGenerator::create_city();
     CityGenerator::set_pop_type($city);
-    is($city->{'name'},'Port Janville'); #FIXME spaces!
+    is($city->{'name'},'Port Janville');
     is($city->{'base_pop'},'basic');
     is($city->{'type'},'basic+1');
     is($city->{'description'},'fairly normal population (with one monstrous race)');
@@ -303,19 +410,19 @@ subtest 'test set_available_races' => sub {
     set_seed(1);
     $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'monster'});
     CityGenerator::set_available_races($city);
-    is(scalar(@{$city->{'available races'}}), 13);
+    is(scalar(@{$city->{'available_races'}}), 13);
 
     $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'basic'});
     CityGenerator::set_available_races($city);
-    is(scalar(@{$city->{'available races'}}), 8);
+    is(scalar(@{$city->{'available_races'}}), 8);
 
     $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'mixed'});
     CityGenerator::set_available_races($city);
-    is(scalar(@{$city->{'available races'}}), 23);
+    is(scalar(@{$city->{'available_races'}}), 23);
 
-    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'mixed', 'available races'=>[2,2,2]});
+    $city=CityGenerator::create_city({'seed'=>'1', 'base_pop'=>'mixed', 'available_races'=>[2,2,2]});
     CityGenerator::set_available_races($city);
-    is(scalar(@{$city->{'available races'}}), 3);
+    is(scalar(@{$city->{'available_races'}}), 3);
 
     done_testing();
 };
@@ -524,9 +631,6 @@ subtest 'test recalculate_populations' => sub {
     done_testing();
 };
 
-
-
-
 subtest 'test generate_streets' => sub {
     my $city;
     set_seed(1);
@@ -561,5 +665,72 @@ subtest 'test generate_streets' => sub {
     done_testing();
 };
 
+subtest 'test generate_area' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>-5,'population_total'=>1000,'feetpercapita'=>1000});
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 9.75);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>0,'population_total'=>1000,'feetpercapita'=>1000});
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 9.29);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>0,'population_total'=>1000,'feetpercapita'=>1000 });
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 9.29);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>0,'population_total'=>1000,'feetpercapita'=>1000});
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 9.29);
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'size_modifier'=>12,'population_total'=>1000,'feetpercapita'=>1000});
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 8.17);
+
+
+    done_testing();
+};
+
+subtest 'test generate_popdensity' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    CityGenerator::generate_popdensity($city);
+    is($city->{'density'}, 'sparsely');
+    is($city->{'feetpercapita'}, '5000');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'density'=>'lightly'});
+    CityGenerator::generate_popdensity($city);
+    is($city->{'density'}, 'lightly');
+    is($city->{'feetpercapita'}, '3000');
+
+    set_seed(1);
+    $city=CityGenerator::create_city({'density'=>'lightly', 'feetpercapita'=>1233});
+    CityGenerator::generate_popdensity($city);
+    is($city->{'density'}, 'lightly');
+    is($city->{'feetpercapita'}, '1233');
+
+    done_testing();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 1;
+

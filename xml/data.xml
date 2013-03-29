@@ -305,10 +305,10 @@
 
 
 <popdensity>
-    <option type="sparsely"  feetpercapita="5000"/>
-    <option type="lightly"   feetpercapita="3000"/>
-    <option type="nominally" feetpercapita="1500"/>
-    <option type="densely"   feetpercapita="1000"/>
+    <option name="sparsely"  feetpercapita="5000"/>
+    <option name="lightly"   feetpercapita="3000"/>
+    <option name="nominally" feetpercapita="1500"/>
+    <option name="densely"   feetpercapita="1000"/>
 </popdensity>
 
 <nameoptions>

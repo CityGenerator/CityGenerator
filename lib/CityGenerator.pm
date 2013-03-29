@@ -172,7 +172,7 @@ sub generate_alignment {
     $city->{'moral'} =min(100,max(0,$city->{'moral'}));
 
     return $city;
-} ## end sub generate_base_stats
+} ## end sub generate_alignment
 
 
 
@@ -237,6 +237,24 @@ sub flesh_out_city {
     set_seed( $city->{'seed'} );
     $city->{'region'}    = RegionGenerator::create_region( $city->{'seed'} );
     $city->{'continent'} = ContinentGenerator::create_continent( $city->{'seed'} );
+    set_pop_type($city);
+    set_available_races($city);
+    generate_race_percentages($city);
+    set_races($city);
+    assign_race_stats($city);
+    recalculate_populations($city);
+
+    generate_walls($city);
+    generate_resources($city);
+    generate_city_crest($city);
+    generate_shape($city);
+    generate_city_age($city);
+    generate_streets($city);
+    set_stat_descriptions($city);
+    set_laws($city);
+    set_age($city);
+    generate_popdensity($city);
+    generate_area($city);
 
     return $city;
 } ## end sub flesh_out_city
@@ -441,16 +459,16 @@ sub set_available_races {
     my ($city) = @_;
     #FIXME TODO finish this.
 
-    if (! defined $city->{'available races'} ){
-        $city->{'available races'}=[];
+    if (! defined $city->{'available_races'} ){
+        $city->{'available_races'}=[];
         foreach my $racename ( keys %{ $names_data->{'race'} }  ){
             my $race=$names_data->{'race'}->{$racename}; 
             if ($race->{'type'} eq $city->{'base_pop'}  or $city->{'base_pop'} eq 'mixed'){
-                push @{$city->{'available races'}}, $racename;
+                push @{$city->{'available_races'}}, $racename;
             }
         }
     }
-    shuffle @{$city->{'available races'}};
+    shuffle @{$city->{'available_races'}};
 
     return $city;
 }
@@ -522,15 +540,14 @@ set the races and percentages with the population
 ###############################################################################
 sub set_races {
     my ($city) = @_;
-#FIXME should account for existing values
-
+    #FIXME should account for existing values
     if (! defined $city->{'races'} ){
         my $totalpercent=0;
         $city->{'population_total'}=0;
         $city->{'races'}=[];
-        my @racenames= shuffle @{ $city->{'available_races'}  };
+        my @racenames= @{$city->{'available_races'}}  ;
+        @racenames=shuffle @racenames;
         foreach my $racepercent ( sort {$b <=> $a} @{ $city->{'race percentages'} } ){
-            print "percent $racepercent\n";
             my $racename= pop @racenames;
             my $population=int($racepercent*$city->{'pop_estimate'}/100) ;
             my $race={'race'=>$racename, 'percent'=>$racepercent, 'population'=>$population };
@@ -561,6 +578,7 @@ sub assign_race_stats {
 #TODO needs to account for existing values
     my ($city) = @_;
     my @newracelist;
+
     foreach my $race (@{$city->{'races'}}){
         my $racename=$race->{'race'};
         my $racestats=$names_data->{'race'}->{$racename};
@@ -612,7 +630,7 @@ sub recalculate_populations {
 
 =head2 generate_streets
 
-Gienerate details on the streets
+Generate details on the streets
 
 =cut
 
@@ -629,15 +647,43 @@ sub generate_streets {
 
     $city->{'streets'}->{'mainroads'}   = max(0, $city->{'streets'}->{'mainroads'});
     $city->{'streets'}->{'roads'}       = max(1, $city->{'streets'}->{'roads'} );
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_area
+
+Generate the area the city covers.
+
+=cut
+
+###############################################################################
+sub generate_area {
+    my ($city) = @_;
+
+    $city->{'area'}=   int( $city->{'population_total'}*( $city->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
 
     return $city;
 }
 
+###############################################################################
 
+=head2 generate_popdensity
 
+Generate the density
 
+=cut
 
+###############################################################################
+sub generate_popdensity {
+    my ($city) = @_;
 
+    $city->{'density'}      =rand_from_array([keys %{ $xml_data->{'popdensity'}->{'option'}}] ) if (!defined $city->{'density'});
+    $city->{'feetpercapita'}=$xml_data->{'popdensity'}->{'option'}->{ $city->{'density'} }->{'feetpercapita'} if (!defined $city->{'feetpercapita'});
+
+    return $city;
+}
 
 
 

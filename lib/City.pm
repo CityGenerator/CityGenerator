@@ -271,16 +271,6 @@ sub generate_neighbors {
     $city=$origcity
 }
 
-
-sub generate_streets {
-    $city->{'streets'}=parse_object($xml_data->{'streets'});
-
-    $city->{'streets'}->{'mainroads'}=max(0,   int(($city->{'travel'}+$city->{'economy'})/3)  );
-    $city->{'streets'}->{'roads'}=max(1,   int(($city->{'travel'}+$city->{'economy'})/3) + $city->{'streets'}->{'mainroads'}  );
-
-
-}
-
 sub adjust_chance_for_port{
     if ( $city->{'location'}->{'port'}  ) {
         $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;
@@ -635,26 +625,6 @@ sub generate_city_ethics {
         $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
     }
     $GenericGenerator::seed=set_seed($originalseed);
-}
-
-sub generate_city_beliefs {
-
-    # set the baseline random modifier
-    foreach my $mod (qw/ magic authority economy education travel tolerance military / ){
-        $GenericGenerator::seed++;
-        $city->{$mod} =&d(5)-3;
-        # adjust all modifiers for each race
-        for my $race ( @{ $city->{'races'} } ) {
-            $city->{$mod} += $race->{$mod};
-        }
-
-        # Use min/max to ensure that we fall in the proper ranges when all is said and done        
-        $city->{$mod} = max(-5, min(5, $city->{$mod} ) );
-        my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
-        $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
-    }
-    $GenericGenerator::seed=set_seed($originalseed);
-
 }
 
 sub generate_pop_counts {
