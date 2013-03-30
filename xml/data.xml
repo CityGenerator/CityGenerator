@@ -82,7 +82,6 @@
         <root></root>
     </fact>
 
-
 </trivia>
 
 <streets>
@@ -353,16 +352,6 @@
     <option min="34"  max="66"  >neutral</option>
     <option min="67"  max="100" >lawful</option>
 </order>
-<govtypes>
-    <govt approval_mod='0'  religion='2'  mil_mod='-1' >council</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
-    <govt approval_mod='-1' religion='0'  mil_mod='1'  >despot</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='1'  >baron</govt>
-    <govt approval_mod='0'  religion='0'  mil_mod='2'  >royalty</govt>
-    <govt approval_mod='-1' religion='-1' mil_mod='1'  >dictator</govt>
-    <govt approval_mod='0'  religion='-1' mil_mod='0'  >clergy</govt>
-    <govt approval_mod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
-</govtypes>
 
 <cityages>
     <cityage          max='10' age_mod='10'  >young</cityage>
@@ -747,72 +736,6 @@
 </markets>
 
 
-<secondarypower>
-    <plot>openly assists</plot>
-    <plot>openly denounces</plot>
-    <plot>quietly denounces</plot>
-    <plot>quietly assists</plot>
-    
-    <power type="a dragon" subplot_chance="50">
-        <subplot>wishing to enslave the city</subplot>
-        <subplot>watching out for the common man</subplot>
-        <subplot>despising the current leader</subplot>
-        <subplot>agreeing with the current leader</subplot>
-    </power>
-    <power type="a wizard" subplot_chance="50">
-        <subplot>attempting to attain immortality</subplot>
-        <subplot>watching out for the common man</subplot>
-        <subplot>despising the current leader</subplot>
-        <subplot>agreeing with the current leader</subplot>
-    </power>
-    <power type="a merchant guild" subplot_chance="50">
-        <subplot>attempting to buy influence</subplot>
-        <subplot>attempting to sell influence</subplot>
-        <subplot>pushing for war with trade adversary</subplot>
-        <subplot>pushing to open trade with adversary</subplot>
-    </power>
-    <power type="an elected representative" subplot_chance="50">
-        <subplot>using position for personal gain</subplot>
-        <subplot>amassing power</subplot>
-    </power>
-    <power type="an advisor" subplot_chance="50">
-        <subplot>pulling strings for personal gain</subplot>
-        <subplot>blackmailing the government</subplot>
-        <subplot>working for enemies</subplot>
-    </power>
-    <power type="a prophet" subplot_chance="50">
-        <subplot>attempting to lead religious revolution</subplot>
-        <subplot>denying legitimacy of leading power</subplot>
-        <subplot>calling for genocide of a minority</subplot>
-    </power>
-    <power type="a thieves guild" subplot_chance="50">
-        <subplot>moving to assert black market dominance</subplot>
-        <subplot>backing leading power for leiniency</subplot>
-    </power>
-    <power type="traveler" subplot_chance="50">
-        <subplot>looking to bring justice</subplot>
-        <subplot>looking to overthrow the government</subplot>
-    </power>
-    <power type="an ex-blacksmith" subplot_chance="50">
-        <subplot>plotting to overthrow the corrupt leadership for personal gain</subplot>
-        <subplot>being blackmailed by a guild</subplot>
-        <subplot>pulling strings with a trade adversary</subplot>
-    </power>
-    <power type="a barbarian" subplot_chance="50">
-        <subplot>plotting to start war with another nation</subplot>
-        <subplot>being manipulated by the denizens of the city whore house</subplot>
-        <subplot>wishing to rule with a violent, iron fist</subplot>
-    </power>
-    <power type="a recluse" subplot_chance="50">
-        <subplot>pulling strings for personal gain</subplot>
-        <subplot>a fiend in disguise</subplot>
-        <subplot>an angel in disguise</subplot>
-        <subplot>a dragon in disguise</subplot>
-        <subplot>a god in disguise</subplot>
-        <subplot>a feind that secretly looks out for the good of the common man</subplot>
-        <subplot>an angel that seeks to enslave the common man</subplot>
-    </power>
-</secondarypower>
 
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
