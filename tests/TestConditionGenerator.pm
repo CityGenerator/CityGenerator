@@ -23,18 +23,18 @@ subtest 'test create_condition' => sub {
     set_seed(1);
     $condition=ConditionGenerator::create_condition();
     is($condition->{'seed'},41630);
-    is(Dumper($condition->{'pop_mod'}),Dumper( {}) );
-    is(Dumper($condition->{'bar_mod'}),Dumper( {}) );
+    is_deeply($condition->{'pop_mod'}, {} );
+    is_deeply($condition->{'bar_mod'}, {} );
 
     $condition=ConditionGenerator::create_condition({'seed'=>12345, 'pop_mod'=>{'foo'=>1},'bar_mod'=>{'foo'=>1}});
     is($condition->{'seed'},12345);
-    is(Dumper($condition->{'pop_mod'}),Dumper( {'foo'=>1}) );
-    is(Dumper($condition->{'bar_mod'}),Dumper( {'foo'=>1}) );
+    is_deeply($condition->{'pop_mod'},{'foo'=>1} );
+    is_deeply($condition->{'bar_mod'},{'foo'=>1} );
 
     $condition=ConditionGenerator::create_condition({'seed'=>12345, 'pop_mod'=>[],'bar_mod'=>1});
     is($condition->{'seed'},12345);
-    is(Dumper($condition->{'pop_mod'}),Dumper( {}) );
-    is(Dumper($condition->{'bar_mod'}),Dumper( {}) );
+    is_deeply($condition->{'pop_mod'}, {} );
+    is_deeply($condition->{'bar_mod'}, {} );
 
 
     done_testing();
@@ -50,8 +50,8 @@ subtest 'test set_time' => sub {
     is($condition->{'time_exact'},'07:52');
     is($condition->{'time_pop_mod'},"1.0");
     is($condition->{'time_bar_mod'},0);
-    is(Dumper($condition->{'pop_mod'}),Dumper( {'time'=>'1.0'}) );
-    is(Dumper($condition->{'bar_mod'}),Dumper( {'time'=>'0'}) );
+    is_deeply($condition->{'pop_mod'}, {'time'=>'1.0'} );
+    is_deeply($condition->{'bar_mod'}, {'time'=>'0'} );
 
     $condition={'seed'=>40, 'time_description'=>'foo1','time_exact'=>'foo2','time_pop_mod'=>'foo3','time_bar_mod'=>'foo4' };
     ConditionGenerator::set_time($condition);
@@ -60,8 +60,8 @@ subtest 'test set_time' => sub {
     is($condition->{'time_exact'},'foo2');
     is($condition->{'time_pop_mod'},'foo3');
     is($condition->{'time_bar_mod'},'foo4');
-    is(Dumper($condition->{'pop_mod'}),Dumper( {'time'=>'foo3'}) );
-    is(Dumper($condition->{'bar_mod'}),Dumper( {'time'=>'foo4'}) );
+    is_deeply($condition->{'pop_mod'}, {'time'=>'foo3'} );
+    is_deeply($condition->{'bar_mod'}, {'time'=>'foo4'} );
 
     done_testing();
 };
@@ -256,7 +256,7 @@ subtest 'test flesh_out_condition' => sub {
     ConditionGenerator::flesh_out_condition($condition);
 
     is($condition->{'storm_chance'}, 77);
-    is(Dumper ($condition->{'bar_mod'}), Dumper {  'time'=> '0'});
+    is_deeply ($condition->{'bar_mod'},  {  'time'=> '0'});
     is($condition->{'time_description'}, 'at daybreak');
     is($condition->{'clouds_description'}, 'brooding');
     is($condition->{'wind_description'}, 'strong');
@@ -268,7 +268,7 @@ subtest 'test flesh_out_condition' => sub {
     is($condition->{'air_description'}, 'thick');
     is($condition->{'time_exact'}, '07:59');
     is($condition->{'temp_pop_mod'}, '0.10');
-    is(Dumper ($condition->{'pop_mod'}), Dumper( {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'}));
+    is_deeply ($condition->{'pop_mod'}, {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'});
     is($condition->{'air_pop_mod'}, '1.0');
     is($condition->{'forecast_description'}, 'clear');
 

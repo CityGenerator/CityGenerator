@@ -174,7 +174,8 @@ sub d {
         }
         return $total;
     }else{
-        return 1;
+        die "$die is not a valid dice format.";
+
     }
 }
 

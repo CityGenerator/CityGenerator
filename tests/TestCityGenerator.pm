@@ -200,7 +200,6 @@ subtest 'test flesh_out_city' => sub {
     is($city->{'area'},2.64);
     is($city->{'density'},'nominally');
     is($city->{'feetpercapita'},1500);
-print Dumper $city;
 
     done_testing();
 };
@@ -351,7 +350,7 @@ subtest 'test generate_city_crest' => sub {
     set_seed(1);
     $city=CityGenerator::create_city({'seed'=>'1'});
     CityGenerator::generate_city_crest($city);
-    is(Dumper($city->{'crest'}), Dumper({}));
+    is_deeply($city->{'crest'}, {});
 
     done_testing();
 };

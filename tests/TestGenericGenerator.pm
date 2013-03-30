@@ -5,6 +5,7 @@ package TestGenericGenerator;
 
 use strict;
 use warnings;
+use Test::Exception;
 use Test::More;
 use GenericGenerator;
 
@@ -64,16 +65,11 @@ subtest 'test set_seed' => sub {
 subtest 'test single d() ' => sub {
     my $result;
     srand(1);
-    $result=GenericGenerator::d(3);
-    is( $result, 1 );
-    $result=GenericGenerator::d(3);
-    is( $result, 2 );
-    $result=GenericGenerator::d(3);
-    is( $result, 3 );
-    $result=GenericGenerator::d(3);
-    is( $result, 2 );
-    $result=GenericGenerator::d('pie');
-    is( $result, 1 );
+    is( GenericGenerator::d(3) , 1 );
+    is( GenericGenerator::d(3) , 2 );
+    is( GenericGenerator::d(3) , 3 );
+    is( GenericGenerator::d(3) , 2 );
+    dies_ok( sub { GenericGenerator::d('pie') }, "pie is not a valid dice format." );
     done_testing();
 
   };
