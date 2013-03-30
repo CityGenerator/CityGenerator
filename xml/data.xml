@@ -1412,6 +1412,13 @@
         <option>a rumor</option>
     </motive>
 </travelermotivation>
+<dominance chance='30'>
+    <option          max="20" >snobbish</option>
+    <option min="21" max="40" >mean</option>
+    <option min="41" max="60" >cruel</option>
+    <option min="61" max="80" >very oppressive</option>
+    <option min="81"          >brutally oppressive</option>
+</dominance>
 <sex>
     <option          max="49" pronoun='he' >a male</option>
     <option min="50" max="98" pronoun='she'>a female</option>

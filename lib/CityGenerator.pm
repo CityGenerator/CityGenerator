@@ -555,6 +555,7 @@ sub set_races {
             $totalpercent+=$racepercent;
             $city->{'population_total'}+=$population;
             push @{$city->{'races'}}, $race;
+
         }
         my $other={'race'=>'other', 'percent'=>(100-$totalpercent), 'population'=>($city->{'pop_estimate'}-$city->{'population_total'}   ) };
         push @{$city->{'races'}}, $other;
@@ -758,6 +759,28 @@ sub generate_crime {
     return $city;
 }
 
+
+###############################################################################
+
+=head2 set_dominance
+
+select a race to be dominant, as well as the level of dominance.
+
+=cut
+
+###############################################################################
+sub set_dominance {
+    my ($city) = @_;
+
+    $city->{'dominance_chance'}=d(100) if (!defined $city->{'dominance_chance'} );
+    if ( $city->{'dominance_chance'}   <   $xml_data->{'dominance'}->{'chance'}){
+        $city->{'dominant_race'}=rand_from_array($city->{'races'})->{'race'} if (!defined $city->{'dominant_race'} );
+        $city->{'dominance_level'}=d(100)+$city->{'stats'}->{'authority'}-$city->{'stats'}->{'tolerance'} if (!defined $city->{'dominance_level'} );
+        my $dominance_option=roll_from_array( $city->{'dominance_level'},  $xml_data->{'dominance'}->{'option'}  );
+        $city->{'dominance_description'}=$dominance_option->{'content'}  if (!defined $city->{'dominance_description'} );
+    }
+    return $city;
+}
 
 1;
 

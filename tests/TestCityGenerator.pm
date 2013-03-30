@@ -518,7 +518,6 @@ subtest 'test set_races' => sub {
                                     { 'race' => 'other',    'percent' => 2,  'population' => 2 }
                                 ] );
 
-
     set_seed(1);
     $city=CityGenerator::create_city({});
     $city->{'races'}= [ 
@@ -533,6 +532,32 @@ subtest 'test set_races' => sub {
                                     { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
                                     { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
                                     { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                                ] );
+
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'available_races'}= ['dwarf','human','halfling'];
+    $city->{'race percentages'}= [85,10,3];
+    $city->{'pop_estimate'}=100;
+    CityGenerator::set_races($city);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                                    { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
+                                    { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
+                                    { 'race' => 'other',    'percent' => 2,  'population' => 2 }
+                                ] );
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'available_races'}= ['dwarf','human','halfling','half-orc'];
+    $city->{'race percentages'}= [30,30,20,15];
+    $city->{'pop_estimate'}=100;
+    CityGenerator::set_races($city);
+    is_deeply($city->{'races'},[ 
+                                    { 'race' => 'halfling', 'percent' => 30, 'population' => 30 },
+                                    { 'race' => 'human',    'percent' => 30, 'population' => 30 },
+                                    { 'race' => 'half-orc', 'percent' => 20, 'population' => 20 },
+                                    { 'race' => 'dwarf',    'percent' => 15, 'population' => 15 },
+                                    { 'race' => 'other',    'percent' =>  5, 'population' =>  5 }
                                 ] );
 
     done_testing();
@@ -917,8 +942,63 @@ subtest 'test generate_crime' => sub {
 };
 
 
+subtest 'test set_dominance' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({});
+    $city->{'available_races'}= ['dwarf','human','halfling'];
+    $city->{'race percentages'}= [85,10,3];
 
+    $city->{'pop_estimate'}=93;
+    CityGenerator::set_races($city);
+    CityGenerator::set_dominance($city);
+    is($city->{'dominance_chance'}, 76);
+    is($city->{'dominant_race'}, undef);
+    is($city->{'dominance_level'}, undef);
+    is($city->{'dominance_description'}, undef);
 
+    $city->{'dominance_chance'}     =1;
+    $city->{'dominant_race'}        =undef;
+    $city->{'dominance_level'}      =undef;
+    $city->{'dominance_description'}=undef;
+    CityGenerator::set_dominance($city);
+    is($city->{'dominance_chance'}, 1);
+    is($city->{'dominant_race'}, 'dwarf');
+    is($city->{'dominance_level'}, 87);
+    is($city->{'dominance_description'}, 'brutally oppressive');
+
+    $city->{'dominance_chance'}     =90;
+    $city->{'dominant_race'}        =undef;
+    $city->{'dominance_level'}      =undef;
+    $city->{'dominance_description'}=undef;
+    CityGenerator::set_dominance($city);
+    is($city->{'dominance_chance'}, '90');
+    is($city->{'dominant_race'}, undef);
+    is($city->{'dominance_level'}, undef);
+    is($city->{'dominance_description'}, undef);
+
+    $city->{'dominance_chance'}     =5;
+    $city->{'dominant_race'}        =undef;
+    $city->{'dominance_level'}      =50;
+    $city->{'dominance_description'}=undef;
+    CityGenerator::set_dominance($city);
+    is($city->{'dominance_chance'}, 5);
+    is($city->{'dominant_race'}, 'dwarf');
+    is($city->{'dominance_level'}, 50);
+    is($city->{'dominance_description'}, 'cruel');
+
+    $city->{'dominance_chance'}     =5;
+    $city->{'dominant_race'}        ='human';
+    $city->{'dominance_level'}      =50;
+    $city->{'dominance_description'}='smelly';
+    CityGenerator::set_dominance($city);
+    is($city->{'dominance_chance'}, 5);
+    is($city->{'dominant_race'}, 'human');
+    is($city->{'dominance_level'}, 50);
+    is($city->{'dominance_description'}, 'smelly');
+
+    done_testing();
+};
 
 
 

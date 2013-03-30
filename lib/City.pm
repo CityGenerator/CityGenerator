@@ -3,30 +3,6 @@
 #
 package City;
 
-sub generate_citizens {
-
-    my $limit = $city->{'specialisttotal'};
-    # no less than 0, no more than specialisttotal.
-    my $citizencount = min( $city->{'specialisttotal'}, int( &d( 6 + $city->{'size_modifier'} ) - 1 ) );
-
-    $city->{'citizens'} = [];
-    my $businesslist = $city->{'business'};
-    while ( $citizencount-- > 0 ) {
-        $GenericGenerator::seed++;
-        my $npc=NPCGenerator::create_npc({seed=>$GenericGenerator::seed    });
-
-        NPCGenerator::set_profession($npc, [shuffle keys %$businesslist] );
-
-        delete $businesslist->{ $npc->{'business'}  };
-
-        if ( scalar keys %$businesslist == 0 ) {
-            $businesslist = $city->{'business'};
-        }
-        push @{ $city->{'citizens'} }, $npc;
-    } ## end while ( $citizencount-- >...)
-    set_seed($originalseed);
-} ## end sub generate_citizens
-
 sub generate_watchtowers {
 
     # inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
@@ -91,7 +67,6 @@ sub generate_events {
         }
     }
     set_seed($originalseed);
-
 }
 
 
@@ -128,44 +103,6 @@ sub generate_visible_population {
 
     $city->{'visiblepopulation'}=$visiblepop;
 }
-
-sub generate_travelers{
-    my $travelercount= int( ( 6 +  $city->{'size_modifier'} )/2);
-    $city->{'travelers'}=[];
-    while ($travelercount-- ){
-        $GenericGenerator::seed++;
-        #TODO switch to roll_from_array
-        my $travelerclass= rand_from_array( [ keys %{$xml_data->{'classes'}->{'class'}}] );
-        my $traveler=$xml_data->{'classes'}->{'class'}->{$travelerclass};
-        $traveler->{'class'}=$travelerclass;
-        $traveler->{'level'}= min( 20 ,max(1, &d($traveler->{'max_level'}) + &d( $city->{'size_modifier'} )) ) ;
-        if ( &d(20) > 5 ){
-            my @races=shuffle get_races(   $city->{'base_pop'}   );
-            $traveler->{'race'}  =pop( @races  );
-            $traveler->{'reaction'}='oblivious';
-        }else{
-            $traveler->{'race'}  =get_other_race(  $city->{'base_pop'} );
-            $traveler->{'reaction'}='untrusting';
-        }
-        my $names=generate_npc_name(  $traveler->{'race'}->{'content'}  );
-
-        foreach my $nametype (qw/ firstname lastname fullname noname sex/ ){
-            if (defined $names->{$nametype}){
-                $traveler->{$nametype}= $names->{$nametype};
-            }
-        }
-        my $motivation=rand_from_array($xml_data->{'travelermotivation'}->{'motive'});
-        if (defined $motivation->{'option'}){
-            $traveler->{'motivation'}=$motivation->{'type'}." ".rand_from_array($motivation->{'option'})->{'content'};
-        }else{
-            $traveler->{'motivation'}=$motivation->{'type'};
-        }
-        push @{$city->{'travelers'}}, $traveler;
-
-    }
-    set_seed($originalseed);
-}
-
 
 sub generate_markets {
 
@@ -446,12 +383,6 @@ sub generate_support_area {
 }
 
 
-sub generate_area {
-    # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
-    $city->{'area'}=   int( $city->{'population'}->{'size'}*( $city->{'popdensity'}->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
-
-}
-
 sub generate_housing {
     $city->{'housing'}={};
 
@@ -507,16 +438,6 @@ sub generate_location {
     }
 }
 
-sub generate_crime{
-    #higher means more crime
-    # random -education + authority averaged with reversed morality.
-    # low morality= high reversed morality, which raises the average
-    my $crime_roll= int((&d(100) + $city->{'education'} - $city->{'authority'} + ( 100 - $city->{'moral'}) )/2);
-
-    $city->{'crime'}= roll_from_array($crime_roll, $xml_data->{'crime'}->{'option'});
-    $city->{'crime'}->{'roll'}=$crime_roll;
-
-}
 
 sub generate_imprisonment_rate{
     # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
@@ -606,112 +527,8 @@ sub set_govt_type {
     my $order=roll_from_array( $city->{'order'}, $xml_data->{'orderalignment'}->{'option'}   );
     $city->{'govtype'}->{'orderalignment'}= rand_from_array($order->{'adjective'})->{'content'};
 
-
-
 }
 
-sub generate_city_ethics {
-    foreach my $mod ( qw/ moral order/ ) {
-        $GenericGenerator::seed++;
-        $city->{$mod} = &d(100);
-        # adjust all modifiers for each race
-        for my $race ( @{ $city->{'races'} } ) {
-            $city->{$mod} += $race->{$mod};
-        }
-        # Use min/max to ensure that we fall in the proper ranges when all is said and done        
-        $city->{$mod}=max(1, min(100, $city->{$mod} ) );
-        # choose a description
-        my $description=roll_from_array( $city->{$mod} , $xml_data->{$mod.'alignment'}->{'option'});
-        $city->{$mod."description"}=rand_from_array( $description->{'adjective'})->{'content'};
-    }
-    $GenericGenerator::seed=set_seed($originalseed);
-}
-
-sub generate_pop_counts {
-    my $population = $city->{'population'}->{'size'};
-    my $newpop     = 0;
-    my @races;
-    my @newraces;
-
-    # Loop through each race percentage, and get a rough count based
-    # on population total
-    for my $race ( sort {$a->{'percent'} <=> $b->{'percent'}  }   @{ $city->{'races'} } ) {
-        $race->{'count'} = ceil( $population * $race->{'percent'} / 100 );
-        $newpop += $race->{'count'};
-        push @races, $race;
-    }
-
-    # Add up all of the rough counts to create a final population total
-    $city->{'population'}->{'size'} = $newpop;
-    $city->{'races'}      = \@races;
-
-    # Loop through the races a second time, recalulating percentages.
-    for my $race ( sort {$a->{'percent'} <=> $b->{'percent'}  }   @{ $city->{'races'} } ) {
-        $race->{'percent'} = int( $race->{'count'} / $newpop * 1000 ) / 10;
-        push @newraces, $race;
-    }
-    $city->{'races'} = \@newraces;
-}
-
-
-sub assign_races {
-    my $base_pop        = $city->{'base_pop'};
-    my @races;
-
-    # Get all of the available race options
-    my @available_races = get_races($base_pop);
-
-    # for each race percentage on the city,
-    # add assign a race and add it to the list.
-    for my $racepercentage ( @{ $city->{'races'} } ) {
-        my $newrace = pop(@available_races);
-        push @races, add_race_features( $racepercentage, $newrace );
-    }
-
-    # If the base_pop has an "off" race, add it.
-    if ( $city->{'add_other'} eq 'true' ) {
-        my $newrace              = get_other_race($base_pop);
-        my $replace_race_id      = &d( scalar @races ) - 1;
-        $races[$replace_race_id] = add_race_features( $races[$replace_race_id], $newrace );
-    }
-
-    # add the last percent of "others" because mrsassypants didn't grok that
-    # things added up to 99% for a reason.
-    push @races,add_race_features( {'percent'=>'1'}, get_races('other'));
-    for my $race ( @races ) {
-        $GenericGenerator::seed++;
-        my $roll= &d(10)-5 + $race->{'tolerance'} ;
-        my $tolerancetype = roll_from_array( $roll , $xml_data->{'tolerancealignment'}->{'option'} );
-        $race->{'tolerancedescription'}= rand_from_array( $tolerancetype->{'adjective'})->{'content'};
-    }
-    #replace race percentages with full race breakdowns.
-    $city->{'races'} = \@races;
-    set_seed($originalseed);
-}
-
-
-
-sub add_race_features {
-    my ( $race, $newrace ) = @_;
-    $race->{'content'}   = $newrace->{'content'};
-    $race->{'order'}     = $newrace->{'order'};
-    $race->{'moral'}     = $newrace->{'moral'};
-    $race->{'magic'}     = $newrace->{'magic'};
-    $race->{'authority'} = $newrace->{'auth'};
-    $race->{'economy'}   = $newrace->{'econ'};
-    $race->{'education'} = $newrace->{'edu'};
-    $race->{'travel'}    = $newrace->{'travel'};
-    $race->{'military'}    = $newrace->{'mil'};
-    $race->{'tolerance'} = $newrace->{'toler'};
-    $race->{'plural'}    = $newrace->{'plural'};
-    $race->{'type'}      = $newrace->{'type'};
-    $race->{'article'}   = $newrace->{'article'};
-
-    if (defined $race->{'dominant'} ){
-        $city->{'dominant_race'}  =  $newrace->{'content'};
-    }
-    return $race;
-}
 
 sub get_other_race {
     my ($type) = @_;
