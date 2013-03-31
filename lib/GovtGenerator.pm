@@ -99,14 +99,104 @@ sub create_govt {
     if ( !defined $govt->{'seed'} ) {
         $govt->{'seed'} = set_seed();
     }
+    generate_stats($govt);
+    set_govt_type($govt);
+
+    return $govt;
+} ## end sub create_govt
+
+###############################################################################
+
+
+=head3 generate_stats()
+
+This method is used to generate baseline stats
+
+=cut
+
+###############################################################################
+sub generate_stats {
+    my ($govt) = @_;
+    $govt->{'stats'}->{'corruption'} = d(100) if ( !defined $govt->{'stats'}->{'corruption'} );
+    $govt->{'stats'}->{'approval'}   = d(100) if ( !defined $govt->{'stats'}->{'approval'}   );
+    $govt->{'stats'}->{'efficiency'} = d(100) if ( !defined $govt->{'stats'}->{'efficiency'} );
+    $govt->{'stats'}->{'influence'}  = d(100) if ( !defined $govt->{'stats'}->{'influence'}  );
+    $govt->{'stats'}->{'unity'}      = d(100) if ( !defined $govt->{'stats'}->{'unity'}      );
+
+
+    return $govt;
+} ## end sub create_govt
+
+
+###############################################################################
+
+
+=head3 set_govt_type()
+
+This method is used to create a simple govt with nothing more than:
+
+=cut
+
+###############################################################################
+sub set_govt_type {
+    my ($govt) = @_;
+
+    my $govtype=rand_from_array($govt_data->{'govtypes'}->{'option'});
+    $govt->{'description'} =$govtype->{'content'} if (!defined $govt->{'description'} );
+    $govt->{'type_approval_mod'} =$govtype->{'approval_mod'} if (!defined $govt->{'type_approval_mod'} );
+    $govt->{'stats'}->{'approval'}+=$govt->{'type_approval_mod'};
+
+    return $govt;
+} ## end sub create_govt
+
+###############################################################################
+
+
+=head3 set_secondary_power()
+
+This method is used to create a secondary power and plot.
+
+=cut
+
+###############################################################################
+sub set_secondary_power {
+    my ($govt) = @_;
+
+    my $plot    = rand_from_array($govt_data->{'secondarypower'}->{'plot'});
+    my $power   = rand_from_array($govt_data->{'secondarypower'}->{'power'});
+    my $subplot = rand_from_array($power->{'subplot'});
+    $govt->{'secondary_power'}->{'plot'}         = $plot->{'content'}   if (!defined $govt->{'secondary_power'}->{'plot'} );
+    $govt->{'secondary_power'}->{'power'}        = $power->{'type'}     if (!defined $govt->{'secondary_power'}->{'power'} );
+    $govt->{'secondary_power'}->{'subplot_roll'} = d(100)               if (!defined $govt->{'secondary_power'}->{'subplot_roll'} );
+    if ( $govt->{'secondary_power'}->{'subplot_roll'}   < $power->{'subplot_chance'} ) {
+        $govt->{'secondary_power'}->{'subplot'} =$subplot->{'content'} if (!defined $govt->{'secondary_power'}->{'subplot'} );
+    }
+    return $govt;
+} ## end sub create_govt
+
+###############################################################################
+
+
+=head3 set_reputation()
+
+select how the population feels about the govt
+
+=cut
+
+###############################################################################
+sub set_reputation {
+    my ($govt) = @_;
+
+    my $reputation=rand_from_array($xml_data->{'reputation'}->{'option'});
+    $govt->{'reputation'} =$reputation->{'content'} if (!defined $govt->{'reputation'} );
+    $govt->{'reputation_approval_mod'} =$reputation->{'approval_mod'} if (!defined $govt->{'reputation_approval_mod'} );
+
 
     return $govt;
 } ## end sub create_govt
 
 
 
-
-#Generate Govts
 
 
 1;

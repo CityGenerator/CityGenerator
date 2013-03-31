@@ -2,16 +2,24 @@
 
 <data>
 
-<govtypes>
-    <govt approval_mod='0'  religion='2'  mil_mod='-1' >council</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
-    <govt approval_mod='-1' religion='0'  mil_mod='1'  >despot</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='1'  >baron</govt>
-    <govt approval_mod='0'  religion='0'  mil_mod='2'  >royalty</govt>
-    <govt approval_mod='-1' religion='-1' mil_mod='1'  >dictator</govt>
-    <govt approval_mod='0'  religion='-1' mil_mod='0'  >clergy</govt>
-    <govt approval_mod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
-</govtypes>
+<economic_system>
+    <option name="capitalism"      />
+    <option name="socialism"      />
+    <option name="communism"      />
+</economic_system>
+
+
+
+    <govtypes>
+        <option approval_mod='0'  >council</option>
+        <option approval_mod='0'  >powerful wizard</option>
+        <option approval_mod='-1' >despot</option>
+        <option approval_mod='0'  >baron</option>
+        <option approval_mod='0'  >royalty</option>
+        <option approval_mod='-1' >dictator</option>
+        <option approval_mod='0'  >clergy</option>
+        <option approval_mod='1'  >cult leader</option>
+    </govtypes>
 <secondarypower>
     <plot>openly assists</plot>
     <plot>openly denounces</plot>

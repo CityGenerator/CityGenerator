@@ -21,7 +21,6 @@ elif [[ "$1" == "full" ]]  ;then
 elif [[ "$1" == "cover" ]] ;then
     echo " checking code coverage"
 
-    perl ./tests/runtests.pl  && \
     perl -MDevel::Cover=+select,^lib/.*\.pm,+ignore,^/,tests/  ./tests/runtests.pl >/dev/null && \
     cover -summary && \
     chmod -R 755 cover_db
