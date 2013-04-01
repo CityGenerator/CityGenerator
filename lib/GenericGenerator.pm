@@ -24,7 +24,7 @@ use base qw(Exporter);
 
 ###############################################################################
 
-
+#TODO add a bound function- bound(1,100,$val)
 use Carp;
 use Data::Dumper;
 use Exporter;

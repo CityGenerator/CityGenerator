@@ -661,12 +661,25 @@ Generate the area the city covers.
 
 ###############################################################################
 sub generate_area {
+#TODO change to metric....
     my ($city) = @_;
+    $city->{'area'}=sprintf "%4.2f",    $city->{'population_total'}* $city->{'feetpercapita'} /107639; #hectares;
 
-    $city->{'area'}=   int( $city->{'population_total'}*( $city->{'feetpercapita'}-$city->{'size_modifier'}*10   ) /107639*100 )/100; #hectares;
+    my $stat_modifier=$city->{'stats'}->{'education'}+$city->{'stats'}->{'economy'}+$city->{'stats'}->{'magic'};
+
+    $city->{'arable_percentage'}= max(1,min(100 ,d(100) + $stat_modifier ))  if (!defined $city->{'arable_percentage'});
+
+    my $ppsm_modifier=  (  $city->{'stats'}->{'magic'}+5   )*4 +  $city->{'stats'}->{'economy'}  ; #people/sq mile
+
+    $city->{'people_per_square_mile'} = $xml_data->{'popdensity'}->{'ppsm'} + $ppsm_modifier  if (!defined $city->{'people_per_square_mile'} );
+
+    $city->{'support_area'}=sprintf "%4.2f", $city->{'population_total'}/$city->{'people_per_square_mile'} if (!defined $city->{'support_area'});
+    #Note, 259 hectares per sq mile.
+
 
     return $city;
 }
+
 
 ###############################################################################
 
@@ -680,9 +693,8 @@ Generate the density
 sub generate_popdensity {
     my ($city) = @_;
 
-    $city->{'density'}      =rand_from_array([keys %{ $xml_data->{'popdensity'}->{'option'}}] ) if (!defined $city->{'density'});
-    $city->{'feetpercapita'}=$xml_data->{'popdensity'}->{'option'}->{ $city->{'density'} }->{'feetpercapita'} if (!defined $city->{'feetpercapita'});
-
+    $city->{'feetpercapita'}= $xml_data->{'popdensity'}->{'base_pop'} - (2 * $city->{'size_modifier'}  * 100) if (! defined $city->{'feetpercapita'} );
+    $city->{'density_description'}=roll_from_array(  $city->{'feetpercapita'},  $xml_data->{'popdensity'}->{'option'} )->{'type'} if (!defined $city->{'density_description'});
     return $city;
 }
 

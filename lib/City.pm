@@ -489,45 +489,7 @@ sub generate_children {
 }
 
 
-sub generate_secondary_power {
-    $city->{'secondarypower'}={};
 
-    # select a plot
-    my $plotlist=$xml_data->{'secondarypower'}->{'plot'};
-    $city->{'secondarypower'}->{'plot'} = rand_from_array( $plotlist )->{'content'};
-
-    #select a power and a related subplot.
-    my $powerlist=$xml_data->{'secondarypower'}->{'power'} ;
-    my $power = rand_from_array(  $powerlist );
-    $city->{'secondarypower'}->{'power'} = rand_from_array(  $powerlist )->{'type'};
-    $city->{'secondarypower'}->{'subplot_chance'}=$power->{'subplot_chance'};
-    if ( &d(100) <= $power->{'subplot_chance'} ){
-        $city->{'secondarypower'}->{'subplot'} = rand_from_array(  $power->{'subplot'}  )->{'content'};
-    }
-}
-
-sub set_govt_type {
-    my $govttypelist=$xml_data->{'govtypes'}->{'govt'} ;
-    $city->{'govtype'} = rand_from_array(  $govttypelist  );
-
-    my $respectlist=$xml_data->{'respect'}->{'option'} ;
-    my $respect = rand_from_array(  $respectlist  );
-    $city->{'govtype'}->{'respect'}=$respect->{'content'};
-
-    # add random element + govtype base approval_mod + respect approval + authority mod
-    $city->{'govtype'}->{'approval_mod'}    = &d(4)-2 +  $city->{'govtype'}->{'approval_mod'} + $respect->{'approval_mod'} +  $city->{'authority'};
-
-    # ensure it falls in the proper range
-    $city->{'govtype'}->{'approval_mod'}=max(-5, min(5,  $city->{'govtype'}->{'approval_mod'}   ) );
-
-    $city->{'govtype'}->{'religion'}=&d(4)-2 +  $city->{'govtype'}->{'religion'} ; 
-
-    $city->{'govtype'}->{'mil_mod'}=  $city->{'govtype'}->{'mil_mod'} ; 
-
-    my $order=roll_from_array( $city->{'order'}, $xml_data->{'orderalignment'}->{'option'}   );
-    $city->{'govtype'}->{'orderalignment'}= rand_from_array($order->{'adjective'})->{'content'};
-
-}
 
 
 sub get_other_race {

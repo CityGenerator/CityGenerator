@@ -303,12 +303,23 @@
 </weapontypes>
 
 
-<popdensity>
-    <option name="sparsely"  feetpercapita="5000"/>
-    <option name="lightly"   feetpercapita="3000"/>
-    <option name="nominally" feetpercapita="1500"/>
-    <option name="densely"   feetpercapita="1000"/>
+<popdensity base_pop='3400' ppsm="180"  >
+    <option            max="1500" type="densely"   />
+    <option min="1501" max="3000" type="nominally" />
+    <option min="3001" max="4000" type="lightly"   />
+    <option min="4001"            type="sparsely"  />
+
 </popdensity>
+
+<!-- <popdensity base_pop='300' ppsk="70"  >
+    <option           max="140" type="densely"   />
+    <option min="141" max="280" type="nominally" />
+    <option min="281" max="370" type="lightly"   />
+    <option min="371"           type="sparsely"  />
+
+</popdensity>
+-->
+
 
 <nameoptions>
 	<race name='other'>
