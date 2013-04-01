@@ -459,20 +459,6 @@ sub generate_elderly {
 }
 
 
-sub generate_children {
-
-    $city->{'population'}->{'children'}={};
-    #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
-    # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
-    $city->{'population'}->{'children'}->{'percent'}= 20 + &d(15) +  $city->{'cityage'}->{'agemod'};
-
-    #calculate out the actual child population in whole numbers
-    $city->{'population'}->{'children'}->{'population'}= floor( $city->{'population'}->{'children'}->{'percent'}/100 * $city->{'population'}->{'size'});
-
-    #recalulate to make the percent accurate with the population
-    $city->{'population'}->{'children'}->{'percent'}= int($city->{'population'}->{'children'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
-
-}
 
 
 

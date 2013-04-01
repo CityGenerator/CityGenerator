@@ -794,6 +794,37 @@ sub set_dominance {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_children
+
+generate the number of children.
+
+=cut
+
+###############################################################################
+
+sub generate_children {
+    my ($city) = @_;
+
+    #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
+    # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
+    my $rough_percent= 20 + &d(15) + $city->{'age_mod'};
+
+    #calculate out the actual child population in whole numbers
+    $city->{'children'}->{'population'}= int(  $rough_percent / 100 * $city->{'population_total'}) if (!defined $city->{'children'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'children'}->{'percent'}=sprintf "%0.2f", $city->{'children'}->{'population'}/$city->{'population_total'}*100 if (!defined  $city->{'children'}->{'percent'});
+
+
+    return $city;
+}
+
+
+
+
+
 1;
 
 __END__

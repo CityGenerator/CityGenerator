@@ -17,7 +17,8 @@ require Exporter;
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw( );
 
-
+#TODO have a test that does an is_deeply on an entire structure.
+#TODO any test where I'm setting $city->{} values should me moved to create_city()
 subtest 'test create_city' => sub {
     my $city;
     set_seed(1);
@@ -1021,6 +1022,28 @@ subtest 'test set_dominance' => sub {
     done_testing();
 };
 
+
+subtest 'test generate_children' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>0});
+    CityGenerator::generate_children($city);
+    is_deeply($city->{'children'}, {'percent'=>'33.00','population'=>'330'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5});
+    CityGenerator::generate_children($city);
+    is_deeply($city->{'children'}, {'percent'=>'38.00','population'=>'380'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'children'=>{'population'=>400}});
+    CityGenerator::generate_children($city);
+    is_deeply($city->{'children'}, {'percent'=>'40.00','population'=>'400'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'children'=>{'percent'=>25, }});
+    CityGenerator::generate_children($city);
+    is_deeply($city->{'children'}, {'percent'=>'25','population'=>'380'});
+
+    done_testing();
+};
 
 
 
