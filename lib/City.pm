@@ -369,20 +369,6 @@ sub generate_businesses{
 }
 
 
-sub generate_support_area {
-    # Population * (feet per person - sizemodifier*10 ) =total feet per population adjusted for city size
-    # low fpp = successful
-    # a good economy,education, magic and law increases production by  5+5+50+5 36%
-    # ranges from 5+5+50+50=+110=290 to -5-5-50+0=-60 =0
-    # base+ed+econ + (order-50) + magic= 290 people per sqmile
-    # base+ed+econ + (order-50) + magic= 0 people per sqmile
-    # a desert with no economy, no education, no magic and no order can't support anyone.
-
-    my $people_per_sq_mile= $city->{'climate'}->{'pop_support'}+ $city->{'economy'} + $city->{'education'} + ($city->{'order'}-50) +  ($city->{'magic'}+5)*5 ;
-    $city->{'supportarea'}=   int($city->{'population'}->{'size'}/$people_per_sq_mile *100*258.999  )/100;
-}
-
-
 sub generate_housing {
     $city->{'housing'}={};
 
