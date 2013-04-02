@@ -443,24 +443,6 @@ sub generate_imprisonment_rate{
 
 }
 
-sub generate_elderly {
-
-    $city->{'population'}->{'elderly'}={};
-    #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
-    # 1% and 26%, which follows the reported international rates of the US census bureau, so STFU.
-    $city->{'population'}->{'elderly'}->{'percent'}= max(1.5, (6 + &d(5) -  $city->{'cityage'}->{'agemod'})  );
-
-    #calculate out the actual child population in whole numbers
-    $city->{'population'}->{'elderly'}->{'population'}= ceil( $city->{'population'}->{'elderly'}->{'percent'}/100 * $city->{'population'}->{'size'});
-
-    #recalulate to make the percent accurate with the population
-    $city->{'population'}->{'elderly'}->{'percent'}= ceil($city->{'population'}->{'elderly'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
-
-}
-
-
-
-
 
 
 

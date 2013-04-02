@@ -810,12 +810,39 @@ sub generate_children {
     #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
     # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
     my $rough_percent= 20 + &d(15) + $city->{'age_mod'};
-
+#FIXME the agemod should skew the other way!!!
     #calculate out the actual child population in whole numbers
     $city->{'children'}->{'population'}= int(  $rough_percent / 100 * $city->{'population_total'}) if (!defined $city->{'children'}->{'population'} );
 
     #recalulate to make the percent accurate with the population
     $city->{'children'}->{'percent'}=sprintf "%0.2f", $city->{'children'}->{'population'}/$city->{'population_total'}*100 if (!defined  $city->{'children'}->{'percent'});
+
+
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_elderly
+
+generate the number of elderly.
+
+=cut
+
+###############################################################################
+
+sub generate_elderly {
+    my ($city) = @_;
+    #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
+    # 1.5% and 26%, which follows the reported international rates of the US census bureau, so STFU.
+
+    my $rough_percent= max(1.5, (6 + &d(5) + $city->{'age_mod'}));
+
+    #calculate out the actual child population in whole numbers
+    $city->{'elderly'}->{'population'}= int(  $rough_percent / 100 * $city->{'population_total'}) if (!defined $city->{'elderly'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'elderly'}->{'percent'}=sprintf "%0.2f", $city->{'elderly'}->{'population'}/$city->{'population_total'}*100 if (!defined  $city->{'elderly'}->{'percent'});
 
 
     return $city;

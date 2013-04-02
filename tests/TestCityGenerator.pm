@@ -1023,6 +1023,27 @@ subtest 'test generate_children' => sub {
     done_testing();
 };
 
+subtest 'test generate_elderly' => sub {
+    my $city;
+    set_seed(1);
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>0});
+    CityGenerator::generate_elderly($city);
+    is_deeply($city->{'elderly'}, {'percent'=>'11.00','population'=>'110'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5});
+    CityGenerator::generate_elderly($city);
+    is_deeply($city->{'elderly'}, {'percent'=>'16.00','population'=>'160'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'elderly'=>{'population'=>400}});
+    CityGenerator::generate_elderly($city);
+    is_deeply($city->{'elderly'}, {'percent'=>'40.00','population'=>'400'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'elderly'=>{'percent'=>25, }});
+    CityGenerator::generate_elderly($city);
+    is_deeply($city->{'elderly'}, {'percent'=>'25','population'=>'160'});
+
+    done_testing();
+};
 
 
 
