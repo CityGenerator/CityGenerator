@@ -8,7 +8,6 @@ use warnings;
 use Test::More;
 use CityGenerator;
 use GenericGenerator qw( set_seed );
-
 use Data::Dumper;
 use XML::Simple;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
@@ -16,9 +15,10 @@ require Exporter;
 
 @ISA       = qw(Exporter);
 @EXPORT_OK = qw( );
-
+#TODO Get rid of the set_seed(1) lines laying around, replace with 'seed'=>1
 #TODO have a test that does an is_deeply on an entire structure.
 #TODO any test where I'm setting $city->{} values should me moved to create_city()
+#TODO consider die statements if requirements are no defined; die 'foo requires poptotal' if (!defined poptotal);
 subtest 'test create_city' => sub {
     my $city;
     set_seed(1);
@@ -664,7 +664,7 @@ subtest 'test generate_streets' => sub {
     done_testing();
 };
 
-subtest 'test generate_area feet' => sub {
+subtest 'test generate_area' => sub {
     my $city;
     set_seed(1);
     $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1000});
@@ -673,6 +673,22 @@ subtest 'test generate_area feet' => sub {
     is($city->{'support_area'}, 4.78);
     is($city->{'arable_percentage'}, 65);
     is($city->{'people_per_square_mile'}, 209);
+    is($city->{'protected_percent'}, 86);
+    is($city->{'protected_area'},   7.99 );
+    is($city->{'border_length'},    13.13  );
+    is($city->{'tower_count'},      undef  );
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>1000,'feetpercapita'=>1000, protected_percent=>'100', 'protected_area'=>9.29});
+    #FIXME Why is the support area different? between this and the one above?
+    CityGenerator::generate_area($city);
+    is($city->{'area'}, 9.29);
+    is($city->{'support_area'}, 4.63);
+    is($city->{'arable_percentage'}, 81);
+    is($city->{'people_per_square_mile'}, 216);
+    is($city->{'protected_percent'}, 100);
+    is($city->{'protected_area'},   9.29 );
+    is($city->{'border_length'},    12.32  );
+
 
     set_seed(1);
     $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1500,'arable_percentage'=>100,'people_per_square_mile'=>1000});
@@ -688,11 +704,6 @@ subtest 'test generate_area feet' => sub {
     is($city->{'area'}, 27.87);
     is($city->{'support_area'}, 100);
 
-    done_testing();
-};
-
-subtest 'test generate_area poptool' => sub {
-    my $city;
     set_seed(1);
     $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1000});
     CityGenerator::generate_area($city);
@@ -1046,6 +1057,65 @@ subtest 'test generate_elderly' => sub {
 };
 
 
+subtest 'test generate_imprisonment_rate' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>0});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'0.20','population'=>'2'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'order'=>100});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'0.50','population'=>'5'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'order'=>0});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'0.10','population'=>'1'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'size_modifier'=>12});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'0.30','population'=>'3'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'imprisonment_rate'=>{'population'=>400}});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'40.00','population'=>'400'});
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'age_mod'=>5, 'imprisonment_rate'=>{'percent'=>25, }});
+    CityGenerator::generate_imprisonment_rate($city);
+    is_deeply($city->{'imprisonment_rate'}, {'percent'=>'25','population'=>'2'});
+
+    done_testing();
+};
+
+
+
+subtest 'test generate_housing' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000',});
+    CityGenerator::generate_housing($city);
+    is_deeply($city->{'housing'}, {'poor'=>34,'wealthy'=>2, 'average'=>70, 'abandoned'=>20, 'total'=>106,
+                                    'poor_population'=>500,'wealthy_population'=>10,'average_population'=>,490,
+                                    'poor_percent'=>50,'wealthy_percent'=>1,'average_percent'=>,49, 'abandoned_percent'=>19});
+
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'stats'=>{'economy'=>0}});
+    CityGenerator::generate_housing($city);
+    is_deeply($city->{'housing'}, {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
+                                    'poor_population'=>300,'wealthy_population'=>10,'average_population'=>,690,
+                                    'poor_percent'=>30,'wealthy_percent'=>1,'average_percent'=>,69, 'abandoned_percent'=>11});
+
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000', 'stats'=>{'economy'=>0}, 'housing'=>
+                                            {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
+                                            'poor_population'=>300,'wealthy_population'=>10,'average_population'=>,690,
+                                            'poor_percent'=>30,'wealthy_percent'=>1,'average_percent'=>,69, 'abandoned_percent'=>11}       });
+    CityGenerator::generate_housing($city);
+    is_deeply($city->{'housing'}, {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
+                                    'poor_population'=>300,'wealthy_population'=>10,'average_population'=>,690,
+                                    'poor_percent'=>30,'wealthy_percent'=>1,'average_percent'=>,69, 'abandoned_percent'=>11});
+
+
+
+};
 
 
 1;

@@ -31,6 +31,7 @@ use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use Math::Complex ':pi'; 
 use NPCGenerator;
 use RegionGenerator;
 use List::Util 'shuffle', 'min', 'max';
@@ -666,15 +667,34 @@ sub generate_area {
     $city->{'area'}=sprintf "%4.2f",    $city->{'population_total'}* $city->{'feetpercapita'} /107639; #hectares;
 
     my $stat_modifier=$city->{'stats'}->{'education'}+$city->{'stats'}->{'economy'}+$city->{'stats'}->{'magic'};
-
     $city->{'arable_percentage'}= max(1,min(100 ,d(100) + $stat_modifier ))  if (!defined $city->{'arable_percentage'});
 
     my $ppsm_modifier=  (  $city->{'stats'}->{'magic'}+5   )*4 +  $city->{'stats'}->{'economy'}  ; #people/sq mile
-
     $city->{'people_per_square_mile'} = $xml_data->{'popdensity'}->{'ppsm'} + $ppsm_modifier  if (!defined $city->{'people_per_square_mile'} );
 
     $city->{'support_area'}=sprintf "%4.2f", $city->{'population_total'}/$city->{'people_per_square_mile'} if (!defined $city->{'support_area'});
     #Note, 259 hectares per sq mile.
+
+    $city->{'protected_percent'} = 70+d(30)  if (!defined $city->{'protected_percent'});
+    $city->{'protected_area'} = sprintf("%4.2f",  $city->{'area'}*  $city->{'protected_percent'} /100) if (!defined $city->{'protected_area'} );
+
+    my $radius= sqrt($city->{'protected_area'} / pi);
+    
+    $city->{'border_length'}= sprintf  "%4.2f",  2* pi * $radius *(100 + d(40))/100  ; 
+
+    $city->{'tower_count'}=undef;
+    
+
+
+
+
+
+
+    #$city->{'walls'}->{'towercount'}=$city->{'walls'}->{'length'} / ( 100 + $city->{'size_modifier'}*$city->{'popdensity'}->{'feetpercapita'}/1000);
+    #$city->{'walls'}->{'towercount'}=int($city->{'walls'}->{'towercount'} * (1+ ($city->{'economy'}*2/100  ) ));
+
+
+
 
 
     return $city;
@@ -848,6 +868,74 @@ sub generate_elderly {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_imprisonment_rate
+
+generate the number of imprisonment_rate.
+
+=cut
+
+###############################################################################
+
+sub generate_imprisonment_rate {
+    my ($city) = @_;
+    # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
+    # high authority means more in jail
+    # low education means more in jail
+    # larger city means more in jail
+    # higher order means more in jail
+
+    my $percent_mod=$city->{'stats'}->{'authority'} - $city->{'stats'}->{'education'}  + $city->{'size_modifier'} ;
+
+    my $rough_percent = (((15 + $percent_mod )/5) +1 )*($city->{'order'}+50)/100 /10 ;
+
+    #calculate out the actual child population in whole numbers
+    $city->{'imprisonment_rate'}->{'population'}= int(  $rough_percent / 100 * $city->{'population_total'}) if (!defined $city->{'imprisonment_rate'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'imprisonment_rate'}->{'percent'}=sprintf "%0.2f", $city->{'imprisonment_rate'}->{'population'}/$city->{'population_total'}*100 if (!defined  $city->{'imprisonment_rate'}->{'percent'});
+
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_housing
+
+generate the number of houses for the population
+
+=cut
+
+###############################################################################
+
+sub generate_housing {
+    my ($city) = @_;
+
+    my $housing_quality=$xml_data->{'housing'}->{'quality'};
+    my $economy=$city->{'stats'}->{'economy'};
+
+    $city->{'housing'}->{'poor_percent'}   =$housing_quality->{'poor'}->{'percent'}    - ($economy*5) if (!defined $city->{'housing'}->{'poor_percent'});
+    $city->{'housing'}->{'average_percent'}=$housing_quality->{'average'}->{'percent'} + ($economy*5) if (!defined $city->{'housing'}->{'average_percent'});
+    $city->{'housing'}->{'wealthy_percent'}=$housing_quality->{'wealthy'}->{'percent'}                if (!defined $city->{'housing'}->{'wealthy_percent'});
+    $city->{'housing'}->{'abandoned_percent'} = (11-($economy)*2 )                                    if (!defined $city->{'housing'}->{'abandoned_percent'}); # 1-21%
+
+
+    $city->{'housing'}->{'poor_population'}     = ceil($city->{'population_total'} * $city->{'housing'}->{'poor_percent'}/100)    if (!defined $city->{'housing'}->{'poor_population'});
+    $city->{'housing'}->{'average_population'}  = ceil($city->{'population_total'} * $city->{'housing'}->{'average_percent'}/100) if (!defined $city->{'housing'}->{'average_population'});
+    $city->{'housing'}->{'wealthy_population'}  = ceil($city->{'population_total'} * $city->{'housing'}->{'wealthy_percent'}/100) if (!defined $city->{'housing'}->{'wealthy_population'});
+
+
+    $city->{'housing'}->{'poor'}     = ceil($city->{'housing'}->{'poor_population'}    / $housing_quality->{'poor'}->{'density'})    if (!defined $city->{'housing'}->{'poor'});
+    $city->{'housing'}->{'average'}  =  int($city->{'housing'}->{'average_population'} / $housing_quality->{'average'}->{'density'}) if (!defined $city->{'housing'}->{'average'});
+    $city->{'housing'}->{'wealthy'}  =  int($city->{'housing'}->{'wealthy_population'} / $housing_quality->{'wealthy'}->{'density'}) if (!defined $city->{'housing'}->{'wealthy'});
+
+    $city->{'housing'}->{'total'} = $city->{'housing'}->{'poor'} + $city->{'housing'}->{'average'} + $city->{'housing'}->{'wealthy'} if (!defined $city->{'housing'}->{'total'});
+    $city->{'housing'}->{'abandoned'} = int( $city->{'housing'}->{'total'} * $city->{'housing'}->{'abandoned_percent'}/100 );
+
+
+    return $city;
+}
 
 
 

@@ -12,11 +12,11 @@ use TestNPCGenerator;
 use TestConditionGenerator;
 use TestMilitaryGenerator;
 use TestTavernGenerator;
-use TestEventGenerator;
 use TestDistrictGenerator;
 use TestMythGenerator;
-use TestCityGenerator;
 use TestGovtGenerator;
+use TestCityGenerator;
+use TestEventGenerator;
 
 
 done_testing();

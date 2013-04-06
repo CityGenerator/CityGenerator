@@ -1359,7 +1359,7 @@
     <option min="99"          pronoun='it'>an androgynous</option>
 </sex>
 <housing>
-    <quality name="poor"    percent="30" density="15" required='true'/>
+    <quality name="poor"    percent="30" density="15"/>
     <quality name="average" percent="69" density="7"/>
     <quality name="wealthy"   percent="1"  density="5"/>
 

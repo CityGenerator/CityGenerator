@@ -3,53 +3,6 @@
 #
 package City;
 
-sub generate_watchtowers {
-
-    # inner wall is 1245 with 29 towers, meaning towers every 43 yards; 96876 square meters
-    # outer wall is 1320 with 18 towers, meaning every 73
-
-    # Determine  walled area - only the city core is walled;
-    # best way to calculate that is population@ max density 
-    my $protectedcitizens = $city->{'population'}->{'wealthy'}+$city->{'population'}->{'average'};
-    my $protectedfeet     = $protectedcitizens*$city->{'popdensity'}->{'feetpercapita'}; #nominal density
-    my $protectedhectares = int($protectedfeet/107639*100)/100;
-    $city->{'walls'}->{'protectedarea'}= $protectedhectares;
-    $city->{'walls'}->{'protectedpercent'}= int($protectedhectares/$city->{'area'}*1000)/10;
-    $city->{'walls'}->{'length'}= int(sqrt($protectedhectares )*100*4);
-    $city->{'walls'}->{'towercount'}=$city->{'walls'}->{'length'} / ( 100 + $city->{'size_modifier'}*$city->{'popdensity'}->{'feetpercapita'}/1000);
-    $city->{'walls'}->{'towercount'}=int($city->{'walls'}->{'towercount'} * (1+ ($city->{'economy'}*2/100  ) ));
-}
-
-sub generate_kingdom_troops {
-    $city->{'militarystats'}->{'kingdompercent'}=max(0, &d(8)*5 + $city->{'size_modifier'});
-    
-    $city->{'militarystats'}->{'kingdom'}       = int($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'kingdompercent'}/100);
-    $city->{'militarystats'}->{'kingdompercent'}= int($city->{'militarystats'}->{'kingdom'}/ $city->{'militarystats'}->{'active'} * 1000)/10;
-    
-}
-
-
-sub generate_military_stats {
-    $city->{'militarystats'}={};
-    #factors - is there a barraks district? +10%
-    # order, mil, authority,
-    # base military
-    $city->{'militarystats'}->{'activepercent'}  =  max(0, 10 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/2  );
-    $city->{'militarystats'}->{'reservepercent'} =  max(0,  3 + $city->{'military'} + ($city->{'govtype'}->{'mil_mod'}  +  $city->{'authority'})/4   ) ;
-    $city->{'militarystats'}->{'parapercent'}    =  max(0,  7 + $city->{'military'} +  $city->{'govtype'}->{'mil_mod'} );
-    $city->{'militarystats'}->{'inelegable_pop'} = ceil( $city->{'population'}->{'imprisonment'}->{'population'} + $city->{'population'}->{'children'}->{'population'}/2 +$city->{'population'}->{'elderly'}->{'population'});
-
-    $city->{'militarystats'}->{'active'}  =  ceil($city->{'population'}->{'size'}                * $city->{'militarystats'}->{'activepercent'}/100)  ;
-    $city->{'militarystats'}->{'reserve'} =  ceil($city->{'population'}->{'size'}                * $city->{'militarystats'}->{'reservepercent'}/100) ;
-    $city->{'militarystats'}->{'para'}    =  ceil($city->{'militarystats'}->{'active'} * $city->{'militarystats'}->{'parapercent'}/100)    ;
-    $city->{'militarystats'}->{'militia'} =  ceil($city->{'population'}->{'size'} - $city->{'militarystats'}->{'inelegable_pop'} );
-
-    $city->{'militarystats'}->{'activepercent'}  = ceil(  $city->{'militarystats'}->{'active'}/$city->{'population'}->{'size'}*10000  )/100;
-    $city->{'militarystats'}->{'reservepercent'} = ceil(  $city->{'militarystats'}->{'reserve'}/$city->{'population'}->{'size'}*10000  )/100;
-    $city->{'militarystats'}->{'parapercent'}    = ceil(  $city->{'militarystats'}->{'para'}/$city->{'militarystats'}->{'active'} *10000  )/100;
-    $city->{'militarystats'}->{'militiapercent'} = ceil(  $city->{'militarystats'}->{'militia'}/$city->{'population'}->{'size'}*10000  )/100;
-    
-}
 
 sub generate_events {
     my $event_chance=$xml_data->{'events'}->{'chance'};
@@ -99,51 +52,6 @@ sub generate_visible_population {
         $visiblepop=ceil($visiblepop/2);
     }
     # Finally, if it's not nice out, cut the population even further.
-    $visiblepop=ceil($visiblepop*$city->{'weather'}->{'tempmodifier'});
-
-    $city->{'visiblepopulation'}=$visiblepop;
-}
-
-sub generate_markets {
-
-    $city->{'markets'}=[];
-    # minimum of 2 markets, max of size modifier(9)
-    my $marketcount= max(2, &d( int(6 + $city->{'size_modifier'})/2     ));
-
-
-    # loop through the marketcount to randomly select markets
-    # this allows us to get "duplicates"
-    my $tries=scalar( @{ $xml_data->{'markets'}->{'option'} })*2;
-    while ( $marketcount > 0 and $tries-- >0){
-        $GenericGenerator::seed++;
-        # get a shuffled list of markets
-        my @markets=shuffle @{ $xml_data->{'markets'}->{'option'} };
-
-        #pop a single market off
-        my $market = pop  @markets ;
-
-        # modify the chance of the market by the size modifier
-        my $chance_of_market= $market->{'chance'} +  $city->{'size_modifier'};
-
-        # if we succeed, decrement the marketcount and push the market to 
-        # our queue
-        if (&d(100) <= $chance_of_market){
-            $marketcount--;
-            my $newmarket={ 
-                                'type'=> $market->{'type'}, 
-                                'name'=> $market->{'marketname'}.' '.$market->{'type'}
-                            };
-            # set market secret
-            if ( &d(100) <$market->{'secret'} ){
-                $newmarket->{'secret'}='secret ';
-            }else{
-                $newmarket->{'secret'}='';
-            }
-
-            # select market detail
-            if ( &d(100) > 50 ){
-                my $marketoption=rand_from_array($market->{'option'});
-                $newmarket->{'name'}=  $newmarket->{'secret'}. $marketoption->{'content'}.' '.$newmarket->{'name'};
             }
 
             # push it to the queue
@@ -175,37 +83,6 @@ sub generate_neighborRealms {
         push @{$city->{'regions'}}, $region;
     }
     set_seed($originalseed);
-}
-
-
-
-sub generate_neighbors {
-
-    #FIXME since set_ctiy_size acts on the global city, we temporarily switch origcity and city around
-    # This is a hack, but it works.
-    my $origcity=$city;
-    my $continentseed=$originalseed-$originalseed%100;
-    for (my $i = 0 ; $i < 100; $i++){
-        my $neighborid=$continentseed+$i;
-
-        set_seed($neighborid);
-        $city={}; 
-        $city->{'id'}=$neighborid;
-        $city->{'name'}= parse_object($xml_data->{'cityname'})->{'content'};
-        set_city_size();
-        set_city_type();
-        generate_pop_type();
-        assign_races();
-#        generate_pop_counts();
-        # Setting seed=neighborid+oldseed will guarantee the same relationship between A and B
-       my $mixseed=$neighborid+$originalseed;
-        set_seed($mixseed);
-        $city->{'relation'} =" $neighborid + ".$originalseed."  = $GenericGenerator::seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
-
-        push @{$origcity->{'neighbors'}}, $city;
-    }
-    set_seed($originalseed);
-    $city=$origcity
 }
 
 sub adjust_chance_for_port{
@@ -368,44 +245,6 @@ sub generate_businesses{
 
 }
 
-
-sub generate_housing {
-    $city->{'housing'}={};
-
-    my @qualitylist= keys %{ $xml_data->{'housing'}->{'quality'}};
-
-    $xml_data->{'housing'}->{'quality'}->{'poor'}->{'percent'}-=($city->{'economy'}*5);
-
-    $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}+=($city->{'economy'}*5);
-
-
-    $city->{'population'}->{'wealthy'}=ceil( $city->{'population'}->{'size'} * $xml_data->{'housing'}->{'quality'}->{'wealthy'}->{'percent'}/100 );
-    $city->{'population'}->{'average'}=ceil( $city->{'population'}->{'size'} * $xml_data->{'housing'}->{'quality'}->{'average'}->{'percent'}/100 );
-    $city->{'population'}->{'poor'}= $city->{'population'}->{'size'} - $city->{'population'}->{'average'} - $city->{'population'}->{'wealthy'} ;
-
-    foreach my $housingquality ( @qualitylist ){
-
-        my $housingtype= $xml_data->{'housing'}->{'quality'}->{$housingquality};
-
-        # fractional housecount total, but you can't have .3 of a house... 
-        my $housecount= $city->{'population'}->{'size'}  *   $housingtype->{'percent'}/$housingtype->{'density'}/100;
-
-        # to ensure minimal housing, we require poor housing via ceil, so we always have 1.
-        if (defined $housingtype->{'required'}){
-            $city->{'housing'}->{$housingquality}        = ceil ($housecount); # ceil used because we want at least 1 poor house
-        }else{
-            $city->{'housing'}->{$housingquality}        = floor ($housecount);
-        }
-        $city->{'housing'}->{'total'}+=$city->{'housing'}->{$housingquality}
-
-    }
-
-    # Calculate abandoned by finding 11% of total and adjusting it by economy conditions (+/-10%), min of 1
-    $city->{'housing'}->{'abandoned'}   = ceil($city->{'housing'}->{'total'} *(11-($city->{'economy'})*2 )/100 );
-
-}
-
-
 sub generate_location {
     $city->{'location'} = { 'landmarks'=>[]  };
     my $locationlist=$xml_data->{'locations'}->{'location'};
@@ -425,36 +264,6 @@ sub generate_location {
 }
 
 
-sub generate_imprisonment_rate{
-    # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
-    # high authority means more in jail
-    # low education means more in jail
-    # larger city means more in jail
-    # higher order means more in jail
-    $city->{'population'}->{'imprisonment'}={};
-    $city->{'population'}->{'imprisonment'}->{'percent'} = (((15 + $city->{'authority'} - $city->{'education'}  +$city->{'size_modifier'} )/5) +1 )*($city->{'order'}+50)/100 /10 ;
-
-    #calculate out the actual prison population in whole numbers
-    $city->{'population'}->{'imprisonment'}->{'population'}= ceil( $city->{'population'}->{'imprisonment'}->{'percent'}/100 * $city->{'population'}->{'size'});
-
-    #recalulate to make the percent accurate with the population
-    $city->{'population'}->{'imprisonment'}->{'percent'}= int($city->{'population'}->{'imprisonment'}->{'population'}/$city->{'population'}->{'size'}*1000)/10;
-
-
-}
-
-
-
-
-sub get_other_race {
-    my ($type) = @_;
-    my @races;
-    for my $race ( shuffle @{ $xml_data->{'races'}->{'race'} } ) {
-        if ( $race->{'type'} ne $type  and   ($race->{'type'} ne 'other') ) {
-            return $race;
-        }
-    }
-} 
 
 
 1;

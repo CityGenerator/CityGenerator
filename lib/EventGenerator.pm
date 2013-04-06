@@ -79,8 +79,6 @@ This method is used to create a simple event with nothing more than:
 
 =item * a seed
 
-=item * a name
-
 =back
 
 =cut
@@ -103,10 +101,45 @@ sub create_event {
     return $event;
 } ## end sub create_event
 
+###############################################################################
+
+=head3 select_base()
+
+select the base type of event.
+
+=cut
+
+###############################################################################
+sub select_base {
+    my ($event) = @_;
+
+    $event->{'base'} = rand_from_array( [ keys %{$event_data->{'event'} }  ] ) if (!defined $event->{'base'});
+    $event->{'name'} = $event->{'base'} ;
+
+    return $event;
+}
 
 
+###############################################################################
 
-#Generate Districts
+=head3 select_modifier()
+
+select the modifier for a given base type of event.
+
+=cut
+
+###############################################################################
+sub select_modifier {
+    my ($event) = @_;
+
+    my $base= $event_data->{'event'}->{$event->{'base'}};
+
+    $event->{'modifier'} = rand_from_array( $base->{'option'} )->{'content'} if (!defined $event->{'modifier'});
+    $event->{'name'} = $event->{'modifier'} ." ". $event->{'base'};
+
+    return $event;
+}
+
 
 
 1;

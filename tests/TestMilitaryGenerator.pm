@@ -157,6 +157,100 @@ subtest 'test generate_favored_weapon' => sub {
 };
 
 
+subtest 'test set_troop_size' => sub {
+    my $military;
+
+    $military=MilitaryGenerator::create_military({'seed'=>1});
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'population_total'}, 8510, "random population size");
+    is($military->{'active_percent'},14);
+    is($military->{'reserve_percent'},6.5);
+    is($military->{'para_percent'},5);
+    is($military->{'active_troops'},1191);
+    is($military->{'reserve_troops'},553);
+    is($military->{'para_troops'},59);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, });
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'population_total'}, 10000, "population size");
+    is($military->{'active_percent'},14);
+    is($military->{'reserve_percent'},5.25);
+    is($military->{'para_percent'},4);
+    is($military->{'active_troops'},1400);
+    is($military->{'reserve_troops'},525);
+    is($military->{'para_troops'},56);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'military_mod'=>5,});
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},15.5);
+    is($military->{'reserve_percent'},6.75);
+    is($military->{'para_percent'},4.5);
+    is($military->{'active_troops'},1550);
+    is($military->{'reserve_troops'},675);
+    is($military->{'para_troops'},69);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'authority_mod'=>5,});
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},14);
+    is($military->{'reserve_percent'},5.75);
+    is($military->{'para_percent'},5);
+    is($military->{'active_troops'},1400);
+    is($military->{'reserve_troops'},575);
+    is($military->{'para_troops'},70);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'military_mod'=>5, 'authority_mod'=>5 });
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},20);
+    is($military->{'reserve_percent'},8.75);
+    is($military->{'para_percent'},8);
+    is($military->{'active_troops'},2000);
+    is($military->{'reserve_troops'},875);
+    is($military->{'para_troops'},160);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'active_percent'=>5 });
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},5);
+    is($military->{'reserve_percent'},5.25);
+    is($military->{'para_percent'},4.5);
+    is($military->{'active_troops'},500);
+    is($military->{'reserve_troops'},525);
+    is($military->{'para_troops'},22);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'active_percent'=>5, 'reserve_percent'=>5, 'para_percent'=>10 });
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},5);
+    is($military->{'reserve_percent'},5);
+    is($military->{'para_percent'},10);
+    is($military->{'active_troops'},500);
+    is($military->{'reserve_troops'},500);
+    is($military->{'para_troops'},50);
+
+    $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'active_percent'=>5, 'reserve_percent'=>5, 'para_percent'=>10,  'active_troops'=>501, 'reserve_troops'=>501, 'para_troops'=>51 });
+    $military=MilitaryGenerator::set_troop_size($military);
+    is($military->{'seed'},1);
+    is($military->{'active_percent'},5);
+    is($military->{'reserve_percent'},5);
+    is($military->{'para_percent'},10);
+    is($military->{'active_troops'},501);
+    is($military->{'reserve_troops'},501);
+    is($military->{'para_troops'},51);
+
+
+
+    done_testing();
+};
+
+
+
+
+
 
 
 1;

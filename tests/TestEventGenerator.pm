@@ -28,9 +28,51 @@ subtest 'test create_event' => sub {
     $event=EventGenerator::create_event({'seed'=>12});
     is($event->{'seed'},12);
 
+    done_testing();
+};
+
+subtest 'test select_base' => sub {
+    my $event;
+    $event=EventGenerator::create_event({'seed'=>12});
+    EventGenerator::select_base($event);
+
+    is($event->{'seed'},12);
+    is($event->{'base'}, 'disaster');
+    is($event->{'name'}, 'disaster');
+
+    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'foo'});
+    EventGenerator::select_base($event);
+
+    is($event->{'seed'},12);
+    is($event->{'base'}, 'foo');
+    is($event->{'name'}, 'foo');
 
 
     done_testing();
 };
+
+subtest 'test select_modifier' => sub {
+    my $event;
+    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'war'});
+    EventGenerator::select_modifier($event);
+
+    is($event->{'seed'},12);
+    is($event->{'base'},     'war');
+    is($event->{'modifier'}, 'preparations for');
+    is($event->{'name'},     'preparations for war');
+
+
+    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'war', 'modifier'=>'foo'});
+    EventGenerator::select_modifier($event);
+
+    is($event->{'seed'},12);
+    is($event->{'base'},     'war');
+    is($event->{'modifier'}, 'foo');
+    is($event->{'name'},     'foo war');
+
+
+    done_testing();
+};
+
 
 1;
