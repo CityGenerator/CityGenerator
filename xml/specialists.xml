@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<buildings>
+<data>
+
+    <specialist name="alchemist"        building="alchemy shop"    sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="social worker"    building="almshouse"       sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="apothecary"       building="apothecary"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="armorer"          building="armorsmithy"     sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="bounty hunter"    building=""                sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="astrologer"       building="astrologer"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="baker"            building="bakery"          sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="banker"           building="bank"            sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="barber"           building="barbershop"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="soldier"          building="barracks"        sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="lawyer"           building="barrister"       sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="blacksmith"       building="smithy"          sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="ship captain"     building="boat for hire"   sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="bookseller"       building="bookstore"       sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="bowyer"           building="bowyer"          sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="brewer"           building="brewery"         sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="prostitute"       building="brothel"         sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="butcher"          building="butchershop"     sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="carpenter"        building="lumberyard"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="cartwright"       building="cartwright"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="Courtier"         building="castle"          sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="chandler"         building="chandlery shop"  sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="cheesemaker"      building="cheeseshop"      sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="priest"           building="church"          sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="cobbler"          building="cobblershop"     sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="cooper"           building="cooperage"       sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="dyer"             building="dyer"            sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="engineer"         />
+    <specialist name="entertainer"      />
+    <specialist name="fishmonger"       />
+    <specialist name="furrier"          />
+    <specialist name="glassblower"      />
+    <specialist name="undertaker" building="graveyard"/>
+    <specialist name="grocer"           />
+    <specialist name="doctor" building="healer"/>
+    <specialist name="herbalist"/>
+    <specialist name="good samaritan" building="hostel"/>
+    <specialist name="interpreter"/>
+    <specialist name="jailer" building="jailhouse"/>
+    <specialist name="jeweler"/>
+    <specialist name="laborer"/>
+    <specialist name="mercenary"/>
+    <specialist name="leatherworker"/>
+    <specialist name="sheriff" building="law enforcement"/>
+    <specialist name="librarian" building="library"/>
+    <specialist name="locksmith"/>
+    <specialist name="lumberjack" building="lumbermill"/>
+    <specialist name="merchant" building="magic store"/>
+    <specialist name="mason"/>
+    <specialist name="merchant"/>
+    <specialist name="messenger"/>
+    <specialist name="miller"/>
+    <specialist name="navigator"/>
+    <specialist name="official"/>
+    <specialist name="social worker" building="orphanage"/>
+    <specialist name="physician"/>
+    <specialist name="porter"/>
+    <specialist name="potter"/>
+    <specialist name="provisioner"/>
+    <specialist name="merchant" building="rare crafts and trades"/>
+    <specialist name="saddler"/>
+    <specialist name="sage"/>
+    <specialist name="teacher" building="school"/>
+    <specialist name="scribe"/>
+    <specialist name="ship builder" building="shipyard"/>
+    <specialist name="priest" building="shrine"/>
+    <specialist name="smith"/>
+    <specialist name="specialty smith"/>
+    <specialist name="stablehand" building="stable"/>
+    <specialist name="tailor/seamstress"/>
+    <specialist name="tanner"/>
+    <specialist name="innkeeper" building="tavern/inn"/>
+    <specialist name="teamster"/>
+    <specialist name="priest" building="temple"/>
+    <specialist name="actor" building="theatre"/>
+    <specialist name="tilemaker"/>
+    <specialist name="trader"/>
+    <specialist name="coach driver" building="transportation"/>
+    <specialist name="university"/>
+    <specialist name="vintner"/>
+    <specialist name="wagoneer" building="wagon yard"/>
+    <specialist name="warehouse worker" building="warehouse"/>
+    <specialist name="weaponsmith"/>
+    <specialist name="weaver"/>
+    <specialist name="woodworker"/>
+    <specialist name="handyman" building="misc."/>
+
+Bakers  800 
+Barbers 350 
+Bathers 1,900
+Beer-Sellers    1,400
+Blacksmiths 1,500
+Bleachers   2,100
+Bookbinders 3,000   
+Booksellers 6,300
+Buckle Makers   1,400
+Butchers    1,200
+Carpenters  550 
+Chandlers   700 
+Chicken Butchers    1,000   
+Coopers 700 
+Copyists    2,000
+Cutlers 2,300
+Doctors 1,700*
+Fishmongers 1,200
+Furriers    250 
+Glovemakers 2,400
+Harness-Makers  2,000
+Hatmakers   950 
+Hay Merchants   2,300
+Illuminators    3,900
+Inns    2,000
+Jewelers    400 
+Locksmiths  1,900
+Magic-Shops 2,800   
+Maidservants    250 
+Masons  500 
+Mercers 700 
+Old-Clothes 400 
+Painters    1,500
+Pastrycooks 500 
+Plasterers  1,400
+Pursemakers 1,100   
+Roofers 1,800
+Ropemakers  1,900
+Rugmakers   2,000
+Saddlers    1,000   
+Scabbardmakers  850 
+Sculptors   2,000
+shoemakers   150 
+Spice Merchants 1,400
+Tailors 250 
+Tanners 2,000
+Taverns/Restaurants 400 
+Watercarriers   850 
+Weavers 600 
+Wine-Sellers    900 
+Woodcarvers 2,400
+Woodsellers 2,400   
+
+
+<data>
     <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops" name="alchemist" />
     <building weight='1' priority='10' perbuilding='3'  requires_size="2"  profession="social worker" district="poor" name="almshouse" />
     <building weight='1' priority='8'  perbuilding='2'  requires_size="0"  district="fineshops" name="apothecary" />
@@ -88,4 +231,4 @@
     <building weight='1' priority='5'  perbuilding='4'  requires_size="-3" district="trade" name="weaver" />
     <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" district="trade" name="woodworker" />
     <building weight='10' priority='10' perbuilding='10' requires_size="-6" district="" profession="handyman" name="misc." />
-</buildings>
+</data>
