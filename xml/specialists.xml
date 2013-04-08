@@ -2,33 +2,33 @@
 
 <data>
 
-    <specialist name="alchemist"        building="alchemy shop"    sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="social worker"    building="almshouse"       sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="apothecary"       building="apothecary"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="armorer"          building="armorsmithy"     sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="bounty hunter"    building=""                sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="astrologer"       building="astrologer"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="baker"            building="bakery"          sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="banker"           building="bank"            sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="barber"           building="barbershop"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="soldier"          building="barracks"        sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="lawyer"           building="barrister"       sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="blacksmith"       building="smithy"          sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="ship captain"     building="boat for hire"   sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="bookseller"       building="bookstore"       sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="bowyer"           building="bowyer"          sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="brewer"           building="brewery"         sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="prostitute"       building="brothel"         sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="butcher"          building="butchershop"     sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="carpenter"        building="lumberyard"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="cartwright"       building="cartwright"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="Courtier"         building="castle"          sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="chandler"         building="chandlery shop"  sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="cheesemaker"      building="cheeseshop"      sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="priest"           building="church"          sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="cobbler"          building="cobblershop"     sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="cooper"           building="cooperage"       sv="" perbuilding="" requiredsize="" priority=""/>
-    <specialist name="dyer"             building="dyer"            sv="" perbuilding="" requiredsize="" priority=""/>
+    <specialist name="alchemist"        building="alchemy shop"    sv="" perbuilding="" requiredsize="" />
+    <specialist name="social worker"    building="almshouse"       sv="" perbuilding="" requiredsize="" />
+    <specialist name="apothecary"       building="apothecary"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="armorer"          building="armorsmithy"     sv="" perbuilding="" requiredsize="" />
+    <specialist name="bounty hunter"    building=""                sv="" perbuilding="" requiredsize="" />
+    <specialist name="astrologer"       building="astrologer"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="baker"            building="bakery"          sv="" perbuilding="" requiredsize="" />
+    <specialist name="banker"           building="bank"            sv="" perbuilding="" requiredsize="" />
+    <specialist name="barber"           building="barbershop"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="soldier"          building="barracks"        sv="" perbuilding="" requiredsize="" />
+    <specialist name="lawyer"           building="barrister"       sv="" perbuilding="" requiredsize="" />
+    <specialist name="blacksmith"       building="smithy"          sv="" perbuilding="" requiredsize="" />
+    <specialist name="ship captain"     building="boat for hire"   sv="" perbuilding="" requiredsize="" />
+    <specialist name="bookseller"       building="bookstore"       sv="" perbuilding="" requiredsize="" />
+    <specialist name="bowyer"           building="bowyer"          sv="" perbuilding="" requiredsize="" />
+    <specialist name="brewer"           building="brewery"         sv="" perbuilding="" requiredsize="" />
+    <specialist name="prostitute"       building="brothel"         sv="" perbuilding="" requiredsize="" />
+    <specialist name="butcher"          building="butchershop"     sv="" perbuilding="" requiredsize="" />
+    <specialist name="carpenter"        building="lumberyard"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="cartwright"       building="cartwright"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="Courtier"         building="castle"          sv="" perbuilding="" requiredsize="" />
+    <specialist name="chandler"         building="chandlery shop"  sv="" perbuilding="" requiredsize="" />
+    <specialist name="cheesemaker"      building="cheeseshop"      sv="" perbuilding="" requiredsize="" />
+    <specialist name="priest"           building="church"          sv="" perbuilding="" requiredsize="" />
+    <specialist name="cobbler"          building="cobblershop"     sv="" perbuilding="" requiredsize="" />
+    <specialist name="cooper"           building="cooperage"       sv="" perbuilding="" requiredsize="" />
+    <specialist name="dyer"             building="dyer"            sv="" perbuilding="" requiredsize="" />
     <specialist name="engineer"         />
     <specialist name="entertainer"      />
     <specialist name="fishmonger"       />
