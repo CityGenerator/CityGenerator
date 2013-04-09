@@ -2,233 +2,125 @@
 
 <data>
 
-    <specialist name="alchemist"        building="alchemy shop"    sv="" perbuilding="" requiredsize="" />
-    <specialist name="social worker"    building="almshouse"       sv="" perbuilding="" requiredsize="" />
-    <specialist name="apothecary"       building="apothecary"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="armorer"          building="armorsmithy"     sv="" perbuilding="" requiredsize="" />
-    <specialist name="bounty hunter"    building=""                sv="" perbuilding="" requiredsize="" />
-    <specialist name="astrologer"       building="astrologer"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="baker"            building="bakery"          sv="" perbuilding="" requiredsize="" />
-    <specialist name="banker"           building="bank"            sv="" perbuilding="" requiredsize="" />
-    <specialist name="barber"           building="barbershop"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="soldier"          building="barracks"        sv="" perbuilding="" requiredsize="" />
-    <specialist name="lawyer"           building="barrister"       sv="" perbuilding="" requiredsize="" />
-    <specialist name="blacksmith"       building="smithy"          sv="" perbuilding="" requiredsize="" />
-    <specialist name="ship captain"     building="boat for hire"   sv="" perbuilding="" requiredsize="" />
-    <specialist name="bookseller"       building="bookstore"       sv="" perbuilding="" requiredsize="" />
-    <specialist name="bowyer"           building="bowyer"          sv="" perbuilding="" requiredsize="" />
-    <specialist name="brewer"           building="brewery"         sv="" perbuilding="" requiredsize="" />
-    <specialist name="prostitute"       building="brothel"         sv="" perbuilding="" requiredsize="" />
-    <specialist name="butcher"          building="butchershop"     sv="" perbuilding="" requiredsize="" />
-    <specialist name="carpenter"        building="lumberyard"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="cartwright"       building="cartwright"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="Courtier"         building="castle"          sv="" perbuilding="" requiredsize="" />
-    <specialist name="chandler"         building="chandlery shop"  sv="" perbuilding="" requiredsize="" />
-    <specialist name="cheesemaker"      building="cheeseshop"      sv="" perbuilding="" requiredsize="" />
-    <specialist name="priest"           building="church"          sv="" perbuilding="" requiredsize="" />
-    <specialist name="cobbler"          building="cobblershop"     sv="" perbuilding="" requiredsize="" />
-    <specialist name="cooper"           building="cooperage"       sv="" perbuilding="" requiredsize="" />
-    <specialist name="dyer"             building="dyer"            sv="" perbuilding="" requiredsize="" />
-    <specialist name="engineer"         />
-    <specialist name="entertainer"      />
-    <specialist name="fishmonger"       />
-    <specialist name="furrier"          />
-    <specialist name="glassblower"      />
-    <specialist name="undertaker" building="graveyard"/>
-    <specialist name="grocer"           />
-    <specialist name="doctor" building="healer"/>
-    <specialist name="herbalist"/>
-    <specialist name="good samaritan" building="hostel"/>
-    <specialist name="interpreter"/>
-    <specialist name="jailer" building="jailhouse"/>
-    <specialist name="jeweler"/>
-    <specialist name="laborer"/>
-    <specialist name="mercenary"/>
-    <specialist name="leatherworker"/>
-    <specialist name="sheriff" building="law enforcement"/>
-    <specialist name="librarian" building="library"/>
-    <specialist name="locksmith"/>
-    <specialist name="lumberjack" building="lumbermill"/>
-    <specialist name="merchant" building="magic store"/>
-    <specialist name="mason"/>
-    <specialist name="merchant"/>
-    <specialist name="messenger"/>
-    <specialist name="miller"/>
-    <specialist name="navigator"/>
-    <specialist name="official"/>
-    <specialist name="social worker" building="orphanage"/>
-    <specialist name="physician"/>
-    <specialist name="porter"/>
-    <specialist name="potter"/>
-    <specialist name="provisioner"/>
-    <specialist name="merchant" building="rare crafts and trades"/>
-    <specialist name="saddler"/>
-    <specialist name="sage"/>
-    <specialist name="teacher" building="school"/>
-    <specialist name="scribe"/>
-    <specialist name="ship builder" building="shipyard"/>
-    <specialist name="priest" building="shrine"/>
-    <specialist name="smith"/>
-    <specialist name="specialty smith"/>
-    <specialist name="stablehand" building="stable"/>
-    <specialist name="tailor/seamstress"/>
-    <specialist name="tanner"/>
-    <specialist name="innkeeper" building="tavern/inn"/>
-    <specialist name="teamster"/>
-    <specialist name="priest" building="temple"/>
-    <specialist name="actor" building="theatre"/>
-    <specialist name="tilemaker"/>
-    <specialist name="trader"/>
-    <specialist name="coach driver" building="transportation"/>
-    <specialist name="university"/>
-    <specialist name="vintner"/>
-    <specialist name="wagoneer" building="wagon yard"/>
-    <specialist name="warehouse worker" building="warehouse"/>
-    <specialist name="weaponsmith"/>
-    <specialist name="weaver"/>
-    <specialist name="woodworker"/>
-    <specialist name="handyman" building="misc."/>
-
-Bakers  800 
-Barbers 350 
-Bathers 1,900
-Beer-Sellers    1,400
-Blacksmiths 1,500
-Bleachers   2,100
-Bookbinders 3,000   
-Booksellers 6,300
-Buckle Makers   1,400
-Butchers    1,200
-Carpenters  550 
-Chandlers   700 
-Chicken Butchers    1,000   
-Coopers 700 
-Copyists    2,000
-Cutlers 2,300
-Doctors 1,700*
-Fishmongers 1,200
-Furriers    250 
-Glovemakers 2,400
-Harness-Makers  2,000
-Hatmakers   950 
-Hay Merchants   2,300
-Illuminators    3,900
-Inns    2,000
-Jewelers    400 
-Locksmiths  1,900
-Magic-Shops 2,800   
-Maidservants    250 
-Masons  500 
-Mercers 700 
-Old-Clothes 400 
-Painters    1,500
-Pastrycooks 500 
-Plasterers  1,400
-Pursemakers 1,100   
-Roofers 1,800
-Ropemakers  1,900
-Rugmakers   2,000
-Saddlers    1,000   
-Scabbardmakers  850 
-Sculptors   2,000
-shoemakers   150 
-Spice Merchants 1,400
-Tailors 250 
-Tanners 2,000
-Taverns/Restaurants 400 
-Watercarriers   850 
-Weavers 600 
-Wine-Sellers    900 
-Woodcarvers 2,400
-Woodsellers 2,400   
+    <specialist name="actor"            building="theater"          sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="alchemist"        building="alchemy shop"     sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="apothecary"       building="apothecary"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="armorer"          building="armorsmithy"      sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="astrologer"       building="astrologer"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="baker"            building="bakery"           sv="800"    perbuilding=""      requiredsize="" />
+    <specialist name="banker"           building="bank"             sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="barber"           building="barbershop"       sv="350"    perbuilding=""      requiredsize="" />
+    <specialist name="bather"           building="bathers"          sv="1900"   perbuilding=""      requiredsize="" />
+    <specialist name="beer-seller"      building="beer-sellers"     sv="1400"   perbuilding=""      requiredsize="" />
+    <specialist name="blacksmith"       building="smithy"           sv="1500"   perbuilding=""      requiredsize="" />
+    <specialist name="bleacher"         building="bleachers"        sv="2100"   perbuilding=""      requiredsize="" />
+    <specialist name="bookbinder"       building="bookbinders"      sv="3000"   perbuilding=""      requiredsize="" />
+    <specialist name="bookseller"       building="bookstore"        sv="6300"   perbuilding=""      requiredsize="" />
+    <specialist name="bounty hunter"    building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="bowyer"           building="bowyer"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="brewer"           building="brewery"          sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="bucklemaker"      building="bucklemakers"     sv="1400"   perbuilding=""      requiredsize="" />
+    <specialist name="butcher"          building="butchershop"      sv="1200"   perbuilding=""      requiredsize="" />
+    <specialist name="carpenter"        building="lumberyard"       sv="550"    perbuilding=""      requiredsize="" />
+    <specialist name="cartwright"       building="cartwright"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="chandler"         building="chandlery shop"   sv="700"    perbuilding=""      requiredsize="" />
+    <specialist name="cheesemaker"      building="cheeseshop"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="chickenbutcher"   building="chickenbutchers"  sv="1000"   perbuilding=""      requiredsize="" />
+    <specialist name="coach driver"     building="transportation"   sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="cobbler"          building="cobblershop"      sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="cooper"           building="cooperage"        sv="700"    perbuilding=""      requiredsize="" />
+    <specialist name="copyist"          building="copyists"         sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="courtier"         building="castle"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="cutler"           building="cutlers"          sv="2300"   perbuilding=""      requiredsize="" />
+    <specialist name="doctor"           building="healer"           sv="350"    perbuilding=""      requiredsize="" />
+    <specialist name="dyer"             building="dyer"             sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="engineer"         building="engineering firm" sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="fishmonger"       building="fishery"          sv="1200"   perbuilding=""      requiredsize="" />
+    <specialist name="furrier"          building="furtrade"         sv="250"    perbuilding=""      requiredsize="" />
+    <specialist name="glassblower"      building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="glovemaker"       building="glovemakers"      sv="2400"   perbuilding=""      requiredsize="" />
+    <specialist name="good samaritan"   building="hostel"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="grocer"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="handyman"         building="misc."            sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="harness-maker"    building="harness-makers"   sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="hatmaker"         building="hatmakers"        sv="950"    perbuilding=""      requiredsize="" />
+    <specialist name="haymerchant"      building="haymerchants"     sv="2300"   perbuilding=""      requiredsize="" />
+    <specialist name="herbalist"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="illuminator"      building="illuminators"     sv="3900"   perbuilding=""      requiredsize="" />
+    <specialist name="innkeeper"        building="tavern/inn"       sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="interpreter"      building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="jailer"           building="jailhouse"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="jeweler"          building=""                 sv="400"    perbuilding=""      requiredsize="" />
+    <specialist name="laborer"          building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="lawyer"           building="barrister"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="leatherworker"    building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="librarian"        building="library"          sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="locksmith"        building=""                 sv="1900"   perbuilding=""      requiredsize="" />
+    <specialist name="lumberjack"       building="lumbermill"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="magic-shops"      building="magic-shops"      sv="2800"   perbuilding=""      requiredsize="" />
+    <specialist name="maidservant"      building="maidservants"     sv="250"    perbuilding=""      requiredsize="" />
+    <specialist name="mason"            building=""                 sv="500"    perbuilding=""      requiredsize="" />
+    <specialist name="mercenary"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="mercer"           building="mercers"          sv="700"    perbuilding=""      requiredsize="" />
+    <specialist name="merchant"         building="crafts and trades" sv=""      perbuilding=""      requiredsize="" />
+    <specialist name="merchant"         building="magic store"      sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="merchant"         building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="messenger"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="miller"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="navigator"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="official"         building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="old-clothe"       building="old-clothes"      sv="400"    perbuilding=""      requiredsize="" />
+    <specialist name="painter"          building="painters"         sv="1500"   perbuilding=""      requiredsize="" />
+    <specialist name="pastrycook"       building="pastrycooks"      sv="500"    perbuilding=""      requiredsize="" />
+    <specialist name="physician"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="plasterer"        building="plasterers"       sv="1400"   perbuilding=""      requiredsize="" />
+    <specialist name="porter"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="potter"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="priest"           building="church"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="priest"           building="shrine"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="priest"           building="temple"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="prostitute"       building="brothel"          sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="provisioner"      building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="pursemaker"       building="pursemakers"      sv="1100"   perbuilding=""      requiredsize="" />
+    <specialist name="roofer"           building="roofers"          sv="1800"   perbuilding=""      requiredsize="" />
+    <specialist name="ropemaker"        building="ropemakers"       sv="1900"   perbuilding=""      requiredsize="" />
+    <specialist name="rugmaker"         building="rugmakers"        sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="saddler"          building=""                 sv="1000"   perbuilding=""      requiredsize="" />
+    <specialist name="sage"             building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="scabbardmaker"    building="scabbardmakers"   sv="850"    perbuilding=""      requiredsize="" />
+    <specialist name="scribe"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="sculptor"         building="sculptors"        sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="seamstress"       building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="sheriff"          building="law enforcement"  sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="shipbuilder"      building="shipyard"         sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="ship captain"     building="boat for hire"    sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="shoemakers"       building="shoemakers"       sv="150"    perbuilding=""      requiredsize="" />
+    <specialist name="smith"            building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="social worker"    building="almshouse"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="social worker"    building="orphanage"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="soldier"          building="barracks"         sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="specialty smith"  building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="spicemerchant"    building="spicemerchants"   sv="1400"   perbuilding=""      requiredsize="" />
+    <specialist name="stablehand"       building="stable"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="tailor"           building=""                 sv="250"    perbuilding=""      requiredsize="" />
+    <specialist name="tanner"           building=""                 sv="2000"   perbuilding=""      requiredsize="" />
+    <specialist name="taverns"          building="tavern"           sv="400"    perbuilding=""      requiredsize="" />
+    <specialist name="teacher"          building="school"           sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="teamster"         building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="tilemaker"        building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="trader"           building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="undertaker"       building="graveyard"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="university"       building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="vintner"          building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="wagoneer"         building="wagon yard"       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="warehouse worker" building="warehouse"        sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="watercarrier"     building="watercarriers"    sv="850"    perbuilding=""      requiredsize="" />
+    <specialist name="weaponsmith"      building=""                 sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="weaver"           building="weavers"          sv="600"    perbuilding=""      requiredsize="" />
+    <specialist name="wine-seller"      building="wine-sellers"     sv="900"    perbuilding=""      requiredsize="" />
+    <specialist name="woodcarver"       building="woodcarvers"      sv="2400"   perbuilding=""      requiredsize="" />
+    <specialist name="woodseller"       building="woodsellers"      sv="2400"   perbuilding=""      requiredsize="" />
+    <specialist name="woodworker"       building=""                 sv=""       perbuilding=""      requiredsize="" />
 
 
-<data>
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops" name="alchemist" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  profession="social worker" district="poor" name="almshouse" />
-    <building weight='1' priority='8'  perbuilding='2'  requires_size="0"  district="fineshops" name="apothecary" />
-    <building weight='2' priority='3'  perbuilding='3'  requires_size="-2" district="trade" name="armorer" />
-    <building weight='2' priority='10' perbuilding='5'  requires_size="6"  district="trade" name="bounty hunter" />
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="fineshops" name="astrologer" />
-    <building weight='2' priority='4'  perbuilding='4'  requires_size="-4" district="trade" name="baker" />
-    <building weight='1' priority='4'  perbuilding='10' requires_size="0"  district="professional" name="banker" />
-    <building weight='2' priority='5'  perbuilding='3'  requires_size="0"  district="professional" name="barber" />
-    <building weight='1' priority='5'  perbuilding='20' requires_size="-1" profession="soldier" district="military" name="barracks" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="2"  profession="lawyer" district="civic" name="barrister" />
-    <building weight='2' priority='2'  perbuilding='3'  requires_size="-5"  district="trade" name="blacksmith" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="-1" profession="ship captain" district="port" name="boat for hire" />
-    <building weight='1' priority='9'  perbuilding='2'  requires_size="0"  district="fineshops" name="bookseller" />
-    <building weight='1' priority='3'  perbuilding='4'  requires_size="-3" district="trade" name="bowyer" />
-    <building weight='1' priority='5'  perbuilding='5'  requires_size="-1" district="trade" name="brewer" />
-    <building weight='2' priority='4'  perbuilding='10' requires_size="-1" profession="prostitute" district="poor" name="brothel" />
-    <building weight='2' priority='2'  perbuilding='5'  requires_size="-3" district="trade" name="butcher" />
-    <building weight='1' priority='7'  perbuilding='10' requires_size="-3" district="trade" name="carpenter" />
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade" name="cartwright" />
-    <building weight='1' priority='10' perbuilding='50' requires_size="6"  profession="noble" district="wealthy" name="castle" />
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="trade" name="chandler" />
-    <building weight='1' priority='7'  perbuilding='3'  requires_size="0"  district="trade" name="cheesemaker" />
-    <building weight='3' priority='3'  perbuilding='6'  requires_size="-3" profession="priest" district="mercy" name="church" />
-    <building weight='1' priority='7'  perbuilding='2'  requires_size="-3" district="shops" name="cobbler" />
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" district="trade" name="cooper" />
-    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade" name="dyer" />
-    <building weight='1' priority='10' perbuilding='7'  requires_size="6"  district="professional" name="engineer" />
-    <building weight='1' priority='10' perbuilding='6'  requires_size="4"  district="professional" name="entertainer" />
-    <building weight='1' priority='8'  perbuilding='3'  requires_size="0"  district="market" name="fishmonger" />
-    <building weight='1' priority='5'  perbuilding='20' requires_size="6"  profession="commander" district="civic" name="fortress" />
-    <building weight='1' priority='7'  perbuilding='3'  requires_size="-3" district="trade" name="furrier" />
-    <building weight='1' priority='9'  perbuilding='6'  requires_size="-1" district="trade" name="glassblower" />
-    <building weight='1' priority='1'  perbuilding='10' requires_size="-6" profession="undertaker" district="civic" name="graveyard" />
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="market" name="grocer" />
-    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" profession="doctor" district="mercy" name="healer" />
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-4" district="shops" name="herbalist" />
-    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  profession="good samaritan" district="embassy" name="hostel" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="6"  district="embassy" name="interpreter" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="0"  profession="jailer" district="civic" name="jailhouse" />
-    <building weight='1' priority='8'  perbuilding='4'  requires_size="-2" district="fineshops" name="jeweler" />
-    <building weight='3' priority='6'  perbuilding='10' requires_size="-2" district="industry" name="laborer" />
-    <building weight='1' priority='8'  perbuilding='20' requires_size="4"  district="trade" name="mercenary" />
-    <building weight='2' priority='3'  perbuilding='4'  requires_size="-4" district="trade" name="leatherworker" />
-    <building weight='5' priority='2'  perbuilding='4'  requires_size="-5" profession="sheriff" district="official" name="law enforcement" />
-    <building weight='1' priority='7'  perbuilding='4'  requires_size="-2" profession="librarian" district="education" name="library" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="professional" name="locksmith" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="-2" profession="lumberjack" district="industry" name="lumbermill" />
-    <building weight='1' priority='6'  perbuilding='2'  requires_size="4"  profession="merchant" district="shops" name="magic store" />
-    <building weight='1' priority='3'  perbuilding='10' requires_size="-3" district="industry" name="mason" />
-    <building weight='1' priority='2'  perbuilding='10' requires_size="-4" district="market" name="merchant" />
-    <building weight='1' priority='10' perbuilding='5'  requires_size="0"  district="embassy" name="messenger" />
-    <building weight='1' priority='1'  perbuilding='6'  requires_size="-6" district="trade" name="miller" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="professional" name="navigator" />
-    <building weight='2' priority='3'  perbuilding='5'  requires_size="-4" district="civic" name="official" />
-    <building weight='1' priority='7'  perbuilding='4'  requires_size="0"  profession="social worker" district="mercy" name="orphanage" />
-    <building weight='1' priority='4'  perbuilding='4'  requires_size="-2" district="mercy" name="physician" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="professional" name="porter" />
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-2" district="trade" name="potter" />
-    <building weight='1' priority='10' perbuilding='2'  requires_size="0"  district="market" name="provisioner" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="8"  profession="merchant" district="market" name="rare crafts and trades" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  district="trade" name="saddler" />
-    <building weight='1' priority='3'  perbuilding='2'  requires_size="-4" district="professional" name="sage" />
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-4" profession="teacher" district="educational" name="school" />
-    <building weight='1' priority='6'  perbuilding='10' requires_size="2"  district="professional" name="scribe" />
-    <building weight='1' priority='10' perbuilding='20' requires_size="6"  profession="ship builder" district="port" name="shipyard" />
-    <building weight='1' priority='10' perbuilding='8'  requires_size="0"  profession="priest" district="mercy" name="shrine" />
-    <building weight='2' priority='1'  perbuilding='4'  requires_size="-5" district="trade" name="smith" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="0"  district="fineshops" name="specialty smith" />
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-1" profession="stablehand" district="trade" name="stable" />
-    <building weight='1' priority='7'  perbuilding='6'  requires_size="-1" district="professional" name="tailor/seamstress" />
-    <building weight='1' priority='4'  perbuilding='3'  requires_size="-3" district="trade" name="tanner" />
-    <building weight='2' priority='2'  perbuilding='4'  requires_size="-5" profession="innkeeper" district="" name="tavern/inn" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="-1" district="professional" name="teamster" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="-3" profession="priest" district="mercy" name="temple" />
-    <building weight='1' priority='10' perbuilding='10' requires_size="4"  profession="actor" district="entertainment" name="theatre" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="6"  district="industry" name="tilemaker" />
-    <building weight='1' priority='10' perbuilding='3'  requires_size="2"  district="market" name="trader" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  profession="coach driver" district="industrial" name="transportation" />
-    <building weight='1' priority='10' perbuilding='20' requires_size="10" district="education" name="university" />
-    <building weight='1' priority='10' perbuilding='6'  requires_size="0"  district="trade" name="vintner" />
-    <building weight='1' priority='10' perbuilding='4'  requires_size="0"  profession="wagoneer" district="industrial" name="wagon yard" />
-    <building weight='2' priority='6'  perbuilding='2'  requires_size="6"  profession="warehouse worker" district="industrial" name="warehouse" />
-    <building weight='1' priority='6'  perbuilding='4'  requires_size="-3" district="trade" name="weaponsmith" />
-    <building weight='1' priority='5'  perbuilding='4'  requires_size="-3" district="trade" name="weaver" />
-    <building weight='1' priority='5'  perbuilding='3'  requires_size="-3" district="trade" name="woodworker" />
-    <building weight='10' priority='10' perbuilding='10' requires_size="-6" district="" profession="handyman" name="misc." />
 </data>
