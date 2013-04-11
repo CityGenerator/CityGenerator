@@ -1041,13 +1041,6 @@
         <option pop_support="100" >tundra</option>
         <option pop_support="60" >polar</option>
 </climate>
-<topography>
-    <region>mountainous</region>
-    <region>hilly</region>
-    <region>flat</region>
-    <region>glacial</region>
-    <region>sandy</region>
-</topography>
 <neighbor>
     <relation>has a neutral relationship with</relation>
     <relation>has strained relations with</relation>

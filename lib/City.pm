@@ -4,24 +4,6 @@
 package City;
 
 
-sub generate_events {
-    my $event_chance=$xml_data->{'events'}->{'chance'};
-    my $limit=max(2, $city->{'size_modifier'}/2);
-    $city->{'eventslimit'}=$limit;
-    $city->{'events'}=[];
-    my @events;
-    for my $event (shuffle @{ $xml_data->{'events'}->{'event'} } ){
-        $GenericGenerator::seed++;
-        if ($limit > 0 ){
-            my $eventname=$event->{'type'};
-            my $desc = rand_from_array(  $event->{'option'}  )->{'content'};
-            push @{$city->{'events'}}, $desc.$eventname;
-            $limit--;
-        }
-    }
-    set_seed($originalseed);
-}
-
 
 sub generate_visible_population {
 
@@ -62,12 +44,6 @@ sub generate_visible_population {
     }
     set_seed($originalseed);
 }
-
-
-sub generate_topography {
-    $city->{'topography'}=rand_from_array($xml_data->{'topography'}->{'region'})->{'content'};
-}
-
 
 sub generate_neighborRealms {
 
