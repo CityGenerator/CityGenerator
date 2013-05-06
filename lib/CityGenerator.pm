@@ -253,9 +253,30 @@ sub flesh_out_city {
     set_age($city);
     generate_popdensity($city);
     generate_area($city);
-
+    generate_citizens($city);
+    generate_children($city);
+    generate_elderly($city);
+    generate_imprisonment_rate($city);
+    generate_housing($city);
+    generate_travelers($city);
+    generate_crime($city);
+    set_dominance($city);
     return $city;
 } ## end sub flesh_out_city
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ###############################################################################
 

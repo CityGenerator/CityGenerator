@@ -45,22 +45,6 @@ sub generate_visible_population {
     set_seed($originalseed);
 }
 
-sub generate_neighborRealms {
-
-    $city->{'regions'}=[];
-    my $continentseed=$originalseed-$originalseed%100;
-    for (my $i = 0 ; $i < 10; $i++){
-        my $regionseed=$continentseed+$i*10;
-        set_seed($regionseed);
-        my $region={}; 
-        $region->{'id'}=$regionseed;
-        $region->{'name'}= parse_object($xml_data->{'region'})->{'content'};
-        #$city->{'relation'} =" $neighborid + $originalseed  = $GenericGenerator::seed  " .rand_from_array(  $xml_data->{'neighbor'}->{'relation'}  )->{'content'};
-        push @{$city->{'regions'}}, $region;
-    }
-    set_seed($originalseed);
-}
-
 sub adjust_chance_for_port{
     if ( $city->{'location'}->{'port'}  ) {
         $xml_data->{'districts'}->{'district'}->{'port'}->{'chance'}=80;

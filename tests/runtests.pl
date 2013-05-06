@@ -17,7 +17,7 @@ use TestMythGenerator;
 use TestGovtGenerator;
 use TestCityGenerator;
 use TestEventGenerator;
-
+use TestSummaryFormatter;
 
 done_testing();
 
