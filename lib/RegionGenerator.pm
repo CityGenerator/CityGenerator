@@ -47,8 +47,6 @@ The following datafiles are used by CityGenerator.pm:
 
 =item F<xml/npcnames.xml>
 
-=item F<xml/business.xml>
-
 =item F<xml/citynames.xml>
 
 =item F<xml/regionames.xml>
@@ -63,7 +61,6 @@ The following datafiles are used by CityGenerator.pm:
 # FIXME This needs to stop using our
 our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
-our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
 our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
 our $regionnames_data    = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );

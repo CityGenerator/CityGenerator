@@ -55,8 +55,6 @@ The following datafiles are used by CityGenerator.pm:
 
 =item * F<xml/npcnames.xml>
 
-=item * F<xml/business.xml>
-
 =item * F<xml/citynames.xml>
 
 =item * F<xml/regionnames.xml>
@@ -75,7 +73,6 @@ The following datafiles are used by CityGenerator.pm:
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
 my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => [] );
-my $business_data       = $xml->XMLin( "xml/business.xml",       ForceContent => 1, ForceArray => [] );
 my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => [] );
 my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => [] );
 my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => [] );

@@ -218,7 +218,4 @@ sub set_troop_size {
 
 
 
-
-
-
 1;

@@ -156,17 +156,17 @@ subtest 'test create_npc' => sub {
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
         NPCGenerator::set_profession($npc, 'cobbler'  );
         is($npc->{'profession'},'cobbler');
-        is($npc->{'business'},'cobbler');
+        is($npc->{'business'},'cobblershop');
 
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
-        NPCGenerator::set_profession($npc, 'church', 'cobbler'  );
+        NPCGenerator::set_profession($npc, 'priest', 'cobbler'  );
         is($npc->{'profession'},'cobbler');
-        is($npc->{'business'},'cobbler');
+        is($npc->{'business'},'cobblershop');
 
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
-        NPCGenerator::set_profession($npc, 'cobbler', 'church'  );
+        NPCGenerator::set_profession($npc, 'cobbler', 'priest'  );
         is($npc->{'profession'},'priest');
-        is($npc->{'business'},'church');
+        is($npc->{'business'},'temple');
 
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
         NPCGenerator::set_profession($npc, 'cobblerone', 'churchle'  );
@@ -176,7 +176,8 @@ subtest 'test create_npc' => sub {
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
         NPCGenerator::set_profession($npc,  );
         is($npc->{'profession'},'furrier');
-        is($npc->{'business'},'furrier');
+        is($npc->{'business'},'furtrade');
+
 	    done_testing();
     };
 

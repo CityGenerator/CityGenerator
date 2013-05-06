@@ -33,7 +33,7 @@ use XML::Simple;
 my $xml = XML::Simple->new();
 
 our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
-our $business_data = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
+our $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => [] );
 our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -114,7 +114,7 @@ sub set_sex{
 
 ###############################################################################
 
-=head2 set_profession( npc, businesslist )
+=head2 set_profession( npc, specialistlist )
 
 Take a provided NPC and select a profession from the list of available choices.
 
@@ -123,17 +123,24 @@ Take a provided NPC and select a profession from the list of available choices.
 ###############################################################################
 
 sub set_profession{
-    my ($npc,@businesslist)=@_;
-    if (scalar(@businesslist) == 0){
-        @businesslist= keys %{$business_data->{'building'}};
+    my ($npc,@specialist_list)=@_;
+    if (scalar(@specialist_list) == 0){
+        @specialist_list= keys %{$specialist_data->{'specialist'}};
     }
-        shuffle(@businesslist);
-        $npc->{'business'}    = pop @businesslist;
-        if (defined $business_data->{'building'}->{  $npc->{'business'}  } and defined $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'}  ){
-            $npc->{'profession'} = $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'};
+    shuffle(@specialist_list);
+    my $specialty=pop @specialist_list;
+    $npc->{'profession'} = $specialty  if (!defined $npc->{'profession'});
+    if (!defined $npc->{'business'} ){
+        if  (defined $specialist_data->{'specialist'}->{$specialty} and defined $specialist_data->{'specialist'}->{$specialty}->{'building'}){
+            $npc->{'business'} =$specialist_data->{'specialist'}->{$specialty}->{'building'}  ;
         }else{
-            $npc->{'profession'} =  $npc->{'business'};
+            $npc->{'business'} = $npc->{'profession'} ;
         }
+        if ($npc->{'business'} =~/,/){
+            my @businesses=shuffle( split(/,/,$npc->{'business'}));
+            $npc->{'business'}=pop @businesses;
+        }
+    }
 
     return $npc;
 }
