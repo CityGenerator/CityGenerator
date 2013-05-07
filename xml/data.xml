@@ -83,7 +83,6 @@
     </fact>
 
 </trivia>
-
 <streets>
     <title>rough</title>
     <title>broken</title>
@@ -911,7 +910,22 @@
         <adjective>virtuous</adjective>
     </option>
 </moralalignment>
+<arable_description>
+    <option type="poor" min='1' max='33'>
+        <option>desolate</option>
+
+    </option>
+    <option type="neutral" min='34' max='66'>
+        <option>modest</option>
+
+    </option>
+    <option type="rich" min='67' >
+        <option>fertile</option>
+    </option>
+</arable_description>
 <!-- ============================================================== -->
+
+
 <education_description>
     <option type="positive" min='2'      >
         <option>high</option>

@@ -264,20 +264,6 @@ sub flesh_out_city {
     return $city;
 } ## end sub flesh_out_city
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ###############################################################################
 
 =head3 set_pop_type()
@@ -686,6 +672,13 @@ sub generate_area {
 
     my $stat_modifier=$city->{'stats'}->{'education'}+$city->{'stats'}->{'economy'}+$city->{'stats'}->{'magic'};
     $city->{'arable_percentage'}= max(1,min(100 ,d(100) + $stat_modifier ))  if (!defined $city->{'arable_percentage'});
+
+
+
+    $city->{'arable_description'}=
+                                rand_from_array(
+                                        roll_from_array($city->{'arable_percentage'} , $xml_data->{'arable_description'}->{'option'} )->{'option'}
+                              )->{'content'} if (!defined $city->{'arable_description'});
 
     my $ppsm_modifier=  (  $city->{'stats'}->{'magic'}+5   )*4 +  $city->{'stats'}->{'economy'}  ; #people/sq mile
     $city->{'people_per_square_mile'} = $xml_data->{'popdensity'}->{'ppsm'} + $ppsm_modifier  if (!defined $city->{'people_per_square_mile'} );

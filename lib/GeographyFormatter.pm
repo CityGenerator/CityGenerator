@@ -2,13 +2,13 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package SummaryFormatter;
+package GeographyFormatter;
 
 ###############################################################################
 
 =head1 NAME
 
-    SummaryFormatter - used to format the summary.
+    GeographyFormatter - used to format the summary.
 
 =head1 DESCRIPTION
 
@@ -24,24 +24,24 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( printSummary);
+@EXPORT_OK = qw( printGeography);
 
 use CGI;
 use Data::Dumper;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 
-=head2 printSummary()
+=head2 printGeography()
 
-printSummary strips out important info from a City object and returns formatted text.
+printGeography strips out important info from a City object and returns formatted text.
 
 =cut
 
 ###############################################################################
-sub printSummary {
+sub printGeography {
     my ($city) = @_;
     my $content="";
-    $content.="$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'description'} of around $city->{'pop_estimate'}.";
+    $content.="This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated, covering $city->{'area'} hectares and supported by a $city->{'support_area'} square mile region.";
 
     return $content;
 }

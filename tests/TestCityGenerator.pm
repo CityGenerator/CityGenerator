@@ -672,9 +672,10 @@ subtest 'test generate_area' => sub {
     is($city->{'area'}, 9.29);
     is($city->{'support_area'}, 4.78);
     is($city->{'arable_percentage'}, 65);
+    is($city->{'arable_description'}, 'modest');
     is($city->{'people_per_square_mile'}, 209);
-    is($city->{'protected_percent'}, 86);
-    is($city->{'protected_area'},   7.99 );
+    is($city->{'protected_percent'}, 96);
+    is($city->{'protected_area'},   8.92 );
     is($city->{'border_length'},    13.13  );
     is($city->{'tower_count'},      undef  );
 
@@ -684,10 +685,11 @@ subtest 'test generate_area' => sub {
     is($city->{'area'}, 9.29);
     is($city->{'support_area'}, 4.63);
     is($city->{'arable_percentage'}, 81);
+    is($city->{'arable_description'}, 'fertile');
     is($city->{'people_per_square_mile'}, 216);
     is($city->{'protected_percent'}, 100);
     is($city->{'protected_area'},   9.29 );
-    is($city->{'border_length'},    12.32  );
+    is($city->{'border_length'},    12.86  );
 
 
     set_seed(1);
@@ -695,6 +697,7 @@ subtest 'test generate_area' => sub {
     CityGenerator::generate_area($city);
     is($city->{'area'}, 13.94);
     is($city->{'arable_percentage'}, 100);
+    is($city->{'arable_description'}, 'fertile');
     is($city->{'people_per_square_mile'}, 1000);
     is($city->{'support_area'}, '1.00');
 

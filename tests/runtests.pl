@@ -18,6 +18,7 @@ use TestGovtGenerator;
 use TestCityGenerator;
 use TestEventGenerator;
 use TestSummaryFormatter;
+use TestGeographyFormatter;
 
 done_testing();
 
