@@ -19,6 +19,7 @@ use TestCityGenerator;
 use TestEventGenerator;
 use TestSummaryFormatter;
 use TestGeographyFormatter;
+use TestCityscapeFormatter;
 
 done_testing();
 

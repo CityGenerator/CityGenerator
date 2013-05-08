@@ -302,10 +302,10 @@ sub generate_walls {
     # chance of -25 to +60
     my $modifier = $city->{'size_modifier'} || 0;
 
-    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5;
+    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if (!defined $city->{'wall_chance_roll'});
 
     if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
-        $city->{'wall_size_roll'} = &d(100) + $modifier;
+        $city->{'wall_size_roll'} = &d(100) + $modifier if (!defined $city->{'wall_size_roll'});
         my $wall = roll_from_array( $city->{'wall_size_roll'}, $xml_data->{'walls'}->{'wall'} );
         $city->{'walls'} = parse_object($wall);
         $city->{'walls'}->{'height'}
@@ -693,7 +693,9 @@ sub generate_area {
     
     $city->{'border_length'}= sprintf  "%4.2f",  2* pi * $radius *(100 + d(40))/100  ; 
 
-    $city->{'tower_count'}=undef;
+
+    #FIXME this shouldn't be hardcoded to 5
+    $city->{'tower_count'}=5;
     
 
 
