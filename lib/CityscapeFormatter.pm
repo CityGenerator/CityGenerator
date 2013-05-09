@@ -42,16 +42,39 @@ printCityscape strips out important info from a City object and returns formatte
 ###############################################################################
 sub printCityscape {
     my ($city) = @_;
-    my $content="";
-    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-    $mainroads = $mainroads eq "1" ? "1 is": $mainroads." are";
-    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
-
-    $content="There $roads leading to $city->{'name'}; $mainroads major.";
+    my $content="<section id='cityscape'>";
+    $content.= "<h2>Cityscape</h2>\n";
+    $content.= "";
+    $content.= "<p>".printRoads($city);
+    $content.=   " ".printWalls($city);
+    $content.=   " ".printStreets($city);
+    $content.= "</p>";
+    $content.= "</section>";
 
     return $content;
 }
 
+
+###############################################################################
+
+=head2 printRoads()
+
+printRoads formats details about incoming Roads to the city.
+
+=cut
+
+###############################################################################
+
+sub printRoads {
+    my ($city) = @_;
+    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
+    $mainroads = $mainroads eq "1" ? "1 is": $mainroads." are";
+    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
+
+    my $content="There $roads leading to $city->{'name'}; $mainroads major.";
+
+    return $content;
+}
 
 
 ###############################################################################
@@ -74,5 +97,26 @@ sub printWalls {
 
     return $content;
 }
+
+###############################################################################
+
+=head2 printStreets()
+
+printStreets formats details about streets around the city.
+
+=cut
+
+###############################################################################
+
+sub printStreets {
+    my ($city) = @_;
+    my $content = "The city is lined with ". $city->{'streets'}->{ 'content'}.".";
+
+    return $content;
+}
+
+
+
+
 
 1;

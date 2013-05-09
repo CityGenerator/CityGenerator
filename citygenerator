@@ -8,3 +8,65 @@ use POSIX;
 use Template;
 use XML::Simple;
 use lib "lib/";
+use GenericGenerator;
+use CityGenerator;
+our $q = CGI->new;
+
+
+my $testcityid=GenericGenerator::set_seed();
+if (defined $q->param('seed')){
+    $testcityid=$q->param('seed');
+}elsif (defined $q->param('continent')){
+    $testcityid=$q->param('continent').'00';
+}elsif (defined $q->param('region')){
+    $testcityid=$q->param('region').'0';
+}
+
+
+
+
+
+    my $city=CityGenerator::create_city({seed=>$testcityid});
+    CityGenerator::flesh_out_city($city);
+
+
+#
+## Show city XML
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($city);
+}elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $city;
+}else {
+    print $q->header;
+
+    print print_page($city);
+}
+
+exit;
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+sub print_page {
+    my ($city)=@_;
+
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+
+    my $vars = {
+        'title'        => 'CityGenerator',
+        'content'       => "test",
+    };
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+
+
