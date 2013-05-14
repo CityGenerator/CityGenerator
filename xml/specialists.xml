@@ -58,21 +58,21 @@
     <specialist name="locksmith"        building="locksmith"        sv="1900"   perbuilding=""      requiredsize="" />
     <specialist name="lumberjack"       building="lumbermill"       sv=""       perbuilding=""      requiredsize="" />
     <specialist name="magic-shops"      building="magic-shops"      sv="2800"   perbuilding=""      requiredsize="" />
-    <specialist name="maidservant"                                  sv="250"    perbuilding=""      requiredsize="" />
+    <specialist name="maidservant"      building="manor"            sv="250"    perbuilding=""      requiredsize="" />
     <specialist name="mason"            building="masonry shop"     sv="500"    perbuilding=""      requiredsize="" />
     <specialist name="mercenary"        building="adventurers guild" sv=""       perbuilding=""      requiredsize="" />
     <specialist name="mercer"           building="mercers"          sv="700"    perbuilding=""      requiredsize="" />
     <specialist name="merchant"         building="general store"    sv=""      perbuilding=""      requiredsize="" />
-    <specialist name="messenger"                                    sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="messenger"        building="post office"      sv=""       perbuilding=""      requiredsize="" />
     <specialist name="miller"           building="mill"             sv=""       perbuilding=""      requiredsize="" />
     <specialist name="navigator"                                    sv=""       perbuilding=""      requiredsize="" />
-    <specialist name="official"                                     sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="official"         building="civic center"     sv=""       perbuilding=""      requiredsize="" />
     <specialist name="painter"                                      sv="1500"   perbuilding=""      requiredsize="" />
-    <specialist name="pastrycook"                                   sv="500"    perbuilding=""      requiredsize="" />
-    <specialist name="physician"                                    sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="pastrycook"       building="bakery"           sv="500"    perbuilding=""      requiredsize="" />
+    <specialist name="physician"        building="clinic"           sv=""       perbuilding=""      requiredsize="" />
     <specialist name="plasterer"                                    sv="1400"   perbuilding=""      requiredsize="" />
     <specialist name="porter"                                       sv=""       perbuilding=""      requiredsize="" />
-    <specialist name="potter"                                       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="potter"           building="pottery"          sv=""       perbuilding=""      requiredsize="" />
     <specialist name="priest"           building="church,shrine,temple"           sv=""       perbuilding=""      requiredsize="" />
     <specialist name="prostitute"       building="brothel"          sv=""       perbuilding=""      requiredsize="" />
     <specialist name="pursemaker"       building="pursemakers"      sv="1100"   perbuilding=""      requiredsize="" />
@@ -80,9 +80,9 @@
     <specialist name="ropemaker"        building="ropemakers"       sv="1900"   perbuilding=""      requiredsize="" />
     <specialist name="rugmaker"         building="rugmakers"        sv="2000"   perbuilding=""      requiredsize="" />
     <specialist name="saddler"                                      sv="1000"   perbuilding=""      requiredsize="" />
-    <specialist name="sage"                                         sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="sage"             building="library"          sv=""       perbuilding=""      requiredsize="" />
     <specialist name="scabbardmaker"    building="scabbardmakers"   sv="850"    perbuilding=""      requiredsize="" />
-    <specialist name="scribe"                                       sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="scribe"           building="library"          sv=""       perbuilding=""      requiredsize="" />
     <specialist name="sculptor"         building="sculptors"        sv="2000"   perbuilding=""      requiredsize="" />
     <specialist name="seamstress"                                   sv=""       perbuilding=""      requiredsize="" />
     <specialist name="sheriff"          building="law enforcement"  sv=""       perbuilding=""      requiredsize="" />
