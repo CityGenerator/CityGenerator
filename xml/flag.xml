@@ -86,16 +86,16 @@
     </color>
 
     <color name="brown" >
-        <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="" adverb="" />
-        <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="" adverb="" />
-        <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="" adverb="" />
+        <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="endure"    adverb="safely" />
+        <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="withstand" adverb="soldily" />
+        <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="balance"   adverb="naturally" />
         <meaning>
             <option type="nature"/>
             <option type="strength"/>
         </meaning>
     </color>
     <color name="purple" >
-        <option type="Purple"            red="102" green="0"   blue="153" symbol="P"/>
+        <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="ruble" adverb="majestically" />
         <meaning>
         	<option type="majesty"/>
         	<option type="justice"/>
@@ -103,7 +103,7 @@
         </meaning>
     </color>
     <color name="black" >
-        <option type="Black"             red="0"   green="0"   blue="0"   symbol="N"/>
+        <option type="Black"             red="0"   green="0"   blue="0"   symbol="N" verb="control" adverb="purposefully" />
         <meaning>
         	<option type="power"/>
         	<option type="loss"/>
@@ -114,7 +114,7 @@
         </meaning>
     </color>
     <color name="white" >
-        <option type="White"             red="255" green="255" blue="255" symbol="W"/>
+        <option type="White"             red="255" green="255" blue="255" symbol="W" verb="perfect" adverb="peacefully" />
         <meaning>
         	<option type="purity"/>
         	<option type="peace"/>
