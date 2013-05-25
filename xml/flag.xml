@@ -2,11 +2,11 @@
 
 <flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
     <color name="red" >
-        <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"/>
-        <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"/>
-        <option type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
-        <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
-        <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
+        <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"  verb="love"    adverb="lovingly" />
+        <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"   verb="cherish" adverb="peacefully" />
+        <option type="Red"               red="255" green="0"   blue="0"   symbol="R"    verb="expand"  adverb="gracefully" />
+        <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"   verb="enforce" adverb="defiantly" />
+        <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"  verb="march"   adverb="passionately" />
         <meaning>
         	<option type="vibrancy"/>
         	<option type="revolution"/>
@@ -17,11 +17,11 @@
         </meaning>
     </color>
     <color name="blue" >
-        <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
-        <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"/>
-        <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"/>
-        <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"/>
-        <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"/>
+        <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"  verb="" adverb="" />
+        <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"   verb="" adverb="" />
+        <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"    verb="" adverb="" />
+        <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"   verb="" adverb="" />
+        <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"  verb="" adverb="" />
         <meaning>
         	<option type="liberty"/>
         	<option type="determination"/>
@@ -69,7 +69,7 @@
     <color name="gold" >
         <option type="Gold"              red="255" green="204" blue="51"  symbol="Au"/>
         <meaning>
-        	<option type="prestige"/>
+        	<option type="prestige"/> enlighten
         	<option type="wisdom"/>
         	<option type="wealth"/>
         	<option type="quality"/>
