@@ -58,10 +58,20 @@ section h3 {
     margin:0px 10px 0px 0px;
     padding: 0px ;
 }
+#censusdata h2{
+    margin:0px;
+    text-align:center;
+}
+#censusdata h3{
+    margin:5px;
+}
 #censusdata ul{
-    margin-left:10px; 
+    text-align:left;
+    margin:0px;
+    margin-left:25px; 
     padding:0px;
     border: 0px solid black;
+    padding-bottom:1em;
 }
 #page {
 
