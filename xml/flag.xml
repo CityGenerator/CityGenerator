@@ -95,7 +95,7 @@
         </meaning>
     </color>
     <color name="purple" >
-        <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="ruble" adverb="majestically" />
+        <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="rule" adverb="majestically" />
         <meaning>
         	<option type="majesty"/>
         	<option type="justice"/>
