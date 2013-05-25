@@ -20,6 +20,7 @@ use TestEventGenerator;
 use TestSummaryFormatter;
 use TestGeographyFormatter;
 use TestCityscapeFormatter;
+use TestCensusDataFormatter;
 
 done_testing();
 

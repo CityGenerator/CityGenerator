@@ -14,6 +14,7 @@ use CityGenerator;
 use SummaryFormatter;
 use GeographyFormatter;
 use CityscapeFormatter;
+use CensusDataFormatter;
 our $q = CGI->new;
 
 
@@ -77,6 +78,7 @@ sub print_page {
         'summarytext'   => SummaryFormatter::printSummary($city),
         'geographytext' => GeographyFormatter::printGeography($city),
         'cityscapetext' => CityscapeFormatter::printCityscape($city),
+        'censusdatatext'=> CensusDataFormatter::printCensusData($city),
     };
     $templates->process('new.tmpl', $vars) || die $templates->error(), "\n";
 }
