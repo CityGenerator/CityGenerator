@@ -1370,6 +1370,10 @@
     <quality name="average" percent="69" density="7"/>
     <quality name="wealthy"   percent="1"  density="5"/>
 
+<!-- quality descriptors: dilapidated, poor, ramshackle, etc
+
+-->
+
 
     <house_type type="small hut" value="5gp" max="5" />
     <house_type type="medium hut" value="9gp" max="10" />

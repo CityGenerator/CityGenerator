@@ -3,6 +3,7 @@
 use strict;
 use CGI;
 use Data::Dumper;
+use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
@@ -10,19 +11,22 @@ use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
 use CityGenerator;
+use SummaryFormatter;
+use GeographyFormatter;
+use CityscapeFormatter;
 our $q = CGI->new;
 
 
 my $testcityid=GenericGenerator::set_seed();
 if (defined $q->param('seed')){
     $testcityid=$q->param('seed');
+}elsif (defined $q->param('cityid')){
+    $testcityid=$q->param('cityid');
 }elsif (defined $q->param('continent')){
     $testcityid=$q->param('continent').'00';
 }elsif (defined $q->param('region')){
     $testcityid=$q->param('region').'0';
 }
-
-
 
 
 
@@ -36,12 +40,17 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
     print XMLout($city);
+}elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print  $JSON->encode($city);
+
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
 }else {
     print $q->header;
-
     print print_page($city);
 }
 
@@ -56,16 +65,20 @@ sub print_page {
 
 
     my $templates = Template->new({
-        INCLUDE_PATH => 'templates/',
+        INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
 
 
     my $vars = {
-        'title'        => 'CityGenerator',
-        'content'       => "test",
+        'title'         => 'CityGenerator',
+        'cityname'      => $city->{'name'},
+        'cityid'        => $city->{'seed'},
+        'summarytext'   => SummaryFormatter::printSummary($city),
+        'geographytext' => GeographyFormatter::printGeography($city),
+        'cityscapetext' => CityscapeFormatter::printCityscape($city),
     };
-    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+    $templates->process('new.tmpl', $vars) || die $templates->error(), "\n";
 }
 
 

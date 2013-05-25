@@ -42,14 +42,11 @@ printCityscape strips out important info from a City object and returns formatte
 ###############################################################################
 sub printCityscape {
     my ($city) = @_;
-    my $content="<section id='cityscape'>";
-    $content.= "<h2>Cityscape</h2>\n";
-    $content.= "";
+    my $content;
     $content.= "<p>".printRoads($city);
     $content.=   " ".printWalls($city);
     $content.=   " ".printStreets($city);
     $content.= "</p>";
-    $content.= "</section>";
 
     return $content;
 }

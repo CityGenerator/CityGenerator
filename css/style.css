@@ -1,338 +1,143 @@
-/*
-Template name: Dark Ritual
-Template URI: http://templates.arcsin.se/dark-ritual-website-template/
-Release date: 2006-11-06
-Last updated: 2009-09-23
-Description: Tribal-style three column layout.
-Author: Viktor Persson
-Author URI: http://arcsin.se/
 
-This template is licensed under a Creative Commons Attribution 2.5 License:
-http://templates.arcsin.se/license/
-*/
-
-
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, textarea, input, select {margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;}
-
-table {border-collapse: collapse; border-spacing: 0;}
-caption, th, td {text-align: left; font-weight: normal;}
-table, td, th {vertical-align: middle;}
-blockquote:before, blockquote:after, q:before, q:after {content: "";}
-blockquote, q {quotes: "" "";}
-a img {border: none;}
-:focus {outline: 0;}
-
-/* 
-        General
-------------------------------------------------------------------- */
-
-html {
-        height: 100%;
-        padding-bottom: 1px; /* force scrollbars */
+@font-face {    font-family: "OldNewspaper"; 
+    src: local('OldNewspaper'), url('/fonts/OldNewspaperTypes.ttf') format('truetype');
 }
 
+@charset "UTF-8";
 body {
-        background: #333;
-        color: #333;
-        font: normal 62.5% "Lucida Sans Unicode",sans-serif;
+  font: 11pt 'OldNewspaper';
+  background-color:#444444;
+  padding: 0 30px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+}
+header.title h1 {
+  word-spacing: -12px;
+  margin: 0;
+  padding: 10px 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+  font: 40pt 'OldNewspaper';
+}
+header hgroup {
+  border-bottom: 1px solid #999;
+  margin:0px;
+  padding:0px;
+
 }
 
-/* 
-   Typography 
-------------------------------------------------------------------- */
-
-/* Headings */
-
-h1,h2,h3,h4,h5,h6 {
-        color: #994;
-        font-weight: normal;
-        line-height: 1;
-        margin-bottom: 0.3em;
-        font-family: "Lucida Sans Unicode", sans-serif;
+#worldnav {
+    top:0px;
+    float:right;
+    display:inline;
+    padding-bottom:10px;
 }
-h4,h5,h6 {font-weight: bold;}
-
-h1 {font-size: 1.6em;}
-
-h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin: 0;}
-
-
-/* Text elements */
-p {margin-bottom: 1em;}
-
-a:focus,a:hover {color: #9A6;}
-a {
-        color: #682;
-        text-decoration: underline;
+#worldnav a{ 
+    font: 8pt arial;
+    text-decoration:none;
 }
 
-abbr, acronym {border-bottom: 1px dotted #666;}
-address {margin-bottom: 1.5em;}
-del {color:#666;}
-em, dfn, address {font-style: italic;}
-strong, dfn {font-weight: bold;}
-sup, sub {line-height: 0;}
-cite {color: #666;}
-
-blockquote {
-        background: #FFF;
-        border-bottom: 1px solid #EEE;
-        border-top: 1px solid #EEE;
-        color: #333;
-        display: block;
-        font-size: 0.9em;
-        margin-bottom: 1.2em;
-        padding: 6px 12px;
+#flag{
+    float:right;
+    margin:0px;
+    padding:0px;
 }
-blockquote p {margin: 5px 0;}
-
-
-pre {
-        margin: 1.5em 0;
-        white-space: pre;
+section h2 {
+    margin-top:10px;
+    font: 18pt 'OldNewspaper';
 }
-pre,code,tt {
-        font: 1em monospace;
-        line-height: 1.5;
+section h3 {
+    margin-top:10px;
+    font: 12pt 'OldNewspaper';
 }
 
-
-/* Lists */
-
-li ul, li ol {margin-left: 1.5em;}
-ul, ol {margin: 0 1.5em 1.5em 1.5em;}
-
-ul {list-style-type: disc;}
-ol {list-style-type: decimal;}
-
-dl {margin: 0 0 1.5em 0;}
-dl dt {font-weight: bold;}
-dd {margin-left: 1.5em;}
-
-
-
-/* Tables */
-
-table {margin-bottom: 1.4em; width: 100%;}
-th {font-weight: bold;}
-thead th {background: #C3D9FF;}
-th,td,caption {padding: 4px 10px 4px 5px;}
-tr.even td {background: #F2F6FA;}
-tfoot {font-style: italic;}
-caption {background: #EEE;}
-
-table.data-table {
-        border: 1px solid #EEE;
-        margin-bottom: 2em;
-        width: 100%;
-}
-table.data-table th {
-        background: #EEE;
-        border: 1px solid #DDD;
-        color: #555;
-        text-align: left;
-}
-table.data-table tr {border-bottom: 1px solid #EEE;}
-table.data-table td, table th {padding: 8px 10px;}
-table.data-table td {
-        background: #F6F6F6;
-        border: 1px solid #E6E6E6;
-}
-table.data-table tr.even td {background: #FCFCFC;}
-
-
-
-/* Misc classes */
-
-.small {font-size: 0.9em;}
-.smaller {font-size: 0.8em;}
-.smallest {font-size: 0.7em;}
-
-.large {font-size: 1.1em;}
-.larger {font-size: 1.2em;}
-.largest {font-size: 1.3em;}
-
-.hidden {display: none;}
-
-.quiet {color: #666;}
-.loud {color: #000;}
-.highlight {background: #FF0;}
-
-.text-left {text-align: left;}
-.text-right {text-align: right;}
-.text-center {text-align: center;}
-
-.error, .notice, .success {
-        border: 1px solid #DDD;
-        margin-bottom: 1em;
-        padding: 0.6em 0.8em;
-}
-
-.error {background: #FBE3E4; color: #8A1F11; border-color: #FBC2C4;}
-.error a {color: #8A1F11;}
-
-.notice {background: #FFF6BF; color: #514721; border-color: #FFD324;}
-.notice a {color: #514721;}
-
-.success {background: #E6EFC2; color: #264409; border-color: #C6D880;}
-.success a {color: #264409;}
-
-
-
-/* 
-        Alignment 
-------------------------------------------------------------------- */
-
-/* General */
-
-.center,.aligncenter {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-}
-/* Images */
-
-img.bordered,img.alignleft,img.alignright,img.aligncenter {
-        background-color: #FFF;
-        border: 1px solid #DDD;
-        padding: 3px;
-}
-img.alignleft, img.left {margin: 0 1.5em 1em 0;}
-img.alignright, img.right {margin: 0 0 1em 1.5em;}
-
-
-/* Floats */
-
-.left,.alignleft {float: left;}
-.right,.alignright {float: right;}
-
-.clear,.clearer {clear: both;}
-.clearer {
-        display: block;
-        font-size: 0;
-        line-height: 0;
-}
-
-
-/* 
-        Layout 
-------------------------------------------------------------------- */
-
-#main_right .padded {padding: 6px 2px 6px 16px;}
-#main .padded {padding: 18px 24px;  background-color:#ffffff; }
-.meta {font-size: 0.9em; color: #666;}
-
-/* Structure */
-#container {
-        font-size: 1.2em;
-        margin: 0 auto;
-        width: 840px;
-        border: 12px solid #222;
-}
-
-/* Header */
-#header {
-        float: left;
-        width: 540px;
-        background-color:#dddddd;
-        font: normal 2.4em Verdana,sans-serif;
-        line-height: 60px;
-        text-align: center;
-}
-
-/* Subheader */
-#subheader {
-        float: left;
-        width: 540px;
-        background-color:#dddddd;
-        font: normal .5 Verdana,sans-serif;
-        line-height: 40px;
-        text-align: center;
-}
-
-/* Top */
-#top {
-        background: #222;
-        color: #DDD;
-        font: normal 1.4em Verdana;
-        min-height: 50px;
-        text-align: center;
-}
-
-/* Subnav */
-#subnav {width: 160px;}
-
-#flagcanvas {width:180px;}
-
-
-
-/* Main */
-#main_left {width: 640px;}
-#main {width: 480px;}
-#main_right {
-        width: 200px;
-        color: #CCC;
-}
-
-/* Sub-navigation */
-#subnav h1 {
-        background: #222;
-        color: #FFE;
-        font: bold 1.1em Verdana,sans-serif;
-        line-height: 24px;
-        padding-left: 8px;
-}
-#subnav ul {margin: 0; padding: 0;}
-#subnav li {
-        border-bottom: 1px solid #696755;
-        list-style: none;
-}
-#subnav li a,#subnav li div {
-        background: #89866F;
-        color: #111;
-        display: block;
-        padding: 8px 0 8px 12px;
-        width: 148px;
-        text-decoration: none;
-}
-#subnav li div {
-        font:bold 1.1em Verdana,sans-serif;
-        padding: 8px 6px; 8px 4px;
-}
-#subnav li a:hover {
-        background: #9C997C;
-        color: #000;
-}
-
-/* Footer */
-#footer {
-        color: #CCC;
-        font-size: 0.9em;
-        padding: 12px 16px;
-}
-#footer a {color: #EEE;}
-#footer a:hover,#footer .right a:hover {color: #FAFCB0;}
-#footer .right, #footer .right a {color: #949474;}
-
-
-
-#bigcontinent,#bigregion,#bigcity,#bigmap {
+#censusdata{
+    width:200px;
     border:1px solid black;
-  height: 80%;
-    display:none;
+    float:left;
+    margin:0px 10px 0px 0px;
+    padding: 0px 0px 10px 0px ;
+}
+#page {
+
+    width:1000px;
+    margin:0 auto 0 auto;
+    background-image: url('/img/bgtexture.png');
+    background-repeat: repeat-x repeat-y;
+}
+#page_border_left {
+
+    padding-left:30px;
+    background-image: url('/img/citygen_border_left.png');
+    background-position:left;
+    background-repeat: repeat-y;
+
+}
+#page_border_right {
+    padding-right:40px;
+    margin-left:20px;
+    background: url('/img/citygen_border_right.png');
+    background-position:right;
+    background-repeat: repeat-y;
 }
 
-#continent,#region,#city,#bigcontinent,#bigregion,#bigcity,#bigmap { 
-    cursor:pointer;
+
+
+img {
+    border:0;
+    margin-top:.0em;
 }
-#bigmap {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  text-align: center;
+#citymap_small{
+    float:left;
+    margin:0px 10px 10px 0px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%); 
+    -o-filter: sepia(80%);
+}
+#regionmap_small{
+    float:right;
+    margin:0px 10px 10px 0px;
+    padding:20px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%);
+    -o-filter: sepia(80%);
+}
+#worldmap_small{
+    float:left;
+    margin:0px 10px 10px 0px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%);
+    -o-filter: sepia(80%);
 }
 
+.demolistfinal {
+    column-count:3;
+    -moz-column-count:3; /* Firefox */
+    -webkit-column-count:3; /* Safari and Chrome */
 
+    column-gap:0em;
+    -moz-column-gap:0em; /* Firefox */
+    -webkit-column-gap:0em; /* Safari and Chrome */
 
+    border:0px solid green;
+    margin-top:1em;
+}
+
+.demolistfinal li::before {
+    content:"\2600";
+    margin-right:0.25em;
+}
+
+.demolistfinal li {
+    list-style-type: none;
+    padding-left:0em;
+    text-indent:-1em;
+    margin-left:1.5em;
+    margin-bottom:1em;
+    border:0px solid blue;
+}
 
 
