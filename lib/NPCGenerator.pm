@@ -125,14 +125,14 @@ Take a provided NPC and select a profession from the list of available choices.
 sub set_profession{
     my ($npc,@specialist_list)=@_;
     if (scalar(@specialist_list) == 0){
-        @specialist_list= keys %{$specialist_data->{'specialist'}};
+        @specialist_list= keys %{$specialist_data->{'option'}};
     }
     shuffle(@specialist_list);
     my $specialty=pop @specialist_list;
     $npc->{'profession'} = $specialty  if (!defined $npc->{'profession'});
     if (!defined $npc->{'business'} ){
-        if  (defined $specialist_data->{'specialist'}->{$specialty} and defined $specialist_data->{'specialist'}->{$specialty}->{'building'}){
-            $npc->{'business'} =$specialist_data->{'specialist'}->{$specialty}->{'building'}  ;
+        if  (defined $specialist_data->{'option'}->{$specialty} and defined $specialist_data->{'option'}->{$specialty}->{'building'}){
+            $npc->{'business'} =$specialist_data->{'option'}->{$specialty}->{'building'}  ;
         }else{
             $npc->{'business'} = $npc->{'profession'} ;
         }

@@ -301,6 +301,13 @@
     </weapon>
 </weapontypes>
 
+<population_density>
+    <option />
+    <option />
+    <option />
+    <option />
+</population_density>
+
 
 <popdensity base_pop='3400' ppsm="180"  >
     <option            max="1500" type="densely"   />

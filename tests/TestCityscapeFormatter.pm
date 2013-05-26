@@ -45,7 +45,7 @@ subtest 'Test Cityscape' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $cityscape=CityscapeFormatter::printCityscape($city);
-    is($cityscape, "<section id='cityscape'><h2>Cityscape</h2>\n<p>There is 1 road leading to Grisnow; none are major. No walls currently surround the city. The city is lined with broken cobblestone paths in an organic pattern.</p></section>" );
+    is($cityscape, "<p>There is 1 road leading to Grisnow; none are major. No walls currently surround the city. The city is lined with broken cobblestone paths in an organic pattern.</p>" );
 
     done_testing();
 };

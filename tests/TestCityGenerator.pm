@@ -1125,10 +1125,13 @@ subtest 'test generate_specialists' => sub {
     $city=CityGenerator::create_city({'seed'=>2, 'population_total'=>'50',});
     CityGenerator::generate_specialists($city);
     is($city->{'specialists'}->{'mason'}->{'count'}, 1  );
+    is($city->{'specialists'}->{'magic shop'}->{'count'}, undef  );
+
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000', 'specialists'=>{'porter'=>{'count'=>10}}});
+    CityGenerator::generate_specialists($city);
+    is($city->{'specialists'}->{'porter'}->{'count'}, 10  );
 
 
-
-    exit;
 };
 
 1;

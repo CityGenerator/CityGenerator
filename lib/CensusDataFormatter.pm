@@ -68,9 +68,9 @@ sub printGeneralInformation {
     my $content = << "EOF"
                     <h3>General Information</h3>
                     <ul>
-                        <li> Pop. Estimate: $population    </li>
-                        <li> Children: $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'})   </li>
-                        <li> Elderly: $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'})   </li>
+                        <li> Pop. Estimate: $population </li>
+                        <li> Children: $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) </li>
+                        <li> Elderly: $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) </li>
                     </ul>
 EOF
 ;

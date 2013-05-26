@@ -776,15 +776,19 @@ sub generate_specialists {
     }
 
     foreach my $specialist_name (sort keys %{$specialist_data->{'option'}}){
-        my $specialist=$specialist_data->{'option'}->{$specialist_name};
-        if ($specialist->{'sv'} <= $city->{'population_total'}  ){
-            $city->{'specialists'}->{$specialist_name}={
-                'count'=>floor($city->{'population_total'}/$specialist->{'sv'} ),
-            }
-        }else{
-             
-            if (&d($specialist->{'sv'}) == 1 ){
-                $city->{'specialists'}->{$specialist_name}={ 'count'=>1 }
+        print Dumper $city->{'specialists'}->{$specialist_name} ;
+        if (! defined $city->{'specialists'}->{$specialist_name}){
+
+            my $specialist=$specialist_data->{'option'}->{$specialist_name};
+            if ($specialist->{'sv'} <= $city->{'population_total'}  ){
+                $city->{'specialists'}->{$specialist_name}={
+                    'count'=>floor($city->{'population_total'}/$specialist->{'sv'} ),
+                }
+            }else{
+                 
+                if (&d($specialist->{'sv'}) == 1 ){
+                    $city->{'specialists'}->{$specialist_name}={ 'count'=>1 }
+                }
             }
         }
     }
