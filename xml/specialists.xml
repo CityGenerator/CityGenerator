@@ -2,7 +2,7 @@
 
 <data>
     <specialist name="adventurer"       building="adventurers guild"     sv="3000"   perbuilding=""      requiredsize="" />
-    <specialist name="actor"            building="theater"               sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="actor"            building="theater"               sv="1200"   perbuilding=""      requiredsize="" />
     <specialist name="alchemist"        building="alchemy shop"          sv=""       perbuilding=""      requiredsize="" />
     <specialist name="apothecary"                                        sv="2800"   perbuilding=""      requiredsize="" />
     <specialist name="armorer"          building="armorsmithy"           sv="1500"   perbuilding=""      requiredsize="" />
@@ -17,7 +17,7 @@
     <specialist name="bleacher"         building="bleacher"              sv="2100"   perbuilding=""      requiredsize="" />
     <specialist name="bookbinder"       building="bookbinder"            sv="3000"   perbuilding=""      requiredsize="" />
     <specialist name="bookseller"       building="bookstore"             sv="6300"   perbuilding=""      requiredsize="" />
-    <specialist name="bounty hunter"    building="adventurers guild"     sv=""       perbuilding=""      requiredsize="" />
+    <specialist name="bounty hunter"    building="adventurers guild"     sv="3000"   perbuilding=""      requiredsize="" />
     <specialist name="bowyer"           building="bowyer"                sv=""       perbuilding=""      requiredsize="" />
     <specialist name="brewer"           building="brewery"               sv=""       perbuilding=""      requiredsize="" />
     <specialist name="bucklemaker"      building="bucklery"              sv="1400"   perbuilding=""      requiredsize="" />
