@@ -1090,8 +1090,6 @@ subtest 'test generate_imprisonment_rate' => sub {
     done_testing();
 };
 
-
-
 subtest 'test generate_housing' => sub {
     my $city;
     $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000',});
@@ -1099,8 +1097,6 @@ subtest 'test generate_housing' => sub {
     is_deeply($city->{'housing'}, {'poor'=>34,'wealthy'=>2, 'average'=>70, 'abandoned'=>20, 'total'=>106,
                                     'poor_population'=>500,'wealthy_population'=>10,'average_population'=>,490,
                                     'poor_percent'=>50,'wealthy_percent'=>1,'average_percent'=>,49, 'abandoned_percent'=>19});
-
-
     $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'1000', 'stats'=>{'economy'=>0}});
     CityGenerator::generate_housing($city);
     is_deeply($city->{'housing'}, {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
@@ -1116,11 +1112,24 @@ subtest 'test generate_housing' => sub {
     is_deeply($city->{'housing'}, {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
                                     'poor_population'=>300,'wealthy_population'=>10,'average_population'=>,690,
                                     'poor_percent'=>30,'wealthy_percent'=>1,'average_percent'=>,69, 'abandoned_percent'=>11});
-
-
-
 };
 
+subtest 'test generate_specialists' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000',});
+    CityGenerator::generate_specialists($city);
+    is($city->{'specialists'}->{'teacher'}->{'count'}, 50  );
+    is($city->{'specialists'}->{'magic shop'}->{'count'}, undef  );
+    is($city->{'specialists'}->{'porter'}->{'count'}, 5  );
+
+    $city=CityGenerator::create_city({'seed'=>2, 'population_total'=>'50',});
+    CityGenerator::generate_specialists($city);
+    is($city->{'specialists'}->{'mason'}->{'count'}, 1  );
+
+
+
+    exit;
+};
 
 1;
 

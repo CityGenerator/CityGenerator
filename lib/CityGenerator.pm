@@ -63,6 +63,8 @@ The following datafiles are used by CityGenerator.pm:
 
 =item * F<xml/continentnames.xml>
 
+=item * F<xml/specialists.xml>
+
 =back
 
 =head1 INTERFACE
@@ -77,6 +79,7 @@ my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent =>
 my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => [] );
 my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => [] );
 my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
+my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -752,6 +755,44 @@ sub generate_citizens {
     }
     return $city;
 }
+
+###############################################################################
+
+=head2 generate_specialists
+
+Generate a list of specialists.
+
+=cut
+
+###############################################################################
+
+
+sub generate_specialists {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+
+    if (!defined $city->{'specialists'}){
+        $city->{'specialists'}={};
+    }
+
+    foreach my $specialist_name (sort keys %{$specialist_data->{'option'}}){
+        my $specialist=$specialist_data->{'option'}->{$specialist_name};
+        if ($specialist->{'sv'} <= $city->{'population_total'}  ){
+            $city->{'specialists'}->{$specialist_name}={
+                'count'=>floor($city->{'population_total'}/$specialist->{'sv'} ),
+            }
+        }else{
+             
+            if (&d($specialist->{'sv'}) == 1 ){
+                $city->{'specialists'}->{$specialist_name}={ 'count'=>1 }
+            }
+        }
+    }
+
+
+    return $city;
+}
+
 
 ###############################################################################
 

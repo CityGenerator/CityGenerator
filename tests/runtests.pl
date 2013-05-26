@@ -12,7 +12,6 @@ use TestNPCGenerator;
 use TestConditionGenerator;
 use TestMilitaryGenerator;
 use TestTavernGenerator;
-use TestDistrictGenerator;
 use TestMythGenerator;
 use TestGovtGenerator;
 use TestCityGenerator;
