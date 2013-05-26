@@ -70,7 +70,7 @@ for  (my $char=1; $char<=$chartotal; $char++){
         @lowestset=@charstats;
         $lowestsum=$statsum;
         $lowestcount=1;
-    }elsif ($statsum> $lowestsum ){
+    }elsif ($statsum< $lowestsum ){
         $lowestcount++;
     }
 }
