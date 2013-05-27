@@ -756,6 +756,7 @@ sub generate_citizens {
     return $city;
 }
 
+
 ###############################################################################
 
 =head2 generate_specialists
@@ -765,8 +766,6 @@ Generate a list of specialists.
 =cut
 
 ###############################################################################
-
-
 sub generate_specialists {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
@@ -776,7 +775,6 @@ sub generate_specialists {
     }
 
     foreach my $specialist_name (sort keys %{$specialist_data->{'option'}}){
-        print Dumper $city->{'specialists'}->{$specialist_name} ;
         if (! defined $city->{'specialists'}->{$specialist_name}){
 
             my $specialist=$specialist_data->{'option'}->{$specialist_name};
@@ -796,6 +794,48 @@ sub generate_specialists {
 
     return $city;
 }
+
+###############################################################################
+
+=head2 generate_businesses
+
+Generate a list of businesses from existing specialists
+
+=cut
+
+###############################################################################
+
+
+sub generate_businesses {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+    if (!defined $city->{'businesses'}){
+        $city->{'businesses'}={};
+    }
+    foreach my $specialist_name (sort keys %{$city->{'specialists'}}){
+        my $specialist=$specialist_data->{'option'}->{$specialist_name};
+
+        # Check to see if the specialist has a building associated with it.
+        if (defined $specialist->{'building'}){
+            my $building = $specialist->{'building'};
+            $city->{'businesses'}->{$building}->{'perbuilding'}= $specialist_data->{'option'}->{$specialist_name}->{'perbuilding'};
+            if (defined $city->{'businesses'}->{$building}->{'specialist_count'}){
+                $city->{'businesses'}->{$building}->{'specialist_count'}+= $city->{'specialists'}->{$specialist_name}->{'count'} ;
+            }else{
+                $city->{'businesses'}->{$building}->{'specialist_count'}= $city->{'specialists'}->{$specialist_name}->{'count'} ;
+            }
+        }
+    }
+
+    foreach my $business_name (keys %{$city->{'businesses'}} ){
+        my $business=$city->{'businesses'}->{$business_name};
+        $city->{'businesses'}->{$business_name}->{'count'} = ceil( $business->{'specialist_count'}/ $business->{'perbuilding'} );
+    }
+
+    return $city;
+}
+
+
 
 
 ###############################################################################

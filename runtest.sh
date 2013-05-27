@@ -7,7 +7,7 @@ if [[ "$1" == "profile" ]] ; then
     mv nytprof nytprof.old
     nytprofhtml --open
  
-elif [[ "$1" == "full" ]]  ;then
+elif [[ "$1" == "full" || "$1" == "all" ]]  ;then
     echo "full test, coverage and profiling"
 
     perl -d:NYTProf  ./tests/runtests.pl  && \

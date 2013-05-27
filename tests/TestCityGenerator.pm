@@ -1112,6 +1112,7 @@ subtest 'test generate_housing' => sub {
     is_deeply($city->{'housing'}, {'poor'=>20,'wealthy'=>2, 'average'=>98, 'abandoned'=>13, 'total'=>120,
                                     'poor_population'=>300,'wealthy_population'=>10,'average_population'=>,690,
                                     'poor_percent'=>30,'wealthy_percent'=>1,'average_percent'=>,69, 'abandoned_percent'=>11});
+    done_testing();
 };
 
 subtest 'test generate_specialists' => sub {
@@ -1124,15 +1125,28 @@ subtest 'test generate_specialists' => sub {
 
     $city=CityGenerator::create_city({'seed'=>2, 'population_total'=>'50',});
     CityGenerator::generate_specialists($city);
-    is($city->{'specialists'}->{'mason'}->{'count'}, 1  );
+    is($city->{'specialists'}->{'maidservant'}->{'count'}, 1  );
     is($city->{'specialists'}->{'magic shop'}->{'count'}, undef  );
 
     $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000', 'specialists'=>{'porter'=>{'count'=>10}}});
     CityGenerator::generate_specialists($city);
     is($city->{'specialists'}->{'porter'}->{'count'}, 10  );
 
-
+    done_testing();
 };
+
+subtest 'test generate_businesses' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000',});
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    is($city->{'specialists'}->{'teacher'}->{'count'}, 50  );
+    is($city->{'businesses'}->{'school'}->{'count'}, 5  );
+
+    done_testing();
+};
+
+
 
 1;
 
