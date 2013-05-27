@@ -1,127 +1,128 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <specialist>
-    <option name="adventurer"       building="adventurers guild"     sv="3000"   perbuilding=""    limit=""   district="" />
-    <option name="actor"            building="theater"               sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="alchemist"        building="alchemy shop"          sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="apothecary"                                        sv="2800"   perbuilding=""    limit=""   district="" />
-    <option name="armorer"          building="armorsmithy"           sv="1500"   perbuilding=""    limit=""   district="" />
-    <option name="artist"           building="studio"                sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="astrologer"       building="astrologer"            sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="baker"            building="bakery"                sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="banker"           building="bank"                  sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="barber"           building="barbershop"            sv="350"    perbuilding=""    limit=""   district="" />
-    <option name="bather"           building="bath house"            sv="1900"   perbuilding=""    limit=""   district="" />
-    <option name="beer-seller"      building="beer-seller"           sv="1400"   perbuilding=""    limit=""   district="" />
-    <option name="blacksmith"       building="smithy"                sv="1500"   perbuilding=""    limit=""   district="" />
-    <option name="bleacher"         building="bleacher"              sv="2100"   perbuilding=""    limit=""   district="" />
-    <option name="bookbinder"       building="bookbinder"            sv="3000"   perbuilding=""    limit=""   district="" />
-    <option name="bookseller"       building="bookstore"             sv="6300"   perbuilding=""    limit=""   district="" />
-    <option name="bounty hunter"    building="adventurers guild"     sv="3000"   perbuilding=""    limit=""   district="" />
-    <option name="bowyer"           building="bowyer"                sv="1400"   perbuilding=""    limit=""   district="" />
-    <option name="brewer"           building="brewery"               sv="900"    perbuilding=""    limit=""   district="" />
-    <option name="bucklemaker"      building="bucklery"              sv="1400"   perbuilding=""    limit=""   district="" />
-    <option name="butcher"          building="butchershop"           sv="1100"   perbuilding=""    limit=""   district="" />
+    <option name="adventurer"       building="adventurers guild"     sv="3000"   perbuilding="30"  limit=""   district="" />
+    <option name="actor"            building="theater"               sv="1200"   perbuilding="10"  limit=""   district="" />
+    <option name="alchemist"        building="alchemy shop"          sv="1200"   perbuilding="3"   limit=""   district="" />
+    <option name="apothecary"       building="apothecary"            sv="2800"   perbuilding="4"   limit=""   district="" />
+    <option name="armorer"          building="armorsmithy"           sv="1500"   perbuilding="10"  limit=""   district="" />
+    <option name="artist"           building="studio"                sv="2000"   perbuilding="10"  limit=""   district="" />
+    <option name="astrologer"       building="astrologer"            sv="2000"   perbuilding="1"   limit=""   district="" />
+    <option name="baker"            building="bakery"                sv="800"    perbuilding="10"  limit=""   district="" />
+    <option name="banker"           building="bank"                  sv="1000"   perbuilding="30"  limit=""   district="" />
+    <option name="barber"           building="barbershop"            sv="350"    perbuilding="4"   limit=""   district="" />
+    <option name="bather"           building="bath house"            sv="1900"   perbuilding="20"  limit=""   district="" />
+    <option name="beer-seller"      building="beer-seller"           sv="1400"   perbuilding="4"   limit=""   district="" />
+    <option name="blacksmith"       building="smithy"                sv="1500"   perbuilding="5"   limit=""   district="" />
+    <option name="bleacher"         building="bleacher"              sv="2100"   perbuilding="20"  limit=""   district="" />
+    <option name="bookbinder"       building="bookbinder"            sv="3000"   perbuilding="20"  limit=""   district="" />
+    <option name="bookseller"       building="bookstore"             sv="6300"   perbuilding="4"   limit=""   district="" />
+    <option name="bounty hunter"    building="adventurers guild"     sv="3000"   perbuilding="10"  limit=""   district="" />
+    <option name="bowyer"           building="bowyer"                sv="1400"   perbuilding="5"   limit=""   district="" />
+    <option name="brewer"           building="brewery"               sv="900"    perbuilding="20"  limit=""   district="" />
+    <option name="bucklemaker"      building="bucklery"              sv="1400"   perbuilding="5"   limit=""   district="" />
+    <option name="butcher"          building="butchershop"           sv="1100"   perbuilding="10"  limit=""   district="" />
     <option name="carpenter"                                         sv="550"    perbuilding=""    limit=""   district="" />
-    <option name="cartwright"       building="cartwright"            sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="chandler"         building="chandlery shop"        sv="600"    perbuilding=""    limit=""   district="" />
+    <option name="cartwright"       building="cartwright"            sv="800"    perbuilding="10"  limit=""   district="" />
+    <option name="chandler"         building="chandlery shop"        sv="600"    perbuilding="10"  limit=""   district="" />
     <option name="charcoaler"                                        sv="400"    perbuilding=""    limit=""   district="" />
-    <option name="cheesemaker"      building="cheeseshop"            sv="700"    perbuilding=""    limit=""   district="" />
-    <option name="chickenbutcher"   building="slaughterhouse"        sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="coach driver"     building="transportation"        sv="1500"   perbuilding=""    limit=""   district="" />
-    <option name="cobbler"          building="cobblershop"           sv="150"    perbuilding=""    limit=""   district="" />
-    <option name="cooper"           building="cooperage"             sv="700"    perbuilding=""    limit=""   district="" />
-    <option name="copyist"          building="copyoffice"            sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="courtier"         building="castle"                sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="cutler"           building="cutlery shop"          sv="2300"   perbuilding=""    limit=""   district="" />
-    <option name="doctor"           building="healer"                sv="350"    perbuilding=""    limit=""   district="" />
-    <option name="dyer"             building="dyer"                  sv="900"    perbuilding=""    limit=""   district="" />
+    <option name="cheesemaker"      building="cheeseshop"            sv="700"    perbuilding="20"  limit=""   district="" />
+    <option name="chickenbutcher"   building="slaughterhouse"        sv="1000"   perbuilding="20"  limit=""   district="" />
+    <option name="coach driver"     building="transportation"        sv="1500"   perbuilding="3"   limit=""   district="" />
+    <option name="cobbler"          building="cobblershop"           sv="150"    perbuilding="4"   limit=""   district="" />
+    <option name="cooper"           building="cooperage"             sv="700"    perbuilding="10"  limit=""   district="" />
+    <option name="copyist"          building="copyoffice"            sv="2000"   perbuilding="20"  limit=""   district="" />
+    <option name="courtier"                                          sv="2000"   perbuilding=""    limit=""   district="" />
+    <option name="cutler"           building="cutlery shop"          sv="2300"   perbuilding="5"   limit=""   district="" />
+    <option name="deputy"           building="law enforcement"       sv="500"    perbuilding="20"  limit=""   district="" />
+    <option name="doctor"                                            sv="350"    perbuilding=""    limit=""   district="" />
+    <option name="dyer"             building="dyer"                  sv="900"    perbuilding="20"  limit=""   district="" />
     <option name="entertainer"                                       sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="engineer"         building="engineering firm"      sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="fishmonger"       building="fishery"               sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="furrier"          building="furtrade"              sv="250"    perbuilding=""    limit=""   district="" />
+    <option name="engineer"         building="engineering firm"      sv="2000"   perbuilding="20"  limit=""   district="" />
+    <option name="fishmonger"       building="fishery"               sv="1200"   perbuilding="20"  limit=""   district="" />
+    <option name="furrier"          building="furtrade"              sv="250"    perbuilding="20"  limit=""   district="" />
     <option name="forester"                                          sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="glassmaker"       building="glassmaker hut"        sv="950"    perbuilding=""    limit=""   district="" />
-    <option name="glovemaker"       building="glove shop"            sv="2400"   perbuilding=""    limit=""   district="" />
-    <option name="good samaritan"   building="hostel"                sv="650"    perbuilding=""    limit=""   district="" />
-    <option name="grocer"           building="grocery store"         sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="handyman"         building="workshop"              sv="900"    perbuilding=""    limit=""   district="" />
-    <option name="harness-maker"    building="harness-maker"         sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="hatmaker"         building="hat shop"              sv="950"    perbuilding=""    limit=""   district="" />
-    <option name="haymerchant"      building="haymerchant"           sv="2300"   perbuilding=""    limit=""   district="" />
-    <option name="herbalist"        building="herbalist shop"        sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="illuminator"      building="illuminator"           sv="3900"   perbuilding=""    limit=""   district="" />
-    <option name="innkeeper"        building="inn"                   sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="interpreter"      building="translator"            sv="1800"   perbuilding=""    limit=""   district="" />
-    <option name="jailer"           building="jailhouse"             sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="jeweler"          building="jewelery store"        sv="400"    perbuilding=""    limit=""   district="" />
-    <option name="laborer"          building="warehouse"             sv="600"    perbuilding=""    limit=""   district="" />
-    <option name="lawyer"           building="barrister"             sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="leatherworker"    building="leathershop"           sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="librarian"        building="library"               sv="1300"   perbuilding=""    limit=""   district="" />
-    <option name="locksmith"        building="locksmith"             sv="1900"   perbuilding=""    limit=""   district="" />
-    <option name="lumberjack"       building="lumbermill"            sv="1100"   perbuilding=""    limit=""   district="" />
-    <option name="magic dealer"     building="magic shops"           sv="2800"   perbuilding=""    limit=""   district="" />
-    <option name="maidservant"      building="manor"                 sv="250"    perbuilding=""    limit=""   district="" />
-    <option name="mason"            building="masonry shop"          sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="mercenary"        building="adventurers guild"     sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="mercer"           building="mercers"               sv="700"    perbuilding=""    limit=""   district="" />
-    <option name="messenger"        building="post office"           sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="miller"           building="mill"                  sv="250"    perbuilding=""    limit=""   district="" />
+    <option name="glassmaker"       building="glassmaker hut"        sv="950"    perbuilding="10"  limit=""   district="" />
+    <option name="glovemaker"       building="glove shop"            sv="2400"   perbuilding="5"   limit=""   district="" />
+    <option name="good samaritan"   building="hostel"                sv="650"    perbuilding="10"  limit=""   district="" />
+    <option name="grocer"           building="grocery store"         sv="1000"   perbuilding="10"  limit=""   district="" />
+    <option name="handyman"         building="workshop"              sv="900"    perbuilding="10"  limit=""   district="" />
+    <option name="harness-maker"    building="harness-maker"         sv="2000"   perbuilding="5"   limit=""   district="" />
+    <option name="hatmaker"         building="hat shop"              sv="950"    perbuilding="10"  limit=""   district="" />
+    <option name="haymerchant"      building="haymerchant"           sv="2300"   perbuilding="5"   limit=""   district="" />
+    <option name="herbalist"        building="herbalist shop"        sv="1200"   perbuilding="5"   limit=""   district="" />
+    <option name="illuminator"      building="illuminator"           sv="3900"   perbuilding="5"   limit=""   district="" />
+    <option name="innkeeper"        building="inn"                   sv="2000"   perbuilding="3"   limit=""   district="" />
+    <option name="interpreter"      building="translator"            sv="1800"   perbuilding="20"  limit=""   district="" />
+    <option name="jailer"           building="jailhouse"             sv="2000"   perbuilding="10"  limit=""   district="" />
+    <option name="jeweler"          building="jewelery store"        sv="400"    perbuilding="10"  limit=""   district="" />
+    <option name="laborer"          building="warehouse"             sv="600"    perbuilding="4"   limit=""   district="" />
+    <option name="lawyer"           building="barrister"             sv="800"    perbuilding="10"  limit=""   district="" />
+    <option name="leatherworker"    building="leathershop"           sv="800"    perbuilding="10"  limit=""   district="" />
+    <option name="librarian"        building="library"               sv="1300"   perbuilding="10"  limit=""   district="" />
+    <option name="locksmith"        building="locksmith"             sv="1900"   perbuilding="4"   limit=""   district="" />
+    <option name="lumberjack"       building="lumbermill"            sv="1100"   perbuilding="30"  limit=""   district="" />
+    <option name="magic dealer"     building="magic shops"           sv="2800"   perbuilding="3"   limit=""   district="" />
+    <option name="maidservant"                                       sv="250"    perbuilding=""    limit=""   district="" />
+    <option name="mason"            building="masonry shop"          sv="500"    perbuilding="20"  limit=""   district="" />
+    <option name="mercenary"        building="adventurers guild"     sv="2000"   perbuilding="30"  limit=""   district="" />
+    <option name="mercer"           building="mercers"               sv="700"    perbuilding="20"  limit=""   district="" />
+    <option name="messenger"        building="post office"           sv="1200"   perbuilding="10"  limit=""   district="" />
+    <option name="miller"           building="mill"                  sv="250"    perbuilding="20"  limit=""   district="" />
     <option name="navigator"                                         sv="3000"   perbuilding=""    limit=""   district="" />
-    <option name="official"         building="civic center"          sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="ostler"           building="stable"                sv="600"    perbuilding=""    limit=""   district="" />
-    <option name="outfitter"        building="general store"         sv="1500"   perbuilding=""    limit=""   district="" />
+    <option name="official"         building="civic center"          sv="500"    perbuilding="30"  limit=""   district="" />
+    <option name="ostler"           building="stable"                sv="600"    perbuilding="5"   limit=""   district="" />
+    <option name="outfitter"        building="general store"         sv="1500"   perbuilding="4"   limit=""   district="" />
     <option name="painter"                                           sv="1500"   perbuilding=""    limit=""   district="" />
-    <option name="pastrycook"       building="bakery"                sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="physician"        building="clinic"                sv="600"    perbuilding=""    limit=""   district="" />
+    <option name="pastrycook"       building="bakery"                sv="500"    perbuilding="10"  limit=""   district="" />
+    <option name="physician"        building="clinic"                sv="600"    perbuilding="10"  limit=""   district="" />
     <option name="plasterer"                                         sv="1400"   perbuilding=""    limit=""   district="" />
     <option name="porter"                                            sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="potter"           building="pottery"               sv="450"    perbuilding=""    limit=""   district="" />
-    <option name="priest"           building="church,shrine,temple"  sv="300"    perbuilding=""    limit=""   district="" />
-    <option name="prostitute"       building="brothel"               sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="pursemaker"       building="pursemakers"           sv="1100"   perbuilding=""    limit=""   district="" />
-    <option name="roofer"           building="roofers"               sv="1800"   perbuilding=""    limit=""   district="" />
-    <option name="ropemaker"        building="ropemakers"            sv="1900"   perbuilding=""    limit=""   district="" />
-    <option name="rugmaker"         building="rugmakers"             sv="2000"   perbuilding=""    limit=""   district="" />
+    <option name="potter"           building="pottery"               sv="450"    perbuilding="10"  limit=""   district="" />
+    <option name="priest"           building="church,shrine,temple"  sv="300"    perbuilding="10"  limit=""   district="" />
+    <option name="prostitute"       building="brothel"               sv="500"    perbuilding="20"  limit=""   district="" />
+    <option name="pursemaker"       building="pursemakers"           sv="1100"   perbuilding="20"  limit=""   district="" />
+    <option name="roofer"           building="roofers"               sv="1800"   perbuilding="20"  limit=""   district="" />
+    <option name="ropemaker"        building="ropemakers"            sv="1900"   perbuilding="20"  limit=""   district="" />
+    <option name="rugmaker"         building="rugmakers"             sv="2000"   perbuilding="20"  limit=""   district="" />
     <option name="saddler"                                           sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="sage"             building="library"               sv="1800"   perbuilding=""    limit=""   district="" />
-    <option name="salter"           building="smokehouse"            sv="600"    perbuilding=""    limit=""   district="" />
-    <option name="scabbardmaker"    building="scabbardmakers"        sv="850"    perbuilding=""    limit=""   district="" />
-    <option name="scribe"           building="library"               sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="sculptor"         building="sculptors"             sv="2000"   perbuilding=""    limit=""   district="" />
+    <option name="sage"             building="library"               sv="1800"   perbuilding="20"  limit=""   district="" />
+    <option name="salter"           building="smokehouse"            sv="600"    perbuilding="30"  limit=""   district="" />
+    <option name="scabbardmaker"    building="scabbardmakers"        sv="850"    perbuilding="10"  limit=""   district="" />
+    <option name="scribe"           building="library"               sv="2000"   perbuilding="20"  limit=""   district="" />
+    <option name="sculptor"         building="sculpting house"       sv="2000"   perbuilding="10"  limit=""   district="" />
     <option name="seamstress"                                        sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="sheriff"          building="law enforcement"       sv="500"    perbuilding=""    limit=""   district="" />
-    <option name="shipwright"       building="shipyard"              sv="2400"   perbuilding=""    limit=""   district="" />
-    <option name="ship captain"     building="boat for hire"         sv="2000"   perbuilding=""    limit=""   district="" />
-    <option name="shoemakers"       building="shoemakers"            sv="150"    perbuilding=""    limit=""   district="" />
-    <option name="smith"            building="smithy"                sv="300"    perbuilding=""    limit=""   district="" />
-    <option name="social worker"    building="almshouse,orphanage"   sv="900"    perbuilding=""    limit=""   district="" />
-    <option name="soldier"          building="barracks"              sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="specialty smith"                                   sv="4000"   perbuilding=""    limit=""   district="" />
-    <option name="spicemerchant"    building="spicemerchants"        sv="1400"   perbuilding=""    limit=""   district="" />
-    <option name="stablehand"       building="stable"                sv="600"    perbuilding=""    limit=""   district="" />
-    <option name="tailor"           building="clothing shop"         sv="250"    perbuilding=""    limit=""   district="" />
-    <option name="tanner"           building="tannery"               sv="1200"   perbuilding=""    limit=""   district="" />
-    <option name="taverns"          building="tavern"                sv="400"    perbuilding=""    limit=""   district="" />
-    <option name="teacher"          building="school"                sv="200"    perbuilding=""    limit=""   district="" />
+    <option name="sheriff"          building="law enforcement"       sv="1000"   perbuilding="20"  limit="1"  district="" />
+    <option name="shipwright"       building="shipyard"              sv="2400"   perbuilding="30"  limit=""   district="" />
+    <option name="ship captain"     building="boat for hire"         sv="2000"   perbuilding="1"   limit=""   district="" />
+    <option name="shoemakers"       building="shoemakers"            sv="150"    perbuilding="10"  limit=""   district="" />
+    <option name="smith"            building="smithy"                sv="300"    perbuilding="20"  limit=""   district="" />
+    <option name="social worker"    building="almshouse,orphanage"   sv="900"    perbuilding="10"  limit=""   district="" />
+    <option name="soldier"          building="barracks"              sv="1000"   perbuilding="50"  limit=""   district="" />
+    <option name="specialty smith"                                   sv="4000"   perbuilding="20"  limit=""   district="" />
+    <option name="spicemerchant"    building="spicemerchants"        sv="1400"   perbuilding="10"  limit=""   district="" />
+    <option name="stablehand"       building="stable"                sv="600"    perbuilding="10"  limit=""   district="" />
+    <option name="tailor"           building="clothing shop"         sv="250"    perbuilding="20"  limit=""   district="" />
+    <option name="tanner"           building="tannery"               sv="1200"   perbuilding="10"  limit=""   district="" />
+    <option name="taverns"          building="tavern"                sv="400"    perbuilding="5"   limit=""   district="" />
+    <option name="teacher"          building="school"                sv="200"    perbuilding="10"  limit=""   district="" />
     <option name="teamster"                                          sv="1400"   perbuilding=""    limit=""   district="" />
-    <option name="tilemaker"        building="tile shop"             sv="2000"   perbuilding=""    limit=""   district="" />
+    <option name="tilemaker"        building="tile shop"             sv="2000"   perbuilding="10"  limit=""   district="" />
     <option name="tinker"                                            sv="800"    perbuilding=""    limit=""   district="" />
     <option name="tmberwright"                                       sv="700"    perbuilding=""    limit=""   district="" />
-    <option name="trader"           building="trading post"          sv="800"    perbuilding=""    limit=""   district="" />
-    <option name="undertaker"       building="graveyard"             sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="professor"        building="university"            sv="4000"   perbuilding=""    limit=""   district="" />
-    <option name="vintner"          building="vinyard"               sv="900"    perbuilding=""    limit=""   district="" />
-    <option name="wagoneer"         building="wagon yard"            sv="900"    perbuilding=""    limit=""   district="" />
-    <option name="warehouse worker" building="warehouse"             sv="250"    perbuilding=""    limit=""   district="" />
-    <option name="watercarrier"     building="watercarriers"         sv="850"    perbuilding=""    limit=""   district="" />
-    <option name="weaponsmith"      building="weaponshop"            sv="1000"   perbuilding=""    limit=""   district="" />
-    <option name="weaver"           building="weavers"               sv="600"    perbuilding=""    limit=""   district="" />
-    <option name="wine-seller"      building="wine-sellers"          sv="900"    perbuilding=""    limit=""   district="" />
+    <option name="trader"           building="trading post"          sv="800"    perbuilding="10"  limit=""   district="" />
+    <option name="undertaker"       building="graveyard"             sv="1000"   perbuilding="10"  limit=""   district="" />
+    <option name="professor"        building="university"            sv="4000"   perbuilding="20"  limit=""   district="" />
+    <option name="vintner"          building="vinyard"               sv="900"    perbuilding="10"  limit=""   district="" />
+    <option name="wagoneer"         building="wagon yard"            sv="900"    perbuilding="20"  limit=""   district="" />
+    <option name="warehouse worker" building="warehouse"             sv="250"    perbuilding="10"  limit=""   district="" />
+    <option name="watercarrier"                                      sv="850"    perbuilding=""    limit=""   district="" />
+    <option name="weaponsmith"      building="weaponshop"            sv="1000"   perbuilding="10"  limit=""   district="" />
+    <option name="weaver"           building="weavers"               sv="600"    perbuilding="10"  limit=""   district="" />
+    <option name="wine-seller"      building="winery"                sv="900"    perbuilding="10"  limit=""   district="" />
     <option name="woodcarver"                                        sv="2400"   perbuilding=""    limit=""   district="" />
-    <option name="woodseller"       building="lumberyard"            sv="2400"   perbuilding=""    limit=""   district="" />
-    <option name="woodworker"       building="wood shop"             sv="2400"   perbuilding=""    limit=""   district="" />
+    <option name="woodseller"       building="lumberyard"            sv="2400"   perbuilding="10"  limit=""   district="" />
+    <option name="woodworker"       building="wood shop"             sv="2400"   perbuilding="10"  limit=""   district="" />
 
 
 </specialist>
