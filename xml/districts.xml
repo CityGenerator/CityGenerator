@@ -6,8 +6,9 @@
     <option name="wealthy"      chance='34' stat="economy" />
     <option name="middleclass"  chance='30' stat="economy" />
     <option name="racial"       chance='10' stat="tolerance" />
-    <option name="fineshops"    chance='5'  stat="economy" />
+    <option name="fine shops"    chance='5'  stat="economy" />
     <option name="arena"        chance='5'  stat="education" />
+    <option name="entertainment" chance='5' stat="education" />
     <option name="poor"         chance='30' stat="economy" />
     <option name="slums"        chance='10' stat="economy" />
     <option name="warehouse"    chance='5'  stat="economy" />
