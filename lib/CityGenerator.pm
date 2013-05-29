@@ -835,9 +835,24 @@ sub generate_businesses {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_districts
+
+Generate a list of districts from existing businesses
+
+=cut
+
+###############################################################################
 
 
+sub generate_districts {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
 
+
+    return $city;
+}
 ###############################################################################
 
 =head2 generate_travelers

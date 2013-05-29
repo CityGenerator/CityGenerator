@@ -1142,6 +1142,20 @@ subtest 'test generate_businesses' => sub {
     CityGenerator::generate_businesses($city);
     is($city->{'specialists'}->{'teacher'}->{'count'}, 50  );
     is($city->{'businesses'}->{'school'}->{'count'}, 5  );
+#TODO test hardcoded business counts regardless of specialists
+    done_testing();
+};
+
+subtest 'test generate_districts' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>'10000',});
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    CityGenerator::generate_districts($city);
+    is($city->{'specialists'}->{'teacher'}->{'count'}, 50  );
+    is($city->{'businesses'}->{'school'}->{'specialist_count'}, 50  );
+    is($city->{'businesses'}->{'school'}->{'count'}, 5  );
+    is($city->{'districts'}->{'market'}->{'business_count'}, 5  );
 
     done_testing();
 };
