@@ -34,9 +34,6 @@ if (defined $q->param('seed')){
     my $city=CityGenerator::create_city({seed=>$testcityid});
     CityGenerator::flesh_out_city($city);
 
-
-#
-## Show city XML
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
@@ -64,24 +61,61 @@ exit;
 sub print_page {
     my ($city)=@_;
 
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Welcome to '.$city->{'name'}."!",
+        'logo'          => "<canvas id='flag' style='border:1px solid black;' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
+        'seed'        => $city->{'seed'},
+        'content'       => print_content($city),
+        'worldnav'       => print_worldnav($city),
+    };
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+sub print_worldnav {
+    my ($city)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
 
-
+    my $formtmpl;
     my $vars = {
-        'title'         => 'CityGenerator',
         'cityname'      => $city->{'name'},
-        'cityid'        => $city->{'seed'},
+        'seed'          => $city->{'seed'},
+    };
+    $templates->process('worldnav.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+
+
+
+
+sub print_content {
+    my ($city)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'cityname'      => $city->{'name'},
+        'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
         'geographytext' => GeographyFormatter::printGeography($city),
         'cityscapetext' => CityscapeFormatter::printCityscape($city),
         'censusdatatext'=> CensusDataFormatter::printCensusData($city),
     };
-    $templates->process('new.tmpl', $vars) || die $templates->error(), "\n";
+    $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
 }
-
-
-

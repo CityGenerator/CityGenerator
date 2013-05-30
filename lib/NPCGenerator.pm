@@ -265,7 +265,7 @@ sub generate_npc_names{
 
     my @names;
     for (my $i=0 ; $i < $count ; $i++){
-        set_seed($GenericGenerator::seed+$i);
+        GenericGenerator::set_seed($GenericGenerator::seed+$i);
         push @names, generate_npc_name($race);
 
     }

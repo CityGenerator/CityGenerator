@@ -1155,7 +1155,7 @@ subtest 'test generate_districts' => sub {
     is($city->{'specialists'}->{'teacher'}->{'count'}, 50  );
     is($city->{'businesses'}->{'school'}->{'specialist_count'}, 50  );
     is($city->{'businesses'}->{'school'}->{'count'}, 5  );
-    is($city->{'districts'}->{'market'}->{'business_count'}, 5  );
+    is($city->{'districts'}->{'market'}->{'business_count'}, 14  );
 
     done_testing();
 };

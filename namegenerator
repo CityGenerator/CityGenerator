@@ -3,75 +3,76 @@
 use strict;
 use CGI;
 use Data::Dumper;
+use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
 use XML::Simple;
-###################################################
-# Using findbin to locate our new City.pm module
 use lib "lib/";
-###################################################
-#TODO it would be cool if it could rain frogs or potatoes
 use NPCGenerator ;
 use GenericGenerator;
-
-my $templates = Template->new({
-    INCLUDE_PATH => 'templates/',
-    INTERPOLATE  => 1,
-}) || die "$Template::ERROR\n";
-
-
-###########################################################
-# Yes, this is sloppy. I am aware, but it's also unique.
-# Unique, Ubiquitous Singletons.
 our $q = CGI->new;
 
-GenericGenerator::set_seed($q->param('seed')  );
-our $originalseed=$GenericGenerator::seed;
+
+my $testcityid=GenericGenerator::set_seed();
+if (defined $q->param('seed')){
+    $testcityid=$q->param('seed');
+}elsif (defined $q->param('cityid')){
+    $testcityid=$q->param('cityid');
+}elsif (defined $q->param('continent')){
+    $testcityid=$q->param('continent').'00';
+}elsif (defined $q->param('region')){
+    $testcityid=$q->param('region').'0';
+}
+
 my $namegen=NPCGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
     print XMLout($namegen);
+}elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print  $JSON->encode($namegen);
+
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $namegen;
-}elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
-
 }else {
     print $q->header;
-    print print_page($templates, $namegen, $q->param('race'));
+    print print_page($testcityid,$namegen);
 }
-        
+
 exit;
 
-
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
 
 sub print_page {
-    my ($templates,$namegen,$race)=@_;
+    my ($testcityid,$namegen)=@_;
     my $qstring=$ENV{'QUERY_STRING'};
-    $qstring.="&seed=".$originalseed   if (! defined $q->param('seed'));
+    $qstring.="&seed=".$testcityid   if (! defined $q->param('seed'));
 
 
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
 
     my $formtmpl;
     my $vars = {    
         'races'         =>  NPCGenerator::get_races() ,
-        'selectedrace'  =>  $race ,
+        'selectedrace'  =>  $q->param('race'), ,
         'names'         =>  $namegen,
     };
     $templates->process('nameform.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
     $vars = {
         'title'        => 'Name Generator',
-        'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$originalseed.'</a>',
+        'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$testcityid.'</a>',
         'content'       => $formtmpl,
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";

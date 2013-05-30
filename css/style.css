@@ -14,11 +14,11 @@ body {
 
 }
 header.title h1 {
-  word-spacing: -12px;
+  word-spacing: -6px;
   margin: 0;
   padding: 10px 0;
   text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
-  font: 40pt 'OldNewspaper';
+  font: 2.7em 'OldNewspaper';
 }
 header hgroup {
   border-bottom: 1px solid #999;
@@ -26,6 +26,53 @@ header hgroup {
   padding:0px;
 
 }
+
+#globalmenubutton {
+    position:relative;
+    font: 1.2em 'arial' bold;
+    z-index: 3;
+    text-decoration: none;
+    color: #999;
+    padding: 0.4em 0.7em;
+    border:1px solid #999;
+    border-radius: 4px;
+}
+#globalmenubutton:hover {
+    background-color: #999;
+    color:#fff;
+    border:1px solid #fff;
+}
+#globalmenudrawer {
+    display: none;
+    z-index: 3;
+    padding:0px;
+    position:absolute;
+    background-color: #999;
+    border:1px solid #fff;
+    border-radius: 4px;
+}
+#globalmenudrawer nav {
+    padding:0px;
+}
+#globalmenudrawer ul {
+    padding:0px;
+    margin:0px;
+    list-style-type: none;
+}
+#globalmenudrawer li{
+    border:1px solid white;
+}
+#globalmenudrawer  a{
+    text-decoration: none;
+    display:block;
+    padding:5px;
+    font: 8pt arial;
+}
+#globalmenudrawer  a:hover {
+    background-color:#777;
+}
+
+
 
 #worldnav {
     top:0px;
@@ -38,7 +85,8 @@ header hgroup {
     text-decoration:none;
 }
 
-#flag{
+#logo{
+    display:inline;
     float:right;
     margin:0px;
     padding:0px;

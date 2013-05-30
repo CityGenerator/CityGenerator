@@ -65,6 +65,8 @@ The following datafiles are used by CityGenerator.pm:
 
 =item * F<xml/specialists.xml>
 
+=item * F<xml/districts.xml>
+
 =back
 
 =head1 INTERFACE
@@ -80,6 +82,7 @@ my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent =>
 my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => [] );
 my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
+my $district_data       = $xml->XMLin( "xml/districts.xml",      ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -264,6 +267,9 @@ sub flesh_out_city {
     generate_travelers($city);
     generate_crime($city);
     set_dominance($city);
+    generate_specialists($city);
+    generate_businesses($city);
+    generate_districts($city);
     return $city;
 } ## end sub flesh_out_city
 
@@ -819,6 +825,7 @@ sub generate_businesses {
         if (defined $specialist->{'building'}){
             my $building = $specialist->{'building'};
             $city->{'businesses'}->{$building}->{'perbuilding'}= $specialist_data->{'option'}->{$specialist_name}->{'perbuilding'};
+            $city->{'businesses'}->{$building}->{'district'}= $specialist_data->{'option'}->{$specialist_name}->{'district'};
             if (defined $city->{'businesses'}->{$building}->{'specialist_count'}){
                 $city->{'businesses'}->{$building}->{'specialist_count'}+= $city->{'specialists'}->{$specialist_name}->{'count'} ;
             }else{
@@ -850,7 +857,28 @@ sub generate_districts {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
 
+    my $district_percents={};
+    #loop through our businesses and add up modifiers for district percents
+    foreach my $business_name (keys %{$city->{'businesses'}} ){
+        my $business= $city->{'businesses'}->{$business_name};
+        my $district_name= $business->{'district'} ;
+        $district_percents->{$district_name} +=    (defined $district_percents->{$district_name}) ?  &d( $business->{'count'}) : 0 ;
+    }
 
+
+
+    foreach my $district_name (keys %{$district_data->{'option'}} ){
+        my $district=$district_data->{'option'}->{$district_name};
+        
+        my $district_modifier=  (defined $district_percents->{$district_name}) ? $district_percents->{$district_name} : 0;
+        my $district_roll=&d(100);
+        # modify our district chance in the xml by our district_modifier
+        if ($district_roll <= $district->{'chance'} + $district_modifier){
+            $city->{'districts'}->{$district_name}->{'stat'}= $district->{'stat'};
+            $city->{'districts'}->{$district_name}->{'business_count'}= $district_modifier ;
+        }
+        
+    }
     return $city;
 }
 ###############################################################################

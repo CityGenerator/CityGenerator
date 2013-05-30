@@ -1,10 +1,10 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>CityGenerator: [% title %]</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+        <title>[%title%]</title>
+        <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
         <script src='/js/flag.js' ></script>
         <script src='/js/rhill-voronoi-core.js' ></script>
         <script src='/js/simplex-noise.js' ></script>
@@ -12,35 +12,52 @@
         <script src='/js/VoronoiMap.js' ></script>
         <script src='/js/CityMap.js' ></script>
         <script src='/js/WorldMap.js' ></script>
-        <script src='http://code.jquery.com/jquery-latest.js'></script>
-        <script src="js/bootstrap.min.js"></script>
-        <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+        <script src='/js/misc.js' ></script>
+
     </head>
     <body onload="[% onload %]">
-    
-    <div id="master-container" class="row-fluid">
-    Options for my header:
-        <h1 style="font-family:carbon">        1) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:carptun">       2) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:erika">         3) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:espreso">       4) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:hermes">        5) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:underwood">     6) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:OldNewspaper">  7) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:SpecialElite">  8) Welcome to the city of Barnows        </h1>
-        <h1 style="font-family:TTWPGOTT">      9) Welcome to the city of Barnows        </h1>
+    <div id="page">
+    <div id="page_border_left">
+    <div id="page_border_right">
+    <div id="page_center">
+          <a href="#" id="globalmenubutton" onclick="toggleGlobalMenu();" >+</a>
+        <div id="globalmenudrawer">
+            <nav>
+              <ul>
+                <li><a href="/citygenerator">CityGenerator</a></li>
+                <li><a href="/namegenerator">NameGenerator</a></li>
+              </ul>
+            </nav>
+        </div>
+                [% worldnav %]
 
-<p>I'm looking to create something like this with an old-time gazetteer feel:</p>
-    <img src="http://www.lib.k-state.edu/depts/spec/rarebooks/geography/parley-1847-p66.jpg"/>
+        <br clear="all"/>
+        <header class="title">
+            <hgroup>
+                <div id="logo">[% logo %]</div>
+                <h1>[% title %]</h1>
+                <br clear="all"/>
+            </hgroup>
+        </header>
 
-<p>And possibly something from <a href="http://studio.html5rocks.com/#Columns">this template</a>.
+
+         <div id="content">
+            [% content %]
 
     </div>
 
-    </body>
-</html>    
+        </div>
+        <footer>
+            <div>
+            <hr/>
+                                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
+                    <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
 
-
-
+            </div>
+        </footer>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

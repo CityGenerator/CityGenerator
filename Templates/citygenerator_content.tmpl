@@ -1,57 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
-        <title>[%title%]</title>
-        <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
-        <script src='/js/flag.js' ></script>
-        <script src='/js/rhill-voronoi-core.js' ></script>
-        <script src='/js/simplex-noise.js' ></script>
-        <script src='/js/map.js' ></script>
-        <script src='/js/VoronoiMap.js' ></script>
-        <script src='/js/CityMap.js' ></script>
-        <script src='/js/WorldMap.js' ></script>
-        <script src='/js/misc.js' ></script>
-
-    </head>
-    <body onload="create_flag('[% cityid %]' );build_continent( '[% cityid %]' )">
-    <div id="page">
-    <div id="page_border_left">
-    <div id="page_border_right">
-    <div id="page_center">
-          <a href="#" id="globalmenubutton" onclick="toggleGlobalMenu();" >+</a>
-        <div id="globalmenudrawer">
-            <nav>
-              <ul>
-                <li><a href="/citygenerator">CityGenerator</a></li>
-                <li><a href="/namegenerator">NameGenerator</a></li>
-              </ul>
-            </nav>
-        </div>
-        <div id="worldnav">
-            <nav>
-            <a href='?seed=[% cityid - 100 %]'>&laquo; Last Continent</a>
-            <a href='?seed=[% cityid - 10  %]'>&laquo; Last Region</a>
-            <a href='?seed=[% cityid - 1   %]'>&laquo; Last City</a>
-            <a href='?seed=[% cityid       %]'>[ [% cityname%] ]</a>
-            <a href='?seed=[% cityid + 1   %]'>Next City &raquo;</a>
-            <a href='?seed=[% cityid + 10  %]'>Next Region &raquo;</a>
-            <a href='?seed=[% cityid + 100 %]'>Next Continent &raquo;</a>
-            </nav>
-
-        </div>
-        <br clear="all"/>
-        <header class="title">
-            <hgroup>
-                <canvas id='flag' style="border:1px solid black;" width='180' height='90'  onclick='embiggen(this);'  > </canvas>
-                <h1>Welcome to [% cityname %]!</h1>
-                <br clear="all"/>
-            </hgroup>
-        </header>
 
 
-         <div id="content">
             <canvas id="citymap_small"      style="border:1px solid black;" width='465' height='280' onclick='embiggen(this);'></canvas>
 
             <section id="summary">
@@ -174,17 +122,3 @@
                     </section>
 
         </div>
-        <footer>
-            <div>
-            <hr/>
-                                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
-                    <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
-
-            </div>
-        </footer>
-    </div>
-    </div>
-    </div>
-    </div>
-</body>
-</html>
