@@ -30,19 +30,23 @@ subtest 'test create_city' => sub {
     is($city->{'gplimit'},'3500');
     is($city->{'pop_estimate'},'3203');
     is($city->{'size_modifier'},'1');
+    is($city->{'min_density'},'100');
+    is($city->{'max_density'},'9000');
 
     $city=CityGenerator::create_city({'seed'=>24,'dummy'=>'test'});
     is($city->{'seed'},24);
     is($city->{'dummy'},'test');
     is($city->{'name'},'Eisenbridge');
 
-    $city=CityGenerator::create_city({'seed'=>24,'name'=>'foo','size'=>'Detroitish','gplimit'=>'12345','pop_estimate'=>'10102','size_modifier'=>'3'});
+    $city=CityGenerator::create_city({'seed'=>24,'name'=>'foo','size'=>'Detroitish','gplimit'=>'12345','pop_estimate'=>'10102','size_modifier'=>'3', 'min_density'=>30, 'max_density'=>'3000'});
     is($city->{'seed'},24);
     is($city->{'name'},'foo');
     is($city->{'size'},'Detroitish');
     is($city->{'gplimit'},'12345');
     is($city->{'pop_estimate'},'10102');
     is($city->{'size_modifier'},'3');
+    is($city->{'min_density'},'30');
+    is($city->{'max_density'},'3000');
 
     done_testing();
 };
@@ -140,8 +144,8 @@ subtest 'test flesh_out_city' => sub {
     is($city->{'streets'}->{'mainroads'},undef);
     is($city->{'streets'}->{'roads'},undef);
     is($city->{'area'},undef);
-    is($city->{'density'},undef);
-    is($city->{'feetpercapita'},undef);
+    is($city->{'density_description'},undef);
+    is($city->{'population_density'},undef);
 
     CityGenerator::flesh_out_city($city);
 
@@ -195,9 +199,9 @@ subtest 'test flesh_out_city' => sub {
     is($city->{'streets'}->{'content'},'muddy cobblestone streets in a fragmented parallel pattern');
     is($city->{'streets'}->{'mainroads'},1);
     is($city->{'streets'}->{'roads'},2);
-    is($city->{'area'},7.22);
-    is($city->{'density_description'},'sparsely');
-    is($city->{'feetpercapita'},4200);
+    is($city->{'area'},0.14);
+    is($city->{'density_description'},'moderately');
+    is($city->{'population_density'},1366);
 
     done_testing();
 };
@@ -667,94 +671,74 @@ subtest 'test generate_streets' => sub {
 subtest 'test generate_area' => sub {
     my $city;
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1000});
+    $city=CityGenerator::create_city({'population_total'=>1000,'population_density'=>100});
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 9.29);
-    is($city->{'support_area'}, 4.78);
+    is($city->{'area'}, '10.00');
     is($city->{'arable_percentage'}, 65);
     is($city->{'arable_description'}, 'modest');
-    is($city->{'people_per_square_mile'}, 209);
     is($city->{'protected_percent'}, 96);
-    is($city->{'protected_area'},   8.92 );
-    is($city->{'border_length'},    13.13  );
+    is($city->{'protected_area'},   '9.60' );
+    is($city->{'border_length'},    13.62  );
     #FIXME tower_count is hardcoded to 5!!!
     is($city->{'tower_count'},      5  );
 
-    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>1000,'feetpercapita'=>1000, protected_percent=>'100', 'protected_area'=>9.29});
+    $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>1000,'population_density'=>100, protected_percent=>'100', 'protected_area'=>9.29});
     #FIXME Why is the support area different? between this and the one above?
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 9.29);
-    is($city->{'support_area'}, 4.63);
+    is($city->{'area'}, '10.00');
     is($city->{'arable_percentage'}, 81);
     is($city->{'arable_description'}, 'fertile');
-    is($city->{'people_per_square_mile'}, 216);
     is($city->{'protected_percent'}, 100);
     is($city->{'protected_area'},   9.29 );
     is($city->{'border_length'},    12.86  );
 
 
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1500,'arable_percentage'=>100,'people_per_square_mile'=>1000,'arable_description'=>'meh'});
+    $city=CityGenerator::create_city({'population_total'=>1000,'population_density'=>150,'arable_percentage'=>100,'arable_description'=>'meh'});
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 13.94);
+    is($city->{'area'}, 6.67);
     is($city->{'arable_percentage'}, 100);
     is($city->{'arable_description'}, 'meh');
-    is($city->{'people_per_square_mile'}, 1000);
-    is($city->{'support_area'}, '1.00');
 
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>3000, 'support_area'=>100});
+    $city=CityGenerator::create_city({'population_total'=>1000,'population_density'=>300, });
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 27.87);
-    is($city->{'support_area'}, 100);
+    is($city->{'area'}, 3.33);
 
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>1000,'feetpercapita'=>1000});
+    $city=CityGenerator::create_city({'population_total'=>1000,'population_density'=>1000});
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 9.29);
-    is($city->{'support_area'}, 4.78);
+    is($city->{'area'}, '1.00');
 
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>2000,'feetpercapita'=>1000});
+    $city=CityGenerator::create_city({'population_total'=>2000,'population_density'=>1000});
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 18.58);
-    is($city->{'support_area'}, 9.57);
+    is($city->{'area'}, '2.00');
 
     set_seed(1);
-    $city=CityGenerator::create_city({'population_total'=>3000,'feetpercapita'=>1000});
+    $city=CityGenerator::create_city({'population_total'=>3000,'population_density'=>1000});
     CityGenerator::generate_area($city);
-    is($city->{'area'}, 27.87);
-    is($city->{'support_area'}, 14.35);
+    is($city->{'area'}, '3.00');
 
     done_testing();
 };
 
 subtest 'test generate_popdensity' => sub {
     my $city;
-    set_seed(1);
-    $city=CityGenerator::create_city({});
+    $city=CityGenerator::create_city({ 'seed'=>1,  'population_total'=>'10000' });
     CityGenerator::generate_popdensity($city);
-    is($city->{'density_description'}, 'lightly');
-    is($city->{'feetpercapita'}, '3200');
-
-    set_seed(1);
-    $city=CityGenerator::create_city({'density_description'=>'nominally'});
-    CityGenerator::generate_popdensity($city);
-    is($city->{'density_description'}, 'nominally');
-    is($city->{'feetpercapita'}, '3200');
-
-    set_seed(1);
-    $city=CityGenerator::create_city({'seed'=>2,'density_description'=>'lightly', 'feetpercapita'=>1233});
-    CityGenerator::generate_popdensity($city);
-    is($city->{'density_description'}, 'lightly');
-    is($city->{'feetpercapita'}, '1233');
-
-    set_seed(1);
-    $city=CityGenerator::create_city({'seed'=>2, 'feetpercapita'=>1233});
-    CityGenerator::generate_popdensity($city);
+    is($city->{'population_density'}, 336);
     is($city->{'density_description'}, 'densely');
-    is($city->{'feetpercapita'}, '1233');
 
+    $city=CityGenerator::create_city({ 'seed'=>1,  'population_total'=>'10000', 'population_density'=>10000 });
+    CityGenerator::generate_popdensity($city);
+    is($city->{'population_density'}, 10000);
+    is($city->{'density_description'}, 'densely');
+
+    $city=CityGenerator::create_city({ 'seed'=>1,  'population_total'=>'10000', 'population_density'=>10000, 'density_description'=>'dovey' });
+    CityGenerator::generate_popdensity($city);
+    is($city->{'population_density'}, 10000);
+    is($city->{'density_description'}, 'dovey');
 
     done_testing();
 };

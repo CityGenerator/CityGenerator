@@ -26,7 +26,7 @@ subtest 'Test Cityscape walls' => sub {
     $city=CityGenerator::create_city({seed=>1, 'wall_chance_roll'=>1, 'wall_size_roll'=>22});
     CityGenerator::flesh_out_city($city);
     $cityscape=CityscapeFormatter::printWalls($city);
-    is($cityscape, "Visitors are greeted with a thick oak rampart that is 4 feet tall. The city wall protects the core 75% of the city, with 5 towers spread along the 5.52 kilometer wall." );
+    is($cityscape, "Visitors are greeted with a thick oak rampart that is 4 feet tall. The city wall protects the core 75% of the city, with 5 towers spread along the 1.80 kilometer wall." );
 
     done_testing();
 };

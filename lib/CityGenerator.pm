@@ -219,6 +219,8 @@ sub set_city_size {
     $city->{'gplimit'}       = $citysize->{'gplimit'}                 if ( !defined $city->{'gplimit'} );
     $city->{'pop_estimate'}  = $citysize->{'minpop'} + &d($sizedelta) if ( !defined $city->{'pop_estimate'} );
     $city->{'size_modifier'} = $citysize->{'size_modifier'}           if ( !defined $city->{'size_modifier'} );
+    $city->{'min_density'}   = $citysize->{'min_density'}             if ( !defined $city->{'min_density'} );
+    $city->{'max_density'}   = $citysize->{'max_density'}             if ( !defined $city->{'max_density'} );
     return $city;
 } ## end sub set_city_size
 
@@ -677,7 +679,8 @@ Generate the area the city covers.
 sub generate_area {
 #TODO change to metric....
     my ($city) = @_;
-    $city->{'area'}=sprintf "%4.2f",    $city->{'population_total'}* $city->{'feetpercapita'} /107639; #hectares;
+    print Dumper $city->{'population_density'};
+    $city->{'area'}=sprintf "%4.2f",    $city->{'population_total'} / $city->{'population_density'};
 
     my $stat_modifier=$city->{'stats'}->{'education'}+$city->{'stats'}->{'economy'}+$city->{'stats'}->{'magic'};
     $city->{'arable_percentage'}= max(1,min(100 ,d(100) + $stat_modifier ))  if (!defined $city->{'arable_percentage'});
@@ -689,11 +692,6 @@ sub generate_area {
                                         roll_from_array($city->{'arable_percentage'} , $xml_data->{'arable_description'}->{'option'} )->{'option'}
                               )->{'content'} if (!defined $city->{'arable_description'});
 
-    my $ppsm_modifier=  (  $city->{'stats'}->{'magic'}+5   )*4 +  $city->{'stats'}->{'economy'}  ; #people/sq mile
-    $city->{'people_per_square_mile'} = $xml_data->{'popdensity'}->{'ppsm'} + $ppsm_modifier  if (!defined $city->{'people_per_square_mile'} );
-
-    $city->{'support_area'}=sprintf "%4.2f", $city->{'population_total'}/$city->{'people_per_square_mile'} if (!defined $city->{'support_area'});
-    #Note, 259 hectares per sq mile.
 
     $city->{'protected_percent'} = 70+d(30)  if (!defined $city->{'protected_percent'});
     $city->{'protected_area'} = sprintf("%4.2f",  $city->{'area'}*  $city->{'protected_percent'} /100) if (!defined $city->{'protected_area'} );
@@ -709,16 +707,6 @@ sub generate_area {
 
 
 
-
-
-
-    #$city->{'walls'}->{'towercount'}=$city->{'walls'}->{'length'} / ( 100 + $city->{'size_modifier'}*$city->{'popdensity'}->{'feetpercapita'}/1000);
-    #$city->{'walls'}->{'towercount'}=int($city->{'walls'}->{'towercount'} * (1+ ($city->{'economy'}*2/100  ) ));
-
-
-
-
-
     return $city;
 }
 
@@ -727,16 +715,21 @@ sub generate_area {
 
 =head2 generate_popdensity
 
-Generate the density
+Generate the density of the population, given the base city size. Units are people per sq km.
 
 =cut
 
 ###############################################################################
 sub generate_popdensity {
     my ($city) = @_;
+    my $range = $city->{'max_density'} - $city->{'min_density'} ;
+    my $delta = &d(  $range  );
+    $city->{'population_density'}= $city->{'min_density'} + $delta  if (!defined $city->{'population_density'});
 
-    $city->{'feetpercapita'}= $xml_data->{'popdensity'}->{'base_pop'} - (2 * $city->{'size_modifier'}  * 100) if (! defined $city->{'feetpercapita'} );
-    $city->{'density_description'}=roll_from_array(  $city->{'feetpercapita'},  $xml_data->{'popdensity'}->{'option'} )->{'type'} if (!defined $city->{'density_description'});
+    my $percentile= $delta/$range*100;
+    $city->{'density_description'}= roll_from_array( $percentile, $xml_data->{'popdensity'}->{'option'})->{'type'} if (!defined $city->{'density_description'});
+
+
     return $city;
 }
 

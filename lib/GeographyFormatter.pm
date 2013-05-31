@@ -41,7 +41,7 @@ printGeography strips out important info from a City object and returns formatte
 sub printGeography {
     my ($city) = @_;
     my $content="";
-    $content.="This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated, covering $city->{'area'} hectares and supported by a $city->{'support_area'} square mile region.";
+    $content.="This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated, covering $city->{'area'} square kilometers.";
 
     return $content;
 }
