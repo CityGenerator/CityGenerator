@@ -113,7 +113,14 @@ printMisc formats details about streets around the city.
 
 sub printMisc {
     my ($city) = @_;
-    my $content="";
+    my $content = "                    <h3>Misc.</h3>\n";
+       $content.= "                    <ul>\n";
+       $content.="                        <li>".scalar( keys %{ $city->{'districts'}})." Districts</li>\n";
+       $content.="                        <li>$city->{'business_total'} Businesses</li>\n";
+       $content.="                        <li>$city->{'specialist_total'} Specialists</li>\n";
+       $content.="                        <li>$city->{'housing'}->{'total'} Residences</li>\n";
+
+       $content.= "                    </ul>\n";
     return $content;
 }
 

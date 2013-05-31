@@ -780,6 +780,8 @@ sub generate_specialists {
         $city->{'specialists'}={};
     }
 
+    $city->{'specialist_total'}=0;
+
     foreach my $specialist_name (sort keys %{$specialist_data->{'option'}}){
         if (! defined $city->{'specialists'}->{$specialist_name}){
 
@@ -787,11 +789,13 @@ sub generate_specialists {
             if ($specialist->{'sv'} <= $city->{'population_total'}  ){
                 $city->{'specialists'}->{$specialist_name}={
                     'count'=>floor($city->{'population_total'}/$specialist->{'sv'} ),
-                }
+                };
+                $city->{'specialist_total'}+=$city->{'specialists'}->{$specialist_name}->{'count'};
             }else{
                  
                 if (&d($specialist->{'sv'}) == 1 ){
-                    $city->{'specialists'}->{$specialist_name}={ 'count'=>1 }
+                    $city->{'specialists'}->{$specialist_name}={ 'count'=>1 };
+                    $city->{'specialist_total'}+=$city->{'specialists'}->{$specialist_name}->{'count'};
                 }
             }
         }
@@ -818,6 +822,7 @@ sub generate_businesses {
     if (!defined $city->{'businesses'}){
         $city->{'businesses'}={};
     }
+    $city->{'business_total'}=0;
     foreach my $specialist_name (sort keys %{$city->{'specialists'}}){
         my $specialist=$specialist_data->{'option'}->{$specialist_name};
 
@@ -837,6 +842,7 @@ sub generate_businesses {
     foreach my $business_name (keys %{$city->{'businesses'}} ){
         my $business=$city->{'businesses'}->{$business_name};
         $city->{'businesses'}->{$business_name}->{'count'} = ceil( $business->{'specialist_count'}/ $business->{'perbuilding'} );
+        $city->{'business_total'}+= $city->{'businesses'}->{$business_name}->{'count'};
     }
 
     return $city;

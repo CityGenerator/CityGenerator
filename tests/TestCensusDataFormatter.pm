@@ -68,14 +68,14 @@ subtest 'Test CensusData Misc' => sub {
     CityGenerator::flesh_out_city($city);
     my $censusdata=CensusDataFormatter::printMisc($city);
     is(1,1);
-#    is($censusdata, "                    <h3>Misc.</h3>
-#                    <ul>
-#                        <li>2449 Residential Buildings</li>
-#                        <li>9 Districts</li>
-#                        <li>925 Businesses</li>
-#                        <li>3736 Specialists</li>
-#                    </ul>
-#" );
+    is($censusdata, "                    <h3>Misc.</h3>
+                    <ul>
+                        <li>2 Districts</li>
+                        <li>351 Businesses</li>
+                        <li>2838 Specialists</li>
+                        <li>1884 Residences</li>
+                    </ul>
+" );
     done_testing();
 };
 
