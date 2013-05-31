@@ -42,7 +42,6 @@ subtest 'test create_condition' => sub {
 
 subtest 'test set_time' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_time($condition);
     is($condition->{'seed'},40);
@@ -68,7 +67,6 @@ subtest 'test set_time' => sub {
 
 subtest 'test set_temp' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_temp($condition);
     is($condition->{'seed'},40);
@@ -86,7 +84,6 @@ subtest 'test set_temp' => sub {
 
 subtest 'test set_air' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_air($condition);
     is($condition->{'seed'},40);
@@ -104,7 +101,6 @@ subtest 'test set_air' => sub {
 
 subtest 'test set_wind' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_wind($condition);
     is($condition->{'seed'},40);
@@ -122,7 +118,6 @@ subtest 'test set_wind' => sub {
 
 subtest 'test set_forecast' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_forecast($condition);
     is($condition->{'seed'},40);
@@ -138,7 +133,6 @@ subtest 'test set_forecast' => sub {
 
 subtest 'test set_clouds' => sub {
     my $condition;
-    set_seed(1);
     $condition={'seed'=>40};
     ConditionGenerator::set_clouds($condition);
     is($condition->{'seed'},40);
@@ -154,7 +148,6 @@ subtest 'test set_clouds' => sub {
 
 subtest 'test set_precip' => sub {
     my $condition;
-    set_seed(1);
 
     $condition={'seed'=>40};
     ConditionGenerator::set_precip($condition);
@@ -190,8 +183,6 @@ subtest 'test set_precip' => sub {
 
 subtest 'test set_storm' => sub {
     my $condition;
-    set_seed(1);
-
 
     $condition={'seed'=>2};
     ConditionGenerator::set_storm($condition);
@@ -249,27 +240,26 @@ subtest 'test set_storm' => sub {
 
 subtest 'test flesh_out_condition' => sub {
     my $condition;
-    set_seed(1);
 
-    $condition={};
+    $condition={'seed'=>1};
     ConditionGenerator::create_condition($condition);
     ConditionGenerator::flesh_out_condition($condition);
 
-    is($condition->{'storm_chance'}, 77);
+    is($condition->{'storm_chance'}, 5);
     is_deeply ($condition->{'bar_mod'},  {  'time'=> '0'});
     is($condition->{'time_description'}, 'at daybreak');
-    is($condition->{'clouds_description'}, 'brooding');
-    is($condition->{'wind_description'}, 'strong');
+    is($condition->{'clouds_description'}, 'whispy');
+    is($condition->{'wind_description'}, 'breezy');
     is($condition->{'time_pop_mod'}, '1.0');
-    is($condition->{'precip_chance'}, 88);
-    is($condition->{'wind_pop_mod'}, '0.90');
+    is($condition->{'precip_chance'}, 5);
+    is($condition->{'wind_pop_mod'}, '1.0');
     is($condition->{'time_bar_mod'}, '0');
     is($condition->{'temp_description'}, 'unbearably cold');
-    is($condition->{'air_description'}, 'thick');
-    is($condition->{'time_exact'}, '07:59');
+    is($condition->{'air_description'}, 'fresh');
+    is($condition->{'time_exact'}, '06:54');
     is($condition->{'temp_pop_mod'}, '0.10');
-    is_deeply ($condition->{'pop_mod'}, {  'wind'=> '0.90',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.0'});
-    is($condition->{'air_pop_mod'}, '1.0');
+    is_deeply ($condition->{'pop_mod'}, {  'wind'=> '1.0',  'temp'=> '0.10',  'time'=> '1.0',  'air'=> '1.10'});
+    is($condition->{'air_pop_mod'}, '1.10');
     is($condition->{'forecast_description'}, 'clear');
 
 

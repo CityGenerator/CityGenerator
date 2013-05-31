@@ -24,7 +24,6 @@ subtest 'test create_govt' => sub {
     $govt=GovtGenerator::create_govt();
     is($govt->{'seed'},41630);
 
-    set_seed(1);
     $govt=GovtGenerator::create_govt({'seed'=>12});
     is($govt->{'seed'},12);
 
@@ -33,14 +32,12 @@ subtest 'test create_govt' => sub {
 
 subtest 'test set_govt_type' => sub {
     my $govt;
-    set_seed(1);
-    $govt=GovtGenerator::create_govt();
+    $govt=GovtGenerator::create_govt({'seed'=>41630});
     GovtGenerator::set_govt_type($govt);
     is($govt->{'seed'},41630);
     is($govt->{'description'},"dictator");
     is($govt->{'type_approval_mod'},-1);
 
-    set_seed(1);
     $govt=GovtGenerator::create_govt({'seed'=>12, 'description'=>'foo', 'type_approval_mod'=>5,});
     GovtGenerator::set_govt_type($govt);
     is($govt->{'seed'},12);
@@ -53,13 +50,11 @@ subtest 'test set_govt_type' => sub {
 
 subtest 'test set_reputation' => sub {
     my $govt;
-    set_seed(1);
-    $govt=GovtGenerator::create_govt();
+    $govt=GovtGenerator::create_govt({'seed'=>41630});
     GovtGenerator::set_reputation($govt);
     is($govt->{'seed'},41630);
     is($govt->{'reputation'},'praised');
 
-    set_seed(1);
     #FIXME check for collisions like approval_mod
     $govt=GovtGenerator::create_govt({'seed'=>12, 'reputation'=>'foo', 'reputation_approval_mod'=>'5'});
     GovtGenerator::set_reputation($govt);
@@ -73,18 +68,16 @@ subtest 'test set_reputation' => sub {
 
 subtest 'test generate_stats' => sub {
     my $govt;
-    set_seed(1);
-    $govt=GovtGenerator::create_govt();
+    $govt=GovtGenerator::create_govt({'seed'=>41630});
     GovtGenerator::generate_stats($govt);
     is($govt->{'seed'},41630);
-    is_deeply($govt->{'stats'},{'corruption'=>68, 'approval'=>85, 'efficiency'=>59, 'influence'=>51, 'unity'=>76 });
+    is_deeply($govt->{'stats'},{'corruption'=>86, 'approval'=>58, 'efficiency'=>51, 'influence'=>76, 'unity'=>52 });
 
-    set_seed(1);
     #FIXME check for collisions like approval_mod
     $govt=GovtGenerator::create_govt({'seed'=>12, 'stats'=>{'corruption'=>12, 'approval'=>33, 'efficiency'=>44, 'influence'=>55, 'unity'=>66}});
     GovtGenerator::generate_stats($govt);
     is($govt->{'seed'},12);
-    is_deeply($govt->{'stats'},{'corruption'=>12, 'approval'=>33, 'efficiency'=>44, 'influence'=>55, 'unity'=>66 });
+    is_deeply($govt->{'stats'},{'corruption'=>12, 'approval'=>32, 'efficiency'=>44, 'influence'=>55, 'unity'=>66 });
 
     done_testing();
 };
@@ -92,8 +85,7 @@ subtest 'test generate_stats' => sub {
 
 subtest 'test set_secondary_power' => sub {
     my $govt;
-    set_seed(1);
-    $govt=GovtGenerator::create_govt();
+    $govt=GovtGenerator::create_govt({'seed'=>41630});
     GovtGenerator::set_secondary_power($govt);
     is($govt->{'seed'},41630);
     is($govt->{'secondary_power'}->{'plot'},"quietly denounces");
@@ -101,16 +93,14 @@ subtest 'test set_secondary_power' => sub {
     is($govt->{'secondary_power'}->{'subplot_roll'},"86");
     is($govt->{'secondary_power'}->{'subplot'},undef);
 
-    set_seed(1);
     $govt=GovtGenerator::create_govt({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'subplot_roll'=>3}});
     GovtGenerator::set_secondary_power($govt);
     is($govt->{'seed'},2);
     is($govt->{'secondary_power'}->{'plot'},"foo");
-    is($govt->{'secondary_power'}->{'power'},"a dragon");
+    is($govt->{'secondary_power'}->{'power'},"traveler");
     is($govt->{'secondary_power'}->{'subplot_roll'},"3");
-    is($govt->{'secondary_power'}->{'subplot'},"wishing to enslave the city");
+    is($govt->{'secondary_power'}->{'subplot'},"looking to overthrow the government");
 
-    set_seed(1);
     $govt=GovtGenerator::create_govt({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'power'=>'bar', 'subplot_roll'=>3, 'subplot'=>'baz'}});
     GovtGenerator::set_secondary_power($govt);
     is($govt->{'seed'},2);
@@ -121,12 +111,6 @@ subtest 'test set_secondary_power' => sub {
 
     done_testing();
 };
-
-
-
-
-
-
 
 
 

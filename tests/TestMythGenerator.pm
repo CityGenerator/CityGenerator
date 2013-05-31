@@ -24,7 +24,6 @@ subtest 'test create_myth' => sub {
     $myth=MythGenerator::create_myth();
     is($myth->{'seed'},41630);
 
-    set_seed(1);
     $myth=MythGenerator::create_myth({'seed'=>12});
     is($myth->{'seed'},12);
 

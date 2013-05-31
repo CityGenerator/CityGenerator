@@ -28,62 +28,44 @@ subtest 'test set_sex' => sub {
     NPCGenerator::set_sex($npc);
     is($npc->{'sex'}->{'pronoun'},'she');
 
-    GenericGenerator::set_seed(4);
-    $npc=NPCGenerator::create_npc();
-    NPCGenerator::set_sex($npc);
-    is($npc->{'sex'}->{'pronoun'},'it');
-
-    GenericGenerator::set_seed(5);
-    $npc=NPCGenerator::create_npc();
-    NPCGenerator::set_sex($npc);
-    is($npc->{'sex'}->{'pronoun'},'he');
-
-    GenericGenerator::set_seed(1);
-    $npc=NPCGenerator::create_npc();
+    $npc=NPCGenerator::create_npc({'seed'=>4});
     NPCGenerator::set_sex($npc);
     is($npc->{'sex'}->{'pronoun'},'she');
-    $npc->{'sex'}->{'pronoun'}='he';
+
+    $npc=NPCGenerator::create_npc({'seed'=>5});
     NPCGenerator::set_sex($npc);
     is($npc->{'sex'}->{'pronoun'},'he');
+
+    $npc=NPCGenerator::create_npc({'seed'=>1});
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'he');
+    $npc->{'sex'}->{'pronoun'}='she';
+    NPCGenerator::set_sex($npc);
+    is($npc->{'sex'}->{'pronoun'},'she');
 
     done_testing();
 };
 
 subtest 'test set_level' => sub {
     my $npc;
-    GenericGenerator::set_seed(1);
-    $npc=NPCGenerator::create_npc();
+
+    $npc=NPCGenerator::create_npc({'seed'=>5});
     NPCGenerator::set_level($npc);
-    is($npc->{'level'},'10');
+    is($npc->{'level'},'7');
 
-    GenericGenerator::set_seed(4);
-    $npc=NPCGenerator::create_npc();
+    $npc=NPCGenerator::create_npc({'seed'=>5,'size_modifier'=>12});
     NPCGenerator::set_level($npc);
-    is($npc->{'level'},'11');
+    is($npc->{'level'},'19');
 
-    GenericGenerator::set_seed(5);
-    $npc=NPCGenerator::create_npc();
-    NPCGenerator::set_level($npc);
-    is($npc->{'level'},'5');
-
-
-    GenericGenerator::set_seed(5);
-    $npc=NPCGenerator::create_npc({'size_modifier'=>12});
-    NPCGenerator::set_level($npc);
-    is($npc->{'level'},'17');
-
-    GenericGenerator::set_seed(5);
-    $npc=NPCGenerator::create_npc({'size_modifier'=>20});
+    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>20});
     NPCGenerator::set_level($npc);
     is($npc->{'level'},'20');
 
-    GenericGenerator::set_seed(5);
-    $npc=NPCGenerator::create_npc({'size_modifier'=>-20});
+    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>-20});
     NPCGenerator::set_level($npc);
     is($npc->{'level'},'1');
 
-    GenericGenerator::set_seed(1);
-    $npc=NPCGenerator::create_npc();
+    $npc=NPCGenerator::create_npc({'seed'=>1});
     $npc->{'level'}=4;
     NPCGenerator::set_level($npc);
     is($npc->{'level'},'4');
@@ -96,46 +78,28 @@ subtest 'test create_npc' => sub {
     subtest 'test create_npc race and seed' => sub {
 	    my $npc;
 	
-	    GenericGenerator::set_seed(1);
-	    $npc=NPCGenerator::create_npc();
-	    is($npc->{'race'},'deep dwarf', "deep dwarf if random race when seed is 1"  );
-	    is($npc->{'seed'}, 41630, "random seed selected when set_seed is at 1"  );
-	
-	    GenericGenerator::set_seed(1);
 	    $npc=NPCGenerator::create_npc({'seed'=>1});
-	    is($npc->{'race'},'human', "human if random race when seed is 1 regardless of source"  );
-	    is($npc->{'seed'}, 1, "random seed selected when set_seed is at 1"  );
+	    is($npc->{'race'},'human' );
 	
-	    GenericGenerator::set_seed(1);
-	    $npc=NPCGenerator::create_npc({'race'=>'orc'});
-	    is($npc->{'race'},'orc' , "race is set to orc despite random seed status" );
-	    is($npc->{'seed'}, 41630, "random seed selected when set_seed is at 1"  );
+	    $npc=NPCGenerator::create_npc({'seed'=>41630,'race'=>'orc'});
+	    is($npc->{'race'},'orc' );
 	
-	    GenericGenerator::set_seed(2);
-	    $npc=NPCGenerator::create_npc();
-	    is($npc->{'race'},'bugbear', "random race is bugbear when set_seed is at 2"  );
-	    is($npc->{'seed'}, 912432, "This is the random seed selected when set_seed is at 2"  );
-	    
 	    $npc=NPCGenerator::create_npc({'seed'=>1,'race'=>'elf'});
 	    is($npc->{'race'},'elf' , "race is elf when set" );
 	    is($npc->{'seed'}, 1 , "seed is 1 when set." );
-	    GenericGenerator::set_seed();
 	
 	    done_testing();
     };
     subtest 'test create_npc_acceptable_races' => sub {
 	    my $npc;
 
-	    GenericGenerator::set_seed(1);
-	    $npc=NPCGenerator::create_npc();
+	    $npc=NPCGenerator::create_npc({'seed'=>41630});
 	    is($npc->{'race'},'deep dwarf',  );
 	
-	    GenericGenerator::set_seed(1);
-	    $npc=NPCGenerator::create_npc({'available_races'=>['deep dwarf']});
+	    $npc=NPCGenerator::create_npc({'seed'=>1,'available_races'=>['deep dwarf']});
 	    is($npc->{'race'},'deep dwarf',  );
 
-	    GenericGenerator::set_seed(1);
-	    $npc=NPCGenerator::create_npc({'available_races'=>['deep dwarf','human','halfling']});
+	    $npc=NPCGenerator::create_npc({'seed'=>41630,'available_races'=>['deep dwarf','human','halfling']});
 	    is_deeply($npc->{'available_races'},['deep dwarf','human','halfling'] );
 	    is($npc->{'race'},'halfling'  );
 
@@ -185,16 +149,14 @@ subtest 'test create_npc' => sub {
         my $npc;
         my $tempdata=$NPCGenerator::xml_data;
 
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Love' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Affection' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  'Adoration' ,   "emotional state" );
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => [  {'type' => 'Astonishment' }], 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
@@ -202,8 +164,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{  'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
@@ -211,8 +172,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => 1, 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
@@ -220,8 +180,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => 1,  'type' => 'Shock'}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -229,8 +188,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -238,8 +196,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => {},  'type' => 'Shock'}, ] } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -247,8 +204,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>1  } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -256,8 +212,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={ 'attitude'=>{ } };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -265,8 +220,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
         
         $NPCGenerator::xml_data={ 'attitude'=>1 };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
@@ -274,8 +228,7 @@ subtest 'test create_npc' => sub {
         $NPCGenerator::xml_data=$tempdata;
 
         $NPCGenerator::xml_data={  };
-        $npc={};
-	    GenericGenerator::set_seed(1);
+        $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
 	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
 	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );

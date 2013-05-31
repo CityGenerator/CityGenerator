@@ -20,8 +20,7 @@ require Exporter;
 
 subtest 'test create_region' => sub {
     my $region;
-    set_seed(1);
-    $region=RegionGenerator::create_region();
+    $region=RegionGenerator::create_region({'seed'=>41630});
     is($region->{'seed'},41630);
     is($region->{'name'},'Nillkil Domain');
 
