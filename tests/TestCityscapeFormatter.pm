@@ -21,12 +21,17 @@ subtest 'Test Cityscape walls' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $cityscape=CityscapeFormatter::printWalls($city);
-    is($cityscape, "No walls currently surround the city." );
+    is($cityscape, "Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 84% of the city, with 5 towers spread along the 6.05 kilometer wall.");
 
     $city=CityGenerator::create_city({seed=>1, 'wall_chance_roll'=>1, 'wall_size_roll'=>22});
     CityGenerator::flesh_out_city($city);
     $cityscape=CityscapeFormatter::printWalls($city);
-    is($cityscape, "Visitors are greeted with a thick oak rampart that is 4 feet tall. The city wall protects the core 75% of the city, with 5 towers spread along the 1.80 kilometer wall." );
+    is($cityscape, "Visitors are greeted with a wood fence that is 6 feet tall. The city wall protects the core 84% of the city, with 5 towers spread along the 6.05 kilometer wall." );
+
+    $city=CityGenerator::create_city({seed=>1, 'wall_chance_roll'=>100, 'wall_size_roll'=>22});
+    CityGenerator::flesh_out_city($city);
+    $cityscape=CityscapeFormatter::printWalls($city);
+    is($cityscape, "No walls currently surround the city." );
 
     done_testing();
 };
@@ -35,7 +40,7 @@ subtest 'Test Cityscape streets' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $cityscape=CityscapeFormatter::printStreets($city);
-    is($cityscape, "The city is lined with broken cobblestone paths in an organic pattern." );
+    is($cityscape, "The city is lined with rough dirt tracks in a grid pattern." );
 
     done_testing();
 };
@@ -45,7 +50,7 @@ subtest 'Test Cityscape' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $cityscape=CityscapeFormatter::printCityscape($city);
-    is($cityscape, "<p>There is 1 road leading to Grisnow; none are major. No walls currently surround the city. The city is lined with broken cobblestone paths in an organic pattern.</p>" );
+    is($cityscape, "<p>There is 1 road leading to Grisnow; none are major. Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 84% of the city, with 5 towers spread along the 6.05 kilometer wall. The city is lined with rough dirt tracks in a grid pattern.</p>" );
 
     done_testing();
 };
