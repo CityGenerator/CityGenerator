@@ -22,7 +22,7 @@ subtest 'Test Geography' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $geography=GeographyFormatter::printGeography($city);
-    is($geography, "This desolate settlement is sparsely populated, covering 1.93 square kilometers." );
+    is($geography, "This desolate settlement is sparsely populated (27/sq km) and covers 1.93 square kilometers." );
 
     done_testing();
 };
