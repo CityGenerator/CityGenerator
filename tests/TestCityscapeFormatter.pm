@@ -45,12 +45,30 @@ subtest 'Test Cityscape streets' => sub {
     done_testing();
 };
 
+subtest 'Test Cityscape districts' => sub {
+    my $city=CityGenerator::create_city({seed=>1});
+    CityGenerator::flesh_out_city($city);
+    my $cityscape=CityscapeFormatter::printDistrictList($city);
+    is($cityscape, "The city is broken into the following Districts: market and trade." );
+
+    done_testing();
+};
+
+subtest 'Test Cityscape housing' => sub {
+    my $city=CityGenerator::create_city({seed=>1});
+    CityGenerator::flesh_out_city($city);
+    my $cityscape=CityscapeFormatter::printHousingList($city);
+    is($cityscape, "Among housing, there are 0 wealthy residences, 4 average homes and 2 dilapidated homes." );
+
+    done_testing();
+};
+
 
 subtest 'Test Cityscape' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $cityscape=CityscapeFormatter::printCityscape($city);
-    is($cityscape, "<p>There is 1 road leading to Grisnow; none are major. Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.45 kilometer wall. The city is lined with rough dirt tracks in a grid pattern.</p>" );
+    is($cityscape, "<p>There is 1 road leading to Grisnow; none are major. Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.45 kilometer wall. The city is lined with rough dirt tracks in a grid pattern. The city is broken into the following Districts: market and trade. Among housing, there are 0 wealthy residences, 4 average homes and 2 dilapidated homes.</p>" );
 
     done_testing();
 };

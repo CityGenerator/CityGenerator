@@ -45,6 +45,8 @@ sub printCityscape {
     $content.= "<p>".printRoads($city);
     $content.=   " ".printWalls($city);
     $content.=   " ".printStreets($city);
+    $content.=   " ".printDistrictList($city);
+    $content.=   " ".printHousingList($city);
     $content.= "</p>";
 
     return $content;
@@ -111,6 +113,50 @@ sub printStreets {
     return $content;
 }
 
+###############################################################################
+
+=head2 printDistrictList()
+
+printDistrictList formats details about the District List.
+
+=cut
+
+###############################################################################
+
+sub printDistrictList {
+    my ($city) = @_;
+    my @districts=keys %{ $city->{'districts'}};
+    my $content="";
+    if (scalar(@districts) ==0){
+        $content= "There are no defined districts in this city.";
+    }elsif (scalar(@districts) ==1){
+        $content= "The city includes the $districts[1] District.";
+    }else{
+        my $last_district= pop @districts;
+        $content= "The city is broken into the following Districts: ".join( ", ",@districts ) ." and $last_district.";
+    }
+
+
+    return $content;
+}
+
+
+###############################################################################
+
+=head2 printHousingList()
+
+printHousingList formats details about streets around the city.
+
+=cut
+
+###############################################################################
+
+sub printHousingList {
+    my ($city) = @_;
+    my $content = "Among housing, there are ".$city->{'housing'}->{'wealthy'}." wealthy residences, ".$city->{'housing'}->{'average'}." average homes and ".$city->{'housing'}->{'poor'}." dilapidated homes.";
+
+    return $content;
+}
 
 
 

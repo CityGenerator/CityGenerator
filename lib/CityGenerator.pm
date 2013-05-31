@@ -900,15 +900,13 @@ sub generate_districts {
         $district_percents->{$district_name} +=    (defined $district_percents->{$district_name}) ?  &d( $business->{'count'}) : 0 ;
     }
 
-
-
     foreach my $district_name (keys %{$district_data->{'option'}} ){
         my $district=$district_data->{'option'}->{$district_name};
         
         my $district_modifier=  (defined $district_percents->{$district_name}) ? $district_percents->{$district_name} : 0;
         my $district_roll=&d(100);
         # modify our district chance in the xml by our district_modifier
-        if ($district_roll <= $district->{'chance'} + $district_modifier){
+        if ($district_roll <= $district->{'chance'} + $district_modifier + $city->{'size_modifier'}){
             $city->{'districts'}->{$district_name}->{'stat'}= $district->{'stat'};
             $city->{'districts'}->{$district_name}->{'business_count'}= $district_modifier ;
         }
