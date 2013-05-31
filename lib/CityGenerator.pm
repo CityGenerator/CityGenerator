@@ -267,9 +267,10 @@ sub flesh_out_city {
     set_laws($city);
 
     #Generate
-    generate_walls($city);
     generate_popdensity($city);
     generate_area($city);
+    generate_walls($city);
+    generate_watchtowers($city);
     generate_housing($city);
     generate_specialists($city);
     generate_businesses($city);
@@ -328,8 +329,14 @@ sub generate_walls {
         $city->{'wall_size_roll'} = &d(100) + $modifier if (!defined $city->{'wall_size_roll'});
         my $wall = roll_from_array( $city->{'wall_size_roll'}, $xml_data->{'walls'}->{'wall'} );
         $city->{'walls'} = parse_object($wall);
-        $city->{'walls'}->{'height'}
-            = $wall->{'heightmin'} + &d( $wall->{'heightmax'} - $wall->{'heightmin'} ) + $modifier;
+        $city->{'walls'}->{'height'} = $wall->{'heightmin'} + &d( $wall->{'heightmax'} - $wall->{'heightmin'} ) + $modifier;
+
+        $city->{'protected_percent'} = min(100,   70+d(30) + $city->{'stats'}->{'military'}  )  if (!defined $city->{'protected_percent'});
+        $city->{'protected_area'} = sprintf("%4.2f", ( $city->{'area'} *  $city->{'protected_percent'} /100)) if (!defined $city->{'protected_area'} );
+
+        my $radius= sqrt($city->{'protected_area'} / pi);
+        $city->{'walls'}->{'length'}= sprintf  "%4.2f",  2* pi * $radius *(100 + d(40))/100  ; 
+
 
     } else {
         $city->{'walls'}->{'content'} = "none";
@@ -337,6 +344,24 @@ sub generate_walls {
     }
     return $city;
 } ## end sub generate_walls
+
+###############################################################################
+
+=head3 generate_watchtowers()
+
+Determine information about the city watchtowers.
+
+=cut
+
+###############################################################################
+sub generate_watchtowers {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+    #FIXME this shouldn't be hardcoded to 5
+    $city->{'watchtowers'}->{'count'}=5;
+
+
+}
 
 
 ###############################################################################
@@ -713,19 +738,6 @@ sub generate_area {
                                 rand_from_array(
                                         roll_from_array($city->{'arable_percentage'} , $xml_data->{'arable_description'}->{'option'} )->{'option'}
                               )->{'content'} if (!defined $city->{'arable_description'});
-
-
-    $city->{'protected_percent'} = 70+d(30)  if (!defined $city->{'protected_percent'});
-    $city->{'protected_area'} = sprintf("%4.2f",  $city->{'area'}*  $city->{'protected_percent'} /100) if (!defined $city->{'protected_area'} );
-
-    my $radius= sqrt($city->{'protected_area'} / pi);
-    
-    $city->{'border_length'}= sprintf  "%4.2f",  2* pi * $radius *(100 + d(40))/100  ; 
-
-
-    #FIXME this shouldn't be hardcoded to 5
-    $city->{'tower_count'}=5;
-    
 
 
 

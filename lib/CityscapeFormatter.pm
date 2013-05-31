@@ -88,7 +88,7 @@ sub printWalls {
     my $content = "No walls currently surround the city.";
 
     if   ( $city->{'walls'}->{'content'} ne 'none'){
-        $content = "Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'tower_count'} towers spread along the $city->{'border_length'} kilometer wall.";
+        $content = "Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
     }
 
     return $content;

@@ -163,8 +163,8 @@ subtest 'test flesh_out_city' => sub {
     is($city->{'gplimit'},500);
     is($city->{'pop_estimate'},185);
     is($city->{'size_modifier'},-4);
-    is($city->{'region'}->{'name'}, 'Moolborak Region');
-    is($city->{'continent'}->{'name'}, 'Mongar');
+    is($city->{'region'}->{'name'}, 'Marran Region');
+    is($city->{'continent'}->{'name'}, 'Anbel');
     is($city->{'base_pop'},'basic');
     is($city->{'type'},'basic');
     is($city->{'description'},'normal population');
@@ -230,7 +230,7 @@ subtest 'test set_pop_type' => sub {
 
 subtest 'test generate_walls' => sub {
     my $city;
-    $city=CityGenerator::create_city({'seed'=>'1'});
+    $city=CityGenerator::create_city({'seed'=>'1','area'=>1.9});
     CityGenerator::generate_walls($city);
     is($city->{'size_modifier'},'-5');
     is($city->{'wall_chance_roll'},'30');
@@ -238,7 +238,7 @@ subtest 'test generate_walls' => sub {
     is($city->{'walls'}->{'content'},'massive wood rampart');
     is($city->{'walls'}->{'height'},'24');
 
-    $city=CityGenerator::create_city({'seed'=>'2'});
+    $city=CityGenerator::create_city({'seed'=>'2', 'area'=>1.9});
     CityGenerator::generate_walls($city);
     is($city->{'size_modifier'},'8');
     is($city->{'wall_chance_roll'},'52');
@@ -247,13 +247,24 @@ subtest 'test generate_walls' => sub {
     is($city->{'walls'}->{'height'},'0');
 #FIXME  this should use wall_size_roll to test rather than seed=>2
     $city={};
-    $city=CityGenerator::create_city({'seed'=>'2', 'size_modifier'=>'0'});
+    $city=CityGenerator::create_city({'seed'=>'2', 'size_modifier'=>'0', 'area'=>1.9});
     CityGenerator::generate_walls($city);
     is($city->{'size_modifier'},0); # FIXME originally set to undef, was I testing an if?
     is($city->{'wall_chance_roll'},'92');
     is($city->{'wall_size_roll'},undef);
     is($city->{'walls'}->{'content'},'none');
     is($city->{'walls'}->{'height'},'0');
+
+
+    done_testing();
+};
+
+subtest 'test generate_watchtowers' => sub {
+    my $city;
+    $city=CityGenerator::create_city({'seed'=>'1', 'walls'=>{'length'=> 1.9 }});
+    CityGenerator::generate_watchtowers($city);
+    is($city->{'watchtowers'}->{'count'},5);
+
 
     done_testing();
 };
@@ -654,11 +665,6 @@ subtest 'test generate_area' => sub {
     is($city->{'area'}, '10.00');
     is($city->{'arable_percentage'}, 2);
     is($city->{'arable_description'}, 'desolate');
-    is($city->{'protected_percent'}, 84);
-    is($city->{'protected_area'},   '8.40' );
-    is($city->{'border_length'},    13.77  );
-    #FIXME tower_count is hardcoded to 5!!!
-    is($city->{'tower_count'},      5  );
 
     $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>1000,'population_density'=>100, protected_percent=>'100', 'protected_area'=>9.29});
     #FIXME Why is the support area different? between this and the one above?
@@ -666,9 +672,6 @@ subtest 'test generate_area' => sub {
     is($city->{'area'}, '10.00');
     is($city->{'arable_percentage'}, 2);
     is($city->{'arable_description'}, 'desolate');
-    is($city->{'protected_percent'}, 100);
-    is($city->{'protected_area'},   9.29 );
-    is($city->{'border_length'},    12.86  );
 
 
     $city=CityGenerator::create_city({'seed'=>1, 'population_total'=>1000,'population_density'=>150,'arable_percentage'=>100,'arable_description'=>'meh'});
