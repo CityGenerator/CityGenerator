@@ -101,7 +101,8 @@ sub create_govt {
     }
     generate_stats($govt);
     set_govt_type($govt);
-
+    set_secondary_power($govt);
+    set_reputation($govt);
     return $govt;
 } ## end sub create_govt
 

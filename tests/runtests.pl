@@ -20,6 +20,6 @@ use TestSummaryFormatter;
 use TestGeographyFormatter;
 use TestCityscapeFormatter;
 use TestCensusDataFormatter;
-
+use TestGovtFormatter;
 done_testing();
 

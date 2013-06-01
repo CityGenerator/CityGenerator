@@ -34,6 +34,7 @@ use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object 
 use Math::Complex ':pi'; 
 use NPCGenerator;
 use RegionGenerator;
+use GovtGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -280,6 +281,10 @@ sub flesh_out_city {
     generate_travelers($city);
     generate_crime($city);
     set_dominance($city);
+
+    $city->{'govt'}=GovtGenerator::create_govt('seed'=>$city->{'seed'});
+    
+
     return $city;
 } ## end sub flesh_out_city
 

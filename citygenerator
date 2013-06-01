@@ -15,6 +15,7 @@ use SummaryFormatter;
 use GeographyFormatter;
 use CityscapeFormatter;
 use CensusDataFormatter;
+use GovtFormatter;
 our $q = CGI->new;
 
 
@@ -114,6 +115,8 @@ sub print_content {
         'geographytext' => GeographyFormatter::printGeography($city),
         'cityscapetext' => CityscapeFormatter::printCityscape($city),
         'censusdatatext'=> CensusDataFormatter::printCensusData($city),
+        'govtdatatext'  => GovtFormatter::printGovt($city),
+        'govtcrimedatatext'=> GovtFormatter::printCrime($city),
     };
     $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
