@@ -1,128 +1,176 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
-    <color name="red" >
-        <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"  verb="love"    adverb="lovingly" />
-        <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"   verb="cherish" adverb="peacefully" />
-        <option type="Red"               red="255" green="0"   blue="0"   symbol="R"    verb="expand"  adverb="gracefully" />
-        <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"   verb="enforce" adverb="defiantly" />
-        <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"  verb="march"   adverb="passionately" />
-        <meaning>
-            <option type="vibrancy"/>
-            <option type="revolution"/>
-            <option type="religion"/>
-            <option type="war"/>
-            <option type="love"/>
-            <option type="leadership"/>
-        </meaning>
-    </color>
-    <color name="blue" >
-        <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"  verb="protect" adverb="faithfully" />
-        <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"   verb="inspire" adverb="freely" />
-        <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"    verb="enjoy"   adverb="openly" />
-        <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"   verb="devote"  adverb="fully" />
-        <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"  verb="honor"   adverb="justly" />
-        <meaning>
-        	<option type="liberty"/>
-        	<option type="determination"/>
-        	<option type="good fortune"/>
-        	<option type="truth"/>
-        	<option type="loyalty"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="green" >
-        <option type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"  verb="accelerate" adverb="tomorrow" />
-        <option type="Light green"       red="0"   green="204" blue="0"   symbol="V-"   verb="grow"       adverb="quickly" />
-        <option type="Green"             red="0"   green="153" blue="0"   symbol="V"    verb="prosper"    adverb="always" />
-        <option type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"   verb="hope"       adverb="appropriately" />
-        <option type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"  verb="cultivate"  adverb="brightly" />
-        <meaning>
-        	<option type="agriculture"/>
-        	<option type="religion"/>
-        	<option type="growth"/>
-        	<option type="prosperity"/>
-        	<option type="hope"/>
-        	<option type="endurance"/>
-        </meaning>
-    </color>
-    <color name="yellow" >
-        <option type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"  verb="strengthen" adverb="joyfully" />
-        <option type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"   verb="surpass"    adverb="happily" />
-        <option type="Yellow"            red="255" green="255" blue="0"   symbol="Y"    verb="entertain"  adverb="cheerfully" />
-        <option type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"   verb="relish"     adverb="gracefully" />
-        <meaning>
-        	<option type="energy"/>
-        	<option type="happiness"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="orange" >
-        <option type="Light orange"      red="255" green="153" blue="0"   symbol="O-" verb="distrust" adverb="enthusiastically" />
-        <option type="Orange"            red="255" green="102" blue="0"   symbol="O"  verb="desire" adverb="ambitiously" />
-        <meaning>
-        	<option type="enthusiasm"/>
-        	<option type="distrust"/>
-        	<option type="ambition"/>
-        </meaning>
-    </color>
-    <color name="gold" >
-        <option type="Gold"              red="255" green="204" blue="51"  symbol="Au" verb="purchase" adverb="wisely" />
-        <meaning>
-        	<option type="prestige"/>
-        	<option type="wisdom"/>
-        	<option type="wealth"/>
-        	<option type="quality"/>
-        	<option type="generosity"/>
-        </meaning>
+<flag> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
+    <colors>
+        <color name="red" >
+            <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"  verb="love"    adverb="lovingly" />
+            <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"   verb="cherish" adverb="peacefully" />
+            <option type="Red"               red="255" green="0"   blue="0"   symbol="R"    verb="expand"  adverb="gracefully" />
+            <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"   verb="enforce" adverb="defiantly" />
+            <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"  verb="march"   adverb="passionately" />
+            <meaning>
+                <option type="vibrancy"/>
+                <option type="revolution"/>
+                <option type="religion"/>
+                <option type="war"/>
+                <option type="love"/>
+                <option type="leadership"/>
+            </meaning>
+        </color>
+        <color name="blue" >
+            <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"  verb="protect" adverb="faithfully" />
+            <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"   verb="inspire" adverb="freely" />
+            <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"    verb="enjoy"   adverb="openly" />
+            <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"   verb="devote"  adverb="fully" />
+            <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"  verb="honor"   adverb="justly" />
+            <meaning>
+            	<option type="liberty"/>
+            	<option type="determination"/>
+            	<option type="good fortune"/>
+            	<option type="truth"/>
+            	<option type="loyalty"/>
+            	<option type="religion"/>
+            </meaning>
+        </color>
+        <color name="green" >
+            <option type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"  verb="accelerate" adverb="tomorrow" />
+            <option type="Light green"       red="0"   green="204" blue="0"   symbol="V-"   verb="grow"       adverb="quickly" />
+            <option type="Green"             red="0"   green="153" blue="0"   symbol="V"    verb="prosper"    adverb="always" />
+            <option type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"   verb="hope"       adverb="appropriately" />
+            <option type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"  verb="cultivate"  adverb="brightly" />
+            <meaning>
+            	<option type="agriculture"/>
+            	<option type="religion"/>
+            	<option type="growth"/>
+            	<option type="prosperity"/>
+            	<option type="hope"/>
+            	<option type="endurance"/>
+            </meaning>
+        </color>
+        <color name="yellow" >
+            <option type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"  verb="strengthen" adverb="joyfully" />
+            <option type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"   verb="surpass"    adverb="happily" />
+            <option type="Yellow"            red="255" green="255" blue="0"   symbol="Y"    verb="entertain"  adverb="cheerfully" />
+            <option type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"   verb="relish"     adverb="gracefully" />
+            <meaning>
+            	<option type="energy"/>
+            	<option type="happiness"/>
+            	<option type="religion"/>
+            </meaning>
+        </color>
+        <color name="orange" >
+            <option type="Light orange"      red="255" green="153" blue="0"   symbol="O-" verb="distrust" adverb="enthusiastically" />
+            <option type="Orange"            red="255" green="102" blue="0"   symbol="O"  verb="desire" adverb="ambitiously" />
+            <meaning>
+            	<option type="enthusiasm"/>
+            	<option type="distrust"/>
+            	<option type="ambition"/>
+            </meaning>
+        </color>
+        <color name="gold" >
+            <option type="Gold"              red="255" green="204" blue="51"  symbol="Au" verb="purchase" adverb="wisely" />
+            <meaning>
+            	<option type="prestige"/>
+            	<option type="wisdom"/>
+            	<option type="wealth"/>
+            	<option type="quality"/>
+            	<option type="generosity"/>
+            </meaning>
+    
+        </color>
+    
+        <color name="grey" >
+            <option type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
+            <option type="Grey"              red="153" green="153" blue="153" symbol="G"/>
+            <option type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
+            <option type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
+        </color>
+    
+        <color name="brown" >
+            <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="endure"    adverb="safely" />
+            <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="withstand" adverb="soldily" />
+            <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="balance"   adverb="naturally" />
+            <meaning>
+                <option type="nature"/>
+                <option type="strength"/>
+            </meaning>
+        </color>
+        <color name="purple" >
+            <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="rule" adverb="majestically" />
+            <meaning>
+            	<option type="majesty"/>
+            	<option type="justice"/>
+            	<option type="sovereignty"/>
+            </meaning>
+        </color>
+        <color name="black" >
+            <option type="Black"             red="0"   green="0"   blue="0"   symbol="N" verb="control" adverb="purposefully" />
+            <meaning>
+            	<option type="power"/>
+            	<option type="loss"/>
+            	<option type="purpose"/>
+            	<option type="victory"/>
+            	<option type="control"/>
+            	<option type="religion"/>
+            </meaning>
+        </color>
+        <color name="white" >
+            <option type="White"             red="255" green="255" blue="255" symbol="W" verb="perfect" adverb="peacefully" />
+            <meaning>
+            	<option type="purity"/>
+            	<option type="peace"/>
+            	<option type="harmony"/>
+            	<option type="religion"/>
+            </meaning>
+        </color>
+    </colors>
+    <ratio>
+		<option>1</option>
+		<option>1.15</option>
+		<option>1.25</option>
+		<option>1.33</option>
+		<option>1.32</option>
+		<option>1.38</option>
+		<option>1.39</option>
+		<option>1.50</option>
+		<option>1.6</option>
+		<option>1.67</option>
+		<option>1.9</option>
+		<option>2.0</option>
+		<option>2.55</option>
+    </ratio>
+    <division>
+        <option>none</option>
+        <option>quads</option>
+        <option>diagquads</option>
+        <option>diaggonal</option>
+        <option>vertical</option>
+        <option>horizontal</option>
+    </division>
+    <overlay>
+        <option>quaddiag</option>
+        <option>quad</option>
+        <option>stripe</option>
+        <option>slash</option>
+        <option>jack</option>
+        <option>asterisk</option>
+        <option>x</option>
+        <option>cross</option>
+        <option>diamond</option>
+        <option>circle</option>
+        <option>rays</option>
+    </overlay>
+    <symbol>
+        <option>circle</option>
+        <option>star</option>
+        <option>letter</option>
+    </symbol>
+    <border>
+        <option>none</option>
+        <option>solid</option>
+        <option>scaloped</option>
+    </border>
 
-    </color>
 
-    <color name="grey" >
-        <option type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
-        <option type="Grey"              red="153" green="153" blue="153" symbol="G"/>
-        <option type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
-        <option type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
-    </color>
-
-    <color name="brown" >
-        <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="endure"    adverb="safely" />
-        <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="withstand" adverb="soldily" />
-        <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="balance"   adverb="naturally" />
-        <meaning>
-            <option type="nature"/>
-            <option type="strength"/>
-        </meaning>
-    </color>
-    <color name="purple" >
-        <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="rule" adverb="majestically" />
-        <meaning>
-        	<option type="majesty"/>
-        	<option type="justice"/>
-        	<option type="sovereignty"/>
-        </meaning>
-    </color>
-    <color name="black" >
-        <option type="Black"             red="0"   green="0"   blue="0"   symbol="N" verb="control" adverb="purposefully" />
-        <meaning>
-        	<option type="power"/>
-        	<option type="loss"/>
-        	<option type="purpose"/>
-        	<option type="victory"/>
-        	<option type="control"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="white" >
-        <option type="White"             red="255" green="255" blue="255" symbol="W" verb="perfect" adverb="peacefully" />
-        <meaning>
-        	<option type="purity"/>
-        	<option type="peace"/>
-        	<option type="harmony"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-
-
-</flagcolors>
+</flag>
 

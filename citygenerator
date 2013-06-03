@@ -70,10 +70,10 @@ sub print_page {
     my $vars = {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='border:1px solid black;' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
-        'seed'        => $city->{'seed'},
-        'onload'        => "createFlag($city->{'seed'});",
+        'seed'          => $city->{'seed'},
+        'onload'        => "create_flag($city->{'seed'});",
         'content'       => print_content($city),
-        'worldnav'       => print_worldnav($city),
+        'worldnav'      => print_worldnav($city),
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }

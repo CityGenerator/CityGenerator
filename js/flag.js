@@ -2,10 +2,8 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(params) {
-console.log(params)
-    var canvas=params.canvas
-    var seed=params.seed
+function create_flag(seed) {
+    var canvas=document.getElementById('flag');
     var letter=params.letter
     var colorlist=params.colorlist
 

@@ -30,6 +30,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use CityGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -90,11 +91,18 @@ sub create_flag {
     }
 
     if ( !defined $flag->{'seed'} ) {
-        $flag->{'seed'} = set_seed();
+        $flag->{'seed'} = GenericGenerator::set_seed();
     }
-
+    $flag = generate_colors($flag);
+    $flag = generate_ratio($flag);
+    $flag = generate_division($flag);
+    $flag = generate_overlay($flag);
+    $flag = generate_symbol($flag);
+    $flag = generate_border($flag);
+    $flag = generate_letter($flag);
     return $flag;
 } ## end sub create_flag
+
 
 ###############################################################################
 
@@ -110,20 +118,20 @@ sub generate_colors {
     my ($flag)=@_;
 
     my $colorcount=5;
-    set_seed($flag->{'seed'});
+    GenericGenerator::set_seed($flag->{'seed'});
 
-    my @colors=keys %{$flag_data->{'color'}};
+    my @colors=keys %{$flag_data->{'colors'}->{'color'}};
 
     while ($colorcount-- >0){
         shuffle @colors;
         $GenericGenerator::seed++;
         my $color={};
         my $targetcolor=pop @colors;
-        if ( defined $flag_data->{'color'}->{$targetcolor}->{'meaning'}){
-            $color->{'meaning'}=rand_from_array($flag_data->{'color'}->{$targetcolor}->{'meaning'}->{'option'})->{'type'};
+        if ( defined $flag_data->{'colors'}->{'color'}->{$targetcolor}->{'meaning'}){
+            $color->{'meaning'}=rand_from_array($flag_data->{'colors'}->{'color'}->{$targetcolor}->{'meaning'}->{'option'})->{'type'};
         }
 
-        my $shade=rand_from_array($flag_data->{'color'}->{$targetcolor}->{'option'});
+        my $shade=rand_from_array($flag_data->{'colors'}->{'color'}->{$targetcolor}->{'option'});
 
         $color->{'hex'} = sprintf ("#%2.2X%2.2X%2.2X",$shade->{'red'},$shade->{'green'},$shade->{'blue'});
         $color->{'type'}=$shade->{'type'};
@@ -133,7 +141,49 @@ sub generate_colors {
     return $flag;
 }
 
+sub generate_ratio {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    $flag->{'ratio'}=rand_from_array($flag_data->{'ratio'}->{'option'})->{'content'} if (!defined $flag->{'ratio'});
+    return $flag
+}
 
+sub generate_division {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    $flag->{'division'}=rand_from_array($flag_data->{'division'}->{'option'})->{'content'} if (!defined $flag->{'division'});
+    return $flag
+}
+
+
+sub generate_overlay {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    $flag->{'overlay'}=rand_from_array($flag_data->{'overlay'}->{'option'})->{'content'} if (!defined $flag->{'overlay'});
+    return $flag
+}
+sub generate_symbol {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    $flag->{'symbol'}=rand_from_array($flag_data->{'symbol'}->{'option'})->{'content'} if (!defined $flag->{'symbol'});
+    return $flag
+}
+
+sub generate_border {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    $flag->{'border'}=rand_from_array($flag_data->{'border'}->{'option'})->{'content'} if (!defined $flag->{'border'});
+    return $flag
+}
+
+
+sub generate_letter {
+    my ($flag)=@_;
+    my $city={'seed'=>$flag->{'seed' }};
+    $city=CityGenerator::generate_city_name($city)->{'name'};
+    $flag->{'letter'}=substr( $city,0,1 ) if (!defined $flag->{'letter'});
+    return $flag
+}
 
 1;
 
