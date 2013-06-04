@@ -124,6 +124,15 @@
             </meaning>
         </color>
     </colors>
+    <shape>
+        <option>para</option>
+        <option>tri</option>
+        <option>pennant</option>
+        <option>swallow</option>
+        <option>tongued</option>
+        <option>square</option>
+    </shape>
+
     <ratio>
 		<option>1</option>
 		<option>1.15</option>
@@ -143,7 +152,7 @@
         <option>none</option>
         <option>quads</option>
         <option>diagquads</option>
-        <option>diaggonal</option>
+        <option>diagonal</option>
         <option>vertical</option>
         <option>horizontal</option>
     </division>
