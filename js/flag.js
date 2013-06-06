@@ -4,166 +4,149 @@
 
 function create_flag(seed) {
     var canvas=document.getElementById('flag');
-    var letter=params.letter
-    var colorlist=params.colorlist
-
-
-    Math.seedrandom(seed);
-
-
-    var flag=canvas.getContext('2d');
-
-    //This is the flag's colorscheme; at most it'll have a 3 color background
-    //var colorlist = select_5_colors();
-
-    // Set the base size of the flag; height will 
-    // always be 100, but width may change.
-    var ratio=set_ratio( flag );
-    var width=canvas.width;
-    var height=width*ratio;
-
-    canvas.height=height;
-    canvas.width=width;
-    flag=set_shape(flag, width, height);
-    flag.clip();
-    
-    // flags have 4 parts; the division, the overlay
-    // a symbol, and a border.
-    flag=select_division(flag, width, height, colorlist );
-    flag=select_overlay( flag, width, height, colorlist );
-    flag=select_symbol(  flag, width, height, letter, colorlist );
-    flag=select_border(  flag, width, height, colorlist );
+    $.get(
+        "http://devcitygenerator.morgajel.net/flaggenerator?type=json&seed="+seed,
+        function(params) {
+            var flag=canvas.getContext('2d');
+            params.canvas=canvas;
+            params.flag=flag;
+            canvas.width=canvas.height*params.ratio;
+            params.flag=set_shape( params );
+            params.flag.clip();
+            params.flag=select_division( params );
+            //flag=select_overlay( params );
+            //flag=select_symbol( params );
+            //flag=select_border( params );
+        }, "json"
+    );
 }
 
-function set_shape(flag, width, height){
-    var shape = getQueryString()['shape'];
-    var chance=shape || d( 300 ); 
-    if  (chance <5 || shape == 'para'){
-        flag.moveTo(    0,        0);
-        flag.lineTo(    width,    height/6);
-        flag.lineTo(    width,    height-height/6);
-        flag.lineTo(    0,        height);
-    }else if  (chance <20 || shape == 'tri'){
-        flag.moveTo(    0,        0);
-        flag.lineTo(    width,    height/2);
-        flag.lineTo(    0,        height);
-    }else if  (chance <25 || shape == 'pennant'){
-        flag.moveTo(    0,        0);
-        flag.lineTo(    width,    height/5*2);
-        flag.lineTo(    width,    height/5*3);
-        flag.lineTo(    0,        height);
-    }else if  (chance <40 || shape == 'swallow'){
-        flag.moveTo(    0,                0);
-        flag.lineTo(    width,            height/3*1);
-        flag.lineTo(    width-width/5,    height/2);
-        flag.lineTo(    width,            height/3*2);
-        flag.lineTo(    0,                height);
-    }else if  (chance <45 || shape == 'tongued'){
-        flag.moveTo(    0,                0);
-        flag.lineTo(    width,            0);
-        flag.lineTo(    width,            height/11*1);
-        flag.lineTo(    width-width/11,   height/11*1);
-        flag.lineTo(    width-width/11,   height/11*2);
+function set_shape(params){
+    var width=params.canvas.width;
+    var height=params.canvas.height;
+    var flag=params.flag;
+    switch(params.shape){
+        case 'para':
+            flag.moveTo(    0,        0);
+            flag.lineTo(    width,    height/6);
+            flag.lineTo(    width,    height-height/6);
+            flag.lineTo(    0,        height);
+            break;
+        case 'tri':
+            flag.moveTo(    0,        0);
+            flag.lineTo(    width,    height/2);
+            flag.lineTo(    0,        height);
+            break;
+        case 'pennant':
+            flag.moveTo(    0,        0);
+            flag.lineTo(    width,    height/5*2);
+            flag.lineTo(    width,    height/5*3);
+            flag.lineTo(    0,        height);
+            break;
+        case 'swallow':
+            flag.moveTo(    0,                0);
+            flag.lineTo(    width,            height/3*1);
+            flag.lineTo(    width-width/5,    height/2);
+            flag.lineTo(    width,            height/3*2);
+            flag.lineTo(    0,                height);
+            break;
+        case 'tongued':
+             flag.moveTo(    0,                0);
+             flag.lineTo(    width,            0);
+             flag.lineTo(    width,            height/11*1);
+             flag.lineTo(    width-width/11,   height/11*1);
+             flag.lineTo(    width-width/11,   height/11*2);
 
-        flag.lineTo(    width,            height/11*2);
-        flag.lineTo(    width,            height/11*3);
-        flag.lineTo(    width-width/11,   height/11*3);
-        flag.lineTo(    width-width/11,   height/11*4);
+             flag.lineTo(    width,            height/11*2);
+             flag.lineTo(    width,            height/11*3);
+             flag.lineTo(    width-width/11,   height/11*3);
+             flag.lineTo(    width-width/11,   height/11*4);
 
-        flag.lineTo(    width,            height/11*4);
-        flag.lineTo(    width,            height/11*5);
-        flag.lineTo(    width-width/11,   height/11*5);
-        flag.lineTo(    width-width/11,   height/11*6);
+             flag.lineTo(    width,            height/11*4);
+             flag.lineTo(    width,            height/11*5);
+             flag.lineTo(    width-width/11,   height/11*5);
+             flag.lineTo(    width-width/11,   height/11*6);
 
-        flag.lineTo(    width,            height/11*6);
-        flag.lineTo(    width,            height/11*7);
-        flag.lineTo(    width-width/11,   height/11*7);
-        flag.lineTo(    width-width/11,   height/11*8);
+             flag.lineTo(    width,            height/11*6);
+             flag.lineTo(    width,            height/11*7);
+             flag.lineTo(    width-width/11,   height/11*7);
+             flag.lineTo(    width-width/11,   height/11*8);
 
-        flag.lineTo(    width,            height/11*8);
-        flag.lineTo(    width,            height/11*9);
-        flag.lineTo(    width-width/11,   height/11*9);
-        flag.lineTo(    width-width/11,   height/11*10);
+             flag.lineTo(    width,            height/11*8);
+             flag.lineTo(    width,            height/11*9);
+             flag.lineTo(    width-width/11,   height/11*9);
+             flag.lineTo(    width-width/11,   height/11*10);
 
-        flag.lineTo(    width,            height/11*10);
-        flag.lineTo(    width,            height);
-        flag.lineTo(    0,                height);
-    }else{
-        flag.rect(0,0,width,height);
-
+             flag.lineTo(    width,            height/11*10);
+             flag.lineTo(    width,            height);
+             flag.lineTo(    0,                height);
+            break;
+        default:
+            flag.rect(0,0,width,height);
     }
-        flag.fill()
+    flag.fill();
     return flag;
 }
 
 // Division should only use colors 0,1 and 2 at most.
-function select_division( flag, width, height, colorlist){
+function select_division( params){
 
-    // by making chance possibly a text string, it should become larger than
-    // usable and force division to work. kudgy, but functional.
-    var division = getQueryString()['division'];
-    var chance=division || d( 70 );
+    params.flag = draw_solid( params );
 
-    var flag = draw_solid( flag, width, height, colorlist[0] );
-
-    if        (chance <10 || division == 'quads'){
-        flag = draw_quads( flag, width, height, colorlist );
-
-    } else if (chance <20 || division == 'diagquad' ){
-        flag = draw_quaddiagonals( flag, width, height, colorlist );
-
-    } else if (chance <35 || division == 'diag1'){
-        flag = draw_diagonals( flag, width, height, undefined, colorlist );
-
-    } else if (chance <55 || division == 'vert' || division == 'hor' ){
-        flag = draw_stripes( flag, width, height, division, undefined, colorlist );
-
-    } else{/*nothing, just the base.*/}
-
-    return flag;
+    switch(params.division){
+        case 'quads':
+            params.flag = draw_quads( params );
+            break;
+        case 'diagquad':
+            params.flag = draw_quaddiagonals( params );
+            break;
+        case 'diag1':
+            params.flag = draw_diagonals( params );
+            break;
+        default:
+            params.flag = draw_stripes( params );
+    }
+    return params.flag;
 }
 
 // overlay should use colors 3 
-function select_overlay(flag,width,height, colorlist){
+function select_overlay(flag, params){
 
-    var overlay=getQueryString()['overlay'];
-    var chance=overlay || d( 150 ) ; 
-
-    if        (chance <10 || overlay=='quaddiag'){
-        flag= draw_quaddiagonal(flag, width, height, d( 4 ), colorlist[3] );
-
-    } else if (chance <20 || overlay=='quad'){
-        flag= draw_quad(flag, width, height, 1, colorlist[3]);
-
-    } else if (chance <30 || overlay=='stripe'){
-        flag= draw_stripe(flag,width, height, undefined, undefined, undefined, colorlist[3]);
-
-    } else if (chance <40 || overlay=='jack'){
-        flag= draw_jack(flag,width,height,colorlist[3]);
-        flag= draw_jack(flag,width,height,colorlist[2]);
-
-    } else if (chance <50 || overlay=='asterisk'){
-        flag= draw_asterisk(flag,width,height,colorlist[3]);
-        flag= draw_asterisk(flag,width,height,colorlist[2]);
-
-    } else if (chance <60 || overlay=='x'){
-        flag= draw_x(flag,width,height, undefined,colorlist[3]);
-        flag= draw_x(flag,width,height, undefined,colorlist[2]);
-
-    } else if (chance <70 || overlay=='cross'){
-        flag= draw_cross(flag, width, height, undefined, undefined, undefined, undefined, colorlist[3]);
-
-    } else if (chance <80 || overlay=='diamond'){
-        flag= draw_diamond(flag,width,height,colorlist[3]);
-
-    } else if (chance <90 || overlay=='circle'){
-        flag=draw_circle(flag,  width, height, 1/2, 1/2, undefined, colorlist[3] );
-
-    } else if (chance <100 || overlay == 'rays'){
-        flag = draw_rays( flag, width, height, undefined,undefined,undefined, undefined, colorlist[3] );
-
-
-    } else{ /* 10% chance of getting nothing! */}
+    switch(params.overlay){
+        case 'quaddiag':
+            flag= draw_quaddiagonal(flag, params, 3);
+            break;
+        case 'quad':
+            flag= draw_quad(flag, params, 1, 3);
+            break;
+        case 'stripe':
+            flag= draw_stripe(flag, params, 3);
+            break;
+        case 'jack':
+            flag= draw_jack(flag,params, 3);
+            flag= draw_jack(flag,params, 2);
+            break;
+        case 'asterisk':
+            flag= draw_asterisk(flag,width,height,colorlist[3]);
+            flag= draw_asterisk(flag,width,height,colorlist[2]);
+            break;
+        case 'x':
+            flag= draw_x(flag,width,height, undefined,colorlist[3]);
+            flag= draw_x(flag,width,height, undefined,colorlist[2]);
+            break;
+        case 'cross':
+            flag= draw_cross(flag, width, height, undefined, undefined, undefined, undefined, colorlist[3]);
+            break;
+        case 'diamond':
+            flag= draw_diamond(flag,width,height,colorlist[3]);
+            break;
+        case 'circle':
+            flag=draw_circle(flag,  width, height, 1/2, 1/2, undefined, colorlist[3] );
+            break;
+        case  'rays':
+            flag = draw_rays( flag, width, height, undefined,undefined,undefined, undefined, colorlist[3] );
+            break;
+    }
     return flag;
 }
 
@@ -229,10 +212,10 @@ function select_border(flag, width, height, colorlist){
     }
     return flag;
 }
-function draw_solid(flag, width, height, color){
-        flag.fillStyle=color||random_color();
-        flag.fillRect(0,0, width,height); 
-        return flag;
+function draw_solid( params){
+        params.flag.fillStyle=params.colors[0].hex;
+        params.flag.fillRect(0,0, params.canvas.width,params.canvas.height); 
+        return params.flag;
 
 }
 
@@ -457,26 +440,28 @@ function draw_stripe(flag, width, height, type, count, order, color){
 }
 
 
-function draw_quad(flag, width, height, quad, color){
-    var a=0,b=0,c=width/2, d=height/2;
-    if (quad == 2 || quad == 4 ){
-        a=width/2;
+function draw_quad(quadrant, params){
+    var a=0,b=0,c=params.canvas.width/2, d=params.canvas.height/2;
+    var color;
+    if (quadrant == 2 || quadrant == 4 ){
+        a=params.canvas.width/2;
+        color=params.colors[0].hex;
+    }else if (quadrant == 3 || quadrant == 4 ){
+        b=params.canvas.height/2;
+        color=params.colors[1].hex;
     }
-    if (quad == 3 || quad == 4 ){
-        b=height/2;
-    }
-    flag.fillStyle=color||random_color();
-    flag.fillRect( a, b, c, d );
-    return flag;
+    params.flag.fillStyle=color;
+    params.flag.fillRect( a, b, c, d );
+    return params.flag;
 }
 
 
-function draw_quads(flag,width,height,colorlist){
+function draw_quads(params){
 
-    flag=draw_quad(flag, width, height, 1,colorlist[0]);
-    flag=draw_quad(flag, width, height, 2,colorlist[1]);
-    flag=draw_quad(flag, width, height, 3,colorlist[1]);
-    flag=draw_quad(flag, width, height, 4,colorlist[0]);
+    flag=draw_quad( 1, params );
+    flag=draw_quad( 2, params );
+    flag=draw_quad( 3, params );
+    flag=draw_quad( 4, params );
     return flag
 }
 

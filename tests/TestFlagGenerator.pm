@@ -21,6 +21,7 @@ require Exporter;
 subtest 'test create_flag' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
+    $flag->{'colors'}=undef;
     FlagGenerator::generate_colors($flag);
     is($flag->{'seed'},41630);
     is(@{$flag->{'colors'}},5);
@@ -29,16 +30,22 @@ subtest 'test create_flag' => sub {
 
 
     $flag=FlagGenerator::create_flag({'seed'=>12345});
-    FlagGenerator::generate_colors($flag);
     is($flag->{'seed'},12345);
     is(@{$flag->{'colors'}},5);
 
-    $flag=FlagGenerator::create_flag(1);
-    FlagGenerator::generate_colors($flag);
-    is($flag->{'seed'},442135);
-    is(@{$flag->{'colors'}},5);
-
     done_testing();
+};
+
+
+subtest 'test generate_shape' => sub {
+    my $flag;
+    $flag=FlagGenerator::create_flag({'seed'=>41630});
+    FlagGenerator::generate_shape($flag);
+    is($flag->{'shape'},'tongued');
+
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'shape'=>'bone'});
+    FlagGenerator::generate_shape($flag);
+    is($flag->{'shape'},'bone');
 };
 
 subtest 'test generate_ratio' => sub {
@@ -46,7 +53,6 @@ subtest 'test generate_ratio' => sub {
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_ratio($flag);
     is($flag->{'ratio'},'1.6');
-
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'ratio'=>3});
     FlagGenerator::generate_ratio($flag);
@@ -68,7 +74,7 @@ subtest 'test generate_overlay' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_overlay($flag);
-    is($flag->{'overlay'},'cross');
+    is($flag->{'overlay'},'quad');
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'overlay'=>'bunny'});
     FlagGenerator::generate_overlay($flag);
