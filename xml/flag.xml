@@ -168,6 +168,9 @@
             <side>sw</side>
         </option>
         <option name="stripe">
+            <side>vertical</side>
+            <side>horizontal</side>
+            
             <count>2</count>
             <count>3</count>
             <count>5</count>

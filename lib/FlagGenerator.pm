@@ -170,9 +170,12 @@ sub generate_division {
 sub generate_overlay {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
-    my $overlays=[keys %{$flag_data->{'overlay'}->{'option'}}];
-    $flag->{'overlay'} = rand_from_array(  $overlays  ) if (!defined $flag->{'overlay'});
+    $flag->{'overlay'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'overlay'}->{'option'}}]  ) if (!defined $flag->{'overlay'}->{'name'});
+    my $overlay=$flag_data->{'overlay'}->{'option'}->{  $flag->{'overlay'} ->{'name'}  };
    
+    foreach my $attribute (keys %$overlay){ 
+        $flag->{'overlay'}->{$attribute}= rand_from_array( $overlay->{$attribute} )->{'content'} if (!defined  $flag->{'overlay'}->{$attribute});
+    }
 
     return $flag;
 }
