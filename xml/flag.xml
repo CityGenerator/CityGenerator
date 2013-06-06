@@ -157,17 +157,56 @@
         <option>horizontal</option>
     </division>
     <overlay>
-        <option>quaddiag</option>
-        <option>quad</option>
-        <option>stripe</option>
-        <option>slash</option>
-        <option>jack</option>
-        <option>asterisk</option>
-        <option>x</option>
-        <option>cross</option>
-        <option>diamond</option>
-        <option>circle</option>
-        <option>rays</option>
+        <option name="quaddiag">
+            <side>vertical</side>
+            <side>horizontal</side>
+        </option>
+        <option name="quad">
+            <side>ne</side>
+            <side>nw</side>
+            <side>se</side>
+            <side>sw</side>
+        </option>
+        <option name="stripe">
+            <count>2</count>
+            <count>3</count>
+            <count>5</count>
+            <count>9</count>
+            <count>13</count>
+        </option>
+        <option name="slash">
+            <direction>right-to-left</direction>
+            <direction>left-to-right</direction>
+        </option>
+        <option name="jack">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="asterisk">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="x">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="cross">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="diamond">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="circle">
+            <outline>true</outline>
+            <outline>false</outline>
+        </option>
+        <option name="rays">
+            <count>8</count>
+            <count>9</count>
+            <count>15</count>
+        </option>
     </overlay>
     <symbol>
         <option>circle</option>
