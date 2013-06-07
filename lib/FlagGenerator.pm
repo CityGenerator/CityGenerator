@@ -170,13 +170,35 @@ sub generate_division {
 sub generate_overlay {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
+    # First lets figure out what type of overlay we're dealing with if we don't already have one.
     $flag->{'overlay'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'overlay'}->{'option'}}]  ) if (!defined $flag->{'overlay'}->{'name'});
+    
+    # Now that we have the name, lets grab the rest of it, including features.
     my $overlay=$flag_data->{'overlay'}->{'option'}->{  $flag->{'overlay'} ->{'name'}  };
    
-    foreach my $attribute (keys %$overlay){ 
-        $flag->{'overlay'}->{$attribute}= rand_from_array( $overlay->{$attribute} )->{'content'} if (!defined  $flag->{'overlay'}->{$attribute});
-    }
 
+    # Lets see what attributes the overlay has, and select some.
+    foreach my $attribute_name (keys %$overlay){
+
+        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+        # followup parameters will still be generated properly (count will still be 5)
+        GenericGenerator::set_seed($flag->{'seed'});
+        # select the option from the array
+        my $attr=rand_from_array( $overlay->{$attribute_name}->{'option'} ); 
+
+        # If the attribute_name is already defined, don't use attr->content
+        $flag->{'overlay'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'overlay'}->{$attribute_name});
+
+        # If the field is numeric and a value is not already set, randomly generate it.
+        GenericGenerator::set_seed($flag->{'seed'});
+        if (defined $overlay->{$attribute_name}->{'numeric'} and 
+            $overlay->{$attribute_name}->{'numeric'} and  
+            !defined  $flag->{'overlay'}->{$attribute_name."_selected"}) {
+                # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+                # followup parameters will still be generated properly (count will still be 5)
+                $flag->{'overlay'}->{$attribute_name."_selected"}= d( $flag->{'overlay'}->{$attribute_name} ) ;
+        }
+    }
     return $flag;
 }
 sub generate_symbol {

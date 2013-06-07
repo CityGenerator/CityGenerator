@@ -158,57 +158,80 @@
     </division>
     <overlay>
         <option name="quaddiag">
-            <side>vertical</side>
-            <side>horizontal</side>
+            <side>
+                <option>vertical</option>
+                <option>horizontal</option>
+            </side>
         </option>
         <option name="quad">
-            <side>ne</side>
-            <side>nw</side>
-            <side>se</side>
-            <side>sw</side>
+            <side>
+                <option>ne</option>
+                <option>nw</option>
+                <option>se</option>
+                <option>sw</option>
+            </side>
         </option>
         <option name="stripe">
-            <side>vertical</side>
-            <side>horizontal</side>
-            
-            <count>2</count>
-            <count>3</count>
-            <count>5</count>
-            <count>9</count>
-            <count>13</count>
+            <side>
+                <option>vertical</option>
+                <option>horizontal</option>
+            </side>
+            <count numeric="true">
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>9</option>
+                <option>13</option>
+            </count>
         </option>
         <option name="slash">
-            <direction>right-to-left</direction>
-            <direction>left-to-right</direction>
+            <direction>
+                <option>right-to-left</option>
+                <option>left-to-right</option>
+            </direction>
         </option>
         <option name="jack">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="asterisk">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="x">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="cross">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="diamond">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="circle">
-            <outline>true</outline>
-            <outline>false</outline>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
         </option>
         <option name="rays">
-            <count>8</count>
-            <count>9</count>
-            <count>15</count>
+            <count numeric="true">
+                <option>8</option>
+                <option>9</option>
+                <option>15</option>
+            </count>
         </option>
     </overlay>
     <symbol>
