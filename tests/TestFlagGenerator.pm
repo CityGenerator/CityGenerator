@@ -63,12 +63,36 @@ subtest 'test generate_division' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_division($flag);
-    is($flag->{'division'},'vertical');
+    is($flag->{'division'}->{'name'},'diagonal');
 
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>'bunny'});
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes'}});
     FlagGenerator::generate_division($flag);
-    is($flag->{'division'},'bunny');
+    is($flag->{'division'}->{'name'},'stripes');
+    is($flag->{'division'}->{'side'},'horizontal');
+    is($flag->{'division'}->{'count'},'9');
+    is($flag->{'division'}->{'count_selected'},'7');
+
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes', 'side'=>'vertical', 'count_selected'=>'1'}});
+    FlagGenerator::generate_division($flag);
+    is($flag->{'division'}->{'name'},'stripes');
+    is($flag->{'division'}->{'side'},'vertical');
+    is($flag->{'division'}->{'count'},'9');
+    is($flag->{'division'}->{'count_selected'},'1');
+
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes', 'side'=>'vertical', 'count'=>'13'}});
+    FlagGenerator::generate_division($flag);
+    is($flag->{'division'}->{'name'},'stripes');
+    is($flag->{'division'}->{'side'},'vertical');
+    is($flag->{'division'}->{'count'},'13');
+    is($flag->{'division'}->{'count_selected'},'9');
+
+
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'bunny'}});
+    FlagGenerator::generate_division($flag);
+    is($flag->{'division'}->{'name'},'bunny');
 };
+
+
 
 subtest 'test generate_overlay' => sub {
     my $flag;
@@ -108,11 +132,11 @@ subtest 'test generate_symbol' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_symbol($flag);
-    is($flag->{'symbol'},'letter');
+    is($flag->{'symbol'}->{'name'},'letter');
 
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'symbol'=>'bunny'});
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'symbol'=>{'name'=>'bunny'}});
     FlagGenerator::generate_symbol($flag);
-    is($flag->{'symbol'},'bunny');
+    is($flag->{'symbol'}->{'name'},'bunny');
 };
 
 subtest 'test generate_border' => sub {
@@ -124,17 +148,6 @@ subtest 'test generate_border' => sub {
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'border'=>'bunny'});
     FlagGenerator::generate_border($flag);
     is($flag->{'border'},'bunny');
-};
-
-subtest 'test generate_letter' => sub {
-    my $flag;
-    $flag=FlagGenerator::create_flag({'seed'=>41630});
-    FlagGenerator::generate_letter($flag);
-    is($flag->{'letter'},'P');
-
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'letter'=>'b'});
-    FlagGenerator::generate_letter($flag);
-    is($flag->{'letter'},'b');
 };
 
 1;

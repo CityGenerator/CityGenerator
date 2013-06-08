@@ -159,10 +159,35 @@ sub generate_ratio {
 sub generate_division {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
-    my $division=rand_from_array($flag_data->{'division'}->{'option'});
+    # First lets figure out what type of division we're dealing with if we don't already have one.
+    $flag->{'division'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'division'}->{'option'}}]  ) if (!defined $flag->{'division'}->{'name'});
+    
+    # Now that we have the name, lets grab the rest of it, including features.
+    my $division=$flag_data->{'division'}->{'option'}->{  $flag->{'division'} ->{'name'}  };
+   
 
+    # Lets see what attributes the division has, and select some.
+    foreach my $attribute_name (keys %$division){
 
-    $flag->{'division'}=$division->{'content'} if (!defined $flag->{'division'});
+        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+        # followup parameters will still be generated properly (count will still be 5)
+        GenericGenerator::set_seed($flag->{'seed'});
+        # select the option from the array
+        my $attr=rand_from_array( $division->{$attribute_name}->{'option'} ); 
+
+        # If the attribute_name is already defined, don't use attr->content
+        $flag->{'division'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'division'}->{$attribute_name});
+
+        # If the field is numeric and a value is not already set, randomly generate it.
+        GenericGenerator::set_seed($flag->{'seed'});
+        if (defined $division->{$attribute_name}->{'numeric'} and 
+            $division->{$attribute_name}->{'numeric'} and  
+            !defined  $flag->{'division'}->{$attribute_name."_selected"}) {
+                # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+                # followup parameters will still be generated properly (count will still be 5)
+                $flag->{'division'}->{$attribute_name."_selected"}= d( $flag->{'division'}->{$attribute_name} ) ;
+        }
+    }
     return $flag;
 }
 
@@ -201,10 +226,40 @@ sub generate_overlay {
     }
     return $flag;
 }
+
+
 sub generate_symbol {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
-    $flag->{'symbol'}=rand_from_array($flag_data->{'symbol'}->{'option'})->{'content'} if (!defined $flag->{'symbol'});
+    # First lets figure out what type of symbol we're dealing with if we don't already have one.
+    $flag->{'symbol'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'symbol'}->{'option'}}]  ) if (!defined $flag->{'symbol'}->{'name'});
+    
+    # Now that we have the name, lets grab the rest of it, including features.
+    my $symbol=$flag_data->{'symbol'}->{'option'}->{  $flag->{'symbol'} ->{'name'}  };
+   
+
+    # Lets see what attributes the symbol has, and select some.
+    foreach my $attribute_name (keys %$symbol){
+
+        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+        # followup parameters will still be generated properly (count will still be 5)
+        GenericGenerator::set_seed($flag->{'seed'});
+        # select the option from the array
+        my $attr=rand_from_array( $symbol->{$attribute_name}->{'option'} ); 
+
+        # If the attribute_name is already defined, don't use attr->content
+        $flag->{'symbol'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'symbol'}->{$attribute_name});
+
+        # If the field is numeric and a value is not already set, randomly generate it.
+        GenericGenerator::set_seed($flag->{'seed'});
+        if (defined $symbol->{$attribute_name}->{'numeric'} and 
+            $symbol->{$attribute_name}->{'numeric'} and  
+            !defined  $flag->{'symbol'}->{$attribute_name."_selected"}) {
+                # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+                # followup parameters will still be generated properly (count will still be 5)
+                $flag->{'symbol'}->{$attribute_name."_selected"}= d( $flag->{'symbol'}->{$attribute_name} ) ;
+        }
+    }
     return $flag;
 }
 
@@ -216,13 +271,6 @@ sub generate_border {
 }
 
 
-sub generate_letter {
-    my ($flag)=@_;
-    my $city={'seed'=>$flag->{'seed' }};
-    $city=CityGenerator::generate_city_name($city)->{'name'};
-    $flag->{'letter'}=substr( $city,0,1 ) if (!defined $flag->{'letter'});
-    return $flag;
-}
 
 1;
 

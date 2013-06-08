@@ -56,4 +56,57 @@ exit;
 #################################################################################################
 
 sub print_page {
+    my ($flag)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Flag '.$flag->{'seed'}."!",
+
+        'seed'          => $flag->{'seed'},
+        'onload'        => "create_flag($flag->{'seed'});",
+        'content'       => print_content($flag),
+        'worldnav'      => print_worldnav($flag),
+    };
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+sub print_worldnav {
+    my ($flag)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'cityname'      => $flag->{'seed'},
+        'seed'          => $flag->{'seed'},
+    };
+    $templates->process('worldnav.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+
+
+sub print_content {
+    my ($flag)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'seed'          => $flag->{'seed'},
+    };
+    $templates->process('flag.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
 }
