@@ -235,6 +235,13 @@
                 <option>true</option>
                 <option>false</option>
             </outline>
+            <width>
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>9</option>
+                <option>13</option>
+            </width>
         </option>
         <option name="diamond">
             <outline>
@@ -243,17 +250,83 @@
             </outline>
         </option>
         <option name="circle">
+            <outline_width>
+                <option>1</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+            </outline_width>
             <outline>
                 <option>true</option>
                 <option>false</option>
             </outline>
+            <radius_direction>
+                <option>horizontal</option>
+                <option>vertical</option>
+            </radius_direction>
+            <x_location>
+                <option>-1</option>
+                <option>-.5</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </x_location>
+            <y_location>
+                <option>-1</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.5</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>2</option>
+            </y_location>
+            <radius>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </radius>
         </option>
         <option name="rays">
-            <count numeric="true">
+            <count>
                 <option>8</option>
                 <option>9</option>
                 <option>15</option>
             </count>
+            <x_location>
+                <option>-1</option>
+                <option>-.5</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </x_location>
+            <y_location>
+                <option>-1</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.5</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>2</option>
+            </y_location>
         </option>
     </overlay>
     <symbol>

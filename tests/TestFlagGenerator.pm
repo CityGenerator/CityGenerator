@@ -70,21 +70,18 @@ subtest 'test generate_division' => sub {
     is($flag->{'division'}->{'name'},'stripes');
     is($flag->{'division'}->{'side'},'horizontal');
     is($flag->{'division'}->{'count'},'9');
-    is($flag->{'division'}->{'count_selected'},'7');
 
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes', 'side'=>'vertical', 'count_selected'=>'1'}});
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes', 'side'=>'vertical'}});
     FlagGenerator::generate_division($flag);
     is($flag->{'division'}->{'name'},'stripes');
     is($flag->{'division'}->{'side'},'vertical');
     is($flag->{'division'}->{'count'},'9');
-    is($flag->{'division'}->{'count_selected'},'1');
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'stripes', 'side'=>'vertical', 'count'=>'13'}});
     FlagGenerator::generate_division($flag);
     is($flag->{'division'}->{'name'},'stripes');
     is($flag->{'division'}->{'side'},'vertical');
     is($flag->{'division'}->{'count'},'13');
-    is($flag->{'division'}->{'count_selected'},'9');
 
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'division'=>{'name'=>'bunny'}});

@@ -34,9 +34,11 @@ use CityGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
-use XML::Simple;
+#use XML::Simple;
+use  XML::LibXML::Simple;
 
-my $xml = XML::Simple->new();
+#my $xml = XML::Simple->new();
+my $xml =  XML::LibXML::Simple->new();
 
 ###############################################################################
 
@@ -121,10 +123,13 @@ sub generate_colors {
     my $colorcount=5;
     GenericGenerator::set_seed($flag->{'seed'});
 
+
     my @colors=keys %{$flag_data->{'colors'}->{'color'}};
+    @colors=shuffle @colors;
+    print STDERR Dumper @colors;
 
     while ($colorcount-- >0){
-        shuffle @colors;
+        @colors=shuffle @colors;
         $GenericGenerator::seed++;
         my $color={};
         my $targetcolor=pop @colors;
@@ -169,9 +174,6 @@ sub generate_division {
     # Lets see what attributes the division has, and select some.
     foreach my $attribute_name (keys %$division){
 
-        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
-        # followup parameters will still be generated properly (count will still be 5)
-        GenericGenerator::set_seed($flag->{'seed'});
         # select the option from the array
         my $attr=rand_from_array( $division->{$attribute_name}->{'option'} ); 
 
@@ -179,7 +181,6 @@ sub generate_division {
         $flag->{'division'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'division'}->{$attribute_name});
 
         # If the field is numeric and a value is not already set, randomly generate it.
-        GenericGenerator::set_seed($flag->{'seed'});
         if (defined $division->{$attribute_name}->{'numeric'} and 
             $division->{$attribute_name}->{'numeric'} and  
             !defined  $flag->{'division'}->{$attribute_name."_selected"}) {
@@ -197,7 +198,6 @@ sub generate_overlay {
     GenericGenerator::set_seed($flag->{'seed'});
     # First lets figure out what type of overlay we're dealing with if we don't already have one.
     $flag->{'overlay'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'overlay'}->{'option'}}]  ) if (!defined $flag->{'overlay'}->{'name'});
-    
     # Now that we have the name, lets grab the rest of it, including features.
     my $overlay=$flag_data->{'overlay'}->{'option'}->{  $flag->{'overlay'} ->{'name'}  };
    
@@ -205,9 +205,6 @@ sub generate_overlay {
     # Lets see what attributes the overlay has, and select some.
     foreach my $attribute_name (keys %$overlay){
 
-        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
-        # followup parameters will still be generated properly (count will still be 5)
-        GenericGenerator::set_seed($flag->{'seed'});
         # select the option from the array
         my $attr=rand_from_array( $overlay->{$attribute_name}->{'option'} ); 
 
@@ -215,7 +212,6 @@ sub generate_overlay {
         $flag->{'overlay'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'overlay'}->{$attribute_name});
 
         # If the field is numeric and a value is not already set, randomly generate it.
-        GenericGenerator::set_seed($flag->{'seed'});
         if (defined $overlay->{$attribute_name}->{'numeric'} and 
             $overlay->{$attribute_name}->{'numeric'} and  
             !defined  $flag->{'overlay'}->{$attribute_name."_selected"}) {
@@ -241,9 +237,6 @@ sub generate_symbol {
     # Lets see what attributes the symbol has, and select some.
     foreach my $attribute_name (keys %$symbol){
 
-        # Note that we're setting the seed here so passing in a paramter (say side=>top), 
-        # followup parameters will still be generated properly (count will still be 5)
-        GenericGenerator::set_seed($flag->{'seed'});
         # select the option from the array
         my $attr=rand_from_array( $symbol->{$attribute_name}->{'option'} ); 
 
@@ -251,7 +244,6 @@ sub generate_symbol {
         $flag->{'symbol'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'symbol'}->{$attribute_name});
 
         # If the field is numeric and a value is not already set, randomly generate it.
-        GenericGenerator::set_seed($flag->{'seed'});
         if (defined $symbol->{$attribute_name}->{'numeric'} and 
             $symbol->{$attribute_name}->{'numeric'} and  
             !defined  $flag->{'symbol'}->{$attribute_name."_selected"}) {
