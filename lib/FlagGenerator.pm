@@ -33,12 +33,10 @@ use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object 
 use CityGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use XML::Simple;
 use version;
-#use XML::Simple;
-use  XML::LibXML::Simple;
 
-#my $xml = XML::Simple->new();
-my $xml =  XML::LibXML::Simple->new();
+my $xml = XML::Simple->new();
 
 ###############################################################################
 
@@ -60,6 +58,8 @@ The following datafiles are used by FlagGenerator.pm:
 =cut
 
 ###############################################################################
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::LibXML::SAX';
+
 my $flag_data    = $xml->XMLin( "xml/flag.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -126,7 +126,6 @@ sub generate_colors {
 
     my @colors=keys %{$flag_data->{'colors'}->{'color'}};
     @colors=shuffle @colors;
-    print STDERR Dumper @colors;
 
     while ($colorcount-- >0){
         @colors=shuffle @colors;

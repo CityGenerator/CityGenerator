@@ -25,8 +25,8 @@ subtest 'test create_flag' => sub {
     FlagGenerator::generate_colors($flag);
     is($flag->{'seed'},41630);
     is(@{$flag->{'colors'}},5);
-    is($flag->{'colors'}[0]->{'meaning'},undef);
-    is($flag->{'colors'}[1]->{'meaning'},'happiness');
+    is($flag->{'colors'}[0]->{'meaning'},'justice');
+    is($flag->{'colors'}[1]->{'meaning'},'religion');
 
 
     $flag=FlagGenerator::create_flag({'seed'=>12345});
@@ -103,7 +103,7 @@ subtest 'test generate_overlay' => sub {
     is($flag->{'overlay'}->{'name'},'stripe');
     is($flag->{'overlay'}->{'side'},'horizontal');
     is($flag->{'overlay'}->{'count'},'9');
-    is($flag->{'overlay'}->{'count_selected'},'7');
+    is($flag->{'overlay'}->{'count_selected'},'8');
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'overlay'=>{'name'=>'stripe', 'side'=>'vertical', 'count_selected'=>'1'}});
     FlagGenerator::generate_overlay($flag);
@@ -117,7 +117,7 @@ subtest 'test generate_overlay' => sub {
     is($flag->{'overlay'}->{'name'},'stripe');
     is($flag->{'overlay'}->{'side'},'vertical');
     is($flag->{'overlay'}->{'count'},'13');
-    is($flag->{'overlay'}->{'count_selected'},'9');
+    is($flag->{'overlay'}->{'count_selected'},'12');
 
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'overlay'=>{'name'=>'bunny'}});
