@@ -8,14 +8,6 @@
             <option type="Red"               red="255" green="0"   blue="0"   symbol="R"    verb="expand"  adverb="gracefully" />
             <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"   verb="enforce" adverb="defiantly" />
             <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"  verb="march"   adverb="passionately" />
-            <meaning>
-                <option type="vibrancy"/>
-                <option type="revolution"/>
-                <option type="religion"/>
-                <option type="war"/>
-                <option type="love"/>
-                <option type="leadership"/>
-            </meaning>
         </color>
         <color name="blue" >
             <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"  verb="protect" adverb="faithfully" />
@@ -23,14 +15,6 @@
             <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"    verb="enjoy"   adverb="openly" />
             <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"   verb="devote"  adverb="fully" />
             <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"  verb="honor"   adverb="justly" />
-            <meaning>
-            	<option type="liberty"/>
-            	<option type="determination"/>
-            	<option type="good fortune"/>
-            	<option type="truth"/>
-            	<option type="loyalty"/>
-            	<option type="religion"/>
-            </meaning>
         </color>
         <color name="green" >
             <option type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"  verb="accelerate" adverb="tomorrow" />
@@ -38,44 +22,19 @@
             <option type="Green"             red="0"   green="153" blue="0"   symbol="V"    verb="prosper"    adverb="always" />
             <option type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"   verb="hope"       adverb="appropriately" />
             <option type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"  verb="cultivate"  adverb="brightly" />
-            <meaning>
-            	<option type="agriculture"/>
-            	<option type="religion"/>
-            	<option type="growth"/>
-            	<option type="prosperity"/>
-            	<option type="hope"/>
-            	<option type="endurance"/>
-            </meaning>
         </color>
         <color name="yellow" >
             <option type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"  verb="strengthen" adverb="joyfully" />
             <option type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"   verb="surpass"    adverb="happily" />
             <option type="Yellow"            red="255" green="255" blue="0"   symbol="Y"    verb="entertain"  adverb="cheerfully" />
             <option type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"   verb="relish"     adverb="gracefully" />
-            <meaning>
-            	<option type="energy"/>
-            	<option type="happiness"/>
-            	<option type="religion"/>
-            </meaning>
         </color>
         <color name="orange" >
             <option type="Light orange"      red="255" green="153" blue="0"   symbol="O-" verb="distrust" adverb="enthusiastically" />
             <option type="Orange"            red="255" green="102" blue="0"   symbol="O"  verb="desire" adverb="ambitiously" />
-            <meaning>
-            	<option type="enthusiasm"/>
-            	<option type="distrust"/>
-            	<option type="ambition"/>
-            </meaning>
         </color>
         <color name="gold" >
             <option type="Gold"              red="255" green="204" blue="51"  symbol="Au" verb="purchase" adverb="wisely" />
-            <meaning>
-            	<option type="prestige"/>
-            	<option type="wisdom"/>
-            	<option type="wealth"/>
-            	<option type="quality"/>
-            	<option type="generosity"/>
-            </meaning>
     
         </color>
     
@@ -90,38 +49,15 @@
             <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="endure"    adverb="safely" />
             <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="withstand" adverb="soldily" />
             <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="balance"   adverb="naturally" />
-            <meaning>
-                <option type="nature"/>
-                <option type="strength"/>
-            </meaning>
         </color>
         <color name="purple" >
             <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="rule" adverb="majestically" />
-            <meaning>
-            	<option type="majesty"/>
-            	<option type="justice"/>
-            	<option type="sovereignty"/>
-            </meaning>
         </color>
         <color name="black" >
             <option type="Black"             red="0"   green="0"   blue="0"   symbol="N" verb="control" adverb="purposefully" />
-            <meaning>
-            	<option type="power"/>
-            	<option type="loss"/>
-            	<option type="purpose"/>
-            	<option type="victory"/>
-            	<option type="control"/>
-            	<option type="religion"/>
-            </meaning>
         </color>
         <color name="white" >
             <option type="White"             red="255" green="255" blue="255" symbol="W" verb="perfect" adverb="peacefully" />
-            <meaning>
-            	<option type="purity"/>
-            	<option type="peace"/>
-            	<option type="harmony"/>
-            	<option type="religion"/>
-            </meaning>
         </color>
     </colors>
     <shape>
@@ -266,7 +202,7 @@
                 <option>horizontal</option>
                 <option>vertical</option>
             </radius_direction>
-            <x_location>
+            <xlocation>
                 <option>-1</option>
                 <option>-.5</option>
                 <option>0</option>
@@ -278,8 +214,8 @@
                 <option>1</option>
                 <option>1.5</option>
                 <option>2</option>
-            </x_location>
-            <y_location>
+            </xlocation>
+            <ylocation>
                 <option>-1</option>
                 <option>0</option>
                 <option>.25</option>
@@ -287,7 +223,7 @@
                 <option>.75</option>
                 <option>1</option>
                 <option>2</option>
-            </y_location>
+            </ylocation>
             <radius>
                 <option>.25</option>
                 <option>.333</option>
@@ -300,12 +236,27 @@
             </radius>
         </option>
         <option name="rays">
+            <offset>
+                <option>0</option>
+                <option>.05</option>
+                <option>.15</option>
+                <option>.25</option>
+                <option>.33</option>
+            </offset>
             <count>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
                 <option>8</option>
                 <option>9</option>
+                <option>10</option>
+                <option>12</option>
                 <option>15</option>
+                <option>20</option>
             </count>
-            <x_location>
+            <xlocation>
                 <option>-1</option>
                 <option>-.5</option>
                 <option>0</option>
@@ -317,8 +268,8 @@
                 <option>1</option>
                 <option>1.5</option>
                 <option>2</option>
-            </x_location>
-            <y_location>
+            </xlocation>
+            <ylocation>
                 <option>-1</option>
                 <option>0</option>
                 <option>.25</option>
@@ -326,7 +277,7 @@
                 <option>.75</option>
                 <option>1</option>
                 <option>2</option>
-            </y_location>
+            </ylocation>
         </option>
     </overlay>
     <symbol>

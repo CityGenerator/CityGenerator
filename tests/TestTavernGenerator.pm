@@ -51,11 +51,11 @@ subtest 'test generate_size' => sub {
     TavernGenerator::generate_size($tavern);
     is($tavern->{'seed'},22);
     is($tavern->{'name'},'White Urchin Bar');
-    is($tavern->{'size'},'large');
-    is($tavern->{'cost_mod'}->{'size'}, '-2');
-    is($tavern->{'size_cost_mod'},'-2');
-    is($tavern->{'pop_mod'}->{'size'}, '4');
-    is($tavern->{'size_pop_mod'},'4');
+    is($tavern->{'size'},'average');
+    is($tavern->{'cost_mod'}->{'size'}, '0');
+    is($tavern->{'size_cost_mod'},'0');
+    is($tavern->{'pop_mod'}->{'size'}, '2');
+    is($tavern->{'size_pop_mod'},'2');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'size'=>'small'});
     TavernGenerator::generate_size($tavern);
@@ -94,9 +94,9 @@ subtest 'test generate_condition' => sub {
     TavernGenerator::generate_condition($tavern);
     is($tavern->{'seed'},22);
     is($tavern->{'name'},'White Urchin Bar');
-    is($tavern->{'condition'},'dirty');
-    is($tavern->{'cost_mod'}->{'condition'}, '-2');
-    is($tavern->{'condition_cost_mod'},'-2');
+    is($tavern->{'condition'},'filthy');
+    is($tavern->{'cost_mod'}->{'condition'}, '-3');
+    is($tavern->{'condition_cost_mod'},'-3');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'condition'=>'dirty'});
     TavernGenerator::generate_condition($tavern);
@@ -129,7 +129,7 @@ subtest 'test generate_violence' => sub {
     TavernGenerator::generate_violence($tavern);
     is($tavern->{'seed'},22);
     is($tavern->{'name'},'White Urchin Bar');
-    is($tavern->{'violence'},'throwing the loser out');
+    is($tavern->{'violence'},'calling the city watch');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'violence'=>'dirty'});
     TavernGenerator::generate_violence($tavern);
@@ -152,7 +152,7 @@ subtest 'test generate_law' => sub {
     TavernGenerator::generate_law($tavern);
     is($tavern->{'seed'},22);
     is($tavern->{'name'},'White Urchin Bar');
-    is($tavern->{'law'},'ignores');
+    is($tavern->{'law'},'protects');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'law'=>'dirty'});
     TavernGenerator::generate_law($tavern);
@@ -175,7 +175,7 @@ subtest 'test generate_entertainment' => sub {
     TavernGenerator::generate_entertainment($tavern);
     is($tavern->{'seed'},22);
     is($tavern->{'name'},'White Urchin Bar');
-    is($tavern->{'entertainment'},'poker');
+    is($tavern->{'entertainment'},'dice');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'entertainment'=>'dirty'});
     TavernGenerator::generate_entertainment($tavern);

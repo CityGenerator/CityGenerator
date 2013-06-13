@@ -29,7 +29,7 @@ use Carp;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use POSIX;
+use POSIX; 
 use version;
 
 ###############################################################################
@@ -86,14 +86,12 @@ This is what allows us to return to previously generated hosts.
 sub set_seed{
     my ($newseed)=@_;
 
-    if (defined $newseed and $newseed=~m/^(\d+)$/){
-        $newseed= $1;
-    }else{
+    if (! defined $newseed or $newseed!~ m/^\d+$/){
         $newseed = int rand(1000000);
     }
-    srand $newseed;
     $seed=$newseed;
-    return $newseed;
+    srand $seed;
+    return $seed;
 }
 
 
@@ -108,9 +106,7 @@ Select a random item from an array.
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
-    srand $seed;
-    my $index = int( rand( scalar @{ $array} ) );
-    return $array->[$index];
+    return $array->[ rand @$array  ];
 }
 
 ###############################################################################
@@ -163,7 +159,7 @@ This serves the function of rolling a dice- a d6, d10, etc.
 sub d {
     my ($die) = @_;
     # d as in 1d6
-    if ($die =~/^\d+$/){
+    if ( $die=~ /^\d+$/ ){
         return int( rand($die)+1 );
     }elsif ($die=~/^(\d+)d(\d+)$/){
         my $dicecount=$1;

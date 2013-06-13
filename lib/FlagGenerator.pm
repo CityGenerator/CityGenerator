@@ -132,9 +132,6 @@ sub generate_colors {
         $GenericGenerator::seed++;
         my $color={};
         my $targetcolor=pop @colors;
-        if ( defined $flag_data->{'colors'}->{'color'}->{$targetcolor}->{'meaning'}){
-            $color->{'meaning'}=rand_from_array($flag_data->{'colors'}->{'color'}->{$targetcolor}->{'meaning'}->{'option'})->{'type'};
-        }
 
         my $shade=rand_from_array($flag_data->{'colors'}->{'color'}->{$targetcolor}->{'option'});
 

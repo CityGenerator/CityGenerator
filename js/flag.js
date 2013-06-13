@@ -6,9 +6,13 @@ function create_flag(seed, element) {
     $.get(
         "http://devcitygenerator.morgajel.net/flaggenerator?type=json&seed="+seed,
         function(params) {
+
+            if (document.getElementById('flagjson') ){
+                document.getElementById('flagjson').innerHTML = JSON.stringify(params);
+            }
             var canvas=document.getElementById(element);
             params.canvas=canvas;
-            var flag=canvas.getContext('2d');
+            var flag=params.canvas.getContext('2d');
             params.flag=flag;
 
             params.canvas.width=canvas.height*params.ratio;
@@ -42,11 +46,11 @@ function select_overlay( params ){
                 params.flag = draw_diamond(params); //TODO pass in 2 colors so it can be used as a symbol
                 break;
             case 'circle':
-                flag=draw_circle(params );
+                params.flag=draw_circle(params );
                 break;
-//            case  'rays':
-//                flag = draw_rays( params );
-//                break;
+            case  'rays':
+                params.flag = draw_rays( params );
+                break;
 
 //            case 'cross':
 //                flag= draw_cross(params);
@@ -221,9 +225,11 @@ function draw_rays(  params){
 
     var count=params.overlay.count;
     var angle=360/count;
-    var x=params.canvas.width *params.overlay.x_location
-    var y=params.canvas.height*params.overlay.y_location
-    var offset=0;
+    var x=params.canvas.width *params.overlay.xlocation
+    var y=params.canvas.height*params.overlay.ylocation
+    x=params.canvas.width/2;
+    y=params.canvas.height/2;
+    var offset=params.overlay.offset;
     params.flag.save();
     params.flag.fillStyle=params.colors[3].hex;
     params.flag.translate(x,y);
@@ -314,9 +320,11 @@ function draw_circle(params){
     }else{
         radius=params.overlay.radius*params.canvas.height
     }
-    var width=params.canvas.width*params.overlay.x_location
-    var height=params.canvas.height*params.overlay.y_location
-
+    console.log(params)
+    var width=params.canvas.width*params.overlay.xlocation
+    var height=params.canvas.height*params.overlay.ylocation
+console.log("blahx "+params.overlay.xlocation)
+console.log("blahy "+params.overlay.ylocation)
     params.flag.save()
     params.flag.beginPath(); // Start the path
     params.flag.arc(width,height, radius, 0, Math.PI*2, false ); // Draw a circle
@@ -342,7 +350,7 @@ function draw_circle(params){
 
     function draw_stripes(params){
         for (var i=0; i<=params.division.count; i++){
-            params.flag=draw_stripe(params, params.division.side, param.division.count, i);
+            params.flag=draw_stripe(params, params.division.side, params.division.count, i);
         }
         return params.flag;
     }

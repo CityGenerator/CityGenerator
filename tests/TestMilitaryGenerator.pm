@@ -98,7 +98,7 @@ subtest 'test generate_favored_tactic' => sub {
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military=MilitaryGenerator::generate_favored_tactic($military);
     is($military->{'seed'},41630);
-    is($military->{'favored tactic'},'guerrilla warfare');
+    is($military->{'favored tactic'},'rigid formations');
 
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military->{'favored tactic'}="spitwads";
@@ -114,7 +114,7 @@ subtest 'test generate_reputation' => sub {
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military=MilitaryGenerator::generate_reputation($military);
     is($military->{'seed'},41630);
-    is($military->{'reputation'},'praised');
+    is($military->{'reputation'},'ridiculed');
 
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military->{'reputation'}="spitwads";
@@ -130,7 +130,7 @@ subtest 'test generate_favored_weapon' => sub {
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military=MilitaryGenerator::generate_favored_weapon($military);
     is($military->{'seed'},41630);
-    is($military->{'favored weapon'},'slings');
+    is($military->{'favored weapon'},'light flail');
 
     $military=MilitaryGenerator::create_military({'seed'=>41630});
     $military->{'favored weapon'}="shoes";
@@ -148,64 +148,64 @@ subtest 'test set_troop_size' => sub {
     $military=MilitaryGenerator::create_military({'seed'=>1});
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
-    is($military->{'population_total'}, 8510, "random population size");
-    is($military->{'active_percent'},14);
-    is($military->{'reserve_percent'},6.5);
-    is($military->{'para_percent'},5);
-    is($military->{'active_troops'},1191);
-    is($military->{'reserve_troops'},553);
-    is($military->{'para_troops'},59);
+    is($military->{'population_total'}, 4690, "random population size");
+    is($military->{'active_percent'},15);
+    is($military->{'reserve_percent'},7);
+    is($military->{'para_percent'},5.5);
+    is($military->{'active_troops'},703);
+    is($military->{'reserve_troops'},328);
+    is($military->{'para_troops'},38);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, });
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
     is($military->{'population_total'}, 10000, "population size");
-    is($military->{'active_percent'},14);
-    is($military->{'reserve_percent'},5.25);
-    is($military->{'para_percent'},4);
-    is($military->{'active_troops'},1400);
-    is($military->{'reserve_troops'},525);
-    is($military->{'para_troops'},56);
+    is($military->{'active_percent'},12.75);
+    is($military->{'reserve_percent'},6.5);
+    is($military->{'para_percent'},4.5);
+    is($military->{'active_troops'},1275);
+    is($military->{'reserve_troops'},650);
+    is($military->{'para_troops'},57);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'military_mod'=>5,});
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
-    is($military->{'active_percent'},15.5);
-    is($military->{'reserve_percent'},6.75);
-    is($military->{'para_percent'},4.5);
-    is($military->{'active_troops'},1550);
-    is($military->{'reserve_troops'},675);
-    is($military->{'para_troops'},69);
+    is($military->{'active_percent'},16.75);
+    is($military->{'reserve_percent'},7);
+    is($military->{'para_percent'},5.25);
+    is($military->{'active_troops'},1675);
+    is($military->{'reserve_troops'},700);
+    is($military->{'para_troops'},87);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'authority_mod'=>5,});
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
-    is($military->{'active_percent'},14);
+    is($military->{'active_percent'},15.75);
     is($military->{'reserve_percent'},5.75);
-    is($military->{'para_percent'},5);
-    is($military->{'active_troops'},1400);
+    is($military->{'para_percent'},6.25);
+    is($military->{'active_troops'},1575);
     is($military->{'reserve_troops'},575);
-    is($military->{'para_troops'},70);
+    is($military->{'para_troops'},98);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'military_mod'=>5, 'authority_mod'=>5 });
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
-    is($military->{'active_percent'},20);
-    is($military->{'reserve_percent'},8.75);
-    is($military->{'para_percent'},8);
-    is($military->{'active_troops'},2000);
-    is($military->{'reserve_troops'},875);
-    is($military->{'para_troops'},160);
+    is($military->{'active_percent'},17.25);
+    is($military->{'reserve_percent'},7.5);
+    is($military->{'para_percent'},3.75);
+    is($military->{'active_troops'},1725);
+    is($military->{'reserve_troops'},750);
+    is($military->{'para_troops'},64);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'active_percent'=>5 });
     $military=MilitaryGenerator::set_troop_size($military);
     is($military->{'seed'},1);
     is($military->{'active_percent'},5);
-    is($military->{'reserve_percent'},5.25);
-    is($military->{'para_percent'},4.5);
+    is($military->{'reserve_percent'},5.75);
+    is($military->{'para_percent'},4.25);
     is($military->{'active_troops'},500);
-    is($military->{'reserve_troops'},525);
-    is($military->{'para_troops'},22);
+    is($military->{'reserve_troops'},575);
+    is($military->{'para_troops'},21);
 
     $military=MilitaryGenerator::create_military({'seed'=>1, 'population_total'=>10000, 'active_percent'=>5, 'reserve_percent'=>5, 'para_percent'=>10 });
     $military=MilitaryGenerator::set_troop_size($military);

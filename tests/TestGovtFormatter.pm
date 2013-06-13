@@ -22,7 +22,7 @@ subtest 'Test Govt' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $govt=GovtFormatter::printGovt($city);
-    is($govt, "Grisnow is ruled a praised dictator. Within the city there is a an ex-blacksmith that quietly denounces current leadership. The population approves of dictator policies in general.");
+    is($govt, "Grisnow is ruled a much loved cult leader. Within the city there is a a dragon that quietly denounces current leadership. The population approves of cult leader policies in general.");
     done_testing();
 };
 
@@ -30,7 +30,7 @@ subtest 'Test Govt Crime' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $crime=GovtFormatter::printCrime($city);
-    is($crime, "Crime is rampant. Laws are enforced by a city guard. Justice is served by without trial, with a common punishment being fines. The most common crime is petty theft. The imprisonment rate is 0% of the population (0 adult[s]).");
+    is($crime, "Crime is rampant. Laws are enforced by a city watch. Justice is served by by a magistrate, with a common punishment being fines. The most common crime is murder. The imprisonment rate is 0% of the population (0 adult[s]).");
     done_testing();
 };
 

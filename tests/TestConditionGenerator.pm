@@ -153,7 +153,7 @@ subtest 'test set_precip' => sub {
     ConditionGenerator::set_precip($condition);
     is($condition->{'seed'},40);
     is($condition->{'precip_chance'},1);
-    is($condition->{'precip_description'},"sprinkling");
+    is($condition->{'precip_description'},"hail");
 
     $condition={'seed'=>41};
     ConditionGenerator::set_precip($condition);
@@ -165,8 +165,8 @@ subtest 'test set_precip' => sub {
     ConditionGenerator::set_precip($condition);
     is($condition->{'seed'},44);
     is($condition->{'precip_chance'},49);
-    is($condition->{'precip_description'},"raining");
-    is($condition->{'precip_subdescription'},"lightly");
+    is($condition->{'precip_description'},"sleeting");
+    is($condition->{'precip_subdescription'},undef);
 
     $condition={'seed'=>44,'precip_chance'=>'22','precip_description'=>'foo','precip_subdescription'=>'bar'};
     ConditionGenerator::set_precip($condition);

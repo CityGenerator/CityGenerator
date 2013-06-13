@@ -173,8 +173,8 @@ subtest 'test flesh_out_city' => sub {
     is($city->{'wall_size_roll'},undef);
     is($city->{'walls'}->{'height'},0);
     is($city->{'walls'}->{'content'},'none');
-    is_deeply($city->{'laws'},{ 'enforcer'=>'city watch', 
-                                'enforcement'=>'and are strictly enforced', 
+    is_deeply($city->{'laws'},{ 'enforcer'=>'neighborhood watch', 
+                                'enforcement'=>'who can be bribed', 
                                 'punishment'=>'an eye for an eye', 
                                 'trial'=>'by a kangaroo court','commoncrime'=>'fraud'   });
     is($city->{'age_roll'},22);
@@ -188,10 +188,10 @@ subtest 'test flesh_out_city' => sub {
     is_deeply($city->{'available_races'},[ 'human','half-elf','elf','halfling','half-orc','half-dwarf','gnome','dwarf']);
     is_deeply($city->{'race percentages'},[ 1,'1.5','15.6','25.1','55.7']);
     is($city->{'economy_description'},'insulated');
-    is($city->{'education_description'},'middling');
-    is($city->{'tolerance_description'},'is accepting of');
+    is($city->{'education_description'},'allowed, but not enforced');
+    is($city->{'tolerance_description'},'accepts');
     is($city->{'authority_description'},'is chaotic');
-    is($city->{'magic_description'},'plentiful');
+    is($city->{'magic_description'},'accepted');
     is($city->{'military_description'},'positive');
     is($city->{'population_total'},185);
     is(scalar(@{$city->{'races'}}),6);
@@ -274,10 +274,10 @@ subtest 'test set_laws' => sub {
     $city=CityGenerator::create_city({'seed'=>'1'});
     CityGenerator::set_laws($city);
     is($city->{'laws'}->{'punishment'}, 'fines');
-    is($city->{'laws'}->{'enforcement'}, 'but are loosely enforced');
-    is($city->{'laws'}->{'trial'}, 'without trial');
-    is($city->{'laws'}->{'enforcer'}, 'city guard');
-    is($city->{'laws'}->{'commoncrime'}, 'petty theft');
+    is($city->{'laws'}->{'enforcement'}, 'who can be bribed');
+    is($city->{'laws'}->{'trial'}, 'by a magistrate');
+    is($city->{'laws'}->{'enforcer'}, 'city watch');
+    is($city->{'laws'}->{'commoncrime'}, 'murder');
 
     $city=CityGenerator::create_city({'seed'=>'1', 'laws'=>{'punishment' => 'a','enforcement' => 'b','trial' => 'c','enforcer' => 'd','commoncrime' => 'e'}} );
     CityGenerator::set_laws($city);
@@ -448,22 +448,22 @@ subtest 'test set_stat_descriptions' => sub {
     my $city;
     $city=CityGenerator::create_city({'seed'=>1});
     CityGenerator::set_stat_descriptions($city);
-    is($city->{'education_description'}, 'mocked');
+    is($city->{'education_description'}, 'rare');
     is($city->{'authority_description'}, 'is neutral towards');
-    is($city->{'magic_description'}    , 'common');
-    is($city->{'military_description'} , 'neutral');
+    is($city->{'magic_description'}    , 'plentiful');
+    is($city->{'military_description'} , 'laid back');
     is($city->{'tolerance_description'}, 'is accepting of');
-    is($city->{'economy_description'}  , 'weak');
+    is($city->{'economy_description'}  , 'shaky');
 
     $city=CityGenerator::create_city({ 'seed'=>1, 'stats'=>{ 'education'=>0, 'authority'=>0, 'magic'=>0,
                                         'military'=>0,  'tolerance'=>0, 'economy'=>0}});
     CityGenerator::set_stat_descriptions($city);
-    is($city->{'education_description'}, 'instutionalized');
+    is($city->{'education_description'}, 'allowed, but not enforced');
     is($city->{'authority_description'}, 'is neutral towards');
-    is($city->{'magic_description'}    , 'instutionalized');
-    is($city->{'military_description'} , 'neutral');
+    is($city->{'magic_description'}    , 'rare but accepted');
+    is($city->{'military_description'} , 'laid back');
     is($city->{'tolerance_description'}, 'is neutral towards');
-    is($city->{'economy_description'}  , 'stable');
+    is($city->{'economy_description'}  , 'unwavering');
 
     $city=CityGenerator::create_city({'seed'=>1,  'education_description'=>'foo1','authority_description'=>'foo2','magic_description'=>'foo3',
                                         'military_description'=>'foo4','tolerance_description'=>'foo5','economy_description'=>'foo6'});
@@ -483,12 +483,12 @@ subtest 'test set_stat_descriptions' => sub {
     $city->{'stats'}->{'tolerance'} = undef;
     $city->{'stats'}->{'economy'}   = undef;
     CityGenerator::set_stat_descriptions($city);
-    is($city->{'education_description'}, 'instutionalized');
+    is($city->{'education_description'}, 'allowed, but not enforced');
     is($city->{'authority_description'}, 'is neutral towards');
-    is($city->{'magic_description'}    , 'instutionalized');
-    is($city->{'military_description'} , 'neutral');
+    is($city->{'magic_description'}    , 'rare but accepted');
+    is($city->{'military_description'} , 'laid back');
     is($city->{'tolerance_description'}, 'is neutral towards');
-    is($city->{'economy_description'}  , 'stable');
+    is($city->{'economy_description'}  , 'unwavering');
 
     done_testing();
 };
@@ -727,31 +727,31 @@ subtest 'test generate_citizens' => sub {
     is($city->{'citizen_count'}, 5);
     is(scalar(@{$city->{'citizens'}}), 5);
     is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'half-elf');
-    is($city->{'citizens'}->[2]->{'race'}, 'half-elf');
+    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
+    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>-5});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 5);
     is(scalar(@{$city->{'citizens'}}), 5);
     is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'half-elf');
-    is($city->{'citizens'}->[2]->{'race'}, 'half-elf');
+    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
+    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 13);
     is(scalar(@{$city->{'citizens'}}), 13);
     is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'half-elf');
-    is($city->{'citizens'}->[2]->{'race'}, 'half-elf');
+    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
+    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'citizen_count'=>2});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 2);
     is(scalar(@{$city->{'citizens'}}), 2);
     is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'half-elf');
+    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
     is($city->{'citizens'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'citizen_count'=>2, 'citizens'=>[] });
@@ -771,8 +771,8 @@ subtest 'test generate_travelers' => sub {
     is($city->{'traveler_count'}, 7);
     is(scalar(@{$city->{'travelers'}}), 7);
     is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'lycanthrope');
-    is($city->{'travelers'}->[2]->{'race'}, 'any');
+    is($city->{'travelers'}->[1]->{'race'}, 'elf');
+    is($city->{'travelers'}->[2]->{'race'}, 'half-orc');
 
     $city=CityGenerator::create_city({'stats'=>{'seed'=>1, 'tolerance'=>-5}});
     CityGenerator::generate_travelers($city);
@@ -785,23 +785,23 @@ subtest 'test generate_travelers' => sub {
     is($city->{'traveler_count'}, 10);
     is(scalar(@{$city->{'travelers'}}), 10);
     is($city->{'travelers'}->[0]->{'race'}, 'human');
-    is($city->{'travelers'}->[1]->{'race'}, 'minotaur');
-    is($city->{'travelers'}->[2]->{'race'}, 'ogre');
+    is($city->{'travelers'}->[1]->{'race'}, 'half-orc');
+    is($city->{'travelers'}->[2]->{'race'}, 'drow');
 
     $city=CityGenerator::create_city({'seed'=>1, 'stats'=>{'tolerance'=>0}});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 5);
     is(scalar(@{$city->{'travelers'}}), 5);
     is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'lycanthrope');
-    is($city->{'travelers'}->[2]->{'race'}, 'any');
+    is($city->{'travelers'}->[1]->{'race'}, 'elf');
+    is($city->{'travelers'}->[2]->{'race'}, 'half-orc');
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'traveler_count'=>2});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 2);
     is(scalar(@{$city->{'travelers'}}), 2);
     is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'lycanthrope');
+    is($city->{'travelers'}->[1]->{'race'}, 'elf');
     is($city->{'travelers'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1,'size_modifier'=>12, 'traveler_count'=>2, 'stats'=>{'tolerance'=>5}});
@@ -908,9 +908,9 @@ subtest 'test set_dominance' => sub {
     CityGenerator::set_races($city);
     CityGenerator::set_dominance($city);
     is($city->{'dominance_chance'}, 5);
-    is($city->{'dominant_race'}, 'dwarf');
-    is($city->{'dominance_level'}, 44);
-    is($city->{'dominance_description'}, 'cruel');
+    is($city->{'dominant_race'}, 'halfling');
+    is($city->{'dominance_level'}, 82);
+    is($city->{'dominance_description'}, 'brutally oppressive');
 
     $city->{'dominance_chance'}     =1;
     $city->{'dominant_race'}        =undef;

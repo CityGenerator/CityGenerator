@@ -25,8 +25,6 @@ subtest 'test create_flag' => sub {
     FlagGenerator::generate_colors($flag);
     is($flag->{'seed'},41630);
     is(@{$flag->{'colors'}},5);
-    is($flag->{'colors'}[0]->{'meaning'},'justice');
-    is($flag->{'colors'}[1]->{'meaning'},'religion');
 
 
     $flag=FlagGenerator::create_flag({'seed'=>12345});
@@ -96,7 +94,7 @@ subtest 'test generate_overlay' => sub {
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_overlay($flag);
     is($flag->{'overlay'}->{'name'},'quad');
-    is($flag->{'overlay'}->{'side'},'se');
+    is($flag->{'overlay'}->{'side'},'sw');
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'overlay'=>{'name'=>'stripe'}});
     FlagGenerator::generate_overlay($flag);

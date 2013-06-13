@@ -30,7 +30,7 @@ subtest 'test set_sex' => sub {
 
     $npc=NPCGenerator::create_npc({'seed'=>4});
     NPCGenerator::set_sex($npc);
-    is($npc->{'sex'}->{'pronoun'},'she');
+    is($npc->{'sex'}->{'pronoun'},'it');
 
     $npc=NPCGenerator::create_npc({'seed'=>5});
     NPCGenerator::set_sex($npc);
@@ -130,7 +130,7 @@ subtest 'test create_npc' => sub {
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
         NPCGenerator::set_profession($npc, 'cobbler', 'priest'  );
         is($npc->{'profession'},'priest');
-        is($npc->{'business'},'temple');
+        is($npc->{'business'},'church');
 
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
         NPCGenerator::set_profession($npc, 'cobblerone', 'churchle'  );
@@ -151,9 +151,9 @@ subtest 'test create_npc' => sub {
 
         $npc={'seed'=>1};
         NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Love' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},'Affection' ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  'Adoration' ,   "emotional state" );
+	    is($npc->{'primary_attitude'},  'Anger' ,        "emotional state" );
+	    is($npc->{'secondary_attitude'},'Rage' ,   "emotional state" );
+	    is($npc->{'ternary_attitude'},  'Hostility' ,   "emotional state" );
 
         $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => [  {'type' => 'Astonishment' }], 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
         $npc={'seed'=>1};

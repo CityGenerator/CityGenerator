@@ -30,12 +30,14 @@ subtest 'test rand_from_array' => sub {
     my $testarray=[ 'foo','bar','baz'  ];
     my $loop=10;
     while ($loop-- > 0 ){
+        GenericGenerator::set_seed(1);
         $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'foo', 'test array results');
     }
     GenericGenerator::set_seed(2);
     $loop=10;
     while ($loop-- > 0 ){
+        GenericGenerator::set_seed(2);
         $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'baz', 'test array results');
     }

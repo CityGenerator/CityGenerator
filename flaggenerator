@@ -67,7 +67,7 @@ sub print_page {
         'title'         => 'Flag '.$flag->{'seed'}."!",
 
         'seed'          => $flag->{'seed'},
-        'onload'        => "create_flag($flag->{'seed'});",
+        'onload'        => "create_flag($flag->{'seed'},'flag');",
         'content'       => print_content($flag),
         'worldnav'      => print_worldnav($flag),
     };
