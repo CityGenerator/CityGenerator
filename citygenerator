@@ -10,6 +10,7 @@ use Template;
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
+use FlagGenerator;
 use CityGenerator;
 use SummaryFormatter;
 use GeographyFormatter;
@@ -34,10 +35,10 @@ if (defined $q->param('seed')){
 
     my $city=CityGenerator::create_city({seed=>$testcityid});
     CityGenerator::flesh_out_city($city);
-
+    $city->{'flag'}=FlagGenerator::create_flag({seed=>$testcityid});
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
-    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print "<?xml version='1.0'  encoding='utf-8' ?>\n";
     print XMLout($city);
 }elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
@@ -49,8 +50,8 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
 }else {
-    print $q->header;
-    print print_page($city);
+    print $q->header( 'text/html; charset=utf-8' );
+    print_page($city);
 }
 
 exit;
@@ -66,14 +67,16 @@ sub print_page {
         INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
+    my $JSON  = JSON->new->utf8;
 
     my $vars = {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
         'seed'          => $city->{'seed'},
-        'onload'        => "create_flag($city->{'seed'});",
+        'onload'        => "create_flag($city->{'seed'},'flag',flagjson);",
         'content'       => print_content($city),
         'worldnav'      => print_worldnav($city),
+        'json'          => $JSON->encode($city->{'flag'}) ,
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }

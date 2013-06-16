@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
         <title>[%title%]</title>
         <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
         <script src='/js/flag.js' ></script>
@@ -14,6 +13,10 @@
         <script src='/js/WorldMap.js' ></script>
         <script src='/js/misc.js' ></script>
         <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
+        
+<script type="text/javascript">
+    var flagjson=[%json%];
+</script>
     </head>
     <body onload="[% onload %]">
     <div id="page">
@@ -31,13 +34,11 @@
         </div>
                 [% worldnav %]
 
-        <br clear="all"/>
+        <br style="clear:right"/>
         <header class="title">
-            <hgroup>
                 <div id="logo">[% logo %]</div>
                 <h1>[% title %]</h1>
-                <br clear="all"/>
-            </hgroup>
+                <br style="clear:left"/>
         </header>
 
 
@@ -54,7 +55,7 @@
 
 <!-- Place this tag where you want the badge to render. -->
 
-If you like this, encourage me by giving me a +1:  <span class="g-plusone" style="display:inline;background-color:none" data-href="http://citygenerator.morgajel.net"></span>
+If you like this, encourage me by giving me a +1:  <span class="g-plusone" style="display:inline;background-color:transparent" data-href="http://citygenerator.morgajel.net"></span>
 
 <!-- Place this tag after the last +1 button tag. -->
 <script type="text/javascript">
@@ -69,10 +70,9 @@ If you like this, encourage me by giving me a +1:  <span class="g-plusone" style
 
             </div>
         </footer>
-    </div>
         </div>
-    </div>
     </div>
     </div>
 </body>
 </html>
+

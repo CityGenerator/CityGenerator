@@ -61,12 +61,41 @@
         </color>
     </colors>
     <shape>
-        <option>para</option>
-        <option>tri</option>
-        <option>pennant</option>
-        <option>swallow</option>
-        <option>tongued</option>
-        <option>square</option>
+        <option name="para">
+        </option>
+        <option name="tri">
+        </option>
+        <option name="pennant">
+        </option>
+        <option name="swallow">
+            <depth>
+		        <option>10</option>
+		        <option>20</option>
+		        <option>30</option>
+            </depth>
+        </option>
+        <option name="tongued">
+            <type>
+                <option>square</option>
+                <option>triangle</option>
+                <option>sine</option>
+                <option>scallop</option>
+            </type>
+            <count>
+		        <option>3</option>
+		        <option>5</option>
+		        <option>7</option>
+		        <option>9</option>
+		        <option>11</option>
+            </count>
+            <depth>
+		        <option>.3</option>
+		        <option>.1</option>
+		        <option>.2</option>
+            </depth>
+        </option>
+        <option name="square">
+        </option>
     </shape>
 
     <ratio>
@@ -167,18 +196,35 @@
             </outline>
         </option>
         <option name="cross">
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
-            <width>
-                <option>2</option>
-                <option>3</option>
-                <option>5</option>
-                <option>9</option>
-                <option>13</option>
-            </width>
+            <vertlength>
+                <option>1</option>
+                <option>0.8</option>
+            </vertlength>
+            <vertwidth>
+                <option>0.5</option>
+                <option>0.3</option>
+                <option>0.2</option>
+                <option>0.1</option>
+                <option>0.08</option>
+            </vertwidth>
+            <horwidth>
+                <option>0.5</option>
+                <option>0.3</option>
+                <option>0.2</option>
+            </horwidth>
+            <horlength>
+                <option>0.5</option>
+                <option>0.3</option>
+                <option>1</option>
+                <option>0.8</option>
+            </horlength>
+            <horpos>
+                <option>0.33</option>
+                <option>0.66</option>
+                <option>0.5</option>
+            </horpos>
         </option>
+
         <option name="diamond">
             <outline>
                 <option>true</option>

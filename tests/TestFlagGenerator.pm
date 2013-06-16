@@ -39,11 +39,11 @@ subtest 'test generate_shape' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_shape($flag);
-    is($flag->{'shape'},'tongued');
+    is($flag->{'shape'}->{'name'},'para');
 
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'shape'=>'bone'});
+    $flag=FlagGenerator::create_flag({'seed'=>41630, 'shape'=>{'name'=>'bone'}});
     FlagGenerator::generate_shape($flag);
-    is($flag->{'shape'},'bone');
+    is($flag->{'shape'}->{'name'},'bone');
 };
 
 subtest 'test generate_ratio' => sub {

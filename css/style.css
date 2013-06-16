@@ -1,9 +1,8 @@
-
+@charset "UTF-8";
 @font-face {    font-family: "OldNewspaper"; 
     src: local('OldNewspaper'), url('/fonts/OldNewspaperTypes.ttf') format('truetype');
 }
 
-@charset "UTF-8";
 body {
   font: 11pt 'OldNewspaper';
   background-color:#444444;
@@ -20,7 +19,7 @@ header.title h1 {
   text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
   font: 2.7em 'OldNewspaper';
 }
-header hgroup {
+header {
   border-bottom: 1px solid #999;
   margin:0px;
   padding:0px;
@@ -29,7 +28,7 @@ header hgroup {
 
 #globalmenubutton {
     position:relative;
-    font: 1.2em 'arial' bold;
+    font: bold 1.2em 'arial';
     z-index: 3;
     text-decoration: none;
     color: #999;
@@ -128,7 +127,7 @@ section h3 {
     padding:0px;
     margin:0 auto 0 auto;
     background-image: url('/img/bgtexture.png');
-    background-repeat: repeat-x repeat-y;
+    background-repeat: repeat;
 }
 #page_border_left {
 

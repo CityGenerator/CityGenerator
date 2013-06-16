@@ -2,35 +2,57 @@
 // comments? bwahahahah.
 // wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(seed, element) {
-    $.get(
-        "http://devcitygenerator.morgajel.net/flaggenerator?type=json&seed="+seed,
-        function(params) {
+function create_flag(seed, element, passedparams) {
 
-            if (document.getElementById('flagjson') ){
-                document.getElementById('flagjson').innerHTML = JSON.stringify(params);
-            }
-            var canvas=document.getElementById(element);
-            params.canvas=canvas;
-            var flag=params.canvas.getContext('2d');
-            params.flag=flag;
+    if (! passedparams){
 
-            params.canvas.width=canvas.height*params.ratio;
-            console.log(params);
-            params.flag=set_shape( params );
-            params.flag.clip();
-
-            params.flag=select_division( params );
-            params.flag=select_overlay( params );
-            //flag=select_symbol( params );
-            //flag=select_border( params );
-        }, "json"
-    );
+        $.get(
+            "http://devcitygenerator.morgajel.net/flaggenerator?type=json&seed="+seed,
+            function(params) {
+    
+                if (document.getElementById('flagjson') ){
+                    document.getElementById('flagjson').innerHTML = JSON.stringify(params);
+                }
+                var canvas=document.getElementById(element);
+                params.canvas=canvas;
+                var flag=params.canvas.getContext('2d');
+                params.flag=flag;
+    
+                params.canvas.width=canvas.height*params.ratio;
+                console.log(params);
+                params.flag=set_shape( params );
+                params.flag.clip();
+    
+                params.flag=select_division( params );
+                params.flag=select_overlay( params );
+                //flag=select_symbol( params );
+                //flag=select_border( params );
+            }, "json"
+        );
+    }else{
+                params=passedparams;
+                var canvas=document.getElementById(element);
+                params.canvas=canvas;
+                console.log(params);
+                var flag=params.canvas.getContext('2d');
+                params.flag=flag;
+ 
+                params.canvas.width=canvas.height*params.ratio;
+                console.log(params);
+                params.flag=set_shape( params );
+                params.flag.clip();
+ 
+                params.flag=select_division( params );
+                params.flag=select_overlay( params );
+                //flag=select_symbol( params );
+                //flag=select_border( params );
+    }
 }
 
 //    // overlay should use colors 3 
 function select_overlay( params ){
     var color=params.colors[3].hex;
+    console.log(params.overlay.name);
     switch(params.overlay.name){
             case 'quaddiag':
                 params.flag= draw_quaddiagonal(params, params.overlay.side, color);
@@ -52,9 +74,9 @@ function select_overlay( params ){
                 params.flag = draw_rays( params );
                 break;
 
-//            case 'cross':
-//                flag= draw_cross(params);
-//                break;
+            case 'cross':
+                flag= draw_cross(params);
+                break;
 //            case 'jack':
 //                flag= draw_jack(flag,params, 3);
 //                flag= draw_jack(flag,params, 2);
@@ -72,23 +94,48 @@ function select_overlay( params ){
 }
 
 
-//    function draw_cross(flag, width, height, vlinewidth, vlinecenter, hlinewidth, hlinecenter, color){
-//        flag.fillStyle=color||random_color();
-//    
-//        //var linewidths=Array(1/6,1/4);
-//        var linewidths=Array( 1/6, 1/8, 1/9, 1/10, 1/12, 1/15, 1/20);
-//        var linecenters=Array(1/6, 1/4, 1/3, 1/2, 2/3, 3/4, 5/6  );
-//    
-//        vlinewidth  =(vlinewidth || linewidths[ d( linewidths.length )])*width ;
-//        vlinecenter =(vlinecenter || linecenters[d( linecenters.length )])*width;
-//        flag.fillRect( vlinecenter-(vlinewidth/2), 0 , vlinewidth,  height );
-//    
-//        hlinewidth  = (hlinewidth||  linewidths[ d(linewidths.length  )])*width ;
-//        hlinecenter = (hlinecenter|| linecenters[d(linecenters.length )])*height;
-//        flag.fillRect( 0,hlinecenter-(hlinewidth/2) , width,  hlinewidth );
-//        return flag;
-//    }
-//    
+function draw_cross(params){
+
+    params.flag = draw_vertical_crossbar(params);
+    params.flag = draw_horizontal_crossbar(params);
+    return flag;
+}
+
+function draw_vertical_crossbar(params){
+    var width=params.canvas.width*params.overlay.vertwidth;
+    var length=params.canvas.width*params.overlay.vertlength;
+
+    var startx=params.canvas.width/2 - width/2;
+    var starty= (params.canvas.height-length)/2
+    params.flag.fillStyle=params.colors[3].hex;
+    
+    params.flag.fillRect( startx, starty, width,  length );
+    return params.flag;
+
+}
+function draw_horizontal_crossbar(params){
+
+    var width=params.canvas.height*params.overlay.horwidth;
+    var length=params.canvas.width*params.overlay.horlength;
+
+    var startx=(params.canvas.width-length)/2 ;
+    var starty=params.canvas.height*params.overlay.horpos - width/2
+    console.log("horwidth "+params.overlay.horwidth+" xlength "+params.overlay.horlength+" horpos "+params.overlay.horpos) ;
+    console.log("width "+params.canvas.width+" height "+params.canvas.height) ;
+    console.log("startx: "+startx+" starty: "+starty+" width: "+width+" length: "+length);
+
+    params.flag.fillStyle=params.colors[3].hex;
+    params.flag.fillRect( startx, starty,length,width);
+    
+    
+    
+    
+    return params.flag;
+
+}
+
+
+
 //    
 //    function draw_asterisk(flag, width,height,color){
 //            flag= draw_stripe(flag, width, height, undefined, 5, 3, color);
@@ -523,73 +570,82 @@ function draw_diagonals(params ){
 function set_shape(params){
     var width=params.canvas.width;
     var height=params.canvas.height;
-    var flag=params.flag;
-    flag.save();
-    flag.fillStyle = "rgba(0, 0, 0, .0)"
-    flag.lineWidth = 1
-    switch(params.shape){
+    params.flag.save();
+    params.flag.fillStyle = "rgba(0, 0, 0, .0)"
+    params.flag.lineWidth = 1
+     console.log(params.shape.name);
+    switch(params.shape.name){
         case 'para':
-            flag.moveTo(    0,        0);
-            flag.lineTo(    width,    height/6);
-            flag.lineTo(    width,    height-height/6);
-            flag.lineTo(    0,        height);
+            params.flag.moveTo(    0,        0);
+            params.flag.lineTo(    width,    height/6);
+            params.flag.lineTo(    width,    height-height/6);
+            params.flag.lineTo(    0,        height);
             break;
         case 'tri':
-            flag.moveTo(    0,        0);
-            flag.lineTo(    width,    height/2);
-            flag.lineTo(    0,        height);
+            params.flag.moveTo(    0,        0);
+            params.flag.lineTo(    width,    height/2);
+            params.flag.lineTo(    0,        height);
             break;
         case 'pennant':
-            flag.moveTo(    0,        0);
-            flag.lineTo(    width,    height/5*2);
-            flag.lineTo(    width,    height/5*3);
-            flag.lineTo(    0,        height);
+            params.flag.moveTo(    0,        0);
+            params.flag.lineTo(    width,    height/5*2);
+            params.flag.lineTo(    width,    height/5*3);
+            params.flag.lineTo(    0,        height);
             break;
         case 'swallow':
-            flag.moveTo(    0,                0);
-            flag.lineTo(    width,            height/3*1);
-            flag.lineTo(    width-width/5,    height/2);
-            flag.lineTo(    width,            height/3*2);
-            flag.lineTo(    0,                height);
+            params.flag.moveTo(    0,                0);
+            params.flag.lineTo(    width,            height/3*1);
+            params.flag.lineTo(    width-width/5,    height/2);
+            params.flag.lineTo(    width,            height/3*2);
+            params.flag.lineTo(    0,                height);
             break;
         case 'tongued':
-             flag.moveTo(    0,                0);
-             flag.lineTo(    width,            0);
-             flag.lineTo(    width,            height/11*1);
-             flag.lineTo(    width-width/11,   height/11*1);
-             flag.lineTo(    width-width/11,   height/11*2);
+            params.flag.moveTo(    0,                0);
+            params.flag.lineTo(    width,            0);
 
-             flag.lineTo(    width,            height/11*2);
-             flag.lineTo(    width,            height/11*3);
-             flag.lineTo(    width-width/11,   height/11*3);
-             flag.lineTo(    width-width/11,   height/11*4);
+            var tonguecount=params.shape.count;
+            var depth=params.shape.depth;
+            for (var i = 0 ; i < tonguecount ; i++){ 
+                params = draw_tongue_slot(params,tonguecount,i,depth,params.shape.type); 
+            }
 
-             flag.lineTo(    width,            height/11*4);
-             flag.lineTo(    width,            height/11*5);
-             flag.lineTo(    width-width/11,   height/11*5);
-             flag.lineTo(    width-width/11,   height/11*6);
-
-             flag.lineTo(    width,            height/11*6);
-             flag.lineTo(    width,            height/11*7);
-             flag.lineTo(    width-width/11,   height/11*7);
-             flag.lineTo(    width-width/11,   height/11*8);
-
-             flag.lineTo(    width,            height/11*8);
-             flag.lineTo(    width,            height/11*9);
-             flag.lineTo(    width-width/11,   height/11*9);
-             flag.lineTo(    width-width/11,   height/11*10);
-
-             flag.lineTo(    width,            height/11*10);
-             flag.lineTo(    width,            height);
-             flag.lineTo(    0,                height);
+            params.flag.lineTo(    width,            height);
+            params.flag.lineTo(    0,                height);
             break;
         default:
-            flag.rect(0,0,width,height);
+            params.flag.rect(0,0,width,height);
     }
-    flag.fill();
-    flag.save();
-    return flag;
+    params.flag.fill();
+    params.flag.save();
+    return params.flag;
 }
+
+function draw_tongue_slot(params,count,id,depth,type){
+
+    var x = params.canvas.width;
+    var height=params.canvas.height/(count*2-1);
+    var y = height*(id*2-1);
+    depth=params.canvas.width*depth;
+    console.log(type);
+    params.flag.lineTo(x,y);
+    if (type == "square"){
+        params.flag.lineTo(x-depth,y);
+        params.flag.lineTo(x-depth,y+height);
+    }else if (type=="triangle"){
+        params.flag.lineTo(x-depth,y+height/2);
+    }else if (type=="scallop"){
+        console.log(x+"  "+(y)+" "+height+" "+ id);
+        params.flag.arc(x, y+height/2 ,height/2 ,1.5 * Math.PI, 0.5*Math.PI,true);
+    }else if (type=="sine"){
+        params.flag.arc(x-height/2, y-height/2,          height/2,   0*Math.PI, 0.5*Math.PI,false);
+        params.flag.arc(x-height/2, y+height/2,   height/2, 1.5*Math.PI, 0.5*Math.PI,true);
+        params.flag.arc(x-height/2, y+height*1.5,          height/2,  1.5*Math.PI, 0*Math.PI,false);
+    }
+    params.flag.lineTo(x      ,y+height);
+    return params;
+}
+
+
 
 // Division should only use colors 0,1 and 2 at most.
 function select_division( params){

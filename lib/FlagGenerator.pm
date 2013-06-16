@@ -146,7 +146,31 @@ sub generate_colors {
 sub generate_shape {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
-    $flag->{'shape'}=rand_from_array($flag_data->{'shape'}->{'option'})->{'content'} if (!defined $flag->{'shape'});
+    # First lets figure out what type of shape we're dealing with if we don't already have one.
+    $flag->{'shape'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'shape'}->{'option'}}]  ) if (!defined $flag->{'shape'}->{'name'});
+    
+    # Now that we have the name, lets grab the rest of it, including features.
+    my $shape=$flag_data->{'shape'}->{'option'}->{  $flag->{'shape'} ->{'name'}  };
+   
+
+    # Lets see what attributes the shape has, and select some.
+    foreach my $attribute_name (keys %$shape){
+
+        # select the option from the array
+        my $attr=rand_from_array( $shape->{$attribute_name}->{'option'} ); 
+
+        # If the attribute_name is already defined, don't use attr->content
+        $flag->{'shape'}->{$attribute_name}= $attr->{'content'} if (!defined  $flag->{'shape'}->{$attribute_name});
+
+        # If the field is numeric and a value is not already set, randomly generate it.
+        if (defined $shape->{$attribute_name}->{'numeric'} and 
+            $shape->{$attribute_name}->{'numeric'} and  
+            !defined  $flag->{'shape'}->{$attribute_name."_selected"}) {
+                # Note that we're setting the seed here so passing in a paramter (say side=>top), 
+                # followup parameters will still be generated properly (count will still be 5)
+                $flag->{'shape'}->{$attribute_name."_selected"}= d( $flag->{'shape'}->{$attribute_name} ) ;
+        }
+    }
     return $flag;
 }
 
