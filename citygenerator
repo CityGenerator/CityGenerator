@@ -69,14 +69,17 @@ sub print_page {
     }) || die "$Template::ERROR\n";
     my $JSON  = JSON->new->utf8;
 
+    $JSON->convert_blessed(1);
+    my $json=$JSON->encode($city->{'flag'});
+
     my $vars = {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
         'seed'          => $city->{'seed'},
-        'onload'        => "create_flag($city->{'seed'},'flag',flagjson);",
+        'onload'        => "create_flag( $json,  \"flag\");",
+
         'content'       => print_content($city),
         'worldnav'      => print_worldnav($city),
-        'json'          => $JSON->encode($city->{'flag'}) ,
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }

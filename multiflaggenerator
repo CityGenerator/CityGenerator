@@ -25,28 +25,30 @@ if (defined $q->param('seed')){
 }elsif (defined $q->param('region')){
     $testcityid=$q->param('region').'0';
 }
+my $flags;
+
+for (my $i=0 ; $i <40; $i++){
+    push @$flags, FlagGenerator::create_flag({seed=>($testcityid+$i ), 'overlay'=>{'name'=>'jack'}, 'shape'=>{'name'=>'square'}  });
+}
 
 
-
-    my $flag=FlagGenerator::create_flag({seed=>$testcityid});
-    # FlagGenerator::flesh_out_flag($flag);
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-    print XMLout($flag);
+    print XMLout($flags);
 }elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
-    print  $JSON->encode($flag);
+    print  $JSON->encode($flags);
 
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    print Dumper $flag;
+    print Dumper $flags;
 }else {
     print $q->header;
-    print print_page($flag);
+    print_page($flags);
 }
 
 exit;
@@ -56,22 +58,19 @@ exit;
 #################################################################################################
 
 sub print_page {
-    my ($flag)=@_;
+    my ($flags)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
-    my $JSON  = JSON->new->utf8;
-    $JSON->convert_blessed(1);
-    my $json=$JSON->encode($flag);
-    my $vars = {
-        'title'         => 'Flag '.$flag->{'seed'}."!",
 
-        'seed'          => $flag->{'seed'},
-        'onload'        => "create_flag( $json,  \"flag\");",
-        'content'       => print_content($flag),
-        'worldnav'      => print_worldnav($flag),
+    my $vars = {
+        'title'         => 'Flag '.$flags->[0]->{'seed'}."!",
+
+        'seed'          => $flags->[0]->{'seed'},
+        'content'       => print_content($flags),
+        'worldnav'      => print_worldnav($flags->[0]),
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }
@@ -97,18 +96,25 @@ sub print_worldnav {
 
 
 sub print_content {
-    my ($flag)=@_;
+    my ($flags) = @_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
 
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+
+    foreach my $flag (@$flags){
+        $flag->{'json'}=$JSON->encode($flag);    
+    }
+
     my $formtmpl;
     my $vars = {
-        'seed'          => $flag->{'seed'},
+        'flags'          => $flags,
     };
-    $templates->process('flag.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+    $templates->process('multiflag.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
     return $formtmpl;
 }

@@ -1,52 +1,26 @@
 
-// comments? bwahahahah.
-// wait, you're serious? let me laugh harder- BWWWWWAAAAAAAAHAHAHAHAHAHA
 
-function create_flag(seed, element, passedparams) {
-
-    if (! passedparams){
-
-        $.get(
-            "http://devcitygenerator.morgajel.net/flaggenerator?type=json&seed="+seed,
-            function(params) {
+function create_flag(params,flagcanvas,jsonblock) {
     
-                if (document.getElementById('flagjson') ){
-                    document.getElementById('flagjson').innerHTML = JSON.stringify(params);
-                }
-                var canvas=document.getElementById(element);
-                params.canvas=canvas;
-                var flag=params.canvas.getContext('2d');
-                params.flag=flag;
-    
-                params.canvas.width=canvas.height*params.ratio;
-                console.log(params);
-                params.flag=set_shape( params );
-                params.flag.clip();
-    
-                params.flag=select_division( params );
-                params.flag=select_overlay( params );
-                //flag=select_symbol( params );
-                //flag=select_border( params );
-            }, "json"
-        );
-    }else{
-                params=passedparams;
-                var canvas=document.getElementById(element);
-                params.canvas=canvas;
-                console.log(params);
-                var flag=params.canvas.getContext('2d');
-                params.flag=flag;
- 
-                params.canvas.width=canvas.height*params.ratio;
-                console.log(params);
-                params.flag=set_shape( params );
-                params.flag.clip();
- 
-                params.flag=select_division( params );
-                params.flag=select_overlay( params );
-                //flag=select_symbol( params );
-                //flag=select_border( params );
+    if (document.getElementById(jsonblock) ){
+        document.getElementById(jsonblock).innerHTML = JSON.stringify(params);
     }
+    var canvas=document.getElementById(flagcanvas);
+    params.canvas=canvas;
+    console.log(params);
+    var flag=params.canvas.getContext('2d');
+    params.flag=flag;
+    
+    params.canvas.width=canvas.height*params.ratio;
+    console.log(params);
+    params.flag=set_shape( params );
+    params.flag.clip();
+    
+    params.flag=select_division( params );
+    params.flag=select_overlay( params );
+    //flag=select_symbol( params );
+    //flag=select_border( params );
+
 }
 
 //    // overlay should use colors 3 
@@ -75,20 +49,20 @@ function select_overlay( params ){
                 break;
 
             case 'cross':
-                flag= draw_cross(params);
+                params.flag= draw_cross(params);
                 break;
-//            case 'jack':
-//                flag= draw_jack(flag,params, 3);
-//                flag= draw_jack(flag,params, 2);
-//                break;
-//            case 'asterisk':
-//                flag= draw_asterisk(flag,width,height,colorlist[3]);
-//                flag= draw_asterisk(flag,width,height,colorlist[2]);
-//                break;
-//            case 'x':
-//                flag= draw_x(flag,width,height, undefined,colorlist[3]);
-//                flag= draw_x(flag,width,height, undefined,colorlist[2]);
-//                break;
+            case 'slash':
+                params.flag= draw_slash(params,'left-to-right');
+                break;
+            case 'jack':
+                params.flag= draw_slash(params,'left-to-right');
+                params.flag= draw_slash(params,'right-to-left');
+                params.flag= draw_cross(params);
+                break;
+            case 'x':
+                params.flag= draw_slash(params,'left-to-right');
+                params.flag= draw_slash(params,'right-to-left');
+                break;
     }
     return params.flag;
 }
@@ -98,7 +72,7 @@ function draw_cross(params){
 
     params.flag = draw_vertical_crossbar(params);
     params.flag = draw_horizontal_crossbar(params);
-    return flag;
+    return params.flag;
 }
 
 function draw_vertical_crossbar(params){
@@ -137,11 +111,6 @@ function draw_horizontal_crossbar(params){
 
 
 //    
-//    function draw_asterisk(flag, width,height,color){
-//            flag= draw_stripe(flag, width, height, undefined, 5, 3, color);
-//            flag= draw_x(flag, width, height, undefined, color);
-//            return flag;
-//    }
 //    function draw_jack(flag, width,height,color){
 //            flag= draw_cross(flag, width, height, undefined, 1/2, undefined, 1/2, color);
 //            flag= draw_x(flag,width,height,undefined,color);
@@ -205,41 +174,40 @@ function draw_solid( params){
         return params.flag;
 
 }
-//    
-//    
-//    function draw_slash(flag, width,height,linesize,direction,color){
-//    
-//        var linesizes=Array(1/6, 1/8, 1/9, 1/10, 1/12, 1/15, 1/20);
-//        linesize =linesize||linesizes[ d( linesizes.length ) ] ;
-//    
-//        var directions=Array('left','right');
-//        direction = direction||directions[ d( directions.length ) ] ;
-//        flag.beginPath();
-//    
-//        var linewidth=linesize*width;
-//        var lineheight=linesize*height;
-//    
-//        if (direction =='left'){
-//            flag.moveTo(    0,                      0);
-//            flag.lineTo(    linewidth,              0);
-//            flag.lineTo(    width,                  height-lineheight);
-//            flag.lineTo(    width,                  height);
-//            flag.lineTo(    width-linewidth,        height);
-//            flag.lineTo(    0,                      lineheight);
-//        }else{
-//            flag.moveTo(    width-linewidth,        0);
-//            flag.lineTo(    width,                  0);
-//            flag.lineTo(    width,                  lineheight);
-//            flag.lineTo(    linewidth,              height);
-//            flag.lineTo(    0,                      height);
-//            flag.lineTo(    0,                      height-lineheight);
-//        }
-//        flag.fillStyle=color||random_color();
-//        flag.fill();
-//        return flag;
-//    }
-//    
-//    
+
+
+function draw_slash(params, direction){
+
+    params.flag.beginPath();
+
+    if (! direction){
+        direction = params.overlay.direction 
+    }
+
+
+    var linewidth=params.canvas.width * params.overlay.width;
+    var lineheight=params.canvas.height * params.overlay.width;
+    if (direction =='left-to-right'){
+        params.flag.moveTo(    0,                               0);
+        params.flag.lineTo(    linewidth,                       0);
+        params.flag.lineTo(    params.canvas.width,             params.canvas.height-lineheight);
+        params.flag.lineTo(    params.canvas.width,             params.canvas.height);
+        params.flag.lineTo(    params.canvas.width-linewidth,   params.canvas.height);
+        params.flag.lineTo(    0,                               lineheight);
+    }else{
+        params.flag.moveTo(    params.canvas.width-linewidth,   0);
+        params.flag.lineTo(    params.canvas.width,             0);
+        params.flag.lineTo(    params.canvas.width,             lineheight);
+        params.flag.lineTo(    linewidth,                       params.canvas.height);
+        params.flag.lineTo(    0,                               params.canvas.height);
+        params.flag.lineTo(    0,                               params.canvas.height-lineheight);
+    }
+    params.flag.fillStyle=params.colors[3].hex;
+    params.flag.fill();
+    return params.flag;
+}
+
+
 //    
 //    function draw_x(flag, width, height, thickness, color){
 //        var linewidths=Array( 1/6, 1/8, 1/9, 1/10, 1/12, 1/15, 1/20);
