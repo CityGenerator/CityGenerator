@@ -100,7 +100,7 @@ sub create_flag {
     $flag = generate_ratio($flag);
     $flag = generate_division($flag);
     $flag = generate_overlay($flag);
-#    $flag = generate_symbol($flag);
+    $flag = generate_symbol($flag);
     #$flag = generate_border($flag);
     #$flag = generate_letter($flag);
     return $flag;
@@ -120,7 +120,7 @@ generate colors and their meanings
 sub generate_colors {
     my ($flag)=@_;
 
-    my $colorcount=5;
+    my $colorcount=7;
     GenericGenerator::set_seed($flag->{'seed'});
 
 
@@ -248,11 +248,10 @@ sub generate_symbol {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
     # First lets figure out what type of symbol we're dealing with if we don't already have one.
-    $flag->{'symbol'} ->{'name'}= rand_from_array( [keys %{$flag_data->{'symbol'}->{'option'}}]  ) if (!defined $flag->{'symbol'}->{'name'});
+    $flag->{'symbol'}->{'name'}= rand_from_array( [keys %{$flag_data->{'symbol'}->{'option'}}]  ) if (!defined $flag->{'symbol'}->{'name'});
     
     # Now that we have the name, lets grab the rest of it, including features.
     my $symbol=$flag_data->{'symbol'}->{'option'}->{  $flag->{'symbol'} ->{'name'}  };
-   
 
     # Lets see what attributes the symbol has, and select some.
     foreach my $attribute_name (keys %$symbol){

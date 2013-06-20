@@ -12,13 +12,12 @@ function create_flag(params,flagcanvas,jsonblock) {
     params.flag=flag;
     
     params.canvas.width=canvas.height*params.ratio;
-    console.log(params);
     params.flag=set_shape( params );
     params.flag.clip();
     
     params.flag=select_division( params );
     params.flag=select_overlay( params );
-    //flag=select_symbol( params );
+    params.flag=select_symbol( params );
     //flag=select_border( params );
 
 }
@@ -26,13 +25,11 @@ function create_flag(params,flagcanvas,jsonblock) {
 //    // overlay should use colors 3 
 function select_overlay( params ){
     var color=params.colors[3].hex;
-    console.log(params.overlay.name);
     switch(params.overlay.name){
             case 'quaddiag':
                 params.flag= draw_quaddiagonal(params, params.overlay.side, color);
                 break;
             case 'quad':
-                console.log("drawing quad overlay...");
                 params.flag= draw_quad(params, params.overlay.side, color);
                 break;
             case 'stripe':
@@ -94,9 +91,6 @@ function draw_horizontal_crossbar(params){
 
     var startx=(params.canvas.width-length)/2 ;
     var starty=params.canvas.height*params.overlay.horpos - width/2
-    console.log("horwidth "+params.overlay.horwidth+" xlength "+params.overlay.horlength+" horpos "+params.overlay.horpos) ;
-    console.log("width "+params.canvas.width+" height "+params.canvas.height) ;
-    console.log("startx: "+startx+" starty: "+starty+" width: "+width+" length: "+length);
 
     params.flag.fillStyle=params.colors[3].hex;
     params.flag.fillRect( startx, starty,length,width);
@@ -110,27 +104,40 @@ function draw_horizontal_crossbar(params){
 
 
 
-//    
-//    function draw_jack(flag, width,height,color){
-//            flag= draw_cross(flag, width, height, undefined, 1/2, undefined, 1/2, color);
-//            flag= draw_x(flag,width,height,undefined,color);
-//            return flag;
-//    }
-//    
-//    function select_symbol(flag, width, height, letter, colorlist){
-//        var symbol = getQueryString()['symbol'];
-//        var chance= symbol || d( 60 )  ; 
-//    
-//        if (chance <10 || symbol=='circle'){
-//            flag=draw_circle(flag,  width, height, undefined, undefined, undefined, colorlist[4] );
-//        } else if (chance <20 || symbol=='star'){
-//            flag= draw_star(flag, width, height, undefined, undefined, colorlist[4]);
-//        } else if (chance <30 || symbol=='letter'){
-//            flag= draw_letter(flag, width, height, undefined, letter, undefined, undefined, colorlist[4]);
-//        }
-//        return flag;
-//    }
-//    
+
+function select_symbol(params){
+
+    console.log(params.symbol.name);
+    if (params.symbol.name == 'circle'){
+        params.flag=draw_circle_symbol( params );
+
+    } else if (params.symbol.name == 'star'){
+        params.flag= draw_star(params);
+
+    } else if (params.symbol.name=='letter'){
+//        params.flag= draw_letter(params);
+    }
+    return params.flag;
+}
+
+function draw_circle_symbol(params){
+
+    var radius;
+    radius=params.symbol.radius*params.canvas.height
+    var width=params.canvas.width*params.symbol.xlocation
+    var height=params.canvas.height*params.symbol.ylocation
+    params.flag.save()
+    params.flag.beginPath(); // Start the path
+    params.flag.arc(width,height, radius, 0, Math.PI*2, false ); // Draw a circle
+    params.flag.closePath(); // Close the path
+    params.flag.fillStyle=params.colors[5].hex;
+    params.flag.fill(); // Fill the path
+    params.flag.restore();
+
+    return params.flag;
+
+}
+
 //    function draw_letter(flag, width, height, axis, letter, font, size, color){
 //        letter = getQueryString()['letter'] || letter || '#' ;
 //        var axislist=Array(  1/4,1/2 );
@@ -266,39 +273,32 @@ function draw_rays(  params){
 }
 
 
-//    //canvas, x of center, y of center, radius, number of points, fraction of radius for inset).
-//    function draw_star(flag, width, height, points,inset,color) {
-//    
-//        var pointcounts=Array( 4, 5, 6, 8, 12, 20 );
-//        var insetlist=Array( 1/4, 1/3, 1/2 );
-//    
-//        points = points|| pointcounts[ d( pointcounts.length ) ] ;
-//        inset  = inset || insetlist[   d( insetlist.length ) ];
-//    
-//    
-//        var xaxis=Array( 1/4, 1/2, 3/4 );
-//        var yaxis=Array( 1/4, 1/2  );
-//        
-//        xaxis = xaxis[d( xaxis.length )] ;
-//        yaxis = yaxis[d( yaxis.length )] ;
-//        var radius=Math.min( width*xaxis, width*(1-xaxis),height*yaxis, height*(1-yaxis) );
-//    
-//        flag.fillStyle=color||random_color();
-//        flag.beginPath();
-//        flag.translate(width*xaxis, height*yaxis);
-//        flag.moveTo(0,0-radius);
-//        for (var i = 0; i < points; i++) {
-//            flag.rotate(Math.PI / points);
-//            flag.lineTo(0, 0 - (radius*inset));
-//            flag.rotate(Math.PI / points);
-//            flag.lineTo(0, 0 - radius);
-//        }
-//        flag.fill();
-//        flag.translate(-width*xaxis,- height*yaxis);
-//        return flag;
-//    }
-//    
-//    
+function draw_star(params) {
+
+
+    var xaxis=params.symbol.xlocation;
+    var yaxis=params.symbol.ylocation;
+    
+    var radius=Math.min( params.canvas.width*xaxis, params.canvas.width*(1-xaxis),params.canvas.height*yaxis, params.canvas.height*(1-yaxis) );
+    params.flag.fillStyle=params.colors[5].hex;
+    params.flag.beginPath();
+    params.flag.translate(params.canvas.width*xaxis, params.canvas.height*yaxis);
+console.log("x "+ (params.canvas.width)+" y "+(params.canvas.height));
+console.log("x "+ (xaxis)+" y "+(yaxis));
+console.log("x "+ (params.canvas.width*xaxis)+" y "+(params.canvas.height*yaxis));
+    params.flag.moveTo(0,0-radius);
+    for (var i = 0; i < params.symbol.points; i++) {
+        params.flag.rotate(Math.PI / params.symbol.points);
+        params.flag.lineTo(0, 0 - (radius*params.symbol.inset));
+        params.flag.rotate(Math.PI / params.symbol.points);
+        params.flag.lineTo(0, 0 - radius);
+    }
+    params.flag.fill();
+    params.flag.translate(-params.canvas.width*xaxis,- params.canvas.height*yaxis);
+    return params.flag;
+}
+
+
 function draw_diamond(params){
     params.flag.save();
     params.flag.beginPath();
@@ -335,11 +335,8 @@ function draw_circle(params){
     }else{
         radius=params.overlay.radius*params.canvas.height
     }
-    console.log(params)
     var width=params.canvas.width*params.overlay.xlocation
     var height=params.canvas.height*params.overlay.ylocation
-console.log("blahx "+params.overlay.xlocation)
-console.log("blahy "+params.overlay.ylocation)
     params.flag.save()
     params.flag.beginPath(); // Start the path
     params.flag.arc(width,height, radius, 0, Math.PI*2, false ); // Draw a circle
@@ -412,7 +409,6 @@ function draw_quad(params, quadrant, color){
     
     params.flag.fillStyle=color;
 
-    console.log(a+" "+b+" "+c+" "+d+" ");
     params.flag.fillRect( a, b, c, d );
     return params.flag;
 }
@@ -541,7 +537,6 @@ function set_shape(params){
     params.flag.save();
     params.flag.fillStyle = "rgba(0, 0, 0, .0)"
     params.flag.lineWidth = 1
-     console.log(params.shape.name);
     switch(params.shape.name){
         case 'para':
             params.flag.moveTo(    0,        0);
@@ -594,7 +589,6 @@ function draw_tongue_slot(params,count,id,depth,type){
     var height=params.canvas.height/(count*2-1);
     var y = height*(id*2-1);
     depth=params.canvas.width*depth;
-    console.log(type);
     params.flag.lineTo(x,y);
     if (type == "square"){
         params.flag.lineTo(x-depth,y);
@@ -602,7 +596,6 @@ function draw_tongue_slot(params,count,id,depth,type){
     }else if (type=="triangle"){
         params.flag.lineTo(x-depth,y+height/2);
     }else if (type=="scallop"){
-        console.log(x+"  "+(y)+" "+height+" "+ id);
         params.flag.arc(x, y+height/2 ,height/2 ,1.5 * Math.PI, 0.5*Math.PI,true);
     }else if (type=="sine"){
         params.flag.arc(x-height/2, y-height/2,          height/2,   0*Math.PI, 0.5*Math.PI,false);

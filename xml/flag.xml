@@ -369,18 +369,54 @@
         </option>
     </overlay>
     <symbol>
+        <option name="none"></option>
         <option name="circle">
             <outline>
                 <option>true</option>
                 <option>false</option>
             </outline>
+            <radius_direction>
+                <option>horizontal</option>
+                <option>vertical</option>
+            </radius_direction>
+            <xlocation>
+                <option>.25</option>
+                <option>.5</option>
+            </xlocation>
+            <ylocation>
+                <option>.25</option>
+                <option>.5</option>
+            </ylocation>
+            <radius>
+                <option>.10</option>
+                <option>.15</option>
+                <option>.20</option>
+                <option>.25</option>
+            </radius>
         </option>
         <option name="star">
+            <points>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>8</option>
+                <option>12</option>
+                <option>20</option>
+            </points>
+            <inset>
+                <option>.25</option>
+                <option>.33</option>
+                <option>.5</option>
+            </inset>
+            <xlocation>
+                <option>.25</option>
+                <option>.5</option>
+            </xlocation>
+            <ylocation>
+                <option>.25</option>
+                <option>.5</option>
+            </ylocation>
         </option>
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
         <option name="letter">
             <outline>
                 <option>true</option>
