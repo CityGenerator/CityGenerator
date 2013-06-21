@@ -115,7 +115,7 @@ function select_symbol(params){
         params.flag= draw_star(params);
 
     } else if (params.symbol.name=='letter'){
-//        params.flag= draw_letter(params);
+        params.flag= draw_letter(params);
     }
     return params.flag;
 }
@@ -138,34 +138,26 @@ function draw_circle_symbol(params){
 
 }
 
-//    function draw_letter(flag, width, height, axis, letter, font, size, color){
-//        letter = getQueryString()['letter'] || letter || '#' ;
-//        var axislist=Array(  1/4,1/2 );
-//        axis = axis || axislist[ d( axislist.length ) ];
-//        var sizelist=Array(  30,40,50,60,70,80);
-//        size=size|| sizelist[ d(axislist.length)];
-//        var fontlist=Array(
-//                        "Arial Black", "Comic Sans MS Bold", "Courier New Bold", 
-//                        "Courier New Bold Italic", "Impact", "Lucida Console", 
-//                        "Trebuchet MS", "Trebuchet MS Bold", "Trebuchet MS Italic",
-//                        "Trebuchet MS Bold Italic", "Verdana", "Verdana Bold", 
-//                        "Verdana Bold Italic", "sans serif"
-//                        );
-//        font = font || fontlist[ d( fontlist.length ) ];
-//    
-//        flag.fillStyle=color||random_color();
-//    
-//        //c6_context.font = 'italic bold 30px sans-serif';
-//        flag.textBaseline = 'middle';
-//        flag.font=size+"px bold "+font;
-//    //    flag.fillText("Hello World",10,50)
-//    //    flag.font="normal 50px Verdana";
-//        flag.fillText(letter, width*axis-size/2+size/10, height*axis);
-//    
-//        return flag;
-//    
-//    }
-//    
+function draw_letter(params){
+    params.flag.fillStyle=params.colors[5].hex;
+    var fontsize=Math.min( params.canvas.height*params.symbol.size  );
+    var font= fontsize + "px "+params.symbol.fontfamily;
+
+    if (! params.symbol.letter){
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        params.symbol.letter=possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+
+    params.flag.textBaseline = 'middle';
+    params.flag.font=font;
+    console.log(font);
+    params.flag.fillText(params.symbol.letter, (params.canvas.width*params.symbol.xlocation)-fontsize/2   ,(params.canvas.height*params.symbol.ylocation) );
+
+    return params.flag;
+}
+
+
 //    function select_border(flag, width, height, colorlist){
 //        var border=getQueryString()['border'];
 //        var chance=border||  d( 30 )  ;
@@ -175,6 +167,8 @@ function draw_circle_symbol(params){
 //        }
 //        return flag;
 //    }
+
+
 function draw_solid( params){
         params.flag.fillStyle=params.colors[0].hex;
         params.flag.fillRect(0,0, params.canvas.width,params.canvas.height); 
