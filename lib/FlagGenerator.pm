@@ -102,7 +102,7 @@ sub create_flag {
     $flag = generate_overlay($flag);
     $flag = generate_symbol($flag);
     #$flag = generate_border($flag);
-    #$flag = generate_letter($flag);
+    $flag = generate_letter($flag);
     return $flag;
 } ## end sub create_flag
 
@@ -282,6 +282,17 @@ sub generate_border {
 }
 
 
+sub generate_letter {
+    my ($flag)=@_;
+    GenericGenerator::set_seed($flag->{'seed'});
+    my @letters=('A'..'Z');
+    if (defined $flag->{'cityname'}){
+        $flag->{'symbol'}->{'letter'}=substr $flag->{'cityname'}, 0, 1;
+    }else {
+        $flag->{'symbol'}->{'letter'}=$letters[rand @letters];
+    }
+    return $flag;
+}
 
 1;
 

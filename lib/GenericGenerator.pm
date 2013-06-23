@@ -31,7 +31,7 @@ use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX; 
 use version;
-
+use Carp qw(longmess);
 ###############################################################################
 
 =head1 CONFIGURATION AND ENVIRONMENT
@@ -106,7 +106,14 @@ Select a random item from an array.
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
-    return $array->[ rand @$array  ];
+    if (ref $array  eq 'ARRAY'){
+        return $array->[ rand @$array  ];
+#    }else if (ref $array  eq 'hash'){ TODO implement this later
+#        return $array->[ rand keys %$array  ];
+    }else{
+        print STDERR longmess();
+        die "you passed in something that wasn't an array reference. @!";
+    }
 }
 
 ###############################################################################

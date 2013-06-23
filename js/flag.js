@@ -143,12 +143,6 @@ function draw_letter(params){
     var fontsize=Math.min( params.canvas.height*params.symbol.size  );
     var font= fontsize + "px "+params.symbol.fontfamily;
 
-    if (! params.symbol.letter){
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        params.symbol.letter=possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-
-
     params.flag.textBaseline = 'middle';
     params.flag.font=font;
     console.log(font);

@@ -24,12 +24,12 @@ subtest 'test create_flag' => sub {
     $flag->{'colors'}=undef;
     FlagGenerator::generate_colors($flag);
     is($flag->{'seed'},41630);
-    is(@{$flag->{'colors'}},5);
+    is(@{$flag->{'colors'}},7);
 
 
     $flag=FlagGenerator::create_flag({'seed'=>12345});
     is($flag->{'seed'},12345);
-    is(@{$flag->{'colors'}},5);
+    is(@{$flag->{'colors'}},7);
 
     done_testing();
 };
@@ -127,23 +127,13 @@ subtest 'test generate_symbol' => sub {
     my $flag;
     $flag=FlagGenerator::create_flag({'seed'=>41630});
     FlagGenerator::generate_symbol($flag);
-    is($flag->{'symbol'}->{'name'},'letter');
+    is($flag->{'symbol'}->{'name'},'circle');
 
     $flag=FlagGenerator::create_flag({'seed'=>41630, 'symbol'=>{'name'=>'bunny'}});
     FlagGenerator::generate_symbol($flag);
     is($flag->{'symbol'}->{'name'},'bunny');
 };
 
-subtest 'test generate_border' => sub {
-    my $flag;
-    $flag=FlagGenerator::create_flag({'seed'=>41630});
-    FlagGenerator::generate_border($flag);
-    is($flag->{'border'},'scaloped');
-
-    $flag=FlagGenerator::create_flag({'seed'=>41630, 'border'=>'bunny'});
-    FlagGenerator::generate_border($flag);
-    is($flag->{'border'},'bunny');
-};
 
 1;
 
