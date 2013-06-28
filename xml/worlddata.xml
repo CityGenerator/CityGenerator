@@ -14,8 +14,8 @@
         <option          max="30" count="0">no moons</option>
         <option          max="70" count="1">single moon</option>
         <option min="71" max="95" count="2">double moon</option>
-        <option min="96" max="  " count="3">triple moon</option>
-        <option min="96"          count="3">quadruple moon</option>
+        <option min="96" max="97" count="3">triple moon</option>
+        <option min="98"          count="3">quadruple moon</option>
     </moons>
 
     <size>
