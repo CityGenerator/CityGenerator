@@ -1,5 +1,11 @@
         <div id="worldnav">
             <nav>
+            <a href='?worldid=[% worldid - 1   %]'>&laquo; Last World</a>
+            <a href='?worldid=[% worldid       %]'>[ [% worldname%] ]</a>
+            <a href='?worldid=[% worldid + 1   %]'>Next World &raquo;</a>
+            </nav>
+            [% IF seed %]
+            <nav>
             <a href='?seed=[% seed - 100 %]'>&laquo; Last Continent</a>
             <a href='?seed=[% seed - 10  %]'>&laquo; Last Region</a>
             <a href='?seed=[% seed - 1   %]'>&laquo; Last City</a>
@@ -8,6 +14,7 @@
             <a href='?seed=[% seed + 10  %]'>Next Region &raquo;</a>
             <a href='?seed=[% seed + 100 %]'>Next Continent &raquo;</a>
             </nav>
+            [% END %]
 
         </div>
 

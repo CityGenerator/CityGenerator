@@ -8,7 +8,8 @@ use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( create_world generate_name);
-
+#FIXME TODO I don't need to reassign back to world when passing in a reference
+# i.e. I can simplify $world=generate_foo($world); as generate_foo($world);
 ###############################################################################
 
 =head1 NAME
@@ -59,8 +60,10 @@ The following datafiles are used by WorldGenerator.pm:
 =cut
 
 ###############################################################################
-my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
+my $world_data          = $xml->XMLin( "xml/worlddata.xml",      ForceContent => 1, ForceArray => ['option','reason'] );
 my $worldnames_data     = $xml->XMLin( "xml/worldnames.xml",     ForceContent => 1, ForceArray => [] );
+my $starnames_data      = $xml->XMLin( "xml/starnames.xml",      ForceContent => 1, ForceArray => [] );
+my $moonnames_data      = $xml->XMLin( "xml/moonnames.xml",      ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -98,11 +101,10 @@ sub create_world {
         $world->{'seed'} = set_seed();
     }
 
-    # This knocks off the city IDs
-    $world->{'seed'} = $world->{'seed'} - $world->{'seed'} % 100;
-
-    generate_world_name($world);
-
+    $world=generate_world_name($world);
+    $world=generate_starsystem($world);
+    $world=generate_moons($world);
+    $world=generate_atmosphere($world);
     return $world;
 } ## end sub create_world
 
@@ -124,6 +126,143 @@ sub generate_world_name {
    return $world; 
 }
 
+
+###############################################################################
+
+=head3 generate_starsystem()
+
+    generate a starsystem for the world.
+
+=cut
+
+###############################################################################
+sub generate_starsystem {
+    my ($world) = @_;
+    set_seed($world->{'seed'});
+
+    $world->{'starsystem_roll'}= d(100) if (!defined $world->{'starsystem_roll'});
+    
+    my $starsystem=roll_from_array($world->{'starsystem_roll'},  $world_data->{'stars'}->{'option'});
+    $world->{'starsystem_count'}=$starsystem->{'count'};
+    $world->{'starsystem_name'}=$starsystem->{'content'};
+    $world->{'star'}= [] if (!defined $world->{'star'});
+    for (my $starid=0 ; $starid < $world->{'starsystem_count'} ; $starid++ ){
+        generate_star($world,$starid);
+    }
+
+    return $world; 
+}
+###############################################################################
+
+=head3 generate_moons()
+
+    generate a moons for the world.
+
+=cut
+
+###############################################################################
+sub generate_moons {
+    my ($world) = @_;
+    set_seed($world->{'seed'});
+
+    $world->{'moons_roll'}= d(100) if (!defined $world->{'moons_roll'});
+    
+    my $moons=roll_from_array($world->{'moons_roll'},  $world_data->{'moons'}->{'option'});
+    $world->{'moons_count'}=$moons->{'count'};
+    $world->{'moons_name'}=$moons->{'content'};
+
+    $world->{'moon'}= [] if (!defined $world->{'moon'});
+    for (my $moonid=0 ; $moonid < $world->{'moons_count'} ; $moonid++ ){
+        generate_moon($world,$moonid);
+    }
+
+    return $world; 
+}
+
+
+
+
+###############################################################################
+
+=head3 generate_star()
+
+    generate a name for a star.
+
+=cut
+
+###############################################################################
+sub generate_star {
+    my ($world,$id) = @_;
+
+    $id=0 if (!defined $id);
+    set_seed($world->{'seed'}+$id);
+    my $nameobj= parse_object( $starnames_data );
+    $world->{'star'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'star'}[$id]->{'name'} );
+
+    $world->{'star'}[$id]->{'color_roll'} = d(100)  if (!defined $world->{'star'}[$id]->{'color_roll'} );
+    $world->{'star'}[$id]->{'color'}= roll_from_array( $world->{'star'}[$id]->{'color_roll'}, $world_data->{'starcolor'}->{'option'})->{'content'} if (!defined $world->{'star'}[$id]->{'color'});
+
+    $world->{'star'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'star'}[$id]->{'size_roll'} );
+    $world->{'star'}[$id]->{'size'}= roll_from_array( $world->{'star'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'star'}[$id]->{'size'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_moon()
+
+    generate a name for a moon.
+
+=cut
+
+###############################################################################
+sub generate_moon {
+    my ($world,$id) = @_;
+
+    $id=0 if (!defined $id);
+    set_seed($world->{'seed'}+$id);
+    my $nameobj= parse_object( $moonnames_data );
+    $world->{'moon'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'moon'}[$id]->{'name'} );
+
+    $world->{'moon'}[$id]->{'color_roll'} = d(100)  if (!defined $world->{'moon'}[$id]->{'color_roll'} );
+    $world->{'moon'}[$id]->{'color'}= roll_from_array( $world->{'moon'}[$id]->{'color_roll'}, $world_data->{'mooncolor'}->{'option'})->{'content'} if (!defined $world->{'moon'}[$id]->{'color'});
+
+    $world->{'moon'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'moon'}[$id]->{'size_roll'} );
+    $world->{'moon'}[$id]->{'size'}= roll_from_array( $world->{'moon'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'moon'}[$id]->{'size'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_atmosphere()
+
+    generate anatmosphere.
+
+=cut
+
+###############################################################################
+sub generate_atmosphere {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+
+    $world->{'atmosphere'}->{'color_roll'} = d(100)  if (!defined $world->{'atmosphere'}->{'color_roll'} );
+    my $atmosphere=roll_from_array( $world->{'atmosphere'}->{'color_roll'}, $world_data->{'atmosphere'}->{'option'});
+
+    $world->{'atmosphere'}->{'color'}= $atmosphere->{'color'}         if (!defined $world->{'atmosphere'}->{'color'});
+
+    $world->{'atmosphere'}->{'reason_roll'} = d(100)  if (!defined $world->{'atmosphere'}->{'reason_roll'} );
+
+    if (  $world->{'atmosphere'}->{'reason_roll'} <  $world_data->{'atmosphere'}->{'reason_chance'} ){
+        $world->{'atmosphere'}->{'reason'}= roll_from_array( $world->{'atmosphere'}->{'reason_roll'}, $atmosphere->{'reason'})->{'content'} if (!defined $world->{'atmosphere'}->{'reason'});
+    }
+
+   return $world; 
+}
 
 1;
 

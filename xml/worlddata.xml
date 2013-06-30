@@ -2,20 +2,18 @@
 
 <world>
 
-
-
-    <starsystem> <!--  ____ orbits around a ____ system- ___, ___ and ___ -->
+    <stars> <!--  ____ orbits around a ____ system- ___, ___ and ___ -->
         <option          max="70" count="1">single star</option>
         <option min="71" max="95" count="2">binary star</option>
         <option min="96"          count="3">trinary star</option>
-    </starsystem>
+    </stars>
 
     <moons>   
         <option          max="30" count="0">no moons</option>
         <option          max="70" count="1">single moon</option>
         <option min="71" max="95" count="2">double moon</option>
         <option min="96" max="97" count="3">triple moon</option>
-        <option min="98"          count="3">quadruple moon</option>
+        <option min="98"          count="4">quadruple moon</option>
     </moons>
 
     <size>
@@ -26,68 +24,76 @@
         <option min="96"          >supermassive</option>
     </size>
 
-    <color>
-        <option          max="5" >blue</option>
-        <option min="6"  max="20" >white</option>
-        <option min="21" max="70" >yellow</option>
+    <mooncolor>
+        <option          max="20" >light blue</option>
+        <option min="21" max="40" >briliant silver</option>
+        <option min="41" max="60" >bone white</option>
+        <option min="61" max="80" >pale yellow</option>
+        <option min="81" max="95" >rusty red</option>
+        <option min="96"          >dull brown</option>
+    </mooncolor>
+
+    <starcolor>
+        <option          max="10" >blue</option>
+        <option min="11" max="30" >white</option>
+        <option min="31" max="70" >yellow</option>
         <option min="71" max="85" >orange</option>
         <option min="86" max="95" >red</option>
         <option min="96"          >brown</option>
-    </color>
+    </starcolor>
 
-    <atmosphere> <!-- The sky is _________[, partially due to ______ high in the atmosphere].-->
-        <option          max="40" type="blue">
+    <atmosphere reason_chance='50' > <!-- The sky is _________[, partially due to ______ high in the atmosphere].-->
+        <option          max="40" color="blue">
             <reason>water vapor</reason>
         </option>
-        <option min="41" max="45" type="white">
+        <option min="41" max="45" color="white">
             <reason>clouds</reason>
             <reason>pollution</reason>
         </option>
-        <option min="46" max="50" type="gray">
+        <option min="46" max="50" color="gray">
             <reason>clouds</reason>
             <reason>pollution</reason>
         </option>
-        <option min="51" max="55" type="brown">
+        <option min="51" max="55" color="brown">
             <reason>pollution</reason>
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-        <option min="56" max="60" type="red">
+        <option min="56" max="60" color="red">
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-        <option min="61" max="65" type="pink">
+        <option min="61" max="65" color="pink">
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-        <option min="66" max="70" type="green">
+        <option min="66" max="70" color="green">
             <reason>noxious fumes</reason>
             <reason>airborn plankton</reason>
         </option>
-        <option min="71" max="75" type="yellow">
+        <option min="71" max="75" color="yellow">
             <reason>pollution</reason>
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-        <option min="76" max="80" type="beige">
+        <option min="76" max="80" color="beige">
             <reason>pollution</reason>
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-        <option min="81" max="85" type="orange">
+        <option min="81" max="85" color="orange">
             <reason>pollution</reason>
             <reason>dust</reason>
         </option>
-        <option min="86" max="90" type="purple">
+        <option min="86" max="90" color="purple">
         </option>
-        <option min="91"          type="murky">
+        <option min="91"          color="murky">
             <reason>clouds</reason>
             <reason>pollution</reason>
             <reason>noxious fumes</reason>
             <reason>dust</reason>
         </option>
-    <atmosphere>
-
+    </atmosphere>
 
     <basetemp>
         <option pop_mod="0.80" >unbearably cold</option>
@@ -118,32 +124,6 @@
         <option >incredibly strong</option>
     </wind>
 
-    <surfacearea> <!-- in millions of square miles-->
-        <option          max="10" milesmin="75000000"   milesmax="75000000"   />   <!-- mercury -->
-        <option min="11" max="20" milesmin="460000000"  milesmax="460000000"  />  <!-- venus -->
-        <option min="21" max="80" milesmin="510000000"  milesmax="510000000"  />  <!-- earth -->
-        <option min="81"          milesmin="1448000000" milesmax="1448000000" /> <!-- large superearth -->
-            
-    </surfacearea>
-
-    <freshwater>
-        <option          max="10" >scarce</option>
-        <option min="10" max="31" >rare</option>
-        <option min="30" max="55" >common</option>
-        <option min="65" max="85" >plentiful</option>
-        <option min="86" max="95" >abundant</option>
-        <option min="96"          >excessive</option>
-    <freshwater>
-
-    <surfacewater>
-        <option          max="10" >scarce</option>
-        <option min="10" max="31" >rare</option>
-        <option min="30" max="55" >common</option>
-        <option min="65" max="85" >plentiful</option>
-        <option min="86" max="95" >abundant</option>
-        <option min="96"          >excessive</option>
-    <surfacewater>
-
     <civilizationlevel>
         <option          max="10" modifier="-5" >crude</option>
         <option min="11" max="20" modifier="-3" >scattered</option>
@@ -152,11 +132,8 @@
         <option min="91"          modifier="5"  >thriving</option>
     </civilizationlevel>
 
-    <techtonics>
-    </techtonics>
 
-
-    <celestial> <! --  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
+    <celestial> <!--  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
         <size>
             <option>miniscule</option>
             <option>tiny</option>
@@ -169,8 +146,9 @@
             <option>supernova</option>
             <option>pulsar</option>
             <option>black hole</option>
+            <option>nearby planet</option>
             <option>asteroid belt</option>
-        <body>
+        </body>
         <age>
             <option>only a few years</option>
             <option>decades</option>
@@ -208,14 +186,39 @@
         <option min="99"          minhour="51"      maxhour="100" />
     </day>
     
-    <continents>
-        <option          max="10" mincontinent="1"  maxcontinent="2"  />
-        <option min="11" max="30" mincontinent="3"  maxcontinent="4"  />
-        <option min="31" max="70" mincontinent="5"  maxcontinent="6"  />
-        <option min="71" max="90" mincontinent="7"  maxcontinent="8"  />
-        <option min="91" max="95" mincontinent="9"  maxcontinent="10"  />
-        <option min="96"          mincontinent="11" maxcontinent="12"   />
-    <continents>
+    <plates>
+        <option min="31" max="70" minplate="4"  maxplate="6"  />
+        <option min="71" max="90" minplate="7"  maxplate="8"  />
+        <option min="91" max="95" minplate="9"  maxplate="10"  />
+        <option min="96"          minplate="11" maxplate="15"   />
+        <option min="96"          minplate="12" maxplate="20"   />
+    </plates>
 
+    <freshwater>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </freshwater>
+
+    <surfacearea> <!-- in millions of square miles-->
+        <option          max="10" milesmin="65000000"   milesmax="85000000"   />   <!-- ~Mercury -->
+        <option min="11" max="20" milesmin="85000000"   milesmax="500000000"  />  <!-- ~venus -->
+        <option min="21" max="80" milesmin="500000000"  milesmax="810000000"  />  <!-- ~earth -->
+        <option min="81"          milesmin="810000000"  milesmax="1448000000" /> <!-- large superearth -->
+            
+    </surfacearea>
+
+
+    <surfacewater>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </surfacewater>
 
 </world>

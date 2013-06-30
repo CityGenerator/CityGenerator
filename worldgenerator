@@ -1,0 +1,106 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use CGI;
+use Data::Dumper;
+use JSON;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use Template;
+use XML::Simple;
+use lib "lib/";
+use GenericGenerator;
+use WorldGenerator;
+use WorldSummaryFormatter;
+our $q = CGI->new;
+
+
+my $worldid=GenericGenerator::set_seed();
+
+if (defined $q->param('worldid')){
+    $worldid=$q->param('worldid');
+}
+
+
+my $world=WorldGenerator::create_world({seed=>$worldid});
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='utf-8' ?>\n";
+    print XMLout($world);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print $JSON->encode($world);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $world;
+
+} else {
+    print $q->header( 'text/html; charset=utf-8' );
+    print_page($world);
+}
+
+exit;
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+sub print_page {
+    my ($world)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Welcome to '.$world->{'name'}."!",
+        'seed'          => $world->{'seed'},
+
+        'content'       => print_content($world),
+        'worldnav'      => print_worldnav($world),
+    };
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+sub print_worldnav {
+    my ($world)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'worldname'     => $world->{'name'},
+        'worldid'       => $world->{'seed'},
+    };
+    $templates->process('worldnav.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+sub print_content {
+    my ($world)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'worldname'      => $world->{'name'},
+        'seed'          => $world->{'seed'},
+        'summarytext'   => WorldSummaryFormatter::printSummary($world),
+    };
+    $templates->process('worldgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
