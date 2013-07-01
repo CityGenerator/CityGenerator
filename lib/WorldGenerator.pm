@@ -105,6 +105,9 @@ sub create_world {
     $world=generate_starsystem($world);
     $world=generate_moons($world);
     $world=generate_atmosphere($world);
+    $world=generate_basetemp($world);
+    $world=generate_air($world);
+    $world=generate_wind($world);
     return $world;
 } ## end sub create_world
 
@@ -263,6 +266,71 @@ sub generate_atmosphere {
 
    return $world; 
 }
+
+
+###############################################################################
+
+=head3 generate_basetemp()
+
+    generate base temperature and the population modifier.
+
+=cut
+
+###############################################################################
+sub generate_basetemp {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+
+    my $basetemp=rand_from_array( $world_data->{'basetemp'}->{'option'});
+    $world->{'basetemp'}= $basetemp->{'content'} if (!defined $world->{'basetemp'} );
+    $world->{'basetemp_modifier'}= $basetemp->{'pop_mod'} if (!defined $world->{'basetemp_modifier'} );
+
+
+   return $world;
+}
+
+
+###############################################################################
+
+=head3 generate_air()
+
+    generate air conditions on the planet.
+
+=cut
+
+###############################################################################
+sub generate_air {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'air'}= rand_from_array( $world_data->{'air'}->{'option'})->{'content'} if (!defined $world->{'air'} );
+
+   return $world;
+}
+
+
+###############################################################################
+
+=head3 generate_wind()
+
+    generate wind conditions on the planet.
+
+=cut
+
+###############################################################################
+sub generate_wind {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'wind'}= rand_from_array( $world_data->{'wind'}->{'option'})->{'content'} if (!defined $world->{'wind'} );
+
+   return $world;
+}
+
+
+
+
 
 1;
 

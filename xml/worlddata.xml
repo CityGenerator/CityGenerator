@@ -123,7 +123,7 @@
         <option >strong</option>
         <option >incredibly strong</option>
     </wind>
-
+<!-- vegetation-->
     <civilizationlevel>
         <option          max="10" modifier="-5" >crude</option>
         <option min="11" max="20" modifier="-3" >scattered</option>
@@ -133,7 +133,7 @@
     </civilizationlevel>
 
 
-    <celestial> <!--  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
+    <celestial min='0' max='3'> <!--  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
         <size>
             <option>miniscule</option>
             <option>tiny</option>

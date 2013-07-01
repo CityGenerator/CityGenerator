@@ -86,5 +86,32 @@ subtest 'test generate_atmosphere' => sub {
     done_testing();
 };
 
+subtest 'test generate_basetemp' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'basetemp'}, "warm" );
+    is($world->{'basetemp_modifier'}, "1.00" );
+
+
+    done_testing();
+};
+
+subtest 'test generate_air' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'air'}, "humid" );
+
+    done_testing();
+};
+
+subtest 'test generate_wind' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'wind'}, "strong" );
+
+    done_testing();
+};
+
+
 1;
 

@@ -3,27 +3,27 @@
 
 package RegionGenerator;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( create_region generate_name);
+
 ###############################################################################
 
 =head1 NAME
 
     RegionGenerator - used to generate Regions
 
-=head1 DESCRIPTION
+=head1 SYNOPSIS
 
- This can be used to create a Region
+    use RegionGenerator;
+    my $region=RegionGenerator::create_region();
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( create_region generate_name);
 
 use CGI;
 use Data::Dumper;

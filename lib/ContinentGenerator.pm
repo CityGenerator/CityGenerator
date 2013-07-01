@@ -24,7 +24,6 @@ use base qw(Exporter);
 
 ###############################################################################
 
-
 use Carp;
 use CGI;
 use Data::Dumper;
@@ -54,14 +53,13 @@ The following datafiles are used by ContinentGenerator.pm:
 
 =back
 
-=head1 INTERFACE 
+=head1 INTERFACE
 
 
 =cut
 
 ###############################################################################
-# FIXME This needs to stop using our
-our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
 our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
