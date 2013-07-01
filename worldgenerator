@@ -1,6 +1,7 @@
 #!/usr/bin/perl -wT
 
 use strict;
+use warnings;
 use CGI;
 use Data::Dumper;
 use JSON;
@@ -65,7 +66,7 @@ sub print_page {
         'content'       => print_content($world),
         'worldnav'      => print_worldnav($world),
     };
-    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+    return $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }
 
 sub print_worldnav {

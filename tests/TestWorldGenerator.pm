@@ -112,6 +112,23 @@ subtest 'test generate_wind' => sub {
     done_testing();
 };
 
+subtest 'test generate_celetial_objects' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'celestial_count'}, "2" );
+    is($world->{'celestial'}[0]->{'name'}, "supernova" );
+    is($world->{'celestial'}[0]->{'size'}, "imposing" );
+    is($world->{'celestial'}[0]->{'age'},  "decades" );
+
+    is($world->{'celestial'}[1]->{'name'}, "nebula" );
+    is($world->{'celestial'}[1]->{'size'}, "imposing" );
+    is($world->{'celestial'}[1]->{'age'},  "all eternity" );
+
+    is($world->{'celestial'}[2],  undef );
+    done_testing();
+
+};
+
 
 1;
 

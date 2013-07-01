@@ -123,15 +123,6 @@
         <option >strong</option>
         <option >incredibly strong</option>
     </wind>
-<!-- vegetation-->
-    <civilizationlevel>
-        <option          max="10" modifier="-5" >crude</option>
-        <option min="11" max="20" modifier="-3" >scattered</option>
-        <option min="21" max="80" modifier="0"  >moderate</option>
-        <option min="81" max="90" modifier="3"  >prosperous</option>
-        <option min="91"          modifier="5"  >thriving</option>
-    </civilizationlevel>
-
 
     <celestial min='0' max='3'> <!--  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
         <size>
@@ -140,7 +131,7 @@
             <option>imposing</option>
             <option>massive</option>
         </size>
-        <body>
+        <name>
             <option>nebula</option>
             <option>galaxy</option>
             <option>supernova</option>
@@ -148,7 +139,7 @@
             <option>black hole</option>
             <option>nearby planet</option>
             <option>asteroid belt</option>
-        </body>
+        </name>
         <age>
             <option>only a few years</option>
             <option>decades</option>
@@ -220,5 +211,16 @@
         <option min="86" max="95" >abundant</option>
         <option min="96"          >excessive</option>
     </surfacewater>
+
+
+<!-- vegetation-->
+    <civilizationlevel>
+        <option          max="10" modifier="-5" >crude</option>
+        <option min="11" max="20" modifier="-3" >scattered</option>
+        <option min="21" max="80" modifier="0"  >moderate</option>
+        <option min="81" max="90" modifier="3"  >prosperous</option>
+        <option min="91"          modifier="5"  >thriving</option>
+    </civilizationlevel>
+
 
 </world>

@@ -108,6 +108,7 @@ sub create_world {
     $world=generate_basetemp($world);
     $world=generate_air($world);
     $world=generate_wind($world);
+    $world=generate_celestial_objects($world);
     return $world;
 } ## end sub create_world
 
@@ -189,7 +190,7 @@ sub generate_moons {
 
 =head3 generate_star()
 
-    generate a name for a star.
+    generate details for a single star.
 
 =cut
 
@@ -327,6 +328,57 @@ sub generate_wind {
 
    return $world;
 }
+
+
+###############################################################################
+
+=head3 generate_celestial_objects()
+
+    generate nearby celestial objects for the planet.
+
+=cut
+
+###############################################################################
+sub generate_celestial_objects {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    
+    $world->{'celestial_count'}= int rand($world_data->{'celestial'}->{'max'}-$world_data->{'celestial'}->{'min'}) + $world_data->{'celestial'}->{'min'} if  (!defined $world->{'celestial_count'});
+
+    $world->{'celestial'}= [] if (!defined $world->{'celestial'});
+    for (my $celestialid=0 ; $celestialid < $world->{'celestial_count'}; $celestialid++) {
+        generate_celestial($world,$celestialid);
+    }
+
+
+   return $world;
+}
+
+###############################################################################
+
+=head3 generate_celestial()
+
+    generate details for a single celestial object.
+
+=cut
+
+###############################################################################
+sub generate_celestial {
+    my ($world,$id) = @_;
+
+    $id=0 if (!defined $id);
+    set_seed($world->{'seed'}+$id);
+
+
+    $world->{'celestial'}[$id]->{'size'}= rand_from_array( $world_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'size'});
+    $world->{'celestial'}[$id]->{'age'}= rand_from_array( $world_data->{'celestial'}->{'age'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'age'});
+    $world->{'celestial'}[$id]->{'name'}= rand_from_array( $world_data->{'celestial'}->{'name'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'name'});
+
+   return $world; 
+}
+
+
 
 
 
