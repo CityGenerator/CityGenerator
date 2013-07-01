@@ -158,15 +158,15 @@
         <option min="11" max="20"  minday="11"     maxday="100" />
         <option min="21" max="30"  minday="101"    maxday="200" />
         <option min="31" max="60"  minday="201"    maxday="400" />
-        <option min="61" max="80"  minday="401"    maxday="600" />
-        <option min="81" max="94"  minday="601"    maxday="800" />
-        <option min="95" max="95"  minday="801"    maxday="1000" />
-        <option min="96" max="96"  minday="1001"   maxday="2000" />
-        <option min="97" max="97"  minday="2001"   maxday="10000" />
-        <option min="98" max="98"  minday="10001"  maxday="50000" />
-        <option min="99"           minday="50001"  maxday="100000" />
-        <option min="91" max="95"  minday="100001" maxday="300000" />
-        <option min="91" max="95"  minday="300001" maxday="700000" />
+        <option min="61" max="82"  minday="401"    maxday="600" />
+        <option min="81" max="92"  minday="601"    maxday="800" />
+        <option min="93" max="93"  minday="801"    maxday="1000" />
+        <option min="94" max="94"  minday="1001"   maxday="2000" />
+        <option min="95" max="95"  minday="2001"   maxday="10000" />
+        <option min="96" max="96"  minday="10001"  maxday="50000" />
+        <option min="97" max="97"  minday="50001"  maxday="100000" />
+        <option min="98" max="98"  minday="100001" maxday="300000" />
+        <option min="99" max="99"  minday="300001" maxday="700000" />
     </year>
 
     <day>
@@ -185,22 +185,13 @@
         <option min="96"          minplate="12" maxplate="20"   />
     </plates>
 
-    <freshwater>
-        <option          max="10" >scarce</option>
-        <option min="10" max="31" >rare</option>
-        <option min="30" max="55" >common</option>
-        <option min="65" max="85" >plentiful</option>
-        <option min="86" max="95" >abundant</option>
-        <option min="96"          >excessive</option>
-    </freshwater>
-
-    <surfacearea> <!-- in millions of square miles-->
-        <option          max="10" milesmin="65000000"   milesmax="85000000"   />   <!-- ~Mercury -->
-        <option min="11" max="20" milesmin="85000000"   milesmax="500000000"  />  <!-- ~venus -->
-        <option min="21" max="80" milesmin="500000000"  milesmax="810000000"  />  <!-- ~earth -->
-        <option min="81"          milesmin="810000000"  milesmax="1448000000" /> <!-- large superearth -->
+    <surface> <!-- in millions of square km TODO verify this is KM!!!!!-->
+        <option          max="10" minkm="65000000"   maxkm="85000000"   />   <!-- ~Mercury -->
+        <option min="11" max="20" minkm="85000000"   maxkm="500000000"  />  <!-- ~venus -->
+        <option min="21" max="80" minkm="500000000"  maxkm="810000000"  />  <!-- ~earth -->
+        <option min="81"          minkm="810000000"  maxkm="1448000000" /> <!-- large superearth -->
             
-    </surfacearea>
+    </surface>
 
 
     <surfacewater>
@@ -211,6 +202,15 @@
         <option min="86" max="95" >abundant</option>
         <option min="96"          >excessive</option>
     </surfacewater>
+
+    <freshwater>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </freshwater>
 
 
 <!-- vegetation-->

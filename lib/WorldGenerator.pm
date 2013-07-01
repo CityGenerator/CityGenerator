@@ -32,6 +32,7 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use List::Util 'shuffle', 'min', 'max';
+use Math::Trig  ':pi';
 use POSIX;
 use version;
 use XML::Simple;
@@ -109,6 +110,12 @@ sub create_world {
     $world=generate_air($world);
     $world=generate_wind($world);
     $world=generate_celestial_objects($world);
+    $world=generate_year($world);
+    $world=generate_day($world);
+    $world=generate_plates($world);
+    $world=generate_surface($world);
+    $world=generate_surfacewater($world);
+    $world=generate_freshwater($world);
     return $world;
 } ## end sub create_world
 
@@ -379,6 +386,140 @@ sub generate_celestial {
 }
 
 
+###############################################################################
+
+=head3 generate_year()
+
+    generate length of a year (in days) planet.
+
+=cut
+
+###############################################################################
+sub generate_year {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'year_roll'}= d(100) if (!defined $world->{'year_roll'});
+    
+    my $year=roll_from_array($world->{'year_roll'},  $world_data->{'year'}->{'option'});
+    $world->{'year'}= int(rand($year->{'maxday'} - $year->{'minday'} ) + $year->{'minday'}  )     if (!defined $world->{'year'} );
+
+   return $world;
+}
+
+
+
+###############################################################################
+
+=head3 generate_day()
+
+    generate length of a day (in hours) planet.
+
+=cut
+
+###############################################################################
+sub generate_day {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'day_roll'}= d(100) if (!defined $world->{'day_roll'});
+    
+    my $day=roll_from_array($world->{'day_roll'},  $world_data->{'day'}->{'option'});
+    $world->{'day'}= int(rand($day->{'maxhour'} - $day->{'minhour'} ) + $day->{'minhour'}  )     if (!defined $world->{'day'} );
+
+   return $world;
+}
+
+
+###############################################################################
+
+=head3 generate_plates()
+
+    generate the number of tectonic plates on a planet.
+
+=cut
+
+###############################################################################
+sub generate_plates {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'plates_roll'}= d(100) if (!defined $world->{'plates_roll'});
+    
+    my $plates=roll_from_array($world->{'plates_roll'},  $world_data->{'plates'}->{'option'});
+    $world->{'plates'}= int(rand($plates->{'maxplate'} - $plates->{'minplate'} ) + $plates->{'minplate'}  )     if (!defined $world->{'plates'} );
+
+   return $world;
+}
+
+
+###############################################################################
+
+=head3 generate_surface()
+
+    generate the number of tectonic surface on a planet.
+
+=cut
+
+###############################################################################
+sub generate_surface {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+    $world->{'surface_roll'}= d(100) if (!defined $world->{'surface_roll'});
+    
+    my $surface=roll_from_array($world->{'surface_roll'},  $world_data->{'surface'}->{'option'});
+    $world->{'surface'}= int(rand($surface->{'maxkm'} - $surface->{'minkm'} ) + $surface->{'minkm'}  )     if (!defined $world->{'surface'} );
+    $world->{'radius'}= int sqrt ($world->{'surface'}/(4*pi)  ) if (!defined $world->{'radius'});
+
+
+
+   return $world;
+}
+
+
+###############################################################################
+
+=head3 generate_surfacewater()
+
+    generate surfacewater for the planet.
+
+=cut
+
+###############################################################################
+sub generate_surfacewater {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+
+
+    $world->{'surfacewater_percent'} = d(100)  if (!defined $world->{'surfacewater_percent'} );
+    $world->{'surfacewater_description'}= roll_from_array( $world->{'surfacewater_percent'}, $world_data->{'surfacewater'}->{'option'})->{'content'} if (!defined $world->{'surfacewater_description'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_freshwater()
+
+    generate freshwater for the planet.
+
+=cut
+
+###############################################################################
+sub generate_freshwater {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+
+
+    $world->{'freshwater_percent'} = d(100)  if (!defined $world->{'freshwater_percent'} );
+    $world->{'freshwater_description'}= roll_from_array( $world->{'freshwater_percent'}, $world_data->{'freshwater'}->{'option'})->{'content'} if (!defined $world->{'freshwater_description'});
+
+   return $world; 
+}
 
 
 

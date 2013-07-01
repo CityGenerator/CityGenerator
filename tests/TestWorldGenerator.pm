@@ -129,6 +129,107 @@ subtest 'test generate_celetial_objects' => sub {
 
 };
 
+subtest 'test generate_celetial_objects' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'celestial_count'}, "2" );
+    is($world->{'celestial'}[0]->{'name'}, "supernova" );
+    is($world->{'celestial'}[0]->{'size'}, "imposing" );
+    is($world->{'celestial'}[0]->{'age'},  "decades" );
+
+    is($world->{'celestial'}[1]->{'name'}, "nebula" );
+    is($world->{'celestial'}[1]->{'size'}, "imposing" );
+    is($world->{'celestial'}[1]->{'age'},  "all eternity" );
+
+    is($world->{'celestial'}[2],  undef );
+    done_testing();
+
+};
+
+
+subtest 'test generate_year' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'year_roll'}, "75" );
+    is($world->{'year'}, "454" );
+
+    $world=WorldGenerator::create_world({'seed'=>765373, 'year_roll'=>1});
+    is($world->{'year_roll'}, "1" );
+    is($world->{'year'}, "8" );
+
+    done_testing();
+};
+
+
+subtest 'test generate_day' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'day_roll'}, "75" );
+    is($world->{'day'}, "26" );
+
+    $world=WorldGenerator::create_world({'seed'=>765373, 'day_roll'=>1});
+    is($world->{'day_roll'}, "1" );
+    is($world->{'day'}, "13" );
+
+    done_testing();
+};
+
+
+subtest 'test generate_plates' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'plates_roll'}, "75" );
+    is($world->{'plates'}, "7" );
+
+    $world=WorldGenerator::create_world({'seed'=>765373, 'plates_roll'=>1});
+    is($world->{'plates_roll'}, "1" );
+    is($world->{'plates'}, "5" );
+
+    done_testing();
+};
+
+
+subtest 'test generate_surface' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765373});
+    is($world->{'surface_roll'}, "75" );
+    is($world->{'surface'}, "582860379" );
+
+    $world=WorldGenerator::create_world({'seed'=>765373, 'surface_roll'=>1});
+    is($world->{'surface_roll'}, "1" );
+    is($world->{'surface'}, "79924366" );
+    is($world->{'radius'}, "2521" );
+
+    $world=WorldGenerator::create_world({'seed'=>765373, 'surface'=>100000});
+    is($world->{'surface_roll'}, "75" );
+    is($world->{'surface'}, "100000" );
+    is($world->{'radius'}, "89" );
+#    is($world->{'circumfrence'}, "79924366" );
+
+    done_testing();
+};
+
+
+subtest 'test generate_surfacewater' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765379});
+    is($world->{'seed'},765379);
+    is($world->{'surfacewater_percent'}, '98'     );
+    is($world->{'surfacewater_description'}, 'excessive' );
+
+    done_testing();
+};
+
+subtest 'test generate_freshwater' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765379});
+    is($world->{'seed'},765379);
+    is($world->{'freshwater_percent'}, '98'     );
+    is($world->{'freshwater_description'}, 'excessive' );
+
+    done_testing();
+};
+
 
 1;
 
