@@ -116,6 +116,7 @@ sub create_world {
     $world=generate_surface($world);
     $world=generate_surfacewater($world);
     $world=generate_freshwater($world);
+    $world=generate_civilization($world);
     return $world;
 } ## end sub create_world
 
@@ -521,6 +522,29 @@ sub generate_freshwater {
    return $world; 
 }
 
+
+###############################################################################
+
+=head3 generate_civilization()
+
+    generate civilization for the planet.
+
+=cut
+
+###############################################################################
+sub generate_civilization {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'});
+
+
+    $world->{'civilization_percent'} = d(100)  if (!defined $world->{'civilization_percent'} );
+    my $civilization = roll_from_array( $world->{'civilization_percent'}, $world_data->{'civilization'}->{'option'}) ;
+    $world->{'civilization_description'}= $civilization->{'content'} if (!defined $world->{'civilization_description'});
+    $world->{'civilization_modifier'}= $civilization->{'modifier'} if (!defined $world->{'civilization_modifier'});
+
+   return $world; 
+}
 
 
 

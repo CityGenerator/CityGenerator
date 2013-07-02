@@ -212,15 +212,15 @@
         <option min="96"          >excessive</option>
     </freshwater>
 
-
 <!-- vegetation-->
-    <civilizationlevel>
+
+    <civilization>
         <option          max="10" modifier="-5" >crude</option>
         <option min="11" max="20" modifier="-3" >scattered</option>
         <option min="21" max="80" modifier="0"  >moderate</option>
         <option min="81" max="90" modifier="3"  >prosperous</option>
         <option min="91"          modifier="5"  >thriving</option>
-    </civilizationlevel>
+    </civilization>
 
 
 </world>

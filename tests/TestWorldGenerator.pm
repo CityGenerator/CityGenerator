@@ -230,6 +230,23 @@ subtest 'test generate_freshwater' => sub {
     done_testing();
 };
 
+subtest 'test generate_civilization' => sub {
+    my $world;
+    $world=WorldGenerator::create_world({'seed'=>765379});
+    is($world->{'seed'},765379);
+    is($world->{'civilization_percent'}, '98'     );
+    is($world->{'civilization_description'}, 'thriving' );
+    is($world->{'civilization_modifier'}, '5' );
+
+    $world=WorldGenerator::create_world({'seed'=>765379, 'civilization_percent'=>1});
+    is($world->{'seed'},765379);
+    is($world->{'civilization_percent'}, '1'     );
+    is($world->{'civilization_description'}, 'crude' );
+    is($world->{'civilization_modifier'}, '-5' );
+
+    done_testing();
+};
+
 
 1;
 
