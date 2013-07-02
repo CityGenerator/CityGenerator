@@ -41,7 +41,7 @@
         <option min="86" max="95" >red</option>
         <option min="96"          >brown</option>
     </starcolor>
-
+<!-- TODO give a color range in hex so we can mockup the sky in canvas -->
     <atmosphere reason_chance='50' > <!-- The sky is _________[, partially due to ______ high in the atmosphere].-->
         <option          max="40" color="blue">
             <reason>water vapor</reason>
@@ -186,10 +186,11 @@
     </plates>
 
     <surface> <!-- in millions of square km TODO verify this is KM!!!!!-->
-        <option          max="10" minkm="65000000"   maxkm="85000000"   />   <!-- ~Mercury -->
-        <option min="11" max="20" minkm="85000000"   maxkm="500000000"  />  <!-- ~venus -->
-        <option min="21" max="80" minkm="500000000"  maxkm="810000000"  />  <!-- ~earth -->
-        <option min="81"          minkm="810000000"  maxkm="1448000000" /> <!-- large superearth -->
+        <option          max="10" minkm="65000000"    maxkm="85000000"   size="tiny"    />  <!-- ~Mercury -->
+        <option min="11" max="20" minkm="85000000"    maxkm="500000000"  size="small"   /> <!-- ~venus -->
+        <option min="21" max="80" minkm="500000000"   maxkm="760000000"  size="average" /> <!-- ~earth -->
+        <option min="81"          minkm="760000000"   maxkm="1048000000" size="large"   /> <!-- large superearth -->
+        <option min="81"          minkm="1048000000"  maxkm="1448000000" size="massive" /> <!-- massive superearth -->
             
     </surface>
 

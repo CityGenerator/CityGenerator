@@ -12,7 +12,7 @@ use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
 use WorldGenerator;
-use WorldSummaryFormatter;
+use WorldFormatter;
 our $q = CGI->new;
 
 
@@ -99,7 +99,7 @@ sub print_content {
     my $vars = {
         'worldname'      => $world->{'name'},
         'seed'          => $world->{'seed'},
-        'summarytext'   => WorldSummaryFormatter::printSummary($world),
+        'summarytext'   => WorldFormatter::printSummary($world),
     };
     $templates->process('worldgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

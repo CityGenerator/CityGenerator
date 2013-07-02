@@ -193,18 +193,22 @@ subtest 'test generate_surface' => sub {
     my $world;
     $world=WorldGenerator::create_world({'seed'=>765373});
     is($world->{'surface_roll'}, "75" );
-    is($world->{'surface'}, "582860379" );
+    is($world->{'surface'}, "569495802" );
+    is($world->{'size'}, "average" );
+    is($world->{'radius'}, "6731" );
 
     $world=WorldGenerator::create_world({'seed'=>765373, 'surface_roll'=>1});
     is($world->{'surface_roll'}, "1" );
     is($world->{'surface'}, "79924366" );
+    is($world->{'size'}, "tiny" );
     is($world->{'radius'}, "2521" );
 
     $world=WorldGenerator::create_world({'seed'=>765373, 'surface'=>100000});
     is($world->{'surface_roll'}, "75" );
     is($world->{'surface'}, "100000" );
+    is($world->{'size'}, "average" );
     is($world->{'radius'}, "89" );
-#    is($world->{'circumfrence'}, "79924366" );
+#    is($world->{'circumfrence'}, "79924366" ); TODO
 
     done_testing();
 };

@@ -472,6 +472,7 @@ sub generate_surface {
     my $surface=roll_from_array($world->{'surface_roll'},  $world_data->{'surface'}->{'option'});
     $world->{'surface'}= int(rand($surface->{'maxkm'} - $surface->{'minkm'} ) + $surface->{'minkm'}  )     if (!defined $world->{'surface'} );
     $world->{'radius'}= int sqrt ($world->{'surface'}/(4*pi)  ) if (!defined $world->{'radius'});
+    $world->{'size'}= $surface->{'size'}     if (!defined $world->{'size'} );
 
 
 

@@ -2,13 +2,13 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package WorldSummaryFormatter;
+package WorldFormatter;
 
 ###############################################################################
 
 =head1 NAME
 
-    WorldSummaryFormatter - used to format the summary.
+    WorldFormatter - used to format the summary.
 
 =head1 DESCRIPTION
 
@@ -41,8 +41,9 @@ printSummary strips out important info from a City object and returns formatted 
 sub printSummary {
     my ($world) = @_;
     my $content="";
-    $content.="$world->{'name'} is a planet.";
-
+    $content.="$world->{'name'} is a $world->{'size'}, $world->{'basetemp'} planet orbiting a $world->{'starsystem_name'}. ";
+    $content.="$world->{'name'} has a $world->{'moons_name'}, a $world->{'air'} $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}. ";
+    $content.="The surface of the planet is $world->{'surfacewater_percent'}% covered by water. ";
     return $content;
 }
 

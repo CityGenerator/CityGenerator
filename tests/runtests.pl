@@ -6,6 +6,7 @@ use lib "tests/";
 use Test::More;
 use TestGenericGenerator;
 use TestWorldGenerator;
+use TestWorldFormatter;
 #use TestContinentGenerator;
 #use TestRegionGenerator;
 
