@@ -31,6 +31,7 @@ use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use Lingua::EN::Inflect qw(A);
 use List::Util 'shuffle', 'min', 'max';
 use Math::Trig  ':pi';
 use POSIX;
@@ -158,6 +159,7 @@ sub generate_starsystem {
     $world->{'starsystem_count'}=$starsystem->{'count'};
     $world->{'starsystem_name'}=$starsystem->{'content'};
     $world->{'star'}= [] if (!defined $world->{'star'});
+    $world->{'star_description'}= [] if (!defined $world->{'star_description'});
     for (my $starid=0 ; $starid < $world->{'starsystem_count'} ; $starid++ ){
         generate_star($world,$starid);
     }
@@ -192,8 +194,6 @@ sub generate_moons {
 }
 
 
-
-
 ###############################################################################
 
 =head3 generate_star()
@@ -216,6 +216,9 @@ sub generate_star {
 
     $world->{'star'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'star'}[$id]->{'size_roll'} );
     $world->{'star'}[$id]->{'size'}= roll_from_array( $world->{'star'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'star'}[$id]->{'size'});
+
+    $world->{'star_description'}[$id]=$world->{'star'}[$id]->{'name'}.", ".A( $world->{'star'}[$id]->{'size'}." ".$world->{'star'}[$id]->{'color'}." star"  ) if (!defined $world->{'star_description'}[$id]);
+
 
    return $world; 
 }
@@ -244,8 +247,36 @@ sub generate_moon {
     $world->{'moon'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'moon'}[$id]->{'size_roll'} );
     $world->{'moon'}[$id]->{'size'}= roll_from_array( $world->{'moon'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'moon'}[$id]->{'size'});
 
+    $world->{'moon_description'}[$id]=$world->{'moon'}[$id]->{'name'}.", ".A( $world->{'moon'}[$id]->{'size'}." ".$world->{'moon'}[$id]->{'color'}." moon"  ) if (!defined $world->{'moon_description'}[$id]);
    return $world; 
 }
+
+###############################################################################
+
+=head3 generate_celestial()
+
+    generate details for a single celestial object.
+
+=cut
+
+###############################################################################
+sub generate_celestial {
+    my ($world,$id) = @_;
+
+    $id=0 if (!defined $id);
+    set_seed($world->{'seed'}+$id);
+
+
+    $world->{'celestial'}[$id]->{'size'}= rand_from_array( $world_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'size'});
+    $world->{'celestial'}[$id]->{'age'}=  rand_from_array( $world_data->{'celestial'}->{'age'}->{'option'})->{'content'}  if (!defined $world->{'celestial'}[$id]->{'age'});
+    $world->{'celestial'}[$id]->{'name'}= rand_from_array( $world_data->{'celestial'}->{'name'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'name'});
+
+    $world->{'celestial_description'}[$id]= A( $world->{'celestial'}[$id]->{'size'}." ".$world->{'celestial'}[$id]->{'name'} )." that has been around for ".$world->{'celestial'}[$id]->{'age'} if (!defined $world->{'celestial_description'}[$id] );
+
+
+   return $world; 
+}
+
 
 
 ###############################################################################
@@ -269,7 +300,7 @@ sub generate_atmosphere {
 
     $world->{'atmosphere'}->{'reason_roll'} = d(100)  if (!defined $world->{'atmosphere'}->{'reason_roll'} );
 
-    if (  $world->{'atmosphere'}->{'reason_roll'} <  $world_data->{'atmosphere'}->{'reason_chance'} ){
+    if (  $world->{'atmosphere'}->{'reason_roll'} <  $world_data->{'atmosphere'}->{'reason_chance'} and defined $atmosphere->{'reason'}){
         $world->{'atmosphere'}->{'reason'}= roll_from_array( $world->{'atmosphere'}->{'reason_roll'}, $atmosphere->{'reason'})->{'content'} if (!defined $world->{'atmosphere'}->{'reason'});
     }
 
@@ -352,9 +383,13 @@ sub generate_celestial_objects {
 
     set_seed($world->{'seed'});
     
-    $world->{'celestial_count'}= int rand($world_data->{'celestial'}->{'max'}-$world_data->{'celestial'}->{'min'}) + $world_data->{'celestial'}->{'min'} if  (!defined $world->{'celestial_count'});
+    $world->{'celestial_roll'}=  d(100) if  (!defined $world->{'celestial_roll'});
+    my $celestial=roll_from_array($world->{'celestial_roll'},  $world_data->{'celestial'}->{'number'}->{'option'});
+    $world->{'celestial_count'} = $celestial->{'count'} if (!defined $world->{'celestial_count'} );
+    $world->{'celestial_name'} = $celestial->{'type'} if (!defined $world->{'celestial_name'} );
 
     $world->{'celestial'}= [] if (!defined $world->{'celestial'});
+    $world->{'celestial_description'}= [] if (!defined $world->{'celestial_description'});
     for (my $celestialid=0 ; $celestialid < $world->{'celestial_count'}; $celestialid++) {
         generate_celestial($world,$celestialid);
     }
@@ -362,30 +397,6 @@ sub generate_celestial_objects {
 
    return $world;
 }
-
-###############################################################################
-
-=head3 generate_celestial()
-
-    generate details for a single celestial object.
-
-=cut
-
-###############################################################################
-sub generate_celestial {
-    my ($world,$id) = @_;
-
-    $id=0 if (!defined $id);
-    set_seed($world->{'seed'}+$id);
-
-
-    $world->{'celestial'}[$id]->{'size'}= rand_from_array( $world_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'size'});
-    $world->{'celestial'}[$id]->{'age'}= rand_from_array( $world_data->{'celestial'}->{'age'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'age'});
-    $world->{'celestial'}[$id]->{'name'}= rand_from_array( $world_data->{'celestial'}->{'name'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'name'});
-
-   return $world; 
-}
-
 
 ###############################################################################
 
@@ -471,9 +482,11 @@ sub generate_surface {
     
     my $surface=roll_from_array($world->{'surface_roll'},  $world_data->{'surface'}->{'option'});
     $world->{'surface'}= int(rand($surface->{'maxkm'} - $surface->{'minkm'} ) + $surface->{'minkm'}  )     if (!defined $world->{'surface'} );
-    $world->{'radius'}= int sqrt ($world->{'surface'}/(4*pi)  ) if (!defined $world->{'radius'});
     $world->{'size'}= $surface->{'size'}     if (!defined $world->{'size'} );
 
+    # Calculated values
+    $world->{'radius'}= int sqrt ($world->{'surface'}/(4*pi)  ) if (!defined $world->{'radius'});
+    $world->{'circumfrence'}= pi * $world->{'radius'}*2 ; 
 
 
    return $world;
