@@ -31,6 +31,7 @@ use Data::Dumper;
 use Lingua::Conjunction;
 use Lingua::EN::Inflect qw(A);
 use Lingua::EN::Numbers qw(num2en);
+use Number::Format;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 
@@ -117,5 +118,34 @@ sub printCelestialList {
 
 
 
+###############################################################################
+
+=head2 printLandSummary()
+
+printLandSummary strips out important info from a World object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printLandSummary {
+    my ($world) = @_;
+    my $content="";
+    my $stars=conjunction(@{ $world->{'star_description'}} );
+    my $moons=printMoonList($world);
+    my $celestials=printCelestialList($world);
+    my $atmosphere=printAtmosphere($world);
+
+    my $de = new Number::Format(-thousands_sep => ',');
+
+    $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers). ".
+                "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet. ".
+                "Around $world->{'freshwater_percent'}% of the planet's water is fresh water. ".
+                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents.";
+
+
+
+
+    return $content;
+}
 
 1;

@@ -23,7 +23,7 @@ subtest 'Test World Summary' => sub {
     my $summary=WorldFormatter::printSummary($world);
     is($summary, 
                 "Merrth is a tiny, unbearably cold planet orbiting a single star. ".
-                "Merrth has a no moons, a thin blue atmosphere and fresh water is scarce. ".
+                "Merrth has a no moons, a thin blue atmosphere and fresh water is abundant. ".
                 "The surface of the planet is 5% covered by water. " 
     );
     done_testing();
@@ -70,4 +70,23 @@ subtest 'Test World Sky Summary' => sub {
 
     done_testing();
 };
+
+
+subtest 'Test World Land Summary' => sub {
+    my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>0, 'celestial_roll'=>0 });
+    my $summary=WorldFormatter::printLandSummary($world);
+    is($summary, 
+                "Merrth is 74,089,848 square kilometers (with a circumfrence of 15,255.57 kilometers). ".
+                "Surface water is scarce, covering 5% of the planet. Around 92% of the planet's water is fresh water. ".
+                "The crust is split into 8 plates, resulting in 2 continents."
+    );
+
+    done_testing();
+};
+
+
+
+
+
+
 1;

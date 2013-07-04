@@ -190,11 +190,11 @@
     </day>
     
     <plates>
-        <option min="31" max="70" minplate="4"  maxplate="6"  />
-        <option min="71" max="90" minplate="7"  maxplate="8"  />
-        <option min="91" max="95" minplate="9"  maxplate="10"  />
-        <option min="96"          minplate="11" maxplate="15"   />
-        <option min="96"          minplate="12" maxplate="20"   />
+        <option          max="10" minplate="8"  maxplate="10"   />
+        <option min="11" max="20" minplate="11" maxplate="13"  />
+        <option min="21" max="60" minplate="14" maxplate="16"  />
+        <option min="61" max="90" minplate="17" maxplate="20"  />
+        <option min="91"          minplate="21" maxplate="24"  />
     </plates>
 
     <surface> <!-- in millions of square km TODO verify this is KM!!!!!-->

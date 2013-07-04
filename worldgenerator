@@ -101,6 +101,7 @@ sub print_content {
         'seed'          => $world->{'seed'},
         'summarytext'   => WorldFormatter::printSummary($world),
         'skytext'       => WorldFormatter::printSkySummary($world),
+        'landtext'      => WorldFormatter::printLandSummary($world),
     };
     $templates->process('worldgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

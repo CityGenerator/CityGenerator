@@ -460,7 +460,7 @@ sub generate_plates {
     
     my $plates=roll_from_array($world->{'plates_roll'},  $world_data->{'plates'}->{'option'});
     $world->{'plates'}= int(rand($plates->{'maxplate'} - $plates->{'minplate'} ) + $plates->{'minplate'}  )     if (!defined $world->{'plates'} );
-
+    $world->{'continent_count'}= int( $world->{'plates'}/3 );
    return $world;
 }
 
@@ -527,7 +527,8 @@ sub generate_surfacewater {
 sub generate_freshwater {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    # adding +1 so it doesn't match surface water exactly...
+    set_seed($world->{'seed'} + 1);
 
 
     $world->{'freshwater_percent'} = d(100)  if (!defined $world->{'freshwater_percent'} );

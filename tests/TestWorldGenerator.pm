@@ -170,11 +170,13 @@ subtest 'test generate_plates' => sub {
     my $world;
     $world=WorldGenerator::create_world({'seed'=>765373});
     is($world->{'plates_roll'}, "75" );
-    is($world->{'plates'}, "7" );
+    is($world->{'plates'}, "17" );
+    is($world->{'continent_count'}, "5" );
 
     $world=WorldGenerator::create_world({'seed'=>765373, 'plates_roll'=>1});
     is($world->{'plates_roll'}, "1" );
-    is($world->{'plates'}, "5" );
+    is($world->{'plates'}, "9" );
+    is($world->{'continent_count'}, "3" );
 
     done_testing();
 };
@@ -219,8 +221,8 @@ subtest 'test generate_freshwater' => sub {
     my $world;
     $world=WorldGenerator::create_world({'seed'=>765379});
     is($world->{'seed'},765379);
-    is($world->{'freshwater_percent'}, '98'     );
-    is($world->{'freshwater_description'}, 'excessive' );
+    is($world->{'freshwater_percent'}, '85'     );
+    is($world->{'freshwater_description'}, 'plentiful' );
 
     done_testing();
 };
