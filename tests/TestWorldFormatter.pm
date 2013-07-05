@@ -22,9 +22,9 @@ subtest 'Test World Summary' => sub {
     my $world=WorldGenerator::create_world({seed=>1});
     my $summary=WorldFormatter::printSummary($world);
     is($summary, 
-                "Merrth is a average, mild planet orbiting a binary star. ".
-                "Merrth has a double moon, a fragile green atmosphere and fresh water is common. ".
-                "The surface of the planet is 50% covered by water. "
+                "Manus is a large, hot planet orbiting a single star. ".
+                "Manus has a no moons, a meager murky atmosphere and fresh water is plentiful. ".
+                "The surface of the planet is 80% covered by water. "
     );
     done_testing();
 };
@@ -32,40 +32,40 @@ subtest 'Test World Summary' => sub {
 subtest 'Test World Sky Summary' => sub {
     my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>0, 'celestial_roll'=>0 });
     my $summary=WorldFormatter::printSkySummary($world);
-    is($summary, 
-                "Merrth orbits a single star: Tol, an average yellow star. ".
-                "Merrth also has no moons. ".
+    is($summary,
+                "Manus orbits a single star: Uuc, a massive blue star. ".
+                "Manus also has no moons. ".
                 "In the night sky, you see nothing unusual. ".
-                "During the day, the sky is green. "
+                "During the day, the sky is murky, which is partially due to clouds. "
     );
 
     $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>31, 'celestial_roll'=>31 });
     $summary=WorldFormatter::printSkySummary($world);
     is($summary, 
-                "Merrth orbits a single star: Tol, an average yellow star. ".
-                "Merrth also has a single moon: Moladus, a small dull brown moon. ".
-                "In the night sky, you see a celestial object: a miniscule nearby planet that has been around for generations. ".
-                "During the day, the sky is green. "
+                "Manus orbits a single star: Uuc, a massive blue star. ".
+                "Manus also has a single moon: Phota, a large light blue moon. ".
+                "In the night sky, you see a celestial object: a massive galaxy that has been around for generations. ".
+                "During the day, the sky is murky, which is partially due to clouds. "
     );
 
 
     $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>71, 'moons_roll'=>71, 'celestial_roll'=>61 });
     $summary=WorldFormatter::printSkySummary($world);
-    is($summary, 
-                "Merrth orbits a binary star: Tol, an average yellow star and Krok, an average blue star. ".
-                "Merrth also has a double moon: Moladus, a small dull brown moon and Spolepso, a massive light blue moon. ".
-                "In the night sky, you see two celestial objects: a miniscule nearby planet that has been around for generations and a massive black hole that has been around for decades. ".
-                "During the day, the sky is green. "
+    is($summary,
+                "Manus orbits a binary star: Uuc, a massive blue star and Luj, a supermassive yellow star. ".
+                "Manus also has a double moon: Phota, a large light blue moon and Deimeke, a large briliant silver moon. ".
+                "In the night sky, you see two celestial objects: a massive galaxy that has been around for generations and a massive asteroid belt that has been around for decades. ".
+                "During the day, the sky is murky, which is partially due to clouds. "
     );
 
 
     $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>97, 'moons_roll'=>96, 'celestial_roll'=>93 });
     $summary=WorldFormatter::printSkySummary($world);
     is($summary, 
-                "Merrth orbits a trinary star: Tol, an average yellow star; Krok, an average blue star; and Bek, an average yellow star. ".
-                "Merrth also has a triple moon: Moladus, a small dull brown moon; Spolepso, a massive light blue moon; and Charo, a large briliant silver moon. ".
-                "In the night sky, you see three celestial objects: a miniscule nearby planet that has been around for generations, a massive black hole that has been around for decades, and a massive supernova that has been around for all eternity. ".
-                "During the day, the sky is green. " 
+                "Manus orbits a trinary star: Uuc, a massive blue star; Luj, a supermassive yellow star; and Mel, an average red star. ".
+                "Manus also has a triple moon: Phota, a large light blue moon; Deimeke, a large briliant silver moon; and Prokalite, an average bone white moon. ".
+                "In the night sky, you see three celestial objects: a massive galaxy that has been around for generations, a massive asteroid belt that has been around for decades, and an imposing nearby planet that has been around for all eternity. ".
+                "During the day, the sky is murky, which is partially due to clouds. "
     );
 
     done_testing();
@@ -75,11 +75,11 @@ subtest 'Test World Sky Summary' => sub {
 subtest 'Test World Land Summary' => sub {
     my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>0, 'celestial_roll'=>0 });
     my $summary=WorldFormatter::printLandSummary($world);
-    is($summary, 
-                "Merrth is 553,296,763 square kilometers (with a circumfrence of 41,688 kilometers). ".
-                "Surface water is common, covering 50% of the planet. ".
-                "Around 37% of the planet's water is fresh water. ".
-                "The crust is split into 18 plates, resulting in 6 continents. "
+    is($summary,
+                "Manus is 1,016,774,107 square kilometers (with a circumfrence of 56,517 kilometers). ".
+                "Surface water is plentiful, covering 80% of the planet. ".
+                "Around 67% of the planet's water is fresh water. ".
+                "The crust is split into 8 plates, resulting in 2 continents. " 
     );
 
     done_testing();
@@ -90,8 +90,8 @@ subtest 'Test World Weather Summary' => sub {
     my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>0, 'celestial_roll'=>0 });
     my $summary=WorldFormatter::printWeatherSummary($world);
     is($summary, 
-                "While Merrth has a reasonable amount of variation, the overall climate is mild. ".
-                "Small storms are rare, precipitation is excessive, the atmosphere is fragile and clouds are plentiful. "
+                "While Manus has a reasonable amount of variation, the overall climate is hot. ".
+                "Small storms are common, precipitation is rare, the atmosphere is meager and clouds are rare. "
     );
 
     done_testing();

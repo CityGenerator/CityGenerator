@@ -136,7 +136,7 @@ sub create_world {
 ###############################################################################
 sub generate_world_name {
     my ($world) = @_;
-    set_seed($world->{'seed'});
+    set_seed(  $world->{'seed'}  + (caller(0))[2]  );
     my $nameobj= parse_object( $worldnames_data );
     $world->{'name'}=$nameobj->{'content'}   if (!defined $world->{'name'} );
    return $world; 
@@ -154,7 +154,7 @@ sub generate_world_name {
 ###############################################################################
 sub generate_starsystem {
     my ($world) = @_;
-    set_seed($world->{'seed'} +1);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]  );
 
     $world->{'starsystem_roll'}= d(100) if (!defined $world->{'starsystem_roll'});
     
@@ -180,7 +180,7 @@ sub generate_starsystem {
 ###############################################################################
 sub generate_moons {
     my ($world) = @_;
-    set_seed($world->{'seed'} +2);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]  );
 
     $world->{'moons_roll'}= d(100) if (!defined $world->{'moons_roll'});
     
@@ -210,7 +210,7 @@ sub generate_star {
     my ($world,$id) = @_;
 
     $id=0 if (!defined $id);
-    set_seed($world->{'seed'}+$id);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]+$id  );
     my $nameobj= parse_object( $starnames_data );
     $world->{'star'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'star'}[$id]->{'name'} );
 
@@ -240,7 +240,7 @@ sub generate_moon {
     my ($world,$id) = @_;
 
     $id=0 if (!defined $id);
-    set_seed($world->{'seed'}+$id);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]+$id  );
     my $nameobj= parse_object( $moonnames_data );
     $world->{'moon'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'moon'}[$id]->{'name'} );
 
@@ -267,7 +267,7 @@ sub generate_celestial {
     my ($world,$id) = @_;
 
     $id=0 if (!defined $id);
-    set_seed($world->{'seed'}+$id);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]+$id  );
 
 
     $world->{'celestial'}[$id]->{'size'}= rand_from_array( $world_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'size'});
@@ -294,7 +294,7 @@ sub generate_celestial {
 sub generate_atmosphere {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+3);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
     $world->{'atmosphere'}->{'color_roll'} = d(100)  if (!defined $world->{'atmosphere'}->{'color_roll'} );
     my $atmosphere=roll_from_array( $world->{'atmosphere'}->{'color_roll'}, $world_data->{'atmosphere'}->{'option'});
@@ -323,7 +323,7 @@ sub generate_atmosphere {
 sub generate_basetemp {
     my ($world) = @_;
 
-    set_seed($world->{'seed'} +4);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
     my $basetemp=rand_from_array( $world_data->{'basetemp'}->{'option'});
     $world->{'basetemp'}= $basetemp->{'content'} if (!defined $world->{'basetemp'} );
@@ -346,7 +346,7 @@ sub generate_basetemp {
 sub generate_air {
     my ($world) = @_;
 
-    set_seed($world->{'seed'} +5);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'air'}= rand_from_array( $world_data->{'air'}->{'option'})->{'content'} if (!defined $world->{'air'} );
 
    return $world;
@@ -365,7 +365,7 @@ sub generate_air {
 sub generate_wind {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+6);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'wind'}= rand_from_array( $world_data->{'wind'}->{'option'})->{'content'} if (!defined $world->{'wind'} );
 
    return $world;
@@ -384,7 +384,7 @@ sub generate_wind {
 sub generate_celestial_objects {
     my ($world) = @_;
 
-    set_seed($world->{'seed'} +7);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     
     $world->{'celestial_roll'}=  d(100) if  (!defined $world->{'celestial_roll'});
     my $celestial=roll_from_array($world->{'celestial_roll'},  $world_data->{'celestial'}->{'number'}->{'option'});
@@ -413,7 +413,7 @@ sub generate_celestial_objects {
 sub generate_year {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+8);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'year_roll'}= d(100) if (!defined $world->{'year_roll'});
     
     my $year=roll_from_array($world->{'year_roll'},  $world_data->{'year'}->{'option'});
@@ -436,7 +436,7 @@ sub generate_year {
 sub generate_day {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+9);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'day_roll'}= d(100) if (!defined $world->{'day_roll'});
     
     my $day=roll_from_array($world->{'day_roll'},  $world_data->{'day'}->{'option'});
@@ -458,7 +458,7 @@ sub generate_day {
 sub generate_plates {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+10);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'plates_roll'}= d(100) if (!defined $world->{'plates_roll'});
     
     my $plates=roll_from_array($world->{'plates_roll'},  $world_data->{'plates'}->{'option'});
@@ -480,7 +480,7 @@ sub generate_plates {
 sub generate_surface {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+11);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
     $world->{'surface_roll'}= d(100) if (!defined $world->{'surface_roll'});
     
     my $surface=roll_from_array($world->{'surface_roll'},  $world_data->{'surface'}->{'option'});
@@ -508,7 +508,7 @@ sub generate_surface {
 sub generate_surfacewater {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+12);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'surfacewater_percent'} = d(100)  if (!defined $world->{'surfacewater_percent'} );
@@ -531,7 +531,7 @@ sub generate_freshwater {
     my ($world) = @_;
 
     # adding +1 so it doesn't match surface water exactly...
-    set_seed($world->{'seed'} + 13);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'freshwater_percent'} = d(100)  if (!defined $world->{'freshwater_percent'} );
@@ -552,7 +552,7 @@ sub generate_freshwater {
 sub generate_civilization {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+14);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'civilization_percent'} = d(100)  if (!defined $world->{'civilization_percent'} );
@@ -576,7 +576,7 @@ sub generate_civilization {
 sub generate_smallstorms {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+15);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'smallstorms_percent'} = d(100)  if (!defined $world->{'smallstorms_percent'} );
@@ -598,7 +598,7 @@ sub generate_smallstorms {
 sub generate_precipitation {
     my ($world) = @_;
 
-    set_seed($world->{'seed'}+16);
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'precipitation_percent'} = d(100)  if (!defined $world->{'precipitation_percent'} );
@@ -619,7 +619,7 @@ sub generate_precipitation {
 ###############################################################################
 sub generate_clouds {
     my ($world) = @_;
-    set_seed(  $world->{'seed'}  + (caller(0))[2]  );
+    set_seed(  $world->{'seed'}  + (caller(0))[2] );
 
 
     $world->{'clouds_percent'} = d(100)  if (!defined $world->{'clouds_percent'} );
