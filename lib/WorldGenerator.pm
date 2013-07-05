@@ -118,6 +118,9 @@ sub create_world {
     $world=generate_surfacewater($world);
     $world=generate_freshwater($world);
     $world=generate_civilization($world);
+    $world=generate_smallstorms($world);
+    $world=generate_precipitation($world);
+    $world=generate_clouds($world);
     return $world;
 } ## end sub create_world
 
@@ -151,7 +154,7 @@ sub generate_world_name {
 ###############################################################################
 sub generate_starsystem {
     my ($world) = @_;
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'} +1);
 
     $world->{'starsystem_roll'}= d(100) if (!defined $world->{'starsystem_roll'});
     
@@ -177,7 +180,7 @@ sub generate_starsystem {
 ###############################################################################
 sub generate_moons {
     my ($world) = @_;
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'} +2);
 
     $world->{'moons_roll'}= d(100) if (!defined $world->{'moons_roll'});
     
@@ -291,7 +294,7 @@ sub generate_celestial {
 sub generate_atmosphere {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+3);
 
     $world->{'atmosphere'}->{'color_roll'} = d(100)  if (!defined $world->{'atmosphere'}->{'color_roll'} );
     my $atmosphere=roll_from_array( $world->{'atmosphere'}->{'color_roll'}, $world_data->{'atmosphere'}->{'option'});
@@ -320,7 +323,7 @@ sub generate_atmosphere {
 sub generate_basetemp {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'} +4);
 
     my $basetemp=rand_from_array( $world_data->{'basetemp'}->{'option'});
     $world->{'basetemp'}= $basetemp->{'content'} if (!defined $world->{'basetemp'} );
@@ -343,7 +346,7 @@ sub generate_basetemp {
 sub generate_air {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'} +5);
     $world->{'air'}= rand_from_array( $world_data->{'air'}->{'option'})->{'content'} if (!defined $world->{'air'} );
 
    return $world;
@@ -362,7 +365,7 @@ sub generate_air {
 sub generate_wind {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+6);
     $world->{'wind'}= rand_from_array( $world_data->{'wind'}->{'option'})->{'content'} if (!defined $world->{'wind'} );
 
    return $world;
@@ -381,7 +384,7 @@ sub generate_wind {
 sub generate_celestial_objects {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'} +7);
     
     $world->{'celestial_roll'}=  d(100) if  (!defined $world->{'celestial_roll'});
     my $celestial=roll_from_array($world->{'celestial_roll'},  $world_data->{'celestial'}->{'number'}->{'option'});
@@ -410,7 +413,7 @@ sub generate_celestial_objects {
 sub generate_year {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+8);
     $world->{'year_roll'}= d(100) if (!defined $world->{'year_roll'});
     
     my $year=roll_from_array($world->{'year_roll'},  $world_data->{'year'}->{'option'});
@@ -433,7 +436,7 @@ sub generate_year {
 sub generate_day {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+9);
     $world->{'day_roll'}= d(100) if (!defined $world->{'day_roll'});
     
     my $day=roll_from_array($world->{'day_roll'},  $world_data->{'day'}->{'option'});
@@ -455,7 +458,7 @@ sub generate_day {
 sub generate_plates {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+10);
     $world->{'plates_roll'}= d(100) if (!defined $world->{'plates_roll'});
     
     my $plates=roll_from_array($world->{'plates_roll'},  $world_data->{'plates'}->{'option'});
@@ -477,7 +480,7 @@ sub generate_plates {
 sub generate_surface {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+11);
     $world->{'surface_roll'}= d(100) if (!defined $world->{'surface_roll'});
     
     my $surface=roll_from_array($world->{'surface_roll'},  $world_data->{'surface'}->{'option'});
@@ -486,7 +489,7 @@ sub generate_surface {
 
     # Calculated values
     $world->{'radius'}= int sqrt ($world->{'surface'}/(4*pi)  ) if (!defined $world->{'radius'});
-    $world->{'circumfrence'}= pi * $world->{'radius'}*2 ; 
+    $world->{'circumfrence'}= int (pi * $world->{'radius'}*2 ); 
 
 
    return $world;
@@ -505,7 +508,7 @@ sub generate_surface {
 sub generate_surfacewater {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+12);
 
 
     $world->{'surfacewater_percent'} = d(100)  if (!defined $world->{'surfacewater_percent'} );
@@ -528,7 +531,7 @@ sub generate_freshwater {
     my ($world) = @_;
 
     # adding +1 so it doesn't match surface water exactly...
-    set_seed($world->{'seed'} + 1);
+    set_seed($world->{'seed'} + 13);
 
 
     $world->{'freshwater_percent'} = d(100)  if (!defined $world->{'freshwater_percent'} );
@@ -550,13 +553,79 @@ sub generate_freshwater {
 sub generate_civilization {
     my ($world) = @_;
 
-    set_seed($world->{'seed'});
+    set_seed($world->{'seed'}+14);
 
 
     $world->{'civilization_percent'} = d(100)  if (!defined $world->{'civilization_percent'} );
     my $civilization = roll_from_array( $world->{'civilization_percent'}, $world_data->{'civilization'}->{'option'}) ;
     $world->{'civilization_description'}= $civilization->{'content'} if (!defined $world->{'civilization_description'});
     $world->{'civilization_modifier'}= $civilization->{'modifier'} if (!defined $world->{'civilization_modifier'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_smallstorms()
+
+    generate smallstorms for the planet.
+
+=cut
+
+###############################################################################
+sub generate_smallstorms {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'}+15);
+
+
+    $world->{'smallstorms_percent'} = d(100)  if (!defined $world->{'smallstorms_percent'} );
+    $world->{'smallstorms_description'}= roll_from_array( $world->{'smallstorms_percent'}, $world_data->{'smallstorms'}->{'option'})->{'content'} if (!defined $world->{'smallstorms_description'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_precipitation()
+
+    generate precipitation for the planet.
+
+=cut
+
+###############################################################################
+sub generate_precipitation {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'}+16);
+
+
+    $world->{'precipitation_percent'} = d(100)  if (!defined $world->{'precipitation_percent'} );
+    $world->{'precipitation_description'}= roll_from_array( $world->{'precipitation_percent'}, $world_data->{'precipitation'}->{'option'})->{'content'} if (!defined $world->{'precipitation_description'});
+
+   return $world; 
+}
+
+
+###############################################################################
+
+=head3 generate_clouds()
+
+    generate clouds for the planet.
+
+=cut
+
+###############################################################################
+sub generate_clouds {
+    my ($world) = @_;
+
+    set_seed($world->{'seed'}+17);
+
+
+    $world->{'clouds_percent'} = d(100)  if (!defined $world->{'clouds_percent'} );
+    $world->{'clouds_description'}= roll_from_array( $world->{'clouds_percent'}, $world_data->{'clouds'}->{'option'})->{'content'} if (!defined $world->{'clouds_description'});
 
    return $world; 
 }

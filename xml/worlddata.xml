@@ -233,6 +233,34 @@
         <option min="91"          modifier="5"  >thriving</option>
     </civilization>
 
+    <smallstorms>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </smallstorms>
+
+    <precipitation>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </precipitation>
+
+    <clouds>
+        <option          max="10" >scarce</option>
+        <option min="10" max="31" >rare</option>
+        <option min="30" max="55" >common</option>
+        <option min="65" max="85" >plentiful</option>
+        <option min="86" max="95" >abundant</option>
+        <option min="96"          >excessive</option>
+    </clouds>
+
+
 <!-- vegetation -->
 <!-- storms large, planetary storms like jupiter -->
 

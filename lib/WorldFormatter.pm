@@ -73,7 +73,7 @@ sub printSkySummary {
     $content.= "$world->{'name'} orbits ". A($world->{'starsystem_name'}). ": $stars. ";
     $content.= "$world->{'name'} also has $moons. ";
     $content.= "In the night sky, you see $celestials. ";
-    $content.= "During the day, the sky is $atmosphere.";
+    $content.= "During the day, the sky is $atmosphere. ";
 
 
     return $content;
@@ -117,7 +117,6 @@ sub printCelestialList {
 }
 
 
-
 ###############################################################################
 
 =head2 printLandSummary()
@@ -130,22 +129,39 @@ printLandSummary strips out important info from a World object and returns forma
 sub printLandSummary {
     my ($world) = @_;
     my $content="";
-    my $stars=conjunction(@{ $world->{'star_description'}} );
-    my $moons=printMoonList($world);
-    my $celestials=printCelestialList($world);
-    my $atmosphere=printAtmosphere($world);
 
     my $de = new Number::Format(-thousands_sep => ',');
 
     $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers). ".
                 "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet. ".
                 "Around $world->{'freshwater_percent'}% of the planet's water is fresh water. ".
-                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents.";
-
-
-
+                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents. ";
 
     return $content;
 }
+
+
+###############################################################################
+
+=head2 printWeatherSummary()
+
+printWeatherSummary strips out important info from a World object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printWeatherSummary {
+    my ($world) = @_;
+    my $content="";
+    my $stars=conjunction(@{ $world->{'star_description'}} );
+
+    my $de = new Number::Format(-thousands_sep => ',');
+
+    $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}. ".
+               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'} and the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}. ";
+
+    return $content;
+}
+
 
 1;

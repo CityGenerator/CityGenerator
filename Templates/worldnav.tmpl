@@ -1,8 +1,8 @@
         <div id="worldnav">
             <nav>
-            <a href='?worldid=[% worldid - 1   %]'>&laquo; Last World</a>
-            <a href='?worldid=[% worldid       %]'>[ [% worldname%] ]</a>
-            <a href='?worldid=[% worldid + 1   %]'>Next World &raquo;</a>
+            <a href='/worldgenerator?worldid=[% worldid - 1   %]'>&laquo; Last World</a>
+            <a href='/worldgenerator?worldid=[% worldid       %]'>[ [% worldname%] ]</a>
+            <a href='/worldgenerator?worldid=[% worldid + 1   %]'>Next World &raquo;</a>
             </nav>
             [% IF seed %]
             <nav>
