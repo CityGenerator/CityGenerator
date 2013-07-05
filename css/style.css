@@ -99,21 +99,21 @@ section h3 {
     font: 12pt 'OldNewspaper';
 }
 
-#censusdata{
+#worlddata, #censusdata{
     width:200px;
     border:1px solid black;
     float:left;
     margin:0px 10px 0px 0px;
     padding: 0px ;
 }
-#censusdata h2{
+#worlddata h2, #censusdata h2{
     margin:0px;
     text-align:center;
 }
-#censusdata h3{
+#worlddata h3, #censusdata h3{
     margin:5px;
 }
-#censusdata ul{
+#worlddata ul, #censusdata ul{
     text-align:left;
     margin:0px;
     margin-left:25px; 

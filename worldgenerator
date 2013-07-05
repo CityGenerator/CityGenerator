@@ -100,6 +100,7 @@ sub print_content {
         'worldname'     => $world->{'name'},
         'seed'          => $world->{'seed'},
         'summarytext'   => WorldFormatter::printSummary($world),
+        'worlddatatext' => WorldFormatter::printWorldDataSummary($world),
         'skytext'       => WorldFormatter::printSkySummary($world),
         'landtext'      => WorldFormatter::printLandSummary($world),
         'weathertext'   => WorldFormatter::printWeatherSummary($world),

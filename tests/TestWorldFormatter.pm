@@ -98,6 +98,27 @@ subtest 'Test World Weather Summary' => sub {
 };
 
 
+subtest 'Test World Data Summary' => sub {
+    my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>60, 'celestial_roll'=>60 });
+    my $summary=WorldFormatter::printWorldDataSummary($world);
+    is($summary,"
+    <ul>
+        <li>Stars: 1</li>
+        <li>Moons: 1</li>
+        <li>Celestial Objects: 1</li>
+        <li>Weather: hot</li>
+        <li>Sky: murky</li>
+        <li>Size: large</li>
+        <li>Year: 355 days</li>
+        <li>Day: 30 hours</li>
+        <li>Oceans: 80%</li>
+        <li>Fresh water: plentiful</li>
+    </ul>" 
+    );
+
+    done_testing();
+};
+
 
 
 

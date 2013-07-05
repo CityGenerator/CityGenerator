@@ -164,4 +164,37 @@ sub printWeatherSummary {
 }
 
 
+###############################################################################
+
+=head2 printWorldDataSummary()
+
+printWorldDataSummary strips out important info from a World object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printWorldDataSummary {
+    my ($world) = @_;
+    my $content="";
+    my $stars=conjunction(@{ $world->{'star_description'}} );
+
+    $content="
+    <ul>
+        <li>Stars: $world->{'starsystem_count'}</li>
+        <li>Moons: $world->{'moons_count'}</li>
+        <li>Celestial Objects: $world->{'celestial_count'}</li>
+        <li>Weather: $world->{'basetemp'}</li>
+        <li>Sky: $world->{'atmosphere'}->{'color'}</li>
+        <li>Size: $world->{'size'}</li>
+        <li>Year: $world->{'year'} days</li>
+        <li>Day: $world->{'day'} hours</li>
+        <li>Oceans: $world->{'surfacewater_percent'}%</li>
+        <li>Fresh water: $world->{'freshwater_description'}</li>
+    </ul>";
+
+    return $content;
+}
+
+
+
 1;
