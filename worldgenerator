@@ -102,6 +102,7 @@ sub print_content {
         'summarytext'   => WorldFormatter::printSummary($world),
         'skytext'       => WorldFormatter::printSkySummary($world),
         'landtext'      => WorldFormatter::printLandSummary($world),
+        'weathertext'   => WorldFormatter::printWeatherSummary($world),
     };
     $templates->process('worldgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

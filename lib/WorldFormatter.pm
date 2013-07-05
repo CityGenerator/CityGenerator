@@ -158,7 +158,7 @@ sub printWeatherSummary {
     my $de = new Number::Format(-thousands_sep => ',');
 
     $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}. ".
-               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'} and the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}. ";
+               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}. ";
 
     return $content;
 }

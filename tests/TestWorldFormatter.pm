@@ -91,7 +91,7 @@ subtest 'Test World Weather Summary' => sub {
     my $summary=WorldFormatter::printWeatherSummary($world);
     is($summary, 
                 "While Merrth has a reasonable amount of variation, the overall climate is mild. ".
-                "Small storms are rare, precipitation is excessive and the atmosphere is fragile and clouds are plentiful. "
+                "Small storms are rare, precipitation is excessive, the atmosphere is fragile and clouds are plentiful. "
     );
 
     done_testing();

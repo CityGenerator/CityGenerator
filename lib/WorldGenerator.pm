@@ -540,7 +540,6 @@ sub generate_freshwater {
    return $world; 
 }
 
-
 ###############################################################################
 
 =head3 generate_civilization()
@@ -620,8 +619,7 @@ sub generate_precipitation {
 ###############################################################################
 sub generate_clouds {
     my ($world) = @_;
-
-    set_seed($world->{'seed'}+17);
+    set_seed(  $world->{'seed'}  + (caller(0))[2]  );
 
 
     $world->{'clouds_percent'} = d(100)  if (!defined $world->{'clouds_percent'} );
