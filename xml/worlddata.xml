@@ -2,10 +2,6 @@
 
 <world>
 
-    <stats>
-        <size></size>
-        <surfacewater></surfacewater>
-    </stats>
 
     <stars> <!--  ____ orbits around a ____ system- ___, ___ and ___ -->
         <option          max="70" count="1">single star</option>
