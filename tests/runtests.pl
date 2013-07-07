@@ -7,6 +7,7 @@ use Test::More;
 use TestGenericGenerator;
 use TestWorldGenerator;
 use TestWorldFormatter;
+use TestVoronoiMap;
 #use TestContinentGenerator;
 #use TestRegionGenerator;
 

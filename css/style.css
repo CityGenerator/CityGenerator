@@ -169,7 +169,7 @@ img {
     -o-filter: sepia(80%);
 }
 #worldmap_small{
-    float:left;
+    float:right;
     margin:0px 10px 10px 0px;
     -webkit-filter: sepia(80%);
     -moz-filter: sepia(80%);

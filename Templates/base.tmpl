@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/Article">
     <head>
         <meta charset="utf-8" />
-        <title>[%title%]</title>
-        <link  href='/css/style.css' type='text/css' rel='stylesheet'/>
+        <title itemprop="name">[%title%]</title>
+        <link href='/css/style.css' type='text/css' rel='stylesheet'/>
         <script src='/js/flag.js' ></script>
         <script src='/js/rhill-voronoi-core.js' ></script>
         <script src='/js/simplex-noise.js' ></script>
@@ -13,7 +13,14 @@
         <script src='/js/WorldMap.js' ></script>
         <script src='/js/misc.js' ></script>
         <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-        
+       <script type="text/javascript">
+  (function() {
+    var po = document.createElement("script"); po.type = "text/javascript"; po.async = true;
+    po.src = "https://apis.google.com/js/plusone.js?publisherid=112661873200782342936";
+    var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+ 
     </head>
     <body onload='[% onload %]'>
 <script>
@@ -34,6 +41,7 @@
         <div id="globalmenudrawer">
             <nav>
               <ul>
+                <li><a href="/worldgenerator">WorldGenerator</a></li>
                 <li><a href="/citygenerator">CityGenerator</a></li>
                 <li><a href="/namegenerator">NameGenerator</a></li>
               </ul>

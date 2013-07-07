@@ -47,9 +47,9 @@ printSummary strips out important info from a World object and returns formatted
 sub printSummary {
     my ($world) = @_;
     my $content="";
-    $content.="$world->{'name'} is a $world->{'size'}, $world->{'basetemp'} planet orbiting a $world->{'starsystem_name'}. ";
-    $content.="$world->{'name'} has a $world->{'moons_name'}, a $world->{'air'} $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}. ";
-    $content.="The surface of the planet is $world->{'surfacewater_percent'}% covered by water. ";
+    $content.="$world->{'name'} is a $world->{'size'}, $world->{'basetemp'} planet orbiting a $world->{'starsystem_name'}.\n";
+    $content.="$world->{'name'} has a $world->{'moons_name'}, a $world->{'air'} $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}.\n";
+    $content.="The surface of the planet is $world->{'surfacewater_percent'}% covered by water.\n";
     return $content;
 }
 
@@ -70,10 +70,10 @@ sub printSkySummary {
     my $moons=printMoonList($world);
     my $celestials=printCelestialList($world);
     my $atmosphere=printAtmosphere($world);
-    $content.= "$world->{'name'} orbits ". A($world->{'starsystem_name'}). ": $stars. ";
-    $content.= "$world->{'name'} also has $moons. ";
-    $content.= "In the night sky, you see $celestials. ";
-    $content.= "During the day, the sky is $atmosphere. ";
+    $content.= "$world->{'name'} orbits ". A($world->{'starsystem_name'}). ": $stars.\n";
+    $content.= "$world->{'name'} also has $moons.\n";
+    $content.= "In the night sky, you see $celestials.\n";
+    $content.= "During the day, the sky is $atmosphere.\n";
 
 
     return $content;
@@ -132,10 +132,10 @@ sub printLandSummary {
 
     my $de = new Number::Format(-thousands_sep => ',');
 
-    $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers). ".
-                "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet. ".
-                "Around $world->{'freshwater_percent'}% of the planet's water is fresh water. ".
-                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents. ";
+    $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers).\n".
+                "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet.\n".
+                "Around $world->{'freshwater_percent'}% of the planet's water is fresh water.\n".
+                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents.\n";
 
     return $content;
 }
@@ -157,8 +157,8 @@ sub printWeatherSummary {
 
     my $de = new Number::Format(-thousands_sep => ',');
 
-    $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}. ".
-               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}. ";
+    $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}.\n".
+               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}.\n";
 
     return $content;
 }

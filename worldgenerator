@@ -60,7 +60,7 @@ sub print_page {
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        'title'         => 'Welcome to '.$world->{'name'}."!",
+        'title'         => 'Welcome to '.$world->{'name'}."! ($world->{'seed'})",
         'seed'          => $world->{'seed'},
 
         'content'       => print_content($world),
