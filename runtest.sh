@@ -10,7 +10,7 @@ if [[ "$1" == "profile" ]] ; then
 elif [[ "$1" == "full" || "$1" == "all" ]]  ;then
     echo "full test, coverage and profiling"
 
-    perl -d:NYTProf  ./tests/runtests.pl  && \
+#    perl -d:NYTProf  ./tests/runtests.pl  && \
     perl -MDevel::Cover=+select,^lib/.*\.pm,+ignore,^/,tests/  ./tests/runtests.pl >/dev/null && \
     cover -summary && \
     chmod -R 755 cover_db && \
