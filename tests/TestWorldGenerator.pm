@@ -25,7 +25,7 @@ subtest 'test create_world' => sub {
 
     $world=WorldGenerator::create_world({'seed'=>12345});
     is($world->{'seed'},12345);
-    is($world->{'name'},'Nepaune');
+    is($world->{'name'},'Jupon');
 
     $world=WorldGenerator::create_world({'seed'=>12345, 'name'=>'test'});
     is($world->{'seed'},12345);

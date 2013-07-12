@@ -103,7 +103,7 @@ sub create_world {
         $world->{'seed'} = set_seed();
     }
 
-    $world=generate_world_name($world);
+    $world=generate_name($world);
     $world=generate_starsystem($world);
     $world=generate_moons($world);
     $world=generate_atmosphere($world);
@@ -127,14 +127,14 @@ sub create_world {
 
 ###############################################################################
 
-=head3 generate_world_name()
+=head3 generate_name()
 
     generate a name for the world.
 
 =cut
 
 ###############################################################################
-sub generate_world_name {
+sub generate_name {
     my ($world) = @_;
     set_seed(  $world->{'seed'}  + length ((caller(0))[3])  );
     my $nameobj= parse_object( $worldnames_data );

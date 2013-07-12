@@ -11,6 +11,7 @@ use Template;
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
+use VoronoiMap;
 use WorldGenerator;
 use WorldFormatter;
 our $q = CGI->new;
@@ -22,8 +23,10 @@ if (defined $q->param('worldid')){
     $worldid=$q->param('worldid');
 }
 
-
 my $world=WorldGenerator::create_world({seed=>$worldid});
+$world->{'map'}=VoronoiMap::generateRandomPoints({seed=>$worldid,'count'=>$world->{'plates'}, 'continents'=>$world->{'continent_count'}, 'width'=>'300', 'height'=>'180', 'margin'=>'0'   });
+
+
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
@@ -104,6 +107,7 @@ sub print_content {
         'skytext'       => WorldFormatter::printSkySummary($world),
         'landtext'      => WorldFormatter::printLandSummary($world),
         'weathertext'   => WorldFormatter::printWeatherSummary($world),
+        'worldmapjson'  => WorldFormatter::printWorldMapJSON($world),
     };
     $templates->process('worldgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

@@ -28,6 +28,7 @@ require Exporter;
 
 use CGI;
 use Data::Dumper;
+use JSON;
 use Lingua::Conjunction;
 use Lingua::EN::Inflect qw(A);
 use Lingua::EN::Numbers qw(num2en);
@@ -195,6 +196,13 @@ sub printWorldDataSummary {
     return $content;
 }
 
+sub printWorldMapJSON {
 
+    my ($world) = @_;
+    my $content="";
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    return  $JSON->encode($world->{'map'});
 
+}
 1;

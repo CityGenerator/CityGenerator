@@ -14,11 +14,11 @@
 /*     triangulatePosition(va,vb,vc)
 /* ========================================================================= */
 
-function  VoronoiMap(width,height,num_points) {
+function  VoronoiMap(params) {
 
     // Base Parameters
-    this.width=width;
-    this.height=height;
+    this.width=params.canvas.width;
+    this.height=params.canvas.height;
 
 
     this.xmultiplier=1
@@ -35,7 +35,7 @@ function  VoronoiMap(width,height,num_points) {
     this.voronoi = new Voronoi();
 
     //First generate points,
-    this.points=this.generateRandomPoints(num_points);
+    this.points=params.points;
 
     // then compute the virinoi
     this.buildGraph();

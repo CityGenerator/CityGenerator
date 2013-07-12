@@ -1,6 +1,7 @@
 #!/usr/bin/perl -wT
 package NPCGenerator;
 
+#TODO make generate_name method for use with namegenerator
 ###############################################################################
 
 =head1 NAME
@@ -21,7 +22,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data);
+@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
 
 use CGI;
 use Data::Dumper;
@@ -222,22 +223,22 @@ sub generate_npc_name{
         if ( defined $racenameparts->{'firstname'} ){
             $npc->{'firstname'}= parse_object(    $racenameparts->{'firstname'}         )->{'content'};
             if ($npc->{'firstname'} ne ''){
-                $npc->{'fullname'}=$npc->{'firstname'};
+                $npc->{'name'}=$npc->{'firstname'};
             }
         }
         if ( defined $racenameparts->{'lastname'} ){
             $npc->{'lastname'}= parse_object(    $racenameparts->{'lastname'}         )->{'content'};
             if ($npc->{'lastname'} ne ''){
-                $npc->{'fullname'}=$npc->{'lastname'};
+                $npc->{'name'}=$npc->{'lastname'};
             }
         }
         if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
-            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
+            $npc->{'name'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
         }
     }else{
-        $npc->{'fullname'}="unnamed $race";
+        $npc->{'name'}="unnamed $race";
     }
-    return $npc->{'fullname'};
+    return $npc->{'name'};
 }
 
 ###############################################################################

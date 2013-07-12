@@ -24,3 +24,10 @@
                 [% weathertext %]
             </section>
 
+    <script type="text/javascript">
+        var worldmap=new WorldMap( [% worldmapjson %], document.getElementById('worldmap_small')  );
+        worldmap.draw_borders();
+
+        
+    </script>
+

@@ -111,7 +111,7 @@ subtest 'test create_npc' => sub {
         $npc=NPCGenerator::create_npc({'seed'=>'1', 'race'=>'elf'});
 	    is($npc->{'race'},'elf' , "race is elf when set" );
 	    is($npc->{'seed'}, 1 , "seed is 1 when set." );
-	    is($npc->{'fullname'}, 'Abaartlleu Heartwing' , "fullname is set" );
+	    is($npc->{'name'}, 'Abaartlleu Heartwing' , "name is set" );
 	    done_testing();
     };
     subtest 'test create_npc profession' => sub {

@@ -9,40 +9,29 @@ use POSIX;
 use Template;
 use XML::Simple;
 use lib "lib/";
-use NPCGenerator ;
+use NPCGenerator;
 use GenericGenerator;
+use Switch 'Perl5', 'Perl6';
 our $q = CGI->new;
 
 
-my $testcityid=GenericGenerator::set_seed();
-if (defined $q->param('seed')){
-    $testcityid=$q->param('seed');
-}elsif (defined $q->param('cityid')){
-    $testcityid=$q->param('cityid');
-}elsif (defined $q->param('continent')){
-    $testcityid=$q->param('continent').'00';
-}elsif (defined $q->param('region')){
-    $testcityid=$q->param('region').'0';
-}
 
-my $namegen=NPCGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
-
-if (defined $q->param('type') and $q->param('type') eq 'xml' ){
-    print $q->header( 'text/xml' );
-    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-    print XMLout($namegen);
-}elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+if (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
-    print  $JSON->encode($namegen);
+
+    my $results=generate_names();
+
+    print  $JSON->encode($results)."\n";
 
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    print Dumper $namegen;
+    my $results=generate_names();
+    print Dumper $results;
 }else {
     print $q->header;
-    print print_page($testcityid,$namegen);
+    print_page();
 }
 
 exit;
@@ -52,10 +41,6 @@ exit;
 #######################################################################################################################
 
 sub print_page {
-    my ($testcityid,$namegen)=@_;
-    my $qstring=$ENV{'QUERY_STRING'};
-    $qstring.="&seed=".$testcityid   if (! defined $q->param('seed'));
-
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
@@ -65,18 +50,68 @@ sub print_page {
     my $formtmpl;
     my $vars = {    
         'races'         =>  NPCGenerator::get_races() ,
-        'selectedrace'  =>  $q->param('race'), ,
-        'names'         =>  $namegen,
     };
     $templates->process('nameform.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
+
     $vars = {
         'title'        => 'Name Generator',
-        'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$testcityid.'</a>',
         'content'       => $formtmpl,
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+
 }
 
 
+sub generate_names {
+    my $count=10;
+    if (defined $q->param('count') and $q->param('count') =~ /^\d{1,3}$/ and $q->param('count') <=100  ){
+        $count=$q->param('count');
+    }
+#    print Dumper ( defined $q->param('count') and $q->param('count') =~ /^\d{1,3}$/ );
+    my $results=[  ];
+    while ($count--){
 
+        my $item;
+        $item->{'seed'} = GenericGenerator::set_seed();
+        given ($q->param('gentype') || ""){
+            when('star') {  
+            }
+            when('moon') {  
+            }
+            when('continent') {  
+                use ContinentGenerator;
+                $item= ContinentGenerator::generate_continent_name($item);
+
+            }
+        #  when('region') {  }
+            when('city') {  
+                use CityGenerator;
+                $item= CityGenerator::generate_city_name($item);
+            }
+            when('tavern') {  
+                use TavernGenerator;
+                $item= TavernGenerator::generate_tavern_name($item);
+            }
+            when('npc') {
+                use NPCGenerator;
+                my $name=NPCGenerator::generate_npc_name($q->param('race'),$item);
+                $item->{'name'}=$name;
+            }
+        #  when('adventure') {  }
+        #  when('myth') {  }
+            when('world') {  
+                use WorldGenerator;
+                $item= WorldGenerator::generate_name($item);
+            }
+            default { 
+                use WorldGenerator;
+                $item= WorldGenerator::generate_name($item);
+            }
+        }
+        push @$results,$item->{'name'};
+    }
+    $results = [sort @$results];
+    return $results;
+
+}

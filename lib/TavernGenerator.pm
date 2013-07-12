@@ -3,6 +3,7 @@
 
 package TavernGenerator;
 
+#TODO make generate_name method for use with namegenerator
 ###############################################################################
 
 =head1 NAME
