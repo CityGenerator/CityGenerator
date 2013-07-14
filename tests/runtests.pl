@@ -4,13 +4,14 @@ use strict;
 use lib "lib/";
 use lib "tests/";
 use Test::More;
-use TestGenericGenerator;
-use TestWorldGenerator;
-use TestWorldFormatter;
+#use TestGenericGenerator;
+#use TestWorldGenerator;
+#use TestWorldFormatter;
 #use TestVoronoiMap;
 #use TestWorldMap;
-use TestContinentGenerator;
-use TestRegionGenerator;
+#use TestContinentGenerator;
+#use TestRegionGenerator;
+use TestAdventureGenerator;
 
 
 #use TestFlagGenerator;

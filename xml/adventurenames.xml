@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <adventurename>
-    <pattern>
-        <option adjective_chance="30"  >The {ADJECTIVE} {NOUN} of {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30"  >{ADJECTIVE} {NOUN} of the {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30"  >The {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30"  >The {ADJECTIVE} {NOUN} {NOUN}</option>
-        <option adjective_chance="30" negate_chance="50" >{NEGATE} {VERB.BASE} the {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30" > {VERB.GERUND} the {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30" > {VERB.THIRDPERSON} the {ADJECTIVE} {NOUN}</option>
-        <option adjective_chance="30" >{ADJECTIVE} {NOUN} {VERB.THIRDPERSON} the {ADJECTIVE} {NOUN}</option>
-        <option> The {ADVERB} {VERB} {NOUN}</option>
-        <option> The {NOUN} {NOUN} {VERB.PASTPART}</option>
-        <option> The {NOUN} {NOUN} {VERB.THIRDPERSON}</option>
+    <pattern adjective_chance="30" adverb_chance="30" article_chance="30" >
+
+        <option >VERB SUBJECT</option>
+        <option >NEGATE VERB SUBJECT</option>
+        <option >SUBJECT NOUN</option>
+        <option >SUBJECT NOUN VERB.participle</option>
+        <option >SUBJECT NOUN VERB.thirdperson</option>
+        <option >SUBJECT of SUBJECT</option>
+        <option >SUBJECT</option>
+        <option >SUBJECT's SUBJECT</option>
+        <option >SUBJECT VERB.thirdperson SUBJECT</option>
+        <option >VERB.gerund SUBJECT</option>
+
     </pattern>
+    <article>
+        <option>a</option>
+        <option>the</option>
+    </article>
+
     <adverb>
 		<option base="abnormally"      />
 		<option base="almost"          />
@@ -324,112 +330,110 @@
 		<option base="weird"               />
 		<option base="wondrous"            />
     </adjective>
-    <noun>
-        <option base="queen"        type="person"  />
-        <option base="king"         type="person"  />
-        <option base="prince"       type="person"  />
-        <option base="princess"     type="person"  />
-        <option base="tyrant"       type="person"  />
-        <option base="monarch"      type="person"  />
-        <option base="emperor"      type="person"  />
-		<option base="doom"         type="thing"   />
-        <option base="zombie"       type="thing"   />
-		<option base="calamity"     type="thing"   />
-		<option base="sorrow"       type="thing"   />
-		<option base="judgment"     type="thing"   />
-		<option base="blood"        type="thing"   />
-		<option base="knives"       type="thing"   />
-		<option base="karma"        type="thing"   />
-		<option base="anger"        type="thing"   />
-		<option base="disaster"     type="thing"   />
-		<option base="kings"        type="thing"   />
-		<option base="obscenity"    type="thing"   />
-		<option base="courage"      type="thing"   />
-		<option base="hands"        type="thing"   />
+    <noun >
 		<option base="alchemy"      type="thing"   />
-		<option base="remorse "     type="thing"   />
-		<option base="daggers"      type="thing"   />
-		<option base="judgment"     type="thing"   />
-		<option base="luck"         type="thing"   />
-		<option base="eyes"         type="thing"   />
-		<option base="night"        type="thing"   />
-		<option base="statues"      type="thing"   />
+		<option base="ancient"      type="thing"   />
+		<option base="anger"        type="thing"   />
 		<option base="armor"        type="thing"   />
-		<option base="desire "      type="thing"   />
-		<option base="fate"         type="thing"   />
-		<option base="runes"        type="thing"   />
-		<option base="tragedy"      type="thing"   />
-		<option base="slime"        type="thing"   />
-		<option base="swords"       type="thing"   />
-		<option base="knowledge"    type="thing"   />
-		<option base="ghosts"       type="thing"   />
-		<option base="clubs"        type="thing"   />
-		<option base="lies"         type="thing"   />
-		<option base="choices"      type="thing"   />
-		<option base="danger"       type="thing"   />
-		<option base="sovereign"    type="thing"   />
-		<option base="passion"      type="thing"   />
-		<option base="effigy"       type="thing"   />
-		<option base="mirrors"      type="thing"   />
-		<option base="gods"         type="thing"   />
-		<option base="fungus"       type="thing"   />
-		<option base="riches"       type="thing"   />
-		<option base="dread "       type="thing"   />
-		<option base="hieroglyphs"  type="thing"   />
-		<option base="paths"        type="thing"   />
-		<option base="ice/fire"     type="thing"   />
-		<option base="legend"       type="thing"   />
-		<option base="lights"       type="thing"   />
-		<option base="trees"        type="thing"   />
-		<option base="books"        type="thing"   />
-		<option base="melancholy"   type="thing"   />
-		<option base="death"        type="thing"   />
-		<option base="sadness"      type="thing"   />
-		<option base="endless gold" type="thing"   />
-		<option base="loss "        type="thing"   />
-		<option base="closets"      type="thing"   />
-		<option base="blessings"    type="thing"   />
-		<option base="zeal "        type="thing"   />
-		<option base="wealth"       type="thing"   />
-		<option base="freedom"      type="thing"   />
-		<option base="wells"        type="thing"   />
-		<option base="vision"       type="thing"   />
-		<option base="tomes"        type="thing"   />
-		<option base="souls"        type="thing"   />
-		<option base="doors"        type="thing"   />
-		<option base="magic"        type="thing"   />
-		<option base="curses"       type="thing"   />
-		<option base="ladders"      type="thing"   />
-		<option base="echoes"       type="thing"   />
-		<option base="ancients"     type="thing"   />
-		<option base="horror"       type="thing"   />
-		<option base="machine"      type="thing"   />
-		<option base="slime"        type="thing"   />
-		<option base="life"         type="thing"   />
-		<option base="claws"        type="thing"   />
-		<option base="sleep"        type="thing"   />
-		<option base="holiness"     type="thing"   />
-		<option base="fangs"        type="thing"   />
-		<option base="sorcery"      type="thing"   />
+		<option base="blessing"     type="thing"   />
+		<option base="blood"        type="thing"   />
+		<option base="book"         type="thing"   />
+		<option base="calamity"     type="thing"   />
+		<option base="choice"       type="thing"   />
+		<option base="claw"         type="thing"   />
+		<option base="closet"       type="thing"   />
+		<option base="club"         type="thing"   />
+		<option base="courage"      type="thing"   />
 		<option base="crystal"      type="thing"   />
-		<option base="wands"        type="thing"   />
-		<option base="wisdom"       type="thing"   />
-		<option base="tales "       type="thing"   />
+		<option base="cup"          type="thing"   />
+		<option base="curse"        type="thing"   />
+		<option base="dagger"       type="thing"   />
+		<option base="danger"       type="thing"   />
+		<option base="death"        type="thing"   />
+		<option base="desire "      type="thing"   />
+		<option base="disaster"     type="thing"   />
+		<option base="doom"         type="thing"   />
+		<option base="door"         type="thing"   />
+		<option base="dread"        type="thing"   />
+		<option base="echo"         type="thing"   />
+		<option base="effigy"       type="thing"   />
+        <option base="emperor"      type="person"  />
+		<option base="endless gold" type="thing"   />
+		<option base="eye"          type="thing"   />
+		<option base="face"         type="thing"   />
+		<option base="fang"         type="thing"   />
+		<option base="fate"         type="thing"   />
+		<option base="freedom"      type="thing"   />
+		<option base="fungus"       type="thing"   />
+		<option base="ghost"        type="thing"   />
+		<option base="god"          type="thing"   />
 		<option base="gold"         type="thing"   />
-		<option base="reason"       type="thing"   />
-		<option base="faces"        type="thing"   />
-		<option base="ordeal"       type="thing"   />
-		<option base="mechanism"    type="thing"   />
+		<option base="hand"         type="thing"   />
+		<option base="hieroglyph"   type="thing"   />
+		<option base="holiness"     type="thing"   />
+		<option base="horror"       type="thing"   />
+		<option base="ice/fire"     type="thing"   />
 		<option base="illusion"     type="thing"   />
-		<option base="talons"       type="thing"   />
-		<option base="cups"         type="thing"   />
-		<option base="mouths"       type="thing"   />
+		<option base="judgment"     type="thing"   />
+		<option base="judgment"     type="thing"   />
+		<option base="karma"        type="thing"   />
+        <option base="king"         type="person"  />
+		<option base="knife"        type="thing"   />
+		<option base="knowledge"    type="thing"   />
+		<option base="ladder"       type="thing"   />
+		<option base="legend"       type="thing"   />
+		<option base="lie"          type="thing"   />
+		<option base="life"         type="thing"   />
+		<option base="light"        type="thing"   />
+		<option base="loss"         type="thing"   />
+		<option base="luck"         type="thing"   />
+		<option base="machine"      type="thing"   />
+		<option base="magic"        type="thing"   />
+		<option base="mechanism"    type="thing"   />
+		<option base="melancholy"   type="thing"   />
+		<option base="mirror"       type="thing"   />
+        <option base="monarch"      type="person"  />
+		<option base="mouth"        type="thing"   />
+		<option base="night"        type="thing"   />
+		<option base="obscenity"    type="thing"   />
+		<option base="ordeal"       type="thing"   />
+		<option base="passion"      type="thing"   />
+		<option base="path"         type="thing"   />
+        <option base="princess"     type="person"  />
+        <option base="prince"       type="person"  />
+        <option base="queen"        type="person"  />
+		<option base="reason"       type="thing"   />
+		<option base="remorse"      type="thing"   />
+		<option base="rich"         type="thing"   />
+		<option base="rune"         type="thing"   />
+		<option base="sadness"      type="thing"   />
+		<option base="sleep"        type="thing"   />
+		<option base="slime"        type="thing"   />
+		<option base="slime"        type="thing"   />
+		<option base="sorcery"      type="thing"   />
+		<option base="sorrow"       type="thing"   />
+		<option base="soul"         type="thing"   />
+		<option base="sovereign"    type="thing"   />
+		<option base="statue"       type="thing"   />
+		<option base="stone"        type="thing"   />
+		<option base="sword"        type="thing"   />
+		<option base="symbol"       type="thing"   />
+		<option base="tale"         type="thing"   />
+		<option base="talon"        type="thing"   />
+		<option base="tome"         type="thing"   />
+		<option base="tragedy"      type="thing"   />
+		<option base="tree"         type="thing"   />
+        <option base="tyrant"       type="person"  />
+		<option base="vision"       type="thing"   />
+		<option base="wand"         type="thing"   />
+		<option base="wealth"       type="thing"   />
+		<option base="well"         type="thing"   />
+		<option base="wisdom"       type="thing"   />
 		<option base="women"        type="thing"   />
-		<option base="symbols"      type="thing"   />
-		<option base="stones"       type="thing"   />
-
+		<option base="zeal"         type="thing"   />
+        <option base="zombie"       type="thing"   />
     </noun>
-    <verb>
+    <verb adverb_chance="30">
         <option base="abide"                />
         <option base="abolish"              />
         <option base="accuse"               />

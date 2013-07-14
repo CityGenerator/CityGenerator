@@ -22,7 +22,6 @@ if (defined $q->param('type') and $q->param('type') eq 'json' ){
     $JSON->convert_blessed(1);
 
     my $results=generate_names();
-
     print  $JSON->encode($results)."\n";
 
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
@@ -98,7 +97,10 @@ sub generate_names {
                 my $name=NPCGenerator::generate_npc_name($q->param('race'),$item);
                 $item->{'name'}=$name;
             }
-        #  when('adventure') {  }
+            when('adventure') {
+                use AdventureGenerator;
+                $item=AdventureGenerator::generate_name($item);
+            }
         #  when('myth') {  }
             when('world') {  
                 use WorldGenerator;
