@@ -22,11 +22,12 @@
             url: "/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value,
             dataType: "json",
         }).done(function(data) {
+            console.log(data);           
+             
+            document.getElementById("gen_result").innerHTML='<h3>seed: '+ data.seed +'<ol>';
             
-            document.getElementById("gen_result").innerHTML='<ol>';
-            
-            for (var item in data) {
-                document.getElementById("gen_result").innerHTML+='<li>'+data[item]+'</li>';
+            for (var item in data.names) {
+                document.getElementById("gen_result").innerHTML+='<li>'+data.names[item]+'</li>';
             }
             document.getElementById("gen_result").innerHTML+='</ol>';
         });

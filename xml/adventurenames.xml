@@ -5,9 +5,9 @@
 
         <option >VERB SUBJECT</option>
         <option >NEGATE VERB SUBJECT</option>
-        <option >SUBJECT NOUN</option>
-        <option >SUBJECT NOUN VERB.participle</option>
-        <option >SUBJECT NOUN VERB.thirdperson</option>
+        <option >ADJECTIVE SUBJECT</option>
+        <option >SUBJECT VERB.participle</option>
+        <option >SUBJECT VERB.thirdperson</option>
         <option >SUBJECT of SUBJECT</option>
         <option >SUBJECT</option>
         <option >SUBJECT's SUBJECT</option>
@@ -253,7 +253,7 @@
 		<option base="cruel"               />
 		<option base="cryptic"             />
 		<option base="cryptic"             />
-		<option base="cursed (or accursed)"/>
+		<option base="cursed"              />
 		<option base="dark"                />
 		<option base="dead"                />
 		<option base="deadly"              />
@@ -332,7 +332,6 @@
     </adjective>
     <noun >
 		<option base="alchemy"      type="thing"   />
-		<option base="ancient"      type="thing"   />
 		<option base="anger"        type="thing"   />
 		<option base="armor"        type="thing"   />
 		<option base="blessing"     type="thing"   />
@@ -341,7 +340,6 @@
 		<option base="calamity"     type="thing"   />
 		<option base="choice"       type="thing"   />
 		<option base="claw"         type="thing"   />
-		<option base="closet"       type="thing"   />
 		<option base="club"         type="thing"   />
 		<option base="courage"      type="thing"   />
 		<option base="crystal"      type="thing"   />
@@ -350,7 +348,7 @@
 		<option base="dagger"       type="thing"   />
 		<option base="danger"       type="thing"   />
 		<option base="death"        type="thing"   />
-		<option base="desire "      type="thing"   />
+		<option base="desire"       type="thing"   />
 		<option base="disaster"     type="thing"   />
 		<option base="doom"         type="thing"   />
 		<option base="door"         type="thing"   />
@@ -358,7 +356,6 @@
 		<option base="echo"         type="thing"   />
 		<option base="effigy"       type="thing"   />
         <option base="emperor"      type="person"  />
-		<option base="endless gold" type="thing"   />
 		<option base="eye"          type="thing"   />
 		<option base="face"         type="thing"   />
 		<option base="fang"         type="thing"   />
@@ -375,17 +372,14 @@
 		<option base="ice/fire"     type="thing"   />
 		<option base="illusion"     type="thing"   />
 		<option base="judgment"     type="thing"   />
-		<option base="judgment"     type="thing"   />
 		<option base="karma"        type="thing"   />
         <option base="king"         type="person"  />
 		<option base="knife"        type="thing"   />
 		<option base="knowledge"    type="thing"   />
-		<option base="ladder"       type="thing"   />
 		<option base="legend"       type="thing"   />
 		<option base="lie"          type="thing"   />
 		<option base="life"         type="thing"   />
 		<option base="light"        type="thing"   />
-		<option base="loss"         type="thing"   />
 		<option base="luck"         type="thing"   />
 		<option base="machine"      type="thing"   />
 		<option base="magic"        type="thing"   />

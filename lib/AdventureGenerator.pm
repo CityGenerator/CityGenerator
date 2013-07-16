@@ -118,7 +118,12 @@ sub generate_name {
     }
     my $noun=generate_noun($adventure);
     while ( $adventure->{'name'} =~ s/NOUN/$noun/) {
-        $subject=generate_noun($adventure);
+        $noun=generate_noun($adventure);
+    }
+
+    my $adjective=generate_adjective($adventure);
+    while ( $adventure->{'name'} =~ s/ADJECTIVE/$adjective/) {
+        $adjective=generate_noun($adventure);
     }
 
     while ( $adventure->{'name'} =~ /VERB\.gerund/ ) {
@@ -143,8 +148,6 @@ sub generate_name {
     while ( $adventure->{'name'} =~ s/NEGATE/Don't/ ) {
     }
 
-
-
     $adventure->{'name'} = ucfirst $adventure->{'name'};
 
     return $adventure;
@@ -157,13 +160,19 @@ sub generate_noun {
 }
 
 
+sub generate_adjective {
+    my ($adventure)=@_;
+    return ucfirst rand_from_array($advname_data->{'adjective'}->{'option'})->{'base'};
+}
+
+
 sub generate_subject {
     my ($adventure)=@_;
     my $subject="";
     $subject=generate_noun($adventure);
 
     if ( d(100) > $advname_data->{'pattern'}->{'adjective_chance'} ){
-        $subject=ucfirst rand_from_array($advname_data->{'adjective'}->{'option'})->{'base'} . " $subject";
+        $subject=generate_adjective($adventure) . " $subject";
     }
 
     if ( d(100) > $advname_data->{'pattern'}->{'article_chance'} ){

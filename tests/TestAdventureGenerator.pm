@@ -23,11 +23,11 @@ subtest 'test generate_adventure' => sub {
 
     $adventure=AdventureGenerator::generate_name({'seed'=>1});
     is($adventure->{'namepattern'},"VERB SUBJECT");
-    is($adventure->{'name'},"Deliver a Degenerate Karma");
+    is($adventure->{'name'},"Evenly Choke a Degenerate Knife");
 
     $adventure=AdventureGenerator::generate_name({'seed'=>2});
     is($adventure->{'namepattern'},"VERB.gerund SUBJECT");
-    is($adventure->{'name'},"Only Producing an Overlooked Dagger");
+    is($adventure->{'name'},"Partially Swinging an Overlooked Danger");
 
 
     done_testing();

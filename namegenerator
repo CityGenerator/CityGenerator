@@ -14,19 +14,25 @@ use GenericGenerator;
 use Switch 'Perl5', 'Perl6';
 our $q = CGI->new;
 
-
+my $seed;
+if (defined $q->param('seed') and $q->param('seed') =~/^(\d+)$/ ){
+    $seed=GenericGenerator::set_seed($1);
+}else{
+    $seed=GenericGenerator::set_seed();
+}
+my $results={'seed'=>$seed};
 
 if (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
 
-    my $results=generate_names();
+    $results->{'names'}=generate_names();
     print  $JSON->encode($results)."\n";
 
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    my $results=generate_names();
+    $results->{'names'}=generate_names();
     print Dumper $results;
 }else {
     print $q->header;

@@ -31,13 +31,37 @@
 	    <root>Giant</root>
 	    <root>Urchin</root>
 	
-	    <trailer>Saloon</trailer>
-	    <trailer>Inn</trailer>
-	    <trailer>Bar</trailer>
-	    <trailer>Tavern</trailer>
 	    <trailer>Alehouse</trailer>
+		<trailer>Barroom</trailer>
+	    <trailer>Bar</trailer>
+		<trailer>Beer Garden</trailer>
+		<trailer>Bistro</trailer>
+		<trailer>Cabaret</trailer>
+	    <trailer>Canteen</trailer>
+		<trailer>Cocktail Lounge</trailer>
+		<trailer>Dive</trailer>
+		<trailer>Drinkery</trailer>
+		<trailer>Flophouse</trailer>
+		<trailer>Gin Mill</trailer>
+		<trailer>Grog Shop</trailer>
+		<trailer>Honky Tonk</trailer>
+		<trailer>Hostelry</trailer>
+	    <trailer>Inn</trailer>
+		<trailer>Lodge</trailer>
+		<trailer>Lounge</trailer>
+		<trailer>Neighborhood Bar</trailer>
+		<trailer>Neighborhood Pub</trailer>
+		<trailer>Pub</trailer>
+		<trailer>Rathskeller</trailer>
 	    <trailer>Roadhouse</trailer>
+	    <trailer>Saloon</trailer>
+		<trailer>Speakeasy</trailer>
+		<trailer>Suds</trailer>
+		<trailer>Taphouse</trailer>
 	    <trailer>Taproom</trailer>
+		<trailer>Tap</trailer>
+	    <trailer>Tavern</trailer>
+		<trailer>Watering Hole</trailer>
     </name>
     <size>
         <option name="small"   cost_mod="2"  pop_mod="1" />
