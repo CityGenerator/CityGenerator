@@ -113,6 +113,7 @@ sub create_climate {
         $climate->{'seed'} = set_seed();
     }
 
+    #set base stat values, and if they don't exist, set new value.
     foreach my $stat (qw( altitude continentality latitude pressure )  ){
         if ( !defined $climate->{$stat}){
             $climate->{$stat}=d(101)-1;
@@ -121,10 +122,12 @@ sub create_climate {
         }
     }
 
+    # The higher the latitude or altitude, the lower the temp.
     $climate->{'temperature'} = ((100 - $climate->{'altitude'}) + (100 - $climate->{'latitude'}))/2   if (!defined $climate->{'temperature'});
-
+    # The higher the pressure and lower the continentality, the higher the precip
     $climate->{'precipitation'} =( $climate->{'pressure'} + (100 - $climate->{'continentality'}))/2   if (!defined $climate->{'precipitation'});
 
+    #calculate the biome based on temp and precip
     $climate = calculate_biome($climate);
 
     return $climate;
@@ -142,10 +145,12 @@ sub create_climate {
 ###############################################################################
 sub calculate_biome {
     my ($climate) = @_;
-
+    
+    # These two lines are ugly ways to translate 0-100 precip and temp values to array indexes
     my $precipkey   = ceil( $climate->{'precipitation'}  /100 * (scalar(@$biomematrix) - 1)) ;
     my $tempkey = ceil( $climate->{'temperature'}/100 * (scalar( @{ $biomematrix->[$precipkey]   }) - 1));
 
+    # once we know what are keys are, set the biome key, then look up the climate name.
     $climate->{'biomekey'}= $biomematrix->[$precipkey][$tempkey];
     $climate->{'name'}=  $biomekey->{$climate->{'biomekey'}   };
 
