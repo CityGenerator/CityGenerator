@@ -13,7 +13,7 @@ use GenericGenerator;
 use FlagGenerator;
 use CityGenerator;
 use SummaryFormatter;
-use GeographyFormatter;
+use EnvironmentFormatter;
 use CityscapeFormatter;
 use CensusDataFormatter;
 use GovtFormatter;
@@ -119,7 +119,7 @@ sub print_content {
         'cityname'      => $city->{'name'},
         'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
-        'geographytext' => GeographyFormatter::printGeography($city),
+        'geographytext' => EnvironmentFormatter::printGeography($city),
         'cityscapetext' => CityscapeFormatter::printCityscape($city),
         'censusdatatext'=> CensusDataFormatter::printCensusData($city),
         'govtdatatext'  => GovtFormatter::printGovt($city),

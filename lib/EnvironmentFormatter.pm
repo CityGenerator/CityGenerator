@@ -2,13 +2,13 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package GeographyFormatter;
+package EnvironmentFormatter;
 
 ###############################################################################
 
 =head1 NAME
 
-    GeographyFormatter - used to format the summary.
+    EnvironmentFormatter - used to format the environment.
 
 =head1 DESCRIPTION
 
@@ -24,7 +24,7 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 require Exporter;
 
 @ISA       = qw(Exporter);
-@EXPORT_OK = qw( printGeography);
+@EXPORT_OK = qw( printEnvironment);
 
 use CGI;
 use Data::Dumper;
@@ -45,5 +45,4 @@ sub printGeography {
 
     return $content;
 }
-
 1;

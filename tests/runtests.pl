@@ -22,9 +22,9 @@ use TestGovtGenerator;
 use TestCityGenerator;
 use TestEventGenerator;
 use TestSummaryFormatter;
-use TestGeographyFormatter;
 use TestCityscapeFormatter;
 use TestCensusDataFormatter;
 use TestGovtFormatter;
+use TestClimateGenerator;
 done_testing();
 

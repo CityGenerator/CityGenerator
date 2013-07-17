@@ -22,7 +22,7 @@ subtest 'Test Govt' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $govt=GovtFormatter::printGovt($city);
-    is($govt, "Grisnow is ruled a much loved cult leader. Within the city there is a a dragon that quietly denounces current leadership. The population approves of cult leader policies in general.");
+    is($govt, "Grisnow is ruled a hated clergy. Within the city there is a an elected representative that openly denounces current leadership. The population approves of clergy policies in general.");
     done_testing();
 };
 

@@ -28,6 +28,7 @@ use base qw(Exporter);
 use Carp;
 use CGI;
 use ContinentGenerator;
+use ConditionGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
@@ -282,7 +283,9 @@ sub flesh_out_city {
     generate_crime($city);
     set_dominance($city);
 
-    $city->{'govt'}=GovtGenerator::create_govt('seed'=>$city->{'seed'});
+    $city->{'govt'}=GovtGenerator::create_govt( {'seed'=>$city->{'seed'}});
+    $city->{'climate'}=ConditionGenerator::create_condition({'seed'=>$city->{'seed'}});
+    $city->{'climate'}=ConditionGenerator::flesh_out_condition(  $city->{'climate'} );
     
 
     return $city;
@@ -731,7 +734,6 @@ sub generate_area {
 #TODO change to metric....
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
-    print Dumper $city->{'population_density'};
     $city->{'area'}=sprintf "%4.2f",    $city->{'population_total'} / $city->{'population_density'};
 
     my $stat_modifier=$city->{'stats'}->{'education'}+$city->{'stats'}->{'economy'}+$city->{'stats'}->{'magic'};

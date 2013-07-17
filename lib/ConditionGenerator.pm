@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_condition );
+@EXPORT_OK = qw( create_condition flesh_out_condition);
 
 ###############################################################################
 
@@ -113,8 +113,6 @@ sub create_condition {
 ###############################################################################
 sub flesh_out_condition {
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
-    create_condition($condition);
     set_time($condition);
     set_temp($condition);
     set_air($condition);
