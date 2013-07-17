@@ -63,8 +63,8 @@ The following datafiles are used by AdventureGenerator.pm:
 
 ###############################################################################
 
-our $adv_data     = $xml->XMLin( "xml/adventure.xml",       ForceContent => 1, ForceArray => ['option'] );
-our $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => [] );
+my $adv_data     = $xml->XMLin( "xml/adventure.xml",       ForceContent => 1, ForceArray => ['option'] );
+my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -113,39 +113,39 @@ sub generate_name {
     $adventure->{'name'} = $adventure->{'namepattern'}  if (!defined $adventure->{'name'} );
 
     my $subject=generate_subject($adventure);
-    while ( $adventure->{'name'} =~ s/SUBJECT/$subject/) {
+    while ( $adventure->{'name'} =~ s/SUBJECT/$subject/x) {
         $subject=generate_subject($adventure);
     }
     my $noun=generate_noun($adventure);
-    while ( $adventure->{'name'} =~ s/NOUN/$noun/) {
+    while ( $adventure->{'name'} =~ s/NOUN/$noun/x) {
         $noun=generate_noun($adventure);
     }
 
     my $adjective=generate_adjective($adventure);
-    while ( $adventure->{'name'} =~ s/ADJECTIVE/$adjective/) {
+    while ( $adventure->{'name'} =~ s/ADJECTIVE/$adjective/x) {
         $adjective=generate_noun($adventure);
     }
 
-    while ( $adventure->{'name'} =~ /VERB\.gerund/ ) {
+    while ( $adventure->{'name'} =~ /VERB\.gerund/x ) {
         my $verb = gerund (generate_verb($adventure));
-        $adventure->{'name'} =~ s/VERB\.gerund/$verb/;
+        $adventure->{'name'} =~ s/VERB\.gerund/$verb/x;
     }
 
-    while ( $adventure->{'name'} =~ /VERB\.thirdperson/ ) {
+    while ( $adventure->{'name'} =~ /VERB\.thirdperson/x ) {
         my $verb = s_form (generate_verb($adventure));
-        $adventure->{'name'} =~ s/VERB\.thirdperson/$verb/;
+        $adventure->{'name'} =~ s/VERB\.thirdperson/$verb/x;
     }
-    while ( $adventure->{'name'} =~ /VERB\.participle/ ) {
+    while ( $adventure->{'name'} =~ /VERB\.participle/x ) {
         my $verb = participle (generate_verb($adventure));
-        $adventure->{'name'} =~ s/VERB\.participle/$verb/;
+        $adventure->{'name'} =~ s/VERB\.participle/$verb/x;
     }
 
-    while ( $adventure->{'name'} =~ /VERB/ ) {
+    while ( $adventure->{'name'} =~ /VERB/x ) {
         my $verb = generate_verb($adventure);
-        $adventure->{'name'} =~ s/VERB/$verb/;
+        $adventure->{'name'} =~ s/VERB/$verb/x;
     }
 
-    while ( $adventure->{'name'} =~ s/NEGATE/Don't/ ) {
+    while ( $adventure->{'name'} =~ s/NEGATE/Don't/x ) {
     }
 
     $adventure->{'name'} = ucfirst $adventure->{'name'};

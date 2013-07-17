@@ -155,93 +155,10 @@ subtest 'test create_npc' => sub {
 	    is($npc->{'secondary_attitude'},'Rage' ,   "emotional state" );
 	    is($npc->{'ternary_attitude'},  'Hostility' ,   "emotional state" );
 
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => [  {'type' => 'Astonishment' }], 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  'Astonishment' ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{  'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => [{ 'option' => 1, 'type' => 'Surprise' }],  'type' => 'Shock'}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},'Surprise' ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => 1,  'type' => 'Shock'}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>[{'option' => {},  'type' => 'Shock'}, ] } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  'Shock' ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{'option'=>1  } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={ 'attitude'=>{ } };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-        
-        $NPCGenerator::xml_data={ 'attitude'=>1 };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
-
-        $NPCGenerator::xml_data={  };
-        $npc={'seed'=>1};
-        NPCGenerator::set_attitudes($npc);
-	    is($npc->{'primary_attitude'},  undef ,        "emotional state" );
-	    is($npc->{'secondary_attitude'},undef ,   "emotional state" );
-	    is($npc->{'ternary_attitude'},  undef ,   "emotional state" );
-        $NPCGenerator::xml_data=$tempdata;
 	    done_testing();
     };
 	done_testing();
 };
-
-
-
-
 
 subtest 'test get_races' => sub {
 
@@ -287,113 +204,10 @@ subtest 'test generate_npc_name' => sub {
         is($name,'unnamed congresscritter');
         done_testing();
     };
-    subtest 'test generating race with no first name' => sub {
-        GenericGenerator::set_seed(1);
-        my $tempdata=$NPCGenerator::names_data;
-        my $names_data= {
-                            'race' => {
-                                        'lamo' => {
-                                                    'lastname' => {
-                                                                    'post' => [
-                                                                                {'content' => 'ey'},
-                                                                                {'content' => 'bee'},
-                                                                                {'content' => 'sea'},
-                                                                            ]
-                                           }                                    }                }       };
-
-        $NPCGenerator::names_data=$names_data;
-        is(NPCGenerator::generate_npc_name('lamo'),'ey');
-        $NPCGenerator::names_data=$tempdata;
-
-        done_testing();
-    };
-    subtest 'test generating race with no last name' => sub {
-
-        GenericGenerator::set_seed(1);
-        my $tempdata=$NPCGenerator::names_data;
-        my $names_data= {
-                            'race' => {
-                                        'lamo' => {
-                                                    'firstname' => {
-                                                                    'post' => [
-                                                                                {'content' => 'dee'},
-                                                                                {'content' => 'ee'},
-                                                                                {'content' => 'ef'},
-                                                                            ]
-                                           }                                    }                }       };
-
-        $NPCGenerator::names_data=$names_data;
-        is(NPCGenerator::generate_npc_name('lamo'),'dee');
-        $NPCGenerator::names_data=$tempdata;
-
-
-        done_testing();
-    };
 
 
 
 
-
-
-
-
-    subtest 'test generating race with full name' => sub {
-
-        GenericGenerator::set_seed(1);
-        my $tempdata=$NPCGenerator::names_data;
-        my $names_data= {
-                            'race' => {
-                                        'lamo' => {
-                                                    'firstname' => {
-                                                                    'post' => [
-                                                                                {'content' => ''},
-                                                                                {'content' => 'ee'},
-                                                                                {'content' => 'ef'},
-                                                                            ]
-                                                                    },
-                                                    'lastname' => {
-                                                                    'post' => [
-                                                                                {'content' => 'aye'},
-                                                                                {'content' => 'be'},
-                                                                                {'content' => 'sea'},
-                                                                            ]
-                                                                    }                                    
-                                                    }                
-                    }       };
-
-        $NPCGenerator::names_data=$names_data;
-        is(NPCGenerator::generate_npc_name('lamo'),'sea');
-        $NPCGenerator::names_data=$tempdata;
-
-
-        GenericGenerator::set_seed(1);
-        $names_data= {
-                            'race' => {
-                                        'lamo' => {
-                                                    'firstname' => {
-                                                                    'post' => [
-                                                                                {'content' => 'dee'},
-                                                                                {'content' => 'ee'},
-                                                                                {'content' => 'ef'},
-                                                                            ]
-                                                                    },
-                                                    'lastname' => {
-                                                                    'post' => [
-                                                                                {'content' => 'aye'},
-                                                                                {'content' => 'be'},
-                                                                                {'content' => ''},
-                                                                            ]
-                                                                    }                                    
-                                                    }                
-                    }       };
-
-        $NPCGenerator::names_data=$names_data;
-        is(NPCGenerator::generate_npc_name('lamo'),'dee');
-        $NPCGenerator::names_data=$tempdata;
-
-
-        done_testing();
-    };
 
     done_testing();
 };

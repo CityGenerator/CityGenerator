@@ -129,7 +129,8 @@ sub generate_colors {
 
     while ($colorcount-- >0){
         @colors=shuffle @colors;
-        $GenericGenerator::seed++;
+        #TODO replace this and other examples of it with an increment_seed method... and is this even needed??
+        GenericGenerator::set_seed(GenericGenerator::get_seed() + 1);
         my $color={};
         my $targetcolor=pop @colors;
 
@@ -165,7 +166,7 @@ sub generate_shape {
         # If the field is numeric and a value is not already set, randomly generate it.
         if (defined $shape->{$attribute_name}->{'numeric'} and 
             $shape->{$attribute_name}->{'numeric'} and  
-            !defined  $flag->{'shape'}->{$attribute_name."_selected"}) {
+            (!defined  $flag->{'shape'}->{$attribute_name."_selected"})) {
                 # Note that we're setting the seed here so passing in a paramter (say side=>top), 
                 # followup parameters will still be generated properly (count will still be 5)
                 $flag->{'shape'}->{$attribute_name."_selected"}= d( $flag->{'shape'}->{$attribute_name} ) ;
@@ -203,7 +204,7 @@ sub generate_division {
         # If the field is numeric and a value is not already set, randomly generate it.
         if (defined $division->{$attribute_name}->{'numeric'} and 
             $division->{$attribute_name}->{'numeric'} and  
-            !defined  $flag->{'division'}->{$attribute_name."_selected"}) {
+            (!defined $flag->{'division'}->{$attribute_name."_selected"})) {
                 # Note that we're setting the seed here so passing in a paramter (say side=>top), 
                 # followup parameters will still be generated properly (count will still be 5)
                 $flag->{'division'}->{$attribute_name."_selected"}= d( $flag->{'division'}->{$attribute_name} ) ;
@@ -234,7 +235,7 @@ sub generate_overlay {
         # If the field is numeric and a value is not already set, randomly generate it.
         if (defined $overlay->{$attribute_name}->{'numeric'} and 
             $overlay->{$attribute_name}->{'numeric'} and  
-            !defined  $flag->{'overlay'}->{$attribute_name."_selected"}) {
+            (!defined  $flag->{'overlay'}->{$attribute_name."_selected"})) {
                 # Note that we're setting the seed here so passing in a paramter (say side=>top), 
                 # followup parameters will still be generated properly (count will still be 5)
                 $flag->{'overlay'}->{$attribute_name."_selected"}= d( $flag->{'overlay'}->{$attribute_name} ) ;
@@ -265,7 +266,7 @@ sub generate_symbol {
         # If the field is numeric and a value is not already set, randomly generate it.
         if (defined $symbol->{$attribute_name}->{'numeric'} and 
             $symbol->{$attribute_name}->{'numeric'} and  
-            !defined  $flag->{'symbol'}->{$attribute_name."_selected"}) {
+            (!defined  $flag->{'symbol'}->{$attribute_name."_selected"})) {
                 # Note that we're setting the seed here so passing in a paramter (say side=>top), 
                 # followup parameters will still be generated properly (count will still be 5)
                 $flag->{'symbol'}->{$attribute_name."_selected"}= d( $flag->{'symbol'}->{$attribute_name} ) ;

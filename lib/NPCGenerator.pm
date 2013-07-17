@@ -1,5 +1,13 @@
 #!/usr/bin/perl -wT
+###############################################################################
+
 package NPCGenerator;
+
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -8,34 +16,55 @@ package NPCGenerator;
 
     NPCGenerator - used to generate NPCs
 
-=head1 DESCRIPTION
+=head1 SYNOPSIS
 
- Use this to create NPCs.
+    use NPCGenerator;
+    my $npc=NPCGenerator::create_npc();
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
-
+#TODO treat certain data as stats...
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
 
-our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
-our $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => [] );
-our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+###############################################################################
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
+
+The following datafiles are used by CityGenerator.pm:
+
+=over
+
+=item * F<xml/data.xml>
+
+=item * F<xml/npcnames.xml>
+
+=item * F<xml/specialists.xml>
+
+=back
+
+=head1 INTERFACE
+
+
+=cut
+
+###############################################################################
+my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
+my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['allow'] );
+my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -137,8 +166,8 @@ sub set_profession{
         }else{
             $npc->{'business'} = $npc->{'profession'} ;
         }
-        if ($npc->{'business'} =~/,/){
-            my @businesses=shuffle( split(/,/,$npc->{'business'}));
+        if ($npc->{'business'} =~/,/x){
+            my @businesses=shuffle( split(/,/x,$npc->{'business'}));
             $npc->{'business'}=pop @businesses;
         }
     }
@@ -254,11 +283,11 @@ Return a list of count names from the given race.
 sub generate_npc_names{
     my($race,$count)=@_;
 
-    if (!  grep { /^$race$/ } @{get_races()} ) {
+    if (!  grep { /^$race$/x } @{get_races()} ) {
         $race='any';
     }
 
-    if (defined $count and  $count=~/(\d+)/){
+    if (defined $count and  $count=~/(\d+)/x){
         $count= $1;
     }else{
         $count=10;
@@ -266,7 +295,7 @@ sub generate_npc_names{
 
     my @names;
     for (my $i=0 ; $i < $count ; $i++){
-        GenericGenerator::set_seed($GenericGenerator::seed+$i);
+        GenericGenerator::set_seed(GenericGenerator::get_seed()+$i);
         push @names, generate_npc_name($race);
 
     }

@@ -368,7 +368,7 @@ sub generate_watchtowers {
     #FIXME this shouldn't be hardcoded to 5
     $city->{'watchtowers'}->{'count'}=5;
 
-
+    return $city;
 }
 
 

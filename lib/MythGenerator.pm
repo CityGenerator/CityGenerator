@@ -64,8 +64,8 @@ The following datafiles are used by MythGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $mythnames_data= $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $mythnames_data= $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 

@@ -39,7 +39,7 @@ use XML::Simple;
 
 my $xml = XML::Simple->new();
 
-our $biomematrix=[   
+my $biomematrix=[   
 	['a','f','f','f','f','f','f','f','f','f','f','g','g','g','g','g','g','g','g','g','g'],
 	['a','b','e','e','e','e','f','f','f','f','f','g','g','g','g','g','g','g','g','g','g'],
 	['a','b','b','b','e','e','e','e','e','e','e','e','e','g','g','g','g','g','g','g','g'],
@@ -62,7 +62,7 @@ our $biomematrix=[
 	['a','a','a','b','b','b','c','c','c','c','c','c','c','c','c','c','j','j','j','j','j'],
 	['a','a','a','b','b','b','c','c','c','c','c','c','c','c','c','c','j','j','j','j','j'],
 ];
-our $biomekey={
+my $biomekey={
 	'a'=>'Tundra',
 	'b'=>'Tagia',
 	'f'=>'Grassland',

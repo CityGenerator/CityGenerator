@@ -86,7 +86,7 @@ This is what allows us to return to previously generated hosts.
 sub set_seed{
     my ($newseed)=@_;
 
-    if (! defined $newseed or $newseed!~ m/^\d+$/){
+    if ( (!defined $newseed) or $newseed!~ m/^\d+$/x){
         $newseed = int rand(1000000);
     }
     $seed=$newseed;
@@ -106,14 +106,11 @@ Select a random item from an array.
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
-    if (ref $array  eq 'ARRAY'){
-        return $array->[ rand @$array  ];
-#    }else if (ref $array  eq 'hash'){ TODO implement this later
-#        return $array->[ rand keys %$array  ];
-    }else{
+    if (ref $array  ne 'ARRAY'){
         print STDERR longmess();
-        die "you passed in something that wasn't an array reference. @!";
+        croak "you passed in something that wasn't an array reference. @!";
     }
+    return $array->[ rand @$array  ];
 }
 
 ###############################################################################
@@ -166,18 +163,18 @@ This serves the function of rolling a dice- a d6, d10, etc.
 sub d {
     my ($die) = @_;
     # d as in 1d6
-    if ( $die=~ /^\d+$/ ){
+    if ( $die=~ /^\d+$/x ){
         return int( rand($die)+1 );
-    }elsif ($die=~/^(\d+)d(\d+)$/){
+    }elsif ($die=~/^(\d+)d(\d+)$/x){
         my $dicecount=$1;
-        my $die=$2;
+        $die=$2;
         my $total=0;
         while ($dicecount-- >0){
             $total+=&d($die);
         }
         return $total;
     }else{
-        die "$die is not a valid dice format.";
+        croak "$die is not a valid dice format.";
 
     }
 }
@@ -236,7 +233,7 @@ sub parse_object {
         }
     }
     #FIXME Sloppy as hell but it resolves the multiplying spaces issue
-    $newobj->{'content'}=~s/ +/ /g;
+    $newobj->{'content'}=~s/\s+/ /xg;
     # return the slimmed down version
     return $newobj;
 }

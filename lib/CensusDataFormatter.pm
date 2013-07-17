@@ -3,33 +3,34 @@
 
 package CensusDataFormatter;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( printCensusData);
+
 ###############################################################################
 
 =head1 NAME
 
     CensusDataFormatter - used to format the census data block
 
-=head1 DESCRIPTION
+=head1 Synopsis
 
- This take a city, strips the important info, and generates the census data.
+    use CensusDataFormatter;
+    my $string=CensusDataFormatter::printCensusData($city);
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( printCensusData);
-
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-
 use POSIX;
+use version;
 
 ###############################################################################
 

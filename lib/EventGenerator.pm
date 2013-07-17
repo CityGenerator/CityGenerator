@@ -61,8 +61,8 @@ The following datafiles are used by EventGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $event_data= $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $event_data= $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 

@@ -103,8 +103,7 @@ subtest 'Test World Weather Summary' => sub {
 subtest 'Test World Data Summary' => sub {
     my $world=WorldGenerator::create_world({seed=>1, 'starsystem_roll'=>1, 'moons_roll'=>60, 'celestial_roll'=>60 });
     my $summary=WorldFormatter::printWorldDataSummary($world);
-    is($summary,"
-    <ul>
+    is($summary,"    <ul>
         <li>Stars: 1</li>
         <li>Moons: 1</li>
         <li>Celestial Objects: 1</li>
@@ -115,7 +114,8 @@ subtest 'Test World Data Summary' => sub {
         <li>Day: 24 hours</li>
         <li>Oceans: 27%</li>
         <li>Fresh water: common</li>
-    </ul>" 
+    </ul>
+" 
     );
 
     done_testing();

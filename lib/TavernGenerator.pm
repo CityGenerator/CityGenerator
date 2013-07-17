@@ -3,6 +3,12 @@
 
 package TavernGenerator;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( create_tavern);
+
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
 
@@ -18,20 +24,15 @@ package TavernGenerator;
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( create_tavern);
-
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use NPCGenerator ;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
@@ -56,9 +57,9 @@ The following datafiles are used by CityGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-our $xml_data    = $xml->XMLin( "xml/data.xml",     ForceContent => 1, ForceArray => ['option'] );
-our $names_data  = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['option'] );
-our $tavern_data = $xml->XMLin( "xml/taverns.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $xml_data    = $xml->XMLin( "xml/data.xml",     ForceContent => 1, ForceArray => ['option'] );
+my $names_data  = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['option'] );
+my $tavern_data = $xml->XMLin( "xml/taverns.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

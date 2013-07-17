@@ -4,6 +4,12 @@
 
 package EnvironmentFormatter;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( printEnvironment);
+
 ###############################################################################
 
 =head1 NAME
@@ -18,18 +24,13 @@ package EnvironmentFormatter;
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( printEnvironment);
-
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 
 =head2 printGeography()
 

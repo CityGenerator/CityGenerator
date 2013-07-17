@@ -1,8 +1,13 @@
-
 #!/usr/bin/perl -wT
 ###############################################################################
 
 package WorldFormatter;
+
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( printSummary);
 
 ###############################################################################
 
@@ -18,16 +23,10 @@ package WorldFormatter;
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( printSummary);
-
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use JSON;
 use Lingua::Conjunction;
 use Lingua::EN::Inflect qw(A);
@@ -35,6 +34,7 @@ use Lingua::EN::Numbers qw(num2en);
 use Number::Format;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 
 ###############################################################################
 
@@ -131,7 +131,7 @@ sub printLandSummary {
     my ($world) = @_;
     my $content="";
 
-    my $de = new Number::Format(-thousands_sep => ',');
+    my $de = Number::Format->new(-thousands_sep => ',');
 
     $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers).\n".
                 "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet.\n".
@@ -156,7 +156,7 @@ sub printWeatherSummary {
     my $content="";
     my $stars=conjunction(@{ $world->{'star_description'}} );
 
-    my $de = new Number::Format(-thousands_sep => ',');
+    my $de = Number::Format->new(-thousands_sep => ',');
 
     $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}.\n".
                "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}.\n";
@@ -179,7 +179,7 @@ sub printWorldDataSummary {
     my $content="";
     my $stars=conjunction(@{ $world->{'star_description'}} );
 
-    $content="
+    $content= << "EOF"
     <ul>
         <li>Stars: $world->{'starsystem_count'}</li>
         <li>Moons: $world->{'moons_count'}</li>
@@ -191,7 +191,9 @@ sub printWorldDataSummary {
         <li>Day: $world->{'day'} hours</li>
         <li>Oceans: $world->{'surfacewater_percent'}%</li>
         <li>Fresh water: $world->{'freshwater_description'}</li>
-    </ul>";
+    </ul>
+EOF
+;
 
     return $content;
 }

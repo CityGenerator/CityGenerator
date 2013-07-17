@@ -61,8 +61,8 @@ The following datafiles are used by GovtGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $govt_data= $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $govt_data= $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
