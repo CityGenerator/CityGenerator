@@ -270,6 +270,7 @@
 		<option base="effulgent"           />
 		<option base="elder"               />
 		<option base="enigmatic"           />
+		<option base="excellent"           />
 		<option base="extravagant"         />
 		<option base="fabled"              />
 		<option base="fabulous"            />
@@ -334,6 +335,7 @@
 		<option base="alchemy"      type="thing"   />
 		<option base="anger"        type="thing"   />
 		<option base="armor"        type="thing"   />
+		<option base="adventure"    type="thing"   />
 		<option base="blessing"     type="thing"   />
 		<option base="blood"        type="thing"   />
 		<option base="book"         type="thing"   />

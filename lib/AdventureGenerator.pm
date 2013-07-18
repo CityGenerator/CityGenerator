@@ -101,9 +101,19 @@ sub create_adventure {
     if ( !defined $adventure->{'seed'} ) {
         $adventure->{'seed'} = set_seed();
     }
+    $adventure=generate_name($adventure);
 
     return $adventure;
 } ## end sub create_adventure
+
+
+###############################################################################
+
+=head3 generate_name()
+
+    generate the name of an adventure using a randomly selected pattern.
+
+=cut
 
 ###############################################################################
 sub generate_name {
@@ -124,6 +134,11 @@ sub generate_name {
     my $adjective=generate_adjective($adventure);
     while ( $adventure->{'name'} =~ s/ADJECTIVE/$adjective/x) {
         $adjective=generate_noun($adventure);
+    }
+
+    my $adverb=generate_adverb($adventure);
+    while ( $adventure->{'name'} =~ s/ADVERB/$adverb/x) {
+        $adverb=generate_adverb($adventure);
     }
 
     while ( $adventure->{'name'} =~ /VERB\.gerund/x ) {
@@ -154,18 +169,47 @@ sub generate_name {
 } ## end sub create_adventure
 
 
+
+
+###############################################################################
+
+=head3 generate_noun()
+
+    generate a noun and capitalize it.
+
+=cut
+
+###############################################################################
 sub generate_noun {
     my ($adventure)=@_;
     return ucfirst rand_from_array($advname_data->{'noun'}->{'option'})->{'base'};
 }
 
 
+###############################################################################
+
+=head3 generate_adjective()
+
+    generate an adjective and capitalize it.
+
+=cut
+
+###############################################################################
 sub generate_adjective {
     my ($adventure)=@_;
     return ucfirst rand_from_array($advname_data->{'adjective'}->{'option'})->{'base'};
 }
 
 
+###############################################################################
+
+=head3 generate_subject()
+
+    generate a subject containing a noun and potentially an article and/or an adjective.
+
+=cut
+
+###############################################################################
 sub generate_subject {
     my ($adventure)=@_;
     my $subject="";
@@ -186,12 +230,35 @@ sub generate_subject {
     return $subject;
 }
 
+###############################################################################
+
+=head3 generate_adverb()
+
+    generate an adverb and capitalize it.
+
+=cut
+
+###############################################################################
+sub generate_adverb {
+    my ($adventure)=@_;
+    return ucfirst rand_from_array($advname_data->{'adverb'}->{'option'})->{'base'};
+}
+
+###############################################################################
+
+=head3 generate_verb()
+
+    generate a verb (and potentially an adverb) and capitalize it/them.
+
+=cut
+
+###############################################################################
 sub generate_verb {
     my ($adventure)=@_;
     my $verb=ucfirst rand_from_array($advname_data->{'verb'}->{'option'})->{'base'};
 
     if ( d(100) > $advname_data->{'pattern'}->{'adverb_chance'} ){
-        $verb=ucfirst rand_from_array($advname_data->{'adverb'}->{'option'})->{'base'} . " $verb";
+        $verb = generate_adverb($adventure) . " $verb";
     }
 
     return $verb;
