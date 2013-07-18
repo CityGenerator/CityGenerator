@@ -1,19 +1,77 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <climate>
-    <biomes>
-        <option name='AF' type='Tropical Rainforest'        >characterized by constant high temperatures and continual rain year-round, and has no natural season.</option>
-        <option name='AM' type='Tropical Seasonal Forest'   >characterized by constant high temperatures and seasonal torrential rains.</option>
-        <option name='AW' type='Tropical Savanna'           >characterized by constant high temperatures and a pronounced dry season.</option>
-        <option name='BW' type='Arid Desert'                >characterized by a severe lack of precipitation over mostly warm temperatures.</option>
-        <option name='BS' type='Semi-Arid Steppe'           >characterized by a severe lack of precpitation most of the year over a variety of temperatures.</option>
-        <option name='CS' type='Dry-Summer Subtropical'     >characterized by warm and dry summers with mild and wet winters.</option>
-        <option name='CW' type='Temperate Deciduous Forest' >characterized by warm and wet summers with mild and dry winters.</option>
-        <option name='CF' type='Moist Subtropical'          >characterized by warm and wet summers with mild and wet winters.</option>
-        <option name='DW' type='Dry-Winter Continental'     >characterized by warm to cool summers and cold winters, dry winters.</option>
-        <option name='DF' type='Moist Continental'          >characterized by warm to cool summers and cold winters with severe snow storms.</option>
-        <option name='ET' type='Tundra'                     >characterized by year-round cold temperatures with permanently frozen ground.</option>
-        <option name='EF' type='Ice Cap'                    >characterized by year-round cold temperatures with permanent ice and snow cover.</option>
+    <biomes> <!-- This climate is a ____, which is characterized by ____.-->
+        <option name='AF' type='Tropical Rainforest'        variation="-40" seasons="1"  >constant high temperatures, continual rain year-round, and has minimal natural seasons.</option>
+        <option name='AM' type='Tropical Seasonal Forest'   variation="-20" seasons="2,3">constant high temperatures and seasonal torrential rains.</option>
+        <option name='AW' type='Tropical Savanna'           variation="20"  seasons="2"  >constant high temperatures and a pronounced dry season.</option>
+        <option name='BW' type='Arid Desert'                variation="-40" seasons="1"  >a severe lack of precipitation over mostly warm temperatures.</option>
+        <option name='BS' type='Semi-Arid Steppe'           variation="-40" seasons="2,3">a severe lack of precpitation most of the year over a variety of temperatures.</option>
+        <option name='CS' type='Dry-Summer Subtropical'     variation="20"  seasons="4,6">warm and dry summers with mild and wet winters.</option>
+        <option name='CW' type='Temperate Deciduous Forest' variation="40"  seasons="4,6">warm and wet summers with mild and dry winters.</option>
+        <option name='CF' type='Moist Subtropical'          variation="40"  seasons="4,6">warm and wet summers with mild and wet winters.</option>
+        <option name='DW' type='Dry-Winter Continental'     variation="20"  seasons="4,6">warm to cool summers and cold winters, dry winters.</option>
+        <option name='DF' type='Moist Continental'          variation="10"  seasons="4,6">warm to cool summers and cold winters with severe snow storms.</option>
+        <option name='ET' type='Tundra'                     variation="-40" seasons="4"  >year-round cold temperatures with permanently frozen ground.</option>
+        <option name='EF' type='Ice Cap'                    variation="-60" seasons="1"  >year-round cold temperatures with permanent ice and snow cover.</option>
     </biomes>
+
+    <seasons> <!-- This climate has _____-->
+        <option name="1" biomes="AF,EF,BW"          >negligible seasons</option>
+        <option name="2" biomes="AM,AW,BS"          >rainy and dry seasons</option>
+        <option name="3" biomes="AM,BS"             >hot, rainy and cool seasons</option>
+        <option name="4" biomes="CS,CW,CF,DW,DF,ET" >spring, summer, fall and winter seasons</option>
+        <option name="6" biomes="CS,CW,CF,DW,DF"    >prevernal, spring, summer, monsoon, autumn and winter seasons</option>
+    </seasons>
+
+    <variation> <!-- used to describe cariation in winds, temp, precip and sunshine-->
+        <option          max="20" modifier=""  >little</option>
+        <option min="21" max="40" modifier=""  >minor</option>
+        <option min="41" max="60" modifier=""  >moderate</option>
+        <option min="61" max="80" modifier=""  >strong</option>
+        <option min="81"          modifier=""  >high</option>
+    </variation>
+
+    <winds> <!-- winds in the region are ____ and have ___ variation -->
+        <option          max="10">non-existent</option>
+        <option min="11" max="20">soft</option>
+        <option min="21" max="40">mild</option>
+        <option min="41" max="60">breezy</option>
+        <option min="61" max="80">strong</option>
+        <option min="81" max="90">wild</option>
+        <option min="91"         >continual</option>
+    </winds>
+    <temp> <!-- The temperature is generally-->
+        <option          max="10" >unbearably cold</option>
+        <option min="11" max="20" >freezing</option>
+        <option min="21" max="30" >cold</option>
+        <option min="31" max="40" >chilly</option>
+        <option min="41" max="50" >cool</option>
+        <option min="51" max="60" >mild</option>
+        <option min="61" max="70" >pleasant</option>
+        <option min="71" max="80" >warm</option>
+        <option min="81" max="90" >hot</option>
+        <option min="91"          >unbearably hot</option>
+    </temp>
+    <precip> <!-- precipitation is ___ -->
+        <option          max="10" >non-existant</option>
+        <option min="11" max="20" >negligible</option>
+        <option min="21" max="30" >trivial</option>
+        <option min="31" max="40" >minor</option>
+        <option min="41" max="50" >moderate</option>
+        <option min="51" max="60" >strong</option>
+        <option min="61" max="70" >heavy</option>
+        <option min="71" max="80" >massive</option>
+        <option min="81" max="90" >excessive</option>
+        <option min="91"          >continual</option>
+    </precip>
+    
+    <cloudcover><!-- The sky is -->
+        <option          max="20" >continually overcast</option>
+        <option min="21" max="40" >cloudy</option>
+        <option min="41" max="60" >mostly cloudy</option>
+        <option min="61" max="80" >partly cloudy</option>
+        <option min="81"          >clear</option>
+    </cloudcover>    
 
 </climate>
