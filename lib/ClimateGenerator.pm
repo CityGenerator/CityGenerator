@@ -39,43 +39,51 @@ use XML::Simple;
 
 my $xml = XML::Simple->new();
 
-my $biomematrix=[   
-	['a','f','f','f','f','f','f','f','f','f','f','g','g','g','g','g','g','g','g','g','g'],
-	['a','b','e','e','e','e','f','f','f','f','f','g','g','g','g','g','g','g','g','g','g'],
-	['a','b','b','b','e','e','e','e','e','e','e','e','e','g','g','g','g','g','g','g','g'],
-	['a','b','b','b','e','e','e','e','e','e','e','e','e','e','e','h','h','h','h','h','g'],
-	['a','b','b','b','b','b','e','e','e','e','e','e','e','e','e','e','h','h','h','h','g'],
-	['a','a','b','b','b','b','d','d','d','d','e','e','e','e','e','e','h','h','h','h','g'],
-	['a','a','b','b','b','b','d','d','d','d','d','e','e','e','e','e','h','h','h','h','h'],
-	['a','a','b','b','b','b','d','d','d','d','d','d','d','e','e','e','h','h','h','h','h'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','e','e','h','h','h','h','h'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','i','i','i','i','i'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','j','j','j','j','j'],
-	['a','a','a','b','b','b','d','d','d','d','d','d','d','d','d','d','j','j','j','j','j'],
-	['a','a','a','b','b','b','d','d','d','d','c','c','c','c','c','c','j','j','j','j','j'],
-	['a','a','a','b','b','b','d','d','d','d','c','c','c','c','c','c','j','j','j','j','j'],
-	['a','a','a','b','b','b','c','c','c','c','c','c','c','c','c','c','j','j','j','j','j'],
-	['a','a','a','b','b','b','c','c','c','c','c','c','c','c','c','c','j','j','j','j','j'],
+###############################################################################
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
+
+The following datafiles are used by ClimateGenerator.pm:
+
+=over
+
+=item F<xml/climate.xml>
+
+=back
+
+=head1 INTERFACE 
+
+
+=cut
+
+###############################################################################
+my $climate_data= $xml->XMLin( "xml/climate.xml", ForceContent => 1, ForceArray => ['option'] );
+
+my $biomematrix=[  
+	['EF','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW'],
+	['EF','DS','DS','CS','CS','BW','BW','BW','BW','BW','BW','BS','BS','BS','BS','BS','BS','BS','BS','BS','BS'],
+	['EF','DS','DS','DS','CS','CS','CS','CS','CS','CS','CS','CS','CS','BS','BS','BS','BS','BS','BS','BS','BS'],
+	['EF','DS','DS','DS','DS','CS','CS','CS','CS','CS','CS','CS','CS','CS','CS','AW','AW','AW','AW','AW','BS'],
+	['EF','DS','DS','DS','DS','DS','CS','CS','CS','CS','CS','CS','CS','CS','CS','CS','AW','AW','AW','AW','BS'],
+	['EF','ET','DS','DS','DS','DS','CW','CW','CW','CW','CS','CS','CS','CS','CS','CS','AW','AW','AW','AW','BS'],
+	['EF','ET','DS','DS','DS','DS','CW','CW','CW','CW','CW','CS','CS','CS','CS','CS','AW','AW','AW','AW','AW'],
+	['EF','ET','DS','DS','DS','DS','CW','CW','CW','CW','CW','CW','CW','CS','CS','CS','AW','AW','AW','AW','AW'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CS','CS','AW','AW','AW','AW','AW'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AF','AF','AF','AF','AF'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CW','CW','AF','AF','AF','AF','AF'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF'],
+	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF'],
+	['EF','ET','ET','DF','DF','DF','CF','CF','CF','CF','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF'],
+	['EF','ET','ET','DF','DF','DF','CF','CF','CF','CF','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF'],
 ];
-my $biomekey={
-	'a'=>'Tundra',
-	'b'=>'Tagia',
-	'f'=>'Grassland',
-	'e'=>'Woodland',
-	'd'=>'Temperate Deciduous Forest',
-	'c'=>'Temperate Rain Forest',
-	'g'=>'Subtropical Desert',
-	'h'=>'Savanah',
-	'i'=>'Tropical Seasonal Forest',
-	'j'=>'Tropical Rain Forest',
-
-};
-
 
 ###############################################################################
 
@@ -152,7 +160,8 @@ sub calculate_biome {
 
     # once we know what are keys are, set the biome key, then look up the climate name.
     $climate->{'biomekey'}= $biomematrix->[$precipkey][$tempkey];
-    $climate->{'name'}=  $biomekey->{$climate->{'biomekey'}   };
+    $climate->{'name'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'type'} ;
+    $climate->{'description'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'content'} ;
 
     return $climate;
 } ## end sub flesh_out_climate

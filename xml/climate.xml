@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<climate>
+    <biomes>
+        <option name='AF' type='Tropical Rainforest'        >characterized by constant high temperatures and continual rain year-round, and has no natural season.</option>
+        <option name='AM' type='Tropical Seasonal Forest'   >characterized by constant high temperatures and seasonal torrential rains.</option>
+        <option name='AW' type='Tropical Savanna'           >characterized by constant high temperatures and a pronounced dry season.</option>
+        <option name='BW' type='Arid Desert'                >characterized by a severe lack of precipitation over mostly warm temperatures.</option>
+        <option name='BS' type='Semi-Arid Steppe'           >characterized by a severe lack of precpitation most of the year over a variety of temperatures.</option>
+        <option name='CS' type='Dry-Summer Subtropical'     >characterized by warm and dry summers with mild and wet winters.</option>
+        <option name='CW' type='Temperate Deciduous Forest' >characterized by warm and wet summers with mild and dry winters.</option>
+        <option name='CF' type='Moist Subtropical'          >characterized by warm and wet summers with mild and wet winters.</option>
+        <option name='DW' type='Dry-Winter Continental'     >characterized by warm to cool summers and cold winters, dry winters.</option>
+        <option name='DF' type='Moist Continental'          >characterized by warm to cool summers and cold winters with severe snow storms.</option>
+        <option name='ET' type='Tundra'                     >characterized by year-round cold temperatures with permanently frozen ground.</option>
+        <option name='EF' type='Ice Cap'                    >characterized by year-round cold temperatures with permanent ice and snow cover.</option>
+    </biomes>
+
+</climate>

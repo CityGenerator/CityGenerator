@@ -29,8 +29,9 @@ subtest 'test create_climate' => sub {
     is($climate->{'temperature'},'100');
     is($climate->{'precipitation'},'100');
     
-    is($climate->{'biomekey'},'j');
-    is($climate->{'name'},'Tropical Rain Forest');
+    is($climate->{'biomekey'},'AF');
+    is($climate->{'name'},'Tropical Rainforest');
+    is($climate->{'description'},'characterized by constant high temperatures and continual rain year-round, and has no natural season.');
 
     $climate=ClimateGenerator::create_climate( {'seed'=>1,'altitude'=>'50','latitude'=>'50','continentality'=>'50','pressure'=>'50'});
 
@@ -42,7 +43,7 @@ subtest 'test create_climate' => sub {
     is($climate->{'temperature'},'50');
     is($climate->{'precipitation'},'50');
 
-    is($climate->{'biomekey'},'d');
+    is($climate->{'biomekey'},'CW');
     is($climate->{'name'},'Temperate Deciduous Forest');
 
 
@@ -56,8 +57,8 @@ subtest 'test create_climate' => sub {
     is($climate->{'temperature'},'0');
     is($climate->{'precipitation'},'0');
 
-    is($climate->{'biomekey'},'a');
-    is($climate->{'name'},'Tundra');
+    is($climate->{'biomekey'},'EF');
+    is($climate->{'name'},'Ice Cap');
 
     $climate=ClimateGenerator::create_climate( {'seed'=>1,'altitude'=>'0','latitude'=>'0','continentality'=>'100','pressure'=>'0'});
 
@@ -69,8 +70,8 @@ subtest 'test create_climate' => sub {
     is($climate->{'temperature'},'100');
     is($climate->{'precipitation'},'0');
 
-    is($climate->{'biomekey'},'g');
-    is($climate->{'name'},'Subtropical Desert');
+    is($climate->{'biomekey'},'BW');
+    is($climate->{'name'},'Arid Desert');
 
     done_testing();
 };
