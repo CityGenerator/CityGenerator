@@ -141,6 +141,31 @@ sub create_climate {
     return $climate;
 } ## end sub create_climate
 
+###############################################################################
+
+=head2 Secondary Methods
+
+The following methods are used to flesh out the climate.
+
+=head3 flesh_out_climate()
+
+Add the other features beyond the core climate.
+
+=cut
+
+###############################################################################
+sub flesh_out_climate {
+    my ($climate) = @_;
+    GenericGenerator::set_seed( $climate->{'seed'} );
+    calculate_wind($climate);
+    calculate_temp($climate);
+    calculate_precip($climate);
+    calculate_cloudcover($climate);
+ 
+    return $climate;
+}
+
+
 
 ###############################################################################
 
@@ -200,9 +225,8 @@ sub calculate_wind {
 ###############################################################################
 sub calculate_temp {
     my ($climate) = @_;
-    $climate->{'temp_roll'}=d(100) if (!defined $climate->{'temp_roll'} );
     $climate->{'temp_variation_roll'}=d(100) if (!defined $climate->{'temp_variation_roll'} );
-    $climate->{'temp'}=  roll_from_array( $climate->{'temp_roll'}, $climate_data->{'temp'}->{'option'}  )->{'content'} if (!defined $climate->{'temp'});
+    $climate->{'temp'}=  roll_from_array( $climate->{'temperature'}, $climate_data->{'temp'}->{'option'}  )->{'content'} if (!defined $climate->{'temp'});
     $climate->{'temp_variation'}=  roll_from_array( $climate->{'temp_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'temp_variation'});
     return $climate;
 }
@@ -218,9 +242,8 @@ sub calculate_temp {
 ###############################################################################
 sub calculate_precip {
     my ($climate) = @_;
-    $climate->{'precip_roll'}=d(100) if (!defined $climate->{'precip_roll'} );
     $climate->{'precip_variation_roll'}=d(100) if (!defined $climate->{'precip_variation_roll'} );
-    $climate->{'precip'}=  roll_from_array( $climate->{'precip_roll'}, $climate_data->{'precip'}->{'option'}  )->{'content'} if (!defined $climate->{'precip'});
+    $climate->{'precip'}=  roll_from_array( $climate->{'precipitation'}, $climate_data->{'precip'}->{'option'}  )->{'content'} if (!defined $climate->{'precip'});
     $climate->{'precip_variation'}=  roll_from_array( $climate->{'precip_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'precip_variation'});
     return $climate;
 }

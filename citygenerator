@@ -120,6 +120,8 @@ sub print_content {
         'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
         'geographytext' => EnvironmentFormatter::printGeography($city),
+        'astronomytext' => EnvironmentFormatter::printAstronomy($city),
+        'climatetext'   => EnvironmentFormatter::printClimate($city),
         'cityscapetext' => CityscapeFormatter::printCityscape($city),
         'censusdatatext'=> CensusDataFormatter::printCensusData($city),
         'govtdatatext'  => GovtFormatter::printGovt($city),

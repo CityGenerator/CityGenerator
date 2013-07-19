@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<astronomy>
+
+    <stars> <!--  ____ orbits around a ____ system- ___, ___ and ___ -->
+        <option          max="70" count="1">single star</option>
+        <option min="71" max="95" count="2">binary star</option>
+        <option min="96"          count="3">trinary star</option>
+    </stars>
+
+    <moons>   
+        <option          max="30" count="0">no moons</option>
+        <option min="31" max="70" count="1">single moon</option>
+        <option min="71" max="95" count="2">double moon</option>
+        <option min="96" max="97" count="3">triple moon</option>
+        <option min="98"          count="4">quadruple moon</option>
+    </moons>
+
+    <size>
+        <option          max="10" >small</option>
+        <option min="11" max="65" >average</option>
+        <option min="66" max="85" >large</option>
+        <option min="86" max="95" >massive</option>
+        <option min="96"          >supermassive</option>
+    </size>
+
+    <mooncolor>
+        <option          max="20" >light blue</option>
+        <option min="21" max="40" >briliant silver</option>
+        <option min="41" max="60" >bone white</option>
+        <option min="61" max="80" >pale yellow</option>
+        <option min="81" max="95" >rusty red</option>
+        <option min="96"          >dull brown</option>
+    </mooncolor>
+
+    <starcolor>
+        <option          max="10" >blue</option>
+        <option min="11" max="30" >white</option>
+        <option min="31" max="70" >yellow</option>
+        <option min="71" max="85" >orange</option>
+        <option min="86" max="95" >red</option>
+        <option min="96"          >brown</option>
+    </starcolor>
+
+    <celestial > <!--  The night sky reveals a ____ ____, which has hung in the sky for _______ -->
+        <number>
+            <option          max="30"  count="0"  type="nothing unusual"/>
+            <option min="31" max="60"  count="1"  type="a celestial object"/>
+            <option min="61" max="90"  count="2"  type="two celestial objects"/>
+            <option min="91"           count="3"  type="three celestial objects"/>
+        </number>
+        <size>
+            <option>miniscule</option>
+            <option>tiny</option>
+            <option>imposing</option>
+            <option>massive</option>
+        </size>
+        <name>
+            <option>nebula</option>
+            <option>galaxy</option>
+            <option>supernova</option>
+            <option>pulsar</option>
+            <option>black hole</option>
+            <option>nearby planet</option>
+            <option>asteroid belt</option>
+        </name>
+        <age>
+            <option>only a few years</option>
+            <option>decades</option>
+            <option>centuries</option>
+            <option>generations</option>
+            <option>millenia</option>
+            <option>time immemorial</option>
+            <option>all eternity</option>
+        </age>
+
+    </celestial>
+
+
+
+<!-- vegetation -->
+<!-- storms large, planetary storms like jupiter -->
+
+</astronomy>

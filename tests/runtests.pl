@@ -5,7 +5,6 @@ use lib "lib/";
 use lib "tests/";
 use Test::More;
 use TestGenericGenerator;
-use TestWorldGenerator;
 use TestWorldFormatter;
 use TestContinentGenerator;
 use TestRegionGenerator;
@@ -26,5 +25,7 @@ use TestCityscapeFormatter;
 use TestCensusDataFormatter;
 use TestGovtFormatter;
 use TestClimateGenerator;
+use TestEnvironmentFormatter;
+use TestAstronomyGenerator;
 done_testing();
 

@@ -2,18 +2,18 @@
 
 <climate>
     <biomes> <!-- This climate is a ____, which is characterized by ____.-->
-        <option name='AF' type='Tropical Rainforest'        variation="-40" seasons="1"  >constant high temperatures, continual rain year-round, and has minimal natural seasons.</option>
-        <option name='AM' type='Tropical Seasonal Forest'   variation="-20" seasons="2,3">constant high temperatures and seasonal torrential rains.</option>
-        <option name='AW' type='Tropical Savanna'           variation="20"  seasons="2"  >constant high temperatures and a pronounced dry season.</option>
-        <option name='BW' type='Arid Desert'                variation="-40" seasons="1"  >a severe lack of precipitation over mostly warm temperatures.</option>
-        <option name='BS' type='Semi-Arid Steppe'           variation="-40" seasons="2,3">a severe lack of precpitation most of the year over a variety of temperatures.</option>
-        <option name='CS' type='Dry-Summer Subtropical'     variation="20"  seasons="4,6">warm and dry summers with mild and wet winters.</option>
-        <option name='CW' type='Temperate Deciduous Forest' variation="40"  seasons="4,6">warm and wet summers with mild and dry winters.</option>
-        <option name='CF' type='Moist Subtropical'          variation="40"  seasons="4,6">warm and wet summers with mild and wet winters.</option>
-        <option name='DW' type='Dry-Winter Continental'     variation="20"  seasons="4,6">warm to cool summers and cold winters, dry winters.</option>
-        <option name='DF' type='Moist Continental'          variation="10"  seasons="4,6">warm to cool summers and cold winters with severe snow storms.</option>
-        <option name='ET' type='Tundra'                     variation="-40" seasons="4"  >year-round cold temperatures with permanently frozen ground.</option>
-        <option name='EF' type='Ice Cap'                    variation="-60" seasons="1"  >year-round cold temperatures with permanent ice and snow cover.</option>
+        <option name='AF' type='Tropical Rainforest'        variation="-40" seasons="1"  >constant high temperatures, continual rain year-round, and has minimal natural seasons</option>
+        <option name='AM' type='Tropical Seasonal Forest'   variation="-20" seasons="2,3">constant high temperatures and seasonal torrential rains</option>
+        <option name='AW' type='Tropical Savanna'           variation="20"  seasons="2"  >constant high temperatures and a pronounced dry season</option>
+        <option name='BW' type='Arid Desert'                variation="-40" seasons="1"  >a severe lack of precipitation over mostly warm temperatures</option>
+        <option name='BS' type='Semi-Arid Steppe'           variation="-40" seasons="2,3">a severe lack of precpitation most of the year over a variety of temperatures</option>
+        <option name='CS' type='Dry-Summer Subtropical'     variation="20"  seasons="4,6">warm and dry summers with mild and wet winters</option>
+        <option name='CW' type='Temperate Deciduous Forest' variation="40"  seasons="4,6">warm and wet summers with mild and dry winters</option>
+        <option name='CF' type='Moist Subtropical'          variation="40"  seasons="4,6">warm and wet summers with mild and wet winters</option>
+        <option name='DW' type='Dry-Winter Continental'     variation="20"  seasons="4,6">warm to cool summers and cold winters, dry winters</option>
+        <option name='DF' type='Moist Continental'          variation="10"  seasons="4,6">warm to cool summers and cold winters with severe snow storms</option>
+        <option name='ET' type='Tundra'                     variation="-40" seasons="4"  >year-round cold temperatures with permanently frozen ground</option>
+        <option name='EF' type='Ice Cap'                    variation="-60" seasons="1"  >year-round cold temperatures with permanent ice and snow cover</option>
     </biomes>
 
     <seasons> <!-- This climate has _____-->

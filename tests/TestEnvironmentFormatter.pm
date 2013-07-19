@@ -30,40 +30,11 @@ subtest 'Test Environment Climate' => sub {
     my $city=CityGenerator::create_city({seed=>1});
     CityGenerator::flesh_out_city($city);
     my $environment=EnvironmentFormatter::printClimate($city);
-    is($environment, "
-
-This desolate settlement is sparsely populated (27/sq km) and covers 1.93 square kilometers.
-
-The climate in _______ is generally pleasant. When you arrive after nightfall, the wind is heavy and the cloud cover is dark. It is currently sleeting.
-          'climate' => {
-                         'storm_chance' => 64,
-                         'bar_mod' => {
-                                        'time' => '10'
-                                      },
-                         'time_pop_mod' => '0.75',
-                         'precip_chance' => 64,
-                         'wind_pop_mod' => '0.95',
-                         'seed' => 851428,
-                         'time_bar_mod' => '10',
-                         'original_seed' => 851428,
-                         'precip_description' => 'sleeting',
-                         'air_description' => 'thick',
-                         'time_exact' => '11:35',
-                         'temp_pop_mod' => '1.0',
-                         'pop_mod' => {
-                                        'wind' => '0.95',
-                                        'temp' => '1.0',
-                                        'time' => '0.75',
-                                        'air' => '1.0'
-                                      },
-                         'air_pop_mod' => '1.0',
-                         'forecast_description' => 'overcast'
-                       },
-
-
-
-" );
-
+    is($environment, 
+                     "Grisnow has a Moist Continental climate, which is characterized by warm to cool summers and cold winters with severe snow storms, and has prevernal, spring, summer, monsoon, autumn and winter seasons. ".
+                     "Winds in the region are non-existent and the temperature is generally cold with high variation. ".
+                     "Precipitation is strong, and the sky is mostly cloudy. "
+                );
     done_testing();
 };
 

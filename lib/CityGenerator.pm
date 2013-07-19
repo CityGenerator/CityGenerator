@@ -27,8 +27,9 @@ use base qw(Exporter);
 #TODO treat certain data as stats, mil, auth, edu, etc.
 use Carp;
 use CGI;
+use AstronomyGenerator;
 use ContinentGenerator;
-use ConditionGenerator;
+use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
@@ -284,8 +285,9 @@ sub flesh_out_city {
     set_dominance($city);
 
     $city->{'govt'}=GovtGenerator::create_govt( {'seed'=>$city->{'seed'}});
-    $city->{'climate'}=ConditionGenerator::create_condition({'seed'=>$city->{'seed'}});
-    $city->{'climate'}=ConditionGenerator::flesh_out_condition(  $city->{'climate'} );
+    $city->{'climate'}=ClimateGenerator::create_climate({'seed'=>$city->{'seed'}});
+    $city->{'climate'}=ClimateGenerator::flesh_out_climate(  $city->{'climate'} );
+    $city->{'astronomy'}=AstronomyGenerator::create_astronomy( {'seed'=>$city->{'seed'} }  );
     
 
     return $city;
