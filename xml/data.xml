@@ -3,19 +3,19 @@
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"    gplimit="100"/>     
-    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"    gplimit="500"/>      
-    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"    gplimit="600"/>    
-    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"    gplimit="750"/>   
-    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"   gplimit="1000"/>     
-    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"   gplimit="1500"/>     
-    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"   gplimit="3500"/>     
-    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"   gplimit="5000"/>     
-    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"   gplimit="8000"/>     
-    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000"  gplimit="15000"/>    
-    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000"  gplimit="22000"/>    
-    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000"  gplimit="30000"/>    
-    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="50000"  gplimit="50000"/>    
+    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>     
+    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>      
+    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>    
+    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>   
+    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"  min_density="75"  max_density="4000"  gplimit="1000"/>     
+    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"  min_density="90"  max_density="6000"  gplimit="1500"/>     
+    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"  min_density="100" max_density="9000"  gplimit="3500"/>     
+    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"  min_density="110" max_density="10000" gplimit="5000"/>     
+    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"  min_density="150" max_density="15000" gplimit="8000"/>     
+    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000" min_density="180" max_density="22000" gplimit="15000"/>    
+    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000" min_density="200" max_density="28000" gplimit="22000"/>    
+    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000" min_density="220" max_density="30000" gplimit="30000"/>    
+    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="80000" min_density="240" max_density="40000" gplimit="50000"/>    
 </citysize>
 <trivia>their official _______ is the ________
     <fact type='tree'>
@@ -82,9 +82,7 @@
         <root></root>
     </fact>
 
-
 </trivia>
-
 <streets>
     <title>rough</title>
     <title>broken</title>
@@ -207,35 +205,13 @@
 </specialties>
 
 <pop_types>
-    <pop_type type="basic"        min="1"   max="50"  base_pop="basic"   add_other="false" >normal population</pop_type>
-    <pop_type type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="true"  >fairly normal population (with one monstrous race)</pop_type>
-    <pop_type type="monstrous"    min="81"  max="91"  base_pop="monster" add_other="false" >monstrous population</pop_type>
-    <pop_type type="monstrous+1"  min="91"  max="95"  base_pop="monster" add_other="true"  >monstrous population (with one common race)</pop_type>
-    <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other="false" >mixed population</pop_type>
+    <pop_type type="basic"        min="1"   max="50"  base_pop="basic"   add_other=""           >normal population</pop_type>
+    <pop_type type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="monster"    >fairly normal population (with one monstrous race)</pop_type>
+    <pop_type type="monstrous"    min="81"  max="91"  base_pop="monster" add_other=""           >monstrous population</pop_type>
+    <pop_type type="monstrous+1"  min="91"  max="95"  base_pop="monster" add_other="basic"      >monstrous population (with one common race)</pop_type>
+    <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other=""           >mixed population</pop_type>
 </pop_types>
 
-<districts>
-    <district name="civic"        chance='12' stat="authority"/>
-    <district name="embassy"      chance='5'  stat="travel" />
-    <district name="wealthy"      chance='34' stat="economy" />
-    <district name="middleclass"  chance='30' stat="economy" />
-    <district name="racial"       chance='10' stat="tolerance" />
-    <district name="fineshops "   chance='5'  stat="economy" />
-    <district name="arena"        chance='5'  stat="education" />
-    <district name="poor"         chance='30' stat="economy" />
-    <district name="slums"        chance='10' stat="economy" />
-    <district name="warehouse"    chance='5'  stat="economy" />
-    <district name="industry"     chance='5'  stat="economy" />
-    <district name="trade"        chance='32'  stat="economy" />
-    <district name="professional" chance='30' stat="economy" />
-    <district name="shops"        chance='20' stat="economy" />
-    <district name="market"       chance='70' stat="economy" />
-    <district name="prison"       chance='7'  stat="authority" />
-    <district name="education"    chance='5'  stat="education" />
-    <district name="military"     chance='7'  stat="authority" />
-    <district name="mercy"        chance='20' stat="tolerance" />
-    <district name="port"         chance='0'  stat="travel" />
-</districts>
 
 
 <tactictypes>
@@ -325,40 +301,13 @@
     </weapon>
 </weapontypes>
 
-
 <popdensity>
-    <option type="sparsely"  feetpercapita="5000"/>
-    <option type="lightly"   feetpercapita="3000"/>
-    <option type="nominally" feetpercapita="1500"/>
-    <option type="densely"   feetpercapita="1000"/>
+    <option          max="20" type="sparsely"   />
+    <option min="21" max="40" type="lightly"    />
+    <option min="41" max="60" type="nominally"  />
+    <option min="61" max="80" type="moderately" />
+    <option min="81"          type="densely"    />
 </popdensity>
-
-<races>
-    <race type="basic"   moral="0"   order="5"   magic="0"  auth='1'  econ='1'  edu='2'  travel='2'  toler='3'  mil='1'  article="a"  plural='Humans'>Human</race>
-    <race type="basic"   moral="5"   order="-5"  magic="3"  auth='-1' econ='1'  edu='2'  travel='0'  toler='1'  mil='1'  article="an" plural='Elves'>Elf</race>
-    <race type="basic"   moral="5"   order="5"   magic="-2" auth='2'  econ='1'  edu='0'  travel='-2' toler='1'  mil='4'  article="a"  plural='Dwarves'>Dwarf</race>
-    <race type="basic"   moral="5"   order="5"   magic="2"  auth='-1' econ='1'  edu='1'  travel='-1' toler='3'  mil='-1' article="a"  plural='Gnomes'>Gnome</race>
-    <race type="basic"   moral="5"   order="0"   magic="-1" auth='-1' econ='1'  edu='1'  travel='2'  toler='3'  mil='-2' article="a"  plural='Halflings'>Halfling</race>
-    <race type="basic"   moral="5"   order="-1"  magic="0"  auth='-1' econ='0'  edu='1'  travel='3'  toler='5'  mil='-1' article="a"  plural='Half-elves'>Half-elf</race>
-    <race type="basic"   moral="-2"  order="-2"  magic="-2" auth='-1' econ='-1' edu='-2' travel='1'  toler='2'  mil='2'  article="a"  plural='Half-orcs'>Half-orc</race>
-    <race type="basic"   moral="4"   order="-5"  magic="-3" auth='-1' econ='-3' edu='-3' travel='-1' toler='5'  mil='3'  article="a"  plural='Half-dwarves'>Half-dwarf</race>
-
-    <race type="other"   moral="2"   order="-1"  magic="0"  auth='-1' econ='0'  edu='0'  travel='1'  toler='2'  mil='0'  article="an" plural='others'>other</race>
-
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-3' econ='-3' edu='-3' travel='1'  toler='1'  mil='-3' article="a"  plural='Kobolds'>Kobold</race>
-    <race type="monster" moral="-3"  order="3"   magic="-2" auth='1'  econ='1'  edu='0'  travel='-2' toler='-1' mil='5'  article="a"  plural='Deep Dwarves'>Deep Dwarf</race>
-    <race type="monster" moral="-5"  order="-5"  magic="1"  auth='-4' econ='-3' edu='-3' travel='2'  toler='1'  mil='0'  article="a"  plural='Goblins'>Goblin</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-4' econ='-3' edu='-3' travel='2'  toler='-1' mil='2'  article="an" plural='Orcs'>Orc</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-2' econ='-2' edu='-2' travel='-1' toler='0'  mil='-4' article="an" plural='Ogres'>Ogre</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-2" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='2'  article="a"  plural='Bugbears'>Bugbear</race>
-    <race type="monster" moral="-5"  order="-5"  magic="-1" auth='-3' econ='-3' edu='-3' travel='0'  toler='-1' mil='-1' article="a"  plural='Hobgoblins'>Hobgoblin</race>
-    <race type="monster" moral="0"   order="0"   magic="0"  auth='-3' econ='-2' edu='-3' travel='0'  toler='-2' mil='2'  article="a"  plural='Lizardfolk'>Lizardfolk</race>
-    <race type="monster" moral="2"   order="-5"  magic="-3" auth='-1' econ='-1' edu='-1' travel='2'  toler='-5' mil='3'  article="a"  plural='Minotaurs'>Minotaur</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-3' edu='-3' travel='0'  toler='1'  mil='-1' article="a"  plural='Troglodytes'>Troglodyte</race>
-    <race type="monster" moral="-5"  order="-5"  magic="0"  auth='-3' econ='-1' edu='0'  travel='1'  toler='0'  mil='-3' article="a"  plural='Lycanthropes'>Lycanthrope</race>
-    <race type="monster" moral="-5"  order="10"  magic="2"  auth='2'  econ='3'  edu='2'  travel='-3' toler='-5' mil='-5' article="a"  plural='Mindflayers'>Mindflayer</race>
-    <race type="monster" moral="-10" order="-10" magic="4"  auth='3'  econ='0'  edu='3'  travel='-3' toler='-5' mil='2'  article="a"  plural='Drow'>Drow</race>
-</races>
 
 <nameoptions>
 	<race name='other'>
@@ -402,16 +351,6 @@
     <option min="34"  max="66"  >neutral</option>
     <option min="67"  max="100" >lawful</option>
 </order>
-<govtypes>
-    <govt approval_mod='0'  religion='2'  mil_mod='-1' >council</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='-2' >powerful wizard</govt>
-    <govt approval_mod='-1' religion='0'  mil_mod='1'  >despot</govt>
-    <govt approval_mod='0'  religion='1'  mil_mod='1'  >baron</govt>
-    <govt approval_mod='0'  religion='0'  mil_mod='2'  >royalty</govt>
-    <govt approval_mod='-1' religion='-1' mil_mod='1'  >dictator</govt>
-    <govt approval_mod='0'  religion='-1' mil_mod='0'  >clergy</govt>
-    <govt approval_mod='1'  religion='-2' mil_mod='-2' >cult leader</govt>
-</govtypes>
 
 <cityages>
     <cityage          max='10' age_mod='10'  >young</cityage>
@@ -676,93 +615,6 @@
     <option>a hexagonal</option>
     <option>a octagonal</option>
 </cityshape>
-<weather>
-    <forecast>
-        <option>clear</option>
-        <option>overcast</option>
-        <option>stormy</option>
-    </forecast>
-
-    <temp>
-        <option modifier="0.10" >freezing</option>
-        <option modifier="0.20" >cold</option>
-        <option modifier="0.40" >chilly</option>
-        <option modifier="0.80" >cool</option>
-        <option modifier="0.90" >mild</option>
-        <option modifier="1.00" >pleasant</option>
-        <option modifier="1.10" >warm</option>
-        <option modifier="0.90" >hot</option>
-        <option modifier="0.50" >unbearably hot</option>
-    </temp>
-
-    <air>
-        <option>fresh</option>
-        <option>thin</option>
-        <option>thick</option>
-        <option>humid</option>
-    </air>
-    <wind>
-        <option>breezy</option>
-        <option>dead</option>
-        <option>soft</option>
-        <option>heavy</option>
-        <option>strong</option>
-        <option>incredibly strong</option>
-    </wind>
-
-    <precip chance="65"> 
-        <option description="sprinkling"></option>
-        <option description="misty"></option>
-        <option description="foggy">
-            <type></type>
-            <type>lightly </type>
-            <type>moderately </type>
-            <type>heavily </type>
-        </option>
-        <option description="raining">
-            <type></type>
-            <type>lightly </type>
-            <type>moderately </type>
-            <type>heavily </type>
-        </option>
-        <option description="downpouring"></option>
-        <option description="sleeting"></option>
-        <option description="hail">
-            <type>raining small (pea size) </type>
-            <type>raining medium (walnut size) </type>
-            <type>raining large (orange size) </type>
-        </option>
-    </precip>
-    <thunder chance='20'> 
-        <option>There is thunder in the distance.</option>
-        <option>There is thunder nearby.</option>
-        <option>There is thunder overhead.</option>
-        <option>Thunder rumbles in the distance.</option>
-        <option>Thunder and lighting approach.</option>
-        <option>There is powerful storm approaching.</option>
-        <option>Lightning lights the sky.</option>
-    </thunder>
-    <clouds>
-        <option>is slightly cloudy</option>
-        <option>is cloudly</option>
-        <option>is dark with clouds</option>
-        <option>is overcast</option>
-    </clouds>
-</weather>
-
-<time>
-    <option time="06:00" public_modifier="0"  bar_mod="0"  >at daybreak</option>
-    <option time="10:00" public_modifier="2"  bar_mod="2"  >mid-morning</option>
-    <option time="12:00" public_modifier="4"  bar_mod="4"  >around noon</option>
-    <option time="02:00" public_modifier="3"  bar_mod="2"  >in the afternoon</option>
-    <option time="04:00" public_modifier="2"  bar_mod="4"  >mid-day</option>
-    <option time="06:00" public_modifier="1"  bar_mod="6"  >in the early evening</option>
-    <option time="08:00" public_modifier="0"  bar_mod="8"  >before nightfall</option>
-    <option time="10:00" public_modifier="-1" bar_mod="10" >after nightfall</option>
-    <option time="00:00" public_modifier="-3" bar_mod="8"  >at midnight</option>
-    <option time="02:00" public_modifier="-4" bar_mod="4"  >in the dead of night</option>
-    <option time="04:00" public_modifier="-2" bar_mod="0"  >before dawn</option>
-</time>
 
 <laws>
     <enforcer>
@@ -807,60 +659,14 @@
 </laws>
 
 <crime>
-    <option min="1"   max="10">unheard of</option>
-    <option min="11"  max="30">rare</option>
-    <option min="31"  max="50">unusual</option>
-    <option min="51"  max="70">occasional</option>
-    <option min="71"  max="90">common</option>
-    <option min="91"  max="100">rampant</option>
+    <option min="1"   max="10">rampant</option>
+    <option min="11"  max="30">common</option>
+    <option min="31"  max="50">occasional</option>
+    <option min="51"  max="70">unusual</option>
+    <option min="71"  max="90">rare</option>
+    <option min="91" max="100">unheard of</option>
 </crime>
 
-
-<events>
-    <event type="festival">
-        <option>a religious </option>
-        <option>a trade </option>
-    </event>
-    <event type="celebration">
-        <option>a birthday </option> 
-        <option>a wedding </option> 
-        <option>a new year </option> 
-        <option>a holiday </option> 
-        <option>a victory </option> 
-    </event>
-    <event type="trial">
-        <option>a murder </option>
-        <option>a witch </option>
-        <option>a spy </option>
-        <option>a briggand </option>
-        <option>a thief </option>
-    </event>
-    <event type="war">
-        <option>preparations for </option>
-        <option>on ongoing </option>
-        <option>the aftermath of a </option> 
-    </event>
-    <event type="raid">
-        <option>the midst of a </option>
-        <option>the aftermath of a </option>
-    </event>
-    <event type="hunt">
-        <option>lost child </option>
-        <option>wandering monster </option>
-        <option>escaped prisoner </option>
-        <option>food </option>
-    </event>
-    <event type="disaster">
-        <option>tornado </option>
-        <option>flood </option>
-        <option>earthquake </option>
-        <option>massive storm </option>
-        <option>tarrasque </option>
-        <option>genocide </option>
-        <option>riots </option>
-        <option>drought </option>
-    </event>
-</events>
 
 <markets>
     <option type="guild" chance="62" marketname="Thieves" secret="100">
@@ -929,151 +735,10 @@
 </markets>
 
 
-<secondarypower>
-    <plot>openly assists</plot>
-    <plot>openly denounces</plot>
-    <plot>quietly denounces</plot>
-    <plot>quietly assists</plot>
-    
-    <power type="a dragon" subplot_chance="50">
-        <subplot>wishing to enslave the city</subplot>
-        <subplot>watching out for the common man</subplot>
-        <subplot>despising the current leader</subplot>
-        <subplot>agreeing with the current leader</subplot>
-    </power>
-    <power type="a wizard" subplot_chance="50">
-        <subplot>attempting to attain immortality</subplot>
-        <subplot>watching out for the common man</subplot>
-        <subplot>despising the current leader</subplot>
-        <subplot>agreeing with the current leader</subplot>
-    </power>
-    <power type="a merchant guild" subplot_chance="50">
-        <subplot>attempting to buy influence</subplot>
-        <subplot>attempting to sell influence</subplot>
-        <subplot>pushing for war with trade adversary</subplot>
-        <subplot>pushing to open trade with adversary</subplot>
-    </power>
-    <power type="an elected representative" subplot_chance="50">
-        <subplot>using position for personal gain</subplot>
-        <subplot>amassing power</subplot>
-    </power>
-    <power type="an advisor" subplot_chance="50">
-        <subplot>pulling strings for personal gain</subplot>
-        <subplot>blackmailing the government</subplot>
-        <subplot>working for enemies</subplot>
-    </power>
-    <power type="a prophet" subplot_chance="50">
-        <subplot>attempting to lead religious revolution</subplot>
-        <subplot>denying legitimacy of leading power</subplot>
-        <subplot>calling for genocide of a minority</subplot>
-    </power>
-    <power type="a thieves guild" subplot_chance="50">
-        <subplot>moving to assert black market dominance</subplot>
-        <subplot>backing leading power for leiniency</subplot>
-    </power>
-    <power type="traveler" subplot_chance="50">
-        <subplot>looking to bring justice</subplot>
-        <subplot>looking to overthrow the government</subplot>
-    </power>
-    <power type="an ex-blacksmith" subplot_chance="50">
-        <subplot>plotting to overthrow the corrupt leadership for personal gain</subplot>
-        <subplot>being blackmailed by a guild</subplot>
-        <subplot>pulling strings with a trade adversary</subplot>
-    </power>
-    <power type="a barbarian" subplot_chance="50">
-        <subplot>plotting to start war with another nation</subplot>
-        <subplot>being manipulated by the denizens of the city whore house</subplot>
-        <subplot>wishing to rule with a violent, iron fist</subplot>
-    </power>
-    <power type="a recluse" subplot_chance="50">
-        <subplot>pulling strings for personal gain</subplot>
-        <subplot>a fiend in disguise</subplot>
-        <subplot>an angel in disguise</subplot>
-        <subplot>a dragon in disguise</subplot>
-        <subplot>a god in disguise</subplot>
-        <subplot>a feind that secretly looks out for the good of the common man</subplot>
-        <subplot>an angel that seeks to enslave the common man</subplot>
-    </power>
-</secondarypower>
 
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
 <!--  ###########################################################################  -->
-
-<taverns trailer_chance="30" >
-    <title>Drunken</title>
-    <title>Angry</title>
-    <title>Green</title>
-    <title>Black</title>
-    <title>White</title>
-    <title>Blue</title>
-    <title>Wet</title>
-    <title>Ugly</title>
-    <title>Prancing</title>
-    <title>Hungry</title>
-    <title>Empty</title>
-    <title>Salty</title>
-    <title>Greasy</title>
-    <title>Broken</title>
-
-    <root>Dragon</root>
-    <root>Maiden</root>
-    <root>Wench</root>
-    <root>Bucket</root>
-    <root>Dog</root>
-    <root>Frog</root>
-    <root>Bag</root>
-    <root>Crate</root>
-    <root>Monkey</root>
-    <root>Princess</root>
-    <root>Pony</root>
-    <root>Giant</root>
-    <root>Urchin</root>
-
-    <trailer>Saloon</trailer>
-    <trailer>Inn</trailer>
-    <trailer>Bar</trailer>
-    <trailer>Tavern</trailer>
-    <trailer>Alehouse</trailer>
-    <trailer>Roadhouse</trailer>
-    <trailer>Taproom</trailer>
-
-    <size cost_mod="2"  pop_mod="1" >small</size>
-    <size cost_mod="0"  pop_mod="2" >average</size>
-    <size cost_mod="-2" pop_mod="4" >large</size>
-    <condition cost_mod="-3">filthy</condition>
-    <condition cost_mod="-2">dirty</condition>
-    <condition cost_mod="-1">seedy</condition>
-    <condition cost_mod="0">decent</condition>
-    <condition cost_mod="1">respectable</condition>
-    <condition cost_mod="2">upscale</condition>
-    <condition cost_mod="4" >beloved</condition>
-    <class cost_mod="-4" min='1'  max='25'  >poor</class>
-    <class cost_mod="-2" min='26' max='45'  >low-class</class>
-    <class cost_mod="0"  min='46' max='85'  >middle-class</class>
-    <class cost_mod="2"  min='86' max='95'  >high-class</class>
-    <class cost_mod="4"  min='96' max='100' >wealthy</class>
-    <violence >ignoring it</violence>
-    <violence >throwing the loser out</violence>
-    <violence >swift justice</violence>
-    <violence >calling the city watch</violence>
-    <legal>harasses</legal>
-    <legal>ignores</legal>
-    <legal>accepts bribes from</legal>
-    <legal>protects</legal>
-    <entertainment limit="2">
-        <option>whores</option>
-            <option>Poker</option>
-            <option>Craps</option>
-            <option>Blackjack</option>
-            <option>Dice</option>
-    </entertainment>
-    <cost min='-5' max='-4'>insanely cheap</cost>
-    <cost min='-3' max='-2'>well priced</cost>
-    <cost min='-1' max='1'>reasonably priced</cost>
-    <cost min='2' max='3'>somewhat expensive</cost>
-    <cost min='4' max='5'>insanely expensive</cost>
-</taverns>
 
 <behavioraltraits>
     <trait type="accusatory"        > </trait>
@@ -1234,133 +899,139 @@
         <adjective>virtuous</adjective>
     </option>
 </moralalignment>
+<arable_description>
+    <option type="poor" min='1' max='33'>
+        <option>desolate</option>
 
-<economyalignment>
-    <option type="positive" min='2'    >
-        <adjective>vibrant</adjective>
-        <adjective>healthy</adjective>
-        <adjective>good</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>lively</adjective>
-        <adjective>growing</adjective>
+    </option>
+    <option type="neutral" min='34' max='66'>
+        <option>modest</option>
+
+    </option>
+    <option type="rich" min='67' >
+        <option>fertile</option>
+    </option>
+</arable_description>
+<!-- ============================================================== -->
+
+
+<education_description>
+    <option type="positive" min='2'      >
+        <option>high</option>
+        <option>expected</option>
+        <option>enforced</option>
+        <option>flourishing</option>
+        <option>growing</option>
     </option>
     <option type="neutral" min='-1' max='1'>
-        <adjective>stable</adjective>
-        <adjective>insulated</adjective>
-        <adjective>calm</adjective>
-        <adjective>unwavering</adjective>
-        <adjective>resiliant</adjective>
-        <adjective>steadfast</adjective>
-        <adjective>steady</adjective>
+        <option>instutionalized</option>
+        <option>middling</option>
+        <option>mediocre</option>
+        <option>allowed, but not enforced</option>
+    </option>
+    <option type="negative"         max='-2'>
+        <option>mocked</option>
+        <option>low</option>
+        <option>poor</option>
+        <option>rare</option>
+    </option>
+</education_description>
+<authority_description>
+    <option type="positive" min='2' >
+        <option>is very authoritarian</option>
+        <option>is very strict</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>is neutral towards</option>
+        <option>ignores</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>is chaotic</option>
+        <option>is a mess</option>
+    </option>
+</authority_description>
+<magic_description>
+    <option type="positive" min='2'      >
+        <option>common</option>
+        <option>plentiful</option>
+        <option>accepted</option>
+        <option>flourishing</option>
+        <option>growing</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>instutionalized</option>
+        <option>rare but accepted</option>
+        <option>allowed</option>
+    </option>
+    <option type="negative"         max='-2'>
+        <option>not a factor</option>
+        <option>rarely used</option>
+        <option>rare</option>
+    </option>
+</magic_description>
+<military_description>
+    <option type="positive" min='2' >
+        <option>positive</option>
+        <option>reverent</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>neutral</option>
+        <option>laid back</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>disinterested</option>
+        <option>negative</option>
+    </option>
+</military_description>
+<tolerance_description>
+    <option type="positive" min='2' >
+        <option>is accepting of</option>
+        <option>accepts</option>
+        <option>loves</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>is neutral towards</option>
+        <option>ignores</option>
+    </option>
+    <option type="negative"  max='-2'>
+        <option>is critical of</option>
+        <option>despises</option>
+        <option>hates</option>
+    </option>
+</tolerance_description>
+<economy_description>
+    <option type="positive" min='2'    >
+        <option>vibrant</option>
+        <option>healthy</option>
+        <option>good</option>
+        <option>flourishing</option>
+        <option>lively</option>
+        <option>growing</option>
+    </option>
+    <option type="neutral" min='-1' max='1'>
+        <option>stable</option>
+        <option>insulated</option>
+        <option>calm</option>
+        <option>unwavering</option>
+        <option>resiliant</option>
+        <option>steadfast</option>
+        <option>steady</option>
     </option>
     <option type="negative"      max='-2'>
-        <adjective>weak</adjective>
-        <adjective>failing</adjective>
-        <adjective>shaky</adjective>
-        <adjective>uncertain</adjective>
-        <adjective>crumbling</adjective>
+        <option>weak</option>
+        <option>failing</option>
+        <option>shaky</option>
+        <option>uncertain</option>
+        <option>crumbling</option>
     </option>
-</economyalignment>
+</economy_description>
 
-<militaryalignment>
-    <option type="positive" min='2' >
-        <adjective>positive</adjective>
-        <adjective>reverent</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>neutral</adjective>
-        <adjective>laid back</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>disinterested</adjective>
-        <adjective>negative</adjective>
-    </option>
-</militaryalignment>
+<!-- ============================================================== -->
 
-<tolerancealignment>
-    <option type="positive" min='2' >
-        <adjective>is accepting of</adjective>
-        <adjective>accepts</adjective>
-        <adjective>loves</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>is neutral towards</adjective>
-        <adjective>ignores</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>is critical of</adjective>
-        <adjective>despises</adjective>
-        <adjective>hates</adjective>
-    </option>
-</tolerancealignment>
-<travelalignment>
-    <option type="positive" min='2' >
-        <adjective>is a travel hub</adjective>
-        <adjective>has many travelers</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>has some travelers</adjective>
-        <adjective>has occasional travelers</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>has few travelers</adjective>
-        <adjective>has no travelers</adjective>
-    </option>
-</travelalignment>
-<authorityalignment>
-    <option type="positive" min='2' >
-        <adjective>is very authoritarian</adjective>
-        <adjective>is very strict</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>is neutral towards</adjective>
-        <adjective>ignores</adjective>
-    </option>
-    <option type="negative"  max='-2'>
-        <adjective>is chaotic</adjective>
-        <adjective>is a mess</adjective>
-    </option>
-</authorityalignment>
-<educationalignment>
-    <option type="positive" min='2'      >
-        <adjective>high</adjective>
-        <adjective>expected</adjective>
-        <adjective>enforced</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>growing</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>instutionalized</adjective>
-        <adjective>middling</adjective>
-        <adjective>mediocre</adjective>
-        <adjective>allowed, but not enforced</adjective>
-    </option>
-    <option type="negative"         max='-2'>
-        <adjective>mocked</adjective>
-        <adjective>low</adjective>
-        <adjective>poor</adjective>
-        <adjective>rare</adjective>
-    </option>
-</educationalignment>
-<magicalignment>
-    <option type="positive" min='2'      >
-        <adjective>common</adjective>
-        <adjective>plentiful</adjective>
-        <adjective>accepted</adjective>
-        <adjective>flourishing</adjective>
-        <adjective>growing</adjective>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <adjective>instutionalized</adjective>
-        <adjective>rare but accepted</adjective>
-        <adjective>allowed</adjective>
-    </option>
-    <option type="negative"         max='-2'>
-        <adjective>not a factor</adjective>
-        <adjective>rarely used</adjective>
-        <adjective>rare</adjective>
-    </option>
-</magicalignment>
+
+
+
+
 
 <climate>
         <option pop_support="180" >moist tropical</option>
@@ -1373,13 +1044,6 @@
         <option pop_support="100" >tundra</option>
         <option pop_support="60" >polar</option>
 </climate>
-<topography>
-    <region>mountainous</region>
-    <region>hilly</region>
-    <region>flat</region>
-    <region>glacial</region>
-    <region>sandy</region>
-</topography>
 <neighbor>
     <relation>has a neutral relationship with</relation>
     <relation>has strained relations with</relation>
@@ -1645,16 +1309,59 @@
         <option>friend</option>
         <option>distant relative</option>
     </motive>
+    <motive type="Clean out a">
+        <option>monster infestation</option>
+        <option>wealthy person</option>
+        <option>bug infestation</option>
+        <option>slum</option>
+    </motive>
+    <motive type="deliver a message to a ">
+        <option>ruler</option>
+        <option>merchant</option>
+        <option>peasant</option>
+        <option>scholar</option>
+        <option>thug</option>
+    </motive>
+    <motive type="secretly assassinate a ">
+        <option>ruler</option>
+        <option>merchant</option>
+        <option>peasant</option>
+        <option>scholar</option>
+        <option>thug</option>
+    </motive>
+    <motive type="find work as ">
+        <option>a skilled laborer</option>
+        <option>a merchant</option>
+        <option>a mercenary</option>
+        <option>a healer</option>
+        <option>a spy</option>
+    </motive>
+    <motive type="destroy ">
+        <option>an artifact</option>
+        <option>a misconception</option>
+        <option>a rumor</option>
+    </motive>
 </travelermotivation>
+<dominance chance='30'>
+    <option          max="20" >snobbish</option>
+    <option min="21" max="40" >mean</option>
+    <option min="41" max="60" >cruel</option>
+    <option min="61" max="80" >very oppressive</option>
+    <option min="81"          >brutally oppressive</option>
+</dominance>
 <sex>
     <option          max="49" pronoun='he' >a male</option>
     <option min="50" max="98" pronoun='she'>a female</option>
     <option min="99"          pronoun='it'>an androgynous</option>
 </sex>
 <housing>
-    <quality name="poor"    percent="30" density="15" required='true'/>
+    <quality name="poor"    percent="30" density="15"/>
     <quality name="average" percent="69" density="7"/>
     <quality name="wealthy"   percent="1"  density="5"/>
+
+<!-- quality descriptors: dilapidated, poor, ramshackle, etc
+
+-->
 
 
     <house_type type="small hut" value="5gp" max="5" />

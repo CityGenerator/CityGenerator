@@ -1,0 +1,167 @@
+legends.xml
+
+
+
+TODO World Generator (number of continents, number of moons, percent civilized
+
+
+#TODO it would be cool if it could rain frogs or potatoes
+#TODO treat certain data as stats, mil, auth, edu, etc.
+TODO How do I really want to weight resource allocation?
+    #TODO finish this later, possibly as CrestGenerator
+
+sub set_available_races {
+    #FIXME TODO finish this.
+
+sub generate_race_percentages {
+    my ($city) = @_;
+    #FIXME TODO finish this
+
+sub set_races {
+    my ($city) = @_;
+    #FIXME should account for existing values
+
+sub assign_race_stats {
+#TODO needs to account for existing values
+
+sub generate_streets {
+    #TODO needs to account for existing values
+
+sub generate_area {
+#TODO change to metric....
+
+ #FIXME this shouldn't be hardcoded to 5
+    $city->{'tower_count'}=5;
+
+#FIXME the agemod should skew the other way!!!
+
+
+
+# FIXME This needs to stop using our
+
+#generic generator TODO add a bound function- bound(1,100,$val)
+
+
+# We currently only care about 4 parts; FIXME to pull this list dynamically
+    foreach my $part (qw/title pre root post trailer/){
+
+
+        $tavern->{'bartender'}=NPCGenerator::create_npc();
+        #TODO flesh out npc here, need to add to NPCGenerator.
+
+
+
+Stories/legends/fables tell of a [creature] that  [did/was known for/]  [cruelty/benevolence/heroism/cowardice/strength/stealth/toughness/wisdom/intellect/charisma]. One day it was forced to make a decision, and faced consequences. Later, it was given a chance to redeem itself and [did so/ did not and perished due to]
+
+itell of a [place] that was known 
+
+
+
+
+
+
+
+Average temp
+precip
+Humidity
+wind speed
+snowfall
+sunshine
+cloudy days
+    
+    
+common natural disasters
+    
+Named buildings
+    
+Notable locations
+    
+Shopping centers
+
+Specific churches
+Parks
+
+Attractions
+    
+Population education breakdown
+    
+Sewer?
+    
+Common family names
+    
+    
+City financial status
+citizen debt
+    
+birth rate
+infant mortality
+    
+mechanism for murder
+Language breakdown
+
+
+Urban:rural breakdown
+    
+Crimes reported last year
+
+Last plague outbreak
+
+pollution
+
+
+<!-- quality descriptors: dilapidated, poor, ramshackle, etc
+
+
+merge race relations into a single paragraph
+
+
+TODO
+individual businesses renown in the region
+
+
+
+Conclusion at end of page
+
+
+
+add a school/university
+http://www.welshpiper.com/populations-for-low-fantasy-settings/
+
+
+Tower->keep->castle at the center of a city
+
+
+thought: an orderly city will have more districts
+
+
+
+thought : well known for it's tailors     increases the number of tailors
+
+known for it's merchant district increases the number of merchant buildings.
+
+
+culture and burial
+perhaps a cultureGenerator describing religions, etc
+
+
+Named City Squares- like Tarhir Square, etc.
+Features
+beyond city squares, 
+an arena, 
+a series of canals 
+a large park, 
+sloped ground
+terraced land
+
+
+
+
+
+
+
+Name generator with a div for each type of name generation
+
+Adventure generator like kjdavies listed.
+
+
+read through this: http://www.svincent.com/MagicJar/Economics/MedievalOccupations.html

@@ -1,23 +1,62 @@
 #!/usr/bin/perl -wT
 ###############################################################################
-#
+
 package GenericGenerator;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object seed);
 
+###############################################################################
 
+=head1 NAME
+
+    GenericGenerator - Base package used by other Generators
+
+=head1 SYNOPSIS
+
+    use GenericGenerator;
+    GenericGenerator::set_seed();
+
+=cut
+
+###############################################################################
+
+#TODO add a bound function- bound(1,100,$val)
+use Carp;
 use Data::Dumper;
+use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use POSIX;
+use POSIX; 
+use version;
+use Carp qw(longmess);
+###############################################################################
 
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
+
+No datafiles are directly used by GenericGenerator.
+
+=cut
 
 our $seed;
+
+
+=head1 INTERFACE
+
+
+=cut
+
+###############################################################################
+
+=head2 Core Methods
+
+The following methods are used to create the core of the city structure.
+
+
 
 
 ###############################################################################
@@ -47,14 +86,12 @@ This is what allows us to return to previously generated hosts.
 sub set_seed{
     my ($newseed)=@_;
 
-    if (defined $newseed and $newseed=~m/^(\d+)$/){
-        $newseed= $1;
-    }else{
+    if ( (!defined $newseed) or $newseed!~ m/^\d+$/x){
         $newseed = int rand(1000000);
     }
-    srand $newseed;
     $seed=$newseed;
-    return $newseed;
+    srand $seed;
+    return $seed;
 }
 
 
@@ -69,9 +106,11 @@ Select a random item from an array.
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
-    srand $seed;
-    my $index = int( rand( scalar @{ $array} ) );
-    return $array->[$index];
+    if (ref $array  ne 'ARRAY'){
+        print STDERR longmess();
+        croak "you passed in something that wasn't an array reference. @!";
+    }
+    return $array->[ rand @$array  ];
 }
 
 ###############################################################################
@@ -124,18 +163,19 @@ This serves the function of rolling a dice- a d6, d10, etc.
 sub d {
     my ($die) = @_;
     # d as in 1d6
-    if ($die =~/^\d+$/){
+    if ( $die=~ /^\d+$/x ){
         return int( rand($die)+1 );
-    }elsif ($die=~/^(\d+)d(\d+)$/){
+    }elsif ($die=~/^(\d+)d(\d+)$/x){
         my $dicecount=$1;
-        my $die=$2;
+        $die=$2;
         my $total=0;
         while ($dicecount-- >0){
             $total+=&d($die);
         }
         return $total;
     }else{
-        return 1;
+        croak "$die is not a valid dice format.";
+
     }
 }
 
@@ -192,9 +232,50 @@ sub parse_object {
             }
         }
     }
+    #FIXME Sloppy as hell but it resolves the multiplying spaces issue
+    $newobj->{'content'}=~s/\s+/ /xg;
     # return the slimmed down version
     return $newobj;
 }
 
 
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENCE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself. See L<perlartistic>.
+
+=head1 DISCLAIMER OF WARRANTY
+
+BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
+EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
+ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
+YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
+NECESSARY SERVICING, REPAIR, OR CORRECTION.
+
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
+LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
+OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
+THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
+RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
+FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
+SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+=cut

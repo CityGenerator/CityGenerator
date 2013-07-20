@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+        <title>Column Layout</title>
+        <style type="text/css">
+            @font-face {
+              font-family: 'OldNewspaper';
+              src: local('OldNewspaper'), url('/fonts/OldNewspaperTypes.ttf') format('truetype');
+            }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+@charset "UTF-8";
+body {
+  font: 11pt 'OldNewspaper';
+  background-color:#444444;
+  padding: 0 30px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+}
+header.title h1 {
+  word-spacing: -12px;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+  font: 40pt 'OldNewspaper';
+}
+header hgroup {
+  border-bottom: 1px solid #999;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+
+}
+section h2 {
+    margin-top:10px;
+    font: 18pt 'OldNewspaper';
+}
+section h3 {
+    margin-top:10px;
+    font: 12pt 'OldNewspaper';
+}
+#censusdata{
+    width:200px;
+    border:1px solid black; 
+    float:left;
+    margin:0px 10px 0px 0px;
+    padding: 0px 0px 10px 0px ;
+}
+#page {
+    
+    width:1000px;
+    margin:0 auto 0 auto;
+    background-image: url('/img/bgtexture.png');
+    background-repeat: repeat-x repeat-y;
+}
+#page_border_left {
+
+    padding-left:30px;
+    background-image: url('/img/citygen_border_left.png');
+    background-position:left; 
+    background-repeat: repeat-y;
+
+}
+#page_border_right {
+    padding-right:40px;
+    margin-left:20px;
+    background: url('/img/citygen_border_right.png');
+    background-position:right; 
+    background-repeat: repeat-y;
+}
+
+
+
+img {
+    border:0;
+    margin-top:.0em;
+}
+#citymap_small{
+    float:left;
+    margin:0px 10px 10px 0px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%); 
+    -o-filter: sepia(80%);
+}
+#regionmap_small{
+    float:right;
+    margin:0px 10px 10px 0px;
+    padding:20px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%); 
+    -o-filter: sepia(80%);
+}
+#worldmap_small{
+    float:left;
+    margin:0px 10px 10px 0px;
+    -webkit-filter: sepia(80%);
+    -moz-filter: sepia(80%);
+    -ms-filter: sepia(80%); 
+    -o-filter: sepia(80%);
+}
+
+
+.demolistfinal {
+    column-count:3;
+    -moz-column-count:3; /* Firefox */
+    -webkit-column-count:3; /* Safari and Chrome */
+
+    column-gap:0em;
+    -moz-column-gap:0em; /* Firefox */
+    -webkit-column-gap:0em; /* Safari and Chrome */
+
+    border:0px solid green;
+    margin-top:1em;
+}
+
+.demolistfinal li::before {
+    content:"\2600";
+    margin-right:0.25em;
+}
+
+.demolistfinal li {
+    list-style-type: none;
+    padding-left:0em;
+    text-indent:-1em;
+    margin-left:1.5em;
+    margin-bottom:1em;
+    border:0px solid blue;
+}
+
+
+
+
+
+        </style>
+</head>
+<body>
+    <div id="page">
+    <div id="page_border_left">
+    <div id="page_border_right">
+    <div id="page_center">
+        <div id="worldnav" style="top:0px;float:right; display:inline;padding-bottom:10px;">
+            <a href='?cityid=126305'>&lt;&lt; Last Continent</a>
+            <a href='?cityid=126395'>&lt;&lt; Last Region</a>
+            <a href='?cityid=126404'>&lt;&lt; Last City</a>
+            &nbsp;&nbsp;
+            <a href='?cityid=126406'>Next City&gt;&gt;</a>
+            <a href='?cityid=126415'>Next Region&gt;&gt;</a>
+            <a href='?cityid=126505'>Next Continent&gt;&gt;</a>
+
+        </div>
+        <br clear="all"/>
+        <header class="title">
+            <hgroup>
+                 <img src="/img/clearhall_flag.png" style="float:right;"  />
+                 <h1>Welcome to Clearhall!</h1>
+                <br clear="all"/>
+            </hgroup>
+        </header>
+
+
+         <div id="content">
+            <img src="/img/clearhall_citypmap.png" id ="citymap_small"/> 
+            <section id="summary">
+                <h2>Summary</h2>
+                    <p><b>Clearhall</b> is a growing, normal population  of around 18555 in the Bersak Province (which is overwhelmingly Halfling). The city has 9 distinct districts.</p>
+            </section>
+            <section id='geography'>
+                <h2>Geography</h2>
+                <p>This isolated large city is located in the badlands. The densly populated town proper is a octagonal 158.59 hectare region, and is supported by a 56537.95 hectare region. Local landmarks include a escarpment and lava flow. The surrounding region is sandy.<p id='neighboring_cities'></p>
+                    </section>
+                    <section id='cityscape'>
+                        <h2>Cityscape</h2>
+                        <p>There are 2 roads leading to Clearhall; 1 is major. Visitors are greeted with a massive oak enclosure that is 20 feet tall. The city wall protects the core 92.3% of the city, with 47 towers spread along the 4841 yard wall. The city is lined with smooth dirt tracks in a linear pattern.
+                        The city contains the following Districts: port, trade, professional, mercy, wealthy, shops, military, market and racial. Among housing, there are 37 wealthy residences, 2226 average homes and 186 dilapidated homes.</p>
+                        <br clear="all"/>
+
+                        <div id="censusdata" style="padding-left:20px;">
+                            <h2>Census Data</h2>
+                            <ul>
+                                <li> Population Estimate: 18,123    </li>
+                                <li> Children: 17.9% (3339)   </li>
+                                <li> Elderly: 18.1% (3340)   </li>
+                            </ul>
+                            <h3>Racial Breakdown</h3>
+                            <ul>
+                                <li>18183 Human (97.9%)</li>
+                                <li>186 Mindflayer (1%)</li>
+                                <li>186 other (1%)</li>
+                            </ul>
+                            <h3>Misc.</h3>
+                            <ul>
+                                <li>2449 Residential Buildings</li>
+                                <li>9 Districts</li>
+                                <li>925 Businesses</li>
+                                <li>3736 Specialists</li>
+                            </ul>
+                            
+                        </div>
+
+
+                    </section>
+
+                    <section id='government'>
+                        <h2>Government</h2>
+                        <p>Clearhall is ruled by the revered cult leader. Within the city there is a recluse that quietly assists current leadership. The population approves of cult leader policies in general. Freedom of religion is oppressed, and magic use is verboten. </p>
+
+                        <h3 id='crimeandpunishment'>Crime and Punishment</h3>
+                        <p>Crime is occasional. Laws are enforced by the sheriff who can be bribed. Justice is served by mob rule, with a common punishment being indentured servitude. The most common crime is treason. The imprisonment rate is 0.5% of the population (106 adult[s]).</p>
+                        <h3 id='military'>Military</h3>
+                        <p>Clearhall has a reverent attitude towards the military. Their standing army of 2320 citizens (12.51%) is at the ready, with a reserve force of 1067 (5.76%). Of the active duty military, 186 (8.02%) are special forces and 533 (22.9%) are dedicated to protecting the rest of the Bersak Province.</p><p> Under duress, a militia of 13439 (72.43%) citizens can be raised. Due to their reverent attitude and massive oak enclosure, Clearhall  properly fortified.</p><p>Clearhall fighters are revered for their use of martial arts in battle. They are considered properly skilled in battle.</p>
+                    </section>
+                <img src="/img/clearhall_regionmap.png" id ="regionmap_small"/> 
+
+                    <section id="region">
+                        <h2>Regional Affairs</h2>
+                        <p>Within the _____ region, Clearhall is larger than it's neighbors. The capital of the region is _____, which has healthy relations with Clearhall.</p>
+
+                        <p>Among it's neighbors, Clearhall has a generally positive reputation, however some neighbors have a more complex relationship:</p>
+                            <ul  class="demolistfinal">
+                                <li> Foobar is in a trade war with Clearhall </li>
+                                <li> Bondor is a close ally of Clearhall </li>
+                                <li> Goben recently lost a battle against Clearhall </li>
+                            </ul>
+                    </section>
+
+
+
+
+                    <section id='population'>
+                        <h2>Population</h2>
+                        <p>Clearhall is a nefarious and unflappable population (which is overwhelmingly Halfling). Children account for 17.9% (3339), and the elderly account for 18.1% (3340) of this ancient city. Here's the breakdown of this isolated population:</p>
+                        <ul class="demolistfinal"><li>18183 Human (97.9%)</li><li>186 Mindflayer (1%)</li><li>186 other (1%)</li></ul>
+                        <h3 id='racerelations'>Race Relations</h3>
+                        <p>Relations between races are varied by individuals, but in general:</p><ul class="demolistfinal">
+<li>The other population accepts the Human population.
+</li>
+<li>The Human population loves the Mindflayer population.
+</li>
+</ul>
+ 
+                    </section>
+
+                    <section id='economy'>
+                        <h2>Economy</h2>
+                        <p> The economy is growing, magic is rare, and education is growing.</p>
+                        <h3 id='resources'>Resources</h3>
+                            <p>Clearhall is known for the following:</p><ul class="demolistfinal"><li>amazing freshwater lakes</li><li>creepy mahogany lumbermills</li><li>crucial graphite deposits</li><li>daily alligator herds</li><li>endangered catnip fields</li><li>fishers</li><li>nearby volcanoes</li><li>now scarce lizard harvests</li><li>plentiful tin smithing</li><li>stoney black sandy beaches</li><li>unique pine  lumbermills</li></ul>
+                        <h3 id='businesses'>Businesses</h3>
+                            You can find the following businesses:<ul class='demolistfinal'><li>20 alchemist (40 specialists)</li><li>18 almshouse (53 specialists)</li><li>21 apothecary (41 specialists)</li><li>24 armorer (71 specialists)</li><li>22 astrologer (43 specialists)</li><li>22 baker (85 specialists)</li><li>5 banker (43 specialists)</li><li>28 barber (83 specialists)</li><li>3 barracks (51 specialists)</li><li>13 barrister (50 specialists)</li><li>31 blacksmith (93 specialists)</li><li>14 boat for hire (41 specialists)</li><li>19 bookseller (38 specialists)</li><li>15 bounty hunter (75 specialists)</li><li>12 bowyer (45 specialists)</li><li>9 brewer (42 specialists)</li><li>9 brothel (81 specialists)</li><li>18 butcher (86 specialists)</li><li>5 carpenter (47 specialists)</li><li>11 cartwright (43 specialists)</li><li>1 castle (48 specialists)</li><li>23 chandler (45 specialists)</li><li>12 cheesemaker (34 specialists)</li><li>23 church (136 specialists)</li><li>11 cooper (41 specialists)</li><li>8 dyer (47 specialists)</li><li>6 engineer (39 specialists)</li><li>7 entertainer (37 specialists)</li><li>11 fishmonger (33 specialists)</li><li>2 fortress (40 specialists)</li><li>17 furrier (50 specialists)</li><li>9 glassblower (50 specialists)</li><li>4 graveyard (31 specialists)</li><li>11 grocer (41 specialists)</li><li>8 healer (24 specialists)</li><li>4 interpreter (40 specialists)</li><li>12 jeweler (47 specialists)</li><li>14 laborer (135 specialists)</li><li>21 leatherworker (84 specialists)</li><li>13 library (52 specialists)</li><li>13 locksmith (50 specialists)</li><li>5 mason (41 specialists)</li><li>3 mercenary (43 specialists)</li><li>5 merchant (46 specialists)</li><li>10 messenger (46 specialists)</li><li>8 miller (44 specialists)</li><li>14 official (70 specialists)</li><li>9 orphanage (35 specialists)</li><li>14 porter (40 specialists)</li><li>20 provisioner (39 specialists)</li><li>10 rare crafts and trades (38 specialists)</li><li>11 saddler (42 specialists)</li><li>22 sage (43 specialists)</li><li>12 school (46 specialists)</li><li>3 scribe (27 specialists)</li><li>3 shipyard (48 specialists)</li><li>20 smith (78 specialists)</li><li>10 stable (37 specialists)</li><li>5 tailor/seamstress (28 specialists)</li><li>16 tanner (46 specialists)</li><li>18 tavern/inn (69 specialists)</li><li>5 teamster (46 specialists)</li><li>6 temple (54 specialists)</li><li>4 theatre (31 specialists)</li><li>17 tilemaker (49 specialists)</li><li>13 trader (39 specialists)</li><li>11 transportation (44 specialists)</li><li>9 vintner (50 specialists)</li><li>11 wagon yard (44 specialists)</li><li>46 warehouse (92 specialists)</li><li>13 weaponsmith (49 specialists)</li><li>9 weaver (36 specialists)</li><li>14 woodworker (41 specialists)</li></ul><p>Total: 925 buildings, 3736 specialists.</p>
+                        <h3 id='taverns'>Taverns</h3>
+                            <p>Taverns are often central gathering places for the citizens. You can find the following Taverns:</p>
+<ul class="demolistfinal"><li><strong>Blue Urchin  Saloon</strong> is a average, seedy tavern where the low-class gather. The bar is owned by a dwarf named Lobin Oilcloak who seems homesick. The law ignores the patrons, however most violence is handled by throwing the loser out. Goods are reasonably priced. You'll find 18 citizen(s) here.</li><li><strong>Broken Giant Saloon</strong> is a large, upscale tavern where the poor gather. The bar is owned by an elf named Ertlleu Broadnight who seems self-obsessed. The law protects the patrons, however most violence is handled by calling the city watch. Goods are reasonably priced. You'll find 16 citizen(s) here.</li><li><strong>Greasy Bag</strong> is a small, seedy tavern where the poor gather. The bar is owned by a human named Jam Chriser who seems forgetful. The law ignores the patrons, however most violence is handled by throwing the loser out. Goods are reasonably priced. You'll find 12 citizen(s) here.</li><li><strong>Green Crate</strong> is a large, respectable tavern where the high-class gather. The bar is owned by a half-dwarf named Ulnir Sunkeep who seems patriotic. The law accepts bribes from the patrons, however most violence is handled by swift justice. Goods are insanely expensive. You'll find 2 citizen(s) here.</li><li><strong>White Princess Roadhouse</strong> is a average, decent tavern where the middle-class gather. The bar is owned by a halfling named Code Hotman who seems loud. The law accepts bribes from the patrons, however most violence is handled by swift justice. Goods are somewhat expensive. You'll find 20 citizen(s) here.</li></ul>
+
+                        <h3 id='localinfo'>Local Info</h3>
+                         <p>If one were to dig around enough, they could uncover the following:</p>
+                        <ul class="demolistfinal"><li>God worshiping evil cult</li><li>magic items trade</li><li>magic items trade</li><li>secret rare art trade</li></ul> 
+                    </section>
+
+                    <section id='currentevents'>
+                        <h2>Current Events</h2>
+                        <p>You arrive before dawn, and can find 50 citizens wandering the town.</p>
+                        <h3 id='weather'>Weather</h3>
+                        <p>The sky is overcast, the air is humid, and the wind is incredibly strong. The temperature is unbearably hot and raining large (orange size) hail. </p>
+                        <h3 id='events'>Events</h3>
+                        <p>Approaching the city, you can find the following events:</p>
+                         <ul class="demolistfinal"><li>food hunt</li><li>a briggand trial</li><li>tarrasque disaster</li><li>the midst of a raid</li></ul>
+                    </section>
+
+                    <section id='people'>
+                        <h2>People</h2>
+                        <p>You can find the following people around Clearhall.</p>
+                        <h3 id='citizens'>Citizens</h3>
+                        <p>The following citizens are worth mentioning:</p><ul class="demolistfinal"><li>A random mindflayer who is known in the world as being a horribly skilled misc.. He appears self-obsessed.</li>
+<li>A random mindflayer who is known in the region as being a skilled navigator. She appears patriotic.</li>
+<li><b>Dane Matter</b> is a human who is known in the city as being a reasonably skilled good samaritan. She appears loud.</li>
+<li><b>Mick Rosenling</b> is a human who is known in the city as being a renown merchant. She appears homesick.</li>
+<li><b>Abalanai Hawkfire</b> is an oddball who is known in that part of town as being a gifted sheriff. She appears forgetful.</li>
+<li><b>Danes Whitgan</b> is an oddball who is known in the neighborhood as being a gifted lumberjack. She appears deluded.</li>
+<li><b>Dav Morne</b> is an oddball who is known in the neighborhood as being a poorly skilled specialty smith. She appears authoritarian.</li>
+<li>A random mindflayer who is known in the world as being a poorly skilled cobbler. He appears thick.</li>
+<li>A random mindflayer who is known in the region as being a renown physician. She appears revellious.</li>
+<li><b>Davey Peterewicz</b> is a human who is known in the region as being a decent herbalist. He appears nosy.</li>
+<li><b>Dan Antonhews</b> is a human who is known in the city as being a mocked potter. He appears jolly.</li>
+<li><b>Mickic VanBerson</b> is a human who is known in that part of town as being a decent priest. He appears healthy.</li>
+<li><b>Gaevarssa Hawkheart</b> is an oddball who is known in that part of town as being a decent jailer. He appears fatalistic.</li>
+</ul>
+
+                        <h3 id='travelers'>Travelers</h3>
+                        <p>The following travelers are worth mentioning:</p><ul class="demolistfinal"><li>A male half-orc. He is a wizard who has come to find a long-lost distant relative.</li>
+<li>A female hobgoblin. She is a warrior who has come to find a missing treasure.</li>
+<li><b>Bab Electrowink</b>, a female gnome. She is a bard who has come to see the city.</li>
+<li><b>Chahiaai Swiftweaver</b>, a male elf. He is a druid who has come to see the world.</li>
+<li><b>Gwavarlas Kindbough</b>, a female elf. She is a commoner who has come to do something amazing.</li>
+<li><b>Danes Whitgan</b>, a female half-dwarf. She is a ranger who has come to broker a truce.</li>
+<li><b>Dav Morne</b>, a female half-elf. She is a cleric who has come to broker a truce.</li>
+</ul>
+
+                    </section>
+
+        </div>
+        <footer>
+            <div>
+            <hr/>
+                                <sub>Note: The purpose of this tool is not to provide you with a complete, logical, feasible city- quite the contrary. The purpose is to give a DM a seed for building their own city. If things don't make sense, try to figure out the conditions that lead to that state. The intersting backstory comes from the DM excercising their imagination.</sub>
+                    <p>Follow development progress at <a href='https://plus.google.com/112661873200782342936' rel='publisher'>CityGenerator on Google+</a></p>
+
+            </div>
+        </footer>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>

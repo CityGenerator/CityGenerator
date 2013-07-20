@@ -1,0 +1,22 @@
+        <div id="worldnav">
+            [% IF worldid %]
+            <nav>
+            <a href='/worldgenerator?worldid=[% worldid - 1   %]'>&laquo; Last World</a>
+            <a href='/worldgenerator?worldid=[% worldid       %]'>[ [% worldname%] ]</a>
+            <a href='/worldgenerator?worldid=[% worldid + 1   %]'>Next World &raquo;</a>
+            </nav>
+            [% END %]
+            [% IF seed %]
+            <nav>
+            <a href='?seed=[% seed - 100 %]'>&laquo; Last Continent</a>
+            <a href='?seed=[% seed - 10  %]'>&laquo; Last Region</a>
+            <a href='?seed=[% seed - 1   %]'>&laquo; Last City</a>
+            <a href='?seed=[% seed       %]'>[ [% cityname%] ]</a>
+            <a href='?seed=[% seed + 1   %]'>Next City &raquo;</a>
+            <a href='?seed=[% seed + 10  %]'>Next Region &raquo;</a>
+            <a href='?seed=[% seed + 100 %]'>Next Continent &raquo;</a>
+            </nav>
+            [% END %]
+
+        </div>
+

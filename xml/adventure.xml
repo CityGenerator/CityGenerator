@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<adventure>
+    <type>
+
+        <option> investigate </option> <!-- investigate a rumor, some ruins, or an event  -->
+        <option> negotiate </option>   <!-- negotiate between several parties, some of which are lying  -->
+        <option> attack </option>      <!-- attack for retribution, greed, etc   -->
+        <option> kill </option>        <!-- kill for a contract, assassination, etc   -->
+        <option> defeat </option>      <!-- Defeat someone to claim something  -->
+        <option> find </option>        <!-- find a missing artifact, person, clue, etc  -->
+        <option> defend </option>      <!-- defend a place, an item, a person, etc  -->
+        <option> create </option>      <!-- create an artifact, town, event, etc  -->
+        <option> decide </option>      <!-- decide the fate of someone or something based on gathered information  -->
+        <option> change </option>      <!-- change the way something is currently done  -->
+        <option> challenge </option>   <!-- challenge someone to change their ways, possibly with violence.  -->
+        <option> perform </option>     <!-- Perform a menial task for a reward- plow a field, build a barn, etc which may have complications.  -->
+    </type>
+    <reason>
+        <option>For a reward</option>
+    </reason>
+</adventure>

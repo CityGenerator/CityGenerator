@@ -1,0 +1,120 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use CGI;
+use Data::Dumper;
+use JSON;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use Template;
+use XML::Simple;
+use lib "lib/";
+use GenericGenerator;
+use CityGenerator;
+use FlagGenerator;
+our $q = CGI->new;
+
+
+my $testcityid=GenericGenerator::set_seed();
+if (defined $q->param('seed')){
+    $testcityid=$q->param('seed');
+}elsif (defined $q->param('cityid')){
+    $testcityid=$q->param('cityid');
+}elsif (defined $q->param('continent')){
+    $testcityid=$q->param('continent').'00';
+}elsif (defined $q->param('region')){
+    $testcityid=$q->param('region').'0';
+}
+my $flags;
+
+for (my $i=0 ; $i <40; $i++){
+    push @$flags, FlagGenerator::create_flag({seed=>($testcityid+$i ), 'symbol'=>{'name'=>'letter'}   });
+}
+
+
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print XMLout($flags);
+}elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print  $JSON->encode($flags);
+
+}elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $flags;
+}else {
+    print $q->header;
+    print_page($flags);
+}
+
+exit;
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+sub print_page {
+    my ($flags)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Flag '.$flags->[0]->{'seed'}."!",
+
+        'seed'          => $flags->[0]->{'seed'},
+        'content'       => print_content($flags),
+        'worldnav'      => print_worldnav($flags->[0]),
+    };
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+sub print_worldnav {
+    my ($flag)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'cityname'      => $flag->{'seed'},
+        'seed'          => $flag->{'seed'},
+    };
+    $templates->process('worldnav.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+
+
+sub print_content {
+    my ($flags) = @_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+
+    foreach my $flag (@$flags){
+        $flag->{'json'}=$JSON->encode($flag);    
+    }
+
+    my $formtmpl;
+    my $vars = {
+        'flags'          => $flags,
+    };
+    $templates->process('multiflag.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<districts>
+    <option name="civic"        chance='12' stat="authority"/>
+    <option name="embassy"      chance='5'  stat="travel" />
+    <option name="wealthy"      chance='34' stat="economy" />
+    <option name="middleclass"  chance='30' stat="economy" />
+    <option name="racial"       chance='10' stat="tolerance" />
+    <option name="fine shops"    chance='5'  stat="economy" />
+    <option name="arena"        chance='5'  stat="education" />
+    <option name="entertainment" chance='5' stat="education" />
+    <option name="poor"         chance='30' stat="economy" />
+    <option name="slums"        chance='10' stat="economy" />
+    <option name="warehouse"    chance='5'  stat="economy" />
+    <option name="industry"     chance='5'  stat="economy" />
+    <option name="trade"        chance='32'  stat="economy" />
+    <option name="professional" chance='30' stat="economy" />
+    <option name="shops"        chance='20' stat="economy" />
+    <option name="market"       chance='70' stat="economy" />
+    <option name="prison"       chance='7'  stat="authority" />
+    <option name="education"    chance='5'  stat="education" />
+    <option name="military"     chance='7'  stat="authority" />
+    <option name="mercy"        chance='20' stat="tolerance" />
+    <option name="port"         chance='0'  stat="travel" />
+</districts>

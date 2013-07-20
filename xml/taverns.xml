@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taverns trailer_chance="30" >
+    <name>
+	    <title>Drunken</title>
+	    <title>Angry</title>
+	    <title>Green</title>
+	    <title>Black</title>
+	    <title>White</title>
+	    <title>Blue</title>
+	    <title>Wet</title>
+	    <title>Ugly</title>
+	    <title>Prancing</title>
+	    <title>Hungry</title>
+	    <title>Empty</title>
+	    <title>Salty</title>
+	    <title>Greasy</title>
+	    <title>Broken</title>
+	
+	    <root>Dragon</root>
+	    <root>Maiden</root>
+	    <root>Wench</root>
+	    <root>Bucket</root>
+	    <root>Dog</root>
+	    <root>Frog</root>
+	    <root>Bag</root>
+	    <root>Crate</root>
+	    <root>Monkey</root>
+	    <root>Princess</root>
+	    <root>Pony</root>
+	    <root>Giant</root>
+	    <root>Urchin</root>
+	
+	    <trailer>Alehouse</trailer>
+		<trailer>Barroom</trailer>
+	    <trailer>Bar</trailer>
+		<trailer>Beer Garden</trailer>
+		<trailer>Bistro</trailer>
+		<trailer>Cabaret</trailer>
+	    <trailer>Canteen</trailer>
+		<trailer>Cocktail Lounge</trailer>
+		<trailer>Dive</trailer>
+		<trailer>Drinkery</trailer>
+		<trailer>Flophouse</trailer>
+		<trailer>Gin Mill</trailer>
+		<trailer>Grog Shop</trailer>
+		<trailer>Honky Tonk</trailer>
+		<trailer>Hostelry</trailer>
+	    <trailer>Inn</trailer>
+		<trailer>Lodge</trailer>
+		<trailer>Lounge</trailer>
+		<trailer>Neighborhood Bar</trailer>
+		<trailer>Neighborhood Pub</trailer>
+		<trailer>Pub</trailer>
+		<trailer>Rathskeller</trailer>
+	    <trailer>Roadhouse</trailer>
+	    <trailer>Saloon</trailer>
+		<trailer>Speakeasy</trailer>
+		<trailer>Suds</trailer>
+		<trailer>Taphouse</trailer>
+	    <trailer>Taproom</trailer>
+		<trailer>Tap</trailer>
+	    <trailer>Tavern</trailer>
+		<trailer>Watering Hole</trailer>
+    </name>
+    <size>
+        <option name="small"   cost_mod="2"  pop_mod="1" />
+        <option name="average" cost_mod="0"  pop_mod="2" />
+        <option name="large"   cost_mod="-2" pop_mod="4" />
+    </size>
+    <condition>
+        <option name="filthy"       cost_mod="-3"/>
+        <option name="dirty"        cost_mod="-2"/>
+        <option name="poor"         cost_mod="-2"/>
+        <option name="seedy"        cost_mod="-1"/>
+        <option name="low-class"    cost_mod="-1"/>
+        <option name="decent"       cost_mod="0" />
+        <option name="middle-class" cost_mod="0" />
+        <option name="respectable"  cost_mod="1" />
+        <option name="upscale"      cost_mod="2" />
+        <option name="high-class"   cost_mod="2" />
+        <option name="wealthy"      cost_mod="4" />
+    </condition>
+    <violence>
+        <option type="ignoring it"/>
+        <option type="throwing the loser out"/>
+        <option type="swift justice"/>
+        <option type="calling the city watch"/>
+    </violence>
+    <law>
+        <option type="harasses"/>
+        <option type="ignores"/>
+        <option type="accepts bribes from"/>
+        <option type="protects"/>
+    </law>
+    <entertainment >
+        <option type="whores"/>
+        <option type="poker"/>
+        <option type="craps"/>
+        <option type="blackjack"/>
+        <option type="dice"/>
+    </entertainment>
+    <cost>
+        <option min='-5' max='-4' type="insanely cheap"/>
+        <option min='-3' max='-2' type="well priced"/>
+        <option min='-1' max='1'  type="reasonably priced"/>
+        <option min='2' max='3'   type="somewhat expensive"/>
+        <option min='4' max='5'   type="insanely expensive"/>
+    </cost>
+</taverns>

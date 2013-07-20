@@ -1,126 +1,461 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<flagcolors> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
-    <color name="red" >
-        <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"/>
-        <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"/>
-        <option type="Red"               red="255" green="0"   blue="0"   symbol="R"/>
-        <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"/>
-        <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"/>
-        <meaning>
-        	<option type="vibrancy"/>
-        	<option type="revolution"/>
-        	<option type="religion"/>
-        	<option type="war"/>
-        	<option type="love"/>
-        	<option type="leadership"/>
-        </meaning>
-    </color>
-    <color name="blue" >
-        <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"/>
-        <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"/>
-        <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"/>
-        <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"/>
-        <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"/>
-        <meaning>
-        	<option type="liberty"/>
-        	<option type="determination"/>
-        	<option type="good fortune"/>
-        	<option type="truth"/>
-        	<option type="loyalty"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="green" >
-        <option type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"/>
-        <option type="Light green"       red="0"   green="204" blue="0"   symbol="V-"/>
-        <option type="Green"             red="0"   green="153" blue="0"   symbol="V"/>
-        <option type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"/>
-        <option type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"/>
-        <meaning>
-        	<option type="agriculture"/>
-        	<option type="religion"/>
-        	<option type="growth"/>
-        	<option type="prosperity"/>
-        	<option type="hope"/>
-        	<option type="endurance"/>
-        </meaning>
-    </color>
-    <color name="yellow" >
-        <option type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"/>
-        <option type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"/>
-        <option type="Yellow"            red="255" green="255" blue="0"   symbol="Y"/>
-        <option type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"/>
-        <meaning>
-        	<option type="energy"/>
-        	<option type="happiness"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="orange" >
-        <option type="Light orange"      red="255" green="153" blue="0"   symbol="O-"/>
-        <option type="Orange"            red="255" green="102" blue="0"   symbol="O"/>
-        <meaning>
-        	<option type="enthusiasm"/>
-        	<option type="distrust"/>
-        	<option type="ambition"/>
-        </meaning>
-    </color>
-    <color name="gold" >
-        <option type="Gold"              red="255" green="204" blue="51"  symbol="Au"/>
-        <meaning>
-        	<option type="prestige"/>
-        	<option type="wisdom"/>
-        	<option type="wealth"/>
-        	<option type="quality"/>
-        	<option type="generosity"/>
-        </meaning>
+<flag> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
+    <colors>
+        <color name="red" >
+            <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"  verb="love"    adverb="lovingly" />
+            <option type="Light red"         red="255" green="51"  blue="51"  symbol="R-"   verb="cherish" adverb="peacefully" />
+            <option type="Red"               red="255" green="0"   blue="0"   symbol="R"    verb="expand"  adverb="gracefully" />
+            <option type="Dark red"          red="204" green="0"   blue="0"   symbol="R+"   verb="enforce" adverb="defiantly" />
+            <option type="Very dark red"     red="153" green="0"   blue="0"   symbol="R++"  verb="march"   adverb="passionately" />
+        </color>
+        <color name="blue" >
+            <option type="Very light blue"   red="51"  green="204" blue="255" symbol="B--"  verb="protect" adverb="faithfully" />
+            <option type="Light blue"        red="51"  green="153" blue="255" symbol="B-"   verb="inspire" adverb="freely" />
+            <option type="Blue"              red="0"   green="0"   blue="255" symbol="B"    verb="enjoy"   adverb="openly" />
+            <option type="Dark blue"         red="0"   green="0"   blue="204" symbol="B+"   verb="devote"  adverb="fully" />
+            <option type="Very dark blue"    red="0"   green="0"   blue="153" symbol="B++"  verb="honor"   adverb="justly" />
+        </color>
+        <color name="green" >
+            <option type="Very light green"  red="0"   green="255" blue="51"  symbol="V--"  verb="accelerate" adverb="tomorrow" />
+            <option type="Light green"       red="0"   green="204" blue="0"   symbol="V-"   verb="grow"       adverb="quickly" />
+            <option type="Green"             red="0"   green="153" blue="0"   symbol="V"    verb="prosper"    adverb="always" />
+            <option type="Dark green"        red="0"   green="102" blue="0"   symbol="V+"   verb="hope"       adverb="appropriately" />
+            <option type="Very dark green"   red="0"   green="51"  blue="0"   symbol="V++"  verb="cultivate"  adverb="brightly" />
+        </color>
+        <color name="yellow" >
+            <option type="Very light yellow" red="255" green="255" blue="204" symbol="Y--"  verb="strengthen" adverb="joyfully" />
+            <option type="Light yellow"      red="255" green="255" blue="153" symbol="Y-"   verb="surpass"    adverb="happily" />
+            <option type="Yellow"            red="255" green="255" blue="0"   symbol="Y"    verb="entertain"  adverb="cheerfully" />
+            <option type="Dark yellow"       red="255" green="204" blue="0"   symbol="Y+"   verb="relish"     adverb="gracefully" />
+        </color>
+        <color name="orange" >
+            <option type="Light orange"      red="255" green="153" blue="0"   symbol="O-" verb="distrust" adverb="enthusiastically" />
+            <option type="Orange"            red="255" green="102" blue="0"   symbol="O"  verb="desire" adverb="ambitiously" />
+        </color>
+        <color name="gold" >
+            <option type="Gold"              red="255" green="204" blue="51"  symbol="Au" verb="purchase" adverb="wisely" />
+    
+        </color>
+    
+        <color name="grey" >
+            <option type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
+            <option type="Grey"              red="153" green="153" blue="153" symbol="G"/>
+            <option type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
+            <option type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
+        </color>
+    
+        <color name="brown" >
+            <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-" verb="endure"    adverb="safely" />
+            <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"  verb="withstand" adverb="soldily" />
+            <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+" verb="balance"   adverb="naturally" />
+        </color>
+        <color name="purple" >
+            <option type="Purple"            red="102" green="0"   blue="153" symbol="P" verb="rule" adverb="majestically" />
+        </color>
+        <color name="black" >
+            <option type="Black"             red="0"   green="0"   blue="0"   symbol="N" verb="control" adverb="purposefully" />
+        </color>
+        <color name="white" >
+            <option type="White"             red="255" green="255" blue="255" symbol="W" verb="perfect" adverb="peacefully" />
+        </color>
+    </colors>
+    <shape>
+        <option name="para">
+        </option>
+        <option name="tri">
+        </option>
+        <option name="pennant">
+        </option>
+        <option name="swallow">
+            <depth>
+		        <option>10</option>
+		        <option>20</option>
+		        <option>30</option>
+            </depth>
+        </option>
+        <option name="tongued">
+            <type>
+                <option>square</option>
+                <option>triangle</option>
+                <option>sine</option>
+                <option>scallop</option>
+            </type>
+            <count>
+		        <option>3</option>
+		        <option>5</option>
+		        <option>7</option>
+		        <option>9</option>
+		        <option>11</option>
+            </count>
+            <depth>
+		        <option>.3</option>
+		        <option>.1</option>
+		        <option>.2</option>
+            </depth>
+        </option>
+        <option name="square">        </option>
+    </shape>
 
-    </color>
-    <color name="grey" >
-        <option type="Light grey"        red="204" green="204" blue="204" symbol="G-"/>
-        <option type="Grey"              red="153" green="153" blue="153" symbol="G"/>
-        <option type="Dark grey"         red="102" green="102" blue="102" symbol="G+"/>
-        <option type="Very dark grey"    red="51"  green="51"  blue="51"  symbol="G++"/>
-    </color>
-    <color name="brown" >
-        <option type="Light brown"       red="153" green="102" blue="0"   symbol="M-"/>
-        <option type="Brown"             red="102" green="51"  blue="0"   symbol="M"/>
-        <option type="Dark brown"        red="51"  green="0"   blue="0"   symbol="M+"/>
-        <meaning>
-            <option type="nature"/>
-            <option type="strength"/>
-        </meaning>
-    </color>
-    <color name="purple" >
-        <option type="Purple"            red="102" green="0"   blue="153" symbol="P"/>
-        <meaning>
-        	<option type="majesty"/>
-        	<option type="justice"/>
-        	<option type="sovereignty"/>
-        </meaning>
-    </color>
-    <color name="black" >
-        <option type="Black"             red="0"   green="0"   blue="0"   symbol="N"/>
-        <meaning>
-        	<option type="power"/>
-        	<option type="loss"/>
-        	<option type="purpose"/>
-        	<option type="victory"/>
-        	<option type="control"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
-    <color name="white" >
-        <option type="White"             red="255" green="255" blue="255" symbol="W"/>
-        <meaning>
-        	<option type="purity"/>
-        	<option type="peace"/>
-        	<option type="harmony"/>
-        	<option type="religion"/>
-        </meaning>
-    </color>
+    <ratio>
+		<option>1</option>
+		<option>1.15</option>
+		<option>1.25</option>
+		<option>1.33</option>
+		<option>1.32</option>
+		<option>1.38</option>
+		<option>1.39</option>
+		<option>1.50</option>
+		<option>1.6</option>
+		<option>1.67</option>
+		<option>1.9</option>
+		<option>2.0</option>
+		<option>2.55</option>
+    </ratio>
+    <division>
+        <option name="none"></option>
+        <option name="quads"></option>
+        <option name="diagquads"></option>
+        <option name="diagonal">
+            <direction>
+                <option>right-to-left</option>
+                <option>left-to-right</option>
+            </direction>
+        </option>
+        <option name="stripes">
+            <side>
+                <option>vertical</option>
+                <option>horizontal</option>
+            </side>
+            <count>
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>9</option>
+                <option>13</option>
+            </count>
+            <color_count>
+                <option>2</option>
+                <option>3</option>
+            </color_count>
+        </option>
+    </division>
+    <overlay>
+        <option name="quaddiag">
+            <side>
+                <option>north</option>
+                <option>south</option>
+                <option>east</option>
+                <option>west</option>
+            </side>
+        </option>
+        <option name="quad">
+            <side>
+                <option>ne</option>
+                <option>nw</option>
+                <option>se</option>
+                <option>sw</option>
+            </side>
+        </option>
+        <option name="stripe">
+            <side>
+                <option>vertical</option>
+                <option>horizontal</option>
+            </side>
+            <count numeric="true">
+                <option>2</option>
+                <option>3</option>
+                <option>5</option>
+                <option>9</option>
+                <option>13</option>
+            </count>
+        </option>
+        <option name="slash">
+            <direction>
+                <option>right-to-left</option>
+                <option>left-to-right</option>
+            </direction>
+            <width>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.1</option>
+                <option>0.05</option>
+            </width>
+        </option>
+
+        <option name="asterisk">
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+        </option>
+        <option name="x">
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+            <width>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.1</option>
+                <option>0.05</option>
+            </width>
+        </option>
+        <option name="jack">
+            <width>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.1</option>
+                <option>0.05</option>
+            </width>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+            <horlength>
+                <option>1</option>
+            </horlength>
+            <vertlength>
+                <option>1</option>
+            </vertlength>
+            <horwidth>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.10</option>
+            </horwidth>
+            <vertwidth>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.1</option>
+                <option>0.075</option>
+                <option>0.05</option>
+            </vertwidth>
+            <horpos>
+                <option>0.5</option>
+            </horpos>
+        </option>
+        <option name="cross">
+            <vertlength>
+                <option>1</option>
+                <option>0.8</option>
+            </vertlength>
+            <vertwidth>
+                <option>0.2</option>
+                <option>0.15</option>
+                <option>0.1</option>
+                <option>0.075</option>
+                <option>0.05</option>
+            </vertwidth>
+            <horwidth>
+                <option>0.3</option>
+                <option>0.2</option>
+            </horwidth>
+            <horlength>
+                <option>0.3</option>
+                <option>0.5</option>
+                <option>0.8</option>
+                <option>0.9</option>
+                <option>1</option>
+            </horlength>
+            <horpos>
+                <option>0.33</option>
+                <option>0.5</option>
+            </horpos>
+        </option>
+
+        <option name="diamond">
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+        </option>
+        <option name="circle">
+            <outline_width>
+                <option>1</option>
+                <option>2</option>
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+            </outline_width>
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+            <radius_direction>
+                <option>horizontal</option>
+                <option>vertical</option>
+            </radius_direction>
+            <xlocation>
+                <option>-1</option>
+                <option>-.5</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </xlocation>
+            <ylocation>
+                <option>-1</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.5</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>2</option>
+            </ylocation>
+            <radius>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </radius>
+        </option>
+        <option name="rays">
+            <offset>
+                <option>0</option>
+                <option>.05</option>
+                <option>.15</option>
+                <option>.25</option>
+                <option>.33</option>
+            </offset>
+            <count>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>12</option>
+                <option>15</option>
+                <option>20</option>
+            </count>
+            <xlocation>
+                <option>-1</option>
+                <option>-.5</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.333</option>
+                <option>.5</option>
+                <option>.666</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>1.5</option>
+                <option>2</option>
+            </xlocation>
+            <ylocation>
+                <option>-1</option>
+                <option>0</option>
+                <option>.25</option>
+                <option>.5</option>
+                <option>.75</option>
+                <option>1</option>
+                <option>2</option>
+            </ylocation>
+        </option>
+    </overlay>
+    <symbol>
+        <option name="none"></option>
+        <option name="circle">
+            <outline>
+                <option>true</option>
+                <option>false</option>
+            </outline>
+            <radius_direction>
+                <option>horizontal</option>
+                <option>vertical</option>
+            </radius_direction>
+            <xlocation>
+                <option>.25</option>
+                <option>.5</option>
+            </xlocation>
+            <ylocation>
+                <option>.25</option>
+                <option>.5</option>
+            </ylocation>
+            <radius>
+                <option>.10</option>
+                <option>.15</option>
+                <option>.20</option>
+                <option>.25</option>
+            </radius>
+        </option>
+        <option name="star">
+            <points>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>8</option>
+                <option>12</option>
+                <option>20</option>
+            </points>
+            <inset>
+                <option>.25</option>
+                <option>.33</option>
+                <option>.5</option>
+            </inset>
+            <xlocation>
+                <option>.25</option>
+                <option>.5</option>
+            </xlocation>
+            <ylocation>
+                <option>.25</option>
+                <option>.5</option>
+            </ylocation>
+        </option>
+        <option name="letter">
+            <fontfamily>
+                <option>Arial Black</option>
+                <option>Comic Sans MS Bold</option>
+                <option>Courier New Bold</option>
+                <option>Courier New Bold Italic</option>
+                <option>Impact</option>
+                <option>Lucida Console</option>
+                <option>Trebuchet MS</option>
+                <option>Trebuchet MS Bold</option>
+                <option>Trebuchet MS Italic</option>
+                <option>Trebuchet MS Bold Italic</option>
+                <option>Verdana</option>
+                <option>Verdana Bold</option>
+                <option>Verdana Bold Italic</option>
+                <option>sans serif</option>
+            </fontfamily>
+            <size>
+                <option>.40</option>
+                <option>.30</option>
+                <option>.25</option>
+            </size>
+            <xlocation>
+                <option>.25</option>
+                <option>.5</option>
+            </xlocation>
+            <ylocation>
+                <option>.25</option>
+                <option>.5</option>
+            </ylocation>
+        </option>
+    </symbol>
+    <border>
+        <option name="none">       </option>
+        <option name="solid">
+            <size>
+                <option>.08</option>
+                <option>.05</option>
+                <option>.01</option>
+            </size>
+        </option>
+    </border>
 
 
-</flagcolors>
+</flag>
 

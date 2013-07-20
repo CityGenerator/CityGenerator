@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<star post_chance='30' title_chance='10'>
+    <pre>To</pre>
+    <pre>Na</pre>
+    <pre>Wo</pre>
+    <pre>Me</pre>
+    <pre>Si</pre>
+    <pre>Lu</pre>
+    <pre>Uu</pre>
+    <pre>Aba</pre>
+    <pre>Be</pre>
+    <pre>Ce</pre>
+    <pre>Kro</pre>
+
+    <root>r</root>
+    <root>k</root>
+    <root>l</root>
+    <root>j</root>
+    <root>c</root>
+    <root>x</root>
+    <root>n</root>
+
+    <post>ay</post>
+    <post>us</post>
+    <post>or</post>
+    <post>an</post>
+    <post>el</post>
+    <post>ub</post>
+    <post>uri</post>
+    <post>un</post>
+    <post>ol</post>
+    <post>on</post>
+    <post>ek</post>
+
+</star>
+

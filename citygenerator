@@ -3,35 +3,27 @@
 use strict;
 use CGI;
 use Data::Dumper;
+use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
 use XML::Simple;
-###################################################
-# Using findbin to locate our new City.pm module
 use lib "lib/";
-###################################################
-#TODO it would be cool if it could rain frogs or potatoes
-use City 'build_city', 'd', 'generate_name' ;
-
-
-my $xml = new XML::Simple;
-my $templates = Template->new({
-    INCLUDE_PATH => 'templates/',
-    INTERPOLATE  => 1,
-}) || die "$Template::ERROR\n";
-
-
-###########################################################
-# Yes, this is sloppy. I am aware, but it's also unique.
-# Unique, Ubiquitous Singletons.
+use GenericGenerator;
+use FlagGenerator;
+use CityGenerator;
+use SummaryFormatter;
+use EnvironmentFormatter;
+use CityscapeFormatter;
+use CensusDataFormatter;
+use GovtFormatter;
 our $q = CGI->new;
-our $xml_data = $xml->XMLin(   "xml/data.xml", ForceContent => 1, ForceArray  =>[]  );
-our $names_data = $xml->XMLin(   "xml/npcnames.xml", ForceContent => 1, ForceArray  =>[]  );
 
 
-my $testcityid=City::set_seed();
-if (defined $q->param('cityid')){
+my $testcityid=GenericGenerator::set_seed();
+if (defined $q->param('seed')){
+    $testcityid=$q->param('seed');
+}elsif (defined $q->param('cityid')){
     $testcityid=$q->param('cityid');
 }elsif (defined $q->param('continent')){
     $testcityid=$q->param('continent').'00';
@@ -41,683 +33,101 @@ if (defined $q->param('cityid')){
 
 
 
-
-#########################################################################
-# First thing we need to do is establish a city skeleton of information,
-# then fill it in as needed by each subsection of the sample text.
-#########################################################################
-our $city=build_city($testcityid);
-my $content= describe_city();
-
-
-#########################################################################
-# Now that $city is fleshed out, we can print it..
-#########################################################################
-
-# Show city XML
+    my $city=CityGenerator::create_city({seed=>$testcityid});
+    CityGenerator::flesh_out_city($city);
+    $city->{'flag'}=FlagGenerator::create_flag({seed=>$testcityid, 'cityname'=>$city->{'name'}});
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
-    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
+    print "<?xml version='1.0'  encoding='utf-8' ?>\n";
     print XMLout($city);
-#show city data structure
+}elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print  $JSON->encode($city);
+
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
-#show city data structure
-}elsif (defined $q->param('type') and $q->param('type') eq 'citizens' ){
-    print $q->header( 'text/plain' );
-    print Dumper $city->{'citizens'};
-# run describe city, but don't print it- useful for debugging
-}elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
-    print_page($templates,$content);
-# show the data.xml xml content
-}elsif (defined $q->param('type') and $q->param('type') eq 'source' ){
-    print $q->header( 'text/xml' );
-    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-    print XMLout($xml_data);
-# and if it doesn't match those, do the regular printing of the city.
 }else {
-    print $q->header;
-    print print_page($templates,$content);
+    print $q->header( 'text/html; charset=utf-8' );
+    print_page($city);
 }
-        
+
 exit;
 
-
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
+#################################################################################################
+#################################################################################################
+#################################################################################################
 
 sub print_page {
-    my ($tempates,$content)=@_;
+    my ($city)=@_;
 
-    my $citynav;
-    my $vars={};
-    $templates->process('citynav.tmpl', $vars, \$citynav) || die $templates->error(), "\n";
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+    my $JSON  = JSON->new->utf8;
 
-    $vars = {
-        'title'         => "<a href='?cityid=$city->{'seed'}'> $city->{'name'} ($city->{'seed'})</a>",
-        'subheader'     => describe_subheader(),
-        'content'       => $content,
-        'navigation'    => $citynav,
-        'onload'        => describe_onload(),
-        'rightnav'      => describe_right_column(),
-        'footerlinks'   => describe_footer_links(),
+    $JSON->convert_blessed(1);
+    my $json=$JSON->encode($city->{'flag'});
+
+    my $vars = {
+        'title'         => 'Welcome to '.$city->{'name'}."!",
+        'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
+        'seed'          => $city->{'seed'},
+        'onload'        => "create_flag( $json,  \"flag\");",
+
+        'content'       => print_content($city),
+        'worldnav'      => print_worldnav($city),
     };
-    my $output;
-    $templates->process('base.tmpl', $vars,\$output) || die $templates->error(), "\n";
+    $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
 
-    return $output;
+sub print_worldnav {
+    my ($city)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'cityname'      => $city->{'name'},
+        'seed'          => $city->{'seed'},
+    };
+    $templates->process('worldnav.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
 }
 
 
 
 
 
-sub describe_city {
-    my $content=describe_summary();
-    $content.=describe_geography();
-    $content.=describe_cityscape();
-    $content.=describe_government();
-    $content.=describe_population();
-    $content.=describe_economy();
-    $content.=describe_current_events();
-    $content.=describe_people();
-    return $content;
+sub print_content {
+    my ($city)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'cityname'      => $city->{'name'},
+        'seed'          => $city->{'seed'},
+        'summarytext'   => SummaryFormatter::printSummary($city),
+        'geographytext' => EnvironmentFormatter::printGeography($city),
+        'astronomytext' => EnvironmentFormatter::printAstronomy($city),
+        'climatetext'   => EnvironmentFormatter::printClimate($city),
+        'cityscapetext' => CityscapeFormatter::printCityscape($city),
+        'censusdatatext'=> CensusDataFormatter::printCensusData($city),
+        'govtdatatext'  => GovtFormatter::printGovt($city),
+        'govtcrimedatatext'=> GovtFormatter::printCrime($city),
+    };
+    $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
 }
-
-sub get_flag_colors{
-
-    my @colors=shuffle map {  $_->{'hex'} } @{ $city->{'flag'}->{'colors'} };
-    return "['". join("','",@colors)."']";
-
-}
-
-sub format_neighborRealms{
-    my $content="[";
-    foreach my $realm ( @{$city->{'realms'}} ){
-        $content.="{".
-                "seed:'".      $realm->{'id'}."',".
-                "name:'".    $realm->{'name'}."',".
-                "},\n"
-    }
-    $content.="]";
-    return $content;
-}
-
-sub format_neighbors{
-    my $content="[";
-    foreach my $neighbor ( @{$city->{'neighbors'}} ){
-        $content.="{".
-                "seed:'".      $neighbor->{'id'}."',".
-                "name:'".    $neighbor->{'name'}."',".
-                "relation:'".$neighbor->{'relation'}."',".
-                "size:'".    $neighbor->{'population'}->{'size'}."',".
-                "size_modifier:'".    $neighbor->{'size_modifier'}."'".
-            "},\n"
-    }
-    $content.="]";
-    return $content;
-}
-
-sub describe_onload{
-    my $style=print_style();
-    my $flagcolors=get_flag_colors(); 
-    my $letter = substr $city->{'name'}, 0,1;
-
-    my $regionseed=$city->{'seed'}-$city->{'seed'}%10 ;
-    my $cityID=0;
-    my $origseed=$city->{'seed'};
-    my @names;
-    while ($cityID <10){
-        my $seed= $regionseed+$cityID;
-        push @names, generate_name($seed);
-        $cityID++
-    }
-    my $names="['".join("', '",@names)."']";
-    my $districts="['".join("', '",@{ $city->{'districts'}})."']";
-    my $neighbors=format_neighbors();
-    my $neighborrealms=format_neighborRealms();
-    my $regions=$neighborrealms;
-    my $content="
-                create_flag({canvas:document.getElementById('flag') ,seed:$city->{'seed'}, letter:'$letter', colorlist:$flagcolors}); 
-                document.continentmap=new WorldMap({
-                                seed:$city->{'seed'},
-                                sites:9000,
-                                canvas:document.getElementById('bigmap'),
-                                cities:$neighbors,
-                                regions:$regions,
-                                neighborRegions:$neighborrealms,
-                                locations:[]
-
-                            });
-                document.continentmap.redrawMap(document.getElementById('bigmap'));
-                document.continentmap.setMultiplier(1/6)
-                document.continentmap.redrawMap(document.getElementById('continent'))
-                document.continentmap.setMultiplier(1)
-
-                document.continentmap.redrawRegion(document.getElementById('bigmap'))
-                document.continentmap.redrawRegion(document.getElementById('region'),1/6)
-
-               document.citymap=new CityMap({    
-                                seed:$city->{'seed'},
-                                canvas:document.getElementById('bigmap'),
-                                districts: $districts, 
-                                size:$city->{'size_modifier'}, 
-                                wallheight:$city->{'walls'}->{'height'}, 
-                                protectedpercent:$city->{'walls'}->{'protectedpercent'},
-                                coastdirection:'$city->{'location'}->{'coastdirection'}',
-                                isport:'$city->{'location'}->{'port'}',
-                                roads:$city->{'streets'}->{'roads'},
-                                mainroads:$city->{'streets'}->{'mainroads'},
-                                color:document.continentmap.currentcitycell.color
-                            });
-                print_Citylegend(document.citymap);
-                document.citymap.redraw(document.getElementById('bigmap'))
-                document.citymap.setMultiplier(1/6)
-                document.citymap.redraw(document.getElementById('city'))
-            
-";
-    return $content;
-}
-
-sub describe_right_column {
-    my $continentseed=$city->{'seed'}-$city->{'seed'}%100 ;
-    my $regionname=$city->{'realm'};
-    my $continentname=$city->{'continent'};
-    my $content="
-                <div >Official Flag:</div>
-                <canvas id='flag' style=\"border:1px solid black;\" width='180' height='150'  onclick='embiggen(this);'  > </canvas>
-
-                <div >City: $city->{'name'} <br/>
-                    <canvas id=\"city\"      style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
-                    <div id='citylegend'>     </div> </div>
-                <div >$regionname <br/>
-                    <canvas id=\"region\"    style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
-                    <div id='regionlegend'>   </div> </div>
-                <div >Continent of $continentname ($continentseed) <br/>
-                    <canvas id=\"continent\" style=\"border:1px solid black;\" width='180' height='108' onclick='embiggen(this);'></canvas>
-                    <div id='continentlegend'></div></div>
-                <div id='bigmapdiv'><canvas id=\"bigmap\" width='1080' height='650' onclick='embiggen(this);'></canvas></div>";
-    return $content;
-}
-
-sub describe_subheader {
-    my $previousid=$city->{'seed'}-1;
-    my $nextid=$city->{'seed'}+1;
-    my $previouscontinent=$city->{'seed'}-100;
-    my $nextcontinent=$city->{'seed'}+100;
-    my $previousregion=$city->{'seed'}-10;
-    my $nextregion=$city->{'seed'}+10;
-    my $content="
-                                <a href='?cityid=$previouscontinent'>&lt;&lt; Last Continent</a>
-                                <a href='?cityid=$previousregion'>&lt;&lt; Last Region</a>
-                                <a href='?cityid=$previousid'>&lt;&lt; Last City</a>
-                                &nbsp;&nbsp;
-                                <a href='?cityid=$nextid'>Next City&gt;&gt;</a>
-                                <a href='?cityid=$nextregion'>Next Region&gt;&gt;</a>
-                                <a href='?cityid=$nextcontinent'>Next Continent&gt;&gt;</a>
-                            ";
-    return $content;
-}
-
-sub describe_footer_links {
-    my $content="                
-                <p><a href='?cityid=$city->{'seed'}&type=xml'>xml version</a>    <a href='?cityid=$city->{'seed'}&type=source'>source data</a>  <a href='?cityid=$city->{'seed'}&type=dump'>raw city data</a> </p>";
-    return $content;
-}
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
-sub describe_precipitation {
-    if (defined $city->{'weather'}->{'precip'}){
-        return " and ".$city->{'weather'}->{'precip'};
-    }else{
-        return "";
-    }
-}
-sub describe_thunder {
-    if (defined $city->{'weather'}->{'thunder'}){
-        return $city->{'weather'}->{'thunder'};
-    }else{
-        return "";
-    }
-}
-
-sub describe_events{
-    return "<ul class='two-column'><li>".join('</li><li>',@{$city->{'events'}})."</li></ul>";
-
-}
-
-sub describe_current_events{
-    my $precipitation=describe_precipitation();
-    my $thunder=describe_thunder();
-    my $events=describe_events();
-    my $content="
-                    <section id='currentevents'>
-                        <h2>Current Events</h2>
-                        <p>You arrive $city->{'time'}->{'content'}, and can find $city->{'visiblepopulation'} citizens wandering the town.</p>
-                        <h3 id='weather'>Weather</h3>
-                        <p>The sky $city->{'weather'}->{'clouds'}, the air is $city->{'weather'}->{'air'}, and the wind is $city->{'weather'}->{'wind'}. The temperature is $city->{'weather'}->{'temp'}$precipitation. $thunder</p>
-                        <h3 id='events'>Events</h3>
-                        <p>Approaching the city, you can find the following events:</p>
-                         $events
-                    </section>
-";
-    return $content;
-}
-sub describe_citizens{
-    my $content="None are of note.";
-    if (scalar @{$city->{'citizens'}} >0){
-        $content="<p>The following citizens are worth mentioning:</p><ul class='one-column'>";
-        foreach my $citizen ( @{$city->{'citizens'}} ){
-            $content.="<li>";
-            if ( defined $citizen->{'fullname'}){
-                $content.="<b>".$citizen->{'fullname'}."</b> is ".$citizen->{'race_article'}." ".lc($citizen->{'race'})." ";
-            }
-            
-            $content.="who is known in ".$citizen->{'reputation_scope'}." as being a ".$citizen->{'skill'}." ".$citizen->{'profession'}.". ";
-            $content.=ucfirst($citizen->{'sex'}->{'pronoun'})." appears ".$citizen->{'behavior'}.".";
-            
-            $content.="</li>\n";
-        }
-        $content.="</ul>\n";
-    }
-    return $content;
-}
-sub describe_traveler{
-    my $content="None are of note.";
-    if (scalar @{$city->{'travelers'}} >0){
-        $content="<p>The following travelers are worth mentioning:</p><ul class='one-column'>";
-        foreach my $traveler ( @{$city->{'travelers'}} ){
-            $content.="<li>";
-            if ( defined $traveler->{'fullname'}){
-                $content.="<b>".$traveler->{'fullname'}."</b>, ".$traveler->{'sex'}->{'content'}." ".lc($traveler->{'race'}).". ";
-            } else {
-                $content.=ucfirst($traveler->{'sex'}->{'content'})." ".lc($traveler->{'race'}).". ";
-            }
-            $content.=ucfirst($traveler->{'sex'}->{'pronoun'})." is ".$traveler->{'article'}." ".lc($traveler->{'class'})." who has come to ".$traveler->{'motivation'}.".";
-            $content.="</li>\n";
-        }
-        $content.="</ul>\n";
-    }
-    return $content;
-}
-
-
-
-sub describe_people{
-    my $citizens=describe_citizens();
-    my $travelers=describe_traveler();
-    my $content="
-                    <section id='people'>
-                        <h2>People</h2>
-                        <p>You can find the following people around $city->{'name'}.</p>
-                        <h3 id='citizens'>Citizens</h3>
-                        $citizens
-                        <h3 id='travelers'>Travelers</h3>
-                        $travelers
-                    </section>
-";
-    return $content;
-}
-
-
-
-#######################################################################################################################
-#######################################################################################################################
-sub describe_populations{
-    my @populations;
-    foreach my $race ( reverse sort {$a->{'percent'} <=> $b->{'percent'}} @{$city->{'races'}}  ){
-        push @populations, "$race->{'count'} $race->{'content'} ($race->{'percent'}%)";
-    }
-    return "<ul><li>".join('</li><li>',@populations)."</li></ul>";
-
-
-}
-
-sub describe_race_relations{
-    my $content="";
-    my $racecount=scalar(@{$city->{'races'}}) -1;
-    my @races= shuffle @{$city->{'races'}};
-    my $instigator= pop @races;
-    my @relations;
-    while ($racecount-- > 0 and  scalar(@races) >0){
-        my $victim= pop @races;
-        push @relations, "The $instigator->{'content'} population $instigator->{'tolerancedescription'} the $victim->{'content'} population.\n";
-        unshift @races, $instigator;
-        $instigator=$victim;
-    }
-    $content.="<p>Relations between races are varied by individuals, but in general:</p>";
-    $content.= "<ul class='one-column'>\n<li>".join("</li>\n<li>",@relations)."</li>\n</ul>\n";
-    return $content;
-}
-
-sub describe_population{
-    my $populations=describe_populations();
-    my $racerelations=describe_race_relations();
-    my $content="
-                    <section id='population'>
-                        <h2>Population</h2>
-                        <p>$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. Children account for $city->{'population'}->{'children'}->{'percent'}% ($city->{'population'}->{'children'}->{'population'}), and the elderly account for $city->{'population'}->{'elderly'}->{'percent'}% ($city->{'population'}->{'elderly'}->{'population'}) of this $city->{'cityage'}->{'content'} city. Here's the breakdown of this $city->{'poptype'} population:</p>
-                        $populations
-                        <h3 id='racerelations'>Race Relations</h3>
-                        $racerelations 
-                    </section>
-";
-
-}
-#######################################################################################################################
-#######################################################################################################################
-
-sub describe_resources {
-    my @resources;
-    #return Dumper $city->{'resource'};
-    foreach my $resource (sort {$a->{'content'} cmp $b->{'content'}} @{$city->{'resources'}}){
-        push @resources, $resource->{'content'};
-    }
-    return "<ul><li>".join('</li><li>',@resources)."</li></ul>";
-}
-sub describe_taverns {
-    my @taverns;
-    my $tavernpoptotal=0;
-    foreach my $tavern (sort {$a->{'name'} cmp $b->{'name'}} @{$city->{'taverns'}}){
-        my $tavernstring;
-        ($tavernstring,$tavernpoptotal) = describe_tavern($tavern,$tavernpoptotal);
-        push @taverns, $tavernstring;
-    }
-    my $content="";
-    if  (scalar(@taverns) >0 ){
-        $content.="<p>Taverns are often central gathering places for the citizens. You can find the following Taverns:</p>\n";
-        $content.="<ul class='one-column'><li>".join('</li><li>',@taverns)."</li></ul>";
-    }else{
-        $content.="<p>There are no taverns in this town.</p>\n";
-    }
-    return $content;
-}
-sub describe_tavern{
-    my ($tavern,$tavernpoptotal)=@_;
-    #max =d(12+4 )+10=26
-    my $tavernmod= &d($city->{'size_modifier'}+$tavern->{'population'})*2 + $city->{'time'}->{'bar_mod'}  ;
-
-    my $tavernpop=max(0,  min(  int($city->{'population'}->{'size'}/2),   $tavernmod  )  );
-    if ($tavernpoptotal+$tavernpop <= int($city->{'population'}->{'size'}/2)){
-        $tavern->{'pop_count'}= $tavernpop;
-        $tavernpoptotal+=$tavernpop;
-    }
-    my $name="";
-    if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
-    my $content ="<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. ";
-    $content   .="The bar is owned by $tavern->{'bartender'}->{'race_article'} ";
-    $content   .=lc($tavern->{'bartender'}->{'race'});
-    $content   .="$name who seems $tavern->{'bartender'}->{'behavior'}. ";
-    $content   .="The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. ";
-    $content   .="Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.";
-
-    return ($content, $tavernpoptotal);
-}
-
-sub describe_localinfo{
-    my $content="";
-    my @localmarket;
-    foreach my $market (  @{$city->{'markets'}}  ){
-        push @localmarket, $market->{'name'};
-    }
-    return "<ul class='one-column'><li>".join('</li><li>',@localmarket)."</li></ul>";
-    return $content;
-}
-sub describe_economy{
-    my $resources=describe_resources();
-    my $taverns=describe_taverns();
-    my $localinfo=describe_localinfo();
-    my $content="
-                    <section id='economy'>
-                        <h2>Economy</h2>
-                        <p> The economy is $city->{'economydescription'}, magic is $city->{'magicdescription'}, and education is $city->{'educationdescription'}.</p>
-                        <h3 id='resources'>Resources</h3>
-                            <p>$city->{'name'} is known for the following:</p>$resources
-                        <h3 id='taverns'>Taverns</h3>
-                            $taverns
-                        <h3 id='localinfo'>Local Info</h3>
-                         <p>If one were to dig around enough, they could uncover the following:</p>
-                        $localinfo 
-                    </section>
-";
-
-}
-
-#######################################################################################################################
-
-sub describe_secondarypower{
-    my $content=" Within the city there is ".$city->{'secondarypower'}->{'power'}. " that ".$city->{'secondarypower'}->{'plot'}." current leadership";
-    if(defined $city->{'secondarypower'}->{'subplot'} ){
-        $content.=" while secretly ".$city->{'secondarypower'}->{'subplot'};
-    }
-    return $content.".";
-}
-sub describe_approval{
-    if ($city->{'govtype'}->{'approval_mod'} <-1){
-        return "does not approve of"
-    }elsif ($city->{'govtype'}->{'approval_mod'} >1){
-        return "approves of"
-    }else{
-        return "is indifferent towards"
-    }
-}
-sub describe_freedom{
-    if ($city->{'govtype'}->{'religion'} <-1){
-        return "oppressed"
-    }elsif ($city->{'govtype'}->{'religion'} >1){
-        return "welcomed"
-    }else{
-        return "neither oppressed nor supported"
-    }
-}
-sub describe_magic{
-    if ($city->{'magic'} <-1){
-        return "verboten"
-    }elsif ($city->{'magic'} >1){
-        return "legal and common"
-    }else{
-        return "looked upon with suspicion"
-    }
-}
-sub define_tactics{
-    if (defined $city->{'tactics'}->{'content'}){
-        return " $city->{'tactics'}->{'respect'} for their $city->{'tactics'}->{'content'} and are"
-    }else{
-        return ""
-    }
-}
-
-sub describe_military{
-    my $walls=$city->{'walls'}->{'content'} ;
-    if   ( $city->{'walls'}->{'content'} eq 'none'){    
-        $walls="lack of defensible wall";
-    }
-    my $tactic=define_tactics();
-    
-    my $content="<p>$city->{'name'} has a $city->{'militarydescription'} attitude towards the military. Their standing army of $city->{'militarystats'}->{'active'} citizens ($city->{'militarystats'}->{'activepercent'}%) is at the ready, with a reserve force of $city->{'militarystats'}->{'reserve'} ($city->{'militarystats'}->{'reservepercent'}%). Of the active duty military, $city->{'militarystats'}->{'para'} ($city->{'militarystats'}->{'parapercent'}%) are special forces and $city->{'militarystats'}->{'kingdom'} ($city->{'militarystats'}->{'kingdompercent'}%) are dedicated to protecting the rest of the $city->{'realm'}.</p>";
-
-    $content.="<p> Under duress, a militia of $city->{'militarystats'}->{'militia'} ($city->{'militarystats'}->{'militiapercent'}%) citizens can be raised. Due to their $city->{'militarydescription'} attitude and $walls, $city->{'name'}  $city->{'fortification'}->{'content'} fortified.</p>";
-    $content.="<p>$city->{'name'} fighters are $city->{'weapons'}->{'respect'} for their use of $city->{'weapons'}->{'content'} in battle. They are$tactic considered $city->{'militaryskill'}->{'content'} skilled in battle.</p>";
-    return $content;
-}
-
-sub describe_government{
-    my $secondarypower=describe_secondarypower();
-    my $approval=describe_approval();
-    my $freedom=describe_freedom();
-    my $magic=describe_magic();
-    my $military=describe_military();
-    my $content="
-                    <section id='government'>
-                        <h2>Government</h2>
-                        <p>$city->{'name'} is ruled by the $city->{'govtype'}->{'respect'} $city->{'govtype'}->{'content'}.$secondarypower The population $approval $city->{'govtype'}->{'content'} policies in general. Freedom of religion is $freedom, and magic use is $magic. </p>
-
-                        <h3 id='diplomaticties'>Diplomatic Ties</h3>
-                        <p id='diplomatic_ties_text'></p>
-                        <h3 id='crimeandpunishment'>Crime and Punishment</h3>
-                        <p>Crime is $city->{'crime'}->{'content'}. Laws are enforced by the $city->{'laws'}->{'enforcer'} $city->{'laws'}->{'enforcement'}. Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is $city->{'population'}->{'imprisonment'}->{'percent'}% of the population ($city->{'population'}->{'imprisonment'}->{'population'} adult[s]).</p>
-                        <h3 id='military'>Military</h3>
-                        $military
-                    </section>
-";
-}
-sub describe_district_summary {
-    my $content="";
-    if (scalar(@{ $city->{'districts'}}) == 1){
-         $content=" The city contains a single distinct district.";
-    }elsif (scalar(@{ $city->{'districts'}}) > 1){
-         $content.=" The city has ".scalar(@{ $city->{'districts'}})." distinct districts.";
-    }
-    return $content;
-
-
-}
-
-sub describe_summary {
-    if ($city->{'dominant_race'}){$city->{'dominant_race'}=" (which is overwhelmingly ".$city->{'dominant_race'}.")"; }else{$city->{'dominant_race'}=""}
-    my $districts=describe_district_summary();
-    my $content="
-                        <h2>Summary</h2>
-
-                        <p><b>$city->{'name'}</b> is a $city->{'economydescription'}, $city->{'description'}  of around $city->{'population'}->{'size'} in the $city->{'realm'}$city->{'dominant_race'}.$districts</p>
-
-                   ";
-}
-sub describe_geography {
-    my $landmarks= print_landmarks();
-    my $port= ( $city->{'location'}->{'port'} ) ? ' and is a port town' : '';
-    my $content="
-                    <section id='geography'>
-                        <h2>Geography</h2>
-                        <p>This $city->{'poptype'} $city->{'size'} is located $city->{'location'}->{'name'}$port. The $city->{'popdensity'}->{'type'} populated town proper is $city->{'shape'} $city->{'area'} hectare region, and is supported by a $city->{'supportarea'} hectare region. $landmarks The surrounding region is $city->{'topography'}.<p id='neighboring_cities'></p>
-                    </section>
-";
-}
-sub describe_port {
-    if   ( $city->{'location'}->{'port'} ){
-        return " There is a port on the ".$city->{'location'}->{'coastdirection'}." side of the city.";
-    }
-
-}
-sub describe_walls {
-    if   ( $city->{'walls'}->{'content'} eq 'none'){
-        return " No walls currently surround the city."
-    }else{
-        return " Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall. The city wall protects the core $city->{'walls'}->{'protectedpercent'}% of the city, with $city->{'walls'}->{'towercount'} towers spread along the $city->{'walls'}->{'length'} yard wall.";
-    }
-    
-}
-sub describe_roads {
-    return " The city is lined with ". $city->{'streets'}->{ 'content'}.".";
-}
-sub describe_districts {
-    my $content="
-                <h3 id='districts'>Districts</h3>";
-    if (scalar(@{ $city->{'districts'}})>0){
-         $content.="                   The city contains the following Districts:";
-        return $content."<ul><li>".join('</li><li>',@{ $city->{'districts'}})."</li></ul>";
-    }else{
-        return $content."The city contains no districts.";
-    }
-}
-sub describe_housing {
-    my @housing;
-    foreach my $key (keys %{$city->{'housing'}}){
-        if ($key ne "total" and $key ne "abandoned"){
-            push @housing, "$key: ".$city->{'housing'}->{$key};
-        }
-    }
-    return "<ul><li>".join('</li><li>',@housing)."</li></ul> <p>Total: $city->{'housing'}->{'total'} homes, $city->{'housing'}->{'abandoned'} abandoned.</p>";
-}
-
-sub describe_businesses {
-    #TODO this should pull specialists and counts from $city, not calculate on the fly. BAD JESSE.
-    #return Dumper $city->{'business'};
-    if ( scalar( keys %{ $city->{'business'} } ) > 0 ) {
-        my @businesses;
-        my $buildingcount   = 0;
-        my $specialistcount = 0;
-        foreach my $key ( sort keys %{ $city->{'business'} } ) {
-            my $business = $city->{'business'}->{$key};
-            push @businesses, $business->{'count'} . " " . $key . " ($business->{'specialists'} specialists)";
-            $specialistcount += $business->{'specialists'};
-            $buildingcount   += $business->{'count'};
-        } ## end foreach my $key ( sort keys...)
-        return
-              "You can find the following businesses:<ul class='business-column'><li>"
-            . join( '</li><li>', @businesses )
-            . "</li></ul><p>Total: $buildingcount buildings, $specialistcount specialists.</p>";
-    } else {
-        return "The city contains no businesses.";
-    }
-} ## end sub describe_businesses
-sub describe_cityscape {
-    my $port=describe_port();
-    my $walls=describe_walls();
-    my $roads=describe_roads();
-    my $districts=describe_districts();
-    my $housing=describe_housing();
-    my $businesses=describe_businesses();
-     $city->{'streets'}->{'mainroadtext'} = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-     $city->{'streets'}->{'mainroadtext'} = $city->{'streets'}->{'mainroads'} eq "1" ? "1 is": $city->{'streets'}->{'mainroads'}." are";
-     $city->{'streets'}->{'roadtext'} = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
-    my $content="
-                    <section id='cityscape'>
-                        <h2>Cityscape</h2>
-                        <p>There $city->{'streets'}->{'roadtext'} leading to $city->{'name'}; $city->{'streets'}->{'mainroadtext'} major.$port$walls$roads</p>
-                        $districts
-                        <h3 id='housing'>Housing</h3>
-                            The city contains the following housing:$housing
-                        <h3 id='businesses'>Businesses</h3>
-                            $businesses
-                    </section>
-";
-}
-
-###############################################################################
-#
-# print_landmarks - return the landmarks in an easy-to-display sentence.
-#
-###############################################################################
-sub print_landmarks {
-    my $landmarks=$city->{'location'}->{'landmarks'};
-    if(ref($landmarks) eq 'ARRAY'){
-        if (scalar(@$landmarks) eq 1 ){
-            return "A nearby ".$landmarks->[0]." is a local landmark.";
-        
-        } elsif( scalar(@$landmarks) >1 ){
-            my $landmarklist=" and ".(pop(@{$landmarks}));
-            return "Local landmarks include a ".join(', ', @{$landmarks}) . $landmarklist .".";
-        }else{
-            return "";
-        }
-    }
-}
-
-
-###############################################################################
-#
-# print_style - a simple style to make lists pretty.
-#
-###############################################################################
-sub print_style{
-
-    return <<EOF
-        <style type='text/css'>
-        </style>
-
-
-EOF
-;
-
-}
-
-

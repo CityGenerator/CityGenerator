@@ -1,0 +1,125 @@
+<dungeon>
+
+<descriptor>Accursed</descriptor>
+<descriptor>Ancient</descriptor>
+<descriptor>Baneful</descriptor>
+<descriptor>Batrachian</descriptor>
+<descriptor>Black</descriptor>
+<descriptor>Bloodstained</descriptor>
+<descriptor>Cold</descriptor>
+<descriptor>Dark</descriptor>
+<descriptor>Devouring</descriptor>
+<descriptor>Diabolical</descriptor>
+<descriptor>Ebon</descriptor>
+<descriptor>Eldritch</descriptor>
+<descriptor>Forbidden</descriptor>
+<descriptor>Forgotten</descriptor>
+<descriptor>Haunted</descriptor>
+<descriptor>Hidden</descriptor>
+<descriptor>Lonely</descriptor>
+<descriptor>Lost</descriptor>
+<descriptor>Malevolent</descriptor>
+<descriptor>Misplaced</descriptor>
+<descriptor>Nameless</descriptor>
+<descriptor>Ophidian</descriptor>
+<descriptor>Scarlet</descriptor>
+<descriptor>Secret</descriptor>
+<descriptor>Shrouded</descriptor>
+<descriptor>Squamous</descriptor>
+<descriptor>Strange</descriptor>
+<descriptor>Tenebrous</descriptor>
+<descriptor>Uncanny</descriptor>
+<descriptor>Unspeakable</descriptor>
+<descriptor>Unvanquishable</descriptor>
+<descriptor>Unwholesome</descriptor>
+<descriptor>Vanishing</descriptor>
+<descriptor>Weird</descriptor>
+
+
+Table II
+Dice: Result
+01-02 Abyss
+03-05 Catacombs
+06-10 Caverns
+11-13 Citadel
+14-15 City
+16-17 Cyst
+18-21 Depths
+22-26 Dungeons
+27-30 Fane
+31-33 Fortress
+34-36 Halls
+37-38 Haunts
+39-40 Isle
+41-43 Keep
+44-49 Labyrinth
+50-53 Manse
+54-60 Maze
+61-62 Milieu
+63-67 Mines
+68-71 Mountain
+72-74 Oubliette
+75-77 Panopticon
+78-81 Pits
+82-84 Ruins
+85-87 Sanctum
+88-89 Shambles
+90-93 Temple
+94-95 Tower
+96-00 Vault
+
+Table III
+Dice: Result
+01-00 of
+
+Table IV
+Dice: Result
+01-02 the Axolotl
+03-04 Blood
+05-06 Bones
+07-08 Chaos
+09-11 the (Table I) Cult
+12-13 Curses
+14-15 the Dead
+16-17 Death
+18-19 Demons
+20-21 Despair
+22-23 Deviltry
+24-25 Doom
+26-27 the Dweller(s) in [01-50] the (Table II) [51-00] (Table IV)
+28-29 (Table I) Dweomercraeft
+30-31 Evil
+32-33 Fire
+34-35 Frost
+36-37 the (3-13) Geases
+38-39 Gloom
+40-41 Hells
+42-43 Horrors
+44-45 Ichor
+46-47 Id Insinuation
+48-49 the (Table I) Idol
+50-51 Iron
+52-53 Madness
+54-55 Mirrors
+56-57 Mists
+58-59 Monsters
+60-61 Mystery
+62-63 Necromancy
+64-65 Oblivion
+66-68 the (Table I) One(s)
+69-70 Peril
+71-72 Phantasms
+73-74 Random Harlots
+75-76 Secrets
+77-78 Shadows
+79-80 Sigils
+81-82 Skulls
+83-84 Slaughter
+85-86 Sorcery
+87-88 Syzygy
+89-90 Terror
+91-92 Torment
+93-94 Treasure
+95-96 the Undercity
+97-98 the Underworld
+99-00 the Unknown

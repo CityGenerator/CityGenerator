@@ -26,7 +26,7 @@ subtest 'test create_continent' => sub {
 
     $continent=ContinentGenerator::create_continent({'seed'=>12345});
     is($continent->{'seed'},12300);
-
+#FIXME need name testing
     $continent=ContinentGenerator::create_continent({'seed'=>12345, 'name'=>'test'});
     is($continent->{'seed'},12300);
     is($continent->{'name'},'test');

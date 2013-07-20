@@ -3,27 +3,27 @@
 
 package RegionGenerator;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( create_region generate_name);
+
 ###############################################################################
 
 =head1 NAME
 
     RegionGenerator - used to generate Regions
 
-=head1 DESCRIPTION
+=head1 SYNOPSIS
 
- This can be used to create a Region
+    use RegionGenerator;
+    my $region=RegionGenerator::create_region();
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( create_region generate_name);
 
 use CGI;
 use Data::Dumper;
@@ -47,8 +47,6 @@ The following datafiles are used by CityGenerator.pm:
 
 =item F<xml/npcnames.xml>
 
-=item F<xml/business.xml>
-
 =item F<xml/citynames.xml>
 
 =item F<xml/regionames.xml>
@@ -61,12 +59,11 @@ The following datafiles are used by CityGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-our $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-our $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
-our $business_data      = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
-our $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
-our $regionnames_data    = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
-our $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
+my $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
+my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
+my $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 

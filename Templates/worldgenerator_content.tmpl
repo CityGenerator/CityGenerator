@@ -1,0 +1,33 @@
+
+            <section id="summary">
+                <h2>Summary</h2>
+                [% summarytext %]
+            </section>
+             <br style="clear:left"/>
+             <div id="worlddata" >
+                 <h2>World Data</h2>
+                 [% worlddatatext %]
+             </div>
+            <section id="sky">
+                <h2>Sky</h2>
+                [% skytext %]
+            </section>
+            <section id="land">
+                <h2>Land</h2>
+                <br style="clear:right"/>
+                <canvas id="worldmap_small"      style="border:1px solid black;" width='300' height='180' onclick='embiggen(this);'></canvas>
+
+                [% landtext %]
+            </section>
+            <section id="weather">
+                <h2>Weather</h2>
+                [% weathertext %]
+            </section>
+
+    <script type="text/javascript">
+        var worldmap=new WorldMap( [% worldmapjson %], document.getElementById('worldmap_small')  );
+        worldmap.draw_borders();
+
+        
+    </script>
+
