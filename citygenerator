@@ -119,11 +119,17 @@ sub print_content {
         'cityname'      => $city->{'name'},
         'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
+
         'geographytext' => EnvironmentFormatter::printGeography($city),
-        'astronomytext' => EnvironmentFormatter::printAstronomy($city),
         'climatetext'   => EnvironmentFormatter::printClimate($city),
-        'cityscapetext' => CityscapeFormatter::printCityscape($city),
+        'astronomytext' => EnvironmentFormatter::printAstronomy($city),
+
         'censusdatatext'=> CensusDataFormatter::printCensusData($city),
+
+        'wallstext'     => CityscapeFormatter::printWalls($city),
+        'streetstext'   => CityscapeFormatter::printStreets($city),
+        #'buildingstext' => CityscapeFormatter::printBuildings($city),
+
         'govtdatatext'  => GovtFormatter::printGovt($city),
         'govtcrimedatatext'=> GovtFormatter::printCrime($city),
     };

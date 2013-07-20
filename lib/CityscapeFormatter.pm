@@ -43,7 +43,6 @@ printCityscape strips out important info from a City object and returns formatte
 sub printCityscape {
     my ($city) = @_;
     my $content;
-    $content.= "<p>".printRoads($city);
     $content.=   " ".printWalls($city);
     $content.=   " ".printStreets($city);
     $content.=   " ".printDistrictList($city);
@@ -54,26 +53,6 @@ sub printCityscape {
 }
 
 
-###############################################################################
-
-=head2 printRoads()
-
-printRoads formats details about incoming Roads to the city.
-
-=cut
-
-###############################################################################
-
-sub printRoads {
-    my ($city) = @_;
-    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-    $mainroads = $mainroads eq "1" ? "1 is": $mainroads." are";
-    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
-
-    my $content="There $roads leading to $city->{'name'}; $mainroads major.";
-
-    return $content;
-}
 
 
 ###############################################################################
@@ -109,7 +88,15 @@ printStreets formats details about streets around the city.
 
 sub printStreets {
     my ($city) = @_;
-    my $content = "The city is lined with ". $city->{'streets'}->{ 'content'}.".";
+
+    #FIXME This could be simplified with perl's Lingua modules.
+    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
+    $mainroads = $mainroads eq "1" ? "1 is": $mainroads." are";
+    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
+
+    my $content="There $roads leading to $city->{'name'}; $mainroads major.  ";
+
+    $content.= "The city is lined with ". $city->{'streets'}->{ 'content'}.".";
 
     return $content;
 }
