@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<star post_chance='30' title_chance='10'>
+    <pre>Mo</pre>
+    <pre>Dei</pre>
+    <pre>Pho</pre>
+    <pre>Gana</pre>
+    <pre>Calli</pre>
+    <pre>Hima</pre>
+    <pre>Ela</pre>
+    <pre>Sino</pre>
+    <pre>The</pre>
+    <pre>Cha</pre>
+    <pre>Spo</pre>
+    <pre>Pro</pre>
+
+    <root>ro</root>
+    <root>ka</root>
+    <root>di</root>
+    <root>do</root>
+    <root>la</root>
+    <root>ta</root>
+    <root>le</root>
+    <root>me</root>
+
+    <post>bos</post>
+    <post>mos</post>
+    <post>pa</post>
+    <post>sto</post>
+    <post>pe</post>
+    <post>ke</post>
+    <post>lite</post>
+    <post>dene</post>
+    <post>noe</post>
+    <post>se</post>
+    <post>thys</post>
+    <post>dus</post>
+    <post>pso</post>
+    <post>theus</post>
+
+</star>
+

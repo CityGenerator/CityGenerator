@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<events>
+    <event name="festival">
+        <option>a religious</option>
+        <option>a trade</option>
+   </event>
+    <event name="celebration">
+        <option>a birthday</option> 
+        <option>a wedding</option> 
+        <option>a new year</option> 
+        <option>a holiday</option> 
+        <option>a victory</option> 
+   </event>
+    <event name="trial">
+        <option>a murder</option>
+        <option>a witch</option>
+        <option>a spy</option>
+        <option>a briggand</option>
+        <option>a thief</option>
+   </event>
+    <event name="war">
+        <option>preparations for</option>
+        <option>on ongoing</option>
+        <option>the aftermath of a</option> 
+   </event>
+    <event name="raid">
+        <option>the midst of a</option>
+        <option>the aftermath of a</option>
+   </event>
+    <event name="hunt">
+        <option>lost child</option>
+        <option>wandering monster</option>
+        <option>escaped prisoner</option>
+        <option>food</option>
+   </event>
+    <event name="disaster">
+        <option>tornado</option>
+        <option>flood</option>
+        <option>earthquake</option>
+        <option>massive storm</option>
+        <option>tarrasque</option>
+        <option>genocide</option>
+        <option>riots</option>
+        <option>drought</option>
+   </event>
+</events>
+

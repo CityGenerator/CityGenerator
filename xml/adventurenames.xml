@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<adventurename>
+    <pattern adjective_chance="30" adverb_chance="30" article_chance="30" >
+
+        <option >VERB SUBJECT</option>
+        <option >NEGATE VERB SUBJECT</option>
+        <option >ADJECTIVE SUBJECT</option>
+        <option >SUBJECT VERB.participle</option>
+        <option >SUBJECT VERB.thirdperson</option>
+        <option >SUBJECT of SUBJECT</option>
+        <option >SUBJECT</option>
+        <option >SUBJECT's SUBJECT</option>
+        <option >SUBJECT VERB.thirdperson SUBJECT</option>
+        <option >VERB.gerund SUBJECT</option>
+
+    </pattern>
+    <article>
+        <option>a</option>
+        <option>the</option>
+    </article>
+
+    <adverb>
+		<option base="abnormally"      />
+		<option base="almost"          />
+		<option base="always"          />
+		<option base="arrogantly"      />
+		<option base="bitterly"        />
+		<option base="blindly"         />
+		<option base="blissfully"      />
+		<option base="boastfully"      />
+		<option base="boldly"          />
+		<option base="briefly"         />
+		<option base="carefully"       />
+		<option base="carelessly"      />
+		<option base="cautiously"      />
+		<option base="cleverly"        />
+		<option base="colorfully"      />
+		<option base="continually"     />
+		<option base="coolly"          />
+		<option base="courageously"    />
+		<option base="crossly"         />
+		<option base="cruelly"         />
+		<option base="curiously"       />
+		<option base="daintily"        />
+		<option base="dearly"          />
+		<option base="deceivingly"     />
+		<option base="defiantly"       />
+		<option base="deliberately"    />
+		<option base="easily"          />
+		<option base="elegantly"       />
+		<option base="energetically"   />
+		<option base="enormously"      />
+		<option base="evenly"          />
+		<option base="exactly"         />
+		<option base="excitedly"       />
+		<option base="fairly"          />
+		<option base="faithfully"      />
+		<option base="famously"        />
+		<option base="fatally"         />
+		<option base="ferociously"     />
+		<option base="fervently"       />
+		<option base="fiercely"        />
+		<option base="fondly"          />
+		<option base="foolishly"       />
+		<option base="frantically"     />
+		<option base="freely"          />
+		<option base="frightfully"     />
+		<option base="furiously"       />
+		<option base="generously"      />
+		<option base="gently"          />
+		<option base="gleefully"       />
+		<option base="gracefully"      />
+		<option base="gratefully"      />
+		<option base="greedily"        />
+		<option base="hastily"         />
+		<option base="heavily"         />
+		<option base="highly"          />
+		<option base="honestly"        />
+		<option base="hopelessly"      />
+		<option base="hungrily"        />
+		<option base="immediately"     />
+		<option base="innocently"      />
+		<option base="inquisitively"   />
+		<option base="instantly"       />
+		<option base="intensely"       />
+		<option base="irritably"       />
+		<option base="joyfully"        />
+		<option base="jovially"        />
+		<option base="jubilantly"      />
+		<option base="judgementally"   />
+		<option base="justly"          />
+		<option base="keenly"          />
+		<option base="knowingly"       />
+		<option base="knowledgeably"   />
+		<option base="kookily"         />
+		<option base="lazily"          />
+		<option base="lightly"         />
+		<option base="lively"          />
+		<option base="longingly"       />
+		<option base="loosely"         />
+		<option base="lovingly"        />
+		<option base="loudly"          />
+		<option base="loyally"         />
+		<option base="madly"           />
+		<option base="majestically"    />
+		<option base="meaningfully"    />
+		<option base="mechanically"    />
+		<option base="merrily"         />
+		<option base="miserably"       />
+		<option base="mockingly"       />
+		<option base="mortally"        />
+		<option base="mostly"          />
+		<option base="mysteriously"    />
+		<option base="naturally"       />
+		<option base="nearly"          />
+		<option base="neatly"          />
+		<option base="nervously"       />
+		<option base="noisily"         />
+		<option base="obediently"      />
+		<option base="obnoxiously"     />
+		<option base="oddly"           />
+		<option base="offensively"     />
+		<option base="officially"      />
+		<option base="only"            />
+		<option base="openly"          />
+		<option base="optimistically"  />
+		<option base="overconfidently" />
+		<option base="painfully"       />
+		<option base="partially"       />
+		<option base="patiently"       />
+		<option base="perfectly"       />
+		<option base="playfully"       />
+		<option base="politely"        />
+		<option base="poorly"          />
+		<option base="potentially"     />
+		<option base="powerfully"      />
+		<option base="promptly"        />
+		<option base="properly"        />
+		<option base="punctually"      />
+		<option base="queasily"        />
+		<option base="queerly"         />
+		<option base="questionably"    />
+		<option base="quickly"         />
+		<option base="quietly"         />
+		<option base="quirkily"        />
+		<option base="quizzically"     />
+		<option base="rapidly"         />
+		<option base="rarely"          />
+		<option base="readily"         />
+		<option base="recklessly"      />
+		<option base="regularly"       />
+		<option base="reluctantly"     />
+		<option base="repeatedly"      />
+		<option base="righteously"     />
+		<option base="rightfully"      />
+		<option base="rigidly"         />
+		<option base="roughly"         />
+		<option base="rudely"          />
+		<option base="sadly"           />
+		<option base="safely"          />
+		<option base="scarcely"        />
+		<option base="seemingly"       />
+		<option base="selfishly"       />
+		<option base="separately"      />
+		<option base="seriously"       />
+		<option base="shakily"         />
+		<option base="sharply"         />
+		<option base="sheepishly"      />
+		<option base="shrilly"         />
+		<option base="slowly"          />
+		<option base="smoothly"        />
+		<option base="softly"          />
+		<option base="solidly"         />
+		<option base="stealthily"      />
+		<option base="sternly"         />
+		<option base="successfully"    />
+		<option base="suddenly"        />
+		<option base="surprisingly"    />
+		<option base="suspiciously"    />
+		<option base="sweetly"         />
+		<option base="swiftly"         />
+		<option base="sympathetically" />
+		<option base="tenderly"        />
+		<option base="tensely"         />
+		<option base="terribly"        />
+		<option base="thankfully"      />
+		<option base="thoroughly"      />
+		<option base="thoughtfully"    />
+		<option base="tightly"         />
+		<option base="triumphantly"    />
+		<option base="truthfully"      />
+		<option base="unabashedly"     />
+		<option base="unaccountably"   />
+		<option base="unbearably"      />
+		<option base="unethically"     />
+		<option base="unexpectedly"    />
+		<option base="unfortunately"   />
+		<option base="unimpressively"  />
+		<option base="unnaturally"     />
+		<option base="unnecessarily"   />
+		<option base="upliftingly"     />
+		<option base="urgently"        />
+		<option base="uselessly"       />
+		<option base="vainly"          />
+		<option base="valiantly"       />
+		<option base="viciously"       />
+		<option base="victoriously"    />
+		<option base="violently"       />
+		<option base="vivaciously"     />
+		<option base="voluntarily"     />
+		<option base="weakly"          />
+		<option base="wearily"         />
+		<option base="wholly"          />
+		<option base="wildly"          />
+		<option base="willfully"       />
+		<option base="wisely"          />
+		<option base="woefully"        />
+		<option base="wonderfully"     />
+		<option base="wrongly"         />
+		<option base="zealously"       />
+		<option base="zestfully"       />
+		<option base="zestily"         />
+
+    </adverb>
+    <adjective>
+		<option base="black"               />
+		<option base="red"                 />
+		<option base="yellow"              />
+		<option base="green"               />
+		<option base="blue"                />
+		<option base="orange"              />
+
+		<option base="abolished"           />
+		<option base="abominable"          />
+		<option base="amazing"             />
+		<option base="ancient"             />
+		<option base="annihilated"         />
+		<option base="antique"             />
+		<option base="apocryphal"          />
+		<option base="atrocious"           />
+		<option base="baleful"             />
+		<option base="baneful"             />
+		<option base="bizzare"             />
+		<option base="blessed"             />
+		<option base="blighted"            />
+		<option base="bloody"              />
+		<option base="bloody"              />
+		<option base="broken"              />
+		<option base="bygone"              />
+		<option base="closed"              />
+		<option base="consecrated"         />
+		<option base="cruel"               />
+		<option base="cryptic"             />
+		<option base="cryptic"             />
+		<option base="cursed"              />
+		<option base="dark"                />
+		<option base="dead"                />
+		<option base="deadly"              />
+		<option base="decayed"             />
+		<option base="deep"                />
+		<option base="degenerate"          />
+		<option base="detestable"          />
+		<option base="devastated"          />
+		<option base="dim"                 />
+		<option base="disgusting"          />
+		<option base="disorienting"        />
+		<option base="divine"              />
+		<option base="drab"                />
+		<option base="effulgent"           />
+		<option base="elder"               />
+		<option base="enigmatic"           />
+		<option base="excellent"           />
+		<option base="extravagant"         />
+		<option base="fabled"              />
+		<option base="fabulous"            />
+		<option base="fascinating"         />
+		<option base="fatal"               />
+		<option base="fiendish"            />
+		<option base="foggy"               />
+		<option base="forbidden"           />
+		<option base="foredoomed"          />
+		<option base="forgotten"           />
+		<option base="forlorn"             />
+		<option base="frozen"              />
+		<option base="glacial"             />
+		<option base="gloomy"              />
+		<option base="golden"              />
+		<option base="hallowed"            />
+		<option base="haunted"             />
+		<option base="hidden"              />
+		<option base="hidden"              />
+		<option base="hideous"             />
+		<option base="hoary"               />
+		<option base="holy"                />
+		<option base="icy"                 />
+		<option base="ignored"             />
+		<option base="incandescent"        />
+		<option base="incredible"          />
+		<option base="infernal"            />
+		<option base="inscrutable"         />
+		<option base="lethal"              />
+		<option base="loathsome"           />
+		<option base="lost"                />
+		<option base="malignant"           />
+		<option base="moldy"               />
+		<option base="mysterious"          />
+		<option base="mystical"            />
+		<option base="noxious"             />
+		<option base="obscure"             />
+		<option base="odious"              />
+		<option base="overlooked"          />
+		<option base="peaceful"            />
+		<option base="petrified"           />
+		<option base="primal"              />
+		<option base="putrid"              />
+		<option base="ruthless"            />
+		<option base="sanctified"          />
+		<option base="savage"              />
+		<option base="screaming"           />
+		<option base="somber"              />
+		<option base="stygian"             />
+		<option base="sublime"             />
+		<option base="unholy"              />
+		<option base="venerable"           />
+		<option base="verdant"             />
+		<option base="vile"                />
+		<option base="violent"             />
+		<option base="virtuous"            />
+		<option base="volcanic"            />
+		<option base="weird"               />
+		<option base="wondrous"            />
+    </adjective>
+    <noun >
+		<option base="alchemy"      type="thing"   />
+		<option base="anger"        type="thing"   />
+		<option base="armor"        type="thing"   />
+		<option base="adventure"    type="thing"   />
+		<option base="blessing"     type="thing"   />
+		<option base="blood"        type="thing"   />
+		<option base="book"         type="thing"   />
+		<option base="calamity"     type="thing"   />
+		<option base="choice"       type="thing"   />
+		<option base="claw"         type="thing"   />
+		<option base="club"         type="thing"   />
+		<option base="courage"      type="thing"   />
+		<option base="crystal"      type="thing"   />
+		<option base="cup"          type="thing"   />
+		<option base="curse"        type="thing"   />
+		<option base="dagger"       type="thing"   />
+		<option base="danger"       type="thing"   />
+		<option base="death"        type="thing"   />
+		<option base="desire"       type="thing"   />
+		<option base="disaster"     type="thing"   />
+		<option base="doom"         type="thing"   />
+		<option base="door"         type="thing"   />
+		<option base="dread"        type="thing"   />
+		<option base="echo"         type="thing"   />
+		<option base="effigy"       type="thing"   />
+        <option base="emperor"      type="person"  />
+		<option base="eye"          type="thing"   />
+		<option base="face"         type="thing"   />
+		<option base="fang"         type="thing"   />
+		<option base="fate"         type="thing"   />
+		<option base="freedom"      type="thing"   />
+		<option base="fungus"       type="thing"   />
+		<option base="ghost"        type="thing"   />
+		<option base="god"          type="thing"   />
+		<option base="gold"         type="thing"   />
+		<option base="hand"         type="thing"   />
+		<option base="hieroglyph"   type="thing"   />
+		<option base="holiness"     type="thing"   />
+		<option base="horror"       type="thing"   />
+		<option base="ice/fire"     type="thing"   />
+		<option base="illusion"     type="thing"   />
+		<option base="judgment"     type="thing"   />
+		<option base="karma"        type="thing"   />
+        <option base="king"         type="person"  />
+		<option base="knife"        type="thing"   />
+		<option base="knowledge"    type="thing"   />
+		<option base="legend"       type="thing"   />
+		<option base="lie"          type="thing"   />
+		<option base="life"         type="thing"   />
+		<option base="light"        type="thing"   />
+		<option base="luck"         type="thing"   />
+		<option base="machine"      type="thing"   />
+		<option base="magic"        type="thing"   />
+		<option base="mechanism"    type="thing"   />
+		<option base="melancholy"   type="thing"   />
+		<option base="mirror"       type="thing"   />
+        <option base="monarch"      type="person"  />
+		<option base="mouth"        type="thing"   />
+		<option base="night"        type="thing"   />
+		<option base="obscenity"    type="thing"   />
+		<option base="ordeal"       type="thing"   />
+		<option base="passion"      type="thing"   />
+		<option base="path"         type="thing"   />
+        <option base="princess"     type="person"  />
+        <option base="prince"       type="person"  />
+        <option base="queen"        type="person"  />
+		<option base="reason"       type="thing"   />
+		<option base="remorse"      type="thing"   />
+		<option base="rich"         type="thing"   />
+		<option base="rune"         type="thing"   />
+		<option base="sadness"      type="thing"   />
+		<option base="sleep"        type="thing"   />
+		<option base="slime"        type="thing"   />
+		<option base="slime"        type="thing"   />
+		<option base="sorcery"      type="thing"   />
+		<option base="sorrow"       type="thing"   />
+		<option base="soul"         type="thing"   />
+		<option base="sovereign"    type="thing"   />
+		<option base="statue"       type="thing"   />
+		<option base="stone"        type="thing"   />
+		<option base="sword"        type="thing"   />
+		<option base="symbol"       type="thing"   />
+		<option base="tale"         type="thing"   />
+		<option base="talon"        type="thing"   />
+		<option base="tome"         type="thing"   />
+		<option base="tragedy"      type="thing"   />
+		<option base="tree"         type="thing"   />
+        <option base="tyrant"       type="person"  />
+		<option base="vision"       type="thing"   />
+		<option base="wand"         type="thing"   />
+		<option base="wealth"       type="thing"   />
+		<option base="well"         type="thing"   />
+		<option base="wisdom"       type="thing"   />
+		<option base="women"        type="thing"   />
+		<option base="zeal"         type="thing"   />
+        <option base="zombie"       type="thing"   />
+    </noun>
+    <verb adverb_chance="30">
+        <option base="abide"                />
+        <option base="abolish"              />
+        <option base="accuse"               />
+        <option base="advise"               />
+        <option base="arise"                />
+        <option base="arrest"               />
+        <option base="assault"              />
+        <option base="awake"                />
+        <option base="babysit"              />
+        <option base="become"               />
+        <option base="begin"                />
+        <option base="behold"               />
+        <option base="bet"                  />
+        <option base="bind"                 />
+        <option base="bite"                 />
+        <option base="blast"                />
+        <option base="bleed"                />
+        <option base="block"                />
+        <option base="break"                />
+        <option base="bring"                />
+        <option base="build"                />
+        <option base="burn"                 />
+        <option base="buy"                  />
+        <option base="catch"                />
+        <option base="chase"                />
+        <option base="choke"                />
+        <option base="choose"               />
+        <option base="climb"                />
+        <option base="clothe"               />
+        <option base="collapse"             />
+        <option base="collar"               />
+        <option base="collect"              />
+        <option base="collide"              />
+        <option base="come"                 />
+        <option base="command"              />
+        <option base="commandeer"           />
+        <option base="complete"             />
+        <option base="construct"            />
+        <option base="consult"              />
+        <option base="control"              />
+        <option base="counsel"              />
+        <option base="count"                />
+        <option base="crawl"                />
+        <option base="create"               />
+        <option base="creep"                />
+        <option base="cripple"              />
+        <option base="cut"                  />
+        <option base="dare"                 />
+        <option base="deal"                 />
+        <option base="decide"               />
+        <option base="deduct"               />
+        <option base="defeat"               />
+        <option base="deliver"              />
+        <option base="descend"              />
+        <option base="describe"             />
+        <option base="diagnose"             />
+        <option base="dig"                  />
+        <option base="direct"               />
+        <option base="discard"              />
+        <option base="discover"             />
+        <option base="display"              />
+        <option base="dissect"              />
+        <option base="ditch"                />
+        <option base="dive"                 />
+        <option base="dodge"                />
+        <option base="dominate"             />
+        <option base="douse"                />
+        <option base="drag"                 />
+        <option base="drain"                />
+        <option base="dress"                />
+        <option base="drink"                />
+        <option base="drive"                />
+        <option base="drop"                 />
+        <option base="drown"                />
+        <option base="drug"                 />
+        <option base="dry"                  />
+        <option base="duel"                 />
+        <option base="dunk"                 />
+        <option base="eat"                  />
+        <option base="eject"                />
+        <option base="elevate"              />
+        <option base="elude"                />
+        <option base="endure"               />
+        <option base="ensnare"              />
+        <option base="enter"                />
+        <option base="escape"               />
+        <option base="evacuate"             />
+        <option base="evade"                />
+        <option base="examine"              />
+        <option base="exit"                 />
+        <option base="expel"                />
+        <option base="expose"               />
+        <option base="extract"              />
+        <option base="fail"                 />
+        <option base="fear"                 />
+        <option base="feed"                 />
+        <option base="feel"                 />
+        <option base="fight"                />
+        <option base="find"                 />
+        <option base="fix"                  />
+        <option base="flee"                 />
+        <option base="fling"                />
+        <option base="fly"                  />
+        <option base="forbid"               />
+        <option base="forecast"             />
+        <option base="foresee"              />
+        <option base="foretell"             />
+        <option base="forget"               />
+        <option base="forgive"              />
+        <option base="forsake"              />
+        <option base="freeze"               />
+        <option base="furnish"              />
+        <option base="gather"               />
+        <option base="get"                  />
+        <option base="go"                   />
+        <option base="grab"                 />
+        <option base="grapple"              />
+        <option base="greet"                />
+        <option base="grind"                />
+        <option base="grow"                 />
+        <option base="guide"                />
+        <option base="hail"                 />
+        <option base="handle"               />
+        <option base="hang"                 />
+        <option base="harass"               />
+        <option base="haul"                 />
+        <option base="head"                 />
+        <option base="hear"                 />
+        <option base="help"                 />
+        <option base="hide"                 />
+        <option base="hijack"               />
+        <option base="hit"                  />
+        <option base="hold"                 />
+        <option base="hurt"                 />
+        <option base="identify"             />
+        <option base="ignore"               />
+        <option base="imitate"              />
+        <option base="implement"            />
+        <option base="improve"              />
+        <option base="indict"               />
+        <option base="induce"               />
+        <option base="inflict"              />
+        <option base="influence"            />
+        <option base="inform"               />
+        <option base="injure"               />
+        <option base="inspect"              />
+        <option base="inspire"              />
+        <option base="instigate"            />
+        <option base="interpret"            />
+        <option base="interview"            />
+        <option base="invade"               />
+        <option base="investigate"          />
+        <option base="isolate"              />
+        <option base="judge"                />
+        <option base="kidnap"               />
+        <option base="kill"                 />
+        <option base="kneel"                />
+        <option base="know"                 />
+        <option base="launch"               />
+        <option base="lead"                 />
+        <option base="lean"                 />
+        <option base="leap"                 />
+        <option base="learn"                />
+        <option base="leave"                />
+        <option base="lend"                 />
+        <option base="lie"                  />
+        <option base="light"                />
+        <option base="lose"                 />
+        <option base="maim"                 />
+        <option base="make"                 />
+        <option base="manage"               />
+        <option base="mangle"               />
+        <option base="manipulate"           />
+        <option base="march"                />
+        <option base="mark"                 />
+        <option base="measure"              />
+        <option base="mediate"              />
+        <option base="meet"                 />
+        <option base="melt"                 />
+        <option base="mislead"              />
+        <option base="mistake"              />
+        <option base="misunderstand"        />
+        <option base="mobilize"             />
+        <option base="monitor"              />
+        <option base="motivate"             />
+        <option base="move"                 />
+        <option base="murder"               />
+        <option base="negotiate"            />
+        <option base="observe"              />
+        <option base="obtain"               />
+        <option base="occupy"               />
+        <option base="organize"             />
+        <option base="overhear"             />
+        <option base="oversee"              />
+        <option base="overtake"             />
+        <option base="pander"               />
+        <option base="patrol"               />
+        <option base="pay"                  />
+        <option base="persuade"             />
+        <option base="pick"                 />
+        <option base="placate"              />
+        <option base="plan"                 />
+        <option base="play"                 />
+        <option base="pocket"               />
+        <option base="poke"                 />
+        <option base="polish"               />
+        <option base="predict"              />
+        <option base="preen"                />
+        <option base="prepare"              />
+        <option base="present"              />
+        <option base="process"              />
+        <option base="produce"              />
+        <option base="promote"              />
+        <option base="protect"              />
+        <option base="prove"                />
+        <option base="provide"              />
+        <option base="provoke"              />
+        <option base="publicize"            />
+        <option base="pummel"               />
+        <option base="pursue"               />
+        <option base="push"                 />
+        <option base="question"             />
+        <option base="quit"                 />
+        <option base="race"                 />
+        <option base="raid"                 />
+        <option base="raise"                />
+        <option base="rally"                />
+        <option base="ransack"              />
+        <option base="rattle"               />
+        <option base="ravage"               />
+        <option base="read"                 />
+        <option base="receive"              />
+        <option base="recommend"            />
+        <option base="reconcile"            />
+        <option base="recruit"              />
+        <option base="redeem"               />
+        <option base="repair"               />
+        <option base="repel"                />
+        <option base="report"               />
+        <option base="represent"            />
+        <option base="repulse"              />
+        <option base="research"             />
+        <option base="resist"               />
+        <option base="resolve"              />
+        <option base="respond"              />
+        <option base="restore"              />
+        <option base="retreat"              />
+        <option base="retrieve"             />
+        <option base="return"               />
+        <option base="reveal"               />
+        <option base="review"               />
+        <option base="ride"                 />
+        <option base="rise"                 />
+        <option base="run"                  />
+        <option base="save"                 />
+        <option base="scale"                />
+        <option base="scare"                />
+        <option base="scatter"              />
+        <option base="scavenge"             />
+        <option base="scold"                />
+        <option base="scout"                />
+        <option base="scuttle"              />
+        <option base="seal"                 />
+        <option base="search"               />
+        <option base="seduce"               />
+        <option base="seek"                 />
+        <option base="see"                  />
+        <option base="seize"                />
+        <option base="select"               />
+        <option base="sell"                 />
+        <option base="serve"                />
+        <option base="sever"                />
+        <option base="shake"                />
+        <option base="shield"               />
+        <option base="show"                 />
+        <option base="shun"                 />
+        <option base="shut"                 />
+        <option base="sidestep"             />
+        <option base="signal"               />
+        <option base="silence"              />
+        <option base="sing"                 />
+        <option base="sink"                 />
+        <option base="sit"                  />
+        <option base="size"                 />
+        <option base="skirt"                />
+        <option base="slay"                 />
+        <option base="slide"                />
+        <option base="slink"                />
+        <option base="smell"                />
+        <option base="smuggle"              />
+        <option base="snare"                />
+        <option base="snatch"               />
+        <option base="sneak"                />
+        <option base="snoop"                />
+        <option base="snub"                 />
+        <option base="snuff"                />
+        <option base="soak"                 />
+        <option base="solve"                />
+        <option base="speak"                />
+        <option base="speed"                />
+        <option base="spell"                />
+        <option base="spend"                />
+        <option base="spill"                />
+        <option base="spin"                 />
+        <option base="spit"                 />
+        <option base="splice"               />
+        <option base="split"                />
+        <option base="spoil"                />
+        <option base="spot"                 />
+        <option base="spray"                />
+        <option base="spread"               />
+        <option base="spring"               />
+        <option base="sprint"               />
+        <option base="spy"                  />
+        <option base="startle"              />
+        <option base="steal"                />
+        <option base="steer"                />
+        <option base="stick"                />
+        <option base="stifle"               />
+        <option base="sting"                />
+        <option base="stink"                />
+        <option base="stomp"                />
+        <option base="stop"                 />
+        <option base="strangle"             />
+        <option base="stride"               />
+        <option base="strike"               />
+        <option base="string"               />
+        <option base="strip"                />
+        <option base="strive"               />
+        <option base="subdue"               />
+        <option base="submit"               />
+        <option base="summon"               />
+        <option base="supply"               />
+        <option base="support"              />
+        <option base="surrender"            />
+        <option base="survey"               />
+        <option base="suspend"              />
+        <option base="swap"                 />
+        <option base="sway"                 />
+        <option base="swear"                />
+        <option base="sweat"                />
+        <option base="sweep"                />
+        <option base="swell"                />
+        <option base="swim"                 />
+        <option base="swing"                />
+        <option base="swipe"                />
+        <option base="switch"               />
+        <option base="tackle"               />
+        <option base="take"                 />
+        <option base="target"               />
+        <option base="taunt"                />
+        <option base="teach"                />
+        <option base="tear"                 />
+        <option base="tell"                 />
+        <option base="terrorize"            />
+        <option base="test"                 />
+        <option base="thrash"               />
+        <option base="threaten"             />
+        <option base="throw"                />
+        <option base="track"                />
+        <option base="train"                />
+        <option base="transfer"             />
+        <option base="translate"            />
+        <option base="trap"                 />
+        <option base="tread"                />
+        <option base="trip"                 />
+        <option base="trounce"              />
+        <option base="try"                  />
+        <option base="turn"                 />
+        <option base="understand"           />
+        <option base="undertake"            />
+        <option base="undo"                 />
+        <option base="unify"                />
+        <option base="unite"                />
+        <option base="update"               />
+        <option base="upset"                />
+        <option base="usher"                />
+        <option base="utilize"              />
+        <option base="vacate"               />
+        <option base="vex"                  />
+        <option base="wake"                 />
+        <option base="wander"               />
+        <option base="ward"                 />
+        <option base="watch"                />
+        <option base="wed"                  />
+        <option base="whack"                />
+        <option base="win"                  />
+        <option base="withdraw"             />
+        <option base="withstand"            />
+        <option base="work"                 />
+        <option base="wrestle"              />
+        <option base="write"                />
+        <option base="yank"                 />
+        <option base="yell"                 />
+        <option base="yield"                />
+        <option base="zap"                  />
+        <option base="zip"                  />
+
+
+
+    </verb>
+
+
+
+</adventurename>

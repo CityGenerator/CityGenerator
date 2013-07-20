@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+
+<economic_system>
+    <option name="capitalism"      />
+    <option name="socialism"      />
+    <option name="communism"      />
+</economic_system>
+
+
+
+    <govtypes>
+        <option approval_mod='0'  >council</option>
+        <option approval_mod='0'  >powerful wizard</option>
+        <option approval_mod='-1' >despot</option>
+        <option approval_mod='0'  >baron</option>
+        <option approval_mod='0'  >royalty</option>
+        <option approval_mod='-1' >dictator</option>
+        <option approval_mod='0'  >clergy</option>
+        <option approval_mod='1'  >cult leader</option>
+    </govtypes>
+<secondarypower>
+    <plot>openly assists</plot>
+    <plot>openly denounces</plot>
+    <plot>quietly denounces</plot>
+    <plot>quietly assists</plot>
+    
+    <power type="a dragon" subplot_chance="50">
+        <subplot>wishing to enslave the city</subplot>
+        <subplot>watching out for the common man</subplot>
+        <subplot>despising the current leader</subplot>
+        <subplot>agreeing with the current leader</subplot>
+    </power>
+    <power type="a wizard" subplot_chance="50">
+        <subplot>attempting to attain immortality</subplot>
+        <subplot>watching out for the common man</subplot>
+        <subplot>despising the current leader</subplot>
+        <subplot>agreeing with the current leader</subplot>
+    </power>
+    <power type="a merchant guild" subplot_chance="50">
+        <subplot>attempting to buy influence</subplot>
+        <subplot>attempting to sell influence</subplot>
+        <subplot>pushing for war with trade adversary</subplot>
+        <subplot>pushing to open trade with adversary</subplot>
+    </power>
+    <power type="an elected representative" subplot_chance="50">
+        <subplot>using position for personal gain</subplot>
+        <subplot>amassing power</subplot>
+    </power>
+    <power type="an advisor" subplot_chance="50">
+        <subplot>pulling strings for personal gain</subplot>
+        <subplot>blackmailing the government</subplot>
+        <subplot>working for enemies</subplot>
+    </power>
+    <power type="a prophet" subplot_chance="50">
+        <subplot>attempting to lead religious revolution</subplot>
+        <subplot>denying legitimacy of leading power</subplot>
+        <subplot>calling for genocide of a minority</subplot>
+    </power>
+    <power type="a thieves guild" subplot_chance="50">
+        <subplot>moving to assert black market dominance</subplot>
+        <subplot>backing leading power for leiniency</subplot>
+    </power>
+    <power type="traveler" subplot_chance="50">
+        <subplot>looking to bring justice</subplot>
+        <subplot>looking to overthrow the government</subplot>
+    </power>
+    <power type="an ex-blacksmith" subplot_chance="50">
+        <subplot>plotting to overthrow the corrupt leadership for personal gain</subplot>
+        <subplot>being blackmailed by a guild</subplot>
+        <subplot>pulling strings with a trade adversary</subplot>
+    </power>
+    <power type="a barbarian" subplot_chance="50">
+        <subplot>plotting to start war with another nation</subplot>
+        <subplot>being manipulated by the denizens of the city whore house</subplot>
+        <subplot>wishing to rule with a violent, iron fist</subplot>
+    </power>
+    <power type="a recluse" subplot_chance="50">
+        <subplot>pulling strings for personal gain</subplot>
+        <subplot>a fiend in disguise</subplot>
+        <subplot>an angel in disguise</subplot>
+        <subplot>a dragon in disguise</subplot>
+        <subplot>a god in disguise</subplot>
+        <subplot>a feind that secretly looks out for the good of the common man</subplot>
+        <subplot>an angel that seeks to enslave the common man</subplot>
+    </power>
+</secondarypower>
+</data>

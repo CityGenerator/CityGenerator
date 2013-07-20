@@ -20,14 +20,13 @@ require Exporter;
 
 subtest 'test create_region' => sub {
     my $region;
-    set_seed(1);
-    $region=RegionGenerator::create_region();
+    $region=RegionGenerator::create_region({'seed'=>41630});
     is($region->{'seed'},41630);
-    is($region->{'name'},'Nillkil Domain');
+    is($region->{'name'},'Conacania Province');
 
     $region=RegionGenerator::create_region({'seed'=>12345});
     is($region->{'seed'},12340);
-    is($region->{'name'},'Nillsakor District');
+    is($region->{'name'},'Upper Britbean Province');
 
     $region=RegionGenerator::create_region({'seed'=>12345, 'name'=>'test'  });
     is($region->{'seed'},12340);

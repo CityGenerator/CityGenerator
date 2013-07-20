@@ -5,6 +5,7 @@ package TestGenericGenerator;
 
 use strict;
 use warnings;
+use Test::Exception;
 use Test::More;
 use GenericGenerator;
 
@@ -29,12 +30,14 @@ subtest 'test rand_from_array' => sub {
     my $testarray=[ 'foo','bar','baz'  ];
     my $loop=10;
     while ($loop-- > 0 ){
+        GenericGenerator::set_seed(1);
         $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'foo', 'test array results');
     }
     GenericGenerator::set_seed(2);
     $loop=10;
     while ($loop-- > 0 ){
+        GenericGenerator::set_seed(2);
         $result=GenericGenerator::rand_from_array($testarray);
         is($result, 'baz', 'test array results');
     }
@@ -64,16 +67,11 @@ subtest 'test set_seed' => sub {
 subtest 'test single d() ' => sub {
     my $result;
     srand(1);
-    $result=GenericGenerator::d(3);
-    is( $result, 1 );
-    $result=GenericGenerator::d(3);
-    is( $result, 2 );
-    $result=GenericGenerator::d(3);
-    is( $result, 3 );
-    $result=GenericGenerator::d(3);
-    is( $result, 2 );
-    $result=GenericGenerator::d('pie');
-    is( $result, 1 );
+    is( GenericGenerator::d(3) , 1 );
+    is( GenericGenerator::d(3) , 2 );
+    is( GenericGenerator::d(3) , 3 );
+    is( GenericGenerator::d(3) , 2 );
+    dies_ok( sub { GenericGenerator::d('pie') }, "pie is not a valid dice format." );
     done_testing();
 
   };
@@ -127,7 +125,7 @@ subtest 'test parse_object parts' => sub {
     is( $result->{'trailer'},   'trailerbar' );
     srand(2);
     $result=GenericGenerator::parse_object($testObject) ;
-    is( $result->{'content'}, 'titlebar prefoorootbarpostbar  trailerbar'  );
+    is( $result->{'content'}, 'titlebar prefoorootbarpostbar trailerbar'  );
     done_testing();
 
   };

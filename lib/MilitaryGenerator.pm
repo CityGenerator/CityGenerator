@@ -83,14 +83,17 @@ This method is used to create a simple military from a given object.
 
 ###############################################################################
 sub create_military {
-    my ($source) = @_;
+    my ($params) = @_;
     my $military = {};
 
-    # swipe important details from city
+    # swipe important details from params
+    if ( ref $params eq 'HASH' ) {
+        foreach my $key ( sort keys %$params ) {
+            $military->{$key} = $params->{$key};
+        }
+    }
 
-    if ( defined $source->{'seed'} ) {
-        $military->{'seed'} =  $source->{'seed'};
-    }else{
+    if (! defined $military->{'seed'} ) {
         $military->{'seed'} = set_seed();
     }
     $military->{'original_seed'} = $military->{'seed'};
@@ -184,9 +187,34 @@ sub generate_favored_weapon {
 } 
 
 
+###############################################################################
 
+=head2 set_troop_size()
 
+Set the size of the troops for the population
 
+=cut
+
+###############################################################################
+
+sub set_troop_size {
+    my ($military)=@_;
+
+    #If no population total is provided, make one up!
+    $military->{'population_total'}=d(1000)*10 if (!defined $military->{'population_total'});
+    
+    my $percentmod= 10 +  ($military->{'military_mod'}||0)  + ($military->{'authority_mod'}||0); 
+
+    $military->{'active_percent'}   =  10 + $percentmod/4 + d($percentmod)/4 if (!defined $military->{'active_percent'});
+    $military->{'reserve_percent'}  =   5 +                 d($percentmod)/4 if (!defined $military->{'reserve_percent'});
+    $military->{'para_percent'}     =   3 +                 d($percentmod)/4 if (!defined $military->{'para_percent'});
+
+    $military->{'active_troops'}    = int($military->{'population_total'} * $military->{'active_percent'} /100)  if (!defined $military->{'active_troops'});
+    $military->{'reserve_troops'}   = int($military->{'population_total'} * $military->{'reserve_percent'} /100) if (!defined $military->{'reserve_troops'});
+    $military->{'para_troops'}      = int($military->{'active_troops'}    * $military->{'para_percent'} /100)    if (!defined $military->{'para_troops'} );
+
+    return $military;
+} 
 
 
 

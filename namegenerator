@@ -3,79 +3,123 @@
 use strict;
 use CGI;
 use Data::Dumper;
+use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
 use XML::Simple;
-###################################################
-# Using findbin to locate our new City.pm module
 use lib "lib/";
-###################################################
-#TODO it would be cool if it could rain frogs or potatoes
-use NPCGenerator ;
+use NPCGenerator;
 use GenericGenerator;
-
-my $templates = Template->new({
-    INCLUDE_PATH => 'templates/',
-    INTERPOLATE  => 1,
-}) || die "$Template::ERROR\n";
-
-
-###########################################################
-# Yes, this is sloppy. I am aware, but it's also unique.
-# Unique, Ubiquitous Singletons.
+use Switch 'Perl5', 'Perl6';
 our $q = CGI->new;
 
-GenericGenerator::set_seed($q->param('seed')  );
-our $originalseed=$GenericGenerator::seed;
-my $namegen=NPCGenerator::generate_npc_names(  $q->param('race'),  $q->param('count')   );
+my $seed;
+if (defined $q->param('seed') and $q->param('seed') =~/^(\d+)$/ ){
+    $seed=GenericGenerator::set_seed($1);
+}else{
+    $seed=GenericGenerator::set_seed();
+}
+my $results={'seed'=>$seed};
 
-if (defined $q->param('type') and $q->param('type') eq 'xml' ){
-    print $q->header( 'text/xml' );
-    print "<?xml version='1.0'  encoding='ISO-8859-1' ?>\n";
-    print XMLout($namegen);
+if (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+
+    $results->{'names'}=generate_names();
+    print  $JSON->encode($results)."\n";
+
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    print Dumper $namegen;
-}elsif (defined $q->param('type') and $q->param('type') =~ /debug/ ){
-
+    $results->{'names'}=generate_names();
+    print Dumper $results;
 }else {
     print $q->header;
-    print print_page($templates, $namegen, $q->param('race'));
+    print_page();
 }
-        
+
 exit;
 
-
-#######################################################################################################################
-#######################################################################################################################
-#######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
 #######################################################################################################################
 
 sub print_page {
-    my ($templates,$namegen,$race)=@_;
-    my $qstring=$ENV{'QUERY_STRING'};
-    $qstring.="&seed=".$originalseed   if (! defined $q->param('seed'));
 
-
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
 
     my $formtmpl;
     my $vars = {    
         'races'         =>  NPCGenerator::get_races() ,
-        'selectedrace'  =>  $race ,
-        'names'         =>  $namegen,
     };
     $templates->process('nameform.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
+
     $vars = {
         'title'        => 'Name Generator',
-        'subheader'        => 'set <a href="/namegenerator?'.$qstring.'">'.$originalseed.'</a>',
         'content'       => $formtmpl,
     };
     $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+
 }
 
 
+sub generate_names {
+    my $count=10;
+    if (defined $q->param('count') and $q->param('count') =~ /^\d{1,3}$/ and $q->param('count') <=100  ){
+        $count=$q->param('count');
+    }
+#    print Dumper ( defined $q->param('count') and $q->param('count') =~ /^\d{1,3}$/ );
+    my $results=[  ];
+    while ($count--){
 
+        my $item;
+        $item->{'seed'} = GenericGenerator::set_seed();
+        given ($q->param('gentype') || ""){
+            when('star') {  
+            }
+            when('moon') {  
+            }
+            when('continent') {  
+                use ContinentGenerator;
+                $item= ContinentGenerator::generate_continent_name($item);
+
+            }
+        #  when('region') {  }
+            when('city') {  
+                use CityGenerator;
+                $item= CityGenerator::generate_city_name($item);
+            }
+            when('tavern') {  
+                use TavernGenerator;
+                $item= TavernGenerator::generate_tavern_name($item);
+            }
+            when('npc') {
+                use NPCGenerator;
+                my $name=NPCGenerator::generate_npc_name($q->param('race'),$item);
+                $item->{'name'}=$name;
+            }
+            when('adventure') {
+                use AdventureGenerator;
+                $item=AdventureGenerator::generate_name($item);
+            }
+        #  when('myth') {  }
+            when('world') {  
+                use WorldGenerator;
+                $item= WorldGenerator::generate_name($item);
+            }
+            default { 
+                use WorldGenerator;
+                $item= WorldGenerator::generate_name($item);
+            }
+        }
+        push @$results,$item->{'name'};
+    }
+    $results = [sort @$results];
+    return $results;
+
+}

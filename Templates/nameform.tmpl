@@ -1,0 +1,39 @@
+
+<div>
+
+    <form>Generate 
+        <select id="gentype" onchange="showgenerator(this.value);" >
+            <option value="adventure">adventure names</option>
+            <option value="world">world names</option>
+            <option value="city">city names</option>
+            <option value="continent">continent names</option>
+            <option value="tavern">tavern names</option>
+            <option value="npc">NPC names</option>
+            <option disabled value="star">star names</option>
+            <option disabled value="moon">moon names</option>
+            <option disabled value="region">region names</option>
+            <option disabled value="myth">myth names</option>
+        </select>
+        <span id="npc_specific">
+        <label>Races:</label>
+        <select id="race">
+            [% FOREACH racename = races %]
+                     <option value='[% racename %]'>[% racename %]</option>
+            [% END %]
+        </select>
+        </span>
+        <label>Number of Names:</label>
+        <select id="count">
+            <option value='1'>1</option>
+            <option value='10' selected >10</option>
+            <option value='20'>20</option>
+            <option value='100'>100</option>
+        </select>
+        <input type="button"  onclick="generate_names();" value="Generate!"/>
+    </form>
+</div>
+
+<div id="gen_result">
+
+
+</div>

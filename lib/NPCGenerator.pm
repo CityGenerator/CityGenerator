@@ -1,40 +1,70 @@
 #!/usr/bin/perl -wT
+###############################################################################
+
 package NPCGenerator;
 
+use strict;
+use warnings;
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
+@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
+
+#TODO make generate_name method for use with namegenerator
 ###############################################################################
 
 =head1 NAME
 
     NPCGenerator - used to generate NPCs
 
-=head1 DESCRIPTION
+=head1 SYNOPSIS
 
- Use this to create NPCs.
+    use NPCGenerator;
+    my $npc=NPCGenerator::create_npc();
 
 =cut
 
 ###############################################################################
 
-use strict;
-use warnings;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data);
-
+#TODO treat certain data as stats...
+use Carp;
 use CGI;
 use Data::Dumper;
+use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
 
-our $names_data = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['allow'] );
-our $business_data = $xml->XMLin( "xml/business.xml", ForceContent => 1, ForceArray => [] );
-our $xml_data   = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+###############################################################################
+
+=head1 CONFIGURATION AND ENVIRONMENT
+
+=head2 Data files
+
+The following datafiles are used by CityGenerator.pm:
+
+=over
+
+=item * F<xml/data.xml>
+
+=item * F<xml/npcnames.xml>
+
+=item * F<xml/specialists.xml>
+
+=back
+
+=head1 INTERFACE
+
+
+=cut
+
+###############################################################################
+my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
+my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['allow'] );
+my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -55,9 +85,9 @@ sub create_npc{
         }
     }
     $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
-    if (! defined $npc->{'race'}){
-        $npc->{'race'}=GenericGenerator::rand_from_array( [ keys %{$names_data->{'race'}}] );
-    }
+    $npc->{'available_races'}= [ keys %{$names_data->{'race'}}] if (!defined $npc->{'available_races'});
+
+    $npc->{'race'}=rand_from_array( $npc->{'available_races'} ) if (! defined $npc->{'race'});
     $npc->{'race'}=lc $npc->{'race'};
     
     $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
@@ -70,6 +100,29 @@ sub create_npc{
     set_attitudes($npc);
     return $npc;
 }
+
+
+###############################################################################
+
+=head2 set_level()
+
+Take a provided NPC and set their level.
+
+=cut
+
+###############################################################################
+
+sub set_level{
+    my ($npc)=@_;
+    my $size_modifier=$npc->{'size_modifier'} || 0;
+
+    $npc->{'level'}=d('3d4')+$size_modifier if (!defined $npc->{'level'})   ;
+    #keep levels between 1 and 20.
+    $npc->{'level'}=max(1, min(20,$npc->{'level'})  );
+    return $npc;
+}
+
+
 
 
 ###############################################################################
@@ -91,7 +144,7 @@ sub set_sex{
 
 ###############################################################################
 
-=head2 set_profession( npc, businesslist )
+=head2 set_profession( npc, specialistlist )
 
 Take a provided NPC and select a profession from the list of available choices.
 
@@ -100,17 +153,24 @@ Take a provided NPC and select a profession from the list of available choices.
 ###############################################################################
 
 sub set_profession{
-    my ($npc,@businesslist)=@_;
-    if (scalar(@businesslist) == 0){
-        @businesslist= keys %{$business_data->{'building'}};
+    my ($npc,@specialist_list)=@_;
+    if (scalar(@specialist_list) == 0){
+        @specialist_list= keys %{$specialist_data->{'option'}};
     }
-        shuffle(@businesslist);
-        $npc->{'business'}    = pop @businesslist;
-        if (defined $business_data->{'building'}->{  $npc->{'business'}  } and defined $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'}  ){
-            $npc->{'profession'} = $business_data->{'building'}->{  $npc->{'business'}  }->{'profession'};
+    shuffle(@specialist_list);
+    my $specialty=pop @specialist_list;
+    $npc->{'profession'} = $specialty  if (!defined $npc->{'profession'});
+    if (!defined $npc->{'business'} ){
+        if  (defined $specialist_data->{'option'}->{$specialty} and defined $specialist_data->{'option'}->{$specialty}->{'building'}){
+            $npc->{'business'} =$specialist_data->{'option'}->{$specialty}->{'building'}  ;
         }else{
-            $npc->{'profession'} =  $npc->{'business'};
+            $npc->{'business'} = $npc->{'profession'} ;
         }
+        if ($npc->{'business'} =~/,/x){
+            my @businesses=shuffle( split(/,/x,$npc->{'business'}));
+            $npc->{'business'}=pop @businesses;
+        }
+    }
 
     return $npc;
 }
@@ -192,22 +252,22 @@ sub generate_npc_name{
         if ( defined $racenameparts->{'firstname'} ){
             $npc->{'firstname'}= parse_object(    $racenameparts->{'firstname'}         )->{'content'};
             if ($npc->{'firstname'} ne ''){
-                $npc->{'fullname'}=$npc->{'firstname'};
+                $npc->{'name'}=$npc->{'firstname'};
             }
         }
         if ( defined $racenameparts->{'lastname'} ){
             $npc->{'lastname'}= parse_object(    $racenameparts->{'lastname'}         )->{'content'};
             if ($npc->{'lastname'} ne ''){
-                $npc->{'fullname'}=$npc->{'lastname'};
+                $npc->{'name'}=$npc->{'lastname'};
             }
         }
         if ( defined $npc->{'firstname'} and defined $npc->{'lastname'} and $npc->{'firstname'} ne '' and $npc->{'lastname'} ne '' ){
-            $npc->{'fullname'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
+            $npc->{'name'}=$npc->{'firstname'} ." ". $npc->{'lastname'};
         }
     }else{
-        $npc->{'fullname'}="unnamed $race";
+        $npc->{'name'}="unnamed $race";
     }
-    return $npc->{'fullname'};
+    return $npc->{'name'};
 }
 
 ###############################################################################
@@ -223,11 +283,11 @@ Return a list of count names from the given race.
 sub generate_npc_names{
     my($race,$count)=@_;
 
-    if (!  grep { /^$race$/ } @{get_races()} ) {
+    if (!  grep { /^$race$/x } @{get_races()} ) {
         $race='any';
     }
 
-    if (defined $count and  $count=~/(\d+)/){
+    if (defined $count and  $count=~/(\d+)/x){
         $count= $1;
     }else{
         $count=10;
@@ -235,7 +295,7 @@ sub generate_npc_names{
 
     my @names;
     for (my $i=0 ; $i < $count ; $i++){
-        set_seed($GenericGenerator::seed+$i);
+        GenericGenerator::set_seed(GenericGenerator::get_seed()+$i);
         push @names, generate_npc_name($race);
 
     }

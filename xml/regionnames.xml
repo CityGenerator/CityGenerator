@@ -1,31 +1,79 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <region post_chance='30' title_chance='22'>
-    <title>Greater</title>
-    <title>Lesser</title>
     <title>Eastern</title>
+    <title>Central</title>
+    <title>Greater</title>
+    <title>Inner</title>
+    <title>Lesser</title>
+    <title>Lower</title>
+    <title>Middle</title>
+    <title>Outer</title>
+    <title>Upper</title>
     <title>Western</title>
-    <pre>Don</pre>
+    <pre>Aqui</pre>
+    <pre>Ash</pre>
     <pre>Ber</pre>
+    <pre>Brit</pre>
+    <pre>Bur</pre>
     <pre>Cap</pre>
+    <pre>Cala</pre>
+    <pre>Cen</pre>
+    <pre>Cham</pre>
+    <pre>Cona</pre>
+    <pre>Don</pre>
     <pre>Ful</pre>
+    <pre>Kin</pre>
+    <pre>Kon</pre>
+    <pre>Lor</pre>
+    <pre>Mar</pre>
     <pre>Mool</pre>
     <pre>Nill</pre>
-    <pre>Kon</pre>
-    <root>sak</root>
-    <root>bor</root>
-    <root>kil</root>
-    <root>bor</root>
-    <root>ark</root>
-    <root>lak</root>
-    <post>or</post>
-    <post>at</post>
-    <post>ep</post>
-    <post>ak</post>
+    <pre>Pica</pre>
+    <pre>Sar</pre>
+    <pre>Tre</pre>
+    <pre>Umb</pre>
+    <pre>Ven</pre>
+    <pre>Wal</pre>
 
-    <trailer>Province</trailer>
+    <root>ark</root>
+    <root>be</root>
+    <root>bor</root>
+    <root>can</root>
+    <root>din</root>
+    <root>em</root>
+    <root>gan</root>
+    <root>kan</root>
+    <root>kil</root>
+    <root>kry</root>
+    <root>lak</root>
+    <root>loon</root>
+    <root>man</root>
+    <root>mou</root>
+    <root>nah</root>
+    <root>sak</root>
+    <root>ran</root>
+
+    <post>ak</post>
+    <post>an</post>
+    <post>andy</post>
+    <post>anti</post>
+    <post>at</post>
+    <post>dia</post>
+    <post>eese</post>
+    <post>ep</post>
+    <post>ia</post>
+    <post>ica</post>
+    <post>ique</post>
+    <post>ish</post>
+    <post>mou</post>
+    <post>or</post>
+    <post>oupe</post>
+    <post>ubia</post>
+
     <trailer>District</trailer>
     <trailer>Domain</trailer>
+    <trailer>Province</trailer>
     <trailer>Region</trailer>
     <trailer>Territory</trailer>
 
