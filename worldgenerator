@@ -11,7 +11,6 @@ use Template;
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
-use VoronoiMap;
 use WorldGenerator;
 use WorldFormatter;
 our $q = CGI->new;
@@ -24,7 +23,6 @@ if (defined $q->param('worldid')){
 }
 
 my $world=WorldGenerator::create_world({seed=>$worldid});
-$world->{'map'}=VoronoiMap::generateRandomPoints({seed=>$worldid,'count'=>$world->{'plates'}, 'continents'=>$world->{'continent_count'}, 'width'=>'300', 'height'=>'180', 'margin'=>'0'   });
 
 
 

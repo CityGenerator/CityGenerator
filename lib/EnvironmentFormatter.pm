@@ -91,6 +91,7 @@ sub printAstronomy {
     my $celestials=printCelestialList($city);
     $content.= "$city->{'name'} sees ". A($city->{'astronomy'}->{'starsystem_name'}). " overhead: $stars.\n";
     $content.= "$city->{'name'} also has $moons.\n";
+    $content.= "In the night sky, you see $celestials.\n";
 
     return $content;
 }

@@ -204,7 +204,7 @@ sub printWorldMapJSON {
     my $content="";
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
-    return  $JSON->encode($world->{'map'});
+    return  "";#$JSON->encode($world->{'map'});
 
 }
 1;

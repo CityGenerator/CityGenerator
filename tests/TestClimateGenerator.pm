@@ -52,7 +52,6 @@ subtest 'test create_climate' => sub {
     is($climate->{'seasontype'},'6');
     is($climate->{'seasondescription'},'prevernal, spring, summer, monsoon, autumn and winter seasons');
 
-
     $climate=ClimateGenerator::create_climate( {'seed'=>1,'altitude'=>'105','latitude'=>'105','continentality'=>'105','pressure'=>'-5', 'seasontype'=>'6', 'seasondescription'=>'boring'});
 
     is($climate->{'altitude'},'100');
