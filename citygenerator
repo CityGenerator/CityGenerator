@@ -130,8 +130,11 @@ sub print_content {
         'streetstext'   => CityscapeFormatter::printStreets($city),
         #'buildingstext' => CityscapeFormatter::printBuildings($city),
 
-        'govtdatatext'  => GovtFormatter::printGovt($city),
-        'govtcrimedatatext'=> GovtFormatter::printCrime($city),
+        'govtleadertext'    => GovtFormatter::printLeader($city),
+        'govtlawtext'       => GovtFormatter::printLaw($city),
+        'govtcrimetext'     => GovtFormatter::printCrime($city),
+        'govtmilitarytext'  => GovtFormatter::printMilitary($city),
+
     };
     $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printGovt printCrime);
+@EXPORT_OK = qw( printGovt printCrime printLeader printMilitary printLaw );
 
 ###############################################################################
 
@@ -28,23 +28,50 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
+use Lingua::EN::Inflect qw( A ) ;
 use POSIX;
 use version;
 
 ###############################################################################
 
-=head2 printGovt()
+=head2 printLeader()
+
+printLeader strips out important info from a Govt Object about the current Leader
+
+=cut
+
+###############################################################################
+sub printLeader {
+    my ($city) = @_;
+    my $content="";
+    my $govt=$city->{'govt'};
+    $content.= "$city->{'name'} is ruled by ".A($city->{'govt'}->{'leader'}->{'title'})." ( $city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}  ) through ".A($city->{'govt'}->{'type'}).", where ".$city->{'govt'}->{'description'}.". ";
+    $content.= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'leader'}->{'length'} and is $city->{'govt'}->{'leader'}->{'reputation'} by the people. ";
+    $content.= "There is $city->{'govt'}->{'leader'}->{'opposition'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. ";
+    $content.= "The right to rule was granted $city->{'govt'}->{'leader'}->{'right'}, and that power is maintained $city->{'govt'}->{'leader'}->{'maintained'}. ";
+    $content.= "Officials in $city->{'name'} are often seen as $city->{'govt'}->{'corruption_description'} and the policies are $city->{'govt'}->{'approval_description'}. ";
+    $content.= "The government as a whole is seen as $city->{'govt'}->{'efficiency_description'}. ";
+    $content.= "The political influence of $city->{'name'} in the region is $city->{'govt'}->{'influence_description'} due to $city->{'govt'}->{'influencereason'}. ";
+    $content.= "In times of crisis, the population $city->{'govt'}->{'unity_description'}. ";
+
+#
+#$city->{'name'} is ruled a $govt->{'reputation'} $govt->{'description'}. Within the city there is a $govt->{'secondary_power'}->{'power'} that $govt->{'secondary_power'}->{'plot'} current leadership. The population approves of $govt->{'description'} policies in general.";
+    return $content;
+}
+
+###############################################################################
+
+=head2 printLaw()
 
 printGovt strips out important info from a Govt Object
 
 =cut
 
 ###############################################################################
-sub printGovt {
+sub printLaw {
     my ($city) = @_;
     my $content="";
     my $govt=$city->{'govt'};
-    $content= "$city->{'name'} is ruled a $govt->{'reputation'} $govt->{'description'}. Within the city there is a $govt->{'secondary_power'}->{'power'} that $govt->{'secondary_power'}->{'plot'} current leadership. The population approves of $govt->{'description'} policies in general.";
     return $content;
 }
 
@@ -61,7 +88,22 @@ sub printCrime {
     my ($city) = @_;
     my $content="";
     my $govt=$city->{'govt'};
-    $content= "Crime is $city->{'crime_description'}. Laws are enforced by a $city->{'laws'}->{'enforcer'}. Justice is served by $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. The most common crime is $city->{'laws'}->{'commoncrime'}. The imprisonment rate is ".($city->{'imprisonment_rate'}->{'percent'}*100)."% of the population ($city->{'imprisonment_rate'}->{'population'} adult[s]).";
+    return $content;
+}
+
+###############################################################################
+
+=head2 printCrime()
+
+printGovt strips out important info from a Govt Object
+
+=cut
+
+###############################################################################
+sub printMilitary {
+    my ($city) = @_;
+    my $content="";
+    my $govt=$city->{'govt'};
     return $content;
 }
 
