@@ -124,9 +124,9 @@ sub create_climate {
     #set base stat values, and if they don't exist, set new value.
     foreach my $stat (qw( altitude continentality latitude pressure )  ){
         if ( !defined $climate->{$stat}){
-            $climate->{$stat}=d(101)-1;
+            $climate->{$stat}=d(100);
         }else{
-            $climate->{$stat}= min(100,  max(0,$climate->{$stat} )  );
+            $climate->{$stat}= min(100,  max(1,$climate->{$stat} )  );
         }
     }
 

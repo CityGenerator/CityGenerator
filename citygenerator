@@ -104,8 +104,6 @@ sub print_worldnav {
 
 
 
-
-
 sub print_content {
     my ($city)=@_;
 
@@ -130,6 +128,7 @@ sub print_content {
         'streetstext'   => CityscapeFormatter::printStreets($city),
         #'buildingstext' => CityscapeFormatter::printBuildings($city),
 
+        'govtsummarytext'   => GovtFormatter::printSummary($city),
         'govtleadertext'    => GovtFormatter::printLeader($city),
         'govtlawtext'       => GovtFormatter::printLaw($city),
         'govtcrimetext'     => GovtFormatter::printCrime($city),

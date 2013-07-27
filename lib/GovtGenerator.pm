@@ -141,15 +141,15 @@ This method is used to generate a leader for the government
 sub generate_leader {
     my ($govt) = @_;
 
+    $govt->{'leader'}=NPCGenerator::create_npc({'seed'=>$govt->{'seed'}});
+
     $govt->{'leader'}->{'right'}        = rand_from_array($govt_data->{'right'       }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'right'});
     $govt->{'leader'}->{'reputation'}   = rand_from_array($govt_data->{'reputation'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'reputation'});
     $govt->{'leader'}->{'length'}       = rand_from_array($govt_data->{'length'      }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'length'});
     $govt->{'leader'}->{'opposition'}   = rand_from_array($govt_data->{'opposition'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'opposition'});
     $govt->{'leader'}->{'maintained'}   = rand_from_array($govt_data->{'maintained'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'maintained'});
 
-
     $govt->{'leader'}->{'title'}   =  $govt->{'title'}->{'male'}   if (!defined $govt->{'leader'}->{'title'});
-    $govt->{'leader'}->{'name'}    =  "Vladamir Putin"; 
 
     return $govt;
 } ## end sub create_govt

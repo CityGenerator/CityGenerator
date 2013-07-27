@@ -60,25 +60,25 @@ How do they enforce that power?
         <option min="81" max="90" >forceful</option>
         <option min="91"          >violent</option>
     </opposition>
-    <maintained>
-        <option        max="" >through the tip of a sword</option>
-        <option min="" max="" >through random violence</option>
-        <option min="" max="" >through the ignorance of the plebeian society</option>
-        <option min="" max="" >through vague threats and a constant state of fear</option>
-        <option min="" max="" >through financial oppression</option>
-        <option min="" max="" >by secret police raiding homes in the dead of night</option>
-        <option min="" max="" >by strict laws and corrupt guards</option>
-        <option min="" max="" >by strict laws and incorruptible guards</option>
-        <option min="" max="" >by draconian laws and underpaid guards</option>
-        <option min="" max="" >through spying and assassination</option>
-        <option min="" max="" >through a fair and just legal system</option>
-        <option min="" max="" >through the writ of law</option>
-        <option min="" max="" >through a knowledgeable and just populace</option>
-        <option min="" max="" >through vague promises and a constant state of hope</option>
-        <option min="" max="" >through sheer willpower</option>
-        <option min="" max="" >through the acclaim of the nobles</option>
-        <option min="" max="" >by the unwavering support of the commoners</option>
-        <option min="" max="" >through the support of merchant groups</option>
+    <maintained><!-- and that power is maintained __________ -->
+        <option >through the tip of a sword</option>
+        <option >through random violence</option>
+        <option >through the ignorance of the plebeian society</option>
+        <option >through vague threats and a constant state of fear</option>
+        <option >through financial oppression</option>
+        <option >by secret police raiding homes in the dead of night</option>
+        <option >by strict laws and corrupt guards</option>
+        <option >by strict laws and incorruptible guards</option>
+        <option >by draconian laws and underpaid guards</option>
+        <option >through spying and assassination</option>
+        <option >through a fair and just legal system</option>
+        <option >through the writ of law</option>
+        <option >through a knowledgeable and just populace</option>
+        <option >through vague promises and a constant state of hope</option>
+        <option >through sheer willpower</option>
+        <option >through the acclaim of the nobles</option>
+        <option >by unwavering supporters</option>
+        <option >through the support of merchant groups</option>
     </maintained>
 
     <corruption> <!-- Officials in __CITY__ are often seen as __CORRUPTION__  -->
@@ -401,7 +401,7 @@ corruption, approval, efficiency, influence and unity
                 <option male="President" ></option>
             </titles>
         </option>
-        <option type="theocracy"                    description="a Deity is recognized as the supreme civil ruler, but the Deity's laws are interpreted by ecclesiastical authorities">
+        <option type="theocracy"                    description="a deity is recognized as the supreme civil ruler, but the deity's laws are interpreted by ecclesiastical authorities">
             <titles>
                 <option male="Prime minister" ></option>
                 <option male="Saint" ></option>

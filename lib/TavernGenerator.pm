@@ -47,8 +47,6 @@ The following datafiles are used by CityGenerator.pm:
 
 =item F<xml/data.xml>
 
-=item F<xml/npcnames.xml>
-
 =item F<xml/taverns.xml>
 
 =back
@@ -56,9 +54,8 @@ The following datafiles are used by CityGenerator.pm:
 =cut
 
 ###############################################################################
-# FIXME This needs to stop using our
+
 my $xml_data    = $xml->XMLin( "xml/data.xml",     ForceContent => 1, ForceArray => ['option'] );
-my $names_data  = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => ['option'] );
 my $tavern_data = $xml->XMLin( "xml/taverns.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -87,11 +84,23 @@ sub create_tavern {
             $tavern->{$key}=$params->{$key};
         }
     }
-
     $tavern->{'seed'}=set_seed() if(!defined $tavern->{'seed'});
-    $tavern->{'cost_mod'}={}  if(!defined $tavern->{'cost_mod'});
-    $tavern->{'pop_mod'}={}  if(!defined $tavern->{'pop_mod'});
+
+
+#Wet Frog is a average, respectable tavern where the middle-class gather. The bar is owned by a half-elf named Gwatinne Rootheart who seems mocking. The law accepts bribes from the patrons, however most violence is handled by swift justice. Goods are reasonably priced. You'll find 2 citizen(s) here.
+    foreach my $stat ( qw( reputation size cost popularity) ) {
+        $tavern->{'stats'}->{$stat} = d(100) if (!defined $tavern->{'stats'}->{$stat} );
+        $tavern->{$stat."_description"} = roll_from_array( $tavern->{'stats'}->{$stat}, $tavern_data->{$stat}->{'option'})->{'content'} if (!defined $tavern->{$stat."_description"} );
+    }
+
     generate_tavern_name($tavern);
+    generate_violence($tavern);
+    generate_law($tavern);
+    generate_bartender($tavern);
+    generate_amenities($tavern);
+    # clientele, amenities, age
+    # drinks? food?  stable?  privacy?  fireplace?  music?  inn beds?  gambling?
+
     return $tavern;
 }
 
@@ -113,49 +122,27 @@ sub generate_tavern_name {
     return $tavern;
 }
 
+
 ###############################################################################
  
-=head2 generate_size()
+=head2 generate_amenities()
  
-generate the size category of the tavern
+generate the amenities
  
 =cut
  
 ###############################################################################
  
-sub generate_size {
+sub generate_amenities {
     my ($tavern)=@_;
 
-    $tavern->{'size'} = rand_from_array( [keys %{  $tavern_data->{'size'}->{'option'} }] ) if (!defined $tavern->{'size'});
-    my $size= $tavern_data->{'size'}->{'option'} ->{ $tavern->{'size'}  };
+    $tavern->{'amenity_count'} = int (rand($tavern_data->{'amenities'}->{'max'} - $tavern_data->{'amenities'}->{'min'} ) + $tavern_data->{'amenities'}->{'min'} ) if (!defined $tavern->{'amenity_count'} );
 
-    $tavern->{'size_cost_mod'}      = $size->{'cost_mod'}   if  (!defined $tavern->{'size_cost_mod'} );
-    $tavern->{'cost_mod'}->{'size'} = $size->{'cost_mod'}   if  (!defined $tavern->{'cost_mod'}->{'size'} );
+    $tavern->{'amenity'}=[] if (!defined $tavern->{'amenity'});
 
-    $tavern->{'size_pop_mod'}      = $size->{'pop_mod'}   if  (!defined $tavern->{'size_pop_mod'} );
-    $tavern->{'pop_mod'}->{'size'} = $size->{'pop_mod'}   if  (!defined $tavern->{'pop_mod'}->{'size'} );
-    
-    return $tavern;
-}
-
-###############################################################################
- 
-=head2 generate_condition()
- 
-generate the condition category of the tavern
- 
-=cut
- 
-###############################################################################
- 
-sub generate_condition {
-    my ($tavern)=@_;
-
-    $tavern->{'condition'} = rand_from_array( [keys %{  $tavern_data->{'condition'}->{'option'} }] ) if (!defined $tavern->{'condition'});
-
-    my $condition= $tavern_data->{'condition'}->{'option'} ->{ $tavern->{'condition'}  };
-    $tavern->{'condition_cost_mod'}      = $condition->{'cost_mod'}   if  (!defined $tavern->{'condition_cost_mod'} );
-    $tavern->{'cost_mod'}->{'condition'} = $condition->{'cost_mod'}   if  (!defined $tavern->{'cost_mod'}->{'condition'} );
+    for (my $amenityID=0; $amenityID < $tavern->{'amenity_count'} ; $amenityID++){
+        $tavern->{'amenity'}->[$amenityID] = rand_from_array($tavern_data->{'amenities'}->{'option'})->{'content'} if (!defined $tavern->{'amenity'}->[$amenityID]);
+    }
 
     return $tavern;
 
@@ -194,24 +181,6 @@ sub generate_law {
     my ($tavern)=@_;
 
     $tavern->{'law'} = rand_from_array( $tavern_data->{'law'}->{'option'}  )->{'type'} if (!defined $tavern->{'law'});
-    return $tavern;
-
-}
-
-###############################################################################
- 
-=head2 generate_entertainment()
- 
-generate the entertainment category of the tavern
- 
-=cut
- 
-###############################################################################
- 
-sub generate_entertainment {
-    my ($tavern)=@_;
-
-    $tavern->{'entertainment'} = rand_from_array( $tavern_data->{'entertainment'}->{'option'}  )->{'type'} if (!defined $tavern->{'entertainment'});
     return $tavern;
 
 }

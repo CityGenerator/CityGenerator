@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printGovt printCrime printLeader printMilitary printLaw );
+@EXPORT_OK = qw( printSummary printCrime printLeader printMilitary printLaw );
 
 ###############################################################################
 
@@ -34,6 +34,28 @@ use version;
 
 ###############################################################################
 
+=head2 printSummary()
+
+printLeader strips out important info from a Govt Object and writes a summary based on the stats.
+
+=cut
+
+###############################################################################
+sub printSummary {
+    my ($city) = @_;
+    my $content="";
+    my $govt=$city->{'govt'};
+    $content.= "$city->{'name'} is governed through ".A($city->{'govt'}->{'type'}).", where ".$city->{'govt'}->{'description'}.". ";
+    $content.= "The government as a whole is seen as $city->{'govt'}->{'efficiency_description'}. ";
+    $content.= "Officials in $city->{'name'} are often seen as $city->{'govt'}->{'corruption_description'} and the policies are $city->{'govt'}->{'approval_description'}. ";
+    $content.= "The political influence of $city->{'name'} in the region is $city->{'govt'}->{'influence_description'} due to $city->{'govt'}->{'influencereason'}. ";
+    $content.= "In times of crisis, the population $city->{'govt'}->{'unity_description'}. ";
+
+    return $content;
+}
+
+###############################################################################
+
 =head2 printLeader()
 
 printLeader strips out important info from a Govt Object about the current Leader
@@ -45,14 +67,10 @@ sub printLeader {
     my ($city) = @_;
     my $content="";
     my $govt=$city->{'govt'};
-    $content.= "$city->{'name'} is ruled by ".A($city->{'govt'}->{'leader'}->{'title'})." ( $city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}  ) through ".A($city->{'govt'}->{'type'}).", where ".$city->{'govt'}->{'description'}.". ";
+    $content.= "$city->{'name'} is ruled by $city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}. ";
     $content.= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'leader'}->{'length'} and is $city->{'govt'}->{'leader'}->{'reputation'} by the people. ";
     $content.= "There is $city->{'govt'}->{'leader'}->{'opposition'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. ";
     $content.= "The right to rule was granted $city->{'govt'}->{'leader'}->{'right'}, and that power is maintained $city->{'govt'}->{'leader'}->{'maintained'}. ";
-    $content.= "Officials in $city->{'name'} are often seen as $city->{'govt'}->{'corruption_description'} and the policies are $city->{'govt'}->{'approval_description'}. ";
-    $content.= "The government as a whole is seen as $city->{'govt'}->{'efficiency_description'}. ";
-    $content.= "The political influence of $city->{'name'} in the region is $city->{'govt'}->{'influence_description'} due to $city->{'govt'}->{'influencereason'}. ";
-    $content.= "In times of crisis, the population $city->{'govt'}->{'unity_description'}. ";
 
 #
 #$city->{'name'} is ruled a $govt->{'reputation'} $govt->{'description'}. Within the city there is a $govt->{'secondary_power'}->{'power'} that $govt->{'secondary_power'}->{'plot'} current leadership. The population approves of $govt->{'description'} policies in general.";
