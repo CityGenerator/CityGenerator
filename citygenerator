@@ -19,6 +19,7 @@ use CensusDataFormatter;
 use GovtFormatter;
 use LocaleFormatter;
 use PopulationFormatter;
+use PeopleFormatter;
 our $q = CGI->new;
 
 
@@ -139,6 +140,8 @@ sub print_content {
         'govtlawstext'      => GovtFormatter::printLaw($city),
         'govtcrimetext'     => GovtFormatter::printCrime($city),
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
+
+        'citizenstext'      => PeopleFormatter::printCitizens($city),
 
         'tavernstext'       => LocaleFormatter::printTaverns($city),
 

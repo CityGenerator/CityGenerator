@@ -793,12 +793,10 @@
     <trait type="jaded"             > </trait>
     <trait type="jesterly"          > </trait>
     <trait type="jolly"             > </trait>
-    <trait type="laconic"           > </trait>
     <trait type="lonely"            > </trait>
     <trait type="loud"              > </trait>
     <trait type="lovelorn"          > </trait>
     <trait type="machiavellian"     > </trait>
-    <trait type="a matchmaker"      > </trait>
     <trait type="melancholy"        > </trait>
     <trait type="mocking"           > </trait>
     <trait type="mopey"             > </trait>
@@ -1350,9 +1348,9 @@
     <option min="81"          >brutally oppressive</option>
 </dominance>
 <sex>
-    <option          max="49" pronoun='he' >a male</option>
-    <option min="50" max="98" pronoun='she'>a female</option>
-    <option min="99"          pronoun='it'>an androgynous</option>
+    <option          max="49" pronoun='he' >male</option>
+    <option min="50" max="98" pronoun='she'>female</option>
+    <option min="99"          pronoun='it'>androgynous</option>
 </sex>
 <housing>
     <quality name="poor"    percent="30" density="15"/>

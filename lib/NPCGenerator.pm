@@ -98,6 +98,8 @@ sub create_npc{
     $npc->{'behavior'}          = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
     $npc->{'reputation_scope'}  = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
     set_attitudes($npc);
+    set_sex($npc);
+    set_profession($npc);
     return $npc;
 }
 
@@ -137,7 +139,10 @@ Take a provided NPC and select a sex from the list of available choices.
 
 sub set_sex{
     my ($npc)=@_;
-    $npc->{'sex'}=roll_from_array( &d(100),$xml_data->{'sex'}->{'option'}) if (!defined $npc->{'sex'})   ;
+    my $sex=roll_from_array( &d(100),$xml_data->{'sex'}->{'option'}) ;
+
+    $npc->{'sex'}       =$sex->{'content'} if (!defined $npc->{'sex'}) ;
+    $npc->{'pronoun'}   =$sex->{'pronoun'} if (!defined $npc->{'pronoun'}) ;
     return $npc;
 }
 

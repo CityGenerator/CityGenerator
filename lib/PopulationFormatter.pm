@@ -43,8 +43,11 @@ printRaces strips out important info from a City object and returns details abou
 sub printRaces {
     my ($city) = @_;
     my $content;
-    $content.="$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population$city->{'dominant_race'}. \n";
-    $content.="Here's the breakdown of this $city->{'poptype'} population:";
+    
+    #TODO add dominant race
+    #TODO add moral and order descriptions
+    #$content.="$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population. \n";
+    $content.="Here's the breakdown of this $city->{'type'} population:";
 
     $content.="<ul> \n";
     foreach my $race ( reverse sort {$a->{'percent'} <=> $b->{'percent'}} @{$city->{'races'}}  ){
