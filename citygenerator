@@ -17,6 +17,8 @@ use EnvironmentFormatter;
 use CityscapeFormatter;
 use CensusDataFormatter;
 use GovtFormatter;
+use LocaleFormatter;
+use PopulationFormatter;
 our $q = CGI->new;
 
 
@@ -114,6 +116,7 @@ sub print_content {
 
     my $formtmpl;
     my $vars = {
+    #TODO come up with a better, cleaner way to do this. Waaay too manual.
         'cityname'      => $city->{'name'},
         'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
@@ -126,13 +129,18 @@ sub print_content {
 
         'wallstext'     => CityscapeFormatter::printWalls($city),
         'streetstext'   => CityscapeFormatter::printStreets($city),
-        #'buildingstext' => CityscapeFormatter::printBuildings($city),
+        'buildingstext' => CityscapeFormatter::printBuildings($city),
+
+        'racestext'     => PopulationFormatter::printRaces($city),
+        'agestext'      => PopulationFormatter::printAges($city),
 
         'govtsummarytext'   => GovtFormatter::printSummary($city),
         'govtleadertext'    => GovtFormatter::printLeader($city),
         'govtlawtext'       => GovtFormatter::printLaw($city),
         'govtcrimetext'     => GovtFormatter::printCrime($city),
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
+
+        'tavernstext'       => LocaleFormatter::printTaverns($city),
 
     };
     $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";

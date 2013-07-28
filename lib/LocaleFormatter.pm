@@ -61,36 +61,31 @@ printTaverns strips out Tavern information and formats it.
 sub printTaverns {
     my ($city) = @_;
     my $content="";
-#    if  (scalar(@taverns) >0 ){
-#        $content.="<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
-#        $content.="<ul class='one-column'>";
-#        foreach $tavern ($city->{'taverns'}){
-#
-#        }
-#
-#        $content.="</li></ul>";
-#    }else{
-#        $content.="<p>There are no taverns in this town.</p>\n";
-#    }
-#
+    if  (scalar(@{$city->{'taverns'}}) >0 ){
+        $content.="<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
+        $content.="<ul class='demolistfinal'>";
+        foreach my $tavern (  @{  $city->{'taverns'} } ){
+            $content.=describe_tavern($tavern);
+        }
+
+        $content.="</ul>";
+    }else{
+        $content.="<p>There are no taverns in this town.</p>\n";
+    }
 
 
 
     return $content;
 }
-#sub describe_tavern{
-#    my ($tavern,$tavernpoptotal)=@_;
-#    #max =d(12+4 )+10=26
-#    my $tavernmod= &d($city->{'size_modifier'}+$tavern->{'population'})*2 + $city->{'time'}->{'bar_mod'}  ;
-#
-#    my $tavernpop=max(0,  min(  int($city->{'population'}->{'size'}/2),   $tavernmod  )  );
-#    if ($tavernpoptotal+$tavernpop <= int($city->{'population'}->{'size'}/2)){
-#        $tavern->{'pop_count'}= $tavernpop;
-#        $tavernpoptotal+=$tavernpop;
-#    }
-#    my $name="";
-#    if ( defined $tavern->{'bartender'}->{'fullname'} ){ $name=" named ".$tavern->{'bartender'}->{'fullname'}  }
-#    return ("<strong>$tavern->{'name'}</strong> is a $tavern->{'size'}, $tavern->{'condition'} tavern where the $tavern->{'class'} gather. The bar is owned by $tavern->{'bartender'}->{'race'}->{'article'} ".lc($tavern->{'bartender'}->{'race'}->{'content'})."$name who seems $tavern->{'bartender'}->{'behavior'}. The law $tavern->{'legal'} the patrons, however most violence is handled by $tavern->{'violence'}. Goods are $tavern->{'costdescription'}. You'll find $tavern->{'pop_count'} citizen(s) here.", $tavernpoptotal);
-#}
+sub describe_tavern{
+    my ($tavern)=@_;
+    my $content="<li>";
+    $content.= "<b>The $tavern->{'name'}</b> is ".A($tavern->{'size_description'})." tavern that $tavern->{'popularity_description'}. \n";
+    $content.= "It has a reputation for $tavern->{'reputation_description'}.\n";
+    $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A($tavern->{'bartender'}->{'race'})."  named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
+    $content.= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
+    $content.="</li>";
+    return $content;
+}
 
 1;

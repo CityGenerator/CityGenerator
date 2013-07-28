@@ -37,6 +37,7 @@ use Math::Complex ':pi';
 use NPCGenerator;
 use RegionGenerator;
 use GovtGenerator;
+use TavernGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -277,6 +278,7 @@ sub flesh_out_city {
     generate_housing($city);
     generate_specialists($city);
     generate_businesses($city);
+    generate_taverns($city);
     generate_districts($city);
 
 
@@ -886,6 +888,28 @@ sub generate_businesses {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_taverns
+
+Generate a list of taverns based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_taverns {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} );
+    my $taverncount=min(5, $city->{'businesses'}->{'tavern'}->{'count'}  ) ;
+    $city->{'taverns'}=[] if (!defined $city->{'taverns'});
+    for (my $tavernID=0; $tavernID<$taverncount; $tavernID++){
+        $city->{'taverns'}->[$tavernID]= TavernGenerator::create_tavern() if (!defined $city->{'taverns'}->[$tavernID] );
+    }
+
+    return $city;
+}
 ###############################################################################
 
 =head2 generate_districts

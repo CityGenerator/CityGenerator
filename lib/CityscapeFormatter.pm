@@ -75,6 +75,24 @@ sub printWalls {
 
     return $content;
 }
+###############################################################################
+
+=head2 printBuildings()
+
+formats details about buildings around the city.
+
+=cut
+
+###############################################################################
+
+sub printBuildings {
+    my ($city) = @_;
+    my $content="";
+    $content.="There are $city->{'business_total'} businesses in $city->{'name'} and $city->{'housing'}->{'total'} residences spread out across the city. \n";
+    
+
+    return $content;
+}
 
 ###############################################################################
 

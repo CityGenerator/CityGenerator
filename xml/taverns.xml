@@ -173,7 +173,6 @@
         <title>Dirty</title>
         <title>Divine</title>
         <title>Dreaming</title>
-        <title>Driest</title>
         <title>Drifting</title>
         <title>Drinking</title>
         <title>Dripping</title>
@@ -186,7 +185,7 @@
         <title>Elven</title>
         <title>Empty</title>
         <title>Ever-full</title>
-        <title>Fallen</title>
+        <title>Falle/n</title>
         <title>Fat</title>
         <title>Fawning</title>
         <title>Fermented</title>
@@ -255,7 +254,7 @@
         <title>Playful</title>
         <title>Prancing</title>
         <title>Puking</title>
-        <title>Punchin’</title>
+        <title>Punchin'</title>
         <title>Purple</title>
         <title>Raging</title>
         <title>Rampaging</title>
@@ -320,7 +319,7 @@
         <title>Wiley</title>
         <title>Wistful</title>
         <title>Wobbling</title>
-        <title>Wobblin’</title>
+        <title>Wobblin'</title>
         <title>Wobbly</title>
         <title>Wooden</title>
         <title>Worn</title>
@@ -332,6 +331,7 @@
         <root>Axe</root>
         <root>Badger</root>
         <root>Bag</root>
+        <root>Baiter</root>
         <root>Beauty</root>
         <root>Beer</root>
         <root>Bill</root>
