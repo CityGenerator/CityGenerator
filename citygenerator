@@ -136,7 +136,7 @@ sub print_content {
 
         'govtsummarytext'   => GovtFormatter::printSummary($city),
         'govtleadertext'    => GovtFormatter::printLeader($city),
-        'govtlawtext'       => GovtFormatter::printLaw($city),
+        'govtlawstext'      => GovtFormatter::printLaw($city),
         'govtcrimetext'     => GovtFormatter::printCrime($city),
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
 

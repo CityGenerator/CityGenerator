@@ -28,7 +28,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw( A ) ;
+use Lingua::EN::Inflect qw( A PL_N ) ;
 use POSIX;
 use version;
 
@@ -89,7 +89,9 @@ printGovt strips out important info from a Govt Object
 sub printLaw {
     my ($city) = @_;
     my $content="";
-    my $govt=$city->{'govt'};
+    $content.="Laws are enforced by ".A($city->{'laws'}->{'enforcer'}).", $city->{'laws'}->{'enforcement'}. \n";
+    $content.="Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. \n";
+
     return $content;
 }
 
@@ -105,7 +107,10 @@ printGovt strips out important info from a Govt Object
 sub printCrime {
     my ($city) = @_;
     my $content="";
-    my $govt=$city->{'govt'};
+    $content.="Crime is $city->{'crime_description'}. \n";
+    $content.="The most common crime is $city->{'laws'}->{'commoncrime'}. \n";
+    $content.="The imprisonment made is $city->{'imprisonment_rate'}->{'percent'} of the population ($city->{'imprisonment_rate'}->{'population'} ". PL_N("adult",$city->{'imprisonment_rate'}->{'population'})."). \n";
+
     return $content;
 }
 
