@@ -925,9 +925,6 @@
     </race>
     <race name='human' article="a"  plural='humans' type="basic"  moral="0" order="5" magic="0" authority='1' economy='1' education='2' tolerance='3' military='1' >
         <firstname title_chance='5' pre_chance='1' post_chance='70'>
-            <title>Sir</title>
-            <title>Pastor</title>
-            <title>General</title>
 
             <pre>Le</pre>
             <pre>De</pre>

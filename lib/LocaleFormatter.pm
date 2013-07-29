@@ -82,7 +82,13 @@ sub describe_tavern{
     my $content="<li>";
     $content.= "<b>The $tavern->{'name'}</b> is ".A($tavern->{'size_description'})." tavern that $tavern->{'popularity_description'}. \n";
     $content.= "It has a reputation for $tavern->{'reputation_description'}.\n";
-    $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A($tavern->{'bartender'}->{'race'})."  named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
+
+    #TODO this is friggen ugly. refactor.
+    if (defined $tavern->{'bartender'}->{'name'} ){
+        $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A($tavern->{'bartender'}->{'race'})." named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
+    }else{
+        $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A("nameless ".$tavern->{'bartender'}->{'race'})." who seems $tavern->{'bartender'}->{'behavior'}. \n";
+    }
     $content.= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
     $content.="</li>";
     return $content;

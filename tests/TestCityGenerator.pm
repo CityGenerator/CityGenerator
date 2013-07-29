@@ -726,32 +726,32 @@ subtest 'test generate_citizens' => sub {
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 5);
     is(scalar(@{$city->{'citizens'}}), 5);
-    is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
-    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
+    isnt($city->{'citizens'}->[0]->{'race'}, undef);
+    isnt($city->{'citizens'}->[1]->{'race'}, undef);
+    isnt($city->{'citizens'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>-5});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 5);
     is(scalar(@{$city->{'citizens'}}), 5);
-    is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
-    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
+    isnt($city->{'citizens'}->[0]->{'race'}, undef);
+    isnt($city->{'citizens'}->[1]->{'race'}, undef);
+    isnt($city->{'citizens'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 13);
     is(scalar(@{$city->{'citizens'}}), 13);
-    is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
-    is($city->{'citizens'}->[2]->{'race'}, 'halfling');
+    isnt($city->{'citizens'}->[0]->{'race'}, undef);
+    isnt($city->{'citizens'}->[1]->{'race'}, undef);
+    isnt($city->{'citizens'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'citizen_count'=>2});
     CityGenerator::generate_citizens($city);
     is($city->{'citizen_count'}, 2);
     is(scalar(@{$city->{'citizens'}}), 2);
-    is($city->{'citizens'}->[0]->{'race'}, 'deep dwarf');
-    is($city->{'citizens'}->[1]->{'race'}, 'halfling');
+    isnt($city->{'citizens'}->[0]->{'race'}, undef);
+    isnt($city->{'citizens'}->[1]->{'race'}, undef);
     is($city->{'citizens'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'citizen_count'=>2, 'citizens'=>[] });
@@ -770,9 +770,9 @@ subtest 'test generate_travelers' => sub {
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 7);
     is(scalar(@{$city->{'travelers'}}), 7);
-    is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'elf');
-    is($city->{'travelers'}->[2]->{'race'}, 'half-orc');
+    isnt($city->{'travelers'}->[0]->{'race'}, undef);
+    isnt($city->{'travelers'}->[1]->{'race'}, undef);
+    isnt($city->{'travelers'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'stats'=>{'seed'=>1, 'tolerance'=>-5}});
     CityGenerator::generate_travelers($city);
@@ -784,24 +784,24 @@ subtest 'test generate_travelers' => sub {
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 10);
     is(scalar(@{$city->{'travelers'}}), 10);
-    is($city->{'travelers'}->[0]->{'race'}, 'human');
-    is($city->{'travelers'}->[1]->{'race'}, 'half-orc');
-    is($city->{'travelers'}->[2]->{'race'}, 'drow');
+    isnt($city->{'travelers'}->[0]->{'race'}, undef);
+    isnt($city->{'travelers'}->[1]->{'race'}, undef);
+    isnt($city->{'travelers'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'stats'=>{'tolerance'=>0}});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 5);
     is(scalar(@{$city->{'travelers'}}), 5);
-    is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'elf');
-    is($city->{'travelers'}->[2]->{'race'}, 'half-orc');
+    isnt($city->{'travelers'}->[0]->{'race'}, undef);
+    isnt($city->{'travelers'}->[1]->{'race'}, undef);
+    isnt($city->{'travelers'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1, 'size_modifier'=>12, 'traveler_count'=>2});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 2);
     is(scalar(@{$city->{'travelers'}}), 2);
-    is($city->{'travelers'}->[0]->{'race'}, 'half-dwarf');
-    is($city->{'travelers'}->[1]->{'race'}, 'elf');
+    isnt($city->{'travelers'}->[0]->{'race'}, undef);
+    isnt($city->{'travelers'}->[1]->{'race'}, undef);
     is($city->{'travelers'}->[2]->{'race'}, undef);
 
     $city=CityGenerator::create_city({'seed'=>1,'size_modifier'=>12, 'traveler_count'=>2, 'stats'=>{'tolerance'=>5}});

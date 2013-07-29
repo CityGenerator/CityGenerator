@@ -21,13 +21,13 @@ subtest 'test create_climate' => sub {
     my $climate;
     $climate=ClimateGenerator::create_climate( {'seed'=>1,'altitude'=>'-5','latitude'=>'-5','continentality'=>'-5','pressure'=>'105'});
 
-    is($climate->{'altitude'},'0');
-    is($climate->{'continentality'},'0');
-    is($climate->{'latitude'},'0');
+    is($climate->{'altitude'},'1');
+    is($climate->{'continentality'},'1');
+    is($climate->{'latitude'},'1');
     is($climate->{'pressure'},'100');
     
-    is($climate->{'temperature'},'100');
-    is($climate->{'precipitation'},'100');
+    is($climate->{'temperature'},'99');
+    is($climate->{'precipitation'},'99.5');
     
     is($climate->{'biomekey'},'AF');
     is($climate->{'name'},'Tropical Rainforest');
@@ -57,10 +57,10 @@ subtest 'test create_climate' => sub {
     is($climate->{'altitude'},'100');
     is($climate->{'continentality'},'100');
     is($climate->{'latitude'},'100');
-    is($climate->{'pressure'},'0');
+    is($climate->{'pressure'},'1');
     
     is($climate->{'temperature'},'0');
-    is($climate->{'precipitation'},'0');
+    is($climate->{'precipitation'},'0.5'); #FIXME why is this .05?? I suspect this was caused by renumbering from 0-100 to 1-100
 
     is($climate->{'biomekey'},'EF');
     is($climate->{'name'},'Ice Cap');
@@ -70,16 +70,16 @@ subtest 'test create_climate' => sub {
 
     $climate=ClimateGenerator::create_climate( {'seed'=>1,'altitude'=>'0','latitude'=>'0','continentality'=>'100','pressure'=>'0', 'seasontypes'=>[1,2,3,4]});
 
-    is($climate->{'altitude'},'0');
-    is($climate->{'latitude'},'0');
+    is($climate->{'altitude'},'1');
+    is($climate->{'latitude'},'1');
     is($climate->{'continentality'},'100');
-    is($climate->{'pressure'},'0');
+    is($climate->{'pressure'},'1');
     
-    is($climate->{'temperature'},'100');
-    is($climate->{'precipitation'},'0');
+    is($climate->{'temperature'},'99');
+    is($climate->{'precipitation'},'0.5');
 
-    is($climate->{'biomekey'},'BW');
-    is($climate->{'name'},'Arid Desert');
+    is($climate->{'biomekey'},'BS');
+    is($climate->{'name'},'Semi-Arid Steppe');
     is_deeply($climate->{'seasontypes'},[1,2,3,4]);
     is($climate->{'seasontype'},'3');
     is($climate->{'seasondescription'},'hot, rainy and cool seasons');

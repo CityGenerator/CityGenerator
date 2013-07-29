@@ -49,18 +49,19 @@ sub printCitizens {
     }else{
 
         $content.="The following citizens are worth mentioning: \n";
-        $content.="<ul> \n";
+        $content.="<ul class='twocolumn'> \n";
         foreach my $citizen ( @{$city->{'citizens'}} ){
             if ($citizen->{'race'} eq 'other'){
                 $citizen->{'race'}="oddball";
             }
             $content.="<li>";
             if ( defined $citizen->{'name'}){
-                $content.="<b>".$citizen->{'name'}."</b> is ".A( lc($citizen->{'race'}))." ";
+                $content.="<b>".$citizen->{'name'}."</b> is ".A( lc($citizen->{'sex'})." ".lc($citizen->{'race'}))." ";
             }else{
-                $content.="A ".$citizen->{'noname'}." ";
+                $content.= "A nameless ". lc($citizen->{'sex'})." ". lc($citizen->{'race'})." ";
+
             }
-            $content.="who is known in ".$citizen->{'scope'}." as being ".A($citizen->{'skill'})." $citizen->{'profession'}. \n";
+            $content.="who is known in ".$citizen->{'reputation_scope'}." as being ".A($citizen->{'skill'})." $citizen->{'profession'}. \n";
             $content.=ucfirst($citizen->{'pronoun'})." appears ".$citizen->{'behavior'}.". \n";
             $content.="</li>";
         }
@@ -84,7 +85,30 @@ about people travelers.
 sub printTravelers {
     my ($city) = @_;
     my $content;
-    $content.="Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'people'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'people'}) of this $city->{'age_description'} city. \n";
+
+    if (scalar( @{$city->{'travelers'} } ) == 0 ){
+        $content="None are of note.";
+    }else{
+
+        $content.="The following travelers are worth mentioning: \n";
+        $content.="<ul class='twocolumn'> \n";
+        foreach my $traveler ( @{$city->{'travelers'}} ){
+            if ($traveler->{'race'} eq 'other'){
+                $traveler->{'race'}="oddball";
+            }
+            $content.="<li>";
+            if ( defined $traveler->{'name'}){
+                $content.="<b>".$traveler->{'name'}."</b> is ".A( lc($traveler->{'sex'})." ". lc($traveler->{'race'}))." ";
+            }else{
+                $content.= "A nameless ". lc($traveler->{'sex'})." ". lc($traveler->{'race'})." ";
+            }
+            $content.="who is known in ".$traveler->{'reputation_scope'}." as being ".A($traveler->{'skill'})." $traveler->{'profession'}. \n";
+            $content.=ucfirst($traveler->{'pronoun'})." appears ".$traveler->{'behavior'}.". \n";
+            $content.="</li>";
+        }
+    }
+
+    $content.="</ul>";
 
     return $content;
 }

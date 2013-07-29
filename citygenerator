@@ -142,6 +142,7 @@ sub print_content {
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
 
         'citizenstext'      => PeopleFormatter::printCitizens($city),
+        'travelerstext'     => PeopleFormatter::printTravelers($city),
 
         'tavernstext'       => LocaleFormatter::printTaverns($city),
 

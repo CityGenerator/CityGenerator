@@ -79,13 +79,22 @@ Create an NPC Object and fill it out.
 sub create_npc{
     my ($params)=@_;
     my $npc={};
+
+
+
     if (defined $params){
         foreach my $key (keys %$params){
             $npc->{$key}= $params->{$key};
         }
     }
-    $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
+    if (defined $npc->{'seed'}){
+        $npc->{'seed'}= GenericGenerator::set_seed($npc->{'seed'});
+    }else{
+        $npc->{'seed'}= GenericGenerator::set_seed();
+    }
+    #Available races is an array of race names.
     $npc->{'available_races'}= [ keys %{$names_data->{'race'}}] if (!defined $npc->{'available_races'});
+    $npc->{'available_races'} = [ shuffle( @{  $npc->{'available_races'} }) ];
 
     $npc->{'race'}=rand_from_array( $npc->{'available_races'} ) if (! defined $npc->{'race'});
     $npc->{'race'}=lc $npc->{'race'};
@@ -100,6 +109,7 @@ sub create_npc{
     set_attitudes($npc);
     set_sex($npc);
     set_profession($npc);
+    set_level($npc);
     return $npc;
 }
 
@@ -158,13 +168,17 @@ Take a provided NPC and select a profession from the list of available choices.
 ###############################################################################
 
 sub set_profession{
-    my ($npc,@specialist_list)=@_;
-    if (scalar(@specialist_list) == 0){
-        @specialist_list= keys %{$specialist_data->{'option'}};
+    my ($npc)=@_;
+    if (! defined $npc->{'allowed_professions'} or scalar(@{$npc->{'allowed_professions'}}) == 0){
+        $npc->{'allowed_professions'} = [keys %{$specialist_data->{'option'}}];
     }
-    shuffle(@specialist_list);
-    my $specialty=pop @specialist_list;
+
+    $npc->{'allowed_professions'}=[ shuffle(@{$npc->{'allowed_professions'}})];
+
+    my $specialty =pop @{ $npc->{'allowed_professions'} };
+
     $npc->{'profession'} = $specialty  if (!defined $npc->{'profession'});
+
     if (!defined $npc->{'business'} ){
         if  (defined $specialist_data->{'option'}->{$specialty} and defined $specialist_data->{'option'}->{$specialty}->{'building'}){
             $npc->{'business'} =$specialist_data->{'option'}->{$specialty}->{'building'}  ;
@@ -196,15 +210,15 @@ sub set_attitudes{
     if ( defined $xml_data->{'attitude'} and ref $xml_data->{'attitude'} eq 'HASH') {
         if (defined $xml_data->{'attitude'}->{'option'} and ref $xml_data->{'attitude'}->{'option'} eq 'ARRAY'){
             my $primary_attitude  = rand_from_array( $xml_data->{'attitude'}->{'option'} );
-            $npc->{'primary_attitude'}=$primary_attitude->{'type'};
+            $npc->{'primary_attitude'}=$primary_attitude->{'type'}if (!defined $npc->{'primary_attitude'});
     
             if (defined $primary_attitude->{'option'} and ref $primary_attitude->{'option'} eq 'ARRAY'){
                 my $secondary_attitude  = rand_from_array( $primary_attitude->{'option'});
-                $npc->{'secondary_attitude'}=$secondary_attitude->{'type'};
+                $npc->{'secondary_attitude'}=$secondary_attitude->{'type'}if (!defined $npc->{'secondary_attitude'});
     
                 if (defined $secondary_attitude->{'option'} and ref $secondary_attitude->{'option'} eq 'ARRAY'){
                     my $ternary_attitude  = rand_from_array($secondary_attitude->{'option'});
-                    $npc->{'ternary_attitude'}=$ternary_attitude->{'type'};
+                    $npc->{'ternary_attitude'}=$ternary_attitude->{'type'} if (!defined $npc->{'ternary_attitude'});
                 }
             }
         }

@@ -796,7 +796,7 @@ sub generate_citizens {
     if (!defined $city->{'citizens'}){
         $city->{'citizens'}= [];
         for (my $i=0 ; $i<$city->{'citizen_count'} ; $i++){
-            push @{$city->{'citizens'}},NPCGenerator::create_npc({'available_races'=>$city->{'available_races'}}); 
+            push @{$city->{'citizens'}},NPCGenerator::create_npc({   'available_races'=>$city->{'available_races'}}); 
         }
     }
     return $city;
@@ -902,12 +902,16 @@ Generate a list of taverns based on the business section
 sub generate_taverns {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
-    my $taverncount=min(5, $city->{'businesses'}->{'tavern'}->{'count'}  ) ;
-    $city->{'taverns'}=[] if (!defined $city->{'taverns'});
-    for (my $tavernID=0; $tavernID<$taverncount; $tavernID++){
-        $city->{'taverns'}->[$tavernID]= TavernGenerator::create_tavern() if (!defined $city->{'taverns'}->[$tavernID] );
-    }
 
+    $city->{'taverns'}=[] if (!defined $city->{'taverns'});
+
+
+    if ( defined $city->{'businesses'}->{'tavern'} ) {
+        my $taverncount=min(5, $city->{'businesses'}->{'tavern'}->{'count'}  ) ;
+        for (my $tavernID=0; $tavernID<$taverncount; $tavernID++){
+            $city->{'taverns'}->[$tavernID]= TavernGenerator::create_tavern() if (!defined $city->{'taverns'}->[$tavernID] );
+        }
+    }
     return $city;
 }
 ###############################################################################

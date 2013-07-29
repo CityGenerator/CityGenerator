@@ -31,9 +31,11 @@ subtest 'Test Environment Climate' => sub {
     CityGenerator::flesh_out_city($city);
     my $environment=EnvironmentFormatter::printClimate($city);
     is($environment, 
-                     "Grisnow has a Moist Continental climate, which is characterized by warm to cool summers and cold winters with severe snow storms, and has prevernal, spring, summer, monsoon, autumn and winter seasons. ".
-                     "Winds in the region are non-existent and the temperature is generally cold with high variation. ".
-                     "Precipitation is strong, and the sky is mostly cloudy. "
+
+                    "Grisnow has a Temperate Deciduous Forest climate, which is characterized by warm and wet summers with mild and dry winters, and has spring, summer, fall and winter seasons. ".
+                    "Winds in the region are non-existent and the temperature is generally chilly with high variation. ".
+                    "Precipitation is moderate, and the sky is mostly cloudy. "
+
                 );
     done_testing();
 };
