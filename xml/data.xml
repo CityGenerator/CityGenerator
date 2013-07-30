@@ -7,20 +7,21 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>     
-    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>      
-    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>    
-    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>   
-    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"  min_density="75"  max_density="4000"  gplimit="1000"/>     
-    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"  min_density="90"  max_density="6000"  gplimit="1500"/>     
-    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"  min_density="100" max_density="9000"  gplimit="3500"/>     
-    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"  min_density="110" max_density="10000" gplimit="5000"/>     
-    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"  min_density="150" max_density="15000" gplimit="8000"/>     
-    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000" min_density="180" max_density="22000" gplimit="15000"/>    
-    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000" min_density="200" max_density="28000" gplimit="22000"/>    
-    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000" min_density="220" max_density="30000" gplimit="30000"/>    
-    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="80000" min_density="240" max_density="40000" gplimit="50000"/>    
+    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>
+    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>
+    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>
+    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>
+    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"  min_density="75"  max_density="4000"  gplimit="1000"/>
+    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"  min_density="90"  max_density="6000"  gplimit="1500"/>
+    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"  min_density="100" max_density="9000"  gplimit="3500"/>
+    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"  min_density="110" max_density="10000" gplimit="5000"/>
+    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"  min_density="150" max_density="15000" gplimit="8000"/>
+    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000" min_density="180" max_density="22000" gplimit="15000"/>
+    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000" min_density="200" max_density="28000" gplimit="22000"/>
+    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000" min_density="220" max_density="30000" gplimit="30000"/>
+    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="80000" min_density="240" max_density="40000" gplimit="50000"/>
 </citysize>
+
 <trivia>their official _______ is the ________
     <fact type='tree'>
         <title>red</title>
@@ -384,7 +385,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 	<landmarks chance="10">lighthouse</landmarks>
 	<landmarks chance="10">rivermouth</landmarks>
 	<landmarks chance="20">beach</landmarks>
-	<landmarks chance="10">jagged outcropping of rock</landmarks>      
+	<landmarks chance="10">jagged outcropping of rock</landmarks>
 	<landmarks chance="12">sea cliff</landmarks>
 	<landmarks chance="12">coral reef</landmarks>
 	<landmarks chance="12">barrier island</landmarks>
@@ -485,7 +486,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
       <landmarks chance="12">oceanic trench</landmarks>
       <landmarks chance="12">sea cave</landmarks>
       <landmarks chance="12">sea cliff</landmarks>
-      <landmarks chance="12">submarine volcano</landmarks>      
+      <landmarks chance="12">submarine volcano</landmarks>
       <landmarks chance="12">volcanic island</landmarks>
     </location>
     <location description="near a river" port_chance='50'>
@@ -659,7 +660,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>by a council</option>
         <option>by jurors</option>
         <option>by mob rule</option>
-    </trial>   
+    </trial>
 </laws>
 
 <crime>
