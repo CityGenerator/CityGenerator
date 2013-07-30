@@ -48,8 +48,8 @@ printSummary strips out important info from a World object and returns formatted
 sub printSummary {
     my ($world) = @_;
     my $content="";
-    $content.="$world->{'name'} is a $world->{'size'}, $world->{'basetemp'} planet orbiting a $world->{'starsystem_name'}.\n";
-    $content.="$world->{'name'} has a $world->{'moons_name'}, a $world->{'air'} $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}.\n";
+    $content.="$world->{'name'} is ".A( $world->{'size'}).", $world->{'basetemp'} planet orbiting ".A( $world->{'astronomy'}->{'starsystem_name'}).".\n";
+    $content.="$world->{'name'} has a $world->{'astronomy'}->{'moons_name'}, ".A($world->{'air'})." $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}.\n";
     $content.="The surface of the planet is $world->{'surfacewater_percent'}% covered by water.\n";
     return $content;
 }
@@ -67,11 +67,11 @@ printSkySummary strips out important info from a World object and returns format
 sub printSkySummary {
     my ($world) = @_;
     my $content="";
-    my $stars=conjunction(@{ $world->{'star_description'}} );
+    my $stars=conjunction(@{ $world->{'astronomy'}->{'star_description'}} );
     my $moons=printMoonList($world);
     my $celestials=printCelestialList($world);
     my $atmosphere=printAtmosphere($world);
-    $content.= "$world->{'name'} orbits ". A($world->{'starsystem_name'}). ": $stars.\n";
+    $content.= "$world->{'name'} orbits ". A($world->{'astronomy'}->{'starsystem_name'}). ": $stars.\n";
     $content.= "$world->{'name'} also has $moons.\n";
     $content.= "In the night sky, you see $celestials.\n";
     $content.= "During the day, the sky is $atmosphere.\n";
@@ -114,10 +114,10 @@ printMoonList nicely formats the moon description listings
 sub printMoonList {
     my ($world) = @_;
     my $content="";
-    if ($world->{'moons_count'} == 0 ){
-        $content.=$world->{'moons_name'};
+    if ($world->{'astronomy'}->{'moons_count'} == 0 ){
+        $content.=$world->{'astronomy'}->{'moons_name'};
     }else{
-        $content.=A($world->{'moons_name'}).": ".conjunction(@{ $world->{'moon_description'}} );
+        $content.=A($world->{'astronomy'}->{'moons_name'}).": ".conjunction(@{ $world->{'astronomy'}->{'moon_description'}} );
     }
     return $content;
 }
@@ -135,10 +135,10 @@ printCelestialList nicely formats the Celestial object description listings
 sub printCelestialList {
     my ($world) = @_;
     my $content="";
-    if ($world->{'celestial_count'} == 0 ){
-        $content.=$world->{'celestial_name'};
+    if ($world->{'astronomy'}->{'celestial_count'} == 0 ){
+        $content.=$world->{'astronomy'}->{'celestial_name'};
     } else {
-        $content.=$world->{'celestial_name'}.": ".conjunction(@{ $world->{'celestial_description'}} );
+        $content.=$world->{'astronomy'}->{'celestial_name'}.": ".conjunction(@{ $world->{'astronomy'}->{'celestial_description'}} );
     }
 
     return $content;
@@ -208,9 +208,9 @@ sub printWorldDataSummary {
 
     $content= << "EOF"
     <ul>
-        <li>Stars: $world->{'starsystem_count'}</li>
-        <li>Moons: $world->{'moons_count'}</li>
-        <li>Celestial Objects: $world->{'celestial_count'}</li>
+        <li>Stars: $world->{'astronomy'}->{'starsystem_count'}</li>
+        <li>Moons: $world->{'astronomy'}->{'moons_count'}</li>
+        <li>Celestial Objects: $world->{'astronomy'}->{'celestial_count'}</li>
         <li>Weather: $world->{'basetemp'}</li>
         <li>Sky: $world->{'atmosphere'}->{'color'}</li>
         <li>Size: $world->{'size'}</li>

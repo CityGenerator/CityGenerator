@@ -21,7 +21,7 @@ require Exporter;
 subtest 'test create_world' => sub {
     my $world;
     $world=WorldGenerator::create_world();
-    is($world->{'seed'},41630);
+    isnt($world->{'name'},undef);
 
     $world=WorldGenerator::create_world({'seed'=>12345});
     is($world->{'seed'},12345);
@@ -30,46 +30,6 @@ subtest 'test create_world' => sub {
     $world=WorldGenerator::create_world({'seed'=>12345, 'name'=>'test'});
     is($world->{'seed'},12345);
     is($world->{'name'},'test');
-
-    done_testing();
-};
-
-
-
-subtest 'test generate_starsystem' => sub {
-    my $world;
-    $world=WorldGenerator::create_world({'seed'=>12345});
-    is($world->{'seed'},12345);
-    is($world->{'star'}[0]->{'name'}, 'Lun'   );
-    is($world->{'star'}[0]->{'size'}, 'large' );
-    is($world->{'star'}[0]->{'color'}, 'yellow'    );
-    $world=WorldGenerator::create_world({'seed'=>765379, 'starsystem_roll'=>98});
-    is($world->{'seed'},765379);
-
-    is($world->{'star'}[0]->{'name'}, 'Woc'  );
-    is($world->{'star'}[1]->{'name'}, 'Naj'     );
-    is($world->{'star'}[2]->{'name'}, 'Krolek'    );
-
-    is($world->{'star'}[0]->{'size'}, 'average' );
-    is($world->{'star'}[1]->{'size'}, 'large' );
-    is($world->{'star'}[2]->{'size'}, 'massive' );
-
-    is($world->{'star'}[0]->{'color'}, 'yellow'    );
-    is($world->{'star'}[1]->{'color'}, 'orange' );
-    is($world->{'star'}[2]->{'color'}, 'white' );
-    done_testing();
-};
-subtest 'test generate_moons' => sub {
-    my $world;
-    $world=WorldGenerator::create_world({'seed'=>765379, 'moons_roll'=>"96" });
-    is($world->{'seed'},765379);
-    is($world->{'moon'}[0]->{'name'}, 'Phomenoe'     );
-    is($world->{'moon'}[1]->{'name'}, 'Deiro'     );
-    is($world->{'moon'}[2]->{'name'}, 'Prodi' );
-
-    is($world->{'moon'}[0]->{'size'}, "average" );
-    is($world->{'moon'}[1]->{'size'}, "supermassive" );
-    is($world->{'moon'}[2]->{'size'}, "massive" );
 
     done_testing();
 };
@@ -112,30 +72,6 @@ subtest 'test generate_wind' => sub {
     done_testing();
 };
 
-subtest 'test generate_celetial_objects' => sub {
-    my $world;
-    $world=WorldGenerator::create_world({'seed'=>765373, 'celestial_roll'=>70 });
-    is($world->{'celestial_count'}, "2" );
-    is($world->{'celestial_roll'}, "70" );
-    is($world->{'celestial_name'}, "two celestial objects" );
-    is($world->{'celestial'}[0]->{'name'}, "pulsar" );
-    is($world->{'celestial'}[0]->{'size'}, "tiny" );
-    is($world->{'celestial'}[0]->{'age'},  "decades" );
-
-    is($world->{'celestial'}[1]->{'name'}, "galaxy" );
-    is($world->{'celestial'}[1]->{'size'}, "miniscule" );
-    is($world->{'celestial'}[1]->{'age'},  "all eternity" );
-
-    is($world->{'celestial'}[2],  undef );
-
-    $world=WorldGenerator::create_world({'seed'=>765373, 'celestial_roll'=>1});
-    is($world->{'celestial_count'}, "0" );
-    is($world->{'celestial_roll'}, "1" );
-    is($world->{'celestial_name'}, "nothing unusual" );
-    is($world->{'celestial'}[0],  undef );
-    done_testing();
-
-};
 
 
 subtest 'test generate_year' => sub {

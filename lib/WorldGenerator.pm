@@ -31,6 +31,7 @@ use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use AstronomyGenerator;
 use Lingua::EN::Inflect qw(A);
 use List::Util 'shuffle', 'min', 'max';
 use Math::Trig  ':pi';
@@ -64,8 +65,6 @@ The following datafiles are used by WorldGenerator.pm:
 ###############################################################################
 my $world_data          = $xml->XMLin( "xml/worlddata.xml",      ForceContent => 1, ForceArray => ['option','reason'] );
 my $worldnames_data     = $xml->XMLin( "xml/worldnames.xml",     ForceContent => 1, ForceArray => [] );
-my $starnames_data      = $xml->XMLin( "xml/starnames.xml",      ForceContent => 1, ForceArray => [] );
-my $moonnames_data      = $xml->XMLin( "xml/moonnames.xml",      ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -100,27 +99,25 @@ sub create_world {
     }
 
     if ( !defined $world->{'seed'} ) {
-        $world->{'seed'} = set_seed();
+        $world->{'seed'} = GenericGenerator::set_seed();
     }
 
-    $world=generate_name($world);
-    $world=generate_starsystem($world);
-    $world=generate_moons($world);
-    $world=generate_atmosphere($world);
-    $world=generate_basetemp($world);
-    $world=generate_air($world);
-    $world=generate_wind($world);
-    $world=generate_celestial_objects($world);
-    $world=generate_year($world);
-    $world=generate_day($world);
-    $world=generate_plates($world);
-    $world=generate_surface($world);
-    $world=generate_surfacewater($world);
-    $world=generate_freshwater($world);
-    $world=generate_civilization($world);
-    $world=generate_smallstorms($world);
-    $world=generate_precipitation($world);
-    $world=generate_clouds($world);
+    generate_name($world);
+    generate_atmosphere($world);
+    generate_astronomy($world);
+    generate_basetemp($world);
+    generate_air($world);
+    generate_wind($world);
+    generate_year($world);
+    generate_day($world);
+    generate_plates($world);
+    generate_surface($world);
+    generate_surfacewater($world);
+    generate_freshwater($world);
+    generate_civilization($world);
+    generate_smallstorms($world);
+    generate_precipitation($world);
+    generate_clouds($world);
     return $world;
 } ## end sub create_world
 
@@ -141,146 +138,6 @@ sub generate_name {
     $world->{'name'}=$nameobj->{'content'}   if (!defined $world->{'name'} );
    return $world; 
 }
-
-
-###############################################################################
-
-=head3 generate_starsystem()
-
-    generate a starsystem for the world.
-
-=cut
-
-###############################################################################
-sub generate_starsystem {
-    my ($world) = @_;
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3])  );
-
-    $world->{'starsystem_roll'}= d(100) if (!defined $world->{'starsystem_roll'});
-    
-    my $starsystem=roll_from_array($world->{'starsystem_roll'},  $world_data->{'stars'}->{'option'});
-    $world->{'starsystem_count'}=$starsystem->{'count'};
-    $world->{'starsystem_name'}=$starsystem->{'content'};
-    $world->{'star'}= [] if (!defined $world->{'star'});
-    $world->{'star_description'}= [] if (!defined $world->{'star_description'});
-    for (my $starid=0 ; $starid < $world->{'starsystem_count'} ; $starid++ ){
-        generate_star($world,$starid);
-    }
-
-    return $world; 
-}
-###############################################################################
-
-=head3 generate_moons()
-
-    generate a moons for the world.
-
-=cut
-
-###############################################################################
-sub generate_moons {
-    my ($world) = @_;
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3])  );
-
-    $world->{'moons_roll'}= d(100) if (!defined $world->{'moons_roll'});
-    
-    my $moons=roll_from_array($world->{'moons_roll'},  $world_data->{'moons'}->{'option'});
-    $world->{'moons_count'}=$moons->{'count'};
-    $world->{'moons_name'}=$moons->{'content'};
-
-    $world->{'moon'}= [] if (!defined $world->{'moon'});
-    for (my $moonid=0 ; $moonid < $world->{'moons_count'} ; $moonid++ ){
-        generate_moon($world,$moonid);
-    }
-
-    return $world; 
-}
-
-
-###############################################################################
-
-=head3 generate_star()
-
-    generate details for a single star.
-
-=cut
-
-###############################################################################
-sub generate_star {
-    my ($world,$id) = @_;
-
-    $id=0 if (!defined $id);
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3])+$id  );
-
-    my $nameobj= parse_object( $starnames_data );
-    $world->{'star'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'star'}[$id]->{'name'} );
-
-    $world->{'star'}[$id]->{'color_roll'} = d(100)  if (!defined $world->{'star'}[$id]->{'color_roll'} );
-    $world->{'star'}[$id]->{'color'}= roll_from_array( $world->{'star'}[$id]->{'color_roll'}, $world_data->{'starcolor'}->{'option'})->{'content'} if (!defined $world->{'star'}[$id]->{'color'});
-
-    $world->{'star'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'star'}[$id]->{'size_roll'} );
-    $world->{'star'}[$id]->{'size'}= roll_from_array( $world->{'star'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'star'}[$id]->{'size'});
-
-    $world->{'star_description'}[$id]=$world->{'star'}[$id]->{'name'}.", ".A( $world->{'star'}[$id]->{'size'}." ".$world->{'star'}[$id]->{'color'}." star"  ) if (!defined $world->{'star_description'}[$id]);
-
-
-   return $world; 
-}
-
-
-###############################################################################
-
-=head3 generate_moon()
-
-    generate a name for a moon.
-
-=cut
-
-###############################################################################
-sub generate_moon {
-    my ($world,$id) = @_;
-
-    $id=0 if (!defined $id);
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3])+$id  );
-    my $nameobj= parse_object( $moonnames_data );
-    $world->{'moon'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $world->{'moon'}[$id]->{'name'} );
-
-    $world->{'moon'}[$id]->{'color_roll'} = d(100)  if (!defined $world->{'moon'}[$id]->{'color_roll'} );
-    $world->{'moon'}[$id]->{'color'}= roll_from_array( $world->{'moon'}[$id]->{'color_roll'}, $world_data->{'mooncolor'}->{'option'})->{'content'} if (!defined $world->{'moon'}[$id]->{'color'});
-
-    $world->{'moon'}[$id]->{'size_roll'} = d(100)  if (!defined $world->{'moon'}[$id]->{'size_roll'} );
-    $world->{'moon'}[$id]->{'size'}= roll_from_array( $world->{'moon'}[$id]->{'size_roll'}, $world_data->{'size'}->{'option'})->{'content'} if (!defined $world->{'moon'}[$id]->{'size'});
-
-    $world->{'moon_description'}[$id]=$world->{'moon'}[$id]->{'name'}.", ".A( $world->{'moon'}[$id]->{'size'}." ".$world->{'moon'}[$id]->{'color'}." moon"  ) if (!defined $world->{'moon_description'}[$id]);
-   return $world; 
-}
-
-###############################################################################
-
-=head3 generate_celestial()
-
-    generate details for a single celestial object.
-
-=cut
-
-###############################################################################
-sub generate_celestial {
-    my ($world,$id) = @_;
-
-    $id=0 if (!defined $id);
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3])+$id  );
-
-
-    $world->{'celestial'}[$id]->{'size'}= rand_from_array( $world_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'size'});
-    $world->{'celestial'}[$id]->{'age'}=  rand_from_array( $world_data->{'celestial'}->{'age'}->{'option'})->{'content'}  if (!defined $world->{'celestial'}[$id]->{'age'});
-    $world->{'celestial'}[$id]->{'name'}= rand_from_array( $world_data->{'celestial'}->{'name'}->{'option'})->{'content'} if (!defined $world->{'celestial'}[$id]->{'name'});
-
-    $world->{'celestial_description'}[$id]= A( $world->{'celestial'}[$id]->{'size'}." ".$world->{'celestial'}[$id]->{'name'} )." that has been around for ".$world->{'celestial'}[$id]->{'age'} if (!defined $world->{'celestial_description'}[$id] );
-
-
-   return $world; 
-}
-
 
 
 ###############################################################################
@@ -372,35 +229,6 @@ sub generate_wind {
    return $world;
 }
 
-
-###############################################################################
-
-=head3 generate_celestial_objects()
-
-    generate nearby celestial objects for the planet.
-
-=cut
-
-###############################################################################
-sub generate_celestial_objects {
-    my ($world) = @_;
-
-    set_seed(  $world->{'seed'}  + length ((caller(0))[3]) );
-    
-    $world->{'celestial_roll'}=  d(100) if  (!defined $world->{'celestial_roll'});
-    my $celestial=roll_from_array($world->{'celestial_roll'},  $world_data->{'celestial'}->{'number'}->{'option'});
-    $world->{'celestial_count'} = $celestial->{'count'} if (!defined $world->{'celestial_count'} );
-    $world->{'celestial_name'} = $celestial->{'type'} if (!defined $world->{'celestial_name'} );
-
-    $world->{'celestial'}= [] if (!defined $world->{'celestial'});
-    $world->{'celestial_description'}= [] if (!defined $world->{'celestial_description'});
-    for (my $celestialid=0 ; $celestialid < $world->{'celestial_count'}; $celestialid++) {
-        generate_celestial($world,$celestialid);
-    }
-
-
-   return $world;
-}
 
 ###############################################################################
 
@@ -629,6 +457,23 @@ sub generate_clouds {
    return $world; 
 }
 
+
+###############################################################################
+
+=head3 generate_astronomy()
+
+    generate astronomical stuff for the planet
+
+=cut
+
+###############################################################################
+sub generate_astronomy {
+    my ($world) = @_;
+
+    $world->{'astronomy'}=AstronomyGenerator::create_astronomy({'seed'=>$world->{'seed'} }) if (!defined $world->{'astronomy'});
+
+   return $world; 
+}
 
 
 

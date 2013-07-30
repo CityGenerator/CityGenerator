@@ -20,8 +20,9 @@ require Exporter;
 
 subtest 'test create_astronomy' => sub {
     my $astronomy;
+
     $astronomy=AstronomyGenerator::create_astronomy();
-    is($astronomy->{'seed'},865653);
+    isnt($astronomy->{'seed'},undef);
 
     $astronomy=AstronomyGenerator::create_astronomy({'seed'=>12345});
     is($astronomy->{'seed'},12345);
