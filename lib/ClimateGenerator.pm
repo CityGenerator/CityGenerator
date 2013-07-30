@@ -187,7 +187,7 @@ sub calculate_biome {
     $climate->{'biomekey'}= $biomematrix->[$precipkey][$tempkey] if (!defined $climate->{'biomekey'});
     $climate->{'name'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'type'}  if (!defined $climate->{'name'});
     $climate->{'description'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'content'}  if (!defined $climate->{'description'});
-    $climate->{'seasontypes'}=  [split( /,/, $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'seasons'})]  if (!defined $climate->{'seasontypes'});
+    $climate->{'seasontypes'}=  [split( /,/x, $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'seasons'})]  if (!defined $climate->{'seasontypes'});
 
     $climate->{'seasontype'}=  rand_from_array( $climate->{'seasontypes'}  ) if (!defined $climate->{'seasontype'});
     $climate->{'seasondescription'}= $climate_data->{'seasons'}->{'option'}->{$climate->{'seasontype'}}->{'content'}  if (!defined $climate->{'seasondescription'});

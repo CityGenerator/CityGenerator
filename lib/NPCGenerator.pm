@@ -102,7 +102,6 @@ sub create_npc{
     $npc->{'race'}=rand_from_array( $npc->{'available_races'} ) if (! defined $npc->{'race'});
     $npc->{'race'}=lc $npc->{'race'};
     
-    $npc->{'race_article'}=$names_data->{'race'}->{$npc->{'race'}}->{'article'}   ;
     $npc->{'race_plural'}=$names_data->{'race'}->{$npc->{'race'}}->{'plural'}   ;
     
     generate_npc_name($npc->{'race'},$npc);
@@ -192,7 +191,7 @@ Take a provided NPC and select a profession from the list of available choices.
 
 sub set_profession{
     my ($npc)=@_;
-    if (! defined $npc->{'allowed_professions'} or scalar(@{$npc->{'allowed_professions'}}) == 0){
+    if (! defined $npc->{'allowed_professions'}  || scalar(@{$npc->{'allowed_professions'}}) == 0){
         $npc->{'allowed_professions'} = [keys %{$specialist_data->{'option'}}];
     }
 

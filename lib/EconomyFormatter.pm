@@ -70,7 +70,7 @@ sub printBusinesses {
         $content.="<p>You can find the following establishments in $city->{'name'}:</p>\n";
         $content.="<ul class='threecolumn'>";
         foreach my $resource ( keys %{$city->{'businesses'} }  ){
-            my @resources = split(/,/, $resource)  ;
+            my @resources = split(/,/x, $resource)  ;
             @resources=shuffle( @resources);
             my $resourcename=pop @resources;
             my $count=$city->{'businesses'}->{$resource}->{'count'};

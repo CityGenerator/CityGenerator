@@ -42,6 +42,8 @@ No datafiles are directly used by GenericGenerator.
 
 =cut
 
+#Yes, I know this is bad. I'm aware. Yes, I know.
+# that's why I want to make this a class.
 our $seed;
 
 

@@ -1263,22 +1263,22 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <scope>the world</scope>
 </area>
 <classes>
-    <class name="Commoner"   min="0"  max="23" article="a"  max_level="4d4" />
-    <class name="Expert"     min="24" max="35" article="an" max_level="3d4" />
-    <class name="Warrior"    min="36" max="43" article="a"  max_level="2d4" />
-    <class name="Rogue"      min="44" max="49" article="a"  max_level="1d8" />
-    <class name="Barbarian"  min="50" max="52" article="a"  max_level="1d4" />
-    <class name="Monk"       min="53" max="55" article="a"  max_level="1d4" />
-    <class name="Bard"       min="56" max="59" article="a"  max_level="1d6" />
-    <class name="Cleric"     min="60" max="65" article="a"  max_level="1d6" />
-    <class name="Druid"      min="66" max="69" article="a"  max_level="1d6" />
-    <class name="Fighter"    min="70" max="77" article="a"  max_level="1d8" />
-    <class name="Adept"      min="78" max="83" article="an" max_level="1d6" />
-    <class name="Sorcerer"   min="84" max="87" article="a"  max_level="1d4" />
-    <class name="Wizard"     min="88" max="91" article="a"  max_level="1d4" />
-    <class name="Aristocrat" min="92" max="95" article="an" max_level="1d4" />
-    <class name="Paladin"    min="96" max="97" article="a"  max_level="1d3" />
-    <class name="Ranger"     min="99" max="99" article="a"  max_level="1d3" />
+    <class name="Commoner"   min="0"  max="23" max_level="4d4" />
+    <class name="Expert"     min="24" max="35" max_level="3d4" />
+    <class name="Warrior"    min="36" max="43" max_level="2d4" />
+    <class name="Rogue"      min="44" max="49" max_level="1d8" />
+    <class name="Barbarian"  min="50" max="52" max_level="1d4" />
+    <class name="Monk"       min="53" max="55" max_level="1d4" />
+    <class name="Bard"       min="56" max="59" max_level="1d6" />
+    <class name="Cleric"     min="60" max="65" max_level="1d6" />
+    <class name="Druid"      min="66" max="69" max_level="1d6" />
+    <class name="Fighter"    min="70" max="77" max_level="1d8" />
+    <class name="Adept"      min="78" max="83" max_level="1d6" />
+    <class name="Sorcerer"   min="84" max="87" max_level="1d4" />
+    <class name="Wizard"     min="88" max="91" max_level="1d4" />
+    <class name="Aristocrat" min="92" max="95" max_level="1d4" />
+    <class name="Paladin"    min="96" max="97" max_level="1d3" />
+    <class name="Ranger"     min="99" max="99" max_level="1d3" />
 </classes>
 
 <dominance chance='30'>
