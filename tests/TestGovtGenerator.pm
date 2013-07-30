@@ -81,12 +81,10 @@ subtest 'test generate_stats' => sub {
     my $govt;
     $govt=GovtGenerator::create_govt({'seed'=>41630});
     is($govt->{'seed'},41630);
-    is($govt->{'stats'}->{'corruption'},    68);
-    is($govt->{'stats'}->{'approval'},      86);
-    is($govt->{'stats'}->{'efficiency'},    59);
-    is($govt->{'stats'}->{'influence'},     51);
-    is($govt->{'stats'}->{'unity'},         76);
-    is($govt->{'stats'}->{'theology'},      52);
+    foreach my $stat ( qw/ corruption approval efficiency influence unity theology/ ) {
+        cmp_ok($govt->{'stats'}->{$stat}, '<=', 100,  "$stat max"  );
+        cmp_ok($govt->{'stats'}->{$stat}, '>=', 1,    "$stat min"  );
+    }
 
     is($govt->{'corruption_description'},   'decent');
     is($govt->{'approval_description'},     'honored');

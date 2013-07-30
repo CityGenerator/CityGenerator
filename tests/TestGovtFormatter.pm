@@ -39,7 +39,7 @@ subtest 'Test Govt Crime' => sub {
     is($crime, 
         "Crime is rampant. \n".
         "The most common crime is murder. \n".
-        "The imprisonment made is 0.00 of the population (0 adults). \n"
+        "The imprisonment rate is 0.00% of the population (0 adults). \n"
     );
     done_testing();
 };

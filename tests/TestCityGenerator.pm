@@ -774,13 +774,13 @@ subtest 'test generate_travelers' => sub {
     isnt($city->{'travelers'}->[1]->{'race'}, undef);
     isnt($city->{'travelers'}->[2]->{'race'}, undef);
 
-    $city=CityGenerator::create_city({'stats'=>{'seed'=>1, 'tolerance'=>-5}});
+    $city=CityGenerator::create_city({'seed'=>1, 'stats'=>{'tolerance'=>-5}});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 0);
     is(scalar(@{$city->{'travelers'}}), 0);
     is($city->{'travelers'}->[0]->{'race'}, undef);
 
-    $city=CityGenerator::create_city({'stats'=>{'seed'=>1, 'tolerance'=>5}});
+    $city=CityGenerator::create_city({'seed'=>1, 'stats'=>{'tolerance'=>5}});
     CityGenerator::generate_travelers($city);
     is($city->{'traveler_count'}, 10);
     is(scalar(@{$city->{'travelers'}}), 10);

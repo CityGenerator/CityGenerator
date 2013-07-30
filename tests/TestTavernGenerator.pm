@@ -23,10 +23,12 @@ subtest 'test create_tavern' => sub {
     $tavern=TavernGenerator::create_tavern({'seed'=>41630});
     is($tavern->{'seed'},41630);
     is($tavern->{'name'},'Ruby Thug');
-    is($tavern->{'stats'}->{'cost'},86);
-    is($tavern->{'stats'}->{'popularity'},6);
-    is($tavern->{'stats'}->{'size'},46);
-    is($tavern->{'stats'}->{'reputation'},95);
+
+    foreach my $stat ( qw/ cost popularity size reputation / ) {
+        cmp_ok($tavern->{'stats'}->{$stat}, '<=', 100,  "$stat max"  );  
+        cmp_ok($tavern->{'stats'}->{$stat}, '>=', 1,    "$stat min"  );  
+    }
+
 
     $tavern=TavernGenerator::create_tavern({'seed'=>41630, 'name'=>'test', 'stats'=>{'cost'=>11, 'popularity'=>11, 'size'=>11, 'reputation'=>11}  });
     is($tavern->{'seed'},41630);
@@ -55,8 +57,11 @@ subtest 'test generate_amenities' => sub {
     my $tavern;
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22});
-    is($tavern->{'amenity_count'} ,1);
-    is(scalar(@{$tavern->{'amenity'} }) ,1);
+    cmp_ok( $tavern->{'amenity_count'}, '<=', 3,  "amenity max");
+    cmp_ok( $tavern->{'amenity_count'}, '>=', 0,  "amenity min");
+    cmp_ok( scalar(@{$tavern->{'amenity'} }), '<=', 3,  "amenity max");
+    cmp_ok( scalar(@{$tavern->{'amenity'} }), '>=', 0,  "amenity min");
+    is( scalar(@{$tavern->{'amenity'} }), $tavern->{'amenity_count'}, 'amenities match count');
 
     $tavern=TavernGenerator::create_tavern({'seed'=>22, 'amenity_count'=>'2'  });
     is($tavern->{'amenity_count'} ,2);

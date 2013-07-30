@@ -40,23 +40,38 @@ subtest 'test set_level' => sub {
     my $npc;
 
     $npc=NPCGenerator::create_npc({'seed'=>5});
-    is($npc->{'level'},'5');
+    is($npc->{'level'},'3');
 
     $npc=NPCGenerator::create_npc({'seed'=>5,'size_modifier'=>12});
     NPCGenerator::set_level($npc);
-    is($npc->{'level'},'17');
+    is($npc->{'level'},'7');
 
     $npc=NPCGenerator::create_npc({'seed'=>5, 'level'=>20});
     is($npc->{'level'},'20');
 
 
-    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>20});
+    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>1000});
     NPCGenerator::set_level($npc);
     is($npc->{'level'},'20');
 
-    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>-20});
+    $npc=NPCGenerator::create_npc({seed=>5,'size_modifier'=>-5});
     NPCGenerator::set_level($npc);
     is($npc->{'level'},'1');
+
+    done_testing();
+};
+subtest 'test set_class' => sub {
+    my $npc;
+
+    $npc=NPCGenerator::create_npc({'seed'=>5});
+    is($npc->{'class'},'Bard');
+
+    $npc=NPCGenerator::create_npc({'seed'=>5,'class_roll'=>12});
+    is($npc->{'class'},'Commoner');
+
+    $npc=NPCGenerator::create_npc({'seed'=>5,'class_roll'=>12, 'class'=>'Druid'});
+    is($npc->{'class'},'Druid');
+
 
     done_testing();
 };
@@ -186,12 +201,42 @@ subtest 'test generate_npc_name' => sub {
         done_testing();
     };
 
-
-
-
-
     done_testing();
 };
+
+subtest 'test NPC motivations' => sub {
+    my $npc;
+    $npc=NPCGenerator::create_npc({'seed'=>1 });
+    isnt($npc->{'motivation'},              undef,  );
+    isnt($npc->{'motivation_detail'},       undef,  );
+    is($npc->{'motivation_description'},    $npc->{'motivation'}." ".$npc->{'motivation_detail'},  );
+
+    $npc=NPCGenerator::create_npc({'seed'=>1, 'motivation'=>'to play', 'motivation_detail'=>'whirlyball', 'motivation_description'=>'to hate whirlyball' });
+    is($npc->{'motivation'},                'to play',  );
+    is($npc->{'motivation_detail'},         'whirlyball',  );
+    is($npc->{'motivation_description'},    'to hate whirlyball',  );
+
+    $npc=NPCGenerator::create_npc({'seed'=>1, 'motivation'=>'to play', 'motivation_detail'=>'whirlyball' });
+    is($npc->{'motivation'},                'to play',  );
+    is($npc->{'motivation_detail'},         'whirlyball',  );
+    is($npc->{'motivation_description'},    'to play whirlyball',  );
+
+    $npc=NPCGenerator::create_npc({'seed'=>1, 'motivation'=>'to play' });
+    is($npc->{'motivation'},                'to play',  );
+    is($npc->{'motivation_detail'},         '',  );
+    is($npc->{'motivation_description'},    'to play',  );
+
+    $npc=NPCGenerator::create_npc({'seed'=>1, 'motivation'=>'finding a missing' });
+    is($npc->{'motivation'},                'finding a missing',  );
+    is($npc->{'motivation_detail'},         'parent',  );
+    is($npc->{'motivation_description'},    'finding a missing parent',  );
+
+    done_testing();
+
+};
+
+
+
 
 
 1;

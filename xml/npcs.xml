@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<npcs>
+	<classes>
+	    <option          max="23" type="Commoner"   />
+	    <option min="24" max="35" type="Expert"     />
+	    <option min="36" max="43" type="Warrior"    />
+	    <option min="44" max="49" type="Rogue"      />
+	    <option min="50" max="52" type="Barbarian"  />
+	    <option min="53" max="55" type="Monk"       />
+	    <option min="56" max="59" type="Bard"       />
+	    <option min="60" max="65" type="Cleric"     />
+	    <option min="66" max="69" type="Druid"      />
+	    <option min="70" max="77" type="Fighter"    />
+	    <option min="78" max="83" type="Adept"      />
+	    <option min="84" max="87" type="Sorcerer"   />
+	    <option min="88" max="91" type="Wizard"     />
+	    <option min="92" max="95" type="Aristocrat" />
+	    <option min="96" max="97" type="Paladin"    />
+	    <option min="99"          type="Ranger"     />
+	</classes>
+
+	<motivation><!-- Bob is a bard who is -->
+	    <motive name="on a mission">
+	        <option>from the gods</option>
+	        <option>for diplomacy</option>
+	        <option>to collect a debt</option>
+	        <option>to capture someone</option>
+	    </motive>
+	    <motive name="traveling with">
+	        <option>a diplomat</option>
+	        <option>a circus</option>
+	        <option>an expidition</option>
+	        <option>an important person</option>
+	        <option>an acting troupe</option>
+	    </motive>
+	    <motive name="following">
+	        <option>rumors of riches</option>
+	        <option>rediscovered ancient lore</option>
+	        <option>the voices</option>
+	        <option>a message from an angel</option>
+	    </motive>
+	    <motive name="fleeing">
+	        <option>the law</option>
+	        <option>an assassin</option>
+	        <option>debtors</option>
+	        <option>an abusive lover</option>
+	        <option>a natural disaster</option>
+	        <option>overdue taxes</option>
+	        <option>a bad family situation</option>
+	        <option>from forced labor</option>
+	    </motive>
+	    <motive name="traveling the world as">
+	        <option>a trader</option>
+	        <option>a pilgrim</option>
+	        <option>a missionary</option>
+	        <option>a beggar</option>
+	        <option>an unemployed specialist</option>
+	    </motive>
+	
+	    <motive name="seeking">
+	        <option>thrills and adventure</option>
+	        <option>honest work</option>
+	        <option>dishonest work</option>
+	        <option>revenge</option>
+	        <option>healing for a crippling injury</option>
+	    </motive>
+	    <motive name="brokering a truce">
+	        <option>over a trade war</option>
+	        <option>over escalating tension</option>
+	    </motive>
+	    <motive name="doing something">
+	        <option>nefarious</option>
+	        <option>amazing</option>
+	        <option>impossible</option>
+	        <option>secret</option>
+	        <option>questionable</option>
+	    </motive>
+	    <motive name="seeing the">
+	        <option>world</option>
+	        <option>city</option>
+	    </motive>
+	    <motive name="finding a missing">
+	        <option>parent</option>
+	        <option>sibling</option>
+	        <option>friend</option>
+	        <option>nemesis</option>
+	        <option>criminal</option>
+	        <option>artifact</option>
+	        <option>treasure</option>
+	        <option>map</option>
+	        <option>heir</option>
+	        <option>artifact</option>
+	    </motive>
+	    <motive name="finding a long-lost">
+	        <option>parent</option>
+	        <option>sibling</option>
+	        <option>friend</option>
+	        <option>distant relative</option>
+	    </motive>
+	    <motive name="cleaning out">
+	        <option>a monster infestation</option>
+	        <option>a wealthy person</option>
+	        <option>a bug infestation</option>
+	        <option>a slum</option>
+	    </motive>
+	    <motive name="delivering a message to">
+	        <option>a ruler</option>
+	        <option>a merchant</option>
+	        <option>a peasant</option>
+	        <option>a scholar</option>
+	        <option>a thug</option>
+	    </motive>
+	    <motive name="here to secretly assassinate">
+	        <option>a ruler</option>
+	        <option>a merchant</option>
+	        <option>a peasant</option>
+	        <option>a scholar</option>
+	        <option>a thug</option>
+	    </motive>
+	    <motive name="finding work as">
+	        <option>a skilled laborer</option>
+	        <option>a merchant</option>
+	        <option>a mercenary</option>
+	        <option>a healer</option>
+	        <option>a spy</option>
+	    </motive>
+	    <motive name="here to destroy">
+	        <option>an artifact</option>
+	        <option>a misconception</option>
+	        <option>a rumor</option>
+	    </motive>
+	    <motive name="here to buy">
+	        <option>supplies</option>
+	        <option>spices</option>
+	        <option>slaves</option>
+	    </motive>
+	</motivation>
+
+</npcs>

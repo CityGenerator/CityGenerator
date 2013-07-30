@@ -1276,70 +1276,7 @@
     <class name="Paladin"    min="96" max="97" article="a"  max_level="1d3" />
     <class name="Ranger"     min="99" max="99" article="a"  max_level="1d3" />
 </classes>
-<travelermotivation><!-- Bob is in Willis to -->
-    <motive type="broker a truce"/>
-    <motive type="do something">
-        <option>nefarious</option>
-        <option>amazing</option>
-        <option>impossible</option>
-        <option>secret</option>
-        <option>questionable</option>
-    </motive>
-    <motive type="see the">
-        <option>world</option>
-        <option>city</option>
-    </motive>
-    <motive type="find a missing">
-        <option>parent</option>
-        <option>sibling</option>
-        <option>friend</option>
-        <option>nemesis</option>
-        <option>criminal</option>
-        <option>artifact</option>
-        <option>treasure</option>
-        <option>map</option>
-        <option>heir</option>
-        <option>artifact</option>
-    </motive>
-    <motive type="find a long-lost">
-        <option>parent</option>
-        <option>sibling</option>
-        <option>friend</option>
-        <option>distant relative</option>
-    </motive>
-    <motive type="Clean out a">
-        <option>monster infestation</option>
-        <option>wealthy person</option>
-        <option>bug infestation</option>
-        <option>slum</option>
-    </motive>
-    <motive type="deliver a message to a ">
-        <option>ruler</option>
-        <option>merchant</option>
-        <option>peasant</option>
-        <option>scholar</option>
-        <option>thug</option>
-    </motive>
-    <motive type="secretly assassinate a ">
-        <option>ruler</option>
-        <option>merchant</option>
-        <option>peasant</option>
-        <option>scholar</option>
-        <option>thug</option>
-    </motive>
-    <motive type="find work as ">
-        <option>a skilled laborer</option>
-        <option>a merchant</option>
-        <option>a mercenary</option>
-        <option>a healer</option>
-        <option>a spy</option>
-    </motive>
-    <motive type="destroy ">
-        <option>an artifact</option>
-        <option>a misconception</option>
-        <option>a rumor</option>
-    </motive>
-</travelermotivation>
+
 <dominance chance='30'>
     <option          max="20" >snobbish</option>
     <option min="21" max="40" >mean</option>

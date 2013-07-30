@@ -51,7 +51,7 @@ sub printCitizens {
         $content.="The following citizens are worth mentioning: \n";
         $content.="<ul class='twocolumn'> \n";
         foreach my $citizen ( @{$city->{'citizens'}} ){
-            if ($citizen->{'race'} eq 'other'){
+            if ($citizen->{'race'} eq 'other' or $citizen->{'race'} eq 'any'){
                 $citizen->{'race'}="oddball";
             }
             $content.="<li>";
@@ -93,17 +93,16 @@ sub printTravelers {
         $content.="The following travelers are worth mentioning: \n";
         $content.="<ul class='twocolumn'> \n";
         foreach my $traveler ( @{$city->{'travelers'}} ){
-            if ($traveler->{'race'} eq 'other'){
+            if ($traveler->{'race'} eq 'other' or $traveler->{'race'} eq 'any'){
                 $traveler->{'race'}="oddball";
             }
             $content.="<li>";
             if ( defined $traveler->{'name'}){
-                $content.="<b>".$traveler->{'name'}."</b> is ".A( lc($traveler->{'sex'})." ". lc($traveler->{'race'}))." ";
+                $content.="<b>".$traveler->{'name'}."</b>, ".A( $traveler->{'behavior'}." ".lc($traveler->{'sex'})." ". lc($traveler->{'race'})).". \n";
             }else{
-                $content.= "A nameless ". lc($traveler->{'sex'})." ". lc($traveler->{'race'})." ";
+                $content.= ucfirst (A( $traveler->{'behavior'}." ".$traveler->{'sex'}))." ". lc($traveler->{'race'}).". \n";
             }
-            $content.="who is known in ".$traveler->{'reputation_scope'}." as being ".A($traveler->{'skill'})." $traveler->{'profession'}. \n";
-            $content.=ucfirst($traveler->{'pronoun'})." appears ".$traveler->{'behavior'}.". \n";
+            $content.=ucfirst($traveler->{'pronoun'})." is ".A( lc( $traveler->{'class'}) )." who is $traveler->{'motivation_description'}. \n";
             $content.="</li>";
         }
     }

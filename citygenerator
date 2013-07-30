@@ -20,6 +20,7 @@ use GovtFormatter;
 use LocaleFormatter;
 use PopulationFormatter;
 use PeopleFormatter;
+use EconomyFormatter;
 our $q = CGI->new;
 
 
@@ -143,6 +144,9 @@ sub print_content {
 
         'citizenstext'      => PeopleFormatter::printCitizens($city),
         'travelerstext'     => PeopleFormatter::printTravelers($city),
+
+        'resourcestext'     => EconomyFormatter::printResources($city),
+        'businessestext'    => EconomyFormatter::printBusinesses($city),
 
         'tavernstext'       => LocaleFormatter::printTaverns($city),
 

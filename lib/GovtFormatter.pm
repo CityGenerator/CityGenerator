@@ -109,7 +109,7 @@ sub printCrime {
     my $content="";
     $content.="Crime is $city->{'crime_description'}. \n";
     $content.="The most common crime is $city->{'laws'}->{'commoncrime'}. \n";
-    $content.="The imprisonment made is $city->{'imprisonment_rate'}->{'percent'} of the population ($city->{'imprisonment_rate'}->{'population'} ". PL_N("adult",$city->{'imprisonment_rate'}->{'population'})."). \n";
+    $content.="The imprisonment rate is $city->{'imprisonment_rate'}->{'percent'}% of the population ($city->{'imprisonment_rate'}->{'population'} ". PL_N("adult",$city->{'imprisonment_rate'}->{'population'})."). \n";
 
     return $content;
 }
