@@ -373,22 +373,22 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <landmarkdesc chance="50">
         <option>nondescript</option>
         <option>curious</option>
-	<option>tiny</option>
+    	<option>tiny</option>
         <option>small</option>
         <option>large</option>
         <option>huge</option>
         <option>massive</option>
-	<option>gigantic</option>
+    	<option>gigantic</option>
     </landmarkdesc>
     <location description="on the coast" port_chance='100'>
-	<landmarks chance="12">cliff</landmarks>
-	<landmarks chance="10">lighthouse</landmarks>
-	<landmarks chance="10">rivermouth</landmarks>
-	<landmarks chance="20">beach</landmarks>
-	<landmarks chance="10">jagged outcropping of rock</landmarks>
-	<landmarks chance="12">sea cliff</landmarks>
-	<landmarks chance="12">coral reef</landmarks>
-	<landmarks chance="12">barrier island</landmarks>
+		<landmarks chance="12">cliff</landmarks>
+		<landmarks chance="10">lighthouse</landmarks>
+		<landmarks chance="10">rivermouth</landmarks>
+		<landmarks chance="20">beach</landmarks>
+		<landmarks chance="10">jagged outcropping of rock</landmarks>
+		<landmarks chance="12">sea cliff</landmarks>
+		<landmarks chance="12">coral reef</landmarks>
+		<landmarks chance="12">barrier island</landmarks>
     </location>
     <location description="near a canal" port_chance='90'>
       <landmarks chance="12">bluff</landmarks>
