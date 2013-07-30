@@ -41,30 +41,51 @@ subtest 'test generate_starsystem' => sub {
     $astronomy=AstronomyGenerator::create_astronomy({'seed'=>765379, 'starsystem_roll'=>98});
     is($astronomy->{'seed'},765379);
 
-    is($astronomy->{'star'}[0]->{'name'}, 'Abakel'  );
-    is($astronomy->{'star'}[1]->{'name'}, 'Uuror'     );
-    is($astronomy->{'star'}[2]->{'name'}, 'Sirek'    );
+    foreach my $fieldname (qw( name size color) ){
+        foreach my $id (qw( 0 1 2 ) ){
+            isnt($astronomy->{'star'}[$id]->{$fieldname},  undef, " $fieldname for $id" );
+        }
+    }
 
-    is($astronomy->{'star'}[0]->{'size'}, 'average' );
-    is($astronomy->{'star'}[1]->{'size'}, 'average' );
-    is($astronomy->{'star'}[2]->{'size'}, 'average' );
+    $astronomy=AstronomyGenerator::create_astronomy({'seed'=>12345, 'star'=>[{'name'=>'foo', 'size'=>'bar', 'color'=>'baz'}], 'star_description'=>['blah blah']   });
 
-    is($astronomy->{'star'}[0]->{'color'}, 'white'    );
-    is($astronomy->{'star'}[1]->{'color'}, 'yellow' );
-    is($astronomy->{'star'}[2]->{'color'}, 'brown' );
+    is($astronomy->{'star'}[0]->{'name'},  'foo' );
+    is($astronomy->{'star'}[0]->{'size'},  'bar' );
+    is($astronomy->{'star'}[0]->{'color'}, 'baz' );
+    is($astronomy->{'star_description'}[0], 'blah blah' );
+
+    $astronomy=AstronomyGenerator::create_astronomy({'seed'=>12345, 'star'=>[{'name'=>'foo', 'size_roll'=>50, 'color_roll'=>50}], 'star_description'=>['blah blah']   });
+
+    is($astronomy->{'star'}[0]->{'name'},  'foo' );
+    is($astronomy->{'star'}[0]->{'size'},  'average' );
+    is($astronomy->{'star'}[0]->{'color'}, 'yellow' );
+    is($astronomy->{'star_description'}[0], 'blah blah' );
+
     done_testing();
 };
 subtest 'test generate_moons' => sub {
     my $astronomy;
     $astronomy=AstronomyGenerator::create_astronomy({'seed'=>765379, 'moons_roll'=>"96" });
     is($astronomy->{'seed'},765379);
-    is($astronomy->{'moon'}[0]->{'name'}, 'Theletheus'     );
-    is($astronomy->{'moon'}[1]->{'name'}, 'Elamemos'     );
-    is($astronomy->{'moon'}[2]->{'name'}, 'Himaka' );
+    foreach my $fieldname (qw( name size ) ){
+        foreach my $id (qw( 0 1 2 ) ){
+            isnt($astronomy->{'moon'}[$id]->{$fieldname},  undef, " $fieldname for $id" );
+        }
+    }
 
-    is($astronomy->{'moon'}[0]->{'size'}, "large" );
-    is($astronomy->{'moon'}[1]->{'size'}, "average" );
-    is($astronomy->{'moon'}[2]->{'size'}, "average" );
+    $astronomy=AstronomyGenerator::create_astronomy({'seed'=>12345, 'moon'=>[{'name'=>'foo', 'size'=>'bar', 'color'=>'baz'}], 'moon_description'=>['blah blah']   });
+
+    is($astronomy->{'moon'}[0]->{'name'},  'foo' );
+    is($astronomy->{'moon'}[0]->{'size'},  'bar' );
+    is($astronomy->{'moon'}[0]->{'color'}, 'baz' );
+    is($astronomy->{'moon_description'}[0], 'blah blah' );
+
+    $astronomy=AstronomyGenerator::create_astronomy({'seed'=>12345, 'moon'=>[{'name'=>'foo', 'size_roll'=>50, 'color_roll'=>50}], 'moon_description'=>['blah blah']   });
+
+    is($astronomy->{'moon'}[0]->{'name'},  'foo' );
+    is($astronomy->{'moon'}[0]->{'size'},  'average' );
+    is($astronomy->{'moon'}[0]->{'color'}, 'bone white' );
+    is($astronomy->{'moon_description'}[0], 'blah blah' );
 
     done_testing();
 };
@@ -75,13 +96,12 @@ subtest 'test generate_celetial_objects' => sub {
     is($astronomy->{'celestial_count'}, "2" );
     is($astronomy->{'celestial_roll'}, "70" );
     is($astronomy->{'celestial_name'}, "two celestial objects" );
-    is($astronomy->{'celestial'}[0]->{'name'}, "pulsar" );
-    is($astronomy->{'celestial'}[0]->{'size'}, "massive" );
-    is($astronomy->{'celestial'}[0]->{'age'},  "only a few years" );
 
-    is($astronomy->{'celestial'}[1]->{'name'}, "galaxy" );
-    is($astronomy->{'celestial'}[1]->{'size'}, "imposing" );
-    is($astronomy->{'celestial'}[1]->{'age'},  "time immemorial" );
+    foreach my $fieldname (qw( name size ) ){
+        foreach my $id (qw( 0 1 ) ){
+            isnt($astronomy->{'celestial'}[$id]->{$fieldname},  undef, " $fieldname for $id" );
+        }
+    }
 
     is($astronomy->{'celestial'}[2],  undef );
 
@@ -90,8 +110,8 @@ subtest 'test generate_celetial_objects' => sub {
     is($astronomy->{'celestial_roll'}, "1" );
     is($astronomy->{'celestial_name'}, "nothing unusual" );
     is($astronomy->{'celestial'}[0],  undef );
-    done_testing();
 
+    done_testing();
 };
 
 

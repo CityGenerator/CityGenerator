@@ -48,6 +48,19 @@ subtest 'test generate_adventure name' => sub {
     is($adventure->{'namepattern'},"VERB.gerund SUBJECT");
     is($adventure->{'name'},"Bill and Ted's Excellent Adventure");
 
+
+    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'namepattern'=>'NOUN SUBJECT NOUN SUBJECT ADJECTIVE ADJECTIVE'});
+    is($adventure->{'namepattern'},"NOUN SUBJECT NOUN SUBJECT ADJECTIVE ADJECTIVE");
+
+    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'namepattern'=>'VERB.thirdperson VERB.participle ARTICLE'});
+    is($adventure->{'namepattern'},"VERB.thirdperson VERB.participle ARTICLE");
+
+    $adventure=AdventureGenerator::generate_name({'seed'=>3, 'namepattern'=>'SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT'});
+    is($adventure->{'namepattern'},"SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT");
+
+    $adventure=AdventureGenerator::generate_name({'seed'=>3, 'namepattern'=>'VERB VERB VERB VERB VERB VERB'});
+    is($adventure->{'namepattern'},"VERB VERB VERB VERB VERB VERB");
+
     done_testing();
 };
 
