@@ -81,7 +81,7 @@ sub printLeader {
 
 =head2 printLaw()
 
-printGovt strips out important info from a Govt Object
+printLaw provides details about the laws in the city
 
 =cut
 
@@ -99,7 +99,7 @@ sub printLaw {
 
 =head2 printCrime()
 
-printGovt strips out important info from a Govt Object
+printCrime displays information about crime in the city.
 
 =cut
 
@@ -116,9 +116,9 @@ sub printCrime {
 
 ###############################################################################
 
-=head2 printCrime()
+=head2 printMilitary()
 
-printGovt strips out important info from a Govt Object
+printMilitary does nothing currently
 
 =cut
 
@@ -131,3 +131,32 @@ sub printMilitary {
 }
 
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+=head1 DISCLAIMER OF WARRANTY
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+=cut

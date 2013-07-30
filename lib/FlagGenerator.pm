@@ -23,8 +23,6 @@ use base qw(Exporter);
 =cut
 
 ###############################################################################
-
-
 use Carp;
 use CGI;
 use Data::Dumper;
@@ -59,7 +57,7 @@ The following datafiles are used by FlagGenerator.pm:
 
 ###############################################################################
 local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::LibXML::SAX';
-
+#FIXME should the above line go before $xml is created orafter, and is this in every file??
 my $flag_data    = $xml->XMLin( "xml/flag.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -144,6 +142,16 @@ sub generate_colors {
     return $flag;
 }
 
+
+###############################################################################
+
+=head2 generate_shape()
+
+select a shape from the list as well as any attributes like scallops
+
+=cut
+
+###############################################################################
 sub generate_shape {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -175,6 +183,16 @@ sub generate_shape {
     return $flag;
 }
 
+
+###############################################################################
+
+=head2 generate_ratio()
+
+select a ratio of length:width for the flag
+
+=cut
+
+###############################################################################
 sub generate_ratio {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -182,6 +200,16 @@ sub generate_ratio {
     return $flag;
 }
 
+
+###############################################################################
+
+=head2 generate_division()
+
+Determine which type of division and how it is numerically divided
+
+=cut
+
+###############################################################################
 sub generate_division {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -214,6 +242,15 @@ sub generate_division {
 }
 
 
+###############################################################################
+
+=head2 generate_overlay()
+
+Determine which type of overlay and where is is located and sized
+
+=cut
+
+###############################################################################
 sub generate_overlay {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -245,6 +282,15 @@ sub generate_overlay {
 }
 
 
+###############################################################################
+
+=head2 generate_symbol()
+
+Determine which type of symbol and where it is located
+
+=cut
+
+###############################################################################
 sub generate_symbol {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -275,6 +321,16 @@ sub generate_symbol {
     return $flag;
 }
 
+
+###############################################################################
+
+=head2 generate_border()
+
+Determine which type of border to use
+
+=cut
+
+###############################################################################
 sub generate_border {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -283,6 +339,16 @@ sub generate_border {
 }
 
 
+###############################################################################
+
+=head2 generate_letter()
+
+Determine which letter to use- if the cityname is given, use the first letter.
+Otherwise, use a random capital letter.
+
+=cut
+
+###############################################################################
 sub generate_letter {
     my ($flag)=@_;
     GenericGenerator::set_seed($flag->{'seed'});
@@ -304,34 +370,24 @@ __END__
 
 Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
 Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
 
-This module is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself. See L<perlartistic>.
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 =head1 DISCLAIMER OF WARRANTY
 
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-FOR THE SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN
-OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE
-ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE SOFTWARE IS WITH
-YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL
-NECESSARY SERVICING, REPAIR, OR CORRECTION.
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-REDISTRIBUTE THE SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE
-LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL,
-OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE
-THE SOFTWARE (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING
-RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A
-FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF
-SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
 =cut

@@ -80,6 +80,16 @@ sub printSkySummary {
     return $content;
 }
 
+###############################################################################
+
+=head2 printAtmosphere()
+
+printAtmosphere gives a nice sentence describing the atmosphereic conditions and 
+reasons for it
+
+=cut
+
+###############################################################################
 sub printAtmosphere {
     my ($world) = @_;
     my $content=$world->{'atmosphere'}->{'color'};
@@ -91,6 +101,16 @@ sub printAtmosphere {
 }
 
 
+
+###############################################################################
+
+=head2 printMoonList()
+
+printMoonList nicely formats the moon description listings
+
+=cut
+
+###############################################################################
 sub printMoonList {
     my ($world) = @_;
     my $content="";
@@ -99,12 +119,19 @@ sub printMoonList {
     }else{
         $content.=A($world->{'moons_name'}).": ".conjunction(@{ $world->{'moon_description'}} );
     }
-#print Dumper $world;
-
     return $content;
 }
 
 
+###############################################################################
+
+=head2 printCelestialList()
+
+printCelestialList nicely formats the Celestial object description listings
+
+=cut
+
+###############################################################################
 sub printCelestialList {
     my ($world) = @_;
     my $content="";
@@ -198,13 +225,33 @@ EOF
     return $content;
 }
 
-sub printWorldMapJSON {
-
-    my ($world) = @_;
-    my $content="";
-    my $JSON  = JSON->new->utf8;
-    $JSON->convert_blessed(1);
-    return  "";#$JSON->encode($world->{'map'});
-
-}
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+=head1 DISCLAIMER OF WARRANTY
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+=cut

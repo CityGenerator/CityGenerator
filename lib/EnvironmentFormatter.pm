@@ -97,6 +97,15 @@ sub printAstronomy {
 }
 
 
+###############################################################################
+
+=head2 printMoonList()
+
+printMoonList formats the moon descriptions and returns a nice phrase
+
+=cut
+
+###############################################################################
 sub printMoonList {
     my ($city) = @_;
     my $content="";
@@ -105,12 +114,19 @@ sub printMoonList {
     }else{
         $content.=A($city->{'astronomy'}->{'moons_name'}).": ".conjunction(@{ $city->{'astronomy'}->{'moon_description'}} );
     }
-#print Dumper $city->{'astronomy'};
-
     return $content;
 }
 
 
+###############################################################################
+
+=head2 printCelestialList()
+
+printCelestialList formats the celestial object descriptions and returns a nice phrase
+
+=cut
+
+###############################################################################
 sub printCelestialList {
     my ($city) = @_;
     my $content="";
@@ -125,3 +141,32 @@ sub printCelestialList {
 
 
 1;
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+=head1 DISCLAIMER OF WARRANTY
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+=cut
