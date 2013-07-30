@@ -29,7 +29,7 @@ use Carp;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use POSIX; 
+use POSIX;
 use version;
 use Carp qw(longmess);
 ###############################################################################
@@ -70,7 +70,7 @@ Return the $seed value
 =cut
 
 ###############################################################################
-sub get_seed{
+sub get_seed {
 
     return $seed;
 }
@@ -85,13 +85,13 @@ This is what allows us to return to previously generated hosts.
 =cut
 
 ###############################################################################
-sub set_seed{
-    my ($newseed)=@_;
+sub set_seed {
+    my ($newseed) = @_;
 
-    if ( (!defined $newseed) or $newseed!~ m/^\d+$/x){
+    if ( ( !defined $newseed ) or $newseed !~ m/^\d+$/x ) {
         $newseed = int rand(1000000);
     }
-    $seed=$newseed;
+    $seed = $newseed;
     srand $seed;
     return $seed;
 }
@@ -108,11 +108,11 @@ Select a random item from an array.
 ###############################################################################
 sub rand_from_array {
     my ($array) = @_;
-    if (ref $array  ne 'ARRAY'){
+    if ( ref $array ne 'ARRAY' ) {
         print STDERR longmess();
         croak "you passed in something that wasn't an array reference. @!";
     }
-    return $array->[ rand @$array  ];
+    return $array->[ rand @$array ];
 }
 
 ###############################################################################
@@ -130,20 +130,20 @@ sub roll_from_array {
     my $selected_item = $items->[0];
     for my $item (@$items) {
 
-        if (defined $item->{'min'} and defined $item->{'max'} ){
+        if ( defined $item->{'min'} and defined $item->{'max'} ) {
             if ( $item->{'min'} <= $roll and $item->{'max'} >= $roll ) {
                 $selected_item = $item;
                 last;
             }
-        }elsif ( ! defined $item->{'min'} && !  defined $item->{'max'} ){
-                $selected_item = $item;
-                last;
-        }elsif ( ! defined $item->{'min'}  ){
+        } elsif ( !defined $item->{'min'} && !defined $item->{'max'} ) {
+            $selected_item = $item;
+            last;
+        } elsif ( !defined $item->{'min'} ) {
             if ( $item->{'max'} >= $roll ) {
                 $selected_item = $item;
                 last;
             }
-        }else{
+        } else {
             if ( $item->{'min'} <= $roll ) {
                 $selected_item = $item;
                 last;
@@ -164,18 +164,19 @@ This serves the function of rolling a dice- a d6, d10, etc.
 ###############################################################################
 sub d {
     my ($die) = @_;
+
     # d as in 1d6
-    if ( $die=~ /^\d+$/x ){
-        return int( rand($die)+1 );
-    }elsif ($die=~/^(\d+)d(\d+)$/x){
-        my $dicecount=$1;
-        $die=$2;
-        my $total=0;
-        while ($dicecount-- >0){
-            $total+=&d($die);
+    if ( $die =~ /^\d+$/x ) {
+        return int( rand($die) + 1 );
+    } elsif ( $die =~ /^(\d+)d(\d+)$/x ) {
+        my $dicecount = $1;
+        $die = $2;
+        my $total = 0;
+        while ( $dicecount-- > 0 ) {
+            $total += &d($die);
         }
         return $total;
-    }else{
+    } else {
         croak "$die is not a valid dice format.";
 
     }
@@ -192,50 +193,61 @@ method is really the crux of the name generation stuff.
 
 ###############################################################################
 sub parse_object {
-    my ($object)=@_;
-    my $newobj= { 'content'=>'' };
+    my ($object) = @_;
+    my $newobj = { 'content' => '' };
+
     # We currently only care about 4 parts; FIXME to pull this list dynamically
-    foreach my $part (qw/title pre root post trailer/){
+    foreach my $part (qw/title pre root post trailer/) {
+
         # Make sure that the part exists for this object.
-        if(defined $object->{$part}){
+        if ( defined $object->{$part} ) {
 
             my $newpart;
+
             # If the object is an array, we're going to shuffle
             # the array and select one of the elements.
-            if ( ref($object->{$part}) eq 'ARRAY'){
-                # Shuffle the array and pop one element off
-                my @parts=shuffle( @{$object->{$part}});
-                $newpart=pop(@parts);
+            if ( ref( $object->{$part} ) eq 'ARRAY' ) {
 
-            # If the object is a Hash, we presume that there's only one choice
-            } elsif ( ref($object->{$part}) eq 'HASH'  and $object->{$part}->{'content'}){
+                # Shuffle the array and pop one element off
+                my @parts = shuffle( @{ $object->{$part} } );
+                $newpart = pop(@parts);
+
+                # If the object is a Hash, we presume that there's only one choice
+            } elsif ( ref( $object->{$part} ) eq 'HASH' and $object->{$part}->{'content'} ) {
+
                 # rename for easier handling
-                $newpart=$object->{$part};
+                $newpart = $object->{$part};
             }
 
             # make sure the element has content;
             # ignore it if it doesn't.
-            if (defined $newpart->{'content'}){
+            if ( defined $newpart->{'content'} ) {
                 if (
-                        # If no chance is defined, add it to the list.
-                        (!defined $object->{$part.'_chance'}) or
-                        # If chance is defined, compare it to
-                        # the roll, and add it to the list.
-                        ( &d(100) <= $object->{$part.'_chance'}) ) {
 
-                    $newobj->{$part}=$newpart->{'content'};
-                    if ($part eq 'title'){
-                        $newpart->{'content'}="$newpart->{'content'} " ;
-                    }elsif ($part eq 'trailer'){
-                        $newpart->{'content'}=" $newpart->{'content'}" ;
+                    # If no chance is defined, add it to the list.
+                    ( !defined $object->{ $part . '_chance' } ) or
+
+                    # If chance is defined, compare it to
+                    # the roll, and add it to the list.
+                    ( &d(100) <= $object->{ $part . '_chance' } )
+                    )
+                {
+
+                    $newobj->{$part} = $newpart->{'content'};
+                    if ( $part eq 'title' ) {
+                        $newpart->{'content'} = "$newpart->{'content'} ";
+                    } elsif ( $part eq 'trailer' ) {
+                        $newpart->{'content'} = " $newpart->{'content'}";
                     }
-                    $newobj->{'content'}.= $newpart->{'content'};
+                    $newobj->{'content'} .= $newpart->{'content'};
                 }
             }
         }
     }
+
     #FIXME Sloppy as hell but it resolves the multiplying spaces issue
-    $newobj->{'content'}=~s/\s+/ /xg;
+    $newobj->{'content'} =~ s/\s+/ /xg;
+
     # return the slimmed down version
     return $newobj;
 }

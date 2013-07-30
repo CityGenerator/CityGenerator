@@ -29,7 +29,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
+use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -60,7 +60,7 @@ The following datafiles are used by ContinentGenerator.pm:
 
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
+my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -118,10 +118,10 @@ sub create_continent {
 ###############################################################################
 sub generate_continent_name {
     my ($continent) = @_;
-    set_seed($continent->{'seed'});
-    my $nameobj= parse_object( $continentnames_data );
-    $continent->{'name'}=$nameobj->{'content'}   if (!defined $continent->{'name'} );
-   return $continent; 
+    set_seed( $continent->{'seed'} );
+    my $nameobj = parse_object($continentnames_data);
+    $continent->{'name'} = $nameobj->{'content'} if ( !defined $continent->{'name'} );
+    return $continent;
 }
 
 

@@ -43,16 +43,14 @@ printCityscape strips out important info from a City object and returns formatte
 sub printCityscape {
     my ($city) = @_;
     my $content;
-    $content.=   " ".printWalls($city);
-    $content.=   " ".printStreets($city);
-    $content.=   " ".printDistrictList($city);
-    $content.=   " ".printHousingList($city);
-    $content.= "</p>";
+    $content .= " " . printWalls($city);
+    $content .= " " . printStreets($city);
+    $content .= " " . printDistrictList($city);
+    $content .= " " . printHousingList($city);
+    $content .= "</p>";
 
     return $content;
 }
-
-
 
 
 ###############################################################################
@@ -69,8 +67,13 @@ sub printWalls {
     my ($city) = @_;
     my $content = "No walls currently surround the city.";
 
-    if   ( $city->{'walls'}->{'content'} ne 'none'){
-        $content = "Visitors are greeted with a ".$city->{'walls'}->{'content'}. " that is ".$city->{'walls'}->{'height'}." feet tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
+    if ( $city->{'walls'}->{'content'} ne 'none' ) {
+        $content
+            = "Visitors are greeted with a "
+            . $city->{'walls'}->{'content'}
+            . " that is "
+            . $city->{'walls'}->{'height'}
+            . " feet tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
     }
 
     return $content;
@@ -87,9 +90,10 @@ formats details about buildings around the city.
 
 sub printBuildings {
     my ($city) = @_;
-    my $content="";
-    $content.="There are $city->{'business_total'} businesses in $city->{'name'} and $city->{'housing'}->{'total'} residences spread out across the city. \n";
-    
+    my $content = "";
+    $content
+        .= "There are $city->{'business_total'} businesses in $city->{'name'} and $city->{'housing'}->{'total'} residences spread out across the city. \n";
+
 
     return $content;
 }
@@ -108,13 +112,13 @@ sub printStreets {
     my ($city) = @_;
 
     #FIXME This could be simplified with perl's Lingua modules.
-    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none": $city->{'streets'}->{'mainroads'};
-    $mainroads = $mainroads eq "1" ? "1 is": $mainroads." are";
-    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road": "are ".$city->{'streets'}->{'roads'}." roads";
+    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none" : $city->{'streets'}->{'mainroads'};
+    $mainroads = $mainroads eq "1" ? "1 is" : $mainroads . " are";
+    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road" : "are " . $city->{'streets'}->{'roads'} . " roads";
 
-    my $content="There $roads leading to $city->{'name'}; $mainroads major.  ";
+    my $content = "There $roads leading to $city->{'name'}; $mainroads major.  ";
 
-    $content.= "The city is lined with ". $city->{'streets'}->{ 'content'}.".";
+    $content .= "The city is lined with " . $city->{'streets'}->{'content'} . ".";
 
     return $content;
 }
@@ -130,16 +134,17 @@ printDistrictList formats details about the District List.
 ###############################################################################
 
 sub printDistrictList {
-    my ($city) = @_;
-    my @districts=keys %{ $city->{'districts'}};
-    my $content="";
-    if (scalar(@districts) ==0){
-        $content= "There are no defined districts in this city.";
-    }elsif (scalar(@districts) ==1){
-        $content= "The city includes the $districts[1] District.";
-    }else{
-        my $last_district= pop @districts;
-        $content= "The city is broken into the following Districts: ".join( ", ",@districts ) ." and $last_district.";
+    my ($city)    = @_;
+    my @districts = keys %{ $city->{'districts'} };
+    my $content   = "";
+    if ( scalar(@districts) == 0 ) {
+        $content = "There are no defined districts in this city.";
+    } elsif ( scalar(@districts) == 1 ) {
+        $content = "The city includes the $districts[1] District.";
+    } else {
+        my $last_district = pop @districts;
+        $content
+            = "The city is broken into the following Districts: " . join( ", ", @districts ) . " and $last_district.";
     }
 
 
@@ -159,7 +164,14 @@ printHousingList formats details about streets around the city.
 
 sub printHousingList {
     my ($city) = @_;
-    my $content = "Among housing, there are ".$city->{'housing'}->{'wealthy'}." wealthy residences, ".$city->{'housing'}->{'average'}." average homes and ".$city->{'housing'}->{'poor'}." dilapidated homes.";
+    my $content
+        = "Among housing, there are "
+        . $city->{'housing'}->{'wealthy'}
+        . " wealthy residences, "
+        . $city->{'housing'}->{'average'}
+        . " average homes and "
+        . $city->{'housing'}->{'poor'}
+        . " dilapidated homes.";
 
     return $content;
 }

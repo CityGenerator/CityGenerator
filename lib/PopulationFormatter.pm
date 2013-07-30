@@ -43,17 +43,18 @@ printRaces strips out important info from a City object and returns details abou
 sub printRaces {
     my ($city) = @_;
     my $content;
-    
+
     #TODO add dominant race
     #TODO add moral and order descriptions
     #$content.="$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population. \n";
-    $content.="Here's the breakdown of this $city->{'type'} population:";
+    $content .= "Here's the breakdown of this $city->{'type'} population:";
 
-    $content.="<ul> \n";
-    foreach my $race ( reverse sort {$a->{'percent'} <=> $b->{'percent'}} @{$city->{'races'}}  ){
-        $content.= "<li style='margin-left:200px;'>$race->{'population'} $race->{'plural'} ($race->{'percent'}%) </li> \n";
+    $content .= "<ul> \n";
+    foreach my $race ( reverse sort { $a->{'percent'} <=> $b->{'percent'} } @{ $city->{'races'} } ) {
+        $content
+            .= "<li style='margin-left:200px;'>$race->{'population'} $race->{'plural'} ($race->{'percent'}%) </li> \n";
     }
-    $content.="</ul>";
+    $content .= "</ul>";
 
     return $content;
 }
@@ -71,7 +72,8 @@ about population ages.
 sub printAges {
     my ($city) = @_;
     my $content;
-    $content.="Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) of this $city->{'age_description'} city. \n";
+    $content
+        .= "Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) of this $city->{'age_description'} city. \n";
 
     return $content;
 }

@@ -60,7 +60,7 @@ The following datafiles are used by ConditionGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $condition_data= $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => [] );
+my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -136,16 +136,17 @@ sub flesh_out_condition {
 sub set_time {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $timeobj= rand_from_array( $condition_data->{'time'}->{'option'} );
-    $condition->{'time_description'}=$timeobj->{'content'}  if (!defined $condition->{'time_description'} );
+    my $timeobj = rand_from_array( $condition_data->{'time'}->{'option'} );
+    $condition->{'time_description'} = $timeobj->{'content'} if ( !defined $condition->{'time_description'} );
 
-    $condition->{'time_exact'}=time2str('%H:%M', str2time($timeobj->{'time'})+( d(120)-1)*60   )   if (!defined $condition->{'time_exact'} );
-    $condition->{'time_bar_mod'}=$timeobj->{'bar_mod'}  if (!defined $condition->{'time_bar_mod'} );
-    $condition->{'time_pop_mod'}=$timeobj->{'pop_mod'}  if (!defined $condition->{'time_pop_mod'} );
-    $condition->{'pop_mod'}->{'time'}=$condition->{'time_pop_mod'};
-    $condition->{'bar_mod'}->{'time'}=$condition->{'time_bar_mod'};
+    $condition->{'time_exact'} = time2str( '%H:%M', str2time( $timeobj->{'time'} ) + ( d(120) - 1 ) * 60 )
+        if ( !defined $condition->{'time_exact'} );
+    $condition->{'time_bar_mod'} = $timeobj->{'bar_mod'} if ( !defined $condition->{'time_bar_mod'} );
+    $condition->{'time_pop_mod'} = $timeobj->{'pop_mod'} if ( !defined $condition->{'time_pop_mod'} );
+    $condition->{'pop_mod'}->{'time'} = $condition->{'time_pop_mod'};
+    $condition->{'bar_mod'}->{'time'} = $condition->{'time_bar_mod'};
     return $condition;
 }
 
@@ -162,12 +163,12 @@ sub set_time {
 sub set_temp {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $tempobj= rand_from_array( $condition_data->{'temp'}->{'option'} );
-    $condition->{'temp_description'}=$tempobj->{'content'}  if (!defined $condition->{'temp_description'} );
-    $condition->{'temp_pop_mod'}=$tempobj->{'pop_mod'}  if (!defined $condition->{'temp_pop_mod'} );
-    $condition->{'pop_mod'}->{'temp'}=$condition->{'temp_pop_mod'};
+    my $tempobj = rand_from_array( $condition_data->{'temp'}->{'option'} );
+    $condition->{'temp_description'} = $tempobj->{'content'} if ( !defined $condition->{'temp_description'} );
+    $condition->{'temp_pop_mod'}     = $tempobj->{'pop_mod'} if ( !defined $condition->{'temp_pop_mod'} );
+    $condition->{'pop_mod'}->{'temp'} = $condition->{'temp_pop_mod'};
     return $condition;
 }
 
@@ -184,12 +185,12 @@ sub set_temp {
 sub set_air {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $airobj= rand_from_array( $condition_data->{'air'}->{'option'} );
-    $condition->{'air_description'}=$airobj->{'content'}  if (!defined $condition->{'air_description'} );
-    $condition->{'air_pop_mod'}=$airobj->{'pop_mod'}  if (!defined $condition->{'air_pop_mod'} );
-    $condition->{'pop_mod'}->{'air'}=$condition->{'air_pop_mod'};
+    my $airobj = rand_from_array( $condition_data->{'air'}->{'option'} );
+    $condition->{'air_description'} = $airobj->{'content'} if ( !defined $condition->{'air_description'} );
+    $condition->{'air_pop_mod'}     = $airobj->{'pop_mod'} if ( !defined $condition->{'air_pop_mod'} );
+    $condition->{'pop_mod'}->{'air'} = $condition->{'air_pop_mod'};
     return $condition;
 }
 
@@ -206,12 +207,12 @@ sub set_air {
 sub set_wind {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $windobj= rand_from_array( $condition_data->{'wind'}->{'option'} );
-    $condition->{'wind_description'}=$windobj->{'content'}  if (!defined $condition->{'wind_description'} );
-    $condition->{'wind_pop_mod'}=$windobj->{'pop_mod'}  if (!defined $condition->{'wind_pop_mod'} );
-    $condition->{'pop_mod'}->{'wind'}=$condition->{'wind_pop_mod'};
+    my $windobj = rand_from_array( $condition_data->{'wind'}->{'option'} );
+    $condition->{'wind_description'} = $windobj->{'content'} if ( !defined $condition->{'wind_description'} );
+    $condition->{'wind_pop_mod'}     = $windobj->{'pop_mod'} if ( !defined $condition->{'wind_pop_mod'} );
+    $condition->{'pop_mod'}->{'wind'} = $condition->{'wind_pop_mod'};
     return $condition;
 }
 
@@ -228,10 +229,11 @@ sub set_wind {
 sub set_forecast {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $forecastobj= rand_from_array( $condition_data->{'forecast'}->{'option'} );
-    $condition->{'forecast_description'}=$forecastobj->{'content'}  if (!defined $condition->{'forecast_description'} );
+    my $forecastobj = rand_from_array( $condition_data->{'forecast'}->{'option'} );
+    $condition->{'forecast_description'} = $forecastobj->{'content'}
+        if ( !defined $condition->{'forecast_description'} );
     return $condition;
 }
 
@@ -248,13 +250,12 @@ sub set_forecast {
 sub set_clouds {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
+    set_seed( $condition->{'seed'} );
 
-    my $cloudsobj= rand_from_array( $condition_data->{'clouds'}->{'option'} );
-    $condition->{'clouds_description'}=$cloudsobj->{'content'}  if (!defined $condition->{'clouds_description'} );
+    my $cloudsobj = rand_from_array( $condition_data->{'clouds'}->{'option'} );
+    $condition->{'clouds_description'} = $cloudsobj->{'content'} if ( !defined $condition->{'clouds_description'} );
     return $condition;
 }
-
 
 
 ###############################################################################
@@ -269,16 +270,17 @@ sub set_clouds {
 sub set_precip {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
-    $condition->{'precip_chance'}=d(100) if (! defined $condition->{'precip_chance'});
+    set_seed( $condition->{'seed'} );
+    $condition->{'precip_chance'} = d(100) if ( !defined $condition->{'precip_chance'} );
 
-    if ( $condition->{'precip_chance'} <= $condition_data->{'precip'}->{'chance'}  ){
-        my $precipobj= rand_from_array( $condition_data->{'precip'}->{'option'} );
-        $condition->{'precip_description'}=$precipobj->{'type'}  if (!defined $condition->{'precip_description'} );
-        
-        if (defined $precipobj->{'option'}){
-            my $subobj= rand_from_array( $precipobj->{'option'} );
-            $condition->{'precip_subdescription'}=$subobj->{'type'}  if (!defined $condition->{'precip_subdescription'} );
+    if ( $condition->{'precip_chance'} <= $condition_data->{'precip'}->{'chance'} ) {
+        my $precipobj = rand_from_array( $condition_data->{'precip'}->{'option'} );
+        $condition->{'precip_description'} = $precipobj->{'type'} if ( !defined $condition->{'precip_description'} );
+
+        if ( defined $precipobj->{'option'} ) {
+            my $subobj = rand_from_array( $precipobj->{'option'} );
+            $condition->{'precip_subdescription'} = $subobj->{'type'}
+                if ( !defined $condition->{'precip_subdescription'} );
 
         }
 
@@ -300,28 +302,30 @@ sub set_precip {
 sub set_storm {
 
     my ($condition) = @_;
-    set_seed($condition->{'seed'});
-    $condition->{'storm_chance'}=d(100) if (! defined $condition->{'storm_chance'});
+    set_seed( $condition->{'seed'} );
+    $condition->{'storm_chance'} = d(100) if ( !defined $condition->{'storm_chance'} );
     set_seed();
-    if ( $condition->{'storm_chance'} <= $condition_data->{'storm'}->{'chance'}  ){
-        my $stormobj= rand_from_array( $condition_data->{'storm'}->{'option'} );
-        $condition->{'storm_description'}=$stormobj->{'content'}  if (!defined $condition->{'storm_description'} );
+    if ( $condition->{'storm_chance'} <= $condition_data->{'storm'}->{'chance'} ) {
+        my $stormobj = rand_from_array( $condition_data->{'storm'}->{'option'} );
+        $condition->{'storm_description'} = $stormobj->{'content'} if ( !defined $condition->{'storm_description'} );
 
         set_seed();
-        $condition->{'thunder_chance'}=d(100) if (! defined $condition->{'thunder_chance'});
-        if ( $condition->{'thunder_chance'} <= $condition_data->{'storm'}->{'thunder'}->{'chance'}  ){
+        $condition->{'thunder_chance'} = d(100) if ( !defined $condition->{'thunder_chance'} );
+        if ( $condition->{'thunder_chance'} <= $condition_data->{'storm'}->{'thunder'}->{'chance'} ) {
             set_seed();
-            my $thunderobj= rand_from_array( $condition_data->{'storm'}->{'thunder'}->{'option'} );
-            $condition->{'thunder_description'}=$thunderobj->{'content'}  if (!defined $condition->{'thunder_description'} );
-        }    
+            my $thunderobj = rand_from_array( $condition_data->{'storm'}->{'thunder'}->{'option'} );
+            $condition->{'thunder_description'} = $thunderobj->{'content'}
+                if ( !defined $condition->{'thunder_description'} );
+        }
 
         set_seed();
-        $condition->{'lightning_chance'}=d(100) if (! defined $condition->{'lightning_chance'});
-        if ( $condition->{'lightning_chance'} <= $condition_data->{'storm'}->{'lightning'}->{'chance'}  ){
+        $condition->{'lightning_chance'} = d(100) if ( !defined $condition->{'lightning_chance'} );
+        if ( $condition->{'lightning_chance'} <= $condition_data->{'storm'}->{'lightning'}->{'chance'} ) {
             set_seed();
-            my $lightningobj= rand_from_array( $condition_data->{'storm'}->{'lightning'}->{'option'} );
-            $condition->{'lightning_description'}=$lightningobj->{'content'}  if (!defined $condition->{'lightning_description'} );
-        }    
+            my $lightningobj = rand_from_array( $condition_data->{'storm'}->{'lightning'}->{'option'} );
+            $condition->{'lightning_description'} = $lightningobj->{'content'}
+                if ( !defined $condition->{'lightning_description'} );
+        }
 
     }
     return $condition;

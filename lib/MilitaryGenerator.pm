@@ -52,8 +52,7 @@ The following datafiles are used by CityGenerator.pm:
 =cut
 
 ###############################################################################
-my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-
+my $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => ['option'] );
 
 
 ###############################################################################
@@ -93,7 +92,7 @@ sub create_military {
         }
     }
 
-    if (! defined $military->{'seed'} ) {
+    if ( !defined $military->{'seed'} ) {
         $military->{'seed'} = set_seed();
     }
     $military->{'original_seed'} = $military->{'seed'};
@@ -115,18 +114,20 @@ for the provided source.
 ###############################################################################
 
 sub generate_preparation {
-    my ($military)=@_;
+    my ($military) = @_;
 
-    if (!defined $military->{'preparation_roll'}){
-        if (defined $military->{'mil_mod'} &&  $military->{'mil_mod'} < -1 ) {
-            $military->{'preparation_roll'}=&d(45);
-        }elsif ($military->{'mil_mod'} &&  $military->{'mil_mod'} > 1 ) {
-            $military->{'preparation_roll'}=56+ &d(45);
-        }else{
-            $military->{'preparation_roll'}=&d(100);
+    if ( !defined $military->{'preparation_roll'} ) {
+        if ( defined $military->{'mil_mod'} && $military->{'mil_mod'} < -1 ) {
+            $military->{'preparation_roll'} = &d(45);
+        } elsif ( $military->{'mil_mod'} && $military->{'mil_mod'} > 1 ) {
+            $military->{'preparation_roll'} = 56 + &d(45);
+        } else {
+            $military->{'preparation_roll'} = &d(100);
         }
     }
-    $military->{'preparation'}=roll_from_array( $military->{'preparation_roll'} , $xml_data->{'preparation'}->{'option'})->{'content'} if (!defined $military->{'preparation'});
+    $military->{'preparation'}
+        = roll_from_array( $military->{'preparation_roll'}, $xml_data->{'preparation'}->{'option'} )->{'content'}
+        if ( !defined $military->{'preparation'} );
     return $military;
 }
 
@@ -141,10 +142,10 @@ sub generate_preparation {
 ###############################################################################
 
 sub generate_favored_tactic {
-    my ($military)=@_;
-    
-     my $tactic=rand_from_array(    $xml_data->{'tactictypes'}->{'option'} )->{'content'};
-     $military->{'favored tactic'}= $tactic if (!defined $military->{'favored tactic'});
+    my ($military) = @_;
+
+    my $tactic = rand_from_array( $xml_data->{'tactictypes'}->{'option'} )->{'content'};
+    $military->{'favored tactic'} = $tactic if ( !defined $military->{'favored tactic'} );
     return $military;
 }
 
@@ -159,10 +160,10 @@ sub generate_favored_tactic {
 ###############################################################################
 
 sub generate_reputation {
-    my ($military)=@_;
-    
-    my $rep = rand_from_array(  $xml_data->{'reputation'}->{'option'}  )->{'content'};
-    $military->{'reputation'}=$rep if (!defined $military->{'reputation'});
+    my ($military) = @_;
+
+    my $rep = rand_from_array( $xml_data->{'reputation'}->{'option'} )->{'content'};
+    $military->{'reputation'} = $rep if ( !defined $military->{'reputation'} );
     return $military;
 }
 
@@ -178,13 +179,14 @@ generate favored_weapon preferred by the military.
 ###############################################################################
 
 sub generate_favored_weapon {
-    my ($military)=@_;
+    my ($military) = @_;
 
-    my $weaponclass=rand_from_array(    $xml_data->{'weapontypes'}->{'weapon'} );
-    $military->{'favored weapon'}    = rand_from_array(    $weaponclass->{'option'} )->{'content'} if  (!defined $military->{'favored weapon'} );
+    my $weaponclass = rand_from_array( $xml_data->{'weapontypes'}->{'weapon'} );
+    $military->{'favored weapon'} = rand_from_array( $weaponclass->{'option'} )->{'content'}
+        if ( !defined $military->{'favored weapon'} );
 
     return $military;
-} 
+}
 
 
 ###############################################################################
@@ -198,24 +200,27 @@ Set the size of the troops for the population
 ###############################################################################
 
 sub set_troop_size {
-    my ($military)=@_;
+    my ($military) = @_;
 
     #If no population total is provided, make one up!
-    $military->{'population_total'}=d(1000)*10 if (!defined $military->{'population_total'});
-    
-    my $percentmod= 10 +  ($military->{'military_mod'}||0)  + ($military->{'authority_mod'}||0); 
+    $military->{'population_total'} = d(1000) * 10 if ( !defined $military->{'population_total'} );
 
-    $military->{'active_percent'}   =  10 + $percentmod/4 + d($percentmod)/4 if (!defined $military->{'active_percent'});
-    $military->{'reserve_percent'}  =   5 +                 d($percentmod)/4 if (!defined $military->{'reserve_percent'});
-    $military->{'para_percent'}     =   3 +                 d($percentmod)/4 if (!defined $military->{'para_percent'});
+    my $percentmod = 10 + ( $military->{'military_mod'} || 0 ) + ( $military->{'authority_mod'} || 0 );
 
-    $military->{'active_troops'}    = int($military->{'population_total'} * $military->{'active_percent'} /100)  if (!defined $military->{'active_troops'});
-    $military->{'reserve_troops'}   = int($military->{'population_total'} * $military->{'reserve_percent'} /100) if (!defined $military->{'reserve_troops'});
-    $military->{'para_troops'}      = int($military->{'active_troops'}    * $military->{'para_percent'} /100)    if (!defined $military->{'para_troops'} );
+    $military->{'active_percent'} = 10 + $percentmod / 4 + d($percentmod) / 4
+        if ( !defined $military->{'active_percent'} );
+    $military->{'reserve_percent'} = 5 + d($percentmod) / 4 if ( !defined $military->{'reserve_percent'} );
+    $military->{'para_percent'}    = 3 + d($percentmod) / 4 if ( !defined $military->{'para_percent'} );
+
+    $military->{'active_troops'} = int( $military->{'population_total'} * $military->{'active_percent'} / 100 )
+        if ( !defined $military->{'active_troops'} );
+    $military->{'reserve_troops'} = int( $military->{'population_total'} * $military->{'reserve_percent'} / 100 )
+        if ( !defined $military->{'reserve_troops'} );
+    $military->{'para_troops'} = int( $military->{'active_troops'} * $military->{'para_percent'} / 100 )
+        if ( !defined $military->{'para_troops'} );
 
     return $military;
-} 
-
+}
 
 
 1;

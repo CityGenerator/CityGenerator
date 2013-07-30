@@ -1,4 +1,5 @@
 
+## Please see file perltidy.ERR
 #!/usr/bin/perl -wT
 ###############################################################################
 
@@ -47,17 +48,17 @@ printResources strips out important info from a City object and returns formatte
 ###############################################################################
 sub printResources {
     my ($city) = @_;
-    my $content="";
-    if  (scalar(@{$city->{'resources'}}) >0 ){
-        $content.="<p>$city->{'name'} is known for the following resources:</p>\n";
-        $content.="<ul class='threecolumn'>";
-        foreach my $resource (  @{  $city->{'resources'} } ){
-            $content.="<li>".$resource->{'content'}."</li>";
+    my $content = "";
+    if ( scalar( @{ $city->{'resources'} } ) > 0 ) {
+        $content .= "<p>$city->{'name'} is known for the following resources:</p>\n";
+        $content .= "<ul class='threecolumn'>";
+        foreach my $resource ( @{ $city->{'resources'} } ) {
+            $content .= "<li>" . $resource->{'content'} . "</li>";
         }
 
-        $content.="</ul>";
-    }else{
-        $content.="<p>There are no resources worth mentioning.</p>\n";
+        $content .= "</ul>";
+    } else {
+        $content .= "<p>There are no resources worth mentioning.</p>\n";
     }
 
     return $content;
@@ -65,21 +66,21 @@ sub printResources {
 
 sub printBusinesses {
     my ($city) = @_;
-    my $content="";
-    if  (scalar( keys %{$city->{'businesses'} }   ) >0 ){
-        $content.="<p>You can find the following establishments in $city->{'name'}:</p>\n";
-        $content.="<ul class='threecolumn'>";
-        foreach my $resource ( keys %{$city->{'businesses'} }  ){
-            my @resources = split(/,/x, $resource)  ;
-            @resources=shuffle( @resources);
-            my $resourcename=pop @resources;
-            my $count=$city->{'businesses'}->{$resource}->{'count'};
-            $content.="<li>$count ".PL_N($resourcename, $count)."</li>";
+    my $content = "";
+    if ( scalar( keys %{ $city->{'businesses'} } ) > 0 ) {
+        $content .= "<p>You can find the following establishments in $city->{'name'}:</p>\n";
+        $content .= "<ul class='threecolumn'>";
+        foreach my $resource ( keys %{ $city->{'businesses'} } ) {
+            my @resources = split( /,/x, $resource );
+            @resources = shuffle(@resources);
+            my $resourcename = pop @resources;
+            my $count        = $city->{'businesses'}->{$resource}->{'count'};
+            $content .= "<li>$count " . PL_N( $resourcename, $count ) . "</li>";
         }
 
-        $content.="</ul>";
-    }else{
-        $content.="<p>There are no businesses worth mentioning.</p>\n";
+        $content .= "</ul>";
+    } else {
+        $content .= "<p>There are no businesses worth mentioning.</p>\n";
     }
 
     return $content;

@@ -30,8 +30,8 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
-use Lingua::EN::Inflect qw( A ) ;
+use NPCGenerator;
+use Lingua::EN::Inflect qw( A );
 use Lingua::EN::Conjugate qw( gerund s_form participle );
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -63,7 +63,7 @@ The following datafiles are used by AdventureGenerator.pm:
 
 ###############################################################################
 
-my $adv_data     = $xml->XMLin( "xml/adventure.xml",       ForceContent => 1, ForceArray => ['option'] );
+my $adv_data     = $xml->XMLin( "xml/adventure.xml",      ForceContent => 1, ForceArray => ['option'] );
 my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################

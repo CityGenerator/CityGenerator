@@ -28,7 +28,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw( A ) ;
+use Lingua::EN::Inflect qw( A );
 use POSIX;
 use version;
 
@@ -43,9 +43,9 @@ printLandmarks strips out Landmark info and formats it.
 
 ###############################################################################
 sub printLandmarks {
-    my ($city) = @_;
-    my $content="";
-    my $locale=$city->{'locale'};
+    my ($city)  = @_;
+    my $content = "";
+    my $locale  = $city->{'locale'};
     return $content;
 }
 
@@ -60,37 +60,48 @@ printTaverns strips out Tavern information and formats it.
 ###############################################################################
 sub printTaverns {
     my ($city) = @_;
-    my $content="";
-    if  (scalar(@{$city->{'taverns'}}) >0 ){
-        $content.="<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
-        $content.="<ul class='demolistfinal'>";
-        foreach my $tavern (  @{  $city->{'taverns'} } ){
-            $content.=describe_tavern($tavern);
+    my $content = "";
+    if ( scalar( @{ $city->{'taverns'} } ) > 0 ) {
+        $content
+            .= "<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
+        $content .= "<ul class='demolistfinal'>";
+        foreach my $tavern ( @{ $city->{'taverns'} } ) {
+            $content .= describe_tavern($tavern);
         }
 
-        $content.="</ul>";
-    }else{
-        $content.="<p>There are no taverns in this town.</p>\n";
+        $content .= "</ul>";
+    } else {
+        $content .= "<p>There are no taverns in this town.</p>\n";
     }
-
 
 
     return $content;
 }
-sub describe_tavern{
-    my ($tavern)=@_;
-    my $content="<li>";
-    $content.= "<b>The $tavern->{'name'}</b> is ".A($tavern->{'size_description'})." tavern that $tavern->{'popularity_description'}. \n";
-    $content.= "It has a reputation for $tavern->{'reputation_description'}.\n";
+
+sub describe_tavern {
+    my ($tavern) = @_;
+    my $content = "<li>";
+    $content
+        .= "<b>The $tavern->{'name'}</b> is "
+        . A( $tavern->{'size_description'} )
+        . " tavern that $tavern->{'popularity_description'}. \n";
+    $content .= "It has a reputation for $tavern->{'reputation_description'}.\n";
 
     #TODO this is friggen ugly. refactor.
-    if (defined $tavern->{'bartender'}->{'name'} ){
-        $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A($tavern->{'bartender'}->{'race'})." named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
-    }else{
-        $content.= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by ".A("nameless ".$tavern->{'bartender'}->{'race'})." who seems $tavern->{'bartender'}->{'behavior'}. \n";
+    if ( defined $tavern->{'bartender'}->{'name'} ) {
+        $content
+            .= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by "
+            . A( $tavern->{'bartender'}->{'race'} )
+            . " named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
+    } else {
+        $content
+            .= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by "
+            . A( "nameless " . $tavern->{'bartender'}->{'race'} )
+            . " who seems $tavern->{'bartender'}->{'behavior'}. \n";
     }
-    $content.= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
-    $content.="</li>";
+    $content
+        .= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
+    $content .= "</li>";
     return $content;
 }
 

@@ -30,7 +30,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
+use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -61,8 +61,8 @@ The following datafiles are used by GovtGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $xml_data    = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $govt_data   = $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => ['option'] );
+my $xml_data  = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $govt_data = $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -102,8 +102,9 @@ sub create_govt {
     generate_stats($govt);
     set_govt_type($govt);
     generate_leader($govt);
-#    set_secondary_power($govt);
-#    set_reputation($govt);
+
+    #    set_secondary_power($govt);
+    #    set_reputation($govt);
     return $govt;
 } ## end sub create_govt
 
@@ -119,12 +120,15 @@ This method is used to generate baseline stats
 ###############################################################################
 sub generate_stats {
     my ($govt) = @_;
-    GenericGenerator::set_seed($govt->{'seed'});
-    foreach my $stat (qw( corruption approval efficiency influence unity theology )  ){
+    GenericGenerator::set_seed( $govt->{'seed'} );
+    foreach my $stat (qw( corruption approval efficiency influence unity theology )) {
         $govt->{'stats'}->{$stat} = d(100) if ( !defined $govt->{'stats'}->{$stat} );
-        $govt->{$stat."_description"} = roll_from_array( $govt->{'stats'}->{$stat},  $govt_data->{$stat}->{'option'} )->{'content'} if ( !defined $govt->{$stat."_description"}  );
+        $govt->{ $stat . "_description" }
+            = roll_from_array( $govt->{'stats'}->{$stat}, $govt_data->{$stat}->{'option'} )->{'content'}
+            if ( !defined $govt->{ $stat . "_description" } );
     }
-    $govt->{'influencereason'} = rand_from_array( $govt_data->{'influencereason'}->{'option'} )->{'content'} if ( !defined $govt->{"influencereason"}  );
+    $govt->{'influencereason'} = rand_from_array( $govt_data->{'influencereason'}->{'option'} )->{'content'}
+        if ( !defined $govt->{"influencereason"} );
     return $govt;
 } ## end sub create_govt
 
@@ -141,15 +145,20 @@ This method is used to generate a leader for the government
 sub generate_leader {
     my ($govt) = @_;
 
-    $govt->{'leader'}=NPCGenerator::create_npc({'seed'=>$govt->{'seed'}});
+    $govt->{'leader'} = NPCGenerator::create_npc( { 'seed' => $govt->{'seed'} } );
 
-    $govt->{'leader'}->{'right'}        = rand_from_array($govt_data->{'right'       }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'right'});
-    $govt->{'leader'}->{'reputation'}   = rand_from_array($govt_data->{'reputation'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'reputation'});
-    $govt->{'leader'}->{'length'}       = rand_from_array($govt_data->{'length'      }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'length'});
-    $govt->{'leader'}->{'opposition'}   = rand_from_array($govt_data->{'opposition'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'opposition'});
-    $govt->{'leader'}->{'maintained'}   = rand_from_array($govt_data->{'maintained'  }->{'option'})->{'content'} if (!defined $govt->{'leader'}->{'maintained'});
+    $govt->{'leader'}->{'right'} = rand_from_array( $govt_data->{'right'}->{'option'} )->{'content'}
+        if ( !defined $govt->{'leader'}->{'right'} );
+    $govt->{'leader'}->{'reputation'} = rand_from_array( $govt_data->{'reputation'}->{'option'} )->{'content'}
+        if ( !defined $govt->{'leader'}->{'reputation'} );
+    $govt->{'leader'}->{'length'} = rand_from_array( $govt_data->{'length'}->{'option'} )->{'content'}
+        if ( !defined $govt->{'leader'}->{'length'} );
+    $govt->{'leader'}->{'opposition'} = rand_from_array( $govt_data->{'opposition'}->{'option'} )->{'content'}
+        if ( !defined $govt->{'leader'}->{'opposition'} );
+    $govt->{'leader'}->{'maintained'} = rand_from_array( $govt_data->{'maintained'}->{'option'} )->{'content'}
+        if ( !defined $govt->{'leader'}->{'maintained'} );
 
-    $govt->{'leader'}->{'title'}   =  $govt->{'title'}->{'male'}   if (!defined $govt->{'leader'}->{'title'});
+    $govt->{'leader'}->{'title'} = $govt->{'title'}->{'male'} if ( !defined $govt->{'leader'}->{'title'} );
 
     return $govt;
 } ## end sub create_govt
@@ -167,20 +176,15 @@ This method is used to create a simple govt with nothing more than:
 sub set_govt_type {
     my ($govt) = @_;
 
-    my $govtype=rand_from_array($govt_data->{'govtypes'}->{'option'});
+    my $govtype = rand_from_array( $govt_data->{'govtypes'}->{'option'} );
 
-    $govt->{'description'} =$govtype->{'description'} if (!defined $govt->{'description'} );
-    $govt->{'type'} =$govtype->{'type'} if (!defined $govt->{'type'} );
-    $govt->{'title'} =rand_from_array( $govtype->{'titles'}->{'option'} ) if (!defined $govt->{'title'} );
+    $govt->{'description'} = $govtype->{'description'}                           if ( !defined $govt->{'description'} );
+    $govt->{'type'}        = $govtype->{'type'}                                  if ( !defined $govt->{'type'} );
+    $govt->{'title'}       = rand_from_array( $govtype->{'titles'}->{'option'} ) if ( !defined $govt->{'title'} );
 
 
     return $govt;
 } ## end sub create_govt
-
-
-
-
-
 
 
 1;

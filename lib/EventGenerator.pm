@@ -30,7 +30,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
+use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -61,8 +61,8 @@ The following datafiles are used by EventGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $event_data= $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data   = $xml->XMLin( "xml/data.xml",   ForceContent => 1, ForceArray => ['option'] );
+my $event_data = $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -113,8 +113,8 @@ select the base type of event.
 sub select_base {
     my ($event) = @_;
 
-    $event->{'base'} = rand_from_array( [ keys %{$event_data->{'event'} }  ] ) if (!defined $event->{'base'});
-    $event->{'name'} = $event->{'base'} ;
+    $event->{'base'} = rand_from_array( [ keys %{ $event_data->{'event'} } ] ) if ( !defined $event->{'base'} );
+    $event->{'name'} = $event->{'base'};
 
     return $event;
 }
@@ -132,14 +132,13 @@ select the modifier for a given base type of event.
 sub select_modifier {
     my ($event) = @_;
 
-    my $base= $event_data->{'event'}->{$event->{'base'}};
+    my $base = $event_data->{'event'}->{ $event->{'base'} };
 
-    $event->{'modifier'} = rand_from_array( $base->{'option'} )->{'content'} if (!defined $event->{'modifier'});
-    $event->{'name'} = $event->{'modifier'} ." ". $event->{'base'};
+    $event->{'modifier'} = rand_from_array( $base->{'option'} )->{'content'} if ( !defined $event->{'modifier'} );
+    $event->{'name'} = $event->{'modifier'} . " " . $event->{'base'};
 
     return $event;
 }
-
 
 
 1;

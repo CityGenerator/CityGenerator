@@ -44,9 +44,9 @@ printCensusData strips out important info from a City object and returns formatt
 sub printCensusData {
     my ($city) = @_;
     my $content;
-    $content.=   " ".printGeneralInformation($city);
-    $content.=   " ".printRacialBreakdown($city);
-    $content.=   " ".printMisc($city);
+    $content .= " " . printGeneralInformation($city);
+    $content .= " " . printRacialBreakdown($city);
+    $content .= " " . printMisc($city);
 
     return $content;
 }
@@ -64,7 +64,7 @@ Print General Information about the census, including population estimate, elder
 
 sub printGeneralInformation {
     my ($city) = @_;
-    my $population=$city->{'population_total'};
+    my $population = $city->{'population_total'};
 
     my $content = << "EOF"
                     <h3>General Information</h3>
@@ -74,7 +74,7 @@ sub printGeneralInformation {
                         <li> Elderly: $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) </li>
                     </ul>
 EOF
-;
+        ;
     return $content;
 }
 
@@ -93,12 +93,12 @@ sub printRacialBreakdown {
     my ($city) = @_;
 
     my $content = "                    <h3>Racial Breakdown</h3>\n";
-       $content.= "                    <ul>\n";
-    foreach my $race (sort {$b->{'population'} <=> $a->{'population'}}  @{$city->{'races'}} ){
-        $content.="                        <li>$race->{'population'} $race->{'race'} ($race->{'percent'}\%)</li>\n"
+    $content .= "                    <ul>\n";
+    foreach my $race ( sort { $b->{'population'} <=> $a->{'population'} } @{ $city->{'races'} } ) {
+        $content .= "                        <li>$race->{'population'} $race->{'race'} ($race->{'percent'}\%)</li>\n"
 
     }
-       $content.= "                    </ul>\n";
+    $content .= "                    </ul>\n";
     return $content;
 }
 
@@ -115,13 +115,13 @@ printMisc formats details about streets around the city.
 sub printMisc {
     my ($city) = @_;
     my $content = "                    <h3>Misc.</h3>\n";
-       $content.= "                    <ul>\n";
-       $content.="                        <li>".scalar( keys %{ $city->{'districts'}})." Districts</li>\n";
-       $content.="                        <li>$city->{'business_total'} Businesses</li>\n";
-       $content.="                        <li>$city->{'specialist_total'} Specialists</li>\n";
-       $content.="                        <li>$city->{'housing'}->{'total'} Residences</li>\n";
+    $content .= "                    <ul>\n";
+    $content .= "                        <li>" . scalar( keys %{ $city->{'districts'} } ) . " Districts</li>\n";
+    $content .= "                        <li>$city->{'business_total'} Businesses</li>\n";
+    $content .= "                        <li>$city->{'specialist_total'} Specialists</li>\n";
+    $content .= "                        <li>$city->{'housing'}->{'total'} Residences</li>\n";
 
-       $content.= "                    </ul>\n";
+    $content .= "                    </ul>\n";
     return $content;
 }
 

@@ -59,30 +59,93 @@ The following datafiles are used by ClimateGenerator.pm:
 =cut
 
 ###############################################################################
-my $climate_data= $xml->XMLin( "xml/climate.xml", ForceContent => 1, ForceArray => ['option'] );
+my $climate_data = $xml->XMLin( "xml/climate.xml", ForceContent => 1, ForceArray => ['option'] );
 
-my $biomematrix=[  
-	['EF','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW','BW'],
-	['EF','DW','DW','CS','CS','BW','BW','BW','BW','BW','BW','BS','BS','BS','BS','BS','BS','BS','BS','BS','BS'],
-	['EF','DW','DW','DW','CS','CS','CS','CS','CS','CS','CS','CS','CS','BS','BS','BS','BS','BS','BS','BS','BS'],
-	['EF','ET','DW','DW','DW','CS','CS','CS','CS','CS','CS','CS','CS','CS','AW','AW','AW','AW','AW','AW','BS'],
-	['EF','ET','DW','DW','DW','DW','CS','CS','CS','CS','CS','CS','CS','CS','CS','AW','AW','AW','AW','AW','BS'],
-	['EF','ET','DW','DW','DW','DW','CW','CW','CW','CW','CS','CS','CS','CS','CS','AW','AW','AW','AW','AW','AW'],
-	['EF','ET','DW','DW','DW','DW','CW','CW','CW','CW','CW','CS','CS','CS','CS','AW','AW','AW','AW','AW','AW'],
-	['EF','ET','DW','DW','DW','DW','CW','CW','CW','CW','CW','CW','CW','CS','CS','AW','AW','AW','AW','AW','AW'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','CS','AW','AW','AW','AW','AW','AW'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AM','AM','AM','AM','AM','AM','AM'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AF','AF','AF','AF','AF','AF','AF'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CW','CW','CW','CW','AF','AF','AF','AF','AF','AF','AF'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CF','CF','CF','CF','AF','AF','AF','AF','AF','AF','AF'],
-	['EF','ET','ET','DF','DF','DF','CW','CW','CW','CW','CF','CF','CF','CF','AF','AF','AF','AF','AF','AF','AF'],
-	['EF','ET','ET','DF','DF','DF','CF','CF','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF','AF','AF'],
-	['EF','ET','ET','DF','DF','DF','CF','CF','CF','CF','CF','CF','CF','CF','AF','AF','AF','AF','AF','AF','AF'],
+my $biomematrix = [
+    [
+        'EF', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW',
+        'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW'
+    ],
+    [
+        'EF', 'DW', 'DW', 'CS', 'CS', 'BW', 'BW', 'BW', 'BW', 'BW', 'BW', 'BS',
+        'BS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS'
+    ],
+    [
+        'EF', 'DW', 'DW', 'DW', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS',
+        'CS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS', 'BS'
+    ],
+    [
+        'EF', 'ET', 'DW', 'DW', 'DW', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS',
+        'CS', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'AW', 'BS'
+    ],
+    [
+        'EF', 'ET', 'DW', 'DW', 'DW', 'DW', 'CS', 'CS', 'CS', 'CS', 'CS', 'CS',
+        'CS', 'CS', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'BS'
+    ],
+    [
+        'EF', 'ET', 'DW', 'DW', 'DW', 'DW', 'CW', 'CW', 'CW', 'CW', 'CS', 'CS',
+        'CS', 'CS', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'AW'
+    ],
+    [
+        'EF', 'ET', 'DW', 'DW', 'DW', 'DW', 'CW', 'CW', 'CW', 'CW', 'CW', 'CS',
+        'CS', 'CS', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'AW'
+    ],
+    [
+        'EF', 'ET', 'DW', 'DW', 'DW', 'DW', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CS', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'AW'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'CS', 'AW', 'AW', 'AW', 'AW', 'AW', 'AW'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM', 'AM'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CW', 'CW',
+        'CW', 'CW', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CF', 'CF',
+        'CF', 'CF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CW', 'CW', 'CW', 'CW', 'CF', 'CF',
+        'CF', 'CF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CF', 'CF', 'CF', 'CF', 'CF', 'CF',
+        'CF', 'CF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
+    [
+        'EF', 'ET', 'ET', 'DF', 'DF', 'DF', 'CF', 'CF', 'CF', 'CF', 'CF', 'CF',
+        'CF', 'CF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF', 'AF'
+    ],
 ];
 
 ###############################################################################
@@ -122,18 +185,21 @@ sub create_climate {
     }
 
     #set base stat values, and if they don't exist, set new value.
-    foreach my $stat (qw( altitude continentality latitude pressure )  ){
-        if ( !defined $climate->{$stat}){
-            $climate->{$stat}=d(100);
-        }else{
-            $climate->{$stat}= min(100,  max(1,$climate->{$stat} )  );
+    foreach my $stat (qw( altitude continentality latitude pressure )) {
+        if ( !defined $climate->{$stat} ) {
+            $climate->{$stat} = d(100);
+        } else {
+            $climate->{$stat} = min( 100, max( 1, $climate->{$stat} ) );
         }
     }
 
     # The higher the latitude or altitude, the lower the temp.
-    $climate->{'temperature'} = ((100 - $climate->{'altitude'}) + (100 - $climate->{'latitude'}))/2   if (!defined $climate->{'temperature'});
+    $climate->{'temperature'} = ( ( 100 - $climate->{'altitude'} ) + ( 100 - $climate->{'latitude'} ) ) / 2
+        if ( !defined $climate->{'temperature'} );
+
     # The higher the pressure and lower the continentality, the higher the precip
-    $climate->{'precipitation'} =( $climate->{'pressure'} + (100 - $climate->{'continentality'}))/2   if (!defined $climate->{'precipitation'});
+    $climate->{'precipitation'} = ( $climate->{'pressure'} + ( 100 - $climate->{'continentality'} ) ) / 2
+        if ( !defined $climate->{'precipitation'} );
 
     #calculate the biome based on temp and precip
     $climate = calculate_biome($climate);
@@ -162,7 +228,7 @@ sub flesh_out_climate {
     calculate_temp($climate);
     calculate_precip($climate);
     calculate_cloudcover($climate);
- 
+
     return $climate;
 }
 
@@ -178,19 +244,24 @@ sub flesh_out_climate {
 ###############################################################################
 sub calculate_biome {
     my ($climate) = @_;
-    
+
     # These two lines are ugly ways to translate 0-100 precip and temp values to array indexes
-    my $precipkey   = ceil( $climate->{'precipitation'}  /100 * (scalar(@$biomematrix) - 1)) ;
-    my $tempkey = ceil( $climate->{'temperature'}/100 * (scalar( @{ $biomematrix->[$precipkey]   }) - 1));
+    my $precipkey = ceil( $climate->{'precipitation'} / 100 * ( scalar(@$biomematrix) - 1 ) );
+    my $tempkey   = ceil( $climate->{'temperature'} / 100 *   ( scalar( @{ $biomematrix->[$precipkey] } ) - 1 ) );
 
     # once we know what are keys are, set the biome key, then look up the climate name.
-    $climate->{'biomekey'}= $biomematrix->[$precipkey][$tempkey] if (!defined $climate->{'biomekey'});
-    $climate->{'name'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'type'}  if (!defined $climate->{'name'});
-    $climate->{'description'}=  $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'content'}  if (!defined $climate->{'description'});
-    $climate->{'seasontypes'}=  [split( /,/x, $climate_data->{'biomes'}->{'option'}->{$climate->{'biomekey'}}->{'seasons'})]  if (!defined $climate->{'seasontypes'});
+    $climate->{'biomekey'} = $biomematrix->[$precipkey][$tempkey] if ( !defined $climate->{'biomekey'} );
+    $climate->{'name'} = $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'type'}
+        if ( !defined $climate->{'name'} );
+    $climate->{'description'} = $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'content'}
+        if ( !defined $climate->{'description'} );
+    $climate->{'seasontypes'}
+        = [ split( /,/x, $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'seasons'} ) ]
+        if ( !defined $climate->{'seasontypes'} );
 
-    $climate->{'seasontype'}=  rand_from_array( $climate->{'seasontypes'}  ) if (!defined $climate->{'seasontype'});
-    $climate->{'seasondescription'}= $climate_data->{'seasons'}->{'option'}->{$climate->{'seasontype'}}->{'content'}  if (!defined $climate->{'seasondescription'});
+    $climate->{'seasontype'} = rand_from_array( $climate->{'seasontypes'} ) if ( !defined $climate->{'seasontype'} );
+    $climate->{'seasondescription'} = $climate_data->{'seasons'}->{'option'}->{ $climate->{'seasontype'} }->{'content'}
+        if ( !defined $climate->{'seasondescription'} );
 
 
     return $climate;
@@ -208,10 +279,13 @@ sub calculate_biome {
 ###############################################################################
 sub calculate_wind {
     my ($climate) = @_;
-    $climate->{'wind_roll'}=d(100) if (!defined $climate->{'wind_roll'} );
-    $climate->{'wind_variation_roll'}=d(100) if (!defined $climate->{'wind_variation_roll'} );
-    $climate->{'wind'}=  roll_from_array( $climate->{'wind_roll'}, $climate_data->{'winds'}->{'option'}  )->{'content'} if (!defined $climate->{'wind'});
-    $climate->{'wind_variation'}=  roll_from_array( $climate->{'wind_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'wind_variation'});
+    $climate->{'wind_roll'}           = d(100) if ( !defined $climate->{'wind_roll'} );
+    $climate->{'wind_variation_roll'} = d(100) if ( !defined $climate->{'wind_variation_roll'} );
+    $climate->{'wind'} = roll_from_array( $climate->{'wind_roll'}, $climate_data->{'winds'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'wind'} );
+    $climate->{'wind_variation'}
+        = roll_from_array( $climate->{'wind_variation_roll'}, $climate_data->{'variation'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'wind_variation'} );
     return $climate;
 }
 
@@ -226,9 +300,12 @@ sub calculate_wind {
 ###############################################################################
 sub calculate_temp {
     my ($climate) = @_;
-    $climate->{'temp_variation_roll'}=d(100) if (!defined $climate->{'temp_variation_roll'} );
-    $climate->{'temp'}=  roll_from_array( $climate->{'temperature'}, $climate_data->{'temp'}->{'option'}  )->{'content'} if (!defined $climate->{'temp'});
-    $climate->{'temp_variation'}=  roll_from_array( $climate->{'temp_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'temp_variation'});
+    $climate->{'temp_variation_roll'} = d(100) if ( !defined $climate->{'temp_variation_roll'} );
+    $climate->{'temp'} = roll_from_array( $climate->{'temperature'}, $climate_data->{'temp'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'temp'} );
+    $climate->{'temp_variation'}
+        = roll_from_array( $climate->{'temp_variation_roll'}, $climate_data->{'variation'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'temp_variation'} );
     return $climate;
 }
 
@@ -243,9 +320,13 @@ sub calculate_temp {
 ###############################################################################
 sub calculate_precip {
     my ($climate) = @_;
-    $climate->{'precip_variation_roll'}=d(100) if (!defined $climate->{'precip_variation_roll'} );
-    $climate->{'precip'}=  roll_from_array( $climate->{'precipitation'}, $climate_data->{'precip'}->{'option'}  )->{'content'} if (!defined $climate->{'precip'});
-    $climate->{'precip_variation'}=  roll_from_array( $climate->{'precip_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'precip_variation'});
+    $climate->{'precip_variation_roll'} = d(100) if ( !defined $climate->{'precip_variation_roll'} );
+    $climate->{'precip'}
+        = roll_from_array( $climate->{'precipitation'}, $climate_data->{'precip'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'precip'} );
+    $climate->{'precip_variation'}
+        = roll_from_array( $climate->{'precip_variation_roll'}, $climate_data->{'variation'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'precip_variation'} );
     return $climate;
 }
 
@@ -260,13 +341,17 @@ sub calculate_precip {
 ###############################################################################
 sub calculate_cloudcover {
     my ($climate) = @_;
-    $climate->{'cloudcover_roll'}=d(100) if (!defined $climate->{'cloudcover_roll'} );
-    $climate->{'cloudcover_variation_roll'}=d(100) if (!defined $climate->{'cloudcover_variation_roll'} );
-    $climate->{'cloudcover'}=  roll_from_array( $climate->{'cloudcover_roll'}, $climate_data->{'cloudcover'}->{'option'}  )->{'content'} if (!defined $climate->{'cloudcover'});
-    $climate->{'cloudcover_variation'}=  roll_from_array( $climate->{'cloudcover_variation_roll'}, $climate_data->{'variation'}->{'option'}  )->{'content'} if (!defined $climate->{'cloudcover_variation'});
+    $climate->{'cloudcover_roll'}           = d(100) if ( !defined $climate->{'cloudcover_roll'} );
+    $climate->{'cloudcover_variation_roll'} = d(100) if ( !defined $climate->{'cloudcover_variation_roll'} );
+    $climate->{'cloudcover'}
+        = roll_from_array( $climate->{'cloudcover_roll'}, $climate_data->{'cloudcover'}->{'option'} )->{'content'}
+        if ( !defined $climate->{'cloudcover'} );
+    $climate->{'cloudcover_variation'}
+        = roll_from_array( $climate->{'cloudcover_variation_roll'}, $climate_data->{'variation'}->{'option'} )
+        ->{'content'}
+        if ( !defined $climate->{'cloudcover_variation'} );
     return $climate;
 }
-
 
 
 1;

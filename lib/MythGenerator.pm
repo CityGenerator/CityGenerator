@@ -33,7 +33,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
+use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -64,8 +64,8 @@ The following datafiles are used by MythGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $mythnames_data= $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data       = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $mythnames_data = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -105,8 +105,6 @@ sub create_myth {
 
     return $myth;
 } ## end sub create_myth
-
-
 
 
 #Generate Myths

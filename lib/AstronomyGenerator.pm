@@ -32,7 +32,7 @@ use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use Lingua::EN::Inflect qw(A);
 use List::Util 'shuffle', 'min', 'max';
-use Math::Trig  ':pi';
+use Math::Trig ':pi';
 use POSIX;
 use version;
 use XML::Simple;
@@ -63,9 +63,9 @@ The following datafiles are used by AstronomyGenerator.pm:
 =cut
 
 ###############################################################################
-my $astronomy_data      = $xml->XMLin( "xml/astronomydata.xml",  ForceContent => 1, ForceArray => ['option','reason'] );
-my $starnames_data      = $xml->XMLin( "xml/starnames.xml",      ForceContent => 1, ForceArray => [] );
-my $moonnames_data      = $xml->XMLin( "xml/moonnames.xml",      ForceContent => 1, ForceArray => [] );
+my $astronomy_data = $xml->XMLin( "xml/astronomydata.xml", ForceContent => 1, ForceArray => [ 'option', 'reason' ] );
+my $starnames_data = $xml->XMLin( "xml/starnames.xml",     ForceContent => 1, ForceArray => [] );
+my $moonnames_data = $xml->XMLin( "xml/moonnames.xml",     ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -103,9 +103,9 @@ sub create_astronomy {
         $astronomy->{'seed'} = set_seed();
     }
 
-    $astronomy=generate_starsystem($astronomy);
-    $astronomy=generate_moons($astronomy);
-    $astronomy=generate_celestial_objects($astronomy);
+    $astronomy = generate_starsystem($astronomy);
+    $astronomy = generate_moons($astronomy);
+    $astronomy = generate_celestial_objects($astronomy);
 
     return $astronomy;
 } ## end sub create_astronomy
@@ -122,20 +122,20 @@ sub create_astronomy {
 ###############################################################################
 sub generate_starsystem {
     my ($astronomy) = @_;
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3])  );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
-    $astronomy->{'starsystem_roll'}= d(100) if (!defined $astronomy->{'starsystem_roll'});
-    
-    my $starsystem=roll_from_array($astronomy->{'starsystem_roll'},  $astronomy_data->{'stars'}->{'option'});
-    $astronomy->{'starsystem_count'}=$starsystem->{'count'};
-    $astronomy->{'starsystem_name'}=$starsystem->{'content'};
-    $astronomy->{'star'}= [] if (!defined $astronomy->{'star'});
-    $astronomy->{'star_description'}= [] if (!defined $astronomy->{'star_description'});
-    for (my $starid=0 ; $starid < $astronomy->{'starsystem_count'} ; $starid++ ){
-        generate_star($astronomy,$starid);
+    $astronomy->{'starsystem_roll'} = d(100) if ( !defined $astronomy->{'starsystem_roll'} );
+
+    my $starsystem = roll_from_array( $astronomy->{'starsystem_roll'}, $astronomy_data->{'stars'}->{'option'} );
+    $astronomy->{'starsystem_count'} = $starsystem->{'count'};
+    $astronomy->{'starsystem_name'}  = $starsystem->{'content'};
+    $astronomy->{'star'}             = [] if ( !defined $astronomy->{'star'} );
+    $astronomy->{'star_description'} = [] if ( !defined $astronomy->{'star_description'} );
+    for ( my $starid = 0 ; $starid < $astronomy->{'starsystem_count'} ; $starid++ ) {
+        generate_star( $astronomy, $starid );
     }
 
-    return $astronomy; 
+    return $astronomy;
 }
 ###############################################################################
 
@@ -148,20 +148,20 @@ sub generate_starsystem {
 ###############################################################################
 sub generate_moons {
     my ($astronomy) = @_;
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3])  );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
-    $astronomy->{'moons_roll'}= d(100) if (!defined $astronomy->{'moons_roll'});
-    
-    my $moons=roll_from_array($astronomy->{'moons_roll'},  $astronomy_data->{'moons'}->{'option'});
-    $astronomy->{'moons_count'}=$moons->{'count'};
-    $astronomy->{'moons_name'}=$moons->{'content'};
+    $astronomy->{'moons_roll'} = d(100) if ( !defined $astronomy->{'moons_roll'} );
 
-    $astronomy->{'moon'}= [] if (!defined $astronomy->{'moon'});
-    for (my $moonid=0 ; $moonid < $astronomy->{'moons_count'} ; $moonid++ ){
-        generate_moon($astronomy,$moonid);
+    my $moons = roll_from_array( $astronomy->{'moons_roll'}, $astronomy_data->{'moons'}->{'option'} );
+    $astronomy->{'moons_count'} = $moons->{'count'};
+    $astronomy->{'moons_name'}  = $moons->{'content'};
+
+    $astronomy->{'moon'} = [] if ( !defined $astronomy->{'moon'} );
+    for ( my $moonid = 0 ; $moonid < $astronomy->{'moons_count'} ; $moonid++ ) {
+        generate_moon( $astronomy, $moonid );
     }
 
-    return $astronomy; 
+    return $astronomy;
 }
 
 
@@ -175,24 +175,33 @@ sub generate_moons {
 
 ###############################################################################
 sub generate_star {
-    my ($astronomy,$id) = @_;
+    my ( $astronomy, $id ) = @_;
 
-    $id=0 if (!defined $id);
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3])+$id  );
+    $id = 0 if ( !defined $id );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
 
-    my $nameobj= parse_object( $starnames_data );
-    $astronomy->{'star'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $astronomy->{'star'}[$id]->{'name'} );
+    my $nameobj = parse_object($starnames_data);
+    $astronomy->{'star'}[$id]->{'name'} = $nameobj->{'content'} if ( !defined $astronomy->{'star'}[$id]->{'name'} );
 
-    $astronomy->{'star'}[$id]->{'color_roll'} = d(100)  if (!defined $astronomy->{'star'}[$id]->{'color_roll'} );
-    $astronomy->{'star'}[$id]->{'color'}= roll_from_array( $astronomy->{'star'}[$id]->{'color_roll'}, $astronomy_data->{'starcolor'}->{'option'})->{'content'} if (!defined $astronomy->{'star'}[$id]->{'color'});
+    $astronomy->{'star'}[$id]->{'color_roll'} = d(100) if ( !defined $astronomy->{'star'}[$id]->{'color_roll'} );
+    $astronomy->{'star'}[$id]->{'color'}
+        = roll_from_array( $astronomy->{'star'}[$id]->{'color_roll'}, $astronomy_data->{'starcolor'}->{'option'} )
+        ->{'content'}
+        if ( !defined $astronomy->{'star'}[$id]->{'color'} );
 
-    $astronomy->{'star'}[$id]->{'size_roll'} = d(100)  if (!defined $astronomy->{'star'}[$id]->{'size_roll'} );
-    $astronomy->{'star'}[$id]->{'size'}= roll_from_array( $astronomy->{'star'}[$id]->{'size_roll'}, $astronomy_data->{'size'}->{'option'})->{'content'} if (!defined $astronomy->{'star'}[$id]->{'size'});
+    $astronomy->{'star'}[$id]->{'size_roll'} = d(100) if ( !defined $astronomy->{'star'}[$id]->{'size_roll'} );
+    $astronomy->{'star'}[$id]->{'size'}
+        = roll_from_array( $astronomy->{'star'}[$id]->{'size_roll'}, $astronomy_data->{'size'}->{'option'} )
+        ->{'content'}
+        if ( !defined $astronomy->{'star'}[$id]->{'size'} );
 
-    $astronomy->{'star_description'}[$id]=$astronomy->{'star'}[$id]->{'name'}.", ".A( $astronomy->{'star'}[$id]->{'size'}." ".$astronomy->{'star'}[$id]->{'color'}." star"  ) if (!defined $astronomy->{'star_description'}[$id]);
+    $astronomy->{'star_description'}[$id]
+        = $astronomy->{'star'}[$id]->{'name'} . ", "
+        . A( $astronomy->{'star'}[$id]->{'size'} . " " . $astronomy->{'star'}[$id]->{'color'} . " star" )
+        if ( !defined $astronomy->{'star_description'}[$id] );
 
 
-   return $astronomy; 
+    return $astronomy;
 }
 
 
@@ -206,21 +215,30 @@ sub generate_star {
 
 ###############################################################################
 sub generate_moon {
-    my ($astronomy,$id) = @_;
+    my ( $astronomy, $id ) = @_;
 
-    $id=0 if (!defined $id);
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3])+$id  );
-    my $nameobj= parse_object( $moonnames_data );
-    $astronomy->{'moon'}[$id]->{'name'} = $nameobj->{'content'}   if (!defined $astronomy->{'moon'}[$id]->{'name'} );
+    $id = 0 if ( !defined $id );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
+    my $nameobj = parse_object($moonnames_data);
+    $astronomy->{'moon'}[$id]->{'name'} = $nameobj->{'content'} if ( !defined $astronomy->{'moon'}[$id]->{'name'} );
 
-    $astronomy->{'moon'}[$id]->{'color_roll'} = d(100)  if (!defined $astronomy->{'moon'}[$id]->{'color_roll'} );
-    $astronomy->{'moon'}[$id]->{'color'}= roll_from_array( $astronomy->{'moon'}[$id]->{'color_roll'}, $astronomy_data->{'mooncolor'}->{'option'})->{'content'} if (!defined $astronomy->{'moon'}[$id]->{'color'});
+    $astronomy->{'moon'}[$id]->{'color_roll'} = d(100) if ( !defined $astronomy->{'moon'}[$id]->{'color_roll'} );
+    $astronomy->{'moon'}[$id]->{'color'}
+        = roll_from_array( $astronomy->{'moon'}[$id]->{'color_roll'}, $astronomy_data->{'mooncolor'}->{'option'} )
+        ->{'content'}
+        if ( !defined $astronomy->{'moon'}[$id]->{'color'} );
 
-    $astronomy->{'moon'}[$id]->{'size_roll'} = d(100)  if (!defined $astronomy->{'moon'}[$id]->{'size_roll'} );
-    $astronomy->{'moon'}[$id]->{'size'}= roll_from_array( $astronomy->{'moon'}[$id]->{'size_roll'}, $astronomy_data->{'size'}->{'option'})->{'content'} if (!defined $astronomy->{'moon'}[$id]->{'size'});
+    $astronomy->{'moon'}[$id]->{'size_roll'} = d(100) if ( !defined $astronomy->{'moon'}[$id]->{'size_roll'} );
+    $astronomy->{'moon'}[$id]->{'size'}
+        = roll_from_array( $astronomy->{'moon'}[$id]->{'size_roll'}, $astronomy_data->{'size'}->{'option'} )
+        ->{'content'}
+        if ( !defined $astronomy->{'moon'}[$id]->{'size'} );
 
-    $astronomy->{'moon_description'}[$id]=$astronomy->{'moon'}[$id]->{'name'}.", ".A( $astronomy->{'moon'}[$id]->{'size'}." ".$astronomy->{'moon'}[$id]->{'color'}." moon"  ) if (!defined $astronomy->{'moon_description'}[$id]);
-   return $astronomy; 
+    $astronomy->{'moon_description'}[$id]
+        = $astronomy->{'moon'}[$id]->{'name'} . ", "
+        . A( $astronomy->{'moon'}[$id]->{'size'} . " " . $astronomy->{'moon'}[$id]->{'color'} . " moon" )
+        if ( !defined $astronomy->{'moon_description'}[$id] );
+    return $astronomy;
 }
 
 ###############################################################################
@@ -233,20 +251,30 @@ sub generate_moon {
 
 ###############################################################################
 sub generate_celestial {
-    my ($astronomy,$id) = @_;
+    my ( $astronomy, $id ) = @_;
 
-    $id=0 if (!defined $id);
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3])+$id  );
-
-
-    $astronomy->{'celestial'}[$id]->{'size'}= rand_from_array( $astronomy_data->{'celestial'}->{'size'}->{'option'})->{'content'} if (!defined $astronomy->{'celestial'}[$id]->{'size'});
-    $astronomy->{'celestial'}[$id]->{'age'}=  rand_from_array( $astronomy_data->{'celestial'}->{'age'}->{'option'})->{'content'}  if (!defined $astronomy->{'celestial'}[$id]->{'age'});
-    $astronomy->{'celestial'}[$id]->{'name'}= rand_from_array( $astronomy_data->{'celestial'}->{'name'}->{'option'})->{'content'} if (!defined $astronomy->{'celestial'}[$id]->{'name'});
-
-    $astronomy->{'celestial_description'}[$id]= A( $astronomy->{'celestial'}[$id]->{'size'}." ".$astronomy->{'celestial'}[$id]->{'name'} )." that has been around for ".$astronomy->{'celestial'}[$id]->{'age'} if (!defined $astronomy->{'celestial_description'}[$id] );
+    $id = 0 if ( !defined $id );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
 
 
-   return $astronomy; 
+    $astronomy->{'celestial'}[$id]->{'size'}
+        = rand_from_array( $astronomy_data->{'celestial'}->{'size'}->{'option'} )->{'content'}
+        if ( !defined $astronomy->{'celestial'}[$id]->{'size'} );
+    $astronomy->{'celestial'}[$id]->{'age'}
+        = rand_from_array( $astronomy_data->{'celestial'}->{'age'}->{'option'} )->{'content'}
+        if ( !defined $astronomy->{'celestial'}[$id]->{'age'} );
+    $astronomy->{'celestial'}[$id]->{'name'}
+        = rand_from_array( $astronomy_data->{'celestial'}->{'name'}->{'option'} )->{'content'}
+        if ( !defined $astronomy->{'celestial'}[$id]->{'name'} );
+
+    $astronomy->{'celestial_description'}[$id]
+        = A( $astronomy->{'celestial'}[$id]->{'size'} . " " . $astronomy->{'celestial'}[$id]->{'name'} )
+        . " that has been around for "
+        . $astronomy->{'celestial'}[$id]->{'age'}
+        if ( !defined $astronomy->{'celestial_description'}[$id] );
+
+
+    return $astronomy;
 }
 
 
@@ -262,21 +290,22 @@ sub generate_celestial {
 sub generate_celestial_objects {
     my ($astronomy) = @_;
 
-    set_seed(  $astronomy->{'seed'}  + length ((caller(0))[3]) );
-    
-    $astronomy->{'celestial_roll'}=  d(100) if  (!defined $astronomy->{'celestial_roll'});
-    my $celestial=roll_from_array($astronomy->{'celestial_roll'},  $astronomy_data->{'celestial'}->{'number'}->{'option'});
-    $astronomy->{'celestial_count'} = $celestial->{'count'} if (!defined $astronomy->{'celestial_count'} );
-    $astronomy->{'celestial_name'} = $celestial->{'type'} if (!defined $astronomy->{'celestial_name'} );
+    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
-    $astronomy->{'celestial'}= [] if (!defined $astronomy->{'celestial'});
-    $astronomy->{'celestial_description'}= [] if (!defined $astronomy->{'celestial_description'});
-    for (my $celestialid=0 ; $celestialid < $astronomy->{'celestial_count'}; $celestialid++) {
-        generate_celestial($astronomy,$celestialid);
+    $astronomy->{'celestial_roll'} = d(100) if ( !defined $astronomy->{'celestial_roll'} );
+    my $celestial
+        = roll_from_array( $astronomy->{'celestial_roll'}, $astronomy_data->{'celestial'}->{'number'}->{'option'} );
+    $astronomy->{'celestial_count'} = $celestial->{'count'} if ( !defined $astronomy->{'celestial_count'} );
+    $astronomy->{'celestial_name'}  = $celestial->{'type'}  if ( !defined $astronomy->{'celestial_name'} );
+
+    $astronomy->{'celestial'}             = [] if ( !defined $astronomy->{'celestial'} );
+    $astronomy->{'celestial_description'} = [] if ( !defined $astronomy->{'celestial_description'} );
+    for ( my $celestialid = 0 ; $celestialid < $astronomy->{'celestial_count'} ; $celestialid++ ) {
+        generate_celestial( $astronomy, $celestialid );
     }
 
 
-   return $astronomy;
+    return $astronomy;
 }
 
 

@@ -28,7 +28,7 @@ use base qw(Exporter);
 use CGI;
 use Data::Dumper;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator ;
+use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
@@ -59,11 +59,11 @@ The following datafiles are used by CityGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $xml_data           = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $names_data         = $xml->XMLin( "xml/npcnames.xml", ForceContent => 1, ForceArray => [] );
-my $citynames_data     = $xml->XMLin( "xml/citynames.xml", ForceContent => 1, ForceArray => [] );
-my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml", ForceContent => 1, ForceArray => [] );
-my $continentnames_data= $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
+my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
+my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => [] );
+my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => [] );
+my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => [] );
+my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
 
 ###############################################################################
 
@@ -85,19 +85,20 @@ This method is used to create a simple region with nothing more than:
 ###############################################################################
 sub create_region {
     my ($params) = @_;
-    my $region={};
+    my $region = {};
 
-    if (ref $params eq 'HASH'){
-        foreach my $key (sort keys %$params){
-            $region->{$key}=$params->{$key};
+    if ( ref $params eq 'HASH' ) {
+        foreach my $key ( sort keys %$params ) {
+            $region->{$key} = $params->{$key};
         }
     }
 
-    if(!defined $region->{'seed'}){
-        $region->{'seed'}=set_seed();
+    if ( !defined $region->{'seed'} ) {
+        $region->{'seed'} = set_seed();
     }
+
     # This knocks off the city IDs
-    $region->{'seed'}=$region->{'seed'} - $region->{'seed'}%10 ;
+    $region->{'seed'} = $region->{'seed'} - $region->{'seed'} % 10;
 
     generate_region_name($region);
 
@@ -116,9 +117,9 @@ sub create_region {
 ###############################################################################
 sub generate_region_name {
     my ($region) = @_;
-    set_seed($region->{'seed'});
-    my $nameobj= parse_object( $regionnames_data );
-    $region->{'name'}=$nameobj->{'content'}   if (!defined $region->{'name'} );
+    set_seed( $region->{'seed'} );
+    my $nameobj = parse_object($regionnames_data);
+    $region->{'name'} = $nameobj->{'content'} if ( !defined $region->{'name'} );
     return $region;
 }
 

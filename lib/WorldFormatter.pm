@@ -47,10 +47,17 @@ printSummary strips out important info from a World object and returns formatted
 ###############################################################################
 sub printSummary {
     my ($world) = @_;
-    my $content="";
-    $content.="$world->{'name'} is ".A( $world->{'size'}).", $world->{'basetemp'} planet orbiting ".A( $world->{'astronomy'}->{'starsystem_name'}).".\n";
-    $content.="$world->{'name'} has a $world->{'astronomy'}->{'moons_name'}, ".A($world->{'air'})." $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}.\n";
-    $content.="The surface of the planet is $world->{'surfacewater_percent'}% covered by water.\n";
+    my $content = "";
+    $content
+        .= "$world->{'name'} is "
+        . A( $world->{'size'} )
+        . ", $world->{'basetemp'} planet orbiting "
+        . A( $world->{'astronomy'}->{'starsystem_name'} ) . ".\n";
+    $content
+        .= "$world->{'name'} has a $world->{'astronomy'}->{'moons_name'}, "
+        . A( $world->{'air'} )
+        . " $world->{'atmosphere'}->{'color'} atmosphere and fresh water is $world->{'freshwater_description'}.\n";
+    $content .= "The surface of the planet is $world->{'surfacewater_percent'}% covered by water.\n";
     return $content;
 }
 
@@ -65,16 +72,16 @@ printSkySummary strips out important info from a World object and returns format
 
 ###############################################################################
 sub printSkySummary {
-    my ($world) = @_;
-    my $content="";
-    my $stars=conjunction(@{ $world->{'astronomy'}->{'star_description'}} );
-    my $moons=printMoonList($world);
-    my $celestials=printCelestialList($world);
-    my $atmosphere=printAtmosphere($world);
-    $content.= "$world->{'name'} orbits ". A($world->{'astronomy'}->{'starsystem_name'}). ": $stars.\n";
-    $content.= "$world->{'name'} also has $moons.\n";
-    $content.= "In the night sky, you see $celestials.\n";
-    $content.= "During the day, the sky is $atmosphere.\n";
+    my ($world)    = @_;
+    my $content    = "";
+    my $stars      = conjunction( @{ $world->{'astronomy'}->{'star_description'} } );
+    my $moons      = printMoonList($world);
+    my $celestials = printCelestialList($world);
+    my $atmosphere = printAtmosphere($world);
+    $content .= "$world->{'name'} orbits " . A( $world->{'astronomy'}->{'starsystem_name'} ) . ": $stars.\n";
+    $content .= "$world->{'name'} also has $moons.\n";
+    $content .= "In the night sky, you see $celestials.\n";
+    $content .= "During the day, the sky is $atmosphere.\n";
 
 
     return $content;
@@ -92,14 +99,13 @@ reasons for it
 ###############################################################################
 sub printAtmosphere {
     my ($world) = @_;
-    my $content=$world->{'atmosphere'}->{'color'};
-    if (defined $world->{'atmosphere'}->{'reason'}){
-        $content.=", which is partially due to ".$world->{'atmosphere'}->{'reason'};
+    my $content = $world->{'atmosphere'}->{'color'};
+    if ( defined $world->{'atmosphere'}->{'reason'} ) {
+        $content .= ", which is partially due to " . $world->{'atmosphere'}->{'reason'};
     }
 
     return $content;
 }
-
 
 
 ###############################################################################
@@ -113,11 +119,12 @@ printMoonList nicely formats the moon description listings
 ###############################################################################
 sub printMoonList {
     my ($world) = @_;
-    my $content="";
-    if ($world->{'astronomy'}->{'moons_count'} == 0 ){
-        $content.=$world->{'astronomy'}->{'moons_name'};
-    }else{
-        $content.=A($world->{'astronomy'}->{'moons_name'}).": ".conjunction(@{ $world->{'astronomy'}->{'moon_description'}} );
+    my $content = "";
+    if ( $world->{'astronomy'}->{'moons_count'} == 0 ) {
+        $content .= $world->{'astronomy'}->{'moons_name'};
+    } else {
+        $content .= A( $world->{'astronomy'}->{'moons_name'} ) . ": "
+            . conjunction( @{ $world->{'astronomy'}->{'moon_description'} } );
     }
     return $content;
 }
@@ -134,11 +141,12 @@ printCelestialList nicely formats the Celestial object description listings
 ###############################################################################
 sub printCelestialList {
     my ($world) = @_;
-    my $content="";
-    if ($world->{'astronomy'}->{'celestial_count'} == 0 ){
-        $content.=$world->{'astronomy'}->{'celestial_name'};
+    my $content = "";
+    if ( $world->{'astronomy'}->{'celestial_count'} == 0 ) {
+        $content .= $world->{'astronomy'}->{'celestial_name'};
     } else {
-        $content.=$world->{'astronomy'}->{'celestial_name'}.": ".conjunction(@{ $world->{'astronomy'}->{'celestial_description'}} );
+        $content .= $world->{'astronomy'}->{'celestial_name'} . ": "
+            . conjunction( @{ $world->{'astronomy'}->{'celestial_description'} } );
     }
 
     return $content;
@@ -156,14 +164,19 @@ printLandSummary strips out important info from a World object and returns forma
 ###############################################################################
 sub printLandSummary {
     my ($world) = @_;
-    my $content="";
+    my $content = "";
 
-    my $de = Number::Format->new(-thousands_sep => ',');
+    my $de = Number::Format->new( -thousands_sep => ',' );
 
-    $content.= "$world->{'name'} is ". $de->format_number($world->{'surface'}) ." square kilometers (with a circumfrence of ". $de->format_number($world->{'circumfrence'}) ." kilometers).\n".
-                "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet.\n".
-                "Around $world->{'freshwater_percent'}% of the planet's water is fresh water.\n".
-                "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents.\n";
+    $content
+        .= "$world->{'name'} is "
+        . $de->format_number( $world->{'surface'} )
+        . " square kilometers (with a circumfrence of "
+        . $de->format_number( $world->{'circumfrence'} )
+        . " kilometers).\n"
+        . "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet.\n"
+        . "Around $world->{'freshwater_percent'}% of the planet's water is fresh water.\n"
+        . "The crust is split into $world->{'plates'} plates, resulting in $world->{'continent_count'} continents.\n";
 
     return $content;
 }
@@ -180,13 +193,14 @@ printWeatherSummary strips out important info from a World object and returns fo
 ###############################################################################
 sub printWeatherSummary {
     my ($world) = @_;
-    my $content="";
-    my $stars=conjunction(@{ $world->{'star_description'}} );
+    my $content = "";
+    my $stars   = conjunction( @{ $world->{'star_description'} } );
 
-    my $de = Number::Format->new(-thousands_sep => ',');
+    my $de = Number::Format->new( -thousands_sep => ',' );
 
-    $content.= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}.\n".
-               "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}.\n";
+    $content
+        .= "While $world->{'name'} has a reasonable amount of variation, the overall climate is $world->{'basetemp'}.\n"
+        . "Small storms are $world->{'smallstorms_description'}, precipitation is $world->{'precipitation_description'}, the atmosphere is $world->{'air'} and clouds are $world->{'clouds_description'}.\n";
 
     return $content;
 }
@@ -203,10 +217,10 @@ printWorldDataSummary strips out important info from a World object and returns 
 ###############################################################################
 sub printWorldDataSummary {
     my ($world) = @_;
-    my $content="";
-    my $stars=conjunction(@{ $world->{'star_description'}} );
+    my $content = "";
+    my $stars   = conjunction( @{ $world->{'star_description'} } );
 
-    $content= << "EOF"
+    $content = << "EOF"
     <ul>
         <li>Stars: $world->{'astronomy'}->{'starsystem_count'}</li>
         <li>Moons: $world->{'astronomy'}->{'moons_count'}</li>
@@ -220,7 +234,7 @@ sub printWorldDataSummary {
         <li>Fresh water: $world->{'freshwater_description'}</li>
     </ul>
 EOF
-;
+        ;
 
     return $content;
 }
