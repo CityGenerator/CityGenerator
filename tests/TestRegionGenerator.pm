@@ -5,38 +5,30 @@ package TestRegionGenerator;
 
 use strict;
 use warnings;
-use Test::More;
-use RegionGenerator;
-use GenericGenerator qw( set_seed );
 
 use Data::Dumper;
+use Exporter;
+use GenericGenerator qw( set_seed );
+use RegionGenerator;
+use Test::More;
 use XML::Simple;
+
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
-
 
 subtest 'test create_region' => sub {
     my $region;
-    $region=RegionGenerator::create_region({'seed'=>41630});
-    is($region->{'seed'},41630);
-    is($region->{'name'},'Conacania Province');
+    $region = RegionGenerator::create_region( { 'seed' => 41630 } );
+    is( $region->{'seed'}, 41630, 'ensure seed is set' );
+    is( $region->{'name'}, 'Conacania Province', 'ensure name is generated' );
 
-    $region=RegionGenerator::create_region({'seed'=>12345});
-    is($region->{'seed'},12340);
-    is($region->{'name'},'Upper Britbean Province');
-
-    $region=RegionGenerator::create_region({'seed'=>12345, 'name'=>'test'  });
-    is($region->{'seed'},12340);
-    is($region->{'name'},'test');
+    $region = RegionGenerator::create_region( { 'seed' => 12345, 'name' => 'test' } );
+    is( $region->{'seed'}, 12340,  'ensure seed is trimmed' );
+    is( $region->{'name'}, 'test', 'ensure name is set' );
 
     done_testing();
 };
-
-
-
 
 
 1;

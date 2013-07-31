@@ -5,25 +5,25 @@ package TestAdventureGenerator;
 
 use strict;
 use warnings;
-use Test::More;
 use AdventureGenerator;
+use Data::Dumper;
+use Exporter;
 use GenericGenerator qw( set_seed );
 
-use Data::Dumper;
+use Test::More;
 use XML::Simple;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
+use base qw(Exporter);
+@EXPORT_OK = qw( create_city generate_city_name);
 
-@ISA       = qw(Exporter);
-@EXPORT_OK = qw( );
 
 subtest 'test generate_adventure ' => sub {
     my $adventure;
 
-    $adventure=AdventureGenerator::create_adventure();
+    $adventure = AdventureGenerator::create_adventure();
 
-    $adventure=AdventureGenerator::create_adventure({'seed'=>2});
-    is($adventure->{'seed'}, 2);
+    $adventure = AdventureGenerator::create_adventure( { 'seed' => 2 } );
+    is( $adventure->{'seed'}, 2, 'ensure seed is set' );
 
     done_testing();
 };
@@ -32,34 +32,20 @@ subtest 'test generate_adventure ' => sub {
 subtest 'test generate_adventure name' => sub {
     my $adventure;
     GenericGenerator::set_seed(1);
-    $adventure=AdventureGenerator::generate_name();
-    is($adventure->{'namepattern'},"SUBJECT");
-    is($adventure->{'name'},"The Foggy Symbol");
+    $adventure = AdventureGenerator::generate_name();
+    is( $adventure->{'namepattern'}, "SUBJECT",          'test a simple subject' );
+    is( $adventure->{'name'},        "The Foggy Symbol", 'ensure the subject is well formed' );
 
-    $adventure=AdventureGenerator::generate_name({'seed'=>2});
-    is($adventure->{'namepattern'},"VERB.gerund SUBJECT");
-    is($adventure->{'name'},"Joyfully Planning an Overlooked Dagger");
+    $adventure = AdventureGenerator::generate_name( { 'seed' => 1, 'name' => "Bill and Ted's Excellent Adventure" } );
+    is( $adventure->{'name'}, "Bill and Ted's Excellent Adventure", 'ensure namepattern is ignored' );
 
-    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'namepattern'=>'ADVERB ADVERB VERB SUBJECT'});
-    is($adventure->{'namepattern'},"ADVERB ADVERB VERB SUBJECT");
-    is($adventure->{'name'},"Greedily Swiftly Partially Swing the Tyrant");
-
-    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'name'=>"Bill and Ted's Excellent Adventure"});
-    is($adventure->{'namepattern'},"VERB.gerund SUBJECT");
-    is($adventure->{'name'},"Bill and Ted's Excellent Adventure");
-
-
-    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'namepattern'=>'NOUN SUBJECT NOUN SUBJECT ADJECTIVE ADJECTIVE'});
-    is($adventure->{'namepattern'},"NOUN SUBJECT NOUN SUBJECT ADJECTIVE ADJECTIVE");
-
-    $adventure=AdventureGenerator::generate_name({'seed'=>2, 'namepattern'=>'VERB.thirdperson VERB.participle ARTICLE'});
-    is($adventure->{'namepattern'},"VERB.thirdperson VERB.participle ARTICLE");
-
-    $adventure=AdventureGenerator::generate_name({'seed'=>3, 'namepattern'=>'SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT'});
-    is($adventure->{'namepattern'},"SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT");
-
-    $adventure=AdventureGenerator::generate_name({'seed'=>3, 'namepattern'=>'VERB VERB VERB VERB VERB VERB'});
-    is($adventure->{'namepattern'},"VERB VERB VERB VERB VERB VERB");
+    my $tokens
+        = 'NOUN SUBJECT ADJECTIVE VERB VERB.thirdperson VERB.participle VERB.gerund ARTICLE ADVERB NEGATE ARTICLE';
+    my $tokenstring
+        = "Hand the Primal Adventure Golden Vivaciously Accuse Stinks Retreated Freely Displaying ARTICLE Cautiously Don't ARTICLE";
+    $adventure = AdventureGenerator::generate_name( { 'seed' => 1, 'namepattern' => $tokens } );
+    is( $adventure->{'namepattern'}, $tokens,      'ensure all the tokens are parsed.' );
+    is( $adventure->{'name'},        $tokenstring, 'ensure the name is as expected.' );
 
     done_testing();
 };

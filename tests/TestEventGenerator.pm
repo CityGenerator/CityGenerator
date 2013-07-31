@@ -21,30 +21,30 @@ require Exporter;
 subtest 'test create_event' => sub {
     my $event;
     set_seed(1);
-    $event=EventGenerator::create_event();
-    is($event->{'seed'},41630);
+    $event = EventGenerator::create_event();
+    is( $event->{'seed'}, 41630 );
 
-    $event=EventGenerator::create_event({'seed'=>12});
-    is($event->{'seed'},12);
+    $event = EventGenerator::create_event( { 'seed' => 12 } );
+    is( $event->{'seed'}, 12 );
 
     done_testing();
 };
 
 subtest 'test select_base' => sub {
     my $event;
-    $event=EventGenerator::create_event({'seed'=>12});
+    $event = EventGenerator::create_event( { 'seed' => 12 } );
     EventGenerator::select_base($event);
 
-    is($event->{'seed'},12);
-    is($event->{'base'}, 'festival');
-    is($event->{'name'}, 'festival');
+    is( $event->{'seed'}, 12 );
+    is( $event->{'base'}, 'festival' );
+    is( $event->{'name'}, 'festival' );
 
-    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'foo'});
+    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'foo' } );
     EventGenerator::select_base($event);
 
-    is($event->{'seed'},12);
-    is($event->{'base'}, 'foo');
-    is($event->{'name'}, 'foo');
+    is( $event->{'seed'}, 12 );
+    is( $event->{'base'}, 'foo' );
+    is( $event->{'name'}, 'foo' );
 
 
     done_testing();
@@ -52,22 +52,22 @@ subtest 'test select_base' => sub {
 
 subtest 'test select_modifier' => sub {
     my $event;
-    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'war'});
+    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'war' } );
     EventGenerator::select_modifier($event);
 
-    is($event->{'seed'},12);
-    is($event->{'base'},     'war');
-    is($event->{'modifier'}, 'the aftermath of a');
-    is($event->{'name'},     'the aftermath of a war');
+    is( $event->{'seed'},     12 );
+    is( $event->{'base'},     'war' );
+    is( $event->{'modifier'}, 'the aftermath of a' );
+    is( $event->{'name'},     'the aftermath of a war' );
 
 
-    $event=EventGenerator::create_event({'seed'=>12, 'base'=>'war', 'modifier'=>'foo'});
+    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'war', 'modifier' => 'foo' } );
     EventGenerator::select_modifier($event);
 
-    is($event->{'seed'},12);
-    is($event->{'base'},     'war');
-    is($event->{'modifier'}, 'foo');
-    is($event->{'name'},     'foo war');
+    is( $event->{'seed'},     12 );
+    is( $event->{'base'},     'war' );
+    is( $event->{'modifier'}, 'foo' );
+    is( $event->{'name'},     'foo war' );
 
 
     done_testing();

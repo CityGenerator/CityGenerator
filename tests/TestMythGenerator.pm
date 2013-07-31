@@ -5,28 +5,26 @@ package TestMythGenerator;
 
 use strict;
 use warnings;
-use Test::More;
-use MythGenerator;
-use GenericGenerator qw( set_seed );
 
 use Data::Dumper;
+use Exporter;
+use GenericGenerator qw( set_seed );
+use MythGenerator;
+use Test::More;
 use XML::Simple;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
 
-@ISA       = qw(Exporter);
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
 subtest 'test create_myth' => sub {
     my $myth;
-    set_seed(1);
-    $myth=MythGenerator::create_myth();
-    is($myth->{'seed'},41630);
+    $myth = MythGenerator::create_myth();
+    isnt( $myth->{'seed'}, undef, 'ensure seed is set' );
 
-    $myth=MythGenerator::create_myth({'seed'=>12});
-    is($myth->{'seed'},12);
-
+    $myth = MythGenerator::create_myth( { 'seed' => 12 } );
+    is( $myth->{'seed'}, 12, 'ensure seed is set to 12' );
 
 
     done_testing();
