@@ -5,19 +5,18 @@ package TestWorldFormatter;
 
 use strict;
 use warnings;
-use Test::More;
+use Data::Dumper;
+use Exporter;
+use GenericGenerator;
 use WorldFormatter;
 use WorldGenerator;
 use AstronomyGenerator;
-
-use Data::Dumper;
+use Test::More;
 use XML::Simple;
+
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
-
 
 subtest 'Test World Summary' => sub {
     my $astro = AstronomyGenerator::create_astronomy( { seed => 1 } );

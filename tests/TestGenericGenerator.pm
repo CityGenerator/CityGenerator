@@ -5,16 +5,16 @@ package TestGenericGenerator;
 
 use strict;
 use warnings;
+use Data::Dumper;
+use Exporter;
+use FlagGenerator;
+use GenericGenerator;
 use Test::Exception;
 use Test::More;
-use GenericGenerator;
-
-use Data::Dumper;
 use XML::Simple;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
 
-@ISA       = qw(Exporter);
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 my $xml = XML::Simple->new();

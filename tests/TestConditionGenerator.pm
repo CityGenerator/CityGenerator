@@ -3,24 +3,23 @@
 #
 package TestConditionGenerator;
 
+
 use strict;
 use warnings;
-use Test::More;
 use ConditionGenerator;
-use GenericGenerator qw( set_seed );
-
 use Data::Dumper;
+use Exporter;
+use GenericGenerator;
+use Test::More;
 use XML::Simple;
+
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
-
 
 subtest 'test create_condition' => sub {
     my $condition;
-    set_seed(1);
+    GenericGenerator::set_seed(1);
     $condition = ConditionGenerator::create_condition();
     is( $condition->{'seed'}, 41630 );
     is_deeply( $condition->{'pop_mod'}, {} );

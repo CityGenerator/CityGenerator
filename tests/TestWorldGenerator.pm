@@ -5,18 +5,16 @@ package TestWorldGenerator;
 
 use strict;
 use warnings;
-use Test::More;
-use WorldGenerator;
-use GenericGenerator qw( set_seed );
-
 use Data::Dumper;
+use Exporter;
+use GenericGenerator;
+use WorldGenerator;
+use Test::More;
 use XML::Simple;
+
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
-
-@ISA       = qw(Exporter);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
-
 
 subtest 'test create_world' => sub {
     my $world;

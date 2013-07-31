@@ -5,16 +5,17 @@ package TestAdventureGenerator;
 
 use strict;
 use warnings;
+
 use AdventureGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw( set_seed );
-
+use GenericGenerator;
 use Test::More;
 use XML::Simple;
+
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_city generate_city_name);
+@EXPORT_OK = qw( );
 
 
 subtest 'test generate_adventure ' => sub {

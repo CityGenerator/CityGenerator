@@ -5,22 +5,21 @@ package TestEventGenerator;
 
 use strict;
 use warnings;
-use Test::More;
-use EventGenerator;
-use GenericGenerator qw( set_seed );
-
 use Data::Dumper;
+use EventGenerator;
+use Exporter;
+use GenericGenerator;
+use Test::More;
 use XML::Simple;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
 
-@ISA       = qw(Exporter);
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
 subtest 'test create_event' => sub {
     my $event;
-    set_seed(1);
+    GenericGenerator::set_seed(1);
     $event = EventGenerator::create_event();
     is( $event->{'seed'}, 41630 );
 

@@ -5,15 +5,15 @@ package TestCityGenerator;
 
 use strict;
 use warnings;
-use Test::More;
 use CityGenerator;
-use GenericGenerator qw( set_seed );
 use Data::Dumper;
+use Exporter;
+use GenericGenerator;
+use Test::More;
 use XML::Simple;
-use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
-require Exporter;
 
-@ISA       = qw(Exporter);
+use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
+use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 #TODO have a test that does an is_deeply on an entire structure.
@@ -21,7 +21,7 @@ require Exporter;
 #TODO consider die statements if requirements are no defined; die 'foo requires poptotal' if (!defined poptotal);
 subtest 'test create_city' => sub {
     my $city;
-    set_seed(1);
+    GenericGenerator::set_seed(1);
     $city = CityGenerator::create_city();
     is( $city->{'seed'},          41630 );
     is( $city->{'original_seed'}, 41630 );
