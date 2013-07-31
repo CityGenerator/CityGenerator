@@ -1,4 +1,4 @@
-Here's a example city produced by CityGenerator (without the pretty column formatting):
+Here's a example city produced by CityGenerator:
 
 
 #Welcome to Steelhall!#
@@ -195,6 +195,7 @@ You can find the following establishments in Steelhall:
 * 1 inn
 * 1 junkyard
 * 1 mercers
+
 ##People##
 
 ###Citizens###
@@ -209,6 +210,7 @@ The following citizens are worth mentioning:
 * Ilrigssa Firebough is a male half-elf who is known in the neighborhood as being a renown official. He appears outlandish.
 * Kiaita Wizzcog is a male gnome who is known in the region as being a gifted lumberjack. He appears pious.
 * Ozkrog Bonenor The Cruel is a female half-orc who is known in the neighborhood as being a mediocre ship captain. She appears nihilistic.
+
 ###Travelers###
 
 The following travelers are worth mentioning:
@@ -222,6 +224,7 @@ The following travelers are worth mentioning:
 * Gheal fe Khalzin, a trusting female lizardfolk. She is a monk who is here to secretly assassinate a merchant.
 * Elhkaro, a chatty male troglodyte. He is a commoner who is finding a missing sibling.
 * Gaettel Aleasight, an ensorcelled female drow. She is a bard who is delivering a message to a scholar.
+
 ##Locales##
 
 ###Taverns###
