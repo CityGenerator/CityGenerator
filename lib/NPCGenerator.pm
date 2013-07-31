@@ -102,8 +102,6 @@ sub create_npc {
     $npc->{'race'} = rand_from_array( $npc->{'available_races'} ) if ( !defined $npc->{'race'} );
     $npc->{'race'} = lc $npc->{'race'};
 
-    $npc->{'race_plural'} = $names_data->{'race'}->{ $npc->{'race'} }->{'plural'};
-
     generate_npc_name( $npc->{'race'}, $npc );
     $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
     $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};

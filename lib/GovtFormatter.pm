@@ -73,8 +73,15 @@ sub printLeader {
     my ($city)  = @_;
     my $content = "";
     my $govt    = $city->{'govt'};
+    my $leadername;
+    if (defined $city->{'govt'}->{'leader'}->{'name'}){
+        $leadername="$city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}";
+    }else{
+        $leadername="The $city->{'govt'}->{'leader'}->{'title'}";
+    }
+
     $content
-        .= "$city->{'name'} is ruled by $city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}. ";
+        .= "$city->{'name'} is ruled by $leadername. ";
     $content
         .= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'leader'}->{'length'} and is $city->{'govt'}->{'leader'}->{'reputation'} by the people. ";
     $content
