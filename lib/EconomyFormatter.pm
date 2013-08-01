@@ -1,5 +1,3 @@
-
-## Please see file perltidy.ERR
 #!/usr/bin/perl -wT
 ###############################################################################
 
@@ -68,9 +66,11 @@ sub printBusinesses {
     my ($city) = @_;
     my $content = "";
     if ( scalar( keys %{ $city->{'businesses'} } ) > 0 ) {
-        $content .= "<p>You can find the following establishments in $city->{'name'}:</p>\n";
+        $content .= "<p>You can find the following establishments in $city->{'name'}, among others:</p>\n";
         $content .= "<ul class='threecolumn'>";
-        foreach my $resource ( keys %{ $city->{'businesses'} } ) {
+        my @resourcenames=keys %{ $city->{'businesses'} } ;
+        @resourcenames = shuffle @resourcenames;
+        foreach my $resource ( sort @resourcenames[0 .. (6 + $city->{'size_modifier'})] ) {
             my @resources = split( /,/x, $resource );
             @resources = shuffle(@resources);
             my $resourcename = pop @resources;
