@@ -77,7 +77,7 @@ subtest 'Test CensusData Misc' => sub {
     is(
         $censusdata, "                    <h3>Misc.</h3>
                     <ul>
-                        <li>6 Districts</li>
+                        <li>5 Districts</li>
                         <li>351 Businesses</li>
                         <li>2838 Specialists</li>
                         <li>1884 Residences</li>

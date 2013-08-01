@@ -77,7 +77,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="teacher"          building="school"               sv="200"  perbuilding="10" limit=""   district="education" />
     <option name="sculptor"         building="sculpting house"      sv="2000" perbuilding="10" limit=""   district="professional" />
     <option name="shipwright"       building="shipyard"             sv="2400" perbuilding="30" limit=""   district="port" />
-    <option name="shoemakers"       building="shoemakers"           sv="150"  perbuilding="10" limit=""   district="trade" />
+    <option name="shoemakers"       building="shoe shop"            sv="150"  perbuilding="10" limit=""   district="trade" />
     <option name="chickenbutcher"   building="slaughterhouse"       sv="1000" perbuilding="20" limit=""   district="trade" />
     <option name="smith"            building="smithy"               sv="300"  perbuilding="20" limit=""   district="shop" />
     <option name="blacksmith"       building="smithy"               sv="1500" perbuilding="5"  limit=""   district="shop" />
