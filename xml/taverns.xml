@@ -106,7 +106,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="30" max="35" >economical</option>
         <option min="36" max="40" >fair</option>
         <option min="40" max="45" >shrewd</option>
-        <option min="46" max="50" >justifia</option>
+        <option min="46" max="50" >justifiable</option>
         <option min="50" max="55" >moderate</option>
         <option min="56" max="60" >sensible</option>
         <option min="60" max="65" >reasonable</option>
