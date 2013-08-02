@@ -215,7 +215,9 @@ sub set_city_size {
     GenericGenerator::set_seed( $city->{'seed'} );
     my $citysizelist = $xml_data->{'citysize'}->{'city'};
 
-    my $citysize = roll_from_array( &d(100), $citysizelist );
+    $city->{'size_roll'}= &d(100) if (!defined $city->{'size_roll'});
+
+    my $citysize = roll_from_array( $city->{'size_roll'} , $citysizelist );
     my $sizedelta = $citysize->{'maxpop'} - $citysize->{'minpop'};
 
     $city->{'size'}          = $citysize->{'size'}                    if ( !defined $city->{'size'} );
