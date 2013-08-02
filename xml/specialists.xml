@@ -15,7 +15,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="pastrycook"       building="bakery"               sv="500"  perbuilding="10" limit=""   district="shops" />
     <option name="banker"           building="bank"                 sv="1000" perbuilding="30" limit=""   district="wealthy" />
     <option name="barber"           building="barbershop"           sv="350"  perbuilding="4"  limit=""   district="trade" />
-    <option name="soldier"          building="barracks"             sv="1000" perbuilding="50" limit=""   district="civic" />
+    <option name="soldier"          building="barrack"              sv="1000" perbuilding="50" limit=""   district="civic" />
     <option name="lawyer"           building="barrister"            sv="800"  perbuilding="10" limit=""   district="fine shops" />
     <option name="bather"           building="bath house"           sv="1900" perbuilding="20" limit=""   district="trade" />
     <option name="beer-seller"      building="beer-seller"          sv="1400" perbuilding="4"  limit=""   district="market" />
@@ -47,7 +47,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="glovemaker"       building="glove shop"           sv="2400" perbuilding="5"  limit=""   district="trade" />
     <option name="undertaker"       building="graveyard"            sv="1000" perbuilding="10" limit=""   district="mercy" />
     <option name="grocer"           building="grocery store"        sv="1000" perbuilding="10" limit=""   district="market" />
-    <option name="harness-maker"    building="harness-maker"        sv="2000" perbuilding="5"  limit=""   district="shops" />
+    <option name="harness-maker"    building="harness maker"        sv="2000" perbuilding="5"  limit=""   district="shops" />
     <option name="hatmaker"         building="hat shop"             sv="950"  perbuilding="10" limit=""   district="shops" />
     <option name="haymerchant"      building="haymerchant"          sv="2300" perbuilding="5"  limit=""   district="industry" />
     <option name="herbalist"        building="herbalist shop"       sv="1200" perbuilding="5"  limit=""   district="fine shops" />
@@ -65,15 +65,15 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="lumberjack"       building="lumbermill"           sv="1100" perbuilding="30" limit=""   district="industry" />
     <option name="woodseller"       building="lumberyard"           sv="2400" perbuilding="10" limit=""   district="industry" />
     <option name="mason"            building="masonry shop"         sv="500"  perbuilding="20" limit=""   district="industry" />
-    <option name="mercer"           building="mercers"              sv="700"  perbuilding="20" limit=""   district="trade" />
+    <option name="mercer"           building="mercer"               sv="700"  perbuilding="20" limit=""   district="trade" />
     <option name="miller"           building="mill"                 sv="250"  perbuilding="20" limit=""   district="industry" />
     <option name="messenger"        building="post office"          sv="1200" perbuilding="10" limit=""   district="embassy" />
     <option name="potter"           building="pottery"              sv="450"  perbuilding="10" limit=""   district="trade" />
-    <option name="pursemaker"       building="pursemakers"          sv="1100" perbuilding="20" limit=""   district="trade" />
-    <option name="roofer"           building="roofers"              sv="1800" perbuilding="20" limit=""   district="trade" />
-    <option name="ropemaker"        building="ropemakers"           sv="1900" perbuilding="20" limit=""   district="industry" />
-    <option name="rugmaker"         building="rugmakers"            sv="2000" perbuilding="20" limit=""   district="industry" />
-    <option name="scabbardmaker"    building="scabbardmakers"       sv="850"  perbuilding="10" limit=""   district="trade" />
+    <option name="pursemaker"       building="pursemaker"           sv="1100" perbuilding="20" limit=""   district="trade" />
+    <option name="roofer"           building="roofer"               sv="1800" perbuilding="20" limit=""   district="trade" />
+    <option name="ropemaker"        building="ropemaker"            sv="1900" perbuilding="20" limit=""   district="industry" />
+    <option name="rugmaker"         building="rugmaker"             sv="2000" perbuilding="20" limit=""   district="industry" />
+    <option name="scabbardmaker"    building="scabbard maker"       sv="850"  perbuilding="10" limit=""   district="trade" />
     <option name="teacher"          building="school"               sv="200"  perbuilding="10" limit=""   district="education" />
     <option name="sculptor"         building="sculpting house"      sv="2000" perbuilding="10" limit=""   district="professional" />
     <option name="shipwright"       building="shipyard"             sv="2400" perbuilding="30" limit=""   district="port" />
@@ -82,7 +82,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="smith"            building="smithy"               sv="300"  perbuilding="20" limit=""   district="shop" />
     <option name="blacksmith"       building="smithy"               sv="1500" perbuilding="5"  limit=""   district="shop" />
     <option name="salter"           building="smokehouse"           sv="600"  perbuilding="30" limit=""   district="industry" />
-    <option name="spicemerchant"    building="spicemerchants"       sv="1400" perbuilding="10" limit=""   district="market" />
+    <option name="spicemerchant"    building="spicemerchant"        sv="1400" perbuilding="10" limit=""   district="market" />
     <option name="ostler"           building="stable"               sv="600"  perbuilding="5"  limit=""   district="professional" />
     <option name="stablehand"       building="stable"               sv="600"  perbuilding="10" limit=""   district="professional" />
     <option name="artist"           building="studio"               sv="2000" perbuilding="10" limit=""   district="professional" />
@@ -97,27 +97,26 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="wagoneer"         building="wagon yard"           sv="900"  perbuilding="20" limit=""   district="industry" />
     <option name="laborer"          building="warehouse"            sv="600"  perbuilding="4"  limit=""   district="trade" />
     <option name="weaponsmith"      building="weaponshop"           sv="1000" perbuilding="10" limit=""   district="merchant" />
-    <option name="weaver"           building="weavers"              sv="600"  perbuilding="10" limit=""   district="industry" />
+    <option name="weaver"           building="weaver"               sv="600"  perbuilding="10" limit=""   district="industry" />
     <option name="wine-seller"      building="winery"               sv="900"  perbuilding="10" limit=""   district="merchant" />
     <option name="woodworker"       building="wood shop"            sv="2400" perbuilding="10" limit=""   district="trade" />
     <option name="handyman"         building="workshop"             sv="900"  perbuilding="10" limit=""   district="shop" />
     <option name="ship captain"     building="boat for hire"        sv="2000" perbuilding="1"  limit=""   district="port" />
-    <option name="magic dealer"     building="magic shops"          sv="2800" perbuilding="3"  limit=""   district="fine shops" />
+    <option name="magic dealer"     building="magic shop"           sv="2800" perbuilding="3"  limit=""   district="fine shops" />
     <option name="coach driver"     building="transportation"       sv="1500" perbuilding="3"  limit=""   district="professional" />
     <option name="bounty hunter"    building="adventurers guild"    sv="3000" perbuilding="10" limit=""   district="professional" />
     <option name="good samaritan"   building="hostel"               sv="650"  perbuilding="10" limit=""   district="mercy" />
     <option name="specialty smith"  building="smithy"               sv="4000" perbuilding="20" limit=""   district="shops" />
-
     <option name="saddler"          building="tack shop"            sv="1000" perbuilding="5"  limit=""   district="trade" />
     <option name="entertainer"      building="theater"              sv="1200" perbuilding="30" limit=""   district="entertainment" />
-    <option name="teamster"         building="warehouse,docks"      sv="1400" perbuilding="10" limit=""   district="docks" />
+    <option name="teamster"         building="warehouse,dock"       sv="1400" perbuilding="10" limit=""   district="docks" />
     <option name="plasterer"        building="shop"                 sv="1400" perbuilding="30" limit=""   district="trade" />
     <option name="painter"          building="studio"               sv="1500" perbuilding="20" limit=""   district="trade" />
     <option name="porter"           building="inn"                  sv="2000" perbuilding="10" limit=""   district="hotel" />
     <option name="courtier"         building="manor"                sv="4000" perbuilding="4"  limit=""   district="wealthy" />
     <option name="woodcarver"       building="woodshop"             sv="2400" perbuilding="10" limit=""   district="trade" />
     <option name="maidservant"      building="townhouse"            sv="250"  perbuilding="10" limit=""   district="hotel" />
-    <option name="navigator"        building="docks"                sv="3000" perbuilding="10" limit=""   district="docks" />
+    <option name="navigator"        building="dock"                 sv="3000" perbuilding="10" limit=""   district="docks" />
     <option name="doctor"           building="hospital,clinic"      sv="350"  perbuilding="10" limit=""   district="industry" />
     <option name="charcoaler"       building="firepit"              sv="400"  perbuilding="10" limit=""   district="industry" />
     <option name="seamstress"       building="shop"                 sv="500"  perbuilding="10" limit=""   district="shops" />
@@ -128,9 +127,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="watercarrier"     building="pond,lake,dock"       sv="850"  perbuilding="10" limit=""   district="market" />
     <option name="social worker"    building="almshouse,orphanage"  sv="900"  perbuilding="10" limit=""   district="civic" />
     <option name="warehouse worker" building="warehouse,docks"      sv="250"  perbuilding="10" limit=""   district="warehouse" />
-
-
-
-
-
 </specialist>
