@@ -3,7 +3,6 @@
 CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
-
 <events>
     <event name="festival">
         <option>a religious</option>
@@ -15,6 +14,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>a new year</option> 
         <option>a holiday</option> 
         <option>a victory</option> 
+				<option>a spontaneous</option>
    </event>
     <event name="trial">
         <option>a murder</option>
@@ -37,6 +37,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>wandering monster</option>
         <option>escaped prisoner</option>
         <option>food</option>
+				<option>vermin</option>
    </event>
     <event name="disaster">
         <option>tornado</option>
@@ -47,6 +48,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>genocide</option>
         <option>riots</option>
         <option>drought</option>
+				<option>crop failure</option>
    </event>
 </events>
 
