@@ -7,7 +7,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 <data>
 
 <citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="11"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>
+    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="25"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>
     <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>
     <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>
     <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>

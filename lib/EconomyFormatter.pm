@@ -70,7 +70,7 @@ sub printBusinesses {
         $content .= "<ul class='threecolumn'>";
         my @resourcenames=keys %{ $city->{'businesses'} } ;
         @resourcenames = shuffle @resourcenames;
-        foreach my $resource ( sort @resourcenames[0 .. (6 + $city->{'size_modifier'})] ) {
+        foreach my $resource ( sort @resourcenames[0 .. (5 + $city->{'size_modifier'})] ) {
             my @resources = split( /,/x, $resource );
             @resources = shuffle(@resources);
             my $resourcename = pop @resources;
