@@ -6,8 +6,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 <!--
             <canvas id="citymap_small"      style="border:1px solid black;" width='465' height='280' onclick='embiggen(this);'></canvas>
             <script type="text/javascript">
+                document.citymap=new CityMap( [% citymapjson %], document.getElementById('citymap_small')  );
             </script>
- -->
+-->
             <section id="summary">
                 <h2><a name="#summary">Summary</a></h2>
                 [% summarytext %]

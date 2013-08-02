@@ -18,6 +18,7 @@ use CityscapeFormatter;
 use CensusDataFormatter;
 use GovtFormatter;
 use LocaleFormatter;
+use MapJSONFormatter;
 use PopulationFormatter;
 use PeopleFormatter;
 use EconomyFormatter;
@@ -122,6 +123,8 @@ sub print_content {
         'cityname'      => $city->{'name'},
         'seed'          => $city->{'seed'},
         'summarytext'   => SummaryFormatter::printSummary($city),
+
+        'citymapjson'   => MapJSONFormatter::printCityMapJSON($city),
 
         'geographytext' => EnvironmentFormatter::printGeography($city),
         'climatetext'   => EnvironmentFormatter::printClimate($city),
