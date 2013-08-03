@@ -52,9 +52,11 @@ Here's the breakdown of this basic+1 population:
 * 36 halflings (0.9%)
 * 36 half-elves (0.9%)
 * 36 dwarves (0.9%)
+
 ###Ages###
 
 Children account for 26.99% (988), and the elderly account for 5.00% (183) of this old city.
+
 ##Cityscape##
 
 ###Walls###
