@@ -104,6 +104,7 @@ sub create_npc {
 
     generate_npc_name( $npc->{'race'}, $npc );
     if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other'){
+        #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
         $npc->{'race'}='oddball';
     }
     $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
