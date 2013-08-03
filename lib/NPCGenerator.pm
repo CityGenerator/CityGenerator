@@ -103,6 +103,9 @@ sub create_npc {
     $npc->{'race'} = lc $npc->{'race'};
 
     generate_npc_name( $npc->{'race'}, $npc );
+    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other'){
+        $npc->{'race'}='oddball';
+    }
     $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
     $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
     $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
