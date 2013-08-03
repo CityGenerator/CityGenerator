@@ -154,10 +154,11 @@ img {
 #citymap_small{
     float:left;
     margin:0px 10px 10px 0px;
-    -webkit-filter: sepia(80%);
+/*    -webkit-filter: sepia(80%);
     -moz-filter: sepia(80%);
     -ms-filter: sepia(80%); 
     -o-filter: sepia(80%);
+*/
 }
 #regionmap_small{
     float:right;

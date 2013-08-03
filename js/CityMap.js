@@ -7,24 +7,23 @@ CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
 function  CityMap(params) {
+
+    // Set the randomization seed
     Math.seedrandom(params.seed)
 
-    var totalcellcount = 200 + params.size*20 // should range between 150 cells and 440
-    var citycellcount  = Math.floor(totalcellcount*(20+params.size)/100);
-    VoronoiMap.call(this,params.canvas.width,params.canvas.height,totalcellcount)
+    this.district_colors = [    '255,105,100',  '139,0,0',      '255,140,0',    '255,255,0',    '124,252,0',    '127,255,212', 
+                                '95,158,160',   '30,144,255',   '238,130,238',  '128,0,128',    '12,12,120',    '220,12,12',    '220,100,12' ];
 
-    this.maxdistrictpercent=.9
-    this.maxsingledistrictpercent=.3
-    this.isport=params.isport
-    this.coastdirection=params.coastdirection
-    this.wallheight=params.wallheight
+    // Call the Super constructor
+    VoronoiMap.call(this,params);
+    this.wall=params.wall;
     this.roads=params.roads
     this.mainroads=params.mainroads
-    this.districts=params.districts
-    this.color=params.color
+    this.color=params.biome_color
+    this.city_cell_count=params.city_cell_count
 
-    this.designateCity(citycellcount);
-    this.generateCityWalls()
+    this.designateCity();
+    this.generateCityWalls();
     this.generateDistricts(params.districts);
     
 }
@@ -36,9 +35,9 @@ function  CityMap(params) {
 /* of cells around the center of the canvas.
 /* ========================================================================= */
 
-CityMap.prototype.designateCity = function(citycellcount){
-    this.citycells=[]
-    for (var i = 0; i < Math.floor( citycellcount) ; i++) {
+CityMap.prototype.designateCity = function(){
+    this.citycells=[];
+    for (var i = 0; i < Math.floor( this.city_cell_count) ; i++) {
         this.citycells.push(this.findCenterCell())
     }
 }
@@ -51,15 +50,18 @@ CityMap.prototype.designateCity = function(citycellcount){
 CityMap.prototype.redraw = function(canvas){
     // From here, draw out all the parts we designated above.
     this.paintBackground(canvas,this.color);
-//    this.drawCoast(canvas, this.isport, this.coastdirection)
-    this.paintCells(canvas,this.citycells,'rgba(255,255,255,1)',true)
+
+    this.paintCells(canvas,this.citycells,'rgba(255,255,255,.4)',false);
     this.drawDistricts(canvas);
 
-    this.drawCityWalls(canvas,  Math.ceil(this.wallheight/10)   )
+    if ( this.wall ) {
+        this.drawCityWalls(canvas,  Math.ceil(this.wall.height/10)   )
+    }
 
-//    this.render(canvas)
-    this.drawRoads(canvas, this.roads, this.mainroads)
-    // rainbows and unicorn farts go here.
+    // render draws the cell centers
+    //this.render(canvas)
+
+    this.drawRoads(canvas, this.roads, this.mainroads);
 }
  
  
@@ -69,9 +71,9 @@ CityMap.prototype.redraw = function(canvas){
 /* ========================================================================= */
  
 CityMap.prototype.drawDistricts = function(canvas){
-
+    console.log( this);
     for (var i=0; i < this.districts.length; i++ ){
-        this.paintCells(canvas,this.districts[i].cells,"rgba("+this.colors[i]+',1)',true);
+        this.paintCells(canvas,this.districts[i].cells,"rgba("+this.district_colors[i]+',1)',true);
     }
 
 }
@@ -91,7 +93,7 @@ CityMap.prototype.assignDistrictCores = function(districts){
         var district={
                         name:districts[i],
                         cells:[],
-                        color:"rgba("+this.colors[i]+',1)'
+                        color:"rgba("+this.district_colors[i]+',1)'
                     };
         
         var targetcellid= cellIDlist.splice( Math.floor(Math.random()*cellIDlist.length ) ,1)[0]
@@ -111,6 +113,7 @@ CityMap.prototype.assignDistrictCores = function(districts){
 
 CityMap.prototype.generateDistricts = function(districts){
     // rainbows and unicorn farts go here.
+console.log(districts)
     var totalcells=this.citycells.length
 
     var cellIDlist=this.assignDistrictCores(districts);

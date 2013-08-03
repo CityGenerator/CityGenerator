@@ -22,14 +22,14 @@ subtest 'Test Cityscape walls' => sub {
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.45 kilometer wall."
+"Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.86 kilometer wall."
     );
 
     $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'wall_size_roll' => 22 } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a wood fence that is 6 feet tall. The city wall protects the core 77% of the city, with 5 towers spread along the 6.01 kilometer wall."
+"Visitors are greeted with a wood fence that is 6 feet tall. The city wall protects the core 77% of the city, with 5 towers spread along the 6.44 kilometer wall."
     );
 
     $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100, 'wall_size_roll' => 22 } );

@@ -35,6 +35,7 @@ subtest 'test create_climate' => sub {
         'constant high temperatures, continual rain year-round, and has minimal natural seasons' );
     is_deeply( $climate->{'seasontypes'}, [1] );
     is( $climate->{'seasontype'},        '1' );
+    is( $climate->{'color'},             '#9cbba9' );
     is( $climate->{'seasondescription'}, 'negligible seasons' );
 
     $climate = ClimateGenerator::create_climate(

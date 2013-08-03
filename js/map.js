@@ -14,7 +14,7 @@ function embiggen( canvas ){
     var bigcanvas=document.getElementById('bigmap')
     var worldmap=document.continentmap
     var citymap=document.citymap
-    console.log(bigcanvas)
+    //console.log(bigcanvas)
     if (canvas.id == 'continent' && worldmap.embiggen !='continent'){
             worldmap.embiggen='continent'
             bigcanvas.style.display  ='block'
@@ -23,7 +23,7 @@ function embiggen( canvas ){
             worldmap.yoffset=0
             worldmap.redrawMap(bigcanvas)
             worldmap.drawbox( worldmap.cities[worldmap.currentCityId].bbox ,  bigcanvas,'rgba(255,0,255,1)'  )
-            console.log('continent small, make big!')
+            //console.log('continent small, make big!')
 
     }else if (canvas.id == 'region' && worldmap.embiggen !='region'){
             var citybox=worldmap.cities[worldmap.currentCityId].bbox
@@ -37,14 +37,14 @@ function embiggen( canvas ){
             bigcanvas.style.display  ='block'
             citymap.setMultiplier(1)
             citymap.redraw(bigcanvas)
-            console.log('city small, make big!')
+            //console.log('city small, make big!')
 
     }else{
             document.continentmap.embiggen=""
 
             bigcanvas.style.display  ='none'
 
-            console.log('hide all the things')
+            //console.log('hide all the things')
 
     }
 
@@ -60,7 +60,7 @@ function print_text( map ){
     print_legend(map)
     print_neighbors(map);
     print_diplomatic_ties(map);
-    console.log(map)
+    //console.log(map)
 }
 
 
@@ -165,6 +165,6 @@ function threedee(continentmap){
         document.getElementById('3dmap').appendChild( renderer.domElement );
 
         renderer.render( scene, camera );
-    console.log('done');
+    //console.log('done');
     }
 }

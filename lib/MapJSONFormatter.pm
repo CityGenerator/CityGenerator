@@ -41,16 +41,30 @@ printCityMapJSON strips out important info from a City object and returns format
 sub printCityMapJSON {
     my ($city) = @_;
     my $mapdata;
-# Things we might care about:
-# overall city size determines scale
-# 1sq km city
-# each cell= 1 hectare?
-    
+    # Things we might care about:
+    $mapdata->{'seed'}      = $city->{'seed'};
+    $mapdata->{'area'}      = $city->{'area'};
+    $mapdata->{'density'}   = $city->{'population_density'};
+    $mapdata->{'roads'}     = $city->{'streets'}->{'roads'};
+    $mapdata->{'mainroads'} = $city->{'streets'}->{'mainroads'};
+    $mapdata->{'districts'} = [keys %{ $city->{'districts'} }];
+    $mapdata->{'biome'}     = $city->{'climate'}->{'biomekey'};
 
+    $mapdata->{'biome_color'}              = $city->{'climate'}->{'color'};
+    $mapdata->{'total_cell_count'}         = 300;
+    $mapdata->{'city_cell_count'}          = 100;
+    $mapdata->{'maxdistrictpercent'}       = 0.9;
+    $mapdata->{'maxsingledistrictpercent'} = 0.3;
 
-    my $content = "";
-
-    return $content;
+    if ( $city->{'walls'}->{'height'} > 0 ){
+        $mapdata->{'wall'}->{'material'} = $city->{'walls'}->{'root'};
+        $mapdata->{'wall'}->{'length'}   = $city->{'walls'}->{'length'};
+        $mapdata->{'wall'}->{'height'}   = $city->{'walls'}->{'height'};
+    }
+    my $JSON = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+ 
+    return  $JSON->encode($mapdata);
 }
 
 1;

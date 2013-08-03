@@ -3,12 +3,17 @@
 CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
-<!--
+
             <canvas id="citymap_small"      style="border:1px solid black;" width='465' height='280' onclick='embiggen(this);'></canvas>
             <script type="text/javascript">
-                document.citymap=new CityMap( [% citymapjson %], document.getElementById('citymap_small')  );
+                console.log(document.getElementById('citymap_small'))
+                var citydata = [% citymapjson %];
+                citydata.canvas=document.getElementById('citymap_small');
+                document.citymap=new CityMap( citydata  );
+                document.citymap.redraw(document.getElementById('citymap_small'));
+
             </script>
--->
+
             <section id="summary">
                 <h2><a name="#summary">Summary</a></h2>
                 [% summarytext %]
