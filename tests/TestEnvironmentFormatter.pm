@@ -24,7 +24,7 @@ subtest 'Test Environment Geography' => sub {
     my $environment = EnvironmentFormatter::printGeography($city);
     is(
         $environment,
-        "This desolate settlement is sparsely populated (27/sq km) and covers 1.93 square kilometers.",
+        "This desolate settlement is sparsely populated (27/sq km) and covers 2.22 square kilometers.",
         'ensure string is returned'
     );
 

@@ -253,6 +253,8 @@ sub calculate_biome {
     $climate->{'biomekey'} = $biomematrix->[$precipkey][$tempkey] if ( !defined $climate->{'biomekey'} );
     $climate->{'name'} = $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'type'}
         if ( !defined $climate->{'name'} );
+    $climate->{'color'} = $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'hex'}
+        if ( !defined $climate->{'color'} );
     $climate->{'description'} = $climate_data->{'biomes'}->{'option'}->{ $climate->{'biomekey'} }->{'content'}
         if ( !defined $climate->{'description'} );
     $climate->{'seasontypes'}

@@ -7,7 +7,7 @@ function create_flag(params,flagcanvas,jsonblock) {
     }
     var canvas=document.getElementById(flagcanvas);
     params.canvas=canvas;
-    console.log(params);
+    //console.log(params);
     var flag=params.canvas.getContext('2d');
     params.flag=flag;
     
@@ -107,7 +107,7 @@ function draw_horizontal_crossbar(params){
 
 function select_symbol(params){
 
-    console.log(params.symbol.name);
+    //console.log(params.symbol.name);
     if (params.symbol.name == 'circle'){
         params.flag=draw_circle_symbol( params );
 
@@ -145,7 +145,7 @@ function draw_letter(params){
 
     params.flag.textBaseline = 'middle';
     params.flag.font=font;
-    console.log(font);
+    //console.log(font);
     params.flag.fillText(params.symbol.letter, (params.canvas.width*params.symbol.xlocation)-fontsize/2   ,(params.canvas.height*params.symbol.ylocation) );
 
     return params.flag;
@@ -271,9 +271,9 @@ function draw_star(params) {
     params.flag.fillStyle=params.colors[5].hex;
     params.flag.beginPath();
     params.flag.translate(params.canvas.width*xaxis, params.canvas.height*yaxis);
-console.log("x "+ (params.canvas.width)+" y "+(params.canvas.height));
-console.log("x "+ (xaxis)+" y "+(yaxis));
-console.log("x "+ (params.canvas.width*xaxis)+" y "+(params.canvas.height*yaxis));
+//console.log("x "+ (params.canvas.width)+" y "+(params.canvas.height));
+//console.log("x "+ (xaxis)+" y "+(yaxis));
+//console.log("x "+ (params.canvas.width*xaxis)+" y "+(params.canvas.height*yaxis));
     params.flag.moveTo(0,0-radius);
     for (var i = 0; i < params.symbol.points; i++) {
         params.flag.rotate(Math.PI / params.symbol.points);
