@@ -21,6 +21,8 @@ function  CityMap(params) {
     this.mainroads=params.mainroads
     this.color=params.biome_color
     this.city_cell_count=params.city_cell_count
+    this.maxdistrictpercent=params.maxdistrictpercent;
+    this.maxsingledistrictpercent=params.maxsingledistrictpercent;
 
     this.designateCity();
     this.generateCityWalls();
@@ -73,7 +75,7 @@ CityMap.prototype.redraw = function(canvas){
 CityMap.prototype.drawDistricts = function(canvas){
     console.log( this);
     for (var i=0; i < this.districts.length; i++ ){
-        this.paintCells(canvas,this.districts[i].cells,"rgba("+this.district_colors[i]+',1)',true);
+        this.paintCells(canvas,this.districts[i].cells,"rgba("+this.district_colors[i]+',.5)',false);
     }
 
 }
@@ -93,7 +95,7 @@ CityMap.prototype.assignDistrictCores = function(districts){
         var district={
                         name:districts[i],
                         cells:[],
-                        color:"rgba("+this.district_colors[i]+',1)'
+                        color:"rgba("+this.district_colors[i]+',.5)'
                     };
         
         var targetcellid= cellIDlist.splice( Math.floor(Math.random()*cellIDlist.length ) ,1)[0]
