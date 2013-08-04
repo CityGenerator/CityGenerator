@@ -100,6 +100,7 @@ sub create_tavern {
     generate_law($tavern);
     generate_bartender($tavern);
     generate_amenities($tavern);
+    generate_atmosphere($tavern);
 
     # clientele, amenities, age
     # drinks? food?  stable?  privacy?  fireplace?  music?  inn beds?  gambling?
@@ -193,6 +194,25 @@ sub generate_law {
     return $tavern;
 
 }
+
+###############################################################################
+
+=head2 generate_atmosphere()
+ 
+generate the atmosphere for the tavern
+ 
+=cut
+
+###############################################################################
+
+sub generate_atmosphere {
+    my ($tavern) = @_;
+
+    $tavern->{'atmosphere'} = rand_from_array( $tavern_data->{'atmosphere'}->{'option'} )->{'type'} if ( !defined $tavern->{'atmosphere'} );
+    return $tavern;
+
+}
+
 
 ###############################################################################
 

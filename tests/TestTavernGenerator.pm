@@ -102,6 +102,16 @@ subtest 'test generate_law' => sub {
     done_testing();
 };
 
+subtest 'test generate_atmosphere' => sub {
+    my $tavern;
+
+    $tavern = TavernGenerator::create_tavern( { 'seed' => 22 } );
+    is( $tavern->{'atmosphere'}, 'to be telling jokes' );
+
+    $tavern = TavernGenerator::create_tavern( { 'seed' => 22, 'atmosphere' => 'does nothing' } );
+    is( $tavern->{'atmosphere'}, 'does nothing' );
+
+    done_testing();
+};
 
 1;
-

@@ -89,15 +89,11 @@ sub describe_tavern {
 
     #TODO this is friggen ugly. refactor.
     if ( defined $tavern->{'bartender'}->{'name'} ) {
-        $content
-            .= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by "
-            . A( $tavern->{'bartender'}->{'race'} )
-            . " named $tavern->{'bartender'}->{'name'} who seems $tavern->{'bartender'}->{'behavior'}. \n";
+        $content .= "The $tavern->{'name'} is owned by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}" 
+        . "named $tavern->{'bartender'}->{'name'} whose prices are $tavern->{'cost_description'} and the patrons appear $tavern->{'atmosphere'}. \n";
     } else {
-        $content
-            .= "Prices at the $tavern->{'name'} are $tavern->{'cost_description'} and is owned by "
-            . A( "nameless " . $tavern->{'bartender'}->{'race'} )
-            . " who seems $tavern->{'bartender'}->{'behavior'}. \n";
+        $content .= "The $tavern->{'name'} is run by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}"
+        . "whose prices are $tavern->{'cost_description'} and the patrons seem $tavern->{'atmosphere'}. \n";
     }
     $content
         .= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
