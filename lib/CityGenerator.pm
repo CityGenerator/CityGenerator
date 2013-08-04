@@ -786,6 +786,7 @@ Generate the density of the population, given the base city size. Units are peop
 sub generate_popdensity {
 
     # TODO addmagic, economey, etc to impact density
+    #TODO change how this is calculated and get rid of delta in favor of a percentile range multiplier
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
     my $range = $city->{'max_density'} - $city->{'min_density'};
@@ -1097,7 +1098,7 @@ sub generate_children {
     #recalulate to make the percent accurate with the population
     $city->{'children'}->{'percent'} = sprintf "%0.2f",
         $city->{'children'}->{'population'} / $city->{'population_total'} * 100;
-
+    #FIXME presetting children doesn't work properly because we set it a second time...
 
     return $city;
 }

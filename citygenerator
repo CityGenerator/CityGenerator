@@ -21,25 +21,14 @@ use LocaleFormatter;
 use MapJSONFormatter;
 use PeopleFormatter;
 use EconomyFormatter;
-our $q = CGI->new;
+my $q = CGI->new;
 
 
-my $testcityid=GenericGenerator::set_seed();
-if (defined $q->param('seed')){
-    $testcityid=$q->param('seed');
-}elsif (defined $q->param('cityid')){
-    $testcityid=$q->param('cityid');
-}elsif (defined $q->param('continent')){
-    $testcityid=$q->param('continent').'00';
-}elsif (defined $q->param('region')){
-    $testcityid=$q->param('region').'0';
-}
+    my $city_presets=parse_presets($q);
 
-
-
-    my $city=CityGenerator::create_city({seed=>$testcityid});
+    my $city=CityGenerator::create_city($city_presets);
     CityGenerator::flesh_out_city($city);
-    $city->{'flag'}=FlagGenerator::create_flag({seed=>$testcityid, 'cityname'=>$city->{'name'}});
+    $city->{'flag'}=FlagGenerator::create_flag({seed=>$city->{'seed'}, 'cityname'=>$city->{'name'}});
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='utf-8' ?>\n";
@@ -53,6 +42,9 @@ if (defined $q->param('type') and $q->param('type') eq 'xml' ){
 }elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
     print Dumper $city;
+}elsif (defined $q->param('type') and $q->param('type') eq 'post' ){
+    print $q->header( 'text/plain' );
+    print Dumper $city_presets;
 }else {
     print $q->header( 'text/html; charset=utf-8' );
     print_page($city);
@@ -63,6 +55,25 @@ exit;
 #################################################################################################
 #################################################################################################
 #################################################################################################
+sub parse_presets {
+    my ($q)=@_;
+    my $presets;
+    $presets->{'seed'}                  = $1 if ( defined $q->param('seed')            and $q->param('seed')              =~/^(\d+)$/x ); 
+    $presets->{'size_roll'}             = $1 if ( defined $q->param('size_roll')       and $q->param('size_roll')         =~/^(\d+)$/x );
+    $presets->{'moral'}                 = $1 if ( defined $q->param('moral')           and $q->param('moral')             =~/^(\d+)$/x );
+    $presets->{'order'}                 = $1 if ( defined $q->param('order')           and $q->param('order')             =~/^(\d+)$/x );
+    $presets->{'stats'}->{'education'}  = $1 if ( defined $q->param('education')       and $q->param('education')         =~/^(\d+)$/x );
+    $presets->{'stats'}->{'magic'}      = $1 if ( defined $q->param('magic')           and $q->param('magic')             =~/^(\d+)$/x );
+    $presets->{'stats'}->{'military'}   = $1 if ( defined $q->param('military')        and $q->param('military')          =~/^(\d+)$/x );
+    $presets->{'stats'}->{'tolerance'}  = $1 if ( defined $q->param('tolerance')       and $q->param('tolerance')         =~/^(\d+)$/x );
+    $presets->{'stats'}->{'economy'}    = $1 if ( defined $q->param('economy')         and $q->param('economy')           =~/^(\d+)$/x );
+    $presets->{'stats'}->{'authority'}  = $1 if ( defined $q->param('authority')       and $q->param('authority')         =~/^(\d+)$/x );
+    $presets->{'children'}->{'precent'} = $1 if ( defined $q->param('child_precent')   and $q->param('child_precent')     =~/^(\d+)$/x );
+    $presets->{'elderly'}->{'percent'}  = $1 if ( defined $q->param('elderly_percent') and $q->param('elderly_percent')   =~/^(\d+)$/x );
+
+    return $presets;
+
+}
 
 sub print_page {
     my ($city)=@_;
