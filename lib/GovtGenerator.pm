@@ -8,7 +8,7 @@ use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( create_govt);
-
+#FIXME TODO add a stat for Government Size
 ###############################################################################
 
 =head1 NAME
