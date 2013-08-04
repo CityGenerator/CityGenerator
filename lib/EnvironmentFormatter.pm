@@ -33,7 +33,7 @@ use List::Util 'shuffle', 'min', 'max';
 use Lingua::Conjunction;
 use Lingua::EN::Inflect qw(A);
 use Lingua::EN::Numbers qw(num2en);
-use Number::Format;
+use Number::Format 'format_number';
 use POSIX;
 use version;
 
@@ -50,7 +50,7 @@ sub printGeography {
     my ($city) = @_;
     my $content = "";
     $content
-        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated ($city->{'population_density'}/sq km) and covers $city->{'area'} square kilometers.";
+        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated (".format_number($city->{'population_density'})." sq km) and covers $city->{'area'} square kilometers.";
 
     return $content;
 }

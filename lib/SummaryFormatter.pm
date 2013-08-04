@@ -7,6 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
+use Number::Format 'format_number';
 @EXPORT_OK = qw( printSummary);
 
 ###############################################################################
@@ -42,7 +43,7 @@ sub printSummary {
     my ($city) = @_;
     my $content = "";
     $content
-        .= "$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'description'} of around $city->{'pop_estimate'}.";
+        .= "$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'description'} of around ".format_number($city->{'pop_estimate'}).".";
 
     return $content;
 }

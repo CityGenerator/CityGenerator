@@ -7,6 +7,8 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
+use Number::Format 'format_number';
+
 @EXPORT_OK = qw( printCensusData);
 
 ###############################################################################
@@ -64,12 +66,13 @@ Print General Information about the census, including population estimate, elder
 
 sub printGeneralInformation {
     my ($city) = @_;
-    my $population = $city->{'population_total'};
-
+    $city->{'population_total'} = format_number($city->{'population_total'});
+    $city->{'children'}->{'population'}=format_number($city->{'children'}->{'population'});
+    $city->{'elderly'}->{'population'}=format_number($city->{'elderly'}->{'population'});
     my $content = << "EOF"
                     <h3>General Information</h3>
                     <ul>
-                        <li> Pop. Estimate: $population </li>
+                        <li> Pop. Estimate: $city->{'population_total'} </li>
                         <li> Children: $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) </li>
                         <li> Elderly: $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) </li>
                     </ul>
@@ -95,7 +98,7 @@ sub printRacialBreakdown {
     my $content = "                    <h3>Racial Breakdown</h3>\n";
     $content .= "                    <ul>\n";
     foreach my $race ( sort { $b->{'population'} <=> $a->{'population'} } @{ $city->{'races'} } ) {
-        $content .= "                        <li>$race->{'population'} $race->{'race'} ($race->{'percent'}\%)</li>\n"
+        $content .= "                        <li>".format_number($race->{'population'})." $race->{'race'} ($race->{'percent'}\%)</li>\n"
 
     }
     $content .= "                    </ul>\n";
@@ -117,9 +120,9 @@ sub printMisc {
     my $content = "                    <h3>Misc.</h3>\n";
     $content .= "                    <ul>\n";
     $content .= "                        <li>" . scalar( keys %{ $city->{'districts'} } ) . " Districts</li>\n";
-    $content .= "                        <li>$city->{'business_total'} Businesses</li>\n";
-    $content .= "                        <li>$city->{'specialist_total'} Specialists</li>\n";
-    $content .= "                        <li>$city->{'housing'}->{'total'} Residences</li>\n";
+    $content .= "                        <li>".format_number($city->{'business_total'})." Businesses</li>\n";
+    $content .= "                        <li>".format_number($city->{'specialist_total'})." Specialists</li>\n";
+    $content .= "                        <li>".format_number($city->{'housing'}->{'total'})." Residences</li>\n";
 
     $content .= "                    </ul>\n";
     return $content;
