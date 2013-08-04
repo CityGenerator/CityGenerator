@@ -100,6 +100,7 @@ sub create_npc {
     $npc->{'available_races'} = [ shuffle( @{ $npc->{'available_races'} } ) ];
 
     $npc->{'race'} = rand_from_array( $npc->{'available_races'} ) if ( !defined $npc->{'race'} );
+    delete $npc->{'available_races'};
     $npc->{'race'} = lc $npc->{'race'};
 
     generate_npc_name( $npc->{'race'}, $npc );
@@ -202,6 +203,7 @@ sub set_profession {
     $npc->{'allowed_professions'} = [ shuffle( @{ $npc->{'allowed_professions'} } ) ];
 
     my $specialty = pop @{ $npc->{'allowed_professions'} };
+    delete $npc->{'allowed_professions'};
 
     $npc->{'profession'} = $specialty if ( !defined $npc->{'profession'} );
 
@@ -218,6 +220,8 @@ sub set_profession {
             $npc->{'business'} = pop @businesses;
         }
     }
+
+    
 
     return $npc;
 }

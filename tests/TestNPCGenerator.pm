@@ -100,7 +100,7 @@ subtest 'test create_npc' => sub {
         is( $npc->{'race'}, 'deep dwarf', );
 
         $npc = NPCGenerator::create_npc( { 'seed' => 1, 'available_races' => [ 'deep dwarf', 'human', 'halfling' ] } );
-        is_deeply( $npc->{'available_races'}, [ 'human', 'halfling', 'deep dwarf' ] );
+        is_deeply( $npc->{'available_races'}, undef, "ensure available races were removed" );
         is( $npc->{'race'}, 'deep dwarf' );
 
         done_testing();

@@ -66,15 +66,15 @@ Print General Information about the census, including population estimate, elder
 
 sub printGeneralInformation {
     my ($city) = @_;
-    $city->{'population_total'} = format_number($city->{'population_total'});
-    $city->{'children'}->{'population'}=format_number($city->{'children'}->{'population'});
-    $city->{'elderly'}->{'population'}=format_number($city->{'elderly'}->{'population'});
+    my $population_total   = format_number( $city->{'population_total'} );
+    my $child_population   = format_number( $city->{'children'}->{'population'} );
+    my $elderly_population = format_number( $city->{'elderly'}->{'population'} );
     my $content = << "EOF"
                     <h3>General Information</h3>
                     <ul>
-                        <li> Pop. Estimate: $city->{'population_total'} </li>
-                        <li> Children: $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}) </li>
-                        <li> Elderly: $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) </li>
+                        <li> Pop. Estimate: $population_total </li>
+                        <li> Children: $city->{'children'}->{'percent'}% ($child_population) </li>
+                        <li> Elderly: $city->{'elderly'}->{'percent'}% ($elderly_population) </li>
                     </ul>
 EOF
         ;
