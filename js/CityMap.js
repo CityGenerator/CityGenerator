@@ -61,7 +61,7 @@ CityMap.prototype.redraw = function(canvas){
     }
 
     // render draws the cell centers
-    //this.render(canvas)
+    this.render(canvas)
 
     this.drawRoads(canvas, this.roads, this.mainroads);
 }

@@ -116,8 +116,8 @@ subtest 'test create_npc' => sub {
         my $npc;
 
         $npc = NPCGenerator::create_npc( { 'seed' => '1', 'race' => 'elf' } );
-        is( $npc->{'profession'}, 'painter' );
-        is( $npc->{'business'},   'studio' );
+        is( $npc->{'profession'}, 'actor' );
+        is( $npc->{'business'},   'theater' );
 
         $npc = NPCGenerator::create_npc(
             { 'seed' => '1', 'race' => 'elf', 'allowed_professions' => [ 'cobbler', 'priest' ] } );

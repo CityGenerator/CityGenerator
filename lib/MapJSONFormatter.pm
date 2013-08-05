@@ -51,8 +51,8 @@ sub printCityMapJSON {
     $mapdata->{'biome'}     = $city->{'climate'}->{'biomekey'};
 
     $mapdata->{'biome_color'}              = $city->{'climate'}->{'color'};
-    $mapdata->{'total_cell_count'}         = 300;
-    $mapdata->{'city_cell_count'}          = 100;
+    $mapdata->{'total_cell_count'}         = ($city->{'size_modifier'}+7)/2*100;
+    $mapdata->{'city_cell_count'}          = $mapdata->{'total_cell_count'}/3;
     $mapdata->{'maxdistrictpercent'}       = 0.9;
     $mapdata->{'maxsingledistrictpercent'} = 0.3;
 

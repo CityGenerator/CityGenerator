@@ -669,9 +669,7 @@ sub assign_race_stats {
     foreach my $race ( @{ $city->{'races'} } ) {
         my $racename  = $race->{'race'};
         my $racestats = $names_data->{'race'}->{$racename};
-        foreach my $stat (qw/ plural type /) {
-            $race->{$stat} = $racestats->{$stat};
-        }
+        $race->{'type'} = $racestats->{'type'};
         foreach my $stat (qw/ magic economy authority education military tolerance /) {
             $race->{$stat} = $racestats->{$stat};
             $city->{'stats'}->{$stat} += $racestats->{$stat};
