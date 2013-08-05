@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<establishment trailer_chance="30" >
+
+    <building_size> <!-- The Wet Frog is a _____ tavern that is always busy, regardless of the time. -->
+        <option          max="5"  >tiny</option>
+        <option min="6"  max="10" >insignificant</option>
+        <option min="10" max="15" >squat little</option>
+        <option min="16" max="20" >small hole in the wall</option>
+        <option min="20" max="25" >minor</option>
+        <option min="26" max="30" >insubstantial</option>
+        <option min="30" max="35" >paltry</option>
+        <option min="36" max="40" >normal</option>
+        <option min="40" max="45" >typical</option>
+        <option min="46" max="50" >humdrum</option>
+        <option min="50" max="55" >garden-variety</option>
+        <option min="56" max="60" >average</option>
+        <option min="60" max="65" >familiar</option>
+        <option min="66" max="70" >large</option>
+        <option min="70" max="75" >sizeable</option>
+        <option min="76" max="80" >epic</option>
+        <option min="80" max="85" >monumental</option>
+        <option min="86" max="90" >massive</option>
+        <option min="90" max="95" >enormous</option>
+        <option min="96"          >vast</option>
+    </building_size>
+
+    <building_age>
+        <option          max="5"  >old</option>
+    </building_age>
+
+    <building_material>
+        <option          max="5"  >stone</option>
+    </building_material>
+
+    <building_shade>
+        <option          max="5"  >dark</option>
+    </building_shade>
+
+    <building_neighborhood>
+        <option          max="5"  >nice</option>
+    </building_neighborhood>
+
+
+    <establishment_popularity>
+        <option          max="5"  >busy</option>
+    </establishment_popularity>
+
+    <establishment_reputation>
+        <option          max="5"  >good</option>
+    </establishment_reputation>
+
+    <estalishment_prices>
+        <option          max="5"  >fair</option>
+    </establishment_prices>
+
+
+
+
+</establishment>
