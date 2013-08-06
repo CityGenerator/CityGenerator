@@ -334,14 +334,19 @@ sub generate_walls {
     # chance of -25 to +60
     my $modifier = $city->{'size_modifier'} || 0;
 
+    # Find a better way to determine if there's a wall.
     $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if ( !defined $city->{'wall_chance_roll'} );
-
     if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
-        $city->{'wall_size_roll'} = &d(100) + $modifier if ( !defined $city->{'wall_size_roll'} );
-        my $wall = roll_from_array( $city->{'wall_size_roll'}, $xml_data->{'walls'}->{'wall'} );
-        $city->{'walls'} = parse_object($wall);
-        $city->{'walls'}->{'height'}
-            = $wall->{'heightmin'} + &d( $wall->{'heightmax'} - $wall->{'heightmin'} ) + $modifier;
+
+
+        $city->{'walls'}->{'condition'} = roll_from_array(d(100), $xml_data->{'walls'}->{'condition'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'condition'});
+        $city->{'walls'}->{'style'}     = roll_from_array(d(100), $xml_data->{'walls'}->{'style'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'style'});
+        my $material                    = roll_from_array(d(100), $xml_data->{'walls'}->{'material'}->{'option'});
+        $city->{'walls'}->{'material'}  = $material->{'content'} if (!defined $city->{'walls'}->{'material'});
+
+        $city->{'walls'}->{'height'}    = int (rand( $material->{'maxheight'} - $material->{'minheight'} ) + $material->{'minheight'}  ) if (!defined  $city->{'walls'}->{'height'});
+
+
 
         $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
             if ( !defined $city->{'protected_percent'} );
@@ -353,7 +358,6 @@ sub generate_walls {
 
 
     } else {
-        $city->{'walls'}->{'content'} = "none";
         $city->{'walls'}->{'height'}  = 0;
     }
     return $city;
@@ -622,14 +626,14 @@ sub set_races {
     #FIXME should account for existing values
     GenericGenerator::set_seed( $city->{'seed'} );
     if ( !defined $city->{'races'} ) {
-        my $totalpercent = 0;
-        $city->{'population_total'} = 0;
+        my $totalpercent = 1;
+        $city->{'population_total'} = 1;
         $city->{'races'}            = [];
         my @racenames = @{ $city->{'available_races'} };
         @racenames = shuffle @racenames;
         foreach my $racepercent ( sort { $b <=> $a } @{ $city->{'race percentages'} } ) {
             my $racename   = pop @racenames;
-            my $population = int( $racepercent * $city->{'pop_estimate'} / 100 );
+            my $population = ceil( $racepercent * $city->{'pop_estimate'} / 100 );
             my $race       = { 'race' => $racename, 'percent' => $racepercent, 'population' => $population };
 
             $totalpercent += $racepercent;
@@ -640,7 +644,7 @@ sub set_races {
         my $other = {
             'race'       => 'other',
             'percent'    => ( 100 - $totalpercent ),
-            'population' => ( $city->{'pop_estimate'} - $city->{'population_total'} )
+            'population' => max(1, $city->{'pop_estimate'} - $city->{'population_total'} )
         };
         push @{ $city->{'races'} }, $other;
         $city->{'population_total'} += $other->{'population'};
@@ -755,7 +759,7 @@ sub generate_area {
     #TODO change to metric....
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'};
+    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'} if (!defined $city->{'area'});
 
     my $stat_modifier = $city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'};
     $city->{'arable_percentage'} = max( 1, min( 100, d(100) + $stat_modifier ) )

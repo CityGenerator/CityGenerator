@@ -57,11 +57,11 @@ subtest 'Test CensusData Racial Breakdown' => sub {
     is(
         $censusdata, "                    <h3>Racial Breakdown</h3>
                     <ul>
-                        <li>17,366 ogre (93.5%)</li>
-                        <li>593 drow (3.1%)</li>
-                        <li>225 other (1.2%)</li>
-                        <li>185 minotaur (0.9%)</li>
-                        <li>185 bugbear (0.9%)</li>
+                        <li>17,367 ogre (93.6%)</li>
+                        <li>594 drow (3.2%)</li>
+                        <li>220 other (1.1%)</li>
+                        <li>186 minotaur (1%)</li>
+                        <li>186 bugbear (1%)</li>
                     </ul>
 "
     );

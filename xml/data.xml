@@ -118,59 +118,54 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 </streets>
 
 <walls chance='40' >
-    <wall          max='10' type='rubble' heightmin='4' heightmax='6' >
-        <title></title>
-        <title>low</title>
-        <title>crumbling</title>
-        <root>rubble</root>
-        <trailer>embankment</trailer>
-        <trailer>barrier</trailer>
-    </wall>
-    <wall min='11' max='20' type='mud brick' heightmin='8' heightmax='20' >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <root>brick</root>
-        <root>mud brick</root>
-        <trailer>barricade</trailer>
-        <trailer>fortification</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>enclosure</trailer>
-        <trailer>rampart</trailer>
-    </wall>
-    <wall min='21' max='60' type='wood' heightmin='8' heightmax='30' >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <title>massive</title>
-        <root>wood</root>
-        <root>oak</root>
-        <trailer>stockade</trailer>
-        <trailer>rampart</trailer>
-        <trailer>barricade</trailer>
-        <trailer>fortification</trailer>
-        <trailer>palisade</trailer>
-        <trailer>fence</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>enclosure</trailer>
-    </wall>
-    <wall min='61'          type='stone' heightmin='15' heightmax='50'  >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <title>massive</title>
-        <root>stone</root>
-        <root>marble</root>
-        <root>granite</root>
-        <trailer>rampart</trailer>
-        <trailer>fortification</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>bulwark</trailer>
-        <trailer>enclosure</trailer>
-    </wall>
+    <condition>
+        <option          max="10" >destroyed</option>
+        <option min="11" max="20" >crumbling</option>
+        <option min="21" max="25" >poorly maintained</option>
+        <option min="26" max="30" >cracking</option>
+        <option min="31" max="35" >battered</option>
+        <option min="36" max="40" >scarred</option>
+        <option min="41" max="45" >weather-beaten</option>
+        <option min="46" max="50" >flimsy</option>
+        <option min="51" max="60" >solid</option>
+        <option min="61" max="70" >sturdy</option>
+        <option min="71" max="75" >recently repaired</option>
+        <option min="76" max="80" >reinforced</option>
+        <option min="81" max="85" >fortified</option>
+        <option min="86" max="90" >polished</option>
+        <option min="91" max="95" >newly finished</option>
+        <option min="96" max="98" >pristine</option>
+        <option min="99"          >magically reinforced</option>
+    </condition>
+    <material> <!--   height is in meters -->
+        <option          max="10" minheight="1"  maxheight="3"  >rubble</option>
+        <option min="11" max="20" minheight="2"  maxheight="4"  >mud brick</option>
+        <option min="21" max="25" minheight="2"  maxheight="6"  >wood</option>
+        <option min="26" max="30" minheight="3"  maxheight="6"  >oak</option>
+        <option min="31" max="35" minheight="3"  maxheight="10" >brick</option>
+        <option min="36" max="40" minheight="3"  maxheight="15" >sandstone</option>
+        <option min="41" max="45" minheight="3"  maxheight="15" >limestone</option>
+        <option min="46" max="50" minheight="3"  maxheight="15" >conglomerate stone</option>
+        <option min="51" max="60" minheight="3"  maxheight="20" >stone</option>
+        <option min="61" max="70" minheight="3"  maxheight="20" >marble</option>
+        <option min="71" max="75" minheight="3"  maxheight="20" >slate</option>
+        <option min="76" max="80" minheight="3"  maxheight="20" >basalt</option>
+        <option min="81" max="95" minheight="3"  maxheight="20" >granite</option>
+        <option min="96"          minheight="3"  maxheight="22" >Iron</option>
+    </material>
+    <style>
+        <option          max="5"  >embankment</option>
+        <option min="6"  max="10" >fence</option>
+        <option min="11" max="20" >wall</option>
+        <option min="21" max="30" >enclosure</option>
+        <option min="31" max="40" >barrier</option>
+        <option min="41" max="50" >barricade</option>
+        <option min="51" max="60" >fortification</option>
+        <option min="61" max="70" >palisade</option>
+        <option min="71" max="80" >partition</option>
+        <option min="81" max="90" >rampart</option>
+        <option min="91"          >stockade</option>
+    </style>
 </walls>
 <preparation>
     <option          max='5'>abysmally</option>

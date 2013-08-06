@@ -137,9 +137,10 @@ subtest 'test flesh_out_city' => sub {
     is( $city->{'description'},            undef );
     is( $city->{'add_other'},              undef );
     is( $city->{'wall_chance_roll'},       undef );
-    is( $city->{'wall_size_roll'},         undef );
+    is( $city->{'walls'}->{'material'},    undef );
+    is( $city->{'walls'}->{'style'},       undef );
     is( $city->{'walls'}->{'height'},      undef );
-    is( $city->{'walls'}->{'content'},     undef );
+    is( $city->{'walls'}->{'condition'},   undef );
     is( $city->{'laws'}->{'enforcer'},     undef );
     is( $city->{'laws'}->{'enforcement'},  undef );
     is( $city->{'laws'}->{'punishment'},   undef );
@@ -191,9 +192,7 @@ subtest 'test flesh_out_city' => sub {
     is( $city->{'description'},          'normal population' );
     is( $city->{'add_other'},            '' );
     is( $city->{'wall_chance_roll'},     46 );
-    is( $city->{'wall_size_roll'},       undef );
     is( $city->{'walls'}->{'height'},    0 );
-    is( $city->{'walls'}->{'content'},   'none' );
     is_deeply(
         $city->{'laws'},
         {
@@ -221,7 +220,7 @@ subtest 'test flesh_out_city' => sub {
     is( $city->{'authority_description'},  'is chaotic' );
     is( $city->{'magic_description'},      'accepted' );
     is( $city->{'military_description'},   'positive' );
-    is( $city->{'population_total'},       185 );
+    is( $city->{'population_total'},       187 );
     is( scalar( @{ $city->{'races'} } ),   6 );
     is( $city->{'streets'}->{'content'},   'pristine cobblestone paths in a looped pattern' );
     is( $city->{'streets'}->{'mainroads'}, 1 );
@@ -258,32 +257,13 @@ subtest 'test set_pop_type' => sub {
 
 subtest 'test generate_walls' => sub {
     my $city;
-    $city = CityGenerator::create_city( { 'seed' => '1', 'area' => 1.9 } );
+    $city = CityGenerator::create_city( { 'seed' => '1' } );
     CityGenerator::generate_walls($city);
-    is( $city->{'size_modifier'},      '-5' );
     is( $city->{'wall_chance_roll'},   '30' );
-    is( $city->{'wall_size_roll'},     41 );
-    is( $city->{'walls'}->{'content'}, 'massive wood rampart' );
-    is( $city->{'walls'}->{'height'},  '24' );
-
-    $city = CityGenerator::create_city( { 'seed' => '2', 'area' => 1.9 } );
-    CityGenerator::generate_walls($city);
-    is( $city->{'size_modifier'},      '8' );
-    is( $city->{'wall_chance_roll'},   '52' );
-    is( $city->{'wall_size_roll'},     undef );
-    is( $city->{'walls'}->{'content'}, 'none' );
-    is( $city->{'walls'}->{'height'},  '0' );
-
-    #FIXME  this should use wall_size_roll to test rather than seed=>2
-    $city = {};
-    $city = CityGenerator::create_city( { 'seed' => '2', 'size_modifier' => '0', 'area' => 1.9 } );
-    CityGenerator::generate_walls($city);
-    is( $city->{'size_modifier'},      0 );        # FIXME originally set to undef, was I testing an if?
-    is( $city->{'wall_chance_roll'},   '92' );
-    is( $city->{'wall_size_roll'},     undef );
-    is( $city->{'walls'}->{'content'}, 'none' );
-    is( $city->{'walls'}->{'height'},  '0' );
-
+    is( $city->{'walls'}->{'material'},    'brick' );
+    is( $city->{'walls'}->{'style'},       'rampart' );
+    is( $city->{'walls'}->{'height'},      '6' );
+    is( $city->{'walls'}->{'condition'},   'flimsy' );
 
     done_testing();
 };
@@ -561,15 +541,22 @@ subtest 'test set_races' => sub {
         }
     );
     CityGenerator::set_races($city);
-    is_deeply(
-        $city->{'races'},
-        [
-            { 'race' => 'dwarf',    'percent' => 85, 'population' => 85 },
-            { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
-            { 'race' => 'human',    'percent' => 3,  'population' => 3 },
-            { 'race' => 'other',    'percent' => 2,  'population' => 2 }
-        ]
-    );
+
+    is( $city->{'races'}->[0]->{'race'},'dwarf' );
+    is( $city->{'races'}->[0]->{'percent'}, 85 );
+    is( $city->{'races'}->[0]->{'population'}, 85 );
+
+    is( $city->{'races'}->[1]->{'race'},'halfling' );
+    is( $city->{'races'}->[1]->{'percent'}, 10 );
+    is( $city->{'races'}->[1]->{'population'}, 10 );
+
+    is( $city->{'races'}->[2]->{'race'},'human' );
+    is( $city->{'races'}->[2]->{'percent'}, 3 );
+    is( $city->{'races'}->[2]->{'population'}, 3 );
+
+    is( $city->{'races'}->[3]->{'race'},'other' );
+    is( $city->{'races'}->[3]->{'percent'}, 1 );
+    is( $city->{'races'}->[3]->{'population'}, 1 );
 
 
     $city = CityGenerator::create_city(
@@ -584,16 +571,21 @@ subtest 'test set_races' => sub {
         }
     );
     CityGenerator::set_races($city);
-    is_deeply(
-        $city->{'races'},
-        [
-            { 'race' => 'human',    'percent' => 85, 'population' => 85 },
-            { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
-            { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
-            { 'race' => 'other',    'percent' => 2,  'population' => 2 }
-        ]
-    );
+    is( $city->{'races'}->[0]->{'race'},'human' );
+    is( $city->{'races'}->[0]->{'percent'}, 85 );
+    is( $city->{'races'}->[0]->{'population'}, 85 );
 
+    is( $city->{'races'}->[1]->{'race'},'halfling' );
+    is( $city->{'races'}->[1]->{'percent'}, 10 );
+    is( $city->{'races'}->[1]->{'population'}, 10 );
+
+    is( $city->{'races'}->[2]->{'race'},'dwarf' );
+    is( $city->{'races'}->[2]->{'percent'}, 3 );
+    is( $city->{'races'}->[2]->{'population'}, 3 );
+
+    is( $city->{'races'}->[3]->{'race'},'other' );
+    is( $city->{'races'}->[3]->{'percent'}, 2 );
+    is( $city->{'races'}->[3]->{'population'}, 2 );
 
     $city = CityGenerator::create_city(
         {
@@ -605,16 +597,25 @@ subtest 'test set_races' => sub {
     );
 
     CityGenerator::set_races($city);
-    is_deeply(
-        $city->{'races'},
-        [
-            { 'race' => 'dwarf',    'percent' => 30, 'population' => 30 },
-            { 'race' => 'human',    'percent' => 30, 'population' => 30 },
-            { 'race' => 'halfling', 'percent' => 20, 'population' => 20 },
-            { 'race' => 'half-orc', 'percent' => 15, 'population' => 15 },
-            { 'race' => 'other',    'percent' => 5,  'population' => 5 }
-        ]
-    );
+    is( $city->{'races'}->[0]->{'race'},'dwarf' );
+    is( $city->{'races'}->[0]->{'percent'}, 30 );
+    is( $city->{'races'}->[0]->{'population'}, 30 );
+
+    is( $city->{'races'}->[1]->{'race'},'human' );
+    is( $city->{'races'}->[1]->{'percent'}, 30 );
+    is( $city->{'races'}->[1]->{'population'}, 30 );
+
+    is( $city->{'races'}->[2]->{'race'},'halfling' );
+    is( $city->{'races'}->[2]->{'percent'}, 20 );
+    is( $city->{'races'}->[2]->{'population'}, 20 );
+
+    is( $city->{'races'}->[3]->{'race'},'half-orc' );
+    is( $city->{'races'}->[3]->{'percent'}, 15 );
+    is( $city->{'races'}->[3]->{'population'}, 15 );
+
+    is( $city->{'races'}->[4]->{'race'},'other' );
+    is( $city->{'races'}->[4]->{'percent'}, 4 );
+    is( $city->{'races'}->[4]->{'population'}, 4 );
 
     done_testing();
 };
@@ -700,27 +701,40 @@ subtest 'test recalculate_populations' => sub {
         }
     );
     CityGenerator::set_races($city);
-    is_deeply(
-        $city->{'races'},
-        [
-            { 'race' => 'dwarf',    'percent' => 85, 'population' => 79 },
-            { 'race' => 'halfling', 'percent' => 10, 'population' => 9 },
-            { 'race' => 'human',    'percent' => 3,  'population' => 2 },
-            { 'race' => 'other',    'percent' => 2,  'population' => 3 }
-        ]
-    );
+    is( $city->{'races'}->[0]->{'race'},'dwarf' );
+    is( $city->{'races'}->[0]->{'percent'}, 85 );
+    is( $city->{'races'}->[0]->{'population'}, 80 );
+
+    is( $city->{'races'}->[1]->{'race'},'halfling' );
+    is( $city->{'races'}->[1]->{'percent'}, 10 );
+    is( $city->{'races'}->[1]->{'population'}, 10 );
+
+    is( $city->{'races'}->[2]->{'race'},'human' );
+    is( $city->{'races'}->[2]->{'percent'}, 3 );
+    is( $city->{'races'}->[2]->{'population'}, 3 );
+
+    is( $city->{'races'}->[3]->{'race'},'other' );
+    is( $city->{'races'}->[3]->{'percent'}, 1 );
+    is( $city->{'races'}->[3]->{'population'}, 1 );
+
     CityGenerator::recalculate_populations($city);
 
-    is( $city->{'population_total'}, 93 );
-    is_deeply(
-        $city->{'races'},
-        [
-            { 'race' => 'dwarf',    'percent' => 84.9, 'population' => 79 },
-            { 'race' => 'halfling', 'percent' => 9.6,  'population' => 9 },
-            { 'race' => 'human',    'percent' => 2.1,  'population' => 2 },
-            { 'race' => 'other',    'percent' => 3.2,  'population' => 3 }
-        ]
-    );
+    is( $city->{'population_total'}, 95 );
+    is( $city->{'races'}->[0]->{'race'},'dwarf' );
+    is( $city->{'races'}->[0]->{'percent'}, 84.2 );
+    is( $city->{'races'}->[0]->{'population'}, 80 );
+
+    is( $city->{'races'}->[1]->{'race'},'halfling' );
+    is( $city->{'races'}->[1]->{'percent'}, 10.5 );
+    is( $city->{'races'}->[1]->{'population'}, 10 );
+
+    is( $city->{'races'}->[2]->{'race'},'human' );
+    is( $city->{'races'}->[2]->{'percent'}, 3.1 );
+    is( $city->{'races'}->[2]->{'population'}, 3 );
+
+    is( $city->{'races'}->[3]->{'race'},'other' );
+    is( $city->{'races'}->[3]->{'percent'}, 1 );
+    is( $city->{'races'}->[3]->{'population'}, 1 );
 
     done_testing();
 };

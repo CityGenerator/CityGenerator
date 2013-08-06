@@ -22,17 +22,18 @@ subtest 'Test Cityscape walls' => sub {
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.86 kilometer wall."
+        "Visitors are greeted with a flimsy brick rampart that is 6 meters tall. ".
+        "The city wall protects the core 76% of the city, with 5 towers spread along the 5.14 kilometer wall."
     );
 
-    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'wall_size_roll' => 22 } );
+    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'walls'=>{'height'=>'90', 'condition'=>'borked', 'material'=>'jello', 'style'=>'shingle'} } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a wood fence that is 6 feet tall. The city wall protects the core 77% of the city, with 5 towers spread along the 6.44 kilometer wall."
+"Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core 89% of the city, with 5 towers spread along the 6.90 kilometer wall."
     );
 
-    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100, 'wall_size_roll' => 22 } );
+    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100, } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape, "No walls currently surround the city." );
@@ -61,10 +62,10 @@ subtest 'Test Cityscape districts' => sub {
 };
 
 subtest 'Test Cityscape housing' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create_city( { 'seed' => 1, 'housing'=>{'wealthy'=>9,'average'=>8,'poor'=>4} } );
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printHousingList($city);
-    is( $cityscape, "Among housing, there are 0 wealthy residences, 4 average homes and 2 dilapidated homes." );
+    is( $cityscape, "Among housing, there are 9 wealthy residences, 8 average homes and 4 dilapidated homes." );
 
     done_testing();
 };

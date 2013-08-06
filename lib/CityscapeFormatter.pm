@@ -67,13 +67,13 @@ sub printWalls {
     my ($city) = @_;
     my $content = "No walls currently surround the city.";
 
-    if ( $city->{'walls'}->{'content'} ne 'none' ) {
+    if ( $city->{'walls'}->{'height'} ne '0' ) {
         $content
             = "Visitors are greeted with a "
-            . $city->{'walls'}->{'content'}
+            . $city->{'walls'}->{'condition'} ." ".$city->{'walls'}->{'material'}. " ".$city->{'walls'}->{'style'}   
             . " that is "
             . $city->{'walls'}->{'height'}
-            . " feet tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
+            . " meters tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
     }
 
     return $content;
