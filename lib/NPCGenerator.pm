@@ -66,8 +66,8 @@ The following datafiles are used by CityGenerator.pm:
 ###############################################################################
 my $xml_data        = $xml->XMLin( "xml/data.xml",        ForceContent => 1, ForceArray => ['option'] );
 my $npc_data        = $xml->XMLin( "xml/npcs.xml",        ForceContent => 1, ForceArray => ['option'] );
-my $names_data      = $xml->XMLin( "xml/npcnames.xml",    ForceContent => 1, ForceArray => ['allow'] );
-my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => [] );
+my $names_data      = $xml->XMLin( "xml/npcnames.xml",    ForceContent => 1, ForceArray => ['option','allow'] );
+my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

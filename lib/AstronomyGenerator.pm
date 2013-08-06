@@ -64,8 +64,8 @@ The following datafiles are used by AstronomyGenerator.pm:
 
 ###############################################################################
 my $astronomy_data = $xml->XMLin( "xml/astronomydata.xml", ForceContent => 1, ForceArray => [ 'option', 'reason' ] );
-my $starnames_data = $xml->XMLin( "xml/starnames.xml",     ForceContent => 1, ForceArray => [] );
-my $moonnames_data = $xml->XMLin( "xml/moonnames.xml",     ForceContent => 1, ForceArray => [] );
+my $starnames_data = $xml->XMLin( "xml/starnames.xml",     ForceContent => 1, ForceArray => ['option'] );
+my $moonnames_data = $xml->XMLin( "xml/moonnames.xml",     ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

@@ -60,7 +60,7 @@ The following datafiles are used by ContinentGenerator.pm:
 
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
+my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

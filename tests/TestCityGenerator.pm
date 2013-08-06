@@ -256,8 +256,9 @@ subtest 'test set_pop_type' => sub {
 };
 
 subtest 'test generate_walls' => sub {
+    #NOTE area is included because generate_walls requires it to mark protected areas
     my $city;
-    $city = CityGenerator::create_city( { 'seed' => '1' } );
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1 } );
     CityGenerator::generate_walls($city);
     is( $city->{'wall_chance_roll'},   '30' );
     is( $city->{'walls'}->{'material'},    'brick' );
@@ -269,8 +270,9 @@ subtest 'test generate_walls' => sub {
 };
 
 subtest 'test generate_watchtowers' => sub {
+    #NOTE area is included because generate_walls requires it to mark protected areas
     my $city;
-    $city = CityGenerator::create_city( { 'seed' => '1', 'walls' => { 'length' => 1.9 } } );
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'walls' => { 'length' => 1.9 } } );
     CityGenerator::generate_watchtowers($city);
     is( $city->{'watchtowers'}->{'count'}, 5 );
 
