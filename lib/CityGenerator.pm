@@ -80,13 +80,11 @@ The following datafiles are used by CityGenerator.pm:
 
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => [] );
-my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => [] );
-my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => [] );
-my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => [] );
-my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
-my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
-my $district_data       = $xml->XMLin( "xml/districts.xml",      ForceContent => 1, ForceArray => [] );
+my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['option'] );
+my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => ['option'] );
+my $district_data       = $xml->XMLin( "xml/districts.xml",      ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -286,7 +284,7 @@ sub flesh_out_city {
     generate_crime($city);
     set_dominance($city);
 
-    $city->{'govt'} = GovtGenerator::create_govt( { 'seed' => $city->{'seed'} } );
+    $city->{'govt'}      = GovtGenerator::create_govt( { 'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::create_climate( { 'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
     $city->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $city->{'seed'} } );
