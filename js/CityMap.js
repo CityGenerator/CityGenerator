@@ -239,7 +239,7 @@ CityMap.prototype.findCenterCell = function(){
         var adjustedx=x-centerx + (Math.random()*x - x/2)/4 ;
         var adjustedy=y-centery + (Math.random()*y - y/2)/4 ;
         var radius=  Math.sqrt( Math.pow(adjustedx,2) + Math.pow(adjustedy,2));
-        if (!cell.incity && !cell.inwater &&    shortestradius> radius ){
+        if (!cell.incity && !cell.inwater &&    shortestradius> radius && cell.border==false){
             shortestradius=radius
             closestpoint=cell
         }
