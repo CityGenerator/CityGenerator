@@ -158,6 +158,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 			<root>eb</root>
 			<root>egd</root>
 			<root>emt</root>
+			<root>erm</root>
 			<root>et</root>
 			<root>exn</root>
 			<root>ezn</root>
@@ -170,11 +171,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 			<root>or</root>
 			<root>ot</root>
 			<root>oten</root>
-			<root>rm</root>
 			<root>ub</root>
 			<root>uk</root>
 			<root>un</root>
 			<root>unk</root>
+			<root>urm</root>
 			<root>us</root>
 			<root>zar</root>
         </firstname>
