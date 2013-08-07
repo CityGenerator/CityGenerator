@@ -22,7 +22,7 @@ subtest 'Test Summary' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $summary = SummaryFormatter::printSummary($city);
-    is( $summary, "Grisnow is a settlement in the Conacania Province with a normal population of around 60.",
+    is( $summary, "Kanhall is a small town in the Britkan Province with a normal population of around 1,138.",
         "summary text" );
 
     done_testing();

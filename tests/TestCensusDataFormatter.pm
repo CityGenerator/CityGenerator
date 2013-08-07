@@ -40,9 +40,9 @@ subtest 'Test CensusData General Information' => sub {
     is(
         $censusdata, "                    <h3>General Information</h3>
                     <ul>
-                        <li> Pop. Estimate: 18,554 </li>
-                        <li> Children: 25.00% (4,638) </li>
-                        <li> Elderly: 1.50% (278) </li>
+                        <li> Pop. Estimate: 833 </li>
+                        <li> Children: 28.93% (241) </li>
+                        <li> Elderly: 11.88% (99) </li>
                     </ul>
 "
     );
@@ -56,11 +56,10 @@ subtest 'Test CensusData Racial Breakdown' => sub {
     is(
         $censusdata, "                    <h3>Racial Breakdown</h3>
                     <ul>
-                        <li>17,367 dwarf (93.6%)</li>
-                        <li>594 halfling (3.2%)</li>
-                        <li>221 other (1.1%)</li>
-                        <li>186 half-elf (1%)</li>
-                        <li>186 human (1%)</li>
+                        <li>644 half-dwarf (77.3%)</li>
+                        <li>160 halfling (19.2%)</li>
+                        <li>28 half-orc (3.3%)</li>
+                        <li>1 other (0.1%)</li>
                     </ul>
 "
     );
@@ -76,10 +75,10 @@ subtest 'Test CensusData Misc' => sub {
     is(
         $censusdata, "                    <h3>Misc.</h3>
                     <ul>
-                        <li>7 Districts</li>
-                        <li>352 Businesses</li>
-                        <li>2,838 Specialists</li>
-                        <li>2,025 Residences</li>
+                        <li>4 Districts</li>
+                        <li>40 Businesses</li>
+                        <li>70 Specialists</li>
+                        <li>107 Residences</li>
                     </ul>
 "
     );
