@@ -371,24 +371,24 @@ subtest 'test generate_resources' => sub {
     my $city;
     $city = CityGenerator::create_city( { 'seed' => '1' } );
     CityGenerator::generate_resources($city);
-    is( $city->{'resourcecount'},  1 );
-    is( @{ $city->{'resources'} }, 1 );
+    isnt( $city->{'resourcecount'},  undef );
+    is( @{ $city->{'resources'} }, $city->{'resourcecount'});
 
     $city = CityGenerator::create_city( { 'seed' => '1', 'economy' => 20 } );
     CityGenerator::generate_resources($city);
-    is( $city->{'resourcecount'},  1 );
-    is( @{ $city->{'resources'} }, 1 );
+    is( $city->{'resourcecount'},  20 );
+    is( @{ $city->{'resources'} }, 20 );
 
     $city = CityGenerator::create_city( { 'seed' => '1', 'economy' => 20 } );
     $city->{'economy'} = undef;
     CityGenerator::generate_resources($city);
-    is( $city->{'resourcecount'},  1 );
-    is( @{ $city->{'resources'} }, 1 );
+    is( $city->{'resourcecount'},  5 );
+    is( @{ $city->{'resources'} }, 5 );
 
     $city = CityGenerator::create_city( { 'seed' => '2' } );
     CityGenerator::generate_resources($city);
-    is( $city->{'resourcecount'},  8 );
-    is( @{ $city->{'resources'} }, 8 );
+    is( $city->{'resourcecount'},  13 );
+    is( @{ $city->{'resources'} }, 13 );
 
     $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4 } );
     CityGenerator::generate_resources($city);
