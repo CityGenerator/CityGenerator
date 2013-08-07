@@ -441,7 +441,7 @@ sub generate_resources {
 
     #ensure that the resource count is at most 13 and at least 2
     #shift from 2-13 to 1-12, then take a number from 1-12 total.
-    my $resource_count = d( min( max( $city->{'size_modifier'} + ( $city->{'economy'} || 0 ), 2 ), 13 ) );
+    my $resource_count =  max( $city->{'size_modifier'} + 5 + ( $city->{'economy'} || 0 ), 5 ) ;
 
     $city->{'resourcecount'} = $resource_count if ( !defined $city->{'resourcecount'} );
 
