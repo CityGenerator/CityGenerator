@@ -24,11 +24,7 @@ subtest 'Test Govt' => sub {
     my $govt = GovtFormatter::printSummary($city);
     is(
         $govt,
-"Grisnow is governed through a totalitarian government, where the government subordinates individuals by controlling all political and economic matters, as well as the attitudes, values, and beliefs. "
-            . "The government as a whole is seen as shrewd. "
-            . "Officials in Grisnow are often seen as the epitome corruption and the policies are mocked. "
-            . "The political influence of Grisnow in the region is receding due to riots in the region. "
-            . "In times of crisis, the population squabbles amongst themselves. ",
+"Kanhall is governed through a totalitarian government, where the government subordinates individuals by controlling all political and economic matters, as well as the attitudes, values, and beliefs. The government as a whole is seen as shrewd. Officials in Kanhall are often seen as the epitome corruption and the policies are mocked. The political influence of Kanhall in the region is receding due to riots in the region. In times of crisis, the population squabbles amongst themselves. ",
         'ensure summary is printed'
     );
     done_testing();
@@ -41,8 +37,8 @@ subtest 'Test Govt Crime' => sub {
     is(
         $crime,
         "Crime is rampant. \n"
-            . "The most common crime is murder. \n"
-            . "The imprisonment rate is 0.00% of the population (0 adults). \n",
+            . "The most common crime is fraud. \n"
+            . "The imprisonment rate is 0.44% of the population (5 adults). \n",
         'ensure crime is printed'
     );
     done_testing();
