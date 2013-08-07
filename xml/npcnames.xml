@@ -52,7 +52,67 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 -->
     <race name='mindflayer'   type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  tolerance='-5' military='-5'>    </race>
     <race name='minotaur'      type="monster" moral="2"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' tolerance='-5' military='3'>       </race>
-    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>     </race>
+    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>
+        <firstname>
+			<root>Bat</root>
+			<root>Bap</root>
+			<root>Bit</root>
+			<root>Bip</root>
+			<root>Bot</root>
+			<root>Car</root>
+			<root>Cor</root>
+			<root>Cak</root>
+			<root>Dat</root>
+			<root>Dit</root>
+			<root>Dot</root>
+			<root>Fax</root>
+			<root>Fat</root>
+			<root>Fot</root>
+			<root>Gat</root>
+			<root>Git</root>
+			<root>Gip</root>
+			<root>Got</root>
+			<root>Jat</root>
+			<root>Jit</root>
+			<root>Jot</root>
+			<root>Jop</root>
+			<root>Lat</root>
+			<root>Lik</root>
+			<root>Lot</root>
+			<root>Nat</root>
+			<root>Niz</root>
+			<root>Nip</root>
+			<root>Not</root>
+			<root>Nop</root>
+			<root>Pat</root>
+			<root>Paz</root>
+			<root>Pot</root>
+			<root>Rat</root>
+			<root>Rap</root>
+			<root>Rit</root>
+			<root>Rot</root>
+			<root>Rop</root>
+			<root>Taz</root>
+			<root>Teb</root>
+			<root>Tean</root>
+			<root>Vab</root>
+			<root>Vaz</root>
+			<root>Vit</root>
+			<root>Vor</root>
+			<root>Wat</root>
+			<root>Wit</root>
+			<root>Wot</root>
+			<root>Yat</root>
+			<root>Yap</root>
+			<root>Yik</root>
+			<root>Yip</root>
+			<root>Yot</root>
+			<root>Yop</root>
+			<root>Zat</root>
+			<root>Zit</root>
+			<root>Zol</root>
+        </firstname>
+     </race>
     <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>    </race>
     <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >    </race>
     <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>    </race>
