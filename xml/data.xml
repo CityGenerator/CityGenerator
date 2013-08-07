@@ -205,11 +205,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 </specialties>
 
 <pop_types>
-    <pop_type type="basic"        min="1"   max="50"  base_pop="basic"   add_other=""           >normal population</pop_type>
-    <pop_type type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="monster"    >fairly normal population (with one monstrous race)</pop_type>
-    <pop_type type="monstrous"    min="81"  max="91"  base_pop="monster" add_other=""           >monstrous population</pop_type>
-    <pop_type type="monstrous+1"  min="91"  max="95"  base_pop="monster" add_other="basic"      >monstrous population (with one common race)</pop_type>
-    <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other=""           >mixed population</pop_type>
+    <pop_type type="normal"             max="60" base_pop="normal"  />
+    <pop_type type="mixed"     min="61" max="80" base_pop="mixed"   />
+    <pop_type type="monstrous" min="81" max="91" base_pop="monster" />
 </pop_types>
 
 
