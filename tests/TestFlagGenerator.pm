@@ -19,6 +19,10 @@ use base qw(Exporter);
 
 subtest 'test create_flag' => sub {
     my $flag;
+    GenericGenerator::set_seed(1);
+    $flag = FlagGenerator::create_flag( );
+    is($flag->{'seed'}, 41630);
+
     $flag = FlagGenerator::create_flag( { 'seed' => 41630 } );
     $flag->{'colors'} = undef;
     FlagGenerator::generate_colors($flag);

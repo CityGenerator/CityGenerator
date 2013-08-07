@@ -94,7 +94,6 @@ printRacialBreakdown formats details about the races.
 
 sub printRacialBreakdown {
     my ($city) = @_;
-
     my $content = "                    <h3>Racial Breakdown</h3>\n";
     $content .= "                    <ul>\n";
     foreach my $race ( sort { $b->{'population'} <=> $a->{'population'} } @{ $city->{'races'} } ) {

@@ -53,15 +53,14 @@ subtest 'Test CensusData Racial Breakdown' => sub {
     my $city = CityGenerator::create_city( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printRacialBreakdown($city);
-
     is(
         $censusdata, "                    <h3>Racial Breakdown</h3>
                     <ul>
-                        <li>17,367 ogre (93.6%)</li>
-                        <li>594 drow (3.2%)</li>
-                        <li>220 other (1.1%)</li>
-                        <li>186 minotaur (1%)</li>
-                        <li>186 bugbear (1%)</li>
+                        <li>17,367 dwarf (93.6%)</li>
+                        <li>594 halfling (3.2%)</li>
+                        <li>221 other (1.1%)</li>
+                        <li>186 half-elf (1%)</li>
+                        <li>186 human (1%)</li>
                     </ul>
 "
     );
@@ -80,7 +79,7 @@ subtest 'Test CensusData Misc' => sub {
                         <li>7 Districts</li>
                         <li>352 Businesses</li>
                         <li>2,838 Specialists</li>
-                        <li>1,884 Residences</li>
+                        <li>2,025 Residences</li>
                     </ul>
 "
     );
