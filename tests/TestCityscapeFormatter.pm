@@ -23,14 +23,14 @@ subtest 'Test Cityscape walls' => sub {
     my $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
         "Visitors are greeted with a flimsy brick rampart that is 6 meters tall. ".
-        "The city wall protects the core 76% of the city, with 5 towers spread along the 5.14 kilometer wall."
+        "The city wall protects the core 70% of the city, with 5 towers spread along the 4.89 kilometer wall."
     );
 
     $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'walls'=>{'height'=>'90', 'condition'=>'borked', 'material'=>'jello', 'style'=>'shingle'} } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core 89% of the city, with 5 towers spread along the 6.90 kilometer wall."
+"Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core 83% of the city, with 5 towers spread along the 6.60 kilometer wall."
     );
 
     $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100, } );
