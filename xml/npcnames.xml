@@ -33,6 +33,18 @@ Based on a work at https://github.com/morgajel/CityGenerator.
      <race name='lycanthrope' type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-1' education='0'  tolerance='0'  military='-3'>
         <allow>human</allow>
     </race>
+    <race name='other'            type="other"   moral="2"   order="-1"  magic="0"  authority='-1' economy='0'  education='0'  tolerance='2'  military='0'>
+        <allow>human</allow>
+        <allow>halfling</allow>
+        <allow>lizardfolk</allow>
+        <allow>ogre</allow>
+        <allow>troglodyte</allow>
+        <allow>elf</allow>
+        <allow>dwarf</allow>
+        <allow>gnome</allow>
+        <allow>kobold</allow>
+        <allow>goblin</allow>
+    </race>
     <race name='any'   type="any"  >
         <allow>human</allow>
         <allow>halfling</allow>
@@ -42,6 +54,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <allow>elf</allow>
         <allow>dwarf</allow>
         <allow>gnome</allow>
+        <allow>kobold</allow>
+        <allow>goblin</allow>
+
     </race>
 <!--
 #################################################################################
@@ -52,11 +67,175 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 -->
     <race name='mindflayer'   type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  tolerance='-5' military='-5'>    </race>
     <race name='minotaur'      type="monster" moral="2"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' tolerance='-5' military='3'>       </race>
-    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>     </race>
-    <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>    </race>
-    <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >    </race>
-    <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>    </race>
-    <race name='other'            type="other"   moral="2"   order="-1"  magic="0"  authority='-1' economy='0'  education='0'  tolerance='2'  military='0'>    </race>
+    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>
+        <firstname>
+			<root>Bat</root>
+			<root>Bap</root>
+			<root>Bit</root>
+			<root>Bip</root>
+			<root>Bot</root>
+			<root>Car</root>
+			<root>Cor</root>
+			<root>Cak</root>
+			<root>Dat</root>
+			<root>Dit</root>
+			<root>Dot</root>
+			<root>Fax</root>
+			<root>Fat</root>
+			<root>Fot</root>
+			<root>Gat</root>
+			<root>Git</root>
+			<root>Gip</root>
+			<root>Got</root>
+			<root>Jat</root>
+			<root>Jit</root>
+			<root>Jot</root>
+			<root>Jop</root>
+			<root>Lat</root>
+			<root>Lik</root>
+			<root>Lot</root>
+			<root>Nat</root>
+			<root>Niz</root>
+			<root>Nip</root>
+			<root>Not</root>
+			<root>Nop</root>
+			<root>Pat</root>
+			<root>Paz</root>
+			<root>Pot</root>
+			<root>Rat</root>
+			<root>Rap</root>
+			<root>Rit</root>
+			<root>Rot</root>
+			<root>Rop</root>
+			<root>Taz</root>
+			<root>Teb</root>
+			<root>Tean</root>
+			<root>Vab</root>
+			<root>Vaz</root>
+			<root>Vit</root>
+			<root>Vor</root>
+			<root>Wat</root>
+			<root>Wit</root>
+			<root>Wot</root>
+			<root>Yat</root>
+			<root>Yap</root>
+			<root>Yik</root>
+			<root>Yip</root>
+			<root>Yot</root>
+			<root>Yop</root>
+			<root>Zat</root>
+			<root>Zit</root>
+			<root>Zol</root>
+        </firstname>
+     </race>
+    <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>
+        <firstname>
+			<pre>Br</pre>
+			<pre>Dzu</pre>
+			<pre>Gkut</pre>
+			<pre>K</pre>
+			<pre>K</pre>
+			<pre>Kz</pre>
+			<pre>M</pre>
+			<pre>M</pre>
+			<pre>Nar</pre>
+			<pre>Nb</pre>
+			<pre>Rb</pre>
+			<pre>Rug</pre>
+			<pre>Rx</pre>
+			<pre>Tb</pre>
+			<pre>Tg</pre>
+			<pre>Tm</pre>
+			<pre>Tr</pre>
+			<pre>Tud</pre>
+			<pre>Xod</pre>
+			<pre>Xr</pre>
+			<pre>Xt</pre>
+			<pre>Xu</pre>
+			<pre>Z</pre>
+			<root>adr</root>
+			<root>bok</root>
+			<root>eb</root>
+			<root>egd</root>
+			<root>emt</root>
+			<root>erm</root>
+			<root>et</root>
+			<root>exn</root>
+			<root>ezn</root>
+			<root>kasr</root>
+			<root>ods</root>
+			<root>og</root>
+			<root>ok</root>
+			<root>omd</root>
+			<root>omn</root>
+			<root>or</root>
+			<root>ot</root>
+			<root>oten</root>
+			<root>ub</root>
+			<root>uk</root>
+			<root>un</root>
+			<root>unk</root>
+			<root>urm</root>
+			<root>us</root>
+			<root>zar</root>
+        </firstname>
+        <lastname>
+			<pre>Big</pre>
+			<pre>Blade</pre>
+			<pre>Brain</pre>
+			<pre>Cleaver</pre>
+			<pre>Damn</pre>
+			<pre>Dark</pre>
+			<pre>Dread</pre>
+			<pre>Evil</pre>
+			<pre>Foul</pre>
+			<pre>Ghostt</pre>
+			<pre>Giant</pre>
+			<pre>Great</pre>
+			<pre>Great</pre>
+			<pre>Iron</pre>
+			<pre>Laugh</pre>
+			<pre>Metal</pre>
+			<pre>Metal</pre>
+			<pre>Night</pre>
+			<pre>Ogre</pre>
+			<pre>Ooze</pre>
+			<pre>Rant</pre>
+			<pre>Rock</pre>
+			<pre>Worm</pre>
+
+			<root>basher</root>
+			<root>beast</root>
+			<root>bone</root>
+			<root>cutter</root>
+			<root>damn</root>
+			<root>death</root>
+			<root>doom</root>
+			<root>fury</root>
+			<root>gloom</root>
+			<root>hand</root>
+			<root>host</root>
+			<root>howl</root>
+			<root>kill</root>
+			<root>maw</root>
+			<root>mouth</root>
+			<root>murder</root>
+			<root>render</root>
+			<root>rot</root>
+			<root>shadow</root>
+			<root>shredder</root>
+			<root>slay</root>
+			<root>stomach</root>
+			<root>wiser</root>
+        </lastname>
+    </race>
+    <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >
+        <allow>goblin</allow>
+        <allow>orc</allow>
+    </race>
+    <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>
+        <allow>goblin</allow>
+    </race>
 
     <race name='lizardfolk' type="monster" moral="0"   order="0"   magic="0"  authority='-3' economy='-2' education='-3' tolerance='-2' military='2'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->

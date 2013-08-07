@@ -755,8 +755,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="contrarian"        > </trait>
     <trait type="cowed"             > </trait>
     <trait type="deluded"           > </trait>
-    <trait type="to despise Locals" > </trait>
-    <trait type="a drunkard"        > </trait>
+    <trait type="drunken"           > </trait>
     <trait type="easily offended"   > </trait>
     <trait type="efficient"         > </trait>
     <trait type="egotistical"       > </trait>
@@ -784,7 +783,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="idealistic"        > </trait>
     <trait type="impatient"         > </trait>
     <trait type="importunate"       > </trait>
-    <trait type="an imposter"       > </trait>
+    <trait type="imposter"          > </trait>
     <trait type="insecure"          > </trait>
     <trait type="intimidating"      > </trait>
     <trait type="intimidated"       > </trait>
