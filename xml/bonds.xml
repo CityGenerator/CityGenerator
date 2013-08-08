@@ -1,8 +1,500 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <bonds>
+<!-- should use Lingua::EN::Conjugate -->
+
+    <when>
+        <option>recently</option>
+        <option>long long ago</option>
+        <option>in the past</option>
+        <option>years ago</option>
+        <option></option>
+        <option></option>
+    </when>
+    <count>
+        <option>once</option>
+        <option>on one occasion</option>
+        <option>on multiple occasions</option>
+        <option>many times</option>
+    </count>
+    <verb>  <!-- 
+    PERSON1 == "you" or "Bob"
+    PERSON2 == "Bob" or "you"
+    PERSON  == either of you
+    -->
+		<option>PERSON1 accepted PERSON2 despite obvious failings</option>
+		<option>PERSON1 admired PERSON2 secretly</option>
+		<option>PERSON1 advised PERSON2 correctly in the past</option>
+		<option>PERSON1 advised PERSON2 correctly in the past</option>
+		<option>PERSON1 agreed with PERSON2 when it was most needed</option>
+		<option>PERSON1 alerted PERSON2 to impending danger</option>
+		<option>PERSON1 amused PERSON2 in an unusual way</option>
+		<option>PERSON1 annoyed PERSON2 in an unusual way</option>
+		<option>PERSON1 argued with PERSON2 at the worst possible moment</option>
+		<option>PERSON1 accidentally lead to the arrest of PERSON2 in the past</option>
+		<option>PERSON1 attacked PERSON2 over an unpaid bill long ago. PERSON still harbors a grudge</option>
+		<option>PERSON1 PERSON2 and you battled on opposite sides of a conflict in the past</option>
+		<option>PERSON1 PERSON2 and you belonged to the same group at one point</option>
+		<option>PERSON1 PERSON2 and you burned an enemy's house down in the past</option>
+		<option>PERSON1 bet against PERSON2 and lost</option>
+		<option>PERSON1 bet against PERSON2 and won</option>
+		<option>PERSON1 bet against PERSON2 and cheated to win</option>
+		<option>PERSON1 camped together recently</option>
+		<option>PERSON1 challenged each other to a duel to the death and both lost</option>
+		<option>PERSON1 tampered with a jury for PERSON2</option>
+		<option>PERSON1 charged a bear with a chicken wing to defend PERSON2</option>
+		<option>PERSON1 chased a wild boar for you</option>
+		<option>PERSON1 cheated PERSON2 at poker</option>
+		<option>PERSON1 choked PERSON2 in a brawl</option>
+		<option>PERSON1 claim to have given PERSON2 something of value</option>
+		<option>PERSON1 cleaned PERSON2 armor acter losing a bet</option>
+		<option>PERSON1 collected a bounty on PERSON2 in the past</option>
+		<option>PERSON1 commanded PERSON2 in battle</option>
+		<option>PERSON1 competed for a prize with PERSON2</option>
+		<option>PERSON1 complained to PERSON2 superior in the past</option>
+		<option>PERSON1 confessed to a crime PERSON2 committed </option>
+		<option>PERSON1 confused PERSON2 with a bizarre story</option>
+		<option>PERSON1 corrected PERSON2 in front of royalty</option>
+		<option>PERSON1 coughed blood on PERSON2 after a battle</option>
+		<option>PERSON1 counted on PERSON2 when it was most needed</option>
+		<option>PERSON1 covered for PERSON2 to prevent an execution</option>
+		<option>PERSON1 literally crawled over broken glass for PERSON2</option>
+		<option>PERSON1 crossed a raging river to help PERSON2</option>
+		<option>PERSON1 cried openly in front of PERSON2 about a dark secret</option>
+		<option>PERSON1 found a cure for PERSON2</option>
+		<option>PERSON1 danced with the devil to save PERSON2</option>
+		<option>PERSON1 dared PERSON2 to do something stupid- ending in arrest, fines and community service</option>
+		<option>PERSON1 deceived PERSON2 in an appalling way</option>
+		<option>PERSON1 delayed PERSON2, resulting in the death of a loved one</option>
+		<option>PERSON1 delivered crushing news to PERSON2</option>
+		<option>PERSON1 depended on PERSON2 to come through. PERSON2 did</option>
+		<option>PERSON1 depended on PERSON2 to come through. PERSON2 didn't</option>
+		<option>PERSON1 deserted PERSON2 when needed most</option>
+		<option>PERSON1 destroyed a cursed item to save PERSON2</option>
+		<option>PERSON1 disarmed PERSON2 in an embarassing sparring session</option>
+		<option>PERSON1 discovered that PERSON2 has a deep, dark secret</option>
+		<option>PERSON1 discovered that PERSON2 is lying about something critical</option>
+		<option>PERSON1 divided the loot improperly with PERSON2</option>
+		<option>PERSON1 doubted PERSON2 and was proven wrong</option>
+		<option>PERSON1 dragged PERSON2 somewhere dangerous</option>
+		<option>PERSON1 had a prophetic dream about PERSON2</option>
+		<option>PERSON1 dressed up in drag to save PERSON2</option>
+		<option>PERSON1 dropped PERSON2 down a well on accident</option>
+		<option>PERSON1 nearly drown trying to save PERSON2</option>
+		<option>PERSON1 earned PERSON2 an undeserved reputation</option>
+		<option>PERSON1 educated PERSON2 on the birds and the bees</option>
+		<option>PERSON1 embarrassed PERSON2 in front of royalty</option>
+		<option>PERSON1 employed PERSON2 in the past</option>
+		<option>PERSON1 emptied a bottle that belonged to PERSON2</option>
+		<option>PERSON1 encouraged PERSON2 to do something brave, despite the paralysing fear</option>
+		<option>PERSON1 enjoy traveling with PERSON2. Why?</option>
+		<option>PERSON1 entered into an agreement with PERSON2. What was it?</option>
+		<option>PERSON1 entertained PERSON2 when it was most needed</option>
+		<option>PERSON1 escaped with PERSON2 from certain death</option>
+		<option>PERSON1 examined an injury PERSON2 would rather forget</option>
+		<option>PERSON1 thinks of excuses for PERSON2 when they're needed</option>
+		<option>PERSON1 expected better of PERSON2</option>
+		<option>PERSON1 explained things in small words for PERSON2</option>
+		<option>PERSON1 once faced PERSON2 in single combat.  PERSON lost</option>
+		<option>PERSON1 failed in a way that PERSON2 will never forget</option>
+		<option>PERSON1 fenced an item for PERSON2 once</option>
+		<option>PERSON1 fetched help when PERSON2 got stuck</option>
+		<option>PERSON1 fired PERSON2 on a previous job</option>
+		<option>PERSON1 fixed a bet with PERSON2</option>
+		<option>PERSON1 followed PERSON2 into the wrong brothel one time/</option>
+		<option>PERSON1 unknowingly fooled PERSON2 on a daily basis.</option>
+		<option>PERSON1 forced PERSON2 into a bad situation once</option>
+		<option>PERSON1 formed an incorrect option of PERSON2 in the past.</option>
+		<option>PERSON1 found PERSON2 on the verge of death long ago.</option>
+		<option>PERSON1 accidentally framed PERSON2 for murder</option>
+		<option>PERSON1 accidentally framed PERSON2 for theft</option>
+		<option>PERSON1 frightened small children and blamed PERSON2.</option>
+		<option>PERSON1 glued a fork to PERSON2 in a prank gone horribly wrong.</option>
+		<option>PERSON1 guaranteed good behavior from PERSON2 in return for lienency.</option>
+		<option>PERSON1 guarded treasure that PERSON2 unsuccessfully tried to steal.</option>
+		<option>PERSON1 guarded treasure that PERSON2 successfully to stole.</option>
+		<option>PERSON1 guided PERSON2 into danger in the past.</option>
+		<option>PERSON1harassed PERSON2 for amusement.</option>
+		<option>PERSON1 inadvertently harmed someone and PERSON2 took the blame.</option>
+		<option>PERSON1 hated PERSON2 at first sight.</option>
+		<option>PERSON1 swore to haunt PERSON2 if PERSON1 died.</option>
+		<option>PERSON1 healed PERSON2 when it was needed most</option>
+		<option>PERSON1helped PERSON2 when it was needed most</option>
+		<option>PERSON1 hooked PERSON2 with a fish hook on accident a long time ago</option>
+		<option>PERSON1 hoped to never see PERSON2 again.</option>
+		<option>PERSON1 hovered over every decision PERSON2 made</option>
+		<option>PERSON1 hugged PERSON2 in appropriately once.</option>
+		<option>PERSON1 hums to drive PERSON2 crazy.</option>
+		<option>PERSON1 likes to hunt with PERSON2</option>
+		<option>PERSON1 often felt hurried by PERSON2</option>
+		<option>PERSON1 identified PERSON2 as the person responsible for an unsolved crime.</option>
+		<option>PERSON1 ignored PERSON2 for years.</option>
+		<option>PERSON1 imagined PERSON2 without clothing on accident once</option>
+		<option>PERSON1 impressed PERSON2 with a quick wit.</option>
+		<option>PERSON1 included PERSON2 so PERSON2 wouldn't feel bad.</option>
+		<option>PERSON1 influenced PERSON2 in a good way</option>
+		<option>PERSON1 influenced PERSON2 in a bad way</option>
+		<option>PERSON1 informed PERSON2 of an approaching assassin</option>
+		<option>PERSON1 drugged PERSON2 for kicks</option>
+		<option>PERSON1 injured PERSON2 intentionally</option>
+		<option>PERSON1 injured PERSON2 unintentionally</option>
+		<option>PERSON1 instructed PERSON2 on how to play the spoons</option>
+		<option>PERSON1 intended to turn PERSON2 into the authorities.</option>
+		<option>PERSON1 interrupted PERSON2 one too many times</option>
+		<option>PERSON1 introduced PERSON2 to a bad influence</option>
+		<option>PERSON1 invented a wonderous item which PERSON2 destroyed.</option>
+		<option>PERSON1 invited PERSON2 to the wrong party</option>
+		<option>PERSON1 irritated PERSON2 less than PERSON2 would like to admit.</option>
+		<option>PERSON1 judged PERSON2 too quickly.</option>
+		<option>PERSON1 kicked PERSON2 in the groin</option>
+		<option>PERSON1 nearly killed PERSON2 years ago, and PERSON2 knows it.</option>
+		<option>PERSON1 knocked PERSON2 out.</option>
+		<option>PERSON1 learned not to trust PERSON2 so easily.</option>
+		<option>PERSON1 lied to PERSON2 about something and got caught</option>
+		<option>PERSON1 liked PERSON2 a lot more before "the incident"</option>
+		<option>PERSON1 lock PERSON2 in the bottom of a privvy.</option>
+		<option>PERSON1 managed to irritate PERSON2 one time too many</option>
+		<option>PERSON1 murdered someone to protect PERSON2</option>
+		<option>PERSON1 murdered someone to frame PERSON2</option>
+ 
+nail
+name
+need
+nest
+nod
+note
+notice
+number
+ 
+obey
+object
+observe
+obtain
+occur
+offend
+offer
+open
+order
+overflow
+owe
+own
+ 
+pack
+paddle
+paint
+park
+part
+pass
+paste
+pat
+pause
+peck
+pedal
+peel
+peep
+perform
+permit
+phone
+pick
+pinch
+pine
+place
+plan
+plant
+play
+please
+plug
+point
+poke
+polish
+pop
+possess
+post
+pour
+practise
+pray
+preach
+precede
+prefer
+prepare
+present
+preserve
+press
+pretend
+prevent
+prick
+print
+produce
+program
+promise
+protect
+provide
+pull
+pump
+punch
+puncture
+punish
+push
+ 
+question
+queue
+ 
+race
+radiate
+rain
+raise
+reach
+realise
+receive
+recognise
+record
+reduce
+reflect
+refuse
+regret
+reign
+reject
+rejoice
+relax
+release
+rely
+remain
+remember
+remind
+remove
+repair
+repeat
+replace
+reply
+report
+reproduce
+request
+rescue
+retire
+return
+rhyme
+rinse
+risk
+rob
+rock
+roll
+rot
+rub
+ruin
+rule
+rush
+ 
+sack
+sail
+satisfy
+save
+saw
+scare
+scatter
+scold
+scorch
+scrape
+scratch
+scream
+screw
+scribble
+scrub
+seal
+search
+separate
+serve
+settle
+shade
+share
+shave
+shelter
+shiver
+shock
+shop
+shrug
+sigh
+sign
+signal
+sin
+sip
+ski
+skip
+slap
+slip
+slow
+smash
+smell
+smile
+smoke
+snatch
+sneeze
+sniff
+snore
+snow
+soak
+soothe
+sound
+spare
+spark
+sparkle
+spell
+spill
+spoil
+spot
+spray
+sprout
+squash
+squeak
+squeal
+squeeze
+stain
+stamp
+stare
+start
+stay
+steer
+step
+stir
+stitch
+stop
+store
+strap
+strengthen
+stretch
+strip
+stroke
+stuff
+subtract
+succeed
+suck
+suffer
+suggest
+suit
+supply
+support
+suppose
+surprise
+surround
+suspect
+suspend
+switch
+ 
+talk
+tame
+tap
+taste
+tease
+telephone
+tempt
+terrify
+test
+thank
+thaw
+tick
+tickle
+tie
+time
+tip
+tire
+touch
+tour
+tow
+trace
+trade
+train
+transport
+trap
+travel
+treat
+tremble
+trick
+trip
+trot
+trouble
+trust
+try
+tug
+tumble
+turn
+twist
+type
+ 
+undress
+unfasten
+unite
+unlock
+unpack
+untidy
+use
+ 
+vanish
+visit
+ 
+wail
+wait
+walk
+wander
+want
+warm
+warn
+wash
+waste
+watch
+water
+wave
+weigh
+welcome
+whine
+whip
+whirl
+whisper
+whistle
+wink
+wipe
+wish
+wobble
+wonder
+work
+worry
+wrap
+wreck
+wrestle
+wriggle
+ 
+x-ray
+ 
+yawn
+yell
+ 
+zip
+zoom
+    </verb>
+
+
+
+    <reason>
+        <option>Figure out why.</option>
+        <option></option>
+        <option></option>
+        <option></option>
+        <option></option>
+        <option></option>
+    </reason>
+
 <!-- provided by squeakytoy for later use
 You think ___ is not the sharpest tool in the shed and working on enlighthing them.
 ___ thinks you are not the sharpest tool in the shed and is working on enlighthing you.
+
+___ is woefully misinformed about the world and you have decided to teach them all you know.
+___ is thinks you are woefully misinformed about the world and they have decided to teach them you all they know.
+
+You think ___ is misguided and you are working on converting them  to your faith and views. What faith or views could that be?
+___ thinks you are misguided and they are working on converting you to their faith or views. Ask them what faith or views they are.
+
+You think that ___ is a liability and not an asset to the group. How come?
+___ thinks you are a liability and not an asset to the group. Ask them why.
+
+You think ___ is soft but you will make them hard as you. Why do you think they are soft?
+___ thinks you are soft and they want to make them hard as they. Ask them why they think you are soft.
 
 ___ does not trust you and for good reason. Ask them for the reason.
 You do not trust ___ and for good reason. What was the reason?
@@ -10,8 +502,6 @@ You do not trust ___ and for good reason. What was the reason?
 You have stolen something from ___. Ask them was it was.
 ___ has stolen something from you. What was it?
 
-___ is woefully misinformed about the world and you have decided to teach them all you know.
-___ is thinks you are woefully misinformed about the world and they have decided to teach them you all they know.
 
 ___ belives you will play an important role in the future. Ask them what they think you will do?
 You believe that ___ will play an important role in the future. What will they do?
@@ -22,8 +512,6 @@ You betrayed ___ once before and they still have unresolved emotions with you. W
 ___ has failed you once before and you still have unresolved emotions with them. Ask them what happened.
 You failed ___ once before and they still have unresolved emotions with you. What happened?
 
-You think ___ is misguided and you are working on converting them  to your faith and views. What faith or views could that be?
-___ thinks you are misguided and they are working on converting you to their faith or views. Ask them what faith or views they are.
 
 You know ___'s secret and you are watching them. What is that secret?
 ___ knows your secret and is watching you. Ask them what secret it is.
@@ -52,14 +540,10 @@ ___ came to you for advice once. What advice was that?
 You knows incriminating details about ___. What details are these?
 ___ knows incriminating details about you. Ask them what they know.
 
-You think that ___ is a liability and not an asset to the group. How come?
-___ thinks you are a liability and not an asset to the group. Ask them why.
 
 You met ___ in another adventure before. Ask them when this was.
 ___ has met you in another adventure before. When was this?
 
-You think ___ is soft but you will make them hard as you. Why do you think they are soft?
-___ thinks you are soft and they want to make them hard as they. Ask them why they think you are soft.
 
 You lost control one time, and almost killed ___. Ask them how did they stopped you.
 ___ lost control one time and almost killed you. How did you stop them?
