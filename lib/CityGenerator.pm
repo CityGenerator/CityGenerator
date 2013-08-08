@@ -38,6 +38,7 @@ use NPCGenerator;
 use RegionGenerator;
 use GovtGenerator;
 use TavernGenerator;
+use EstablishmentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -294,6 +295,7 @@ sub flesh_out_city {
     generate_specialists($city);
     generate_businesses($city);
     generate_taverns($city);
+    generate_establishments($city);
     generate_districts($city);
 
 
@@ -954,6 +956,7 @@ sub generate_businesses {
     return $city;
 }
 
+
 ###############################################################################
 
 =head2 generate_taverns
@@ -981,6 +984,7 @@ sub generate_taverns {
     }
     return $city;
 }
+
 ###############################################################################
 
 =head2 generate_districts
@@ -1168,6 +1172,34 @@ sub generate_housing {
     return $city;
 }
 
+
+###############################################################################
+
+=head2 generate_establishments
+
+Generate a list of establishments based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_establishments {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
+
+
+    if ( defined $city->{'businesses'} ) {
+        my $establishmentcount = 10;
+        for ( my $establishmentID = 0 ; $establishmentID < $establishmentcount ; $establishmentID++ ) {
+            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment()
+                if ( !defined $city->{'establishments'}->[$establishmentID] );
+        }
+    }
+    return $city;
+}
 
 1;
 
