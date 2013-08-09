@@ -93,13 +93,40 @@ sub create_establishment {
             = roll_from_array( $establishment->{'stats'}->{$stat}, $establishment_data->{$stat}->{'option'} )->{'content'}
             if ( !defined $establishment->{ $stat . "_description" } );
     }
+    select_establishment_type($establishment);
 
     generate_establishment_name($establishment);
-    generate_owner($establishment);
+    generate_manager($establishment);
 
     return $establishment;
 }
 
+###############################################################################
+
+=head2 select_establishment_type()
+
+    select a type for the establishment.
+
+=cut
+
+###############################################################################
+sub select_establishment_type {
+    my ($establishment) = @_;
+    set_seed( $establishment->{'seed'} );
+    $establishment->{'type'}= rand_from_array([keys %{$establishment_data->{'establishment'}->{'option'}}] )   if (!defined $establishment->{'type'});
+
+    my $type=$establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+
+    $establishment->{'manager_title'}= rand_from_array($type->{'manager'}->{'option'})->{'content'} if (!defined $establishment->{'manager_title'});
+
+    $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'} and defined $type->{'trailer'}->{'option'});
+
+
+    $establishment->{'manager_class'}= rand_from_array($type->{'npc_class'}->{'option'})->{'content'} if (!defined $establishment->{'manager_class'} and defined $type->{'npc_class'}->{'option'});
+
+
+    return $establishment;
+}
 
 ###############################################################################
 
@@ -123,20 +150,23 @@ sub generate_establishment_name {
 
 ###############################################################################
 
-=head2 generate_owner()
+=head2 generate_manager()
  
-generate the owner for the establishment
+generate the manager for the establishment
  
 =cut
 
 ###############################################################################
 
-sub generate_owner {
+sub generate_manager {
     my ($establishment) = @_;
+    if ( !defined $establishment->{'manager'} ) {
 
-    if ( !defined $establishment->{'owner'} ) {
-
-        $establishment->{'owner'} = NPCGenerator::create_npc();
+        $establishment->{'manager'} = NPCGenerator::create_npc(
+                                        {   'profession'=>$establishment->{'manager_title'},
+                                            'business'=>$establishment->{'type'},
+                                            'class'=>$establishment->{'manager_class'}
+                                        });
 
         #TODO flesh out npc here, need to add to NPCGenerator.
     }
