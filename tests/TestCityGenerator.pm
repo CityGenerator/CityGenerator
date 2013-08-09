@@ -17,7 +17,6 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-#TODO have a test that does an is_deeply on an entire structure.
 #TODO any test where I'm setting $city->{} values should me moved to create_city()
 #TODO consider die statements if requirements are no defined; die 'foo requires poptotal' if (!defined poptotal);
 subtest 'test create_city' => sub {
@@ -364,9 +363,7 @@ subtest 'test generate_imprisonment_rate' => sub {
     done_testing();
 };
 
-#-------------------------------------------------------------------
-#-----------------------Refactor after this ------------------------
-#-------------------------------------------------------------------
+
 subtest 'test generate_resources' => sub {
     my $city;
     $city = CityGenerator::create_city( { 'seed' => '1' } );
@@ -405,9 +402,9 @@ subtest 'test generate_resources' => sub {
     is( $city->{'resourcecount'},  4 );
     is( @{ $city->{'resources'} }, 0, 'intentional mismatch' );
 
-
     done_testing();
 };
+
 
 subtest 'test generate_city_crest' => sub {
     my $city;
@@ -417,7 +414,6 @@ subtest 'test generate_city_crest' => sub {
 
     done_testing();
 };
-
 
 
 subtest 'test generate_shape' => sub {
@@ -432,6 +428,7 @@ subtest 'test generate_shape' => sub {
 
     done_testing();
 };
+
 
 subtest 'test generate_streets' => sub {
     my $city;
@@ -448,15 +445,19 @@ subtest 'test generate_streets' => sub {
     is( $city->{'streets'}->{'mainroads'}, 0 );
     is( $city->{'streets'}->{'roads'},     1 );
 
+    
     $city = CityGenerator::create_city(
-        { 'seed' => 1, 'streets' => { 'content' => 'foo', 'mainroads' => 5, 'roads' => 5 } } );
+        { 'seed' => 1, 'streets' => {  'mainroads' => 5, 'roads' => 5 } } );
     CityGenerator::generate_streets($city);
-    is( $city->{'streets'}->{'content'},   'foo' );
     is( $city->{'streets'}->{'mainroads'}, 5 );
     is( $city->{'streets'}->{'roads'},     5 );
 
     done_testing();
 };
+
+#-------------------------------------------------------------------
+#-----------------------Refactor after this ------------------------
+#-------------------------------------------------------------------
 
 subtest 'test set_stat_descriptions' => sub {
     my $city;
@@ -693,25 +694,23 @@ subtest 'test generate_travelers' => sub {
     CityGenerator::generate_travelers($city);
     is( $city->{'traveler_count'},           10 );
     is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-    isnt( $city->{'travelers'}->[0]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[1]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[2]->{'race'}, undef );
+    foreach my $traveler ( @{ $city->{'travelers'} }) {
+        isnt( $traveler->{'race'}, undef );
+    }
 
     $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => 0 } } );
     CityGenerator::generate_travelers($city);
     is( $city->{'traveler_count'},           5 );
     is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-    isnt( $city->{'travelers'}->[0]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[1]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[2]->{'race'}, undef );
+    foreach my $traveler ( @{ $city->{'travelers'} }) {
+        isnt( $traveler->{'race'}, undef );
+    }
 
     $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 2 } );
     CityGenerator::generate_travelers($city);
     is( $city->{'traveler_count'},           2 );
     is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-    isnt( $city->{'travelers'}->[0]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[1]->{'race'}, undef );
-    is( $city->{'travelers'}->[2]->{'race'}, undef );
+    is( $city->{'travelers'}->[2], undef, 'ensure 3rd traveler is undefined' );
 
     $city = CityGenerator::create_city(
         { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 2, 'stats' => { 'tolerance' => 5 } } );
@@ -726,18 +725,18 @@ subtest 'test generate_travelers' => sub {
         ]
     );
 
+    my $races=[ 'human', 'half-elf', 'elf', 'halfling', 'half-orc', 'half-dwarf', 'gnome', 'dwarf' ];
     $city = CityGenerator::create_city(
         {
             'seed'            => 1,
             'size_modifier'   => 12,
             'traveler_count'  => 2,
             'stats'           => { 'tolerance' => -5 },
-            'available_races' => [ 'human', 'half-elf', 'elf', 'halfling', 'half-orc', 'half-dwarf', 'gnome', 'dwarf' ]
+            'available_races' =>$races,
         }
     );
     CityGenerator::generate_travelers($city);
-    is_deeply( $city->{'available_traveler_races'},
-        [ 'human', 'half-elf', 'elf', 'halfling', 'half-orc', 'half-dwarf', 'gnome', 'dwarf' ] );
+    is_deeply( $city->{'available_traveler_races'}, $races );
 
 
     $city = CityGenerator::create_city(
@@ -751,13 +750,9 @@ subtest 'test generate_travelers' => sub {
         { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 6, 'available_traveler_races' => ['human'] } );
     CityGenerator::generate_travelers($city);
     is( $city->{'traveler_count'},           6 );
-    is( $city->{'travelers'}->[0]->{'race'}, 'human' );
-    is( $city->{'travelers'}->[1]->{'race'}, 'human' );
-    is( $city->{'travelers'}->[2]->{'race'}, 'human' );
-    is( $city->{'travelers'}->[3]->{'race'}, 'human' );
-    is( $city->{'travelers'}->[4]->{'race'}, 'human' );
-    is( $city->{'travelers'}->[5]->{'race'}, 'human' );
-
+    foreach my $traveler (@{$city->{'travelers'}}){
+        is( $traveler->{'race'}, 'human' );
+    }
 
     #TODO test if they're a specialist, once I add specialists
     done_testing();
@@ -776,46 +771,28 @@ subtest 'test generate_crime' => sub {
     is( $city->{'crime_roll'},        99 );
     is( $city->{'crime_description'}, 'unheard of' );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = 0;
-    $city->{'stats'}->{'authority'} = 0;
-    $city->{'moral'}                = 50;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>0}, 'moral'=>50} );
     CityGenerator::generate_crime($city);
     is( $city->{'crime_roll'},        4 );
     is( $city->{'crime_description'}, 'rampant' );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = 0;
-    $city->{'stats'}->{'authority'} = 0;
-    $city->{'moral'}                = 100;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>0}, 'moral'=>100 } );
     CityGenerator::generate_crime($city);
     is( $city->{'crime_roll'}, 9 );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = 5;
-    $city->{'stats'}->{'authority'} = 0;
-    $city->{'moral'}                = 50;
+    $city = CityGenerator::create_city( { 'seed' => 1,'stats'=>{'education'=>5, 'authority'=>0}, 'moral'=>50 } );
     CityGenerator::generate_crime($city);
-    is( $city->{'crime_roll'}, -1 );
+    is( $city->{'crime_roll'}, 1 );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = 0;
-    $city->{'stats'}->{'authority'} = 5;
-    $city->{'moral'}                = 50;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>5}, 'moral'=>50} );
     CityGenerator::generate_crime($city);
     is( $city->{'crime_roll'}, 9 );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = 5;
-    $city->{'stats'}->{'authority'} = -5;
-    $city->{'moral'}                = 0;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>5, 'authority'=>-5}, 'moral'=>0} );
     CityGenerator::generate_crime($city);
-    is( $city->{'crime_roll'}, -11 );
+    is( $city->{'crime_roll'}, 1 );
 
-    $city = CityGenerator::create_city( { 'seed' => 1, } );
-    $city->{'stats'}->{'education'} = -5;
-    $city->{'stats'}->{'authority'} = 5;
-    $city->{'moral'}                = 100;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>-5, 'authority'=>5}, 'moral'=>100 } );
     CityGenerator::generate_crime($city);
     is( $city->{'crime_roll'}, 19 );
 

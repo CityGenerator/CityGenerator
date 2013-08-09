@@ -656,13 +656,13 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </trial>
 </laws>
 
-<crime>
-    <option min="1"   max="10">rampant</option>
+<crime> <!-- fixme this is backwards!!! -->
+    <option           max="10">rampant</option>
     <option min="11"  max="30">common</option>
     <option min="31"  max="50">occasional</option>
     <option min="51"  max="70">unusual</option>
     <option min="71"  max="90">rare</option>
-    <option min="91" max="100">unheard of</option>
+    <option min="91"          >unheard of</option>
 </crime>
 
 

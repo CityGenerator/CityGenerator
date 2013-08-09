@@ -172,6 +172,33 @@ sub generate_base_stats {
     return $city;
 } ## end sub generate_base_stats
 
+###############################################################################
+
+=head2 set_stat_descriptions
+
+select the stat descriptions for the 6 major stats.
+
+=cut
+
+###############################################################################
+sub set_stat_descriptions {
+    #TODO merge this with base_stats like the other cool kids do.
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 23 );
+
+    foreach my $stat ( sort keys %{ $city->{'stats'} } ) {
+        $city->{'stats'}->{$stat} = 0 if ( !defined $city->{'stats'}->{$stat} );
+        #FIXME adjectives should be an ordered array, not a random array, like govt does.
+        my $statoption
+            = roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{ $stat . "_description" }->{'option'} );
+        $city->{ $stat . "_description" } = rand_from_array( $statoption->{'option'} )->{'content'}
+            if ( !defined $city->{ $stat . "_description" } );
+    }
+
+    return $city;
+}
+
+
 
 ###############################################################################
 
@@ -782,29 +809,7 @@ sub set_laws {
     }
     return $city;
 } ## end sub set_laws
-###############################################################################
 
-=head2 set_stat_descriptions
-
-select the stat descriptions for the 6 major stats.
-
-=cut
-
-###############################################################################
-sub set_stat_descriptions {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} + 23 );
-
-    foreach my $stat ( sort keys %{ $city->{'stats'} } ) {
-        $city->{'stats'}->{$stat} = 0 if ( !defined $city->{'stats'}->{$stat} );
-        my $statoption
-            = roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{ $stat . "_description" }->{'option'} );
-        $city->{ $stat . "_description" } = rand_from_array( $statoption->{'option'} )->{'content'}
-            if ( !defined $city->{ $stat . "_description" } );
-    }
-
-    return $city;
-}
 
 ###############################################################################
 
@@ -1074,7 +1079,7 @@ sub generate_crime {
     my $moralmod = int( ( $city->{'moral'} - 50 ) / 10 );
 
     $city->{'crime_roll'}
-        = int( &d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod )
+        = min(100, max(1,int( &d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod )))
         if ( !defined $city->{'crime_roll'} );
     $city->{'crime_description'}
         = roll_from_array( $city->{'crime_roll'}, $xml_data->{'crime'}->{'option'} )->{'content'}
