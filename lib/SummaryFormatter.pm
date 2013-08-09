@@ -43,7 +43,7 @@ sub printSummary {
     my ($city) = @_;
     my $content = "";
     $content
-        .= "$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'description'}.";
+        .= "$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'type'} population.";
 
     return $content;
 }

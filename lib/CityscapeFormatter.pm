@@ -41,6 +41,7 @@ printCityscape strips out important info from a City object and returns formatte
 
 ###############################################################################
 sub printCityscape {
+#FIXME get rid of this and use what other formatters are doing
     my ($city) = @_;
     my $content;
     $content .= " " . printWalls($city);
@@ -75,25 +76,6 @@ sub printWalls {
             . $city->{'walls'}->{'height'}
             . " meters tall. The city wall protects the core $city->{'protected_percent'}% of the city, with $city->{'watchtowers'}->{'count'} towers spread along the $city->{'walls'}->{'length'} kilometer wall.";
     }
-
-    return $content;
-}
-###############################################################################
-
-=head2 printBuildings()
-
-formats details about buildings around the city.
-
-=cut
-
-###############################################################################
-
-sub printBuildings {
-    my ($city) = @_;
-    my $content = "";
-    $content
-        .= "There are $city->{'business_total'} businesses in $city->{'name'} and $city->{'housing'}->{'total'} residences spread out across the city. \n";
-
 
     return $content;
 }
