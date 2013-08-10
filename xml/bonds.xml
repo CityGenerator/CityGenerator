@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <bonds>
 <!-- should use Lingua::EN::Conjugate -->
-
     <when>
         <option>recently</option>
         <option>long long ago</option>
         <option>in the past</option>
         <option>years ago</option>
-        <option></option>
-        <option></option>
+        <option>at one time</option>
+        <option>on one occasion</option>
     </when>
     <count>
-        <option>once</option>
-        <option>on one occasion</option>
-        <option>on multiple occasions</option>
-        <option>many times</option>
     </count>
-    <verb>  <!-- 
-    PERSON1 == "you" or "Bob"
-    PERSON2 == "Bob" or "you"
-    PERSON  == either of you
+    <!-- replacement tokens:
+        PERSON1 == "you" or "Bob"
+        PERSON2 == "Bob" or "you"
+        PERSON  == either of you
+        OTHER == "Bob" only
+    When, template. reason.
+    50% chance of when, 50% chance of reason.
+
     -->
+    <template>
 		<option>PERSON1 accepted PERSON2 despite obvious failings</option>
 		<option>PERSON1 admired PERSON2 secretly</option>
 		<option>PERSON1 advised PERSON2 correctly in the past</option>
@@ -32,9 +32,9 @@
 		<option>PERSON1 argued with PERSON2 at the worst possible moment</option>
 		<option>PERSON1 accidentally lead to the arrest of PERSON2 in the past</option>
 		<option>PERSON1 attacked PERSON2 over an unpaid bill long ago. PERSON still harbors a grudge</option>
-		<option>PERSON1 PERSON2 and you battled on opposite sides of a conflict in the past</option>
-		<option>PERSON1 PERSON2 and you belonged to the same group at one point</option>
-		<option>PERSON1 PERSON2 and you burned an enemy's house down in the past</option>
+		<option>OTHER and you battled on opposite sides of a conflict in the past</option>
+		<option>OTHER and you belonged to the same group at one point</option>
+		<option>OTHER and you burned an enemy's house down in the past</option>
 		<option>PERSON1 bet against PERSON2 and lost</option>
 		<option>PERSON1 bet against PERSON2 and won</option>
 		<option>PERSON1 bet against PERSON2 and cheated to win</option>
@@ -42,7 +42,7 @@
 		<option>PERSON1 challenged each other to a duel to the death and both lost</option>
 		<option>PERSON1 tampered with a jury for PERSON2</option>
 		<option>PERSON1 charged a bear with a chicken wing to defend PERSON2</option>
-		<option>PERSON1 chased a wild boar for you</option>
+		<option>PERSON1 chased a wild boar for PERSON2</option>
 		<option>PERSON1 cheated PERSON2 at poker</option>
 		<option>PERSON1 choked PERSON2 in a brawl</option>
 		<option>PERSON1 claim to have given PERSON2 something of value</option>
@@ -113,12 +113,12 @@
 		<option>PERSON1 guarded treasure that PERSON2 unsuccessfully tried to steal.</option>
 		<option>PERSON1 guarded treasure that PERSON2 successfully to stole.</option>
 		<option>PERSON1 guided PERSON2 into danger in the past.</option>
-		<option>PERSON1harassed PERSON2 for amusement.</option>
+		<option>PERSON1 harassed PERSON2 for amusement.</option>
 		<option>PERSON1 inadvertently harmed someone and PERSON2 took the blame.</option>
 		<option>PERSON1 hated PERSON2 at first sight.</option>
 		<option>PERSON1 swore to haunt PERSON2 if PERSON1 died.</option>
 		<option>PERSON1 healed PERSON2 when it was needed most</option>
-		<option>PERSON1helped PERSON2 when it was needed most</option>
+		<option>PERSON1 helped PERSON2 when it was needed most</option>
 		<option>PERSON1 hooked PERSON2 with a fish hook on accident a long time ago</option>
 		<option>PERSON1 hoped to never see PERSON2 again.</option>
 		<option>PERSON1 hovered over every decision PERSON2 made</option>
@@ -467,17 +467,83 @@ yell
  
 zip
 zoom
-    </verb>
+    </template>
 
 
 
     <reason>
-        <option>Figure out why.</option>
-        <option></option>
-        <option></option>
-        <option></option>
-        <option></option>
-        <option></option>
+Ask them for the reason.
+Ask them how.
+Ask them how did they stopped you.
+Ask them in what situation that this was.
+Ask them was it was.
+Ask them what advice that was.
+Ask them what faith or views they are.
+Ask them what happened.
+Ask them what it was and why they did it.
+Ask them what rumours they were.
+Ask them what secret it is.
+Ask them what the plan is.
+Ask them what they know.
+Ask them what they think you will do?
+Ask them when this was.
+Ask them when this was and what mistake was it?
+Ask them where this was.
+Ask them who it was and what happened?
+Ask them who the victim was and what you did.
+Ask them why.
+Ask them why and what happened?
+Ask them why they think you are soft.
+In what situation was that?
+When was this?
+When was this and what mistake was ir?
+Where was this?
+        <why>
+            <option>Figure out why.</option>
+            <option>Why?</option>
+            <option>Why and what happened?</option>
+        </why>
+        <who>
+            <option>Who is the real victim?</option>
+            <option>Who was it and what happened?</option>
+        </who>
+        <where>
+            <option></option>
+            <option></option>
+        </where>
+        <what>
+			<option>What were the details?</option>
+			<option>What lead to this?</option>
+			<option>What happened?</option>
+			<option>What is missing?</option>
+			<option>What was the reason?</option>
+			<option>What will they do?</option>
+        </what>
+        <when>
+            <option></option>
+            <option></option>
+        </when>
+        <how>
+			<option>How?</option>
+			<option>How come?</option>
+			<option>How did you stop them?</option>
+        </how>
+        <application>
+            <option></option>
+            <option></option>
+        </application>
+        <analysis>
+            <option></option>
+            <option></option>
+        </analysis>
+        <synthesis> 
+            <option></option>
+            <option></option>
+        </synthesis> 
+        <evaluation>
+            <option></option>
+            <option></option>
+        </evaluation>
     </reason>
 
 <!-- provided by squeakytoy for later use
@@ -583,3 +649,4 @@ ___ helped you at a critical point in your quest for revenge. Ask them how.
 -->
 
 </bonds>
+
