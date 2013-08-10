@@ -138,7 +138,7 @@ sub printCrime {
 
 =head2 printMilitary()
 
-printMilitary does nothing currently
+printMilitary shows details of current military status.
 
 =cut
 
@@ -146,9 +146,34 @@ printMilitary does nothing currently
 sub printMilitary {
     my ($city)  = @_;
     my $content = "";
-    my $govt    = $city->{'govt'};
+
+    my $walls="lack of defensible wall";
+    if   (defined $city->{'walls'}->{'condition'} ){
+        my $walls=$city->{'walls'}->{'condition'}." ".$city->{'walls'}->{'condition'} ;
+    }
+
+    my $tactic=define_tactics($city);
+
+    $content.="$city->{'name'} has ".A($city->{'military_description'})." attitude towards the military. \n";
+    $content.="Their standing army of $city->{'military'}->{'active_troops'} citizens ($city->{'military'}->{'active_percent'}%) is at the ready, with a reserve force of $city->{'military'}->{'reserve_troops'} ($city->{'military'}->{'reserve_percent'}%). \n";
+    $content.="Of the active duty military, $city->{'military'}->{'para_troops'} ($city->{'military'}->{'para_percent'}%) are special forces. \n";
+    $content.="Due to their $city->{'military_description'} attitude and $walls, $city->{'name'} is $city->{'military'}->{'fortification'} fortified. \n"; 
+    $content.="$city->{'name'} fighters are $city->{'military'}->{'weapon reputation'} for their use of $city->{'military'}->{'favored weapon'} in battle. \n";
+    $content.="They are $city->{'military'}->{'reputation'} for their $city->{'military'}->{'favored tactic'} and are considered $city->{'military'}->{'preparation'} skilled in battle. \n";
+
     return $content;
 }
+
+
+sub define_tactics{
+    my ($city)  = @_;
+    if (defined $city->{'tactics'}->{'content'}){
+        return " $city->{'military'}->{'reputation'} for their $city->{'military'}->{'favored tactic'} and are";
+    }else{
+        return "";
+    }
+}
+
 
 1;
 

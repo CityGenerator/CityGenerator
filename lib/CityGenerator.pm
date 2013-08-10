@@ -37,6 +37,7 @@ use Math::Complex ':pi';
 use NPCGenerator;
 use RegionGenerator;
 use GovtGenerator;
+use MilitaryGenerator;
 use TavernGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -183,6 +184,7 @@ select the stat descriptions for the 6 major stats.
 ###############################################################################
 sub set_stat_descriptions {
     #TODO merge this with base_stats like the other cool kids do.
+    #This will require refactoring base_stats to use 1-100 rather that -5 - 5
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 23 );
 
@@ -328,8 +330,9 @@ sub flesh_out_city {
     generate_crime($city);
     set_dominance($city);
 
-    $city->{'govt'}      = GovtGenerator::create_govt( { 'seed' => $city->{'seed'} } );
-    $city->{'climate'}   = ClimateGenerator::create_climate( { 'seed' => $city->{'seed'} } );
+    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
+    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'},  } );
+    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
     $city->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $city->{'seed'} } );
 
