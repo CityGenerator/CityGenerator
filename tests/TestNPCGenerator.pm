@@ -141,9 +141,9 @@ subtest 'test create_npc' => sub {
         my $npc;
 
         $npc = NPCGenerator::create_npc( { 'seed' => 1 } );
-        is( $npc->{'primary_attitude'},   'Fear',        "emotional state" );
-        is( $npc->{'secondary_attitude'}, 'Nervousness', "emotional state" );
-        is( $npc->{'ternary_attitude'},   'Uneasiness',  "emotional state" );
+        foreach my $value (qw( primary_attitude secondary_attitude ternary_attitude)){
+            isnt($npc->{$value},undef, "$value 'emotional state");
+        }
 
         $npc = NPCGenerator::create_npc(
             {
@@ -242,8 +242,9 @@ subtest 'test NPC motivations' => sub {
 
     $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'finding a missing' } );
     is( $npc->{'motivation'},             'finding a missing', );
-    is( $npc->{'motivation_detail'},      'parent', );
-    is( $npc->{'motivation_description'}, 'finding a missing parent', );
+    foreach my $value (qw( motivation_detail  motivation_description)){
+        isnt($npc->{$value},undef, "$value 'ensure value exists");
+    }
 
     done_testing();
 
