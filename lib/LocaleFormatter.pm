@@ -139,42 +139,37 @@ sub describe_establishment {
     
     my ($establishment) = @_;
 
-    print Dumper $establishment;
+    #print Dumper $establishment->{'manager'}->{'name'};
 
     my $content = "<li>";
-    $content 
-    .= "<b>The $establishment->{'name'}</b> $establishment->{'type'} that $establishment->{'popularity_description'} "
-    . " $establishment->{'smell'} ";
+    $content .= "<b>The $establishment->{'name'} </b> "
+    . " is a $establishment->{'size_description'} $establishment->{'type'} "
+    . " run by a $establishment->{'manager'}->{'behavior'} $establishment->{'manager'}->{'race'} "  
+#    . " named $establishment->{'manager'}->{'name'} "
+    . " that $establishment->{'popularity_description'} ";
+    
+#    . " $establishment->{'reputation_description'} "
+#    . " $establishment->{'manager'}->{'race'} "
+#    . " and is run by a $establishment->{'manager'}->{'sex'} "
+#    . " $establishment->{'manager'}->{'race'} "
+#    . "aaa $establishment->{'atmosphere'} aaa"
+#    . " $establishment->{'bartender'}->{'behavior'} ";
+#    
 
-    #. "$establishment->{'size_description'}  $establishment->{'reputation_description'} \n"
-    #. " and is run by a $establishment->{'manager'}->{'sex'} A( $establishment->{'manager'}->{'race'} ) "
-    #. "named $establishment->{'manager'}->{'name'} ";
-    
-    
-#use Lingua::EN::Inflect qw( A PL_N );
-#
-#$content .= "Laws are enforced by " . A( $city->{'laws'}->{'enforcer'} ) . ", $city->{'laws'}->{'enforcement'}. \n";
-#
-#$content .= "The imprisonment rate is $city->{'imprisonment_rate'}->{'percent'}% of the population ($city->{'imprisonment_rate'}->{'population'} "
-#. PL_N( "adult", $city->{'imprisonment_rate'}->{'population'} ) . "). \n";
-    
-#            
-#    $establishment->{'manager'}->{'behavior'}
-    
-# is run by $establishment->{'manager'}        
-#        . A( $establishment->{'size_description'} )
-#        . " establishment that $establishment->{'popularity_description'}. \n";
-#    $content .= "It has a reputation for $establishment->{'reputation_description'}.\n";
-#
-#    if ( defined $establishment->{'bartender'}->{'name'} ) {
-#        $content .= "The $establishment->{'name'} is owned by a $establishment->{'bartender'}->{'behavior'} $establishment->{'bartender'}->{'race'}" 
-#        . "named $establishment->{'bartender'}->{'name'} whose prices are $establishment->{'cost_description'} and the patrons appear $establishment->{'atmosphere'}. \n";
-#    } else {
-#        $content .= "The $establishment->{'name'} is run by a $establishment->{'bartender'}->{'behavior'} $establishment->{'bartender'}->{'race'}"
-#        . "whose prices are $establishment->{'cost_description'} and the patrons seem $establishment->{'atmosphere'}. \n";
-#    }
-#    $content
-#        .= "The law $establishment->{'law'} the establishment and its patrons, however most violence is handled by $establishment->{'violence'}. \n";
+    if ($establishment->{'smell'} ne "nothing") {
+        $content .= " You smell $establishment->{'smell'}.";
+    }
+
+    if ($establishment->{'sound'} ne "nothing") {
+        $content .= " You hear $establishment->{'sound'}.";
+    }
+
+    if ($establishment->{'sight'} ne "nothing") {
+        $content .= " You see $establishment->{'sight'}.";
+    }
+
+# A( $city->{'laws'}->{'enforcer'} )
+# PL_N( "adult", $city->{'imprisonment_rate'}->{'population'} )
 
         $content .= "</li>";
     return $content;

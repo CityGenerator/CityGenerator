@@ -96,6 +96,8 @@ sub create_establishment {
     generate_establishment_name($establishment);
     generate_manager($establishment);
     generate_smell($establishment);
+    generate_sight($establishment);
+    generate_sound($establishment);
 
     return $establishment;
 }
@@ -139,33 +141,14 @@ sub generate_establishment_name {
     my ($establishment) = @_;
     set_seed( $establishment->{'seed'} );
     my $nameobj = parse_object( $establishment_data->{'name'} );
-    $establishment->{'name'} = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
-    return $establishment;
-}
-
-
-###############################################################################
-
-=head2 generate_smell()
- 
-generate the smell category of an establishment
- 
-=cut
-
-###############################################################################
-sub generate_smell {
-    my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'smell'} = rand_from_array([keys %{$type->{'smell'}->{'option'}}] )   if (!defined $type->{'smell'});
-
-#    $establishment->{'smell'}= rand_from_array($type->{'smell'}->{'option'})->{'content'} if (!defined $establishment->{'smell'} and defined $type->{'smell'}->{'option'});
+    my $est_root = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
+    my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
+    # $trailer
+    $establishment->{'name'} = "$est_root"; 
     
-#    $establishment->{'smell'} = rand_from_array($establishment->{'smell'}->{'option'})->{'content'} if (!defined $establishment->{'smell'} and defined $establishment->{'smell'}->{'option'});    
-    
-    #$establishment->{'smell'} = rand_from_array( $establishment_data->{'establishment'}->{'option'} )->{'smell'} if ( !defined #$establishment->{'smell'} );
     return $establishment;
-
 }
 
 
@@ -191,6 +174,75 @@ sub generate_manager {
         #TODO flesh out npc here, need to add to NPCGenerator.
     }
 
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_smell()
+ 
+generate the smell category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_smell {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    
+    #print Dumper $type;
+    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'}; 
+    # if (!defined $type->{'smell'} and defined $type->{'smell'}->{'option'} );    
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_sight()
+ 
+generate the sight category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_sight {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    
+    #print Dumper $type;
+    $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'}; 
+    #if (!defined $type->{'sight'} and defined $type->{'sight'}->{'option'} );    
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_sound()
+ 
+generate the sound category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_sound {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    
+    #print Dumper $type->{'sound'}->{'option'};
+    $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'};
+    # if (!defined $type->{'sound'} and defined $type->{'sound}->{'option'} );    
+    
     return $establishment;
 
 }

@@ -446,9 +446,7 @@
                 <option>assistance with minor problems</option>
             </service>
             <trailer>
-                <option>group</option>
                 <option>hall</option>
-                <option>amory</option>
                 <option>security</option>
                 <option>legion</option>
                 <option>of hell</option>
@@ -562,7 +560,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>group</option>
+                <option>amory</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -586,7 +585,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>star gazers</option>
+                <option>magic eye piece</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -642,7 +642,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>money changers</option>
+                <option>money lenders</option>
+                <option>vault</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -697,7 +699,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>guard house</option>
+                <option>city guard</option>
+                <option>force</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -721,7 +725,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>house of law</option>
+                <option>legal partners</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -744,7 +749,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>bath house</option>
+                <option>inpirationsl waters</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -767,7 +773,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>tap house</option>
+                <option>ale house</option>
+                <option>brewery</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -790,7 +798,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>arena</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -814,7 +822,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>bindary</option>
+                <option>shoppe</option>
+                <option>book smith</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -838,7 +848,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>fine books</option>
+                <option>book smith</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -862,7 +873,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>fine bows</option>
+                <option>bows R us</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -886,16 +898,20 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>brewery</option>
+                <option>beer garden</option>
+                <option>pub</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>hops and grain</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>people singing</option>
+                <option>laughing</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>piles of grain</option>
+                <option>bags of hops</option>
             </sight>
 		</option>
 	    <option name="brothel"              perbuilding="20" limit=""   district="poor" >
@@ -940,7 +956,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>our motto is the buckle stops here</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -964,7 +980,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>meat handlers</option>
+                <option>meat house</option>
+                <option>butchers</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -988,7 +1006,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>shop</option>
+                <option>wainwright</option>
+                <option>cart repairs</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1012,7 +1032,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>supplies</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1036,7 +1056,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>shoppe</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1097,7 +1117,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>house</option>
+                <option>arena</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1123,7 +1144,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>clinic</option>
+                <option>healers</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1147,7 +1169,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>wares</option>
+                <option>shop</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1201,7 +1224,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>barrels</option>
+                <option>coop hoop</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1225,7 +1249,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>scribe</option>
+                <option>shop</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1249,7 +1274,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>chop house</option>
+                <option>fine forks</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1273,10 +1299,12 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>color shop</option>
+                <option>house of colors</option>
             </trailer>
             <smell>
                 <option>nothing</option>
+                <option>something fishy</option>
             </smell>
             <sound>
                 <option>nothing</option>
@@ -1297,10 +1325,12 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>designs</option>
+                <option>builders</option>
             </trailer>
             <smell>
                 <option>nothing</option>
+                
             </smell>
             <sound>
                 <option>nothing</option>
@@ -1321,10 +1351,13 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>fish camp</option>
+                <option>fish house</option>
+                <option>sport house</option>
             </trailer>
             <smell>
                 <option>nothing</option>
+                <option>something fishy</option>
             </smell>
             <sound>
                 <option>nothing</option>
@@ -1346,7 +1379,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>furs</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1370,7 +1403,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>general store</option>
+                <option>general merchandise</option>
+                <option>dry goods</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1394,7 +1429,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>blowers</option>
+                <option>glass crafters</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1418,7 +1454,11 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>gloves</option>
+                <option>glove makers</option>
+                <option>glove shop</option>
+                <option>shoppe</option>
+                <option></option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1443,7 +1483,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>grave diggers</option>
+                <option>night smiths</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1467,7 +1508,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>dry goods</option>
+                <option>general mechandise</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1491,7 +1533,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>leather goods</option>
+                <option>harnesses</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1515,7 +1558,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>hats shop</option>
+                <option>hatters</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1539,7 +1583,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>farms</option>
+                <option>farmers market</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1569,7 +1614,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>herbalist</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1593,7 +1638,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>candle maker</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1616,7 +1661,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>hostel</option>
+                <option>inn</option>
+                <option>lodge</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1640,7 +1687,11 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>public jail</option>
+                <option>prison</option>
+                <option>correctional centre</option>
+                <option>work camp</option>
+                <option>gaol</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1666,7 +1717,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>jewelers</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1694,7 +1745,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>shrine</option>
+                <option>temple</option>
+                <option>worship house</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1721,7 +1774,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>shrine</option>
+                <option>temple</option>
+                <option>worship house</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1745,7 +1800,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>charity</option>
+                <option>poor house</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1769,7 +1825,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>docs</option>
+                <option>wharf</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1792,7 +1849,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>charcoalers</option>
+                <option>shoppe</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1817,7 +1875,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>healers</option>
+                <option>clinic</option>
+                <option>healing house</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -1842,6 +1902,7 @@
                 <option>service</option>
             </service>
             <trailer>
+                <option>inc.</option>
                 <option>inc.</option>
             </trailer>
             <smell>
@@ -2139,7 +2200,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>woodcuters</option>
+                <option>wood shop</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -2763,7 +2825,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>general store</option>
+                <option>shop</option>
+                <option>general goods</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -2788,7 +2852,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>translations</option>
+                <option>word smiths</option>
+                <option>shop</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -2861,7 +2927,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>vinters</option>
+                <option>wine shoppe</option>
+                <option>vineyards</option>
             </trailer>
             <smell>
                 <option>nothing</option>
@@ -2958,6 +3026,21 @@
                 <option>rogue</option>
                 <option>warrior</option>
 			</npc_class>
+            <service>
+                <option>service</option>
+            </service>
+            <trailer>
+                <option>inc.</option>
+            </trailer>
+            <smell>
+                <option>nothing</option>
+            </smell>
+            <sound>
+                <option>nothing</option>
+            </sound>
+            <sight>
+                <option>nothing</option>
+            </sight>
 		</option>
 	    <option name="weaver"          perbuilding="10" limit=""   district="industry" >
 			<manager>
