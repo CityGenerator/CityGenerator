@@ -35,6 +35,7 @@ use XML::Simple;
 use version;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -56,7 +57,6 @@ The following datafiles are used by FlagGenerator.pm:
 =cut
 
 ###############################################################################
-local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::LibXML::SAX';
 
 #FIXME should the above line go before $xml is created orafter, and is this in every file??
 my $flag_data = $xml->XMLin( "xml/flag.xml", ForceContent => 1, ForceArray => ['option'] );

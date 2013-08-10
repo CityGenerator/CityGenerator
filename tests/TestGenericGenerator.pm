@@ -17,9 +17,6 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-my $xml = XML::Simple->new();
-my $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => ['option'] );
-
 
 subtest 'test rand_from_array' => sub {
     my $result;
