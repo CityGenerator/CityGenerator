@@ -21,6 +21,9 @@ my $xml = XML::Simple->new();
 subtest 'test set_sex' => sub {
     my $npc;
     $npc = NPCGenerator::create_npc( { seed => 4 } );
+    isnt( $npc->{'pronoun'}, undef );
+
+    $npc = NPCGenerator::create_npc( { 'seed' => 4, 'pronoun' => 'she' } );
     is( $npc->{'pronoun'}, 'she' );
 
     $npc = NPCGenerator::create_npc( { 'seed' => 4, 'pronoun' => 'it' } );

@@ -19,12 +19,12 @@ use base qw(Exporter);
 
 
 subtest 'Test Environment Geography' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create_city( { 'seed' => 1, 'area'=>"3.00" } );
     CityGenerator::flesh_out_city($city);
     my $environment = EnvironmentFormatter::printGeography($city);
     is(
         $environment,
-        "This desolate settlement is sparsely populated (27/sq km) and covers 2.22 square kilometers.",
+        "This fertile small town is densely populated (4,888/sq km) and covers 3.00 square kilometers.",
         'ensure string is returned'
     );
 

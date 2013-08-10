@@ -27,5 +27,6 @@ use TestSummaryFormatter;
 use TestTavernGenerator;
 use TestWorldFormatter;
 use TestWorldGenerator;
+use TestEstablishmentGenerator;
 done_testing();
 

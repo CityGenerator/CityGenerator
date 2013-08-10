@@ -1,24 +1,23 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package SummaryFormatter;
+package NPCFormatter;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-use Number::Format 'format_number';
 @EXPORT_OK = qw( printSummary);
 
 ###############################################################################
 
 =head1 NAME
 
-    SummaryFormatter - used to format the summary.
+    NPCFormatter - used to format information on an NPC.
 
 =head1 DESCRIPTION
 
- This take a city, strips the important info, and generates a Sumamry.
+ This take a npc, strips the important info, and generates a paragraph or two.
 
 =cut
 
@@ -28,25 +27,33 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
+use JSON;
+use Lingua::Conjunction;
+use Lingua::EN::Inflect qw(A);
+use Lingua::EN::Numbers qw(num2en);
+use Number::Format;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 
+###############################################################################
+
 =head2 printSummary()
 
-printSummary strips out important info from a City object and returns formatted text.
+printSummary strips out important info from a NPC object and returns formatted text.
 
 =cut
 
 ###############################################################################
 sub printSummary {
-    my ($city) = @_;
+    my ($npc) = @_;
     my $content = "";
-    $content
-        .= "$city->{'name'} is a $city->{'size'} in the $city->{'region'}->{'name'} with a $city->{'type'} population of around ".format_number($city->{'pop_estimate'}).".";
-
+    $content.= "$npc->{'name'} is ".A($npc->{'behavior'})." $npc->{'race'} who is ".A($npc->{'skill'})." $npc->{'profession'} by trade. \n";
+    $content.= ucfirst($npc->{'pronoun'})." is currently $npc->{'motivation_description'}. \n";
     return $content;
 }
+
+
 
 1;
 

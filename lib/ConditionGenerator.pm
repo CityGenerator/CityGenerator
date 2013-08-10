@@ -60,7 +60,7 @@ The following datafiles are used by ConditionGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => [] );
+my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

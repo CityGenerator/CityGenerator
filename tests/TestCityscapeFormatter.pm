@@ -18,21 +18,22 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 subtest 'Test Cityscape walls' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100 } );
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a massive wood rampart that is 24 feet tall. The city wall protects the core 80% of the city, with 5 towers spread along the 5.86 kilometer wall."
+        'No walls currently surround the city.'
     );
 
-    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'wall_size_roll' => 22 } );
+    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 1, 'walls'=>{'height'=>'90', 'condition'=>'borked', 'material'=>'jello', 'style'=>'shingle'} } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape,
-"Visitors are greeted with a wood fence that is 6 feet tall. The city wall protects the core 77% of the city, with 5 towers spread along the 6.44 kilometer wall."
+        'Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core 85% of the city, with 5 towers spread along the 1.98 kilometer wall.',    
+        "ensure walls are printing"
     );
 
-    $city = CityGenerator::create_city( { seed => 1, 'wall_chance_roll' => 100, 'wall_size_roll' => 22 } );
+    $city = CityGenerator::create_city( { seed => 1,  } );
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     is( $cityscape, "No walls currently surround the city." );
@@ -45,7 +46,8 @@ subtest 'Test Cityscape streets' => sub {
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printStreets($city);
     is( $cityscape,
-"There is 1 road leading to Grisnow; none are major.  The city is lined with rough dirt tracks in a grid pattern."
+        'There is 1 road leading to Kanhall; none are major.  The city is lined with crude cobblestone streets in an irregular pattern.',
+        "ensure streets are printing"
     );
 
     done_testing();
@@ -55,16 +57,19 @@ subtest 'Test Cityscape districts' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printDistrictList($city);
-    is( $cityscape, "The city is broken into the following Districts: market and trade." );
+    is( $cityscape, 
+        "The city is broken into the following Districts: market, mercy, wealthy, middleclass and civic.",
+        "ensure district is printed"
+     );
 
     done_testing();
 };
 
 subtest 'Test Cityscape housing' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create_city( { 'seed' => 1, 'housing'=>{'wealthy'=>9,'average'=>8,'poor'=>4} } );
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printHousingList($city);
-    is( $cityscape, "Among housing, there are 0 wealthy residences, 4 average homes and 2 dilapidated homes." );
+    is( $cityscape, "Among housing, there are 9 wealthy residences, 8 average homes and 4 dilapidated homes." );
 
     done_testing();
 };

@@ -64,7 +64,7 @@ The following datafiles are used by AdventureGenerator.pm:
 ###############################################################################
 
 my $adv_data     = $xml->XMLin( "xml/adventure.xml",      ForceContent => 1, ForceArray => ['option'] );
-my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => [] );
+my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

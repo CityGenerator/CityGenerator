@@ -18,6 +18,10 @@ use base qw(Exporter);
 
 subtest 'test create_climate' => sub {
     my $climate;
+    GenericGenerator::set_seed(1);
+    $climate = ClimateGenerator::create_climate( );
+    is( $climate->{'seed'},       '41630' );
+
     $climate = ClimateGenerator::create_climate(
         { 'seed' => 1, 'altitude' => '-5', 'latitude' => '-5', 'continentality' => '-5', 'pressure' => '105' } );
 
@@ -52,8 +56,8 @@ subtest 'test create_climate' => sub {
     is( $climate->{'biomekey'}, 'CW' );
     is( $climate->{'name'},     'Temperate Deciduous Forest' );
     is_deeply( $climate->{'seasontypes'}, [ 4, 6 ] );
-    is( $climate->{'seasontype'},        '6' );
-    is( $climate->{'seasondescription'}, 'prevernal, spring, summer, monsoon, autumn and winter seasons' );
+    is( $climate->{'seasontype'},        '4' );
+    is( $climate->{'seasondescription'}, 'spring, summer, fall and winter seasons' );
 
     $climate = ClimateGenerator::create_climate(
         {
@@ -104,8 +108,8 @@ subtest 'test create_climate' => sub {
     is( $climate->{'biomekey'}, 'BS' );
     is( $climate->{'name'},     'Semi-Arid Steppe' );
     is_deeply( $climate->{'seasontypes'}, [ 1, 2, 3, 4 ] );
-    is( $climate->{'seasontype'},        '3' );
-    is( $climate->{'seasondescription'}, 'hot, rainy and cool seasons' );
+    is( $climate->{'seasontype'},        '2' );
+    is( $climate->{'seasondescription'}, 'rainy and dry seasons' );
 
     done_testing();
 };
@@ -127,6 +131,23 @@ subtest 'test calculate_wind' => sub {
 
     is( $climate->{'wind'},           'some' );
     is( $climate->{'wind_variation'}, 'awful' );
+    done_testing();
+};
+subtest 'test calculate_temp' => sub {
+    my $climate;
+
+    $climate = ClimateGenerator::create_climate( { 'seed' => 1, 'temperature' => '100', 'temp_variation_roll' => '100' } );
+    is( $climate->{'biomekey'}, 'AM');
+    is( $climate->{'name'}, 'Tropical Seasonal Forest');
+    is( $climate->{'description'}, 'constant high temperatures and seasonal torrential rains');
+    is( $climate->{'color'}, '#a9cca4');
+    $climate = ClimateGenerator::create_climate( { 'seed' => 1, 'temperature' => '100', 'temp_variation_roll' => '100', 'biomekey'=>'CS', 'name'=>'foo', 'description'=>'bar', 'color'=>'derp' } );
+    is( $climate->{'biomekey'}, 'CS');
+    is( $climate->{'name'}, 'foo');
+    is( $climate->{'description'}, 'bar');
+    is( $climate->{'color'}, 'derp');
+
+
     done_testing();
 };
 
