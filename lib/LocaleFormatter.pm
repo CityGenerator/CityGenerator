@@ -113,7 +113,6 @@ printTaverns strips out Establishment information and formats it.
 sub printEstablishments {
     my ($city) = @_;
     my $content = "";
-    $content .= "foo";
     if ( scalar( @{ $city->{'establishments'} } ) > 0 ) {
         $content
             .= "<p>These establishments worthy of mention in $city->{'name'}:</p>\n";
@@ -139,12 +138,19 @@ sub describe_establishment {
     # with the law but regularly pays bribes to organized crime lord Brad Crime-Boss.    
     
     my ($establishment) = @_;
-    my $content = "<li>";
-    $content .= "<b>The $establishment->{'name'}</b> A( $establishment->{'type'} ) that $establishment->{'popularity_description'} ";
-    $content .= "$establishment->{'size_description'}  $establishment->{'reputation_description'} \n";
-    $content .= " and is run by a $establishment->{'manager'}->{'sex'} A( $establishment->{'manager'}->{'race'} ) ";
-    $content .= "named $establishment->{'manager'}->{'name'} ";
 
+    print Dumper $establishment;
+
+    my $content = "<li>";
+    $content 
+    .= "<b>The $establishment->{'name'}</b> $establishment->{'type'} that $establishment->{'popularity_description'} "
+    . " $establishment->{'smell'} ";
+
+    #. "$establishment->{'size_description'}  $establishment->{'reputation_description'} \n"
+    #. " and is run by a $establishment->{'manager'}->{'sex'} A( $establishment->{'manager'}->{'race'} ) "
+    #. "named $establishment->{'manager'}->{'name'} ";
+    
+    
 #use Lingua::EN::Inflect qw( A PL_N );
 #
 #$content .= "Laws are enforced by " . A( $city->{'laws'}->{'enforcer'} ) . ", $city->{'laws'}->{'enforcement'}. \n";

@@ -86,7 +86,6 @@ sub create_establishment {
     }
     $establishment->{'seed'} = set_seed() if ( !defined $establishment->{'seed'} );
 
-
     foreach my $stat (qw( reputation size price popularity)) {
         $establishment->{'stats'}->{$stat} = d(100) if ( !defined $establishment->{'stats'}->{$stat} );
         $establishment->{ $stat . "_description" }
@@ -94,9 +93,9 @@ sub create_establishment {
             if ( !defined $establishment->{ $stat . "_description" } );
     }
     select_establishment_type($establishment);
-
     generate_establishment_name($establishment);
     generate_manager($establishment);
+    generate_smell($establishment);
 
     return $establishment;
 }
@@ -121,12 +120,11 @@ sub select_establishment_type {
 
     $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'} and defined $type->{'trailer'}->{'option'});
 
-
     $establishment->{'manager_class'}= rand_from_array($type->{'npc_class'}->{'option'})->{'content'} if (!defined $establishment->{'manager_class'} and defined $type->{'npc_class'}->{'option'});
-
 
     return $establishment;
 }
+
 
 ###############################################################################
 
@@ -146,6 +144,29 @@ sub generate_establishment_name {
 }
 
 
+###############################################################################
+
+=head2 generate_smell()
+ 
+generate the smell category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_smell {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'smell'} = rand_from_array([keys %{$type->{'smell'}->{'option'}}] )   if (!defined $type->{'smell'});
+
+#    $establishment->{'smell'}= rand_from_array($type->{'smell'}->{'option'})->{'content'} if (!defined $establishment->{'smell'} and defined $type->{'smell'}->{'option'});
+    
+#    $establishment->{'smell'} = rand_from_array($establishment->{'smell'}->{'option'})->{'content'} if (!defined $establishment->{'smell'} and defined $establishment->{'smell'}->{'option'});    
+    
+    #$establishment->{'smell'} = rand_from_array( $establishment_data->{'establishment'}->{'option'} )->{'smell'} if ( !defined #$establishment->{'smell'} );
+    return $establishment;
+
+}
 
 
 ###############################################################################
@@ -157,7 +178,6 @@ generate the manager for the establishment
 =cut
 
 ###############################################################################
-
 sub generate_manager {
     my ($establishment) = @_;
     if ( !defined $establishment->{'manager'} ) {
