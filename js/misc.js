@@ -17,12 +17,13 @@
     }
 
     function generate_names(){
-     //console.log("/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value);
+        var url= "/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value;
+        console.log(url);
         $.ajax({
-            url: "/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value,
+            url: url,
             dataType: "json",
         }).done(function(data) {
-            //console.log(data);           
+            console.log(data);           
              
             document.getElementById("gen_result").innerHTML='<h3>seed: '+ data.seed +'<ol>';
             

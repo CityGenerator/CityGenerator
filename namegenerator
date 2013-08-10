@@ -107,6 +107,11 @@ sub generate_names {
                 use AdventureGenerator;
                 $item=AdventureGenerator::generate_name($item);
             }
+            #NOTE bonds are not true names but this makes it easier.
+            when('bond') {
+                use BondGenerator;
+                $item=BondGenerator::create_bond($item);
+            }
         #  when('myth') {  }
             when('world') {  
                 use WorldGenerator;
