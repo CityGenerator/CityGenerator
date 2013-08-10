@@ -90,7 +90,7 @@ sub print_page {
     my $vars = {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
-        'seed'          => $city->{'seed'},
+        'seed'          => "$city->{'seed'}",
         'onload'        => "create_flag( $json,  \"flag\");",
 
         'content'       => print_content($city),
