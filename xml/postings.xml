@@ -102,17 +102,17 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>PERSON has been kidnapped! REWARD for safe return.</option>
         <option>Adventurers willing to explore recently discovered ruins and return any valuable artifacts.</option>
         <option>Hearty souls needed to recover stolen $ITEM. REWARD<option>
-        <option>Looking for rare CRITTER, both live and dead. I have a list of the ones I need. CONTACT</option>
-        <option>Scholar seeks rare supplies: Scholar unable to gather $SUPPLIES due to age, seeks trustworthy agents to gather materials for research. CONTACT</option>
+        <option>Looking for rare CRITTER, both live and dead. I have a list of the ones I need.</option>
+        <option>Scholar seeks rare supplies: Scholar unable to gather $SUPPLIES due to age, seeks trustworthy agents to gather materials for research.</option>
         <option>CRITTER-catcher needed to keep the beasties away from the sheep and cattle.</option>
-        <option>Lockpick needed for totally legitimate reasons. CONTACT</option>
-        <option>A passing $CLASS is needed for a small security job on the 3rd of the month. CONTACT</option>
+        <option>Lockpick needed for totally legitimate reasons.</option>
+        <option>A passing $CLASS is needed for a small security job on the 3rd of the month.</option>
         <option>Seeking inter-planar messenger. No previous experience required.</option>
-        <option>CLASS seeks apprentice. CONTACT</option>
+        <option>CLASS seeks apprentice.</option>
         <option>Wanted: Negotiator. Prior experience with troublesome CRITTER required.</option>
         <option>Seasonal farm hand workers requested to help local farms bring in their harvest.</option>
         <option>Transcriber Wanted: Looking for expert to translate runes.</option>
-        <option>Tutor Wanted: CONTACT seeks instructor learned in the SUBJECT to tutor his child.</option>
+        <option>Instructor learned in SUBJECT to tutor his child.</option>
         <option>Looking for investigator to look into someone's references.</option>
         <option>Carter to bring stones to the castle.</option>
         <option>Merchant seeks caravan master, cartographer, navigator, and experienced mercenaries for trade expedition.</option>

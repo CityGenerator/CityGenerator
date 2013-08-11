@@ -1,25 +1,49 @@
 #!/usr/bin/perl -wT
 ###############################################################################
-
-package MythGenerator;
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#              This is an example generator to help others learn
+#           to create a generator. It's intended to be used as a
+#           skeleton to build on. Make sure you remove this block
+#           before you commit it!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+###############################################################################
+package ExampleGenerator;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_myth);
+@EXPORT_OK = qw( create_example );
 
 
 ###############################################################################
 
 =head1 NAME
 
-    MythGenerator - used to generate Myths
+    ExampleGenerator - used to generate Examples
 
 =head1 SYNOPSIS
 
-    use MythGenerator;
-    my $myth=MythGenerator::create_myth();
+    use ExampleGenerator;
+    my $example1=ExampleGenerator::create_example();
+    my $example2=ExampleGenerator::create_example($parameters);
 
 =cut
 
@@ -45,13 +69,13 @@ local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 =head2 Data files
 
-The following datafiles are used by MythGenerator.pm:
+The following datafiles are used by ExampleGenerator.pm:
 
 =over
 
 =item F<xml/data.xml>
 
-=item F<xml/myths.xml>
+=item F<xml/examples.xml>
 
 =back
 
@@ -62,18 +86,18 @@ The following datafiles are used by MythGenerator.pm:
 
 ###############################################################################
 
-my $xml_data        = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $mythnames_data  = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => ['option'] );
+my $xml_data        = $xml->XMLin( "xml/data.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $example_data    = $xml->XMLin( "xml/examples.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
 =head2 Core Methods
 
-The following methods are used to create the core of the myth structure.
+The following methods are used to create the core of the example structure.
 
-=head3 create_myth()
+=head3 create_example()
 
-This method is used to create a simple myth with nothing more than:
+This method is used to create a simple example with nothing more than:
 
 =over
 
@@ -84,22 +108,22 @@ This method is used to create a simple myth with nothing more than:
 =cut
 
 ###############################################################################
-sub create_myth {
+sub create_example {
     my ($params) = @_;
-    my $myth = {};
+    my $example = {};
 
     if ( ref $params eq 'HASH' ) {
         foreach my $key ( sort keys %$params ) {
-            $myth->{$key} = $params->{$key};
+            $example->{$key} = $params->{$key};
         }
     }
 
-    if ( !defined $myth->{'seed'} ) {
-        $myth->{'seed'} = GenericGenerator::set_seed();
+    if ( !defined $example->{'seed'} ) {
+        $example->{'seed'} = GenericGenerator::set_seed();
     }
-    GenericGenerator::set_seed( $myth->{'seed'} );
+    GenericGenerator::set_seed( $example->{'seed'} );
 
-    return $myth;
+    return $example;
 }
 
 
