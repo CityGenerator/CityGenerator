@@ -172,20 +172,18 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'popularity_description'} ) {    
-        $content .= " that $establishment->{'popularity_description'} ";
+        $content .= " that $establishment->{'popularity_description'}. ";
     }
 
-print Dumper "<br/>$establishment->{'type'} : $establishment->{'smell'} | $establishment->{'sound'} | $establishment->{'sight'}";
-
-    if ($establishment->{'smell'} ne "nothing") {
+    if (defined $establishment->{'smell'} and $establishment->{'smell'} ne "nothing") {
         $content .= " You smell $establishment->{'smell'}.";
     }
 
-    if ($establishment->{'sound'} ne "nothing") {
+    if (defined $establishment->{'sound'} and $establishment->{'sound'} ne "nothing") {
         $content .= " You hear $establishment->{'sound'}.";
     }
 
-    if ($establishment->{'sight'} ne "nothing") {
+    if (defined $establishment->{'sight'} and $establishment->{'sight'} ne "nothing") {
         $content .= " You see $establishment->{'sight'}.";
     }
 

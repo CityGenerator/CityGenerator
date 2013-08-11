@@ -1444,13 +1444,13 @@
                 <option>glass crafters</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>a burning forge</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>a bellows pumping</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>panes of glass and mirrors</option>
             </sight>
 		</option>
 	    <option name="glove shop"           perbuilding="5"  limit=""   district="trade" >
@@ -2497,13 +2497,17 @@
                 <option>inc.</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>scent of leather</option>
+                <option>rthymic grinding</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>silence</option>
+                <option>the work of shoes</option>
+                <option>a kitten mewing</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>old shoes and bit of leather</option>
+                <option>a kitten</option>
             </sight>
 		</option>
 	    <option name="shop"            perbuilding="30" limit=""   district="trade" >

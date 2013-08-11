@@ -194,9 +194,10 @@ generate the smell category of an establishment
 sub generate_smell {
     my ($establishment) = @_;
 
-    
-    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'}; 
+    if(d(3) == 1){    
+        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+        $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'}; 
+    }
     
     return $establishment;
 
@@ -215,8 +216,10 @@ generate the sight category of an establishment
 sub generate_sight {
     my ($establishment) = @_;
 
-    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'}; 
+    if(d(3) == 1){
+        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+        $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'};
+    }
     
     return $establishment;
 
@@ -235,8 +238,10 @@ generate the sound category of an establishment
 sub generate_sound {
     my ($establishment) = @_;
 
-    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'};
+    if(d(3) == 1){
+        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+        $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'};
+    }
     
     return $establishment;
 
