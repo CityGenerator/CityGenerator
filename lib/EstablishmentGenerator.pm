@@ -98,6 +98,9 @@ sub create_establishment {
     generate_smell($establishment);
     generate_sight($establishment);
     generate_sound($establishment);
+    generate_neighborhood($establishment);
+    generate_storefront($establishment);
+    generate_direction($establishment);
 
     return $establishment;
 }
@@ -166,10 +169,10 @@ sub generate_manager {
     if ( !defined $establishment->{'manager'} ) {
 
         $establishment->{'manager'} = NPCGenerator::create_npc(
-                                        {   'profession'=>$establishment->{'manager_title'},
-                                            'business'=>$establishment->{'type'},
-                                            'class'=>$establishment->{'manager_class'}
-                                        });
+            {   'profession'=>$establishment->{'manager_title'},
+                'business'=>$establishment->{'type'},
+                'class'=>$establishment->{'manager_class'}
+            });
 
         #TODO flesh out npc here, need to add to NPCGenerator.
     }
@@ -191,11 +194,9 @@ generate the smell category of an establishment
 sub generate_smell {
     my ($establishment) = @_;
 
-    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     
-    #print Dumper $type;
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'}; 
-    # if (!defined $type->{'smell'} and defined $type->{'smell'}->{'option'} );    
     
     return $establishment;
 
@@ -215,10 +216,7 @@ sub generate_sight {
     my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    
-    #print Dumper $type;
     $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'}; 
-    #if (!defined $type->{'sight'} and defined $type->{'sight'}->{'option'} );    
     
     return $establishment;
 
@@ -238,10 +236,67 @@ sub generate_sound {
     my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    
-    #print Dumper $type->{'sound'}->{'option'};
     $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'};
-    # if (!defined $type->{'sound'} and defined $type->{'sound}->{'option'} );    
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_neighborhood()
+ 
+generate the neighborhood of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_neighborhood {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'neighborhood'};
+    $establishment->{'neighborhood'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_storefront()
+ 
+generate the neighborhood of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_storefront {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'storefront'};
+    $establishment->{'storefront'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_storefront()
+ 
+generate the direction of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_direction {
+    my ($establishment) = @_;
+
+    my $establishment_data = $xml_data->{'direction'};
+    $establishment->{'direction'} = rand_from_array($establishment_data->{'option'})->{'content'};
     
     return $establishment;
 

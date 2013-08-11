@@ -131,30 +131,51 @@ sub printEstablishments {
 }
 
 sub describe_establishment {
-    # The Fat Ostrich is a small, clean, rundown bakery made of stone and wood and is in a rundown area of 
-    # the red light district.  It appears to be busy, has five patrons inside, and has a good reputation 
-    # with the locals for cheap prices and quality work.  It is run by Jesse Husband-Father who is a large 
-    # Orc with an even temperament but prone to occasional bursts of rage.  The bakery is on good terms 
-    # with the law but regularly pays bribes to organized crime lord Brad Crime-Boss.    
-    
     my ($establishment) = @_;
-
-    #print Dumper $establishment->{'manager'}->{'name'};
-
     my $content = "<li>";
-    $content .= "<b>The $establishment->{'name'} </b> "
-    . " is a $establishment->{'size_description'} $establishment->{'type'} "
-    . " run by a $establishment->{'manager'}->{'behavior'} $establishment->{'manager'}->{'race'} "  
-#    . " named $establishment->{'manager'}->{'name'} "
-    . " that $establishment->{'popularity_description'} ";
+    $content .= "<b>The $establishment->{'name'} </b> ";
     
-#    . " $establishment->{'reputation_description'} "
-#    . " $establishment->{'manager'}->{'race'} "
-#    . " and is run by a $establishment->{'manager'}->{'sex'} "
-#    . " $establishment->{'manager'}->{'race'} "
-#    . "aaa $establishment->{'atmosphere'} aaa"
-#    . " $establishment->{'bartender'}->{'behavior'} ";
-#    
+    if ( defined $establishment->{'size_description'} ) {    
+        $content .= " is a $establishment->{'size_description'} ";
+    }
+
+    if ( defined $establishment->{'type'} ) {    
+        $content .= " $establishment->{'type'} ";
+    }
+
+    if ( defined $establishment->{'direction'} ) {    
+        $content .= " facing $establishment->{'direction'} ";
+    }
+    
+    if ( defined $establishment->{'storefront'} ) {    
+        $content .= " with a $establishment->{'storefront'} storefront ";
+    }
+
+    if ( defined $establishment->{'neighborhood'} ) {    
+        $content .= " in a $establishment->{'neighborhood'} part of town ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'behavior'} ) {    
+        $content .= " run by a $establishment->{'manager'}->{'behavior'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'sex'} ) {    
+        $content .= " $establishment->{'manager'}->{'sex'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'race'} ) {    
+        $content .= " $establishment->{'manager'}->{'race'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'name'} ) {    
+        $content .= " named $establishment->{'manager'}->{'name'} ";
+    }
+
+    if ( defined $establishment->{'popularity_description'} ) {    
+        $content .= " that $establishment->{'popularity_description'} ";
+    }
+
+print Dumper "<br/>$establishment->{'type'} : $establishment->{'smell'} | $establishment->{'sound'} | $establishment->{'sight'}";
 
     if ($establishment->{'smell'} ne "nothing") {
         $content .= " You smell $establishment->{'smell'}.";
