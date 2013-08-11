@@ -26,7 +26,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>land</option>
         <option>title</option>
         <option>a favor</option>
-    <payment>
+    </payment>
     <duration>
         <option>few hours</option>
         <option>day</option>
@@ -53,7 +53,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>No pay until task is completed successfully.</option>
         <option>A little danger is involved, so expect hazardous duty pay.</option>
         <option>Length of job expected to be short.</option>
-    <disclaimer>
+    </disclaimer>
     <details chance="30">
         <option>for more details</option>
         <option>for more information</option>
@@ -77,13 +77,13 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>statue</option>
         <option>painting</option>
         <option>shovel</option>
-    <item>
+    </item>
     <testitem>
         <option>wine</option>
         <option>grog</option>
         <option>artifact</option>
         <option></option>
-    <testitem>
+    </testitem>
     <supplies>
         <option>certain supplies</option>
         <option>medical supplies</option>
@@ -101,7 +101,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>SKILL contest this weekend, REWARD for first place finish.</option>
         <option>PERSON has been kidnapped! REWARD for safe return.</option>
         <option>Adventurers willing to explore recently discovered ruins and return any valuable artifacts.</option>
-        <option>Hearty souls needed to recover stolen $ITEM. REWARD<option>
+        <option>Hearty souls needed to recover stolen $ITEM. REWARD</option>
         <option>Looking for rare CRITTER, both live and dead. I have a list of the ones I need.</option>
         <option>Scholar seeks rare supplies: Scholar unable to gather $SUPPLIES due to age, seeks trustworthy agents to gather materials for research.</option>
         <option>CRITTER-catcher needed to keep the beasties away from the sheep and cattle.</option>

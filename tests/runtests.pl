@@ -28,5 +28,7 @@ use TestTavernGenerator;
 use TestWorldFormatter;
 use TestWorldGenerator;
 use TestBondGenerator;
+use TestExampleGenerator;
+use TestPostingGenerator;
 done_testing();
 

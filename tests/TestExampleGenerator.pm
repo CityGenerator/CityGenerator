@@ -1,6 +1,29 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 #
+#
+#
+#
+#
+#
+#
+#
+#
+#              This is an posting generator to help others learn
+#           to create a generator. It's intended to be used as a
+#           skeleton to build on. Make sure you remove this block
+#           before you commit it!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+###############################################################################
 package TestExampleGenerator;
 
 use strict;
@@ -19,10 +42,10 @@ use base qw(Exporter);
 subtest 'test create_example' => sub {
     my $example;
     $example = ExampleGenerator::create_example( );
-    isnt( $example->{'seed'}, undef 'ensure seed is set.' );
+    isnt( $example->{'seed'}, undef, 'ensure seed is set.' );
 
     $example = ExampleGenerator::create_example( { 'seed' => 12 } );
-    is( $example->{'seed'}, 12 );
+    is( $example->{'seed'}, 12, 'ensure seed is set.' );
 
     done_testing();
 };
