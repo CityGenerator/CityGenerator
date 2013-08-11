@@ -6,11 +6,51 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 <data>
 
+    <hook>
+        <option>Looking for work?</option>
+        <option>Looking for something new?</option>
+        <option>Bored?</option>
+        <option></option>
+    </hook>
+    <request>
+        <option>Help Needed:</option>
+        <option>Needed:</option>
+        <option>Help Wanted:</option>
+        <option>Wanted:</option>
+        <option>Help!</option>
+        <option>Required:</option>
+    </request>
+    <payment>
+        <option>gold</option>
+        <option>a secret</option>
+        <option>information</option>
+        <option>land</option>
+        <option>title</option>
+        <option>a favor</option>
+    <payment>
+    <duration>
+        <option>few hours</option>
+        <option>day</option>
+        <option>few days</option>
+        <option>week</option>
+        <option>few weeks</option>
+    </duration>
 
+$REQUIREMENTS: Prior Experience Required, Must have own transportation, etc
+$DISCLAIMER: Minor hazard involved. Dismemberment insurance required.
+$DETAILS: For more details, For more information, To learn more...
+$GROUP: Guild, Company, etc
+$CRITTER: Squirrel, Beholder, Ants
+$LOCATION: Pulled from LocationGenerator
+$SKILL: Drinking, Sewing, Boxing
+$NOUN: Person, thing, maybe even place...
+$CRIME: from list of common crimes and wanted posters
+$PERSON: NPCGenerator
+$MONSTER: Ogres, Gnolls, Goblin Horde
 
 
 <template>
-* $GROUP is looking for new memeber!
+* $GROUP is looking for new members!
 * Accidentally lit your home on fire? You just might be a sorcerer! Douse the house and head on over to the Majjiks guild and ask for Ronnie! 
 * Poaching! $CONTACT offering $REWARD per pelt of some $CRITTER.
 * $LOCATION is overrun by $CRITTER please send help!
