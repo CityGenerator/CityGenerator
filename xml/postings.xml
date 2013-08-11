@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data>
+
+
+
+
+<template>
+* $GROUP is looking for new memeber!
+* Accidentally lit your home on fire? You just might be a sorcerer! Douse the house and head on over to the Majjiks guild and ask for Ronnie! 
+* Poaching! $CONTACT offering $REWARD per pelt of some $CRITTER.
+* $LOCATION is overrun by $CRITTER please send help!
+* $SKILL contest this weekend, first place is $REWARD.
+* Missing $NOUN. $REWARD. $CONTACT for details.
+* Unsolved $CRIME, please help us find justice!
+* $PERSON has been kidnapped! $REWARD for safe return.
+* $MONSTER have been attacking merchants on the road to $LOCATION. Adventurers wanted to take on these fiends! $CONTACT
+* Adventurers willing to explore recently discovered ruins and return any valuable artifacts. Payment negotiable. May include some hazards.
+* $TRIBE to the south is becoming a larger menace each month. People are getting robbed and even killed. The city guard is seeking able-bodied warriors, fighters and hunters to eliminate this threat to our lives. $CONTACT
+* Looking for rare $CRITTER, both live and dead. I have a list of the ones I need. $CONTACT
+* Wanted: Hearty souls needed to recover stolen $ITEM. $REWARD
+Scholar seeks rare supplies: Scholar unable to gather $SUPPLIES due to age, seeks trustworthy agents to gather materials for research. Mild danger may be involved, so no tyros, please. $CONTACT
+* $CRITTER-catcher needed to keep the monsters away from the sheep and cattle.
+* Lockpick needed: $DURATION $CONTACT
+* A passing fair $CLASS for a small security job. A little danger is involved, so expect hazardous duty pay. Length of job expected to be short. $CONTACT high noon on the fifth Thursday of the month.
+* Seeking inter-planar messenger. No previous experience required.
+* $CLASS seeks apprentice. $CONTACT
+* Wanted: Negotiator. Prior experience with troublesome $CRITTER required.
+* Seasonal farm hand workers requested to help local farms bring in their harvest.
+* Transcriber Wanted: Turn these manuals into coin!
+* Tutor Wanted: $CONTACT seeks instructor learned in the $SUBJECT to tutor his son/daughter. References required. If interested and qualified, present self and references to $LOCATION
+* Translator Needed: Summoner seeks multilinguist willing to learn infernal from bound demon; fluency required within 2 weeks.
+* Looking for investigator to look into someone's references. Discretion required.
+* Needed: Carter to bring stones to the castle.
+* Merchant seeks caravan master, cartographer, navigator, and experienced mercenaries for trade expedition. Must have references.
+* $ITEM tester wanted.
+
+hav yu seen my kitty his names is flufy and is blak with a wite spot on his fase ~ Timmy
+[Local Kingdom] needs YOU! Good pay, good training, and all past crimes will be wiped. Conscript now!
+Mercenaries wanted for caravan protection. Interview on departure at [time and place].
+Uncle Guldrand needs a kiss from his Red Mistress. (This is obviously in code, and can be developped further. "Uncle Guldrand" is the codename for the contact, "kiss" is the type of job like assassination, "hug" could be kidnapping, "wink" is robbery, etc, "Red Mistress" is the code for where to meet the contact for full details)
+
+</template>
+</data>
