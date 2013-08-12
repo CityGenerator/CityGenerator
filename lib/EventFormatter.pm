@@ -1,108 +1,77 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package MythGenerator;
+package EventFormatter;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_myth);
-
+@EXPORT_OK = qw( printEvents printPostings);
 
 ###############################################################################
 
 =head1 NAME
 
-    MythGenerator - used to generate Myths
+    EventFormatter - used to format the summary.
 
-=head1 SYNOPSIS
+=head1 DESCRIPTION
 
-    use MythGenerator;
-    my $myth=MythGenerator::create_myth();
+ This take a city, strips the important info, and generates a Summary.
 
 =cut
 
 ###############################################################################
-
 
 use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
-use XML::Simple;
-
-my $xml = XML::Simple->new();
-local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
-=head1 CONFIGURATION AND ENVIRONMENT
+=head2 printSummary()
 
-=head2 Data files
-
-The following datafiles are used by MythGenerator.pm:
-
-=over
-
-=item F<xml/data.xml>
-
-=item F<xml/myths.xml>
-
-=back
-
-=head1 INTERFACE 
-
+printSummary strips out important info from a City object and returns formatted text.
 
 =cut
 
 ###############################################################################
-
-my $xml_data        = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $mythnames_data  = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => ['option'] );
-
-###############################################################################
-
-=head2 Core Methods
-
-The following methods are used to create the core of the myth structure.
-
-=head3 create_myth()
-
-This method is used to create a simple myth with nothing more than:
-
-=over
-
-=item * a seed
-
-=back
-
-=cut
-
-###############################################################################
-sub create_myth {
-    my ($params) = @_;
-    my $myth = {};
-
-    if ( ref $params eq 'HASH' ) {
-        foreach my $key ( sort keys %$params ) {
-            $myth->{$key} = $params->{$key};
-        }
-    }
-
-    if ( !defined $myth->{'seed'} ) {
-        $myth->{'seed'} = GenericGenerator::set_seed();
-    }
-    GenericGenerator::set_seed( $myth->{'seed'} );
-
-    return $myth;
+sub printSummary {
+#FIXME flesh this out I guess... does it even need to be here?
+    my ($city) = @_;
+    my $content;
+    $content .= "$city->{'name'} is a lively city with many opportunities available.";
+    return $content;
 }
 
 
+###############################################################################
+
+=head2 printPostings()
+
+printPostings displays a list of current job postings
+
+=cut
+
+###############################################################################
+
+sub printPostings {
+    my ($city) = @_;
+    my $content = "You'll find the following job postings:";
+    $content .= "<ul class='twocolumn'> \n";
+    foreach my $posting (@{ $city->{'postings'} } ){
+        $content.= "<li>".$posting->{'content'}."</li>\n";
+    
+    }    
+
+    $content .= "</ul>\n";
+
+    return $content;
+}
 
 
 1;

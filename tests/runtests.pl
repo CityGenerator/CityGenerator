@@ -14,6 +14,7 @@ use TestClimateGenerator;
 use TestConditionGenerator;
 use TestContinentGenerator;
 use TestEnvironmentFormatter;
+use TestEventFormatter;
 use TestEventGenerator;
 use TestFlagGenerator;
 use TestGenericGenerator;
@@ -28,5 +29,7 @@ use TestTavernGenerator;
 use TestWorldFormatter;
 use TestWorldGenerator;
 use TestBondGenerator;
+use TestExampleGenerator;
+use TestPostingGenerator;
 done_testing();
 
