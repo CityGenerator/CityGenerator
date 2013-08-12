@@ -27,4 +27,36 @@ subtest 'test create_posting' => sub {
     done_testing();
 };
 
+subtest 'test select_feature' => sub {
+    my $posting;
+    $posting = PostingGenerator::create_posting( {'seed' => 12, 'request_roll'=>0, 'hook_roll'=>0, 'requirement_roll'=>0, 'disclaimer_roll'=>0, 'detail_roll'=>0 });
+    foreach my $featurename (qw( template request hook payment duration requirement disclaimer detail critter skill item testitem supplies subject ) ){
+        isnt( $posting->{$featurename}, undef, "ensure $featurename is set." );
+    }
+    my $presets={
+      'seed'         => 12,
+      'template'     => 'template',
+      'request'      => 'request',
+      'hook'         => 'hook',
+      'payment'      => 'payment',
+      'duration'     => 'duration',
+      'requirement'  => 'requirement',
+      'disclaimer'   => 'disclaimer',
+      'detail'       => 'detail',
+      'critter'      => 'critter',
+      'skill'        => 'skill',
+      'item'         => 'item',
+      'testitem'     => 'testitem',
+      'supplies'     => 'supplies',
+      'subject'      => 'subject',
+    };
+
+    $posting = PostingGenerator::create_posting( $presets );
+    foreach my $featurename (qw( template request hook payment duration requirement disclaimer detail critter skill item testitem supplies subject ) ){
+        is( $posting->{$featurename}, $featurename, "ensure $featurename is set." );
+    }
+
+    done_testing();
+};
+
 1;

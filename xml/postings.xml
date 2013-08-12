@@ -54,11 +54,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>A little danger is involved, so expect hazardous duty pay.</option>
         <option>Length of job expected to be short.</option>
     </disclaimer>
-    <details chance="30">
+    <detail chance="30">
         <option>for more details</option>
         <option>for more information</option>
         <option>to learn more</option>
-    </details>
+    </detail>
     <critter>
         <option>squirrel</option>
         <option>rats</option>
@@ -82,7 +82,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>wine</option>
         <option>grog</option>
         <option>artifact</option>
-        <option></option>
     </testitem>
     <supplies>
         <option>certain supplies</option>
@@ -94,7 +93,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>math</option>
         <option>local lore</option>
         <option>herbalism</option>
-        <option></option>
     </subject>
     <template><!-- REQUEST HOOK TEMPLATE. REQUIREMENT DISCLAIMER Contact CONTACT at LOCATION DETAILS -->
         <option>REWARD Bounty for dead CRITTER.</option>

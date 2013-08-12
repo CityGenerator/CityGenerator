@@ -32,6 +32,7 @@ use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use Template;
 use version;
 use XML::Simple;
 
@@ -98,8 +99,35 @@ sub create_posting {
     }
     GenericGenerator::set_seed( $posting->{'seed'} );
 
+    foreach my $featurename (qw( template request hook payment duration requirement disclaimer detail critter skill item testitem supplies subject ) ){
+        select_feature($posting, $featurename);
+    }
     return $posting;
 }
+
+
+###############################################################################
+
+=head2 select_feature()
+
+Set the given feature for the posting.
+
+=cut
+
+###############################################################################
+sub select_feature {
+    my ($posting, $featurename) = @_;
+    my $feature= rand_from_array($posting_data->{$featurename}->{'option'});
+    print STDERR Dumper $feature;
+    if (defined $posting_data->{$featurename}->{'chance'} ){
+        $posting->{$featurename."_roll"} = d(100) if (!defined $posting->{$featurename."_roll"}); 
+    }
+    if (!defined $posting_data->{$featurename}->{'chance'} || $posting->{$featurename."_roll"} <= $posting_data->{$featurename}->{'chance'} ){
+        $posting->{$featurename}= $feature->{'content'} if (!defined $posting->{$featurename});
+    }
+    return $posting;
+}
+
 
 
 
