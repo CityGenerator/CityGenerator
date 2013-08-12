@@ -27,6 +27,14 @@ subtest 'test create_posting' => sub {
     done_testing();
 };
 
+subtest 'test contact, person,class' => sub {
+    my $posting;
+    $posting = PostingGenerator::create_posting( { 'seed' => 12, 'contact'=>'Bob', 'person'=>'billy', 'class'=>'Ranger' } );
+    is( $posting->{'seed'}, 12, 'ensure seed is set.' );
+
+    done_testing();
+};
+
 subtest 'test select_feature' => sub {
     my $posting;
     $posting = PostingGenerator::create_posting( {'seed' => 12, 'request_roll'=>0, 'hook_roll'=>0, 'requirement_roll'=>0, 'disclaimer_roll'=>0, 'detail_roll'=>0 });

@@ -18,14 +18,18 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>Looking for work?</option>
         <option>Looking for something new?</option>
         <option>Bored?</option>
+        <option>Need a change of pace?</option>
+        <option>Want to earn some quick coin?</option>
     </hook>
-    <payment>
-        <option>gold</option>
-        <option>a secret</option>
-        <option>information</option>
-        <option>land</option>
-        <option>title</option>
-        <option>a favor</option>
+    <payment change="30"> <!-- payment is currently unused -->
+        <option>Reward available.</option>
+        <option>Reward is a priceless heirloom.</option>
+        <option>Will pay in gold.</option>
+        <option>Reward is a secret.</option>
+        <option>Will reward you with valuable information.</option>
+        <option>Will reward you with a land deed.</option>
+        <option>Opportunity to earn a title.</option>
+        <option>Will owe you a huge favor.</option>
     </payment>
     <duration>
         <option>few hours</option>
@@ -46,6 +50,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>Guild membership required.</option>
         <option>Accidental Death insurance required.</option>
         <option>Discretion required.</option>
+        <option>Must be a quick learner.</option>
+        <option>Must be quick on your feet.</option>
+        <option>Must be clean.</option>
+        <option>Must not smell.</option>
+        <option>Special attire required.</option>
     </requirement>
     <disclaimer chance="30">
         <option>May include some hazards.</option>
@@ -53,82 +62,171 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>No pay until task is completed successfully.</option>
         <option>A little danger is involved, so expect hazardous duty pay.</option>
         <option>Length of job expected to be short.</option>
+        <option>Safety not guaranteed.</option>
     </disclaimer>
     <detail chance="30">
         <option>for more details</option>
         <option>for more information</option>
         <option>to learn more</option>
+        <option>if interested</option>
+        <option>if intrigued</option>
+        <option>for further details</option>
     </detail>
     <critter>
-        <option>squirrel</option>
+        <option>squirrels</option>
         <option>rats</option>
         <option>stirge</option>
-        <option></option>
-        <option></option>
+        <option>carniverous butterflies</option>
+        <option>rabbits</option>
+        <option>gremlins</option>
+        <option>giant spiders</option>
+        <option>imps</option>
+        <option>bats</option>
+        <option>toads</option>
+        <option>brain moles</option>
+        <option>feral cats</option>
+        <option>grigs</option>
+        <option>homuncului</option>
+        <option>lizards</option>
+        <option>quazits</option>
+        <option>mephits</option>
+        <option>cockatrices</option>
+        <option>darkmantles</option>
+        <option>derros</option>
+        <option>beaky brain monsters</option>
+        <option>rust rats</option>
     </critter>
     <skill>
         <option>drinking</option>
         <option>sewing</option>
         <option>boxing</option>
         <option>archery</option>
+        <option>hotdog eating</option>
+        <option>onion eating</option>
+        <option>cooking</option>
+        <option>brawling</option>
+        <option>lock picking</option>
+        <option>arm wrestling</option>
+        <option>co-ed mud-wrestling</option>
+        <option>caber-tossing</option>
+        <option>carriage racing</option>
+        <option>gnomish battle dancing</option>
+        <option>ultimate fighting</option>
+        <option>seed spitting</option>
+        <option>pig wrestling</option>
+        <option>sharpshooting</option>
+        <option>woodcutting</option>
+        <option>gator wrasslin'</option>
+        <option>wood carving</option>
+        <option>goblin wranglin'</option>
+        
     </skill>
     <item>
         <option>shoe</option>
         <option>statue</option>
+        <option>artifact</option>
         <option>painting</option>
         <option>shovel</option>
+        <option>key</option>
+        <option>lucky stone</option>
+        <option>potato</option>
+        <option>bottle of wine</option>
+        <option>valuables</option>
+        <option>goat</option>
+        <option>peg leg</option>
+        <option>keg</option>
+        <option>jewel</option>
+        <option>ring of wishes</option>
+        <option>cerimonial knife</option>
+        <option>tomatoes</option>
+        <option>puppy</option>
+        <option>family heirloom</option>
+        <option>holy symbol</option>
+        <option>magic candle</option>
+        <option>relic</option>
+        <option>chalice</option>
+        <option>wagon wheel</option>
+        <option>golden skill</option>
+        <option>gemstone</option>
+        <option>bracelet</option>
+        <option>tiara</option>
+        <option>ring of Cerobleh</option>
     </item>
     <testitem>
+        <option>saddle</option>
+        <option>cheese</option>
+        <option>dungeon goop</option>
+        <option>unknown potion</option>
+        <option>whiskey</option>
         <option>wine</option>
         <option>grog</option>
         <option>artifact</option>
+        <option>non-lethal poison</option>
+        <option>armor</option>
+        <option>tincure</option>
+        <option>taste</option>
     </testitem>
     <supplies>
         <option>certain supplies</option>
         <option>medical supplies</option>
         <option>rare lichen</option>
         <option>certain herbs</option>
+        <option>eye of newt</option>
+        <option>owlbear beak</option>
+        <option>fresh paper</option>
+        <option>hydra blood</option>
+        <option>a rat tail</option>
     </supplies>
     <subject>
         <option>math</option>
         <option>local lore</option>
         <option>herbalism</option>
+        <option>alchemy</option>
+        <option>astrology</option>
+        <option>morbid obesity research</option>
+        <option>self defense</option>
+        <option>sorcery</option>
+        <option>horseback riding</option>
+        <option>juggling</option>
     </subject>
     <template><!-- REQUEST HOOK TEMPLATE. REQUIREMENT DISCLAIMER Contact CONTACT at LOCATION DETAILS -->
-        <option>REWARD Bounty for dead CRITTER.</option>
-        <option>SKILL contest this weekend, REWARD for first place finish.</option>
-        <option>PERSON has been kidnapped! REWARD for safe return.</option>
+        <option>Bounty for [%critter%], dead or alive.</option>
+        <option>[%skill%] contest this weekend. Special prize for first place finish.</option>
+        <option>[%person%] has been kidnapped! Generous payment for safe return.</option>
         <option>Adventurers willing to explore recently discovered ruins and return any valuable artifacts.</option>
-        <option>Hearty souls needed to recover stolen $ITEM. REWARD</option>
-        <option>Looking for rare CRITTER, both live and dead. I have a list of the ones I need.</option>
-        <option>Scholar seeks rare supplies: Scholar unable to gather $SUPPLIES due to age, seeks trustworthy agents to gather materials for research.</option>
-        <option>CRITTER-catcher needed to keep the beasties away from the sheep and cattle.</option>
+        <option>Hearty souls needed to recover stolen [%item%].</option>
+        <option>Someone stole my [%item%]. Find the louse, dead or alive.</option>
+        <option>Missing [%item%]. We suspect [%critter%] are the culprit.</option>
+        <option>I'm looking for rare [%critter%], both live and dead. I have a list of the ones I need.</option>
+        <option>Scholar seeks rare supplies: Scholar unable to gather [%supplies%] due to age, seeks trustworthy agents to gather materials for research.</option>
+        <option>[%critter%]-catcher needed to keep the beasties away from the sheep and cattle.</option>
         <option>Lockpick needed for totally legitimate reasons.</option>
-        <option>A passing $CLASS is needed for a small security job on the 3rd of the month.</option>
-        <option>Seeking inter-planar messenger. No previous experience required.</option>
-        <option>CLASS seeks apprentice.</option>
-        <option>Wanted: Negotiator. Prior experience with troublesome CRITTER required.</option>
+        <option>A passing [%class%] is needed for a small security job on the 3rd of the month.</option>
+        <option>Seeking inter-planar messenger.</option>
+        <option>[%class%] seeks apprentice.</option>
         <option>Seasonal farm hand workers requested to help local farms bring in their harvest.</option>
-        <option>Transcriber Wanted: Looking for expert to translate runes.</option>
-        <option>Instructor learned in SUBJECT to tutor his child.</option>
-        <option>Looking for investigator to look into someone's references.</option>
-        <option>Carter to bring stones to the castle.</option>
+        <option>I'm looking for a Negotiator. Prior experience with troublesome [%critter%] required.</option>
+        <option>I'm looking for a Transcriber. Need expert to translate runes.</option>
+        <option>Require an instructor learned in [%subject%] to tutor my child.</option>
+        <option>I'm looking for investigator to look into someone's references.</option>
+        <option>Laborer required to bring stones to the castle. Wagon Provided</option>
         <option>Merchant seeks caravan master, cartographer, navigator, and experienced mercenaries for trade expedition.</option>
-        <option>TESTITEM tester wanted.</option>
+        <option>[%testitem%] tester wanted.</option>
         <option>Mercenaries wanted for caravan protection.</option>
+        <option>I have [%critter%] in my basement, plz halp!</option>
 
 <!--
 * $GROUP is looking for new members!
 * Accidentally lit your home on fire? You just might be a sorcerer! Douse the house and head on over to the Majjiks guild and ask for Ronnie! 
-* $LOCATION is overrun by $CRITTER please send help!
-* Missing $NOUN. $REWARD. $CONTACT for details.
+* $LOCATION is overrun by $[%critter%] please send help!
+* Missing $NOUN. $[%payment%]. $CONTACT for details.
 * Unsolved $CRIME, please help us find justice!
 * $MONSTER have been attacking merchants on the road to $LOCATION. Adventurers wanted to take on these fiends! $CONTACT
 * $TRIBE to the south is becoming a larger menace each month. People are getting robbed and even killed. The city guard is seeking able-bodied warriors, fighters and hunters to eliminate this threat to our lives. $CONTACT
 * Translator Needed: Summoner seeks multilinguist willing to learn infernal from bound demon; fluency required within 2 weeks.
 * hav yu seen my kitty his names is flufy and is blak with a wite spot on his fase ~ Timmy
 * [Local Kingdom] needs YOU! Good pay, good training, and all past crimes will be wiped. Conscript now!
-* Uncle Guldrand needs a kiss from his Red Mistress.i
+* Uncle Guldrand needs a kiss from his Red Mistress.
 -->
     </template>
 </data>

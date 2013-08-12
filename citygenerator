@@ -21,6 +21,7 @@ use LocaleFormatter;
 use MapJSONFormatter;
 use PeopleFormatter;
 use EconomyFormatter;
+use EventFormatter;
 my $q = CGI->new;
 
 
@@ -150,6 +151,9 @@ sub print_content {
         'govtlawstext'      => GovtFormatter::printLaw($city),
         'govtcrimetext'     => GovtFormatter::printCrime($city),
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
+
+        'eventstext'        => EventFormatter::printSummary($city),
+        'postingstext'      => EventFormatter::printPostings($city),
 
         'citizenstext'      => PeopleFormatter::printCitizens($city),
         'travelerstext'     => PeopleFormatter::printTravelers($city),

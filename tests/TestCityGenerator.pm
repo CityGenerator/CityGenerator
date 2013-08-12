@@ -926,6 +926,18 @@ subtest 'test generate_districts' => sub {
     done_testing();
 };
 
+subtest 'test generate_postings' => sub {
+    my $city;
+    my $count=3;
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000','postingcount'=>$count, 'postings'=>['dummy']} );
+    CityGenerator::generate_postings($city);
+    is(scalar(@{$city->{'postings'}}), 3);
+    is( $city->{'postings'}->[0], 'dummy');
+
+    done_testing();
+};
+
 
 1;
 

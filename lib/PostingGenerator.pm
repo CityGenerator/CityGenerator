@@ -31,6 +31,7 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
+use NPCGenerator;
 use POSIX;
 use Template;
 use version;
@@ -102,6 +103,13 @@ sub create_posting {
     foreach my $featurename (qw( template request hook payment duration requirement disclaimer detail critter skill item testitem supplies subject ) ){
         select_feature($posting, $featurename);
     }
+    $posting->{'contact'}= NPCGenerator::create_npc()->{'name'} if (!defined $posting->{'contact'});
+    $posting->{'person'}= NPCGenerator::create_npc()->{'name'} if (!defined $posting->{'person'});
+    $posting->{'class'}= rand_from_array([keys %{$xml_data->{'classes'}->{'class'}}]) if (!defined $posting->{'class'}) ;
+
+
+    process_template($posting);
+    append_extras($posting);
     return $posting;
 }
 
@@ -118,7 +126,6 @@ Set the given feature for the posting.
 sub select_feature {
     my ($posting, $featurename) = @_;
     my $feature= rand_from_array($posting_data->{$featurename}->{'option'});
-    print STDERR Dumper $feature;
     if (defined $posting_data->{$featurename}->{'chance'} ){
         $posting->{$featurename."_roll"} = d(100) if (!defined $posting->{$featurename."_roll"}); 
     }
@@ -128,9 +135,70 @@ sub select_feature {
     return $posting;
 }
 
+###############################################################################
+
+=head2 process_template()
+
+Process the template node with values from the posting.
+
+=cut
+
+###############################################################################
+sub process_template {
+    my ($posting) = @_;
+
+    my $tt_obj = Template->new();
+    my $content="";
+    my $template="$posting->{'template'}";
+
+    $tt_obj->process(\$template, $posting, \$content ) || die $tt_obj->error();
+
+    $posting->{'template'}=$template;
+    $posting->{'content'}=ucfirst($content);
+
+    return $posting;
+}
+
+###############################################################################
+
+=head2 append_extras()
+
+append non-interpolated features to $postin->content()
+
+=cut
+
+###############################################################################
+sub append_extras {
+    my ($posting) = @_;
+
+    if (defined $posting->{'hook'}){
+       $posting->{'content'}=$posting->{'hook'}." ".$posting->{'content'};
+    }
+    if (defined $posting->{'request'}){
+       $posting->{'content'}=$posting->{'request'}." ".$posting->{'content'};
+    }
+
+    foreach my $feature ( shuffle qw( requirement disclaimer payment ) ){
+
+        if (defined $posting->{$feature}){
+           $posting->{'content'}=$posting->{'content'}." ".$posting->{$feature};
+        }
+    }
 
 
+    $posting->{'content'}=$posting->{'content'}." Contact ".$posting->{'contact'};
+    if (defined $posting->{'location'}){
+       $posting->{'content'}=$posting->{'content'}."at ".$posting->{'location'};
+    }
+    if (defined $posting->{'detail'}){
+       $posting->{'content'}=$posting->{'content'}." ".$posting->{'detail'};
+    }
+    $posting->{'content'}.=".";
+    
 
+
+    return $posting;
+}
 
 1;
 

@@ -35,6 +35,7 @@ use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object seed);
 use Math::Complex ':pi';
 use NPCGenerator;
+use PostingGenerator;
 use RegionGenerator;
 use GovtGenerator;
 use MilitaryGenerator;
@@ -324,6 +325,7 @@ sub flesh_out_city {
     generate_specialists($city);
     generate_businesses($city);
     generate_taverns($city);
+    generate_postings($city);
     generate_districts($city);
 
 
@@ -963,6 +965,7 @@ sub generate_businesses {
     return $city;
 }
 
+
 ###############################################################################
 
 =head2 generate_taverns
@@ -972,8 +975,6 @@ Generate a list of taverns based on the business section
 =cut
 
 ###############################################################################
-
-
 sub generate_taverns {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 28);
@@ -990,6 +991,8 @@ sub generate_taverns {
     }
     return $city;
 }
+
+
 ###############################################################################
 
 =head2 generate_districts
@@ -1177,6 +1180,28 @@ sub generate_housing {
     return $city;
 }
 
+###############################################################################
+
+=head2 generate_postings
+
+Generate a list of postings based on the business section
+
+=cut
+
+###############################################################################
+sub generate_postings {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'postings'} = [] if ( !defined $city->{'postings'} );
+
+    #ghetto, yes, but gives us a range of 6-23.
+    $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
+    for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
+        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
+    }
+    return $city;
+}
 
 1;
 
