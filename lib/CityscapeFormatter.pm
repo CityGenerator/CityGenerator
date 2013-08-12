@@ -125,6 +125,7 @@ sub printDistrictList {
         $content = "The city includes the $districts[1] District.";
     } else {
         my $last_district = pop @districts;
+        #FIXME change this to use lingua rather than last_district
         $content
             = "The city is broken into the following Districts: " . join( ", ", @districts ) . " and $last_district.";
     }
