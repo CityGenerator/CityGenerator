@@ -134,13 +134,13 @@ sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
     $content .= "<b>The $establishment->{'name'} </b> ";
-    
-    if ( defined $establishment->{'size_description'} ) {    
-        $content .= " is a $establishment->{'size_description'} ";
-    }
 
     if ( defined $establishment->{'condition'} ) {    
-        $content .= " $establishment->{'condition'} ";
+        $content .= " is a $establishment->{'condition'} looking ";
+    }
+    
+    if ( defined $establishment->{'size_description'} ) {    
+        $content .= " $establishment->{'size_description'} sized ";
     }
     
     if ( defined $establishment->{'type'} ) {    
