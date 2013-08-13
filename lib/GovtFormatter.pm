@@ -149,7 +149,7 @@ sub printMilitary {
 
     my $walls="lack of defensible wall";
     if   (defined $city->{'walls'}->{'condition'} ){
-        my $walls=$city->{'walls'}->{'condition'}." ".$city->{'walls'}->{'condition'} ;
+        $walls=$city->{'walls'}->{'condition'}." ".$city->{'walls'}->{'condition'} ;
     }
 
     my $tactic=define_tactics($city);
@@ -165,6 +165,15 @@ sub printMilitary {
 }
 
 
+###############################################################################
+
+=head2 define_tactics()
+
+define_tactics formats the tactics into a single string.
+
+=cut
+
+###############################################################################
 sub define_tactics{
     my ($city)  = @_;
     if (defined $city->{'tactics'}->{'content'}){
