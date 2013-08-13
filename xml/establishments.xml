@@ -30,11 +30,19 @@
     </size>
 
     <age>
-        <option >old</option>
-        <option >new</option>
+        <option>old</option>
+        <option>new</option>
     </age>
 
+    <storeroof>
+        <option>tile</option>
+        <option>slate</option>
+        <option>thatch</option>
+        <option>turf</option>
+    </storeroof>
+    
     <storefront>
+        <option>lap board</option>
         <option>stone</option>
         <option>brick</option>
         <option>wood</option>
@@ -574,13 +582,13 @@
                 <option>amory</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>a burning fire</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>the sound of a forge</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>bit of armor in various states of repiar</option>
             </sight>
 		</option>
 	    <option name="astrologer"           perbuilding="1"  limit=""   district="fine shops" >
@@ -598,14 +606,9 @@
                 <option>star gazers</option>
                 <option>magic eye piece</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
             <sight>
-                <option>nothing</option>
+                <option>lots of charts with arcaine writing on them</option>
+                <option>scrolls leaning against the walls</option>
             </sight>
 		</option>
 	    <option name="bakery"               perbuilding="10" limit=""   district="shops" >
@@ -637,7 +640,7 @@
             </sound>
             <sight>
                 <option>fresh rolls</option>
-                <option>fresh rolls</option>
+                <option>hot buns</option>
             </sight>
 		</option>
 	    <option name="bank"                 perbuilding="30" limit=""   district="wealthy" >
@@ -657,13 +660,13 @@
                 <option>vault</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>earth</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>muffled voices from the back</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>and empty counter with bars in front of it</option>
             </sight>
 		</option>
 	    <option name="barbershop"           perbuilding="4"  limit=""   district="trade" >
@@ -714,13 +717,13 @@
                 <option>force</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>sweat and beer</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>voices</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>bunk beds and lockers</option>
             </sight>
 		</option>
 	    <option name="barrister"            perbuilding="10" limit=""   district="fine shops" >
@@ -739,14 +742,8 @@
                 <option>legal partners</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>the scent of pork</option>
             </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="bath house"           perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -763,13 +760,15 @@
                 <option>inpirationsl waters</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>soap and flowers</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>the sound of water running</option>
+                <option>soft music</option>
+                <option>low voices</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>naked people walking around</option>
             </sight>
 		</option>
 	    <option name="beer seller"          perbuilding="4"  limit=""   district="market" >
@@ -788,13 +787,10 @@
                 <option>brewery</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>beer and hops</option>
             </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
             <sight>
-                <option>nothing</option>
+                <option>casks of beer</option>
             </sight>
 		</option>
 	    <option name="bleacher"             perbuilding="20" limit=""   district="trade" >
@@ -810,15 +806,6 @@
             <trailer>
                 <option>arena</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="bookbinder"           perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -837,13 +824,10 @@
                 <option>book smith</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>old parchment</option>
             </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
             <sight>
-                <option>nothing</option>
+                <option>books and papers everywhere</option>
             </sight>
 		</option>
 	    <option name="bookstore"            perbuilding="4"  limit=""   district="fine shops" >
@@ -861,15 +845,7 @@
                 <option>fine books</option>
                 <option>book smith</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="bowyer"               perbuilding="5"  limit=""   district="trade" >
 			<manager>
@@ -886,15 +862,7 @@
                 <option>fine bows</option>
                 <option>bows R us</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="brewery"              perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -968,15 +936,6 @@
             <trailer>
                 <option>our motto is the buckle stops here</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="butchershop"          perbuilding="10" limit=""   district="market" >
 			<manager>
@@ -994,15 +953,7 @@
                 <option>meat house</option>
                 <option>butchers</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="cartwright"           perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -1020,15 +971,7 @@
                 <option>wainwright</option>
                 <option>cart repairs</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="chandlery shop"       perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -1044,15 +987,7 @@
             <trailer>
                 <option>supplies</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="cheeseshop"           perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -1131,15 +1066,7 @@
                 <option>house</option>
                 <option>arena</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="clinic"               perbuilding="10" limit=""   district="mercy" >
 			<manager>
@@ -1158,15 +1085,7 @@
                 <option>clinic</option>
                 <option>healers</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="clothing shop"        perbuilding="20" limit=""   district="shops" >
 			<manager>
@@ -1183,15 +1102,7 @@
                 <option>wares</option>
                 <option>shop</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="cobblershop"          perbuilding="4"  limit=""   district="market" >
 			<manager>
@@ -1238,15 +1149,7 @@
                 <option>barrels</option>
                 <option>coop hoop</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="copyoffice"           perbuilding="20" limit=""   district="professional" >
 			<manager>
@@ -1263,15 +1166,7 @@
                 <option>scribe</option>
                 <option>shop</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
         </option>
 	    <option name="cutlery shop"         perbuilding="5"  limit=""   district="trade" >
 			<manager>
@@ -1288,15 +1183,7 @@
                 <option>chop house</option>
                 <option>fine forks</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="dyer"                 perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -1314,14 +1201,13 @@
                 <option>house of colors</option>
             </trailer>
             <smell>
-                <option>nothing</option>
                 <option>something fishy</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>a bubbling sound</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>lots of colored cloth and pots of dye</option>
             </sight>
 		</option>
 	    <option name="engineering firm"     perbuilding="20" limit=""   district="professional" >
@@ -1339,16 +1225,6 @@
                 <option>designs</option>
                 <option>builders</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-                
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="fishery"              perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -1367,15 +1243,9 @@
                 <option>sport house</option>
             </trailer>
             <smell>
-                <option>nothing</option>
                 <option>something fishy</option>
+                <option>no fish</option>
             </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="furtrade"             perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -1392,15 +1262,6 @@
             <trailer>
                 <option>furs</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
 		</option>
 	    <option name="general store"        perbuilding="4"  limit=""   district="market" >
 			<manager>
@@ -1418,15 +1279,7 @@
                 <option>general merchandise</option>
                 <option>dry goods</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="glassmaker hut"       perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -1471,15 +1324,7 @@
                 <option>shoppe</option>
                 <option></option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="graveyard"            perbuilding="10" limit=""   district="mercy" >
 			<manager>
@@ -1497,15 +1342,7 @@
                 <option>grave diggers</option>
                 <option>night smiths</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="grocery store"        perbuilding="10" limit=""   district="market" >
 			<manager>
@@ -1522,15 +1359,7 @@
                 <option>dry goods</option>
                 <option>general mechandise</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="harness maker"        perbuilding="5"  limit=""   district="shops" >
 			<manager>
@@ -1547,15 +1376,7 @@
                 <option>leather goods</option>
                 <option>harnesses</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="hat shop"             perbuilding="10" limit=""   district="shops" >
 			<manager>
@@ -1572,15 +1393,7 @@
                 <option>hats shop</option>
                 <option>hatters</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="haymerchant"          perbuilding="5"  limit=""   district="industry" >
 			<manager>
@@ -1597,15 +1410,7 @@
                 <option>farms</option>
                 <option>farmers market</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="herbalist shop"       perbuilding="5"  limit=""   district="fine shops" >
 			<manager>
@@ -1627,15 +1432,7 @@
             <trailer>
                 <option>herbalist</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="illuminator"          perbuilding="5"  limit=""   district="fine shops" >
 			<manager>
@@ -1651,15 +1448,7 @@
             <trailer>
                 <option>candle maker</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="inn"                  perbuilding="3"  limit=""   district="shops" >
 			<manager>
@@ -1676,15 +1465,7 @@
                 <option>inn</option>
                 <option>lodge</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="jailhouse"            perbuilding="10" limit=""   district="prison" >
 			<manager>
@@ -1704,15 +1485,7 @@
                 <option>work camp</option>
                 <option>gaol</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="jewelery store"       perbuilding="10" limit=""   district="shops" >
 			<manager>
@@ -1730,15 +1503,7 @@
             <trailer>
                 <option>jewelers</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
         </option>
 	    <option name="shrine"               perbuilding="10" limit=""   district="mercy" >
 			<manager>
@@ -1760,15 +1525,7 @@
                 <option>temple</option>
                 <option>worship house</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="temple"               perbuilding="10" limit=""   district="mercy" >
 			<manager>
@@ -1789,15 +1546,7 @@
                 <option>temple</option>
                 <option>worship house</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="almshouse"       perbuilding="10" limit=""   district="civic" >
 			<manager>
@@ -1814,15 +1563,7 @@
                 <option>charity</option>
                 <option>poor house</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="boat for hire"   perbuilding="1"  limit=""   district="port" >
 			<manager>
@@ -1839,15 +1580,7 @@
                 <option>docs</option>
                 <option>wharf</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="firepit"         perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -1863,15 +1596,7 @@
                 <option>charcoalers</option>
                 <option>shoppe</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="hospital"        perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -1890,15 +1615,7 @@
                 <option>clinic</option>
                 <option>healing house</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="hostel"          perbuilding="10" limit=""   district="mercy" >
 			<manager>
@@ -1916,15 +1633,7 @@
                 <option>inc.</option>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="junkyard"        perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -1940,15 +1649,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="law enforcement" perbuilding="20" limit=""   district="civic" >
 			<manager>
@@ -1965,15 +1666,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="leathershop"     perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -1989,15 +1682,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="library"         perbuilding="10" limit=""   district="fine shops" >
 			<manager>
@@ -2016,15 +1701,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="locksmith"       perbuilding="4"  limit=""   district="trade" >
 			<manager>
@@ -2044,15 +1721,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="lumbermill"      perbuilding="30" limit=""   district="industry" >
 			<manager>
@@ -2067,15 +1736,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="lumberyard"      perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -2090,15 +1751,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="magic shop"      perbuilding="3"  limit=""   district="fine shops" >
 			<manager>
@@ -2119,15 +1772,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="manor"           perbuilding="4"  limit=""   district="wealthy" >
 			<manager>
@@ -2142,15 +1787,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="masonry shop"    perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -2165,15 +1802,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="mercer"          perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -2190,15 +1819,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="mill"            perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -2214,15 +1835,7 @@
                 <option>woodcuters</option>
                 <option>wood shop</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="post office"     perbuilding="10" limit=""   district="embassy" >
 			<manager>
@@ -2237,15 +1850,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="pottery"         perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -2261,15 +1866,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="pursemaker"      perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -2285,15 +1882,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 			</npc_class>
             <service>
                 <option>service</option>
@@ -2301,15 +1890,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="roofer"          perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -2324,15 +1905,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="ropemaker"       perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -2347,15 +1920,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="rugmaker"        perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -2370,15 +1935,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="scabbard maker"  perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -2394,15 +1951,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="school"          perbuilding="10" limit=""   district="education" >
 			<manager>
@@ -2424,15 +1973,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="sculpting house" perbuilding="10" limit=""   district="professional" >
 			<manager>
@@ -2448,15 +1989,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="shipyard"        perbuilding="30" limit=""   district="port" >
 			<manager>
@@ -2472,15 +2005,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="shoe shop"       perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -2526,15 +2051,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="slaughterhouse"  perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -2550,15 +2067,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="smithy"          perbuilding="5"  limit=""   district="shop" >
 			<manager>
@@ -2578,15 +2087,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="smokehouse"      perbuilding="30" limit=""   district="industry" >
 			<manager>
@@ -2601,15 +2102,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="spicemerchant"   perbuilding="10" limit=""   district="market" >
 			<manager>
@@ -2626,15 +2119,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="stable"          perbuilding="5"  limit=""   district="professional" >
 			<manager>
@@ -2650,15 +2135,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="studio"          perbuilding="20" limit=""   district="trade" >
 			<manager>
@@ -2676,15 +2153,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="tack shop"       perbuilding="5"  limit=""   district="trade" >
 			<manager>
@@ -2700,15 +2169,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="tannery"         perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -2728,10 +2189,10 @@
                 <option>leather</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>an odd thumping sound</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>skins stretching</option>
             </sight>
 		</option>
 	    <option name="tavern"          perbuilding="5"  limit=""   district="market" >
@@ -2747,15 +2208,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="theater"         perbuilding="10" limit=""   district="entertainment" >
 			<manager>
@@ -2772,15 +2225,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="tile shop"       perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -2795,15 +2240,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="townhouse"       perbuilding="10" limit=""   district="hotel" >
 			<manager>
@@ -2818,15 +2255,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="trading post"    perbuilding="10" limit=""   district="shop" >
 			<manager>
@@ -2844,15 +2273,7 @@
                 <option>shop</option>
                 <option>general goods</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="translator"      perbuilding="20" limit=""   district="embassy" >
 			<manager>
@@ -2871,15 +2292,7 @@
                 <option>word smiths</option>
                 <option>shop</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="transportation"  perbuilding="3"  limit=""   district="professional" >
 			<manager>
@@ -2894,15 +2307,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="university"      perbuilding="20" limit=""   district="education" >
 			<manager>
@@ -2920,15 +2325,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="vinyard"         perbuilding="10" limit=""   district="professional" >
 			<manager>
@@ -2946,15 +2343,7 @@
                 <option>wine shoppe</option>
                 <option>vineyards</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="wagon yard"      perbuilding="20" limit=""   district="industry" >
 			<manager>
@@ -2970,15 +2359,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="warehouse"       perbuilding="10" limit=""   district="warehouse" >
 			<manager>
@@ -2995,15 +2376,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="dock"            perbuilding="10" limit=""   district="docks" >
 			<manager>
@@ -3020,15 +2393,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="weaponshop"      perbuilding="10" limit=""   district="merchant" >
 			<manager>
@@ -3047,15 +2412,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="weaver"          perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -3071,15 +2428,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="winery"          perbuilding="10" limit=""   district="merchant" >
 			<manager>
@@ -3094,15 +2443,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="woodshop"        perbuilding="10" limit=""   district="trade" >
 			<manager>
@@ -3119,15 +2460,7 @@
             <trailer>
                 <option>inc.</option>
             </trailer>
-            <smell>
-                <option>nothing</option>
-            </smell>
-            <sound>
-                <option>nothing</option>
-            </sound>
-            <sight>
-                <option>nothing</option>
-            </sight>
+            
 		</option>
 	    <option name="sawmill"         perbuilding="10" limit=""   district="industry" >
 			<manager>
@@ -3145,13 +2478,13 @@
                 <option>inc.</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>sawdust</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>a naphtha powered buzzsaw</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>stacks of wood</option>
             </sight>
 		</option>
 	    <option name="workshop"        perbuilding="10" limit=""   district="shop" >
@@ -3169,13 +2502,13 @@
                 <option>inc.</option>
             </trailer>
             <smell>
-                <option>nothing</option>
+                <option>sawdust</option>
             </smell>
             <sound>
-                <option>nothing</option>
+                <option>hammering from the back</option>
             </sound>
             <sight>
-                <option>nothing</option>
+                <option>tools and bits of wood lying around</option>
             </sight>
 		</option>
     </establishment>

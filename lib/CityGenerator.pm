@@ -1190,12 +1190,18 @@ sub generate_establishments {
 
     $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
 
-
     if ( defined $city->{'businesses'} ) {
-        my $establishmentcount = 10;
-        for ( my $establishmentID = 0 ; $establishmentID < $establishmentcount ; $establishmentID++ ) {
-            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment()
-                if ( !defined $city->{'establishments'}->[$establishmentID] );
+        $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5)*1.2) if ( !defined $city->{'establishment_count'} );
+        my $patrons = floor($city->{'population_total'} / 3);
+        for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
+            if ( !defined $city->{'establishments'}->[$establishmentID] ) {
+                $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+                if( $patrons > 0 ) {
+                    my $occupants = d(floor($patrons / 2));
+                    $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
+                    $patrons = $patrons - $occupants;
+                }
+            }    
         }
     }
     return $city;

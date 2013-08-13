@@ -139,6 +139,10 @@ sub describe_establishment {
         $content .= " is a $establishment->{'size_description'} ";
     }
 
+    if ( defined $establishment->{'condition'} ) {    
+        $content .= " $establishment->{'condition'} ";
+    }
+    
     if ( defined $establishment->{'type'} ) {    
         $content .= " $establishment->{'type'} ";
     }
@@ -149,6 +153,10 @@ sub describe_establishment {
     
     if ( defined $establishment->{'storefront'} ) {    
         $content .= " with a $establishment->{'storefront'} storefront ";
+    }
+
+    if ( defined $establishment->{'storeroof'} ) {    
+        $content .= " and a roof made from $establishment->{'storeroof'} ";
     }
 
     if ( defined $establishment->{'neighborhood'} ) {    
@@ -168,25 +176,46 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'manager'}->{'name'} ) {    
-        $content .= " named $establishment->{'manager'}->{'name'} ";
+        $content .= " named $establishment->{'manager'}->{'name'}. ";
     }
 
+    if ( defined $establishment->{'service_type'} ) {    
+        $content .= "This $establishment->{'type'} is known for  ";
+    }
+
+    if ( defined $establishment->{'price_description'} ) {    
+        $content .= " $establishment->{'price_description'} prices for it's $establishment->{'service_type'} ";
+    }
+    
     if ( defined $establishment->{'popularity_description'} ) {    
-        $content .= " that $establishment->{'popularity_description'}. ";
+        $content .= " and $establishment->{'popularity_description'}. ";
     }
 
-    if (defined $establishment->{'smell'} and $establishment->{'smell'} ne "nothing") {
+    if ( defined $establishment->{'smell'} ) {
         $content .= " You smell $establishment->{'smell'}.";
     }
 
-    if (defined $establishment->{'sound'} and $establishment->{'sound'} ne "nothing") {
+    if ( defined $establishment->{'sound'} ) {
         $content .= " You hear $establishment->{'sound'}.";
     }
 
-    if (defined $establishment->{'sight'} and $establishment->{'sight'} ne "nothing") {
+    if ( defined $establishment->{'sight'} ) {
         $content .= " You see $establishment->{'sight'}.";
     }
 
+    if ( defined $establishment->{'occupants'} ) {
+        $content .= " There are $establishment->{'occupants'} customers in the $establishment->{'type'}.";
+    }
+
+    if ( defined $establishment->{'enforcer'} ) {
+        $content .= " The $establishment->{'enforcer'}";
+    }
+
+    if ( defined $establishment->{'graft'} ) {
+        $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
+    }
+    
+    
 # A( $city->{'laws'}->{'enforcer'} )
 # PL_N( "adult", $city->{'imprisonment_rate'}->{'population'} )
 
