@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object seed);
+@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features seed);
 
 ###############################################################################
 
@@ -252,6 +252,69 @@ sub parse_object {
     return $newobj;
 }
 
+###############################################################################
+
+=head2 select_features()
+
+Set the given features from the xml
+
+=cut
+
+###############################################################################
+sub select_features {
+    my ($ds, $xml) = @_;
+    # ds means datastructure. nice and generic.
+
+    #Loop through each tag underneath feature- it's important that <feature> does NOT have any attributes
+    foreach my $featurename (keys %{ $xml->{'feature'} } ){
+
+        #Simplify the reference for reading pleasure.
+        my $feature=$xml->{'feature'}->{$featurename};
+        # select one of the feature's options.
+        my $featureoption= rand_from_array($feature->{'option'});
+
+        #if this feature has a chance attribute, create a feature_roll
+        if (defined $feature->{'chance'} ){
+            $ds->{$featurename."_roll"} = d(100) if (!defined $ds->{$featurename."_roll"}); 
+        }
+        # if no chance is defined or our roll is less than the chance, add this feature to the datastructure
+        if (!defined $feature->{'chance'} || $ds->{$featurename."_roll"} <= $feature->{'chance'} ){
+            # If the feature isn't already defined, assign the content.
+            $ds->{$featurename}= $featureoption->{'content'} if (!defined $ds->{$featurename});
+
+            # If this featureoption has a type, assign it as well if we don't already have one.
+            if (defined $featureoption->{'type'}){
+                $ds->{$featurename."_type"} = $featureoption->{'type'}  if (!defined $ds->{$featurename."_type"}); 
+            }
+        }
+    }
+    return $ds;
+}
+
+
+###############################################################################
+
+=head2 parse_template()
+
+parse a structures template and fill it with it's bretheren.
+
+=cut
+
+###############################################################################
+sub parse_template{
+    my ($ds)=@_;
+
+    my $tt_obj = Template->new();
+    my $content="";
+    my $template="$ds->{'template'}";
+
+    $tt_obj->process(\$template, $ds, \$content ) || die "Template bad? $template\n$tt_obj->error()";
+
+    $ds->{'template'}=$template;
+    $ds->{'content'}=$content;
+
+    return $ds;
+}
 
 1;
 
