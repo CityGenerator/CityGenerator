@@ -301,7 +301,7 @@ subtest 'test parse_template' => sub {
 
 
 
-    my $ds={ 'template'=>'Broken template [%adverb[1]%] ', 'adverb'=>'quick' };
+    $ds={ 'template'=>'Broken template [%adverb[1]%] ', 'adverb'=>'quick' };
 
     dies_ok( sub { GenericGenerator::parse_template($ds) }, "bad template dies" );
 
