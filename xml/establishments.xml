@@ -6,7 +6,17 @@
 	
 <data trailer_chance="30" >
 
-    <size> <!-- The Wet Frog is a _____ tavern that is always busy, regardless of the time. -->
+    <size> <!-- The Wet Frog is a messy looking _____ sized bakery... -->
+        <option          max="16" >small</option>
+        <option min="17" max="32" >normal</option>
+        <option min="33" max="48" >typical</option>
+        <option min="49" max="65" >average</option>
+        <option min="66" max="82" >large</option>
+        <option min="83"          >huge</option>
+    </size>
+
+    <!--
+        <size> 
         <option          max="5"  >tiny</option>
         <option min="6"  max="10" >insignificant</option>
         <option min="10" max="15" >squat little</option>
@@ -28,7 +38,8 @@
         <option min="90" max="95" >enormous</option>
         <option min="96"          >vast</option>
     </size>
-
+    -->
+    
     <age>
         <option>old</option>
         <option>new</option>
@@ -52,6 +63,23 @@
         <option>split wood</option>
     </storefront>
 
+    <windows><!-- The building has _______ windows. -->
+        <option>no</option>
+        <option>round</option>
+        <option>barred</option>
+        <option>tiny</option>
+        <option>dirty</option>
+        <option>stained</option>
+        <option>broken</option>
+        <option>large</option>
+        <option>a few</option>
+        <option>clean</option>
+        <option>many</option>
+        <option>small</option>
+        <option>two</option>
+        <option>three</option>
+    </windows>
+        
     <shade>
         <option >bright</option>
         <option >dark</option>
@@ -561,7 +589,6 @@
             <sight>
                 <option>bottles vials and stacks of grian and herbs</option>
                 <option>a small boy grinding something into powder in a bowl</option>
-                <option>yelling from the back of the shop</option>
             </sight>
 		</option>
 	    <option name="armorsmithy"          perbuilding="10" limit=""   district="trade" >

@@ -633,11 +633,12 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 <laws>
     <enforcer> <!-- The ________ ... -->
+        <option>grifters</option>    
         <option>city guard</option>
         <option>city watch</option>
         <option>neighborhood watch</option>
         <option>crime mobs</option>
-        <option>law enforcement</option>
+        <option>police</option>
         <option>local thugs</option>
         <option>organized crime bosses</option>
         <option>local gangs</option>
@@ -649,7 +650,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <graft>
         <option>shakes down</option>
         <option>gives protection to</option>
-        <option>hits up</option>
+        <option>hit up</option>
         <option>steals from</option>
         <option>taxes</option>
         <option>harass</option>

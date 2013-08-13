@@ -152,9 +152,13 @@ sub describe_establishment {
     }
     
     if ( defined $establishment->{'storefront'} ) {    
-        $content .= " with a $establishment->{'storefront'} storefront ";
+        $content .= " with a $establishment->{'storefront'} storefront, ";
     }
 
+    if ( defined $establishment->{'windows'} ) {    
+        $content .= " $establishment->{'windows'} windows, ";
+    }
+    
     if ( defined $establishment->{'storeroof'} ) {    
         $content .= " and a roof made from $establishment->{'storeroof'} ";
     }

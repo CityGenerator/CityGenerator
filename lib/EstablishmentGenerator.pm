@@ -100,6 +100,7 @@ sub create_establishment {
     generate_sight($establishment);
     generate_sound($establishment);
     generate_neighborhood($establishment);
+    generate_windows($establishment);
     generate_storefront($establishment);
     generate_direction($establishment);
     generate_storeroof($establishment);
@@ -392,6 +393,27 @@ sub generate_condition {
     return $establishment;
 
 }
+
+
+###############################################################################
+
+=head2 generate_windows()
+ 
+generate the windows of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_windows {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'windows'};
+    $establishment->{'windows'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
 
 ###############################################################################
 
