@@ -31,12 +31,43 @@ subtest 'Test Environment Geography' => sub {
     done_testing();
 };
 
-#subtest 'Test Environment Climate' => sub {
-#    my $city = CityGenerator::create_city( { seed => 1 } );
-#    CityGenerator::flesh_out_city($city);
-#    my $environment = EnvironmentFormatter::printClimate($city);
-#    is( 1, 1 );    #FIXME this stupid thing keeps flipping back and forth- I need to pass better vars to create_city
-#    done_testing();
-#};
+subtest 'Test Environment Climate' => sub {
+    my $city = CityGenerator::create_city( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $environment = EnvironmentFormatter::printClimate($city);
+    like($environment, "/climate, which is characterized/", 'ensure a proper string is returned');
+    done_testing();
+};
+
+subtest 'Test printAstronomy' => sub {
+    my $city = CityGenerator::create_city( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $environment = EnvironmentFormatter::printAstronomy($city);
+    like($environment, "/In the night sky, you see /", 'ensure a proper string is returned');
+    done_testing();
+};
+
+subtest 'Test printMoonList' => sub {
+    my $city = CityGenerator::create_city( { seed => 1, 'astronomy'=>{'moons_count'=>0, 'moons_name'=>'no moons'} } );
+    CityGenerator::flesh_out_city($city);
+    my $environment = EnvironmentFormatter::printMoonList($city);
+    is($environment, "no moons", 'ensure no moons are returned');
+    done_testing();
+};
+
+subtest 'Test printCelestialList' => sub {
+    my $city = CityGenerator::create_city( { seed => 1, 'astronomy'=>{'celestial_count'=>0, 'celestial_name'=>'nothing unusual'} } );
+    CityGenerator::flesh_out_city($city);
+    my $environment = EnvironmentFormatter::printCelestialList($city);
+    is($environment, "nothing unusual", 'ensure no objects are returned');
+
+    $city = CityGenerator::create_city( { seed => 1, 'astronomy'=>{'celestial_count'=>1, 'celestial_name'=>'one'} } );
+    CityGenerator::flesh_out_city($city);
+    $environment = EnvironmentFormatter::printCelestialList($city);
+    like($environment, "/one: /", 'ensure one is returned');
+    done_testing();
+};
+
 
 1;
+

@@ -93,7 +93,6 @@ This method is used to create a simple astronomy with nothing more than:
 sub create_astronomy {
     my ($params) = @_;
     my $astronomy = {};
-
     if ( ref $params eq 'HASH' ) {
         foreach my $key ( sort keys %$params ) {
             $astronomy->{$key} = $params->{$key};
@@ -154,8 +153,8 @@ sub generate_moons {
     $astronomy->{'moons_roll'} = d(100) if ( !defined $astronomy->{'moons_roll'} );
 
     my $moons = roll_from_array( $astronomy->{'moons_roll'}, $astronomy_data->{'moons'}->{'option'} );
-    $astronomy->{'moons_count'} = $moons->{'count'};
-    $astronomy->{'moons_name'}  = $moons->{'content'};
+    $astronomy->{'moons_count'} = $moons->{'count'} if (!defined $astronomy->{'moons_count'});
+    $astronomy->{'moons_name'}  = $moons->{'content'} if (!defined $astronomy->{'moons_name'});
 
     $astronomy->{'moon'} = [] if ( !defined $astronomy->{'moon'} );
     for ( my $moonid = 0 ; $moonid < $astronomy->{'moons_count'} ; $moonid++ ) {

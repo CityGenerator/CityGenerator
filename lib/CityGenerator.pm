@@ -337,7 +337,7 @@ sub flesh_out_city {
     $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'},  } );
     $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
-    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $city->{'seed'} } );
+    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
 
 
     return $city;
