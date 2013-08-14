@@ -109,8 +109,7 @@ Select a random item from an array.
 sub rand_from_array {
     my ($array) = @_;
     if ( ref $array ne 'ARRAY' ) {
-        print STDERR longmess();
-        croak "you passed in something that wasn't an array reference. @!";
+        croak "you passed in something that wasn't an array reference. @!".longmess();
     }
     return $array->[ rand @$array ];
 }

@@ -118,7 +118,7 @@ sub create_adventure {
 
     generate the name of an adventure using a randomly selected pattern.
     # FIXME this is ugly as sin. refactor and simplify so it can be used
-    # FIXME for taverns as well.
+    # FIXME for establishments as well.
 
 =cut
 

@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printLandmarks printTaverns );
+@EXPORT_OK = qw( printLandmarks printEstablishments );
 
 ###############################################################################
 
@@ -17,7 +17,7 @@ use base qw(Exporter);
 
 =head1 DESCRIPTION
 
- This takes a city and prettily formats Taverns and Landmarks.
+ This takes a city and prettily formats Establishments and Landmarks.
 
 =cut
 
@@ -52,61 +52,9 @@ sub printLandmarks {
 
 ###############################################################################
 
-=head2 printTaverns()
-
-printTaverns strips out Tavern information and formats it.
-
-=cut
-
-###############################################################################
-sub printTaverns {
-    my ($city) = @_;
-    my $content = "";
-    if ( scalar( @{ $city->{'taverns'} } ) > 0 ) {
-        $content
-            .= "<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
-        $content .= "<ul class='demolistfinal'>";
-        foreach my $tavern ( @{ $city->{'taverns'} } ) {
-            $content .= describe_tavern($tavern);
-        }
-
-        $content .= "</ul>";
-    } else {
-        $content .= "<p>There are no taverns in this town.</p>\n";
-    }
-
-
-    return $content;
-}
-
-sub describe_tavern {
-    my ($tavern) = @_;
-    my $content = "<li>";
-    $content
-        .= "<b>The $tavern->{'name'}</b> is "
-        . A( $tavern->{'size_description'} )
-        . " tavern that $tavern->{'popularity_description'}. \n";
-    $content .= "It has a reputation for $tavern->{'reputation_description'}.\n";
-
-    #TODO this is friggen ugly. refactor.
-    if ( defined $tavern->{'bartender'}->{'name'} ) {
-        $content .= "The $tavern->{'name'} is owned by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}" 
-        . "named $tavern->{'bartender'}->{'name'} whose prices are $tavern->{'cost_description'} and the patrons appear $tavern->{'atmosphere'}. \n";
-    } else {
-        $content .= "The $tavern->{'name'} is run by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}"
-        . "whose prices are $tavern->{'cost_description'} and the patrons seem $tavern->{'atmosphere'}. \n";
-    }
-    $content
-        .= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
-    $content .= "</li>";
-    return $content;
-}
-
-###############################################################################
-
 =head2 printEstablishments()
 
-printTaverns strips out Establishment information and formats it.
+printEstablishments strips out Establishment information and formats it.
 
 =cut
 

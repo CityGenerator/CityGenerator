@@ -39,7 +39,6 @@ use PostingGenerator;
 use RegionGenerator;
 use GovtGenerator;
 use MilitaryGenerator;
-use TavernGenerator;
 use EstablishmentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -325,7 +324,6 @@ sub flesh_out_city {
     generate_housing($city);
     generate_specialists($city);
     generate_businesses($city);
-    generate_taverns($city);
     generate_establishments($city);
     generate_postings($city);
     generate_districts($city);
@@ -964,33 +962,6 @@ sub generate_businesses {
         $city->{'business_total'} += $city->{'businesses'}->{$business_name}->{'count'};
     }
 
-    return $city;
-}
-
-
-###############################################################################
-
-=head2 generate_taverns
-
-Generate a list of taverns based on the business section
-
-=cut
-
-###############################################################################
-sub generate_taverns {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} + 28);
-
-    $city->{'taverns'} = [] if ( !defined $city->{'taverns'} );
-
-
-    if ( defined $city->{'businesses'}->{'tavern'} ) {
-        my $taverncount = min( 5, $city->{'businesses'}->{'tavern'}->{'count'} );
-        for ( my $tavernID = 0 ; $tavernID < $taverncount ; $tavernID++ ) {
-            $city->{'taverns'}->[$tavernID] = TavernGenerator::create_tavern()
-                if ( !defined $city->{'taverns'}->[$tavernID] );
-        }
-    }
     return $city;
 }
 
