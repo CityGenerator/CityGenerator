@@ -135,12 +135,6 @@ sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
 
-    # The Hungry Road is a neat looking typical sized smithy facing southeast with a mud storefront, 
-    # barred windows, and a roof made from thatch in a trashy part of town run by a servile female 
-    # elf named Bellanai Morningrose. This smithy is known for a real steal prices for the service  
-    # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
-    # the owner and patrons at the smithy.
-   
     $content .= "<b>The $establishment->{'name'} </b> ";
 
     if ( defined $establishment->{'condition'} ) {    
@@ -172,9 +166,13 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'neighborhood'} ) {    
-        $content .= " in a $establishment->{'neighborhood'} part of town ";
+        $content .= " in a $establishment->{'neighborhood'} part of ";
     }
 
+    if ( defined $establishment->{'district'} ) {    
+        $content .= " the $establishment->{'district'} district";
+    }
+    
     if ( defined $establishment->{'manager'}->{'behavior'} ) {    
         $content .= " run by a $establishment->{'manager'}->{'behavior'} ";
     }
@@ -196,7 +194,7 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'price_description'} ) {    
-        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} there ";
+        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} ";
     }
     
     if ( defined $establishment->{'popularity_description'} ) {    

@@ -108,6 +108,7 @@ sub create_establishment {
     generate_law($establishment);
     generate_graft($establishment);
     generate_condition($establishment);
+    generate_district($establishment);
     
     return $establishment;
 }
@@ -427,6 +428,24 @@ sub generate_direction {
     
     return $establishment;
 
+}
+
+
+###############################################################################
+
+=head2 district()
+ 
+generate the district of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_district {
+    my ($establishment) = @_;
+
+    $establishment->{'district'} = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}}->{'district'};
+    
+    return $establishment;
 }
 
 
