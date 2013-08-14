@@ -90,13 +90,18 @@ header {
     margin:0px;
     padding:0px;
 }
-section h2 {
+    h2 {
     margin-top:10px;
     font: 18pt 'OldNewspaper';
 }
-section h3 {
+    h3 {
     margin-top:10px;
     font: 12pt 'OldNewspaper';
+}
+h3 span, h2 span{
+    font-size:0.8em;
+    color: #777777;
+    cursor:pointer;
 }
 
 #worlddata, #censusdata{

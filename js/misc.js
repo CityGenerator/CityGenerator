@@ -6,6 +6,19 @@
           e.style.display = 'block';
     }
 
+    function hideMe(id) {
+        console.log(  id.id.substring(1,id.id.length - 1)  )
+        var content = document.getElementById( id.id.substring(0,id.id.length-8)  );
+        console.log(id)
+        if (content)
+            if(content.style.display == 'none'){
+                content.style.display = 'block';
+                id.innerHTML=" [-]"
+            }else{
+                id.innerHTML=" [+]"
+                content.style.display = 'none';
+            }
+    }
 
     function showgenerator(gentype){
         if (document.getElementById(gentype+"_specific")){
