@@ -334,7 +334,7 @@ sub flesh_out_city {
     set_dominance($city);
 
     $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
-    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'},  } );
+    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
     $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
     $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
