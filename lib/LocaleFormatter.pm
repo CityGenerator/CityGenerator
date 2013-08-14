@@ -27,6 +27,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
+use Lingua::Conjunction;
 use List::Util 'shuffle', 'min', 'max';
 use Lingua::EN::Inflect qw( A PL_N );
 use POSIX;
@@ -133,6 +134,13 @@ sub printEstablishments {
 sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
+
+    # The Hungry Road is a neat looking typical sized smithy facing southeast with a mud storefront, 
+    # barred windows, and a roof made from thatch in a trashy part of town run by a servile female 
+    # elf named Bellanai Morningrose. This smithy is known for a real steal prices for the service  
+    # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
+    # the owner and patrons at the smithy.
+   
     $content .= "<b>The $establishment->{'name'} </b> ";
 
     if ( defined $establishment->{'condition'} ) {    
@@ -188,25 +196,21 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'price_description'} ) {    
-        $content .= " $establishment->{'price_description'} prices for it's $establishment->{'service_type'} ";
+        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} there ";
     }
     
     if ( defined $establishment->{'popularity_description'} ) {    
         $content .= " and $establishment->{'popularity_description'}. ";
     }
 
-    if ( defined $establishment->{'smell'} ) {
-        $content .= " You smell $establishment->{'smell'}.";
-    }
-
-    if ( defined $establishment->{'sound'} ) {
-        $content .= " You hear $establishment->{'sound'}.";
-    }
-
-    if ( defined $establishment->{'sight'} ) {
-        $content .= " You see $establishment->{'sight'}.";
-    }
-
+    my @senses;
+    push @senses,  "you smell $establishment->{'smell'}" if ( defined $establishment->{'smell'} );
+    push @senses,  "you hear $establishment->{'sound'}" if ( defined $establishment->{'sound'} );
+    push @senses,  "you see $establishment->{'sight'}" if ( defined $establishment->{'sight'} );
+    if (@senses != 0){
+        $content .= "<b> Upon entering " . conjunction(shuffle @senses ) . ".</b>";
+    }    
+    
     if ( defined $establishment->{'occupants'} ) {
         $content .= " There are $establishment->{'occupants'} customers in the $establishment->{'type'}.";
     }
@@ -218,12 +222,9 @@ sub describe_establishment {
     if ( defined $establishment->{'graft'} ) {
         $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
     }
-    
-    
-# A( $city->{'laws'}->{'enforcer'} )
-# PL_N( "adult", $city->{'imprisonment_rate'}->{'population'} )
 
-        $content .= "</li>";
+    $content .= "</li>";
+    
     return $content;
 }
 

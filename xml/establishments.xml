@@ -132,26 +132,22 @@
         <option min="91"          >being a pillar of the community</option>
     </reputation>
 
-    <price><!--  ...whose prices are _________. -->
-        <option          max="5"  >suspiciously low</option>
-        <option min="6"  max="10" >next to nothing</option>
-        <option min="10" max="15" >a real steal</option>
-        <option min="16" max="20" >dirt cheap</option>
-        <option min="20" max="25" >inexpensive</option>
-        <option min="30" max="35" >economical</option>
-        <option min="36" max="40" >fair</option>
-        <option min="40" max="45" >a bit high</option>
-        <option min="46" max="50" >justifiable</option>
-        <option min="50" max="55" >moderate</option>
-        <option min="56" max="60" >sensible</option>
-        <option min="60" max="65" >reasonable</option>
-        <option min="66" max="70" >extravagant</option>
-        <option min="70" max="75" >steep</option>
-        <option min="76" max="80" >highway robbery</option>
-        <option min="80" max="85" >unconscionable</option>
-        <option min="86" max="90" >exorbitant</option>
-        <option min="90" max="95" >lavish</option>
-        <option min="96"          >unreasonable</option>
+    <price><!--  ... is known for ______________ prices for... -->
+        <option          max="6"  >suspiciously low</option>
+        <option min="7"  max="12" >next to nothing</option>
+        <option min="13" max="18" >dirt cheap</option>
+        <option min="19" max="24" >inexpensive</option>
+        <option min="25" max="30" >fair</option>
+        <option min="31" max="36" >slightly high</option>
+        <option min="37" max="42" >minimal</option>
+        <option min="43" max="48" >varying</option>
+        <option min="49" max="54" >reasonable</option>
+        <option min="55" max="60" >moderate</option>
+        <option min="61" max="66" >steep</option>
+        <option min="67" max="72" >unreasonable</option>
+        <option min="73" max="78" >extravagant</option>
+        <option min="79" max="94" >high</option>
+        <option min="95"          >very high</option>
     </price>
 
     <name trailer_chance="30">

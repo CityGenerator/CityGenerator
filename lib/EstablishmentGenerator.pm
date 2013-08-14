@@ -154,9 +154,10 @@ sub generate_establishment_name {
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     my $est_root = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
+    
+    #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
     my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
-    # $trailer
-    $establishment->{'name'} = "$est_root"; 
+    $establishment->{'name'} = $est_root; 
     
     return $establishment;
 }
@@ -201,10 +202,8 @@ generate the smell category of an establishment
 sub generate_smell {
     my ($establishment) = @_;
 
-    if(d(2) == 1){    
-        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-        $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'} if ( defined $type->{'smell'} ); 
-    }
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'} if ( defined $type->{'smell'} ); 
     
     return $establishment;
 
@@ -223,10 +222,8 @@ generate the sight category of an establishment
 sub generate_sight {
     my ($establishment) = @_;
 
-    if(d(2) == 1){
-        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-        $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'} if ( defined $type->{'sight'} );
-    }
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'} if ( defined $type->{'sight'} );
     
     return $establishment;
 
@@ -245,10 +242,8 @@ generate the sound category of an establishment
 sub generate_sound {
     my ($establishment) = @_;
 
-    if(d(2) == 1){
-        my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-        $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'} if ( defined $type->{'sound'} );
-    }
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'} if ( defined $type->{'sound'} );
     
     return $establishment;
 
@@ -434,7 +429,6 @@ sub generate_direction {
 
 }
 
-#print Dumper $data;
 
 1;
 

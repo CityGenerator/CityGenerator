@@ -45,7 +45,7 @@ subtest 'test create_establishment' => sub {
         }
     );
     is( $establishment->{'seed'},                  41630 );
-    is( $establishment->{'name'},                  'test' );
+    is( $establishment->{'name'},                  undef );
     foreach my $stat (qw(price popularity size reputation)){
         is( $establishment->{'stats'}->{$stat},       11 );
         is( $establishment->{$stat."_description"},    "bummer" );
@@ -55,6 +55,29 @@ subtest 'test create_establishment' => sub {
     isnt( $establishment->{'manager_class'}, undef );
     isnt( $establishment->{'manager'}, undef );
 
+    #print DUMPER $establishment; 
+    
+    is( $establishment->{'condition'},              'cluttered'      );
+    is( $establishment->{'direction'},              'north'          ); 
+    is( $establishment->{'enforcer'},               'local thugs'    ); 
+    is( $establishment->{'graft'},                  'gives protection to'); 
+    is( $establishment->{'manager_class'},          'expert'         ); 
+    is( $establishment->{'manager_title'},          'potter'         ); 
+    is( $establishment->{'name'},                   undef            );
+    is( $establishment->{'neighborhood'},           'seedy'          ); 
+    is( $establishment->{'occupants'},              undef            ); 
+    is( $establishment->{'popularity_description'}, 'bummer'         ); 
+    is( $establishment->{'price_description'},      'bummer'         ); 
+    is( $establishment->{'reputation_description'}, 'bummer'         ); 
+    is( $establishment->{'seed'},                   41630            ); 
+    is( $establishment->{'service_type'},           'service'        ); 
+    is( $establishment->{'size_description'},       'bummer'         ); 
+    is( $establishment->{'storefront'},             'mud'            ); 
+    is( $establishment->{'storeroof'},              'turf'           ); 
+    is( $establishment->{'trailer'},                'inc.'           ); 
+    is( $establishment->{'type'},                   'pottery'        );
+    is( $establishment->{'windows'},                'small'          ); 
+    
     
     $establishment = EstablishmentGenerator::create_establishment(
         {
@@ -79,7 +102,7 @@ subtest 'test generate_manager' => sub {
     my $establishment;
 
     $establishment = EstablishmentGenerator::create_establishment( { 'seed' => 22 } );
-    is( $establishment->{'manager'}->{'race'}, 'dwarf' );
+    is( $establishment->{'manager'}->{'race'}, 'drow' );
 
     $establishment = EstablishmentGenerator::create_establishment( { 'seed' => 22, 'manager' => { 'race' => 'ogre' } } );
     is( $establishment->{'manager'}->{'race'}, 'ogre' );
