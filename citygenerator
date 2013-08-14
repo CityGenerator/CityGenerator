@@ -162,8 +162,6 @@ sub print_content {
         'resourcestext'     => EconomyFormatter::printResources($city),
         'businessestext'    => EconomyFormatter::printBusinesses($city),
 
-        'tavernstext'       => LocaleFormatter::printTaverns($city),
-        
         'establishmentstext' => LocaleFormatter::printEstablishments($city),
 
     };
