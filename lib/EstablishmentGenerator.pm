@@ -86,18 +86,29 @@ sub create_establishment {
     }
     $establishment->{'seed'} = set_seed() if ( !defined $establishment->{'seed'} );
 
-
     foreach my $stat (qw( reputation size price popularity)) {
         $establishment->{'stats'}->{$stat} = d(100) if ( !defined $establishment->{'stats'}->{$stat} );
         $establishment->{ $stat . "_description" }
             = roll_from_array( $establishment->{'stats'}->{$stat}, $establishment_data->{$stat}->{'option'} )->{'content'}
             if ( !defined $establishment->{ $stat . "_description" } );
     }
-    select_establishment_type($establishment);
 
+    select_establishment_type($establishment);
     generate_establishment_name($establishment);
     generate_manager($establishment);
-
+    generate_smell($establishment);
+    generate_sight($establishment);
+    generate_sound($establishment);
+    generate_neighborhood($establishment);
+    generate_windows($establishment);
+    generate_storefront($establishment);
+    generate_direction($establishment);
+    generate_storeroof($establishment);
+    generate_servicetype($establishment);
+    generate_law($establishment);
+    generate_graft($establishment);
+    generate_condition($establishment);
+    
     return $establishment;
 }
 
@@ -121,12 +132,11 @@ sub select_establishment_type {
 
     $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'} and defined $type->{'trailer'}->{'option'});
 
-
     $establishment->{'manager_class'}= rand_from_array($type->{'npc_class'}->{'option'})->{'content'} if (!defined $establishment->{'manager_class'} and defined $type->{'npc_class'}->{'option'});
-
 
     return $establishment;
 }
+
 
 ###############################################################################
 
@@ -141,11 +151,16 @@ sub generate_establishment_name {
     my ($establishment) = @_;
     set_seed( $establishment->{'seed'} );
     my $nameobj = parse_object( $establishment_data->{'name'} );
-    $establishment->{'name'} = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    my $est_root = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
+    
+    #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
+    my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
+    $establishment->{'name'} = $est_root; 
+    
     return $establishment;
 }
-
-
 
 
 ###############################################################################
@@ -157,20 +172,259 @@ generate the manager for the establishment
 =cut
 
 ###############################################################################
-
 sub generate_manager {
     my ($establishment) = @_;
     if ( !defined $establishment->{'manager'} ) {
 
         $establishment->{'manager'} = NPCGenerator::create_npc(
-                                        {   'profession'=>$establishment->{'manager_title'},
-                                            'business'=>$establishment->{'type'},
-                                            'class'=>$establishment->{'manager_class'}
-                                        });
+            {   'profession'=>$establishment->{'manager_title'},
+                'business'=>$establishment->{'type'},
+                'class'=>$establishment->{'manager_class'}
+            });
 
         #TODO flesh out npc here, need to add to NPCGenerator.
     }
 
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_smell()
+ 
+generate the smell category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_smell {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'} if ( defined $type->{'smell'} ); 
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_sight()
+ 
+generate the sight category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_sight {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'} if ( defined $type->{'sight'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_sound()
+ 
+generate the sound category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_sound {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'} if ( defined $type->{'sound'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_neighborhood()
+ 
+generate the neighborhood of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_neighborhood {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'neighborhood'};
+    $establishment->{'neighborhood'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_storefront()
+ 
+generate the neighborhood of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_storefront {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'storefront'};
+    $establishment->{'storefront'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_storeroof()
+ 
+generate the store roof of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_storeroof {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'storeroof'};
+    $establishment->{'storeroof'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_servicetype()
+ 
+generate the service type of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_servicetype {
+    my ($establishment) = @_;
+
+    my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
+    $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( defined $type->{'service'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_law()
+ 
+generate the law of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_law {
+    my ($establishment) = @_;
+
+    my $data = $xml_data->{'laws'};
+    $establishment->{'enforcer'} = rand_from_array($data->{'enforcer'}->{'option'})->{'content'} if ( defined $data->{'enforcer'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_graft()
+ 
+generate the graft of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_graft {
+    my ($establishment) = @_;
+
+    my $data = $xml_data->{'laws'};
+    $establishment->{'graft'} = rand_from_array($data->{'graft'}->{'option'})->{'content'} if ( defined $data->{'graft'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_condition()
+ 
+generate the condition of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_condition {
+    my ($establishment) = @_;
+
+    my $data = $xml_data->{'condition'};
+    $establishment->{'condition'} = rand_from_array($data->{'option'})->{'content'} if ( defined $data->{'option'} );
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_windows()
+ 
+generate the windows of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_windows {
+    my ($establishment) = @_;
+
+    my $establishment_data = $establishment_data->{'windows'};
+    $establishment->{'windows'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 direction()
+ 
+generate the direction of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_direction {
+    my ($establishment) = @_;
+
+    my $establishment_data = $xml_data->{'direction'};
+    $establishment->{'direction'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
     return $establishment;
 
 }

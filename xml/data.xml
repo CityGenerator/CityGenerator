@@ -614,14 +614,47 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option>a octagonal</option>
 </cityshape>
 
+<condition>
+    <option>neat</option>
+    <option>tidy</option>
+    <option>messy</option>
+    <option>crowded</option>
+    <option>dirty</option>
+    <option>clean</option>
+    <option>packed</option>
+    <option>orderly</option>
+    <option>dusty</option>
+    <option>cluttered</option>
+    <option>damp</option>
+    <option>smelly</option>
+    <option>disgusting</option>
+    <option>filthy</option>
+</condition>
+
 <laws>
-    <enforcer>
+    <enforcer> <!-- The ________ ... -->
+        <option>grifters</option>    
         <option>city guard</option>
         <option>city watch</option>
         <option>neighborhood watch</option>
-        <option>mob</option>
-        <option>sheriff</option>
+        <option>crime mobs</option>
+        <option>police</option>
+        <option>local thugs</option>
+        <option>organized crime bosses</option>
+        <option>local gangs</option>
+        <option>roving thieves</option>
+        <option>racketeers</option>
+        <option>mobsters</option>
+        <option>trade guild</option>
     </enforcer>
+    <graft>
+        <option>shakes down</option>
+        <option>gives protection to</option>
+        <option>hit up</option>
+        <option>steals from</option>
+        <option>taxes</option>
+        <option>harass</option>
+    </graft>
     <enforcement>
         <option>but are loosely enforced</option>
         <option>and are strictly enforced</option>
