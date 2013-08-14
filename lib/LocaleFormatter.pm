@@ -208,7 +208,7 @@ sub describe_establishment {
     push @senses,  "you hear $establishment->{'sound'}" if ( defined $establishment->{'sound'} );
     push @senses,  "you see $establishment->{'sight'}" if ( defined $establishment->{'sight'} );
     if (@senses != 0){
-        $content .= "<b> Upon entering " . conjunction(shuffle @senses ) . ".</b>";
+        $content .= " Upon entering " . conjunction(shuffle @senses ) . ".";
     }    
     
     if ( defined $establishment->{'occupants'} ) {
