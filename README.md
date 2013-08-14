@@ -239,4 +239,4 @@ Taverns are often central gathering places for the citizens. In Steelhall can fi
 
 ---
 
-Follow us at [Google+](https://plus.google.com/112661873200782342936" rel="publisher)
+Follow us at [Google+](https://plus.google.com/112661873200782342936)
