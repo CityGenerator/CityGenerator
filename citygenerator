@@ -145,6 +145,7 @@ sub print_content {
 
         'wallstext'     => CityscapeFormatter::printWalls($city),
         'streetstext'   => CityscapeFormatter::printStreets($city),
+        'districtstext'  => CityscapeFormatter::printDistricts($city),
 
         'govtsummarytext'   => GovtFormatter::printSummary($city),
         'govtleadertext'    => GovtFormatter::printLeader($city),
