@@ -4,7 +4,11 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-            <canvas id="citymap_small"      style="border:1px solid black;" width='465' height='280' onclick='embiggen(this);'></canvas>
+            <canvas id="citymap_small"      style="float:left;clear:left;border:1px solid black;" width='465' height='280' onclick='embiggen(this);'></canvas>
+            <div id="censusdata" style="float:left;clear:left;">
+                <h2>Census Data</h2>
+                [% censusdatatext %] 
+            </div>
             <script type="text/javascript">
                 console.log(document.getElementById('citymap_small'))
                 var citydata = [% citymapjson %];
@@ -13,111 +17,102 @@ Based on a work at https://github.com/morgajel/CityGenerator.
                 document.citymap.redraw(document.getElementById('citymap_small'));
 
             </script>
-                <h2><a name="#summary" >Summary </a> <span onclick="hideMe(this);"id='summary_control'> [-]</span></h2>
+                <h2><a name="#summary" >Summary </a> <span onclick="hideMe(this);"id='summary_control' class='collapser'> [-]</span></h2>
 
             <section id="summary">
                 [% summarytext %]
             </section>
 
-                <h2><a name="#environment" >Environment </a> <span onclick="hideMe(this);"id='environment_control'> [-]</span></h2>
+                <h2><a name="#environment" >Environment </a> <span onclick="hideMe(this);"id='environment_control' class='collapser'> [-]</span></h2>
             <section id="environment">
                 [% environmenttext %]
-                <h3><a name="#geography" >Geography </a> <span onclick="hideMe(this);"id='geography_control'> [-]</span></h3>
+                <h3><a name="#geography" >Geography </a> <span onclick="hideMe(this);"id='geography_control' class='collapser'> [-]</span></h3>
                 <section id="geography">
                     [% geographytext %]
                 </section>
-                <h3><a name="#climate" >Climate </a> <span onclick="hideMe(this);"id='climate_control'> [-]</span></h3>
+                <h3><a name="#climate" >Climate </a> <span onclick="hideMe(this);"id='climate_control' class='collapser'> [-]</span></h3>
                 <section id="climate">
                     [% climatetext %]
                 </section>
-                <h3><a name="#astronomy" >Astronomy </a> <span onclick="hideMe(this);"id='astronomy_control'> [-]</span></h3>
+                <h3><a name="#astronomy" >Astronomy </a> <span onclick="hideMe(this);"id='astronomy_control' class='collapser'> [-]</span></h3>
                 <section id="astronomy">
                     [% astronomytext %]
                 </section>
             </section>
-            <br style="clear:left"/>
-            <div id="censusdata" >
-                <h2>Census Data</h2>
-                [% censusdatatext %] 
-            </div>
 
-            <h2><a name="#cityscape" >Cityscape </a> <span onclick="hideMe(this);"id='cityscape_control'> [-]</span></h2>
+            <h2><a name="#cityscape" >Cityscape </a> <span onclick="hideMe(this);"id='cityscape_control' class='collapser'> [-]</span></h2>
             <section id='cityscape'>
-                <h3><a name="#walls" >Walls </a> <span onclick="hideMe(this);"id='walls_control'> [-]</span></h3>
+                <h3><a name="#walls" >Walls </a> <span onclick="hideMe(this);"id='walls_control' class='collapser'> [-]</span></h3>
                 <section id="walls">
                     [% wallstext %]
                 </section>
-                <h3><a name="#streets" >Streets </a> <span onclick="hideMe(this);"id='streets_control'> [-]</span></h3>
+                <h3><a name="#streets" >Streets </a> <span onclick="hideMe(this);"id='streets_control' class='collapser'> [-]</span></h3>
                 <section id="streets">
                     [% streetstext %]
                 </section>
-                <h3><a name="#buildings" >Buildings </a> <span onclick="hideMe(this);"id='buildings_control'> [-]</span></h3>
-                <section id="buildings">
-                    [% buildingstext %]
-                </section>
 
-                <h3><a name="#districts" >Districts </a> <span onclick="hideMe(this);"id='districts_control'> [-]</span></h3>
+                <h3><a name="#districts" >Districts </a> <span onclick="hideMe(this);"id='districts_control' class='collapser'> [-]</span></h3>
                 <section id="districts">
                     [% districtstext %]
                 </section>
 <!--
-                <h3><a name="#features" >Features </a> <span onclick="hideMe(this);"id='features_control'> [-]</span></h3>
+                <h3><a name="#features" >Features </a> <span onclick="hideMe(this);"id='features_control' class='collapser'> [-]</span></h3>
                 <section id="features">
                     [% featurestext %]
                 </section>
-                <h3><a name="#sewers" >Sewers </a> <span onclick="hideMe(this);"id='sewers_control'> [-]</span></h3>
+                <h3><a name="#sewers" >Sewers </a> <span onclick="hideMe(this);"id='sewers_control' class='collapser'> [-]</span></h3>
                 <section id="sewers">
                     [% sewerstext %]
                 </section>
 -->
              </section>
 
-            <h2><a name="#government" >Government</a> <span onclick="hideMe(this);"id='government_control'> [-]</span></h2>
+            <h2><a name="#government" >Government</a> <span onclick="hideMe(this);"id='government_control' class='collapser'> [-]</span></h2>
              <section id='government'>
                 [% govtsummarytext %]
-                <h3><a name="#leader" >Leader </a> <span onclick="hideMe(this);"id='leader_control'> [-]</span></h3>
+                <h3><a name="#leader" >Leader </a> <span onclick="hideMe(this);"id='leader_control' class='collapser'> [-]</span></h3>
                 <section id="leader">
                     [% govtleadertext %]
                 </section>
-                <h3><a name="#laws" >Laws </a> <span onclick="hideMe(this);"id='laws_control'> [-]</span></h3>
+                <h3><a name="#laws" >Laws </a> <span onclick="hideMe(this);"id='laws_control' class='collapser'> [-]</span></h3>
                 <section id="laws">
                     [% govtlawstext %]
                 </section>
-                <h3><a name="#crime" >Crime </a> <span onclick="hideMe(this);"id='crime_control'> [-]</span></h3>
+                <h3><a name="#crime" >Crime </a> <span onclick="hideMe(this);"id='crime_control' class='collapser'> [-]</span></h3>
                 <section id="crime">
                     [% govtcrimetext %]
                 </section>
 
-                <h3><a name="#military" >Military </a> <span onclick="hideMe(this);"id='military_control'> [-]</span></h3>
+                <h3><a name="#military" >Military </a> <span onclick="hideMe(this);"id='military_control' class='collapser'> [-]</span></h3>
                 <section id="military">
                     [% govtmilitarytext %]
                 </section>
 
              </section>
 
-            <h2><a name="#economy" >Economy </a> <span onclick="hideMe(this);"id='economy_control'> [-]</span></h2>
+            <h2><a name="#economy" >Economy </a> <span onclick="hideMe(this);"id='economy_control' class='collapser'> [-]</span></h2>
              <section id='economy'>
                 [% economytext %]
 <!--
-                <h3><a name="#monetaryunits" >Monetary Units </a> <span onclick="hideMe(this);"id='monetaryunits_control'> [-]</span></h3>
+                <h3><a name="#monetaryunits" >Monetary Units </a> <span onclick="hideMe(this);"id='monetaryunits_control' class='collapser'> [-]</span></h3>
                 <section id="monetaryunits">
                     [% monetaryunitstext %]
                 </section>
-                <h3><a name="#financialstatus" >Financial Status </a> <span onclick="hideMe(this);"id='financialstatus_control'> [-]</span></h3>
+                <h3><a name="#financialstatus" >Financial Status </a> <span onclick="hideMe(this);"id='financialstatus_control' class='collapser'> [-]</span></h3>
                 <section id="financialstatus">
                     [% financialstatustext %]
                 </section>
 -->
-                <h3><a name="#resources" >Resources </a> <span onclick="hideMe(this);"id='resources_control'> [-]</span></h3>
+                <h3><a name="#resources" >Resources </a> <span onclick="hideMe(this);"id='resources_control' class='collapser'> [-]</span></h3>
                 <section id="resources">
                     [% resourcestext %]
                 </section>
 <!--
-                <h3><a name="#imports" >Imports </a> <span onclick="hideMe(this);"id='imports_control'> [-]</span></h3>
+                <h3><a name="#imports" >Imports </a> <span onclick="hideMe(this);"id='imports_control' class='collapser'> [-]</span></h3>
                 <section id="imports">
                     [% importstext %]
                 </section>
-                <h3><a name="#exports" >Exports </a> <span onclick="hideMe(this);"id='exports_control'> [-]</span></h3>
+                <h3><a name="#exports" >Exports </a> <span onclick="hideMe(this);"id='exports_control' class='collapser'> [-]</span></h3>
                 <section id="exports">
                     [% exportstext %]
                 </section>
@@ -127,108 +122,107 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 
 <!--
-            <h2><a name="#relations" >Relations </a> <span onclick="hideMe(this);"id='relations_control'> [-]</span></h2>
+            <h2><a name="#relations" >Relations </a> <span onclick="hideMe(this);"id='relations_control' class='collapser'> [-]</span></h2>
             <section id='relations'>
                 [% relationtext %]
-                <h3><a name="#racial" >Racial </a> <span onclick="hideMe(this);"id='racial_control'> [-]</span></h3>
+                <h3><a name="#racial" >Racial </a> <span onclick="hideMe(this);"id='racial_control' class='collapser'> [-]</span></h3>
                 <section id="racial">
                     [% racialtext %]
                 </section>
-                <h3><a name="#community" >Community </a> <span onclick="hideMe(this);"id='community_control'> [-]</span></h3>
+                <h3><a name="#community" >Community </a> <span onclick="hideMe(this);"id='community_control' class='collapser'> [-]</span></h3>
                 <section id="community">
                     [% communitytext %]
                 </section>
-                <h3><a name="#civic" >Civic </a> <span onclick="hideMe(this);"id='civic_control'> [-]</span></h3>
+                <h3><a name="#civic" >Civic </a> <span onclick="hideMe(this);"id='civic_control' class='collapser'> [-]</span></h3>
                 <section id="civic">
                     [% civictext %]
                 </section>
-                <h3><a name="#regional" >Regional </a> <span onclick="hideMe(this);"id='regional_control'> [-]</span></h3>
+                <h3><a name="#regional" >Regional </a> <span onclick="hideMe(this);"id='regional_control' class='collapser'> [-]</span></h3>
                 <section id="regional">
                     [% regionaltext %]
                 </section>
             </section>
 -->
 <!--
-            <h2><a name="#culture" >Culture </a> <span onclick="hideMe(this);"id='culture_control'> [-]</span></h2>
+            <h2><a name="#culture" >Culture </a> <span onclick="hideMe(this);"id='culture_control' class='collapser'> [-]</span></h2>
             <section id='culture'>
                 [% culturetext %]
-                <h3><a name="#history" >History </a> <span onclick="hideMe(this);"id='history_control'> [-]</span></h3>
+                <h3><a name="#history" >History </a> <span onclick="hideMe(this);"id='history_control' class='collapser'> [-]</span></h3>
                 <section id="history">
                     [% historytext %]
                 </section>
-                <h3><a name="#mythology" >Mythology </a> <span onclick="hideMe(this);"id='mythology_control'> [-]</span></h3>
+                <h3><a name="#mythology" >Mythology </a> <span onclick="hideMe(this);"id='mythology_control' class='collapser'> [-]</span></h3>
                 <section id="mythology">
                     [% text %]
                 </section>
-                <h3><a name="#legends" >Legends </a> <span onclick="hideMe(this);"id='legends_control'> [-]</span></h3>
+                <h3><a name="#legends" >Legends </a> <span onclick="hideMe(this);"id='legends_control' class='collapser'> [-]</span></h3>
                 <section id="legends">
                     [% legendstext %]
                 </section>
-                <h3><a name="#culinary" >Culinary </a> <span onclick="hideMe(this);"id='culinary_control'> [-]</span></h3>
+                <h3><a name="#culinary" >Culinary </a> <span onclick="hideMe(this);"id='culinary_control' class='collapser'> [-]</span></h3>
                 <section id="culinary">
                     [% culinarytext %]
                 </section>
             </section>
 -->
 
-            <h2><a name="#events" >Events </a> <span onclick="hideMe(this);"id='events_control'> [-]</span></h2>
+            <h2><a name="#events" >Events </a> <span onclick="hideMe(this);"id='events_control' class='collapser'> [-]</span></h2>
             <section id='events'>
                 [% eventstext %]
-                <h3><a name="#postings" >Job Postings </a> <span onclick="hideMe(this);"id='postings_control'> [-]</span></h3>
+                <h3><a name="#postings" >Job Postings </a> <span onclick="hideMe(this);"id='postings_control' class='collapser'> [-]</span></h3>
                 <section id="postings">
                     [% postingstext %]
                 </section>
 <!--
-                <h3><a name="#current" >Current </a> <span onclick="hideMe(this);"id='current_control'> [-]</span></h3>
+                <h3><a name="#current" >Current </a> <span onclick="hideMe(this);"id='current_control' class='collapser'> [-]</span></h3>
                 <section id="current">
                     [% currenttext %]
                 </section>
-                <h3><a name="#recent" >Recent </a> <span onclick="hideMe(this);"id='recent_control'> [-]</span></h3>
+                <h3><a name="#recent" >Recent </a> <span onclick="hideMe(this);"id='recent_control' class='collapser'> [-]</span></h3>
                 <section id="recent">
                     [% recenttext %]
                 </section>
-                <h3><a name="#weather" >Weather </a> <span onclick="hideMe(this);"id='weather_control'> [-]</span></h3>
+                <h3><a name="#weather" >Weather </a> <span onclick="hideMe(this);"id='weather_control' class='collapser'> [-]</span></h3>
                 <section id="weather">
                     [% weathertext %]
                 </section>
 -->
             </section>
 
-            <h2><a name="#people" >People </a> <span onclick="hideMe(this);"id='people_control'> [-]</span></h2>
+            <h2><a name="#people" >People </a> <span onclick="hideMe(this);"id='people_control' class='collapser'> [-]</span></h2>
             <section id='people'>
                 [% peopletext %]
 <!--
-                <h3><a name="#leaders" >Leaders </a> <span onclick="hideMe(this);"id='leaders_control'> [-]</span></h3>
+                <h3><a name="#leaders" >Leaders </a> <span onclick="hideMe(this);"id='leaders_control' class='collapser'> [-]</span></h3>
                 <section id="leaders">
                     [% leaderstext %]
                 </section>
 -->
-                <h3><a name="#citizens" >Citizens </a> <span onclick="hideMe(this);"id='citizens_control'> [-]</span></h3>
+                <h3><a name="#citizens" >Citizens </a> <span onclick="hideMe(this);"id='citizens_control' class='collapser'> [-]</span></h3>
                 <section id="citizens">
                     [% citizenstext %]
                 </section>
-                <h3><a name="#travelers" >Travelers </a> <span onclick="hideMe(this);"id='travelers_control'> [-]</span></h3>
+                <h3><a name="#travelers" >Travelers </a> <span onclick="hideMe(this);"id='travelers_control' class='collapser'> [-]</span></h3>
                 <section id="travelers">
                     [% travelerstext %]
                 </section>
             </section>
 
-            <h2><a name="#locales" >Locales </a> <span onclick="hideMe(this);"id='locales_control'> [-]</span></h2>
+            <h2><a name="#locales" >Locales </a> <span onclick="hideMe(this);"id='locales_control' class='collapser'> [-]</span></h2>
             <section id='locales'>
                 [% localestext %]
 <!--
-                <h3><a name="#landmarks" >Landmarks </a> <span onclick="hideMe(this);"id='landmarks_control'> [-]</span></h3>
+                <h3><a name="#landmarks" >Landmarks </a> <span onclick="hideMe(this);"id='landmarks_control' class='collapser'> [-]</span></h3>
                 <section id="landmarks">
                     [% landmarkstext %]
                 </section>
 -->
-                <h3><a name="#establishments" >Establishments </a> <span onclick="hideMe(this);"id='establishments_control'> [-]</span></h3>
+                <h3><a name="#establishments" >Establishments </a> <span onclick="hideMe(this);"id='establishments_control' class='collapser'> [-]</span></h3>
                 <section id="establishments">
                     [% establishmentstext %]
                 </section>
 
                 </section>
-
 
 
  

@@ -98,7 +98,8 @@ header {
     margin-top:10px;
     font: 12pt 'OldNewspaper';
 }
-h3 span, h2 span{
+
+.collapser{
     font-size:0.8em;
     color: #777777;
     cursor:pointer;
@@ -208,25 +209,13 @@ img {
     border:0px solid green;
     margin-top:1em;
 }
-.demolistfinal {
-    column-count:3;
-    -moz-column-count:3; /* Firefox */
-    -webkit-column-count:3; /* Safari and Chrome */
 
-    column-gap:0em;
-    -moz-column-gap:0em; /* Firefox */
-    -webkit-column-gap:0em; /* Safari and Chrome */
-
-    border:0px solid green;
-    margin-top:1em;
-}
-
-.demolistfinal li::before, .twocolumn li::before, .threecolumn li::before {
+.twocolumn li::before, .threecolumn li::before {
     content:"\2600";
     margin-right:0.25em;
 }
 
-.demolistfinal li, .twocolumn li, .threecolumn li  {
+.twocolumn li, .threecolumn li  {
     list-style-type: none;
     padding-left:0em;
     text-indent:-1em;

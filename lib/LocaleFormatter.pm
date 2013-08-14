@@ -29,7 +29,7 @@ use Data::Dumper;
 use Exporter;
 use Lingua::Conjunction;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw( A PL_N );
+use Lingua::EN::Inflect qw( A PL_N NO);
 use POSIX;
 use version;
 
@@ -65,7 +65,7 @@ sub printEstablishments {
     if ( scalar( @{ $city->{'establishments'} } ) > 0 ) {
         $content
             .= "<p>These establishments worthy of mention in $city->{'name'}:</p>\n";
-        $content .= "<ul class='demolistfinal'>";
+        $content .= "<ul class='twocolumn'>";
         foreach my $establishment ( @{ $city->{'establishments'} } ) {
             $content .= describe_establishment($establishment);
         }
@@ -89,10 +89,14 @@ sub describe_establishment {
     # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
     # the owner and patrons at the smithy.
    
-    $content .= "<b>The $establishment->{'name'} </b> ";
-
+    $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
+    $content.='<span style="display:none" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
+    #FIXME we need to re-evaluate these if statements; text should be readable if any one is missing.
+    #FIXME for example. "The Wet Frog is a greasy looing average sized..." vs. "The West Frog average sized..."
+    #FIXME is needs to be moved above, and these need an article on whichever one is first.
+    #FIXME we may need to re-evaluate how this is generated :/
     if ( defined $establishment->{'condition'} ) {    
-        $content .= " is a $establishment->{'condition'} looking ";
+        $content .= " is ".A($establishment->{'condition'})." looking ";
     }
     
     if ( defined $establishment->{'size_description'} ) {    
@@ -108,7 +112,7 @@ sub describe_establishment {
     }
     
     if ( defined $establishment->{'storefront'} ) {    
-        $content .= " with a $establishment->{'storefront'} storefront, ";
+        $content .= " with ".A($establishment->{'storefront'})." storefront, ";
     }
 
     if ( defined $establishment->{'windows'} ) {    
@@ -120,11 +124,11 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'neighborhood'} ) {    
-        $content .= " in a $establishment->{'neighborhood'} part of town ";
+        $content .= " in ".A($establishment->{'neighborhood'})." part of town ";
     }
 
     if ( defined $establishment->{'manager'}->{'behavior'} ) {    
-        $content .= " run by a $establishment->{'manager'}->{'behavior'} ";
+        $content .= " run by ".A($establishment->{'manager'}->{'behavior'})." ";
     }
 
     if ( defined $establishment->{'manager'}->{'sex'} ) {    
@@ -159,9 +163,8 @@ sub describe_establishment {
         $content .= " Upon entering " . conjunction(shuffle @senses ) . ".";
     }    
     
-    if ( defined $establishment->{'occupants'} ) {
-        $content .= " There are $establishment->{'occupants'} customers in the $establishment->{'type'}.";
-    }
+    my $verb= ($establishment->{'occupants'} ==1) ? 'is' : 'are';
+    $content .= " There $verb ".NO('customer', $establishment->{'occupants'})." in the $establishment->{'type'}.";
 
     if ( defined $establishment->{'enforcer'} ) {
         $content .= " The $establishment->{'enforcer'}";
@@ -171,7 +174,7 @@ sub describe_establishment {
         $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
     }
 
-    $content .= "</li>";
+    $content .= "</span></li>";
     
     return $content;
 }
