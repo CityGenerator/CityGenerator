@@ -163,6 +163,8 @@ sub print_content {
         'businessestext'    => EconomyFormatter::printBusinesses($city),
 
         'tavernstext'       => LocaleFormatter::printTaverns($city),
+        
+        'establishmentstext' => LocaleFormatter::printEstablishments($city),
 
     };
     $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";

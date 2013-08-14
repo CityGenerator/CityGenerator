@@ -40,6 +40,7 @@ use RegionGenerator;
 use GovtGenerator;
 use MilitaryGenerator;
 use TavernGenerator;
+use EstablishmentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -325,6 +326,7 @@ sub flesh_out_city {
     generate_specialists($city);
     generate_businesses($city);
     generate_taverns($city);
+    generate_establishments($city);
     generate_postings($city);
     generate_districts($city);
 
@@ -1177,6 +1179,48 @@ sub generate_housing {
         = int( $city->{'housing'}->{'total'} * $city->{'housing'}->{'abandoned_percent'} / 100 );
 
 
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 generate_establishments
+
+Generate a list of establishments based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_establishments {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
+
+    if ( defined $city->{'businesses'} ) {
+        $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5) * 1.2) if ( !defined $city->{'establishment_count'} );
+        my $patrons = floor($city->{'population_total'} / 3);
+        if ( $patrons > ($city->{'establishment_count'} * 3) ){
+            $patrons = $city->{'establishment_count'} * 3;
+        }
+        for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
+            if ( !defined $city->{'establishments'}->[$establishmentID] ) {
+                $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+                if( $patrons > 0 ) {
+                    my $roll = $patrons;
+                    if ($patrons > 10){
+                        $roll = 10;
+                    }
+                    my $occupants = d(floor($roll / 2));
+                    $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
+                    $patrons = $patrons - $occupants;
+                }
+            }    
+        }
+    }
     return $city;
 }
 

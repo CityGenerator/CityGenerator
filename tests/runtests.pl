@@ -28,6 +28,7 @@ use TestSummaryFormatter;
 use TestTavernGenerator;
 use TestWorldFormatter;
 use TestWorldGenerator;
+use TestEstablishmentGenerator;
 use TestBondGenerator;
 use TestExampleGenerator;
 use TestPostingGenerator;
