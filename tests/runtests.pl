@@ -25,7 +25,6 @@ use TestMythGenerator;
 use TestNPCGenerator;
 use TestRegionGenerator;
 use TestSummaryFormatter;
-use TestTavernGenerator;
 use TestWorldFormatter;
 use TestWorldGenerator;
 use TestEstablishmentGenerator;
