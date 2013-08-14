@@ -27,8 +27,9 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
+use Lingua::Conjunction;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw( A );
+use Lingua::EN::Inflect qw( A PL_N );
 use POSIX;
 use version;
 
@@ -98,6 +99,132 @@ sub describe_tavern {
     $content
         .= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
     $content .= "</li>";
+    return $content;
+}
+
+###############################################################################
+
+=head2 printEstablishments()
+
+printTaverns strips out Establishment information and formats it.
+
+=cut
+
+###############################################################################
+sub printEstablishments {
+    my ($city) = @_;
+    my $content = "";
+    if ( scalar( @{ $city->{'establishments'} } ) > 0 ) {
+        $content
+            .= "<p>These establishments worthy of mention in $city->{'name'}:</p>\n";
+        $content .= "<ul class='demolistfinal'>";
+        foreach my $establishment ( @{ $city->{'establishments'} } ) {
+            $content .= describe_establishment($establishment);
+        }
+
+        $content .= "</ul>";
+    } else {
+        $content .= "<p>There are no establishments in this town.</p>\n";
+    }
+
+
+    return $content;
+}
+
+sub describe_establishment {
+    my ($establishment) = @_;
+    my $content = "<li>";
+
+    # The Hungry Road is a neat looking typical sized smithy facing southeast with a mud storefront, 
+    # barred windows, and a roof made from thatch in a trashy part of town run by a servile female 
+    # elf named Bellanai Morningrose. This smithy is known for a real steal prices for the service  
+    # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
+    # the owner and patrons at the smithy.
+   
+    $content .= "<b>The $establishment->{'name'} </b> ";
+
+    if ( defined $establishment->{'condition'} ) {    
+        $content .= " is a $establishment->{'condition'} looking ";
+    }
+    
+    if ( defined $establishment->{'size_description'} ) {    
+        $content .= " $establishment->{'size_description'} sized ";
+    }
+    
+    if ( defined $establishment->{'type'} ) {    
+        $content .= " $establishment->{'type'} ";
+    }
+
+    if ( defined $establishment->{'direction'} ) {    
+        $content .= " facing $establishment->{'direction'} ";
+    }
+    
+    if ( defined $establishment->{'storefront'} ) {    
+        $content .= " with a $establishment->{'storefront'} storefront, ";
+    }
+
+    if ( defined $establishment->{'windows'} ) {    
+        $content .= " $establishment->{'windows'} windows, ";
+    }
+    
+    if ( defined $establishment->{'storeroof'} ) {    
+        $content .= " and a roof made from $establishment->{'storeroof'} ";
+    }
+
+    if ( defined $establishment->{'neighborhood'} ) {    
+        $content .= " in a $establishment->{'neighborhood'} part of town ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'behavior'} ) {    
+        $content .= " run by a $establishment->{'manager'}->{'behavior'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'sex'} ) {    
+        $content .= " $establishment->{'manager'}->{'sex'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'race'} ) {    
+        $content .= " $establishment->{'manager'}->{'race'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'name'} ) {    
+        $content .= " named $establishment->{'manager'}->{'name'}. ";
+    }
+
+    if ( defined $establishment->{'service_type'} ) {    
+        $content .= "This $establishment->{'type'} is known for  ";
+    }
+
+    if ( defined $establishment->{'price_description'} ) {    
+        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} there ";
+    }
+    
+    if ( defined $establishment->{'popularity_description'} ) {    
+        $content .= " and $establishment->{'popularity_description'}. ";
+    }
+
+    my @senses;
+    push @senses,  "you smell $establishment->{'smell'}" if ( defined $establishment->{'smell'} );
+    push @senses,  "you hear $establishment->{'sound'}" if ( defined $establishment->{'sound'} );
+    push @senses,  "you see $establishment->{'sight'}" if ( defined $establishment->{'sight'} );
+    if (@senses != 0){
+        $content .= " Upon entering " . conjunction(shuffle @senses ) . ".";
+    }    
+    
+    if ( defined $establishment->{'occupants'} ) {
+        $content .= " There are $establishment->{'occupants'} customers in the $establishment->{'type'}.";
+    }
+
+    if ( defined $establishment->{'enforcer'} ) {
+        $content .= " The $establishment->{'enforcer'}";
+    }
+
+    if ( defined $establishment->{'graft'} ) {
+        $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
+    }
+
+    $content .= "</li>";
+    
     return $content;
 }
 
