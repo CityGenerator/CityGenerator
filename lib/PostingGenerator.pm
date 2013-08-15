@@ -108,7 +108,7 @@ sub create_posting {
     $posting->{'class'}= rand_from_array([keys %{$xml_data->{'classes'}->{'class'}}]) if (!defined $posting->{'class'}) ;
 
 
-    process_template($posting);
+    GenericGenerator::parse_template($posting);
     append_extras($posting);
     return $posting;
 }
@@ -137,33 +137,9 @@ sub select_feature {
 
 ###############################################################################
 
-=head2 process_template()
-
-Process the template node with values from the posting.
-
-=cut
-
-###############################################################################
-sub process_template {
-    my ($posting) = @_;
-
-    my $tt_obj = Template->new();
-    my $content="";
-    my $template="$posting->{'template'}";
-
-    $tt_obj->process(\$template, $posting, \$content ) || die $tt_obj->error();
-
-    $posting->{'template'}=$template;
-    $posting->{'content'}=ucfirst($content);
-
-    return $posting;
-}
-
-###############################################################################
-
 =head2 append_extras()
 
-append non-interpolated features to $postin->content()
+append non-interpolated features to $posting->template()
 
 =cut
 
@@ -172,28 +148,28 @@ sub append_extras {
     my ($posting) = @_;
 
     if (defined $posting->{'hook'}){
-       $posting->{'content'}=$posting->{'hook'}." ".$posting->{'content'};
+       $posting->{'template'}=$posting->{'hook'}." ".$posting->{'template'};
     }
     if (defined $posting->{'request'}){
-       $posting->{'content'}=$posting->{'request'}." ".$posting->{'content'};
+       $posting->{'template'}=$posting->{'request'}." ".$posting->{'template'};
     }
 
     foreach my $feature ( shuffle qw( requirement disclaimer payment ) ){
 
         if (defined $posting->{$feature}){
-           $posting->{'content'}=$posting->{'content'}." ".$posting->{$feature};
+           $posting->{'template'}=$posting->{'template'}." ".$posting->{$feature};
         }
     }
 
 
-    $posting->{'content'}=$posting->{'content'}." Contact ".$posting->{'contact'};
+    $posting->{'template'}=$posting->{'template'}." Contact ".$posting->{'contact'};
     if (defined $posting->{'location'}){
-       $posting->{'content'}=$posting->{'content'}."at ".$posting->{'location'};
+       $posting->{'template'}=$posting->{'template'}."at ".$posting->{'location'};
     }
     if (defined $posting->{'detail'}){
-       $posting->{'content'}=$posting->{'content'}." ".$posting->{'detail'};
+       $posting->{'template'}=$posting->{'template'}." ".$posting->{'detail'};
     }
-    $posting->{'content'}.=".";
+    $posting->{'template'}.=".";
     
 
 

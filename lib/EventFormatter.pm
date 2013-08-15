@@ -64,7 +64,7 @@ sub printPostings {
     my $content = "You'll find the following job postings:";
     $content .= "<ul class='twocolumn'> \n";
     foreach my $posting (@{ $city->{'postings'} } ){
-        $content.= "<li>".$posting->{'content'}."</li>\n";
+        $content.= "<li>".$posting->{'template'}."</li>\n";
     
     }    
 

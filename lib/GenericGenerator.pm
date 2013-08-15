@@ -301,16 +301,23 @@ parse a structures template and fill it with it's bretheren.
 
 ###############################################################################
 sub parse_template{
-    my ($ds)=@_;
+    my ($ds, $tmplname)=@_;
+
+    if (!defined $tmplname){
+        $tmplname='template';
+    }
 
     my $tt_obj = Template->new();
     my $content="";
-    my $template="$ds->{'template'}";
+    my $tmpl="$ds->{$tmplname}";
+    my $template=$ds->{'template'};
 
-    $tt_obj->process(\$template, $ds, \$content ) || die "Template bad? $template\n$tt_obj->error()";
-
+    $tt_obj->process(\$tmpl, $ds, \$content ) || die "Template bad? $tmpl\n$tt_obj->error()";
+    
+    #NOTE because of the way process() runs, 'template' is wiped out.
+    # while tmplname may be 'template', we need to set it twice in case it's not. Fugly, I know.
     $ds->{'template'}=$template;
-    $ds->{'content'}=$content;
+    $ds->{$tmplname}=$content;
 
     return $ds;
 }

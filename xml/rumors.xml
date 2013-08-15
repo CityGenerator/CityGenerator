@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data>
+
+    <feature>
+        <verbed>
+            <option>blackmailed</option>
+            <option>bribed</option>
+            <option>cheated</option>
+            <option>exorted</option>
+            <option>insulted</option>
+            <option>kidnapped</option>
+            <option>maimed</option>
+            <option>murdered</option>
+            <option>patronized</option>
+            <option>robbed</option>
+            <option>screwed</option>
+            <option>stole from</option>
+            <option>torched</option>
+        </verbed>
+        <stealth>
+            <option>flagrantly</option>
+            <option>secretly</option>
+            <option>quietly</option>
+            <option>publicly</option>
+        </stealth>
+        <past chance="30">
+            <option> yesterday</option>
+            <option> the day before last</option>
+            <option> several days ago</option>
+            <option> last week</option>
+            <option> last month</option>
+            <option> last year</option>
+            <option> several years ago</option>
+        </past>
+        <location>
+            <option>old millhouse</option>
+            <option>empty riverbed</option>
+            <option>caves to the north</option>
+            <option>abandoned farmhouse outside of town</option>
+            <option>ancient ruins</option>
+        </location>
+        <scarything>
+            <option>a ghost</option>
+            <option>a witch</option>
+            <option>a mummy</option>
+            <option>a werewolf</option>
+            <option>a dinosaur</option>
+            <option>a demon</option>
+            <option>a dragon</option>
+            <option>a ghoul</option>
+        </scarything>
+        <fearresult>
+            <option>fled in terror</option>
+            <option>was killed</option>
+            <option>was stricken dumb</option>
+            <option>was nearly killed</option>
+            <option>was gravely injured</option>
+            <option>ran home as fast as possible.</option>
+        </fearresult>
+        <dangeroushobby>
+            <option>seeking revenge</option>
+            <option>trying to earn some quick coin</option>
+            <option>working for a new employer who suddently skipped town.</option>
+            <option>drunkenly arguing with people</option>
+            <option>chasing something into the woods</option>
+        </dangeroushobby>
+        <belief chance="30">
+            <option>[%believer%] believes it.</option>
+            <option>[%believer%] doesn't believe it.</option>
+        </belief>
+        <heardit chance="30">
+            <option>[%source%] heard</option>
+            <option>[%source%] said</option>
+        </heardit>
+        <truth chance="30">
+            <option>(True.)</option>
+            <option>(False.)</option>
+            <option>(Unknown.)</option>
+            <option>(Mistaken.)</option>
+        </truth>
+        <template>
+            <option>[%culprit%] [%stealth%] [%verbed%] [%victim%][%past%].</option>
+            <option>[%scarything%] was spotted out by the [%location%][%past%]. [%victim%] saw it and [%fearresult%].</option>
+            <option>there's a hidden treasure at [%location%] for anyone stupid enough to go after it. They say [%scarything%] guards it.</option>
+            <option>[%victim%] went missing[%past%] and was last seen [%dangeroushobby%], never to be seen again.</option>
+        </template>
+    </feature>
+
+</data>
