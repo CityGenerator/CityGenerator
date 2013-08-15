@@ -1653,8 +1653,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
-                <option>inc.</option>
+                <option>Hostel</option>
+                <option>Youth Hostel</option>
             </trailer>
             
 		</option>
@@ -1670,7 +1670,13 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Junkyard</option>
+                <option>Depot</option>
+                <option>Garbage Lot</option>
+                <option>Pile</option>
+                <option>Dumping Ground</option>
+                <option>Disposal Area</option>
+                <option>Waste Site</option>
             </trailer>
             
 		</option>
@@ -1703,7 +1709,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Leatherworks</option>
             </trailer>
             
 		</option>
@@ -1722,7 +1728,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Public Library</option>
+                <option>Study</option>
+                <option>Reference Center</option>
             </trailer>
             
 		</option>
@@ -1742,7 +1750,7 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Locksmith</option>
             </trailer>
             
 		</option>
@@ -1757,7 +1765,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Lumber Mill</option>
+                <option>Saw Mill</option>
+                <option>Timber Mill</option>
             </trailer>
             
 		</option>
@@ -1772,7 +1782,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Lumberyard</option>
+                <option>Timberyard</option>
             </trailer>
             
 		</option>
@@ -1793,22 +1804,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
-            </trailer>
-            
-		</option>
-	    <option name="manor"           perbuilding="4"  limit=""   district="wealthy" >
-			<manager>
-				<option>courtier</option>
-			</manager>
-		    <npc_class>
-                <option>commoner</option>
-			</npc_class>
-            <service>
-                <option>service</option>
-            </service>
-            <trailer>
-                <option>inc.</option>
+                <option>Botique</option>
+                <option>Shoppe</option>
+                <option>Magic Shop</option>
             </trailer>
             
 		</option>
@@ -1840,7 +1838,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Textiles</option>
+                <option>Fabrics</option>
+                <option>Cloth</option>
             </trailer>
             
 		</option>
@@ -1855,8 +1855,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>woodcuters</option>
-                <option>wood shop</option>
+                <option>Millers</option>
+                <option>Mill</option>
             </trailer>
             
 		</option>
@@ -1871,7 +1871,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Mail Service</option>
+                <option>Postal Service</option>
+                <option>Package Delivery</option>
             </trailer>
             
 		</option>
@@ -1887,7 +1889,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Ceramics</option>
+                <option>Pots</option>
+                <option>Pottery House</option>
             </trailer>
             
 		</option>
@@ -1899,19 +1903,14 @@
                 <option>commoner</option>
                 <option>expert</option>
                 <option>rogue</option>
+		    </npc_class>
             <service>
                 <option>service</option>
             </service>
-            <trailer>
-                <option>inc.</option>
-            </trailer>
             
-			</npc_class>
-            <service>
-                <option>service</option>
-            </service>
             <trailer>
-                <option>inc.</option>
+                <option>Purse Shop</option>
+                <option>Bags</option>
             </trailer>
             
 		</option>
@@ -1926,7 +1925,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Roofing</option>
+                <option>Construction</option>
             </trailer>
             
 		</option>
@@ -1941,7 +1941,9 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>.</option>
+                <option></option>
+                <option></option>
             </trailer>
             
 		</option>
@@ -1956,7 +1958,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Rug Shop</option>
+                <option>Rugs</option>
             </trailer>
             
 		</option>
@@ -1972,7 +1975,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Scabbards</option>
+                <option>Sheath Store</option>
             </trailer>
             
 		</option>
@@ -1994,7 +1998,13 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Elementary School</option>
+                <option>Primary School</option>
+                <option>Secondary School</option>
+                <option>High School</option>
+                <option>Middle School</option>
+                <option>Reform School</option>
+                <option>Military School</option>
             </trailer>
             
 		</option>
@@ -2010,7 +2020,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Sculptures</option>
+                <option>Studio</option>
             </trailer>
             
 		</option>
@@ -2026,7 +2037,10 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Shipyard</option>
+                <option>Ship Repair</option>
+                <option>Dock Company</option>
+                <option>Dry Dock</option>
             </trailer>
             
 		</option>
@@ -2042,7 +2056,8 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Shoes</option>
+                <option>Shoes Inc.</option>
             </trailer>
             <smell>
                 <option>scent of leather</option>
@@ -2072,7 +2087,10 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Shop</option>
+                <option>Shoppe</option>
+                <option>Store</option>
+                <option>Outlet</option>
             </trailer>
             
 		</option>
@@ -2088,7 +2106,11 @@
                 <option>service</option>
             </service>
             <trailer>
-                <option>inc.</option>
+                <option>Kennels</option>
+                <option>Farm</option>
+                <option>Meats</option>
+                <option>Butchery</option>
+                <option>Stockyard</option>
             </trailer>
             
 		</option>
