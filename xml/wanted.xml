@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wanted>
+
+    <title> <-- TITLE bob: Wanted for CRIME -->
+        <option>Creepy</option>
+        <option>Wild</option>
+        <option>Ol'</option>
+        <option>Mean Old</option>
+        <option>Boisterous</option>
+        <option>Eager</option>
+        <option>Foolish</option>
+        <option>Giddy</option>
+        <option>Mad</option>
+        <option>Reckless</option>
+        <option>Violent</option>
+        <option>Awful</option>
+        <option>Itchy</option>
+        <option>Weird</option>
+        <option>Grody</option>
+        <option>Loathsome</option>
+        <option>Nasty</option>
+        <option>odious</option>
+        <option>Rotten</option>
+        <option>Scuzzy</option>
+    </title>
+    <crime>
+        <option>Murder</option>
+        <option>Petty Theft</option>
+        <option>Grand Theft</option>
+        <option>Crimes against Nature</option>
+        <option>Kidnapping</option>
+        <option>Arson</option>
+        <option>Necromancy</option>
+        <option>Forbidden Magic</option>
+    </crime>
+
+    <lastseen>
+        <option>in town</option>
+        <option>outside town</option>
+        <option>in the country</option>
+        <option>in a cave</option>
+        <option>underground</option>
+    </lastseen>
+
+        <option></option>
+
+</wanted>
