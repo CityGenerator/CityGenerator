@@ -156,11 +156,10 @@ sub generate_establishment_name {
     my $nameobj = parse_object( $establishment_data->{'name'} );
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    my $est_root = $nameobj->{'content'} if ( !defined $establishment->{'name'} );
+
+    $establishment->{'name'}  = "$nameobj->{'content'} $establishment->{'trailer'}" if ( !defined $establishment->{'name'} );
     
-    #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
-    my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
-    my $tc = Lingua::EN::Titlecase->new($est_root." ".$trailer);
+    my $tc = Lingua::EN::Titlecase->new( $establishment->{'name'}  );
 
     $establishment->{'name'} = $tc->title();
     
@@ -268,7 +267,7 @@ sub generate_servicetype {
     my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( defined $type->{'service'} );
+    $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( !defined $establishment->{'service_type'} and defined $type->{'service'} );
     
     return $establishment;
 
@@ -288,7 +287,7 @@ sub generate_law {
     my ($establishment) = @_;
 
     my $data = $xml_data->{'laws'};
-    $establishment->{'enforcer'} = rand_from_array($data->{'enforcer'}->{'option'})->{'content'} if ( defined $data->{'enforcer'} );
+    $establishment->{'enforcer'} = rand_from_array($data->{'enforcer'}->{'option'})->{'content'} if (!defined $establishment->{'enforcer'} );
     
     return $establishment;
 
@@ -307,8 +306,7 @@ generate the graft of an establishment
 sub generate_graft {
     my ($establishment) = @_;
 
-    my $data = $xml_data->{'laws'};
-    $establishment->{'graft'} = rand_from_array($data->{'graft'}->{'option'})->{'content'} if ( defined $data->{'graft'} );
+    $establishment->{'graft'} = rand_from_array($xml_data->{'laws'}->{'graft'}->{'option'})->{'content'} if ( !defined $establishment->{'graft'} );
     
     return $establishment;
 
@@ -338,7 +336,7 @@ sub generate_condition {
 
 ###############################################################################
 
-=head2 direction()
+=head2 generate_direction()
  
 generate the direction of an establishment
  
