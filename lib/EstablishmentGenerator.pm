@@ -94,18 +94,19 @@ sub create_establishment {
             if ( !defined $establishment->{ $stat . "_description" } );
     }
 
+    GenericGenerator::select_features($establishment, $establishment_data);
     select_establishment_type($establishment);
     generate_establishment_name($establishment);
+
+
     generate_manager($establishment);
+
     generate_smell($establishment);
     generate_sight($establishment);
     generate_sound($establishment);
-    generate_neighborhood($establishment);
-    generate_windows($establishment);
-    generate_storefront($establishment);
-    generate_direction($establishment);
-    generate_storeroof($establishment);
     generate_servicetype($establishment);
+
+    generate_direction($establishment);
     generate_law($establishment);
     generate_graft($establishment);
     generate_condition($establishment);
@@ -159,7 +160,9 @@ sub generate_establishment_name {
     
     #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
     my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
-    $establishment->{'name'} = Lingua::EN::Titlecase->new($est_root . " " . $trailer);
+    my $tc = Lingua::EN::Titlecase->new($est_root." ".$trailer);
+
+    $establishment->{'name'} = $tc->title();
     
     return $establishment;
 }
@@ -254,66 +257,6 @@ sub generate_sound {
 
 ###############################################################################
 
-=head2 generate_neighborhood()
- 
-generate the neighborhood of an establishment
- 
-=cut
-
-###############################################################################
-sub generate_neighborhood {
-    my ($establishment) = @_;
-
-    my $establishment_data = $establishment_data->{'neighborhood'};
-    $establishment->{'neighborhood'} = rand_from_array($establishment_data->{'option'})->{'content'};
-    
-    return $establishment;
-
-}
-
-
-###############################################################################
-
-=head2 generate_storefront()
- 
-generate the neighborhood of an establishment
- 
-=cut
-
-###############################################################################
-sub generate_storefront {
-    my ($establishment) = @_;
-
-    my $establishment_data = $establishment_data->{'storefront'};
-    $establishment->{'storefront'} = rand_from_array($establishment_data->{'option'})->{'content'};
-    
-    return $establishment;
-
-}
-
-
-###############################################################################
-
-=head2 generate_storeroof()
- 
-generate the store roof of an establishment
- 
-=cut
-
-###############################################################################
-sub generate_storeroof {
-    my ($establishment) = @_;
-
-    my $establishment_data = $establishment_data->{'storeroof'};
-    $establishment->{'storeroof'} = rand_from_array($establishment_data->{'option'})->{'content'};
-    
-    return $establishment;
-
-}
-
-
-###############################################################################
-
 =head2 generate_servicetype()
  
 generate the service type of an establishment
@@ -384,32 +327,13 @@ generate the condition of an establishment
 sub generate_condition {
     my ($establishment) = @_;
 
-    my $data = $xml_data->{'condition'};
-    $establishment->{'condition'} = rand_from_array($data->{'option'})->{'content'} if ( defined $data->{'option'} );
+    $establishment->{'condition'} = rand_from_array($xml_data->{'condition'}->{'option'})->{'content'} if (! defined $establishment->{'condition'}  );
     
     return $establishment;
 
 }
 
 
-###############################################################################
-
-=head2 generate_windows()
- 
-generate the windows of an establishment
- 
-=cut
-
-###############################################################################
-sub generate_windows {
-    my ($establishment) = @_;
-
-    my $establishment_data = $establishment_data->{'windows'};
-    $establishment->{'windows'} = rand_from_array($establishment_data->{'option'})->{'content'};
-    
-    return $establishment;
-
-}
 
 
 ###############################################################################
@@ -424,8 +348,7 @@ generate the direction of an establishment
 sub generate_direction {
     my ($establishment) = @_;
 
-    my $establishment_data = $xml_data->{'direction'};
-    $establishment->{'direction'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    $establishment->{'direction'} = rand_from_array($xml_data->{'direction'}->{'option'})->{'content'} if (!defined $establishment->{'direction'});
     
     return $establishment;
 
@@ -436,7 +359,7 @@ sub generate_direction {
 
 =head2 generate_district()
  
-generate the sound category of an establishment
+generate the sound category of an establishment 
  
 =cut
 
