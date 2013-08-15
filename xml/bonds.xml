@@ -64,7 +64,7 @@
     		<option>[%person.0%] destroyed a cursed item to save [%person.1%].</option>
     		<option>[%person.0%] disarmed [%person.1%] in an embarassing sparring session.</option>
     		<option>[%person.0%] discovered that [%person.1%] has a deep, dark secret.</option>
-    		<option>[%person.0%] discovered that [%person.1%] is lying about something critical.</option>
+    		<option>[%person.0%] discovered that [%person.1%] lied about something critical.</option>
     		<option>[%person.0%] divided the loot improperly with [%person.1%].</option>
     		<option>[%person.0%] doubted [%person.1%] and was proven wrong.</option>
     		<option>[%person.0%] dragged [%person.1%] somewhere dangerous.</option>
