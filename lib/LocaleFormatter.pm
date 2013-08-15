@@ -82,12 +82,6 @@ sub printEstablishments {
 sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
-
-    # The Hungry Road is a neat looking typical sized smithy facing southeast with a mud storefront, 
-    # barred windows, and a roof made from thatch in a trashy part of town run by a servile female 
-    # elf named Bellanai Morningrose. This smithy is known for a real steal prices for the service  
-    # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
-    # the owner and patrons at the smithy.
    
     $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
     $content.='<span style="display:none" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
@@ -124,15 +118,15 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'neighborhood'} ) {    
-        $content .= " in ".A($establishment->{'neighborhood'})." part of town ";
+        $content .= " in ".A($establishment->{'neighborhood'})." neighborhood ";
+    }
+
+    if ( defined $establishment->{'district'} ) {    
+        $content .= " of the $establishment->{'district'} district. ";
     }
 
     if ( defined $establishment->{'manager'}->{'behavior'} ) {    
-        $content .= " run by ".A($establishment->{'manager'}->{'behavior'})." ";
-    }
-
-    if ( defined $establishment->{'manager'}->{'sex'} ) {    
-        $content .= " $establishment->{'manager'}->{'sex'} ";
+        $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." ";
     }
 
     if ( defined $establishment->{'manager'}->{'race'} ) {    

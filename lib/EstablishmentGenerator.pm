@@ -31,6 +31,7 @@ use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
+use Lingua::EN::Titlecase;
 use POSIX;
 use version;
 use XML::Simple;
@@ -108,6 +109,7 @@ sub create_establishment {
     generate_law($establishment);
     generate_graft($establishment);
     generate_condition($establishment);
+    generate_district($establishment);
     
     return $establishment;
 }
@@ -157,7 +159,7 @@ sub generate_establishment_name {
     
     #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
     my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
-    $establishment->{'name'} = $est_root; 
+    $establishment->{'name'} = Lingua::EN::Titlecase->new($est_root . " " . $trailer);
     
     return $establishment;
 }
@@ -424,6 +426,25 @@ sub generate_direction {
 
     my $establishment_data = $xml_data->{'direction'};
     $establishment->{'direction'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_district()
+ 
+generate the sound category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_district {
+    my ($establishment) = @_;
+
+    $establishment->{'district'} = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}}->{'district'};
     
     return $establishment;
 
