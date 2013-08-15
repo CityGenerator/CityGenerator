@@ -10,8 +10,6 @@ use base qw(Exporter);
 @EXPORT_OK = qw( create_bond);
 
 
-#TODO make generate_name method for use with namegenerator
-
 ###############################################################################
 
 =head1 NAME
@@ -80,7 +78,7 @@ This method is used to create a simple bond with nothing more than:
 
 =item * a seed
 
-=item * a name
+=item * content
 
 =back
 
@@ -112,8 +110,7 @@ sub create_bond {
     $bond->{'content'}=ucfirst($bond->{'content'});
     $bond->{'content'}=$bond->{'content'}." ".$bond->{'reason'}  if (defined $bond->{'reason'} );
 
-    #parse_template produces content, but namegenrator needs name,hence the reassignment.
-    $bond->{'name'}=$bond->{'content'};
+    $bond->{'content'};
     return $bond;
 }
 
