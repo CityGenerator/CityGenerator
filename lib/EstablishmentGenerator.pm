@@ -31,6 +31,7 @@ use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
+use Lingua::EN::Titlecase;
 use POSIX;
 use version;
 use XML::Simple;
@@ -158,7 +159,7 @@ sub generate_establishment_name {
     
     #TODO Revisit the use of trailers.  I like the idea but it doesn't seem to make the name better.
     my $trailer = rand_from_array($type->{'trailer'}->{'option'})->{'content'};
-    $establishment->{'name'} = $est_root; 
+    $establishment->{'name'} = Lingua::EN::Titlecase->new($est_root . " " . $trailer);
     
     return $establishment;
 }

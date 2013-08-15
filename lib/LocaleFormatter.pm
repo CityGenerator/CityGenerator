@@ -82,12 +82,6 @@ sub printEstablishments {
 sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
-
-    # The Hungry Road is a neat looking typical sized smithy facing southeast with a mud storefront, 
-    # barred windows, and a roof made from thatch in a trashy part of town run by a servile female 
-    # elf named Bellanai Morningrose. This smithy is known for a real steal prices for the service  
-    # there and is constantly crowded. There are 1 customers in the smithy. The local thugs taxes  
-    # the owner and patrons at the smithy.
    
     $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
     $content.='<span style="display:none" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
