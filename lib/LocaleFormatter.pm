@@ -84,7 +84,7 @@ sub describe_establishment {
     my $content = "<li>";
    
     $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
-    $content.='<span style="display:none" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
+    $content.='<span style="display:none" class="establishment" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
     #FIXME we need to re-evaluate these if statements; text should be readable if any one is missing.
     #FIXME for example. "The Wet Frog is a greasy looing average sized..." vs. "The West Frog average sized..."
     #FIXME is needs to be moved above, and these need an article on whichever one is first.
