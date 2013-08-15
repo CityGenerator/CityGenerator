@@ -21,11 +21,11 @@ use base qw(Exporter);
 subtest 'test create_bond' => sub {
     my $bond;
     $bond = BondGenerator::create_bond();
-    foreach my $value (qw( seed other template content ) ){
+    foreach my $value (qw( seed other template) ){
         isnt($bond->{$value}, undef, "ensure $value is set");
     }
 
-    like ($bond->{'content'}, "/you/i", "make sure you is interpolated.");
+    like ($bond->{'template'}, "/you/i", "make sure you is interpolated.");
     
     $bond = BondGenerator::create_bond(
         {
@@ -40,12 +40,11 @@ subtest 'test create_bond' => sub {
     );
     is( $bond->{'seed'},        12,                                   'ensure seed is set to 12' );
     is( $bond->{'other'},       'Zeus',                               'ensure other is set' );
-    is( $bond->{'template'},    'Dog and [% other %] show.',                'ensure other is set' );
     is( $bond->{'when_chance'},   1,                                    'ensure when_chance is set' );
     is( $bond->{'reason_chance'}, 1,                                    'ensure reason_chance is set' );
     is( $bond->{'when'},        'Silly',                              'ensure when is set' );
     is( $bond->{'reason'},      'Because.',                           'ensure reason is set' );
-    is( $bond->{'content'},     'Silly, Dog and Zeus show. Because.', 'ensure content is sane' );
+    is( $bond->{'template'},     'Silly, Dog and Zeus show. Because.', 'ensure template is sane' );
 
     done_testing();
 };
