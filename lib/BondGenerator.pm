@@ -110,7 +110,6 @@ sub create_bond {
     $bond->{'content'}=ucfirst($bond->{'content'});
     $bond->{'content'}=$bond->{'content'}." ".$bond->{'reason'}  if (defined $bond->{'reason'} );
 
-    $bond->{'content'};
     return $bond;
 }
 
