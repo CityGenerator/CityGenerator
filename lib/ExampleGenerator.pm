@@ -1,36 +1,63 @@
 #!/usr/bin/perl -wT
 ###############################################################################
-
-package RegionGenerator;
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#              This is an example generator to help others learn
+#           to create a generator. It's intended to be used as a
+#           skeleton to build on. Make sure you remove this block
+#           before you commit it!
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+###############################################################################
+package ExampleGenerator;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_region generate_name);
+@EXPORT_OK = qw( create_example );
+
 
 ###############################################################################
 
 =head1 NAME
 
-    RegionGenerator - used to generate Regions
+    ExampleGenerator - used to generate Examples
 
 =head1 SYNOPSIS
 
-    use RegionGenerator;
-    my $region=RegionGenerator::create_region();
+    use ExampleGenerator;
+    my $example1=ExampleGenerator::create_example();
+    my $example2=ExampleGenerator::create_example($parameters);
 
 =cut
 
 ###############################################################################
 
 
+use Carp;
 use CGI;
 use Data::Dumper;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator;
+use Exporter;
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
@@ -38,91 +65,68 @@ local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
-=head1 Data files
+=head1 CONFIGURATION AND ENVIRONMENT
 
-The following datafiles are used by CityGenerator.pm:
+=head2 Data files
+
+The following datafiles are used by ExampleGenerator.pm:
 
 =over
 
 =item F<xml/data.xml>
 
-=item F<xml/npcnames.xml>
-
-=item F<xml/citynames.xml>
-
-=item F<xml/regionames.xml>
-
-=item F<xml/continentnames.xml>
+=item F<xml/examples.xml>
 
 =back
+
+=head1 INTERFACE 
+
 
 =cut
 
 ###############################################################################
-# FIXME This needs to stop using our
-my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['option'] );
-my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => ['option'] );
-my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => ['option'] );
-my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => ['option'] );
+
+my $xml_data        = $xml->XMLin( "xml/data.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $example_data    = $xml->XMLin( "xml/examples.xml",  ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
+=head2 Core Methods
 
-=head2 create_region()
+The following methods are used to create the core of the example structure.
 
-This method is used to create a simple region with nothing more than:
+=head3 create_example()
+
+This method is used to create a simple example with nothing more than:
 
 =over
 
 =item * a seed
 
-=item * a name
-
 =back
 
 =cut
 
 ###############################################################################
-sub create_region {
+sub create_example {
     my ($params) = @_;
-    my $region = {};
+    my $example = {};
 
     if ( ref $params eq 'HASH' ) {
         foreach my $key ( sort keys %$params ) {
-            $region->{$key} = $params->{$key};
+            $example->{$key} = $params->{$key};
         }
     }
 
-    if ( !defined $region->{'seed'} ) {
-        $region->{'seed'} = set_seed();
+    if ( !defined $example->{'seed'} ) {
+        $example->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $example->{'seed'} );
 
-    # This knocks off the city IDs
-    $region->{'seed'} = $region->{'seed'} - $region->{'seed'} % 10;
-
-    generate_region_name($region);
-
-    return $region;
+    return $example;
 }
 
 
-###############################################################################
-
-=head2 generate_region_name()
-
-    generate a name for the region.
-
-=cut
-
-###############################################################################
-sub generate_region_name {
-    my ($region) = @_;
-    set_seed( $region->{'seed'} );
-    my $nameobj = parse_object($regionnames_data);
-    $region->{'name'} = $nameobj->{'content'} if ( !defined $region->{'name'} );
-    return $region;
-}
 
 
 1;

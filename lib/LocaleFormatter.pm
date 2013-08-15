@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printLandmarks printTaverns );
+@EXPORT_OK = qw( printLandmarks printEstablishments );
 
 ###############################################################################
 
@@ -17,7 +17,7 @@ use base qw(Exporter);
 
 =head1 DESCRIPTION
 
- This takes a city and prettily formats Taverns and Landmarks.
+ This takes a city and prettily formats Establishments and Landmarks.
 
 =cut
 
@@ -27,8 +27,9 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
+use Lingua::Conjunction;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw( A );
+use Lingua::EN::Inflect qw( A PL_N NO);
 use POSIX;
 use version;
 
@@ -51,53 +52,124 @@ sub printLandmarks {
 
 ###############################################################################
 
-=head2 printTaverns()
+=head2 printEstablishments()
 
-printTaverns strips out Tavern information and formats it.
+printEstablishments strips out Establishment information and formats it.
 
 =cut
 
 ###############################################################################
-sub printTaverns {
+sub printEstablishments {
     my ($city) = @_;
     my $content = "";
-    if ( scalar( @{ $city->{'taverns'} } ) > 0 ) {
+    if ( scalar( @{ $city->{'establishments'} } ) > 0 ) {
         $content
-            .= "<p>Taverns are often central gathering places for the citizens. In $city->{'name'} can find the following taverns:</p>\n";
-        $content .= "<ul class='demolistfinal'>";
-        foreach my $tavern ( @{ $city->{'taverns'} } ) {
-            $content .= describe_tavern($tavern);
+            .= "<p>These establishments worthy of mention in $city->{'name'}:</p>\n";
+        $content .= "<ul class='twocolumn'>";
+        foreach my $establishment ( @{ $city->{'establishments'} } ) {
+            $content .= describe_establishment($establishment);
         }
 
         $content .= "</ul>";
     } else {
-        $content .= "<p>There are no taverns in this town.</p>\n";
+        $content .= "<p>There are no establishments in this town.</p>\n";
     }
 
 
     return $content;
 }
 
-sub describe_tavern {
-    my ($tavern) = @_;
+sub describe_establishment {
+    my ($establishment) = @_;
     my $content = "<li>";
-    $content
-        .= "<b>The $tavern->{'name'}</b> is "
-        . A( $tavern->{'size_description'} )
-        . " tavern that $tavern->{'popularity_description'}. \n";
-    $content .= "It has a reputation for $tavern->{'reputation_description'}.\n";
-
-    #TODO this is friggen ugly. refactor.
-    if ( defined $tavern->{'bartender'}->{'name'} ) {
-        $content .= "The $tavern->{'name'} is owned by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}" 
-        . "named $tavern->{'bartender'}->{'name'} whose prices are $tavern->{'cost_description'} and the patrons appear $tavern->{'atmosphere'}. \n";
-    } else {
-        $content .= "The $tavern->{'name'} is run by a $tavern->{'bartender'}->{'behavior'} $tavern->{'bartender'}->{'race'}"
-        . "whose prices are $tavern->{'cost_description'} and the patrons seem $tavern->{'atmosphere'}. \n";
+   
+    $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
+    $content.='<span style="display:none" class="establishment" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
+    #FIXME we need to re-evaluate these if statements; text should be readable if any one is missing.
+    #FIXME for example. "The Wet Frog is a greasy looing average sized..." vs. "The West Frog average sized..."
+    #FIXME is needs to be moved above, and these need an article on whichever one is first.
+    #FIXME we may need to re-evaluate how this is generated :/
+    if ( defined $establishment->{'condition'} ) {    
+        $content .= " is ".A($establishment->{'condition'})." looking ";
     }
-    $content
-        .= "The law $tavern->{'law'} the tavern and its patrons, however most violence is handled by $tavern->{'violence'}. \n";
-    $content .= "</li>";
+    
+    if ( defined $establishment->{'size_description'} ) {    
+        $content .= " $establishment->{'size_description'} sized ";
+    }
+    
+    if ( defined $establishment->{'type'} ) {    
+        $content .= " $establishment->{'type'} ";
+    }
+
+    if ( defined $establishment->{'direction'} ) {    
+        $content .= " facing $establishment->{'direction'} ";
+    }
+    
+    if ( defined $establishment->{'storefront'} ) {    
+        $content .= " with ".A($establishment->{'storefront'})." storefront, ";
+    }
+
+    if ( defined $establishment->{'windows'} ) {    
+        $content .= " $establishment->{'windows'} windows, ";
+    }
+    
+    if ( defined $establishment->{'storeroof'} ) {    
+        $content .= " and a roof made from $establishment->{'storeroof'} ";
+    }
+
+    if ( defined $establishment->{'neighborhood'} ) {    
+        $content .= " in ".A($establishment->{'neighborhood'})." neighborhood ";
+    }
+
+    if ( defined $establishment->{'district'} ) {    
+        $content .= " of the $establishment->{'district'} district. ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'behavior'} ) {    
+        $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'race'} ) {    
+        $content .= " $establishment->{'manager'}->{'race'} ";
+    }
+
+    if ( defined $establishment->{'manager'}->{'name'} ) {    
+        $content .= " named $establishment->{'manager'}->{'name'}. ";
+    }
+
+    if ( defined $establishment->{'service_type'} ) {    
+        $content .= "This $establishment->{'type'} is known for  ";
+    }
+
+    if ( defined $establishment->{'price_description'} ) {    
+        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} there ";
+    }
+    
+    if ( defined $establishment->{'popularity_description'} ) {    
+        $content .= " and $establishment->{'popularity_description'}. ";
+    }
+
+    my @senses;
+    push @senses,  "you smell $establishment->{'smell'}" if ( defined $establishment->{'smell'} );
+    push @senses,  "you hear $establishment->{'sound'}" if ( defined $establishment->{'sound'} );
+    push @senses,  "you see $establishment->{'sight'}" if ( defined $establishment->{'sight'} );
+    if (@senses != 0){
+        $content .= " Upon entering " . conjunction(shuffle @senses ) . ".";
+    }    
+    
+    my $verb= ($establishment->{'occupants'} ==1) ? 'is' : 'are';
+    $content .= " There $verb ".NO('customer', $establishment->{'occupants'})." in the $establishment->{'type'}.";
+
+    if ( defined $establishment->{'enforcer'} ) {
+        $content .= " The $establishment->{'enforcer'}";
+    }
+
+    if ( defined $establishment->{'graft'} ) {
+        $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
+    }
+
+    $content .= "</span></li>";
+    
     return $content;
 }
 

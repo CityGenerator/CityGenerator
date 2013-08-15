@@ -6,6 +6,19 @@
           e.style.display = 'block';
     }
 
+    function hideMe(id) {
+        console.log(  id.id.substring(1,id.id.length - 1)  )
+        var content = document.getElementById( id.id.substring(0,id.id.length-8)  );
+        console.log(id)
+        if (content)
+            if(content.style.display == 'none'){
+                content.style.display = 'block';
+                id.innerHTML=" [-]"
+            }else{
+                id.innerHTML=" [+]"
+                content.style.display = 'none';
+            }
+    }
 
     function showgenerator(gentype){
         if (document.getElementById(gentype+"_specific")){
@@ -17,12 +30,13 @@
     }
 
     function generate_names(){
-     //console.log("/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value);
+        var url= "/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value;
+        console.log(url);
         $.ajax({
-            url: "/namegenerator?type=json&gentype="+document.getElementById("gentype").value+"&count="+document.getElementById("count").value+"&race="+document.getElementById("race").value,
+            url: url,
             dataType: "json",
         }).done(function(data) {
-            //console.log(data);           
+            console.log(data);           
              
             document.getElementById("gen_result").innerHTML='<h3>seed: '+ data.seed +'<ol>';
             

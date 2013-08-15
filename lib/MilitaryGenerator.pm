@@ -36,6 +36,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -95,11 +96,42 @@ sub create_military {
     if ( !defined $military->{'seed'} ) {
         $military->{'seed'} = set_seed();
     }
-    $military->{'original_seed'} = $military->{'seed'};
+    GenericGenerator::set_seed($military->{'seed'});
 
-
+    generate_fortification($military);
+    generate_preparation($military);
+    generate_favored_tactic($military);
+    generate_reputation($military);
+    generate_weapon_reputation($military);
+    generate_favored_weapon($military);
+    set_troop_size($military);
     return $military;
-} ## end sub create_military
+}
+
+###############################################################################
+
+=head2 generate_fortification()
+    
+Determine how well prepared they are, which is influenced by the "military" stat
+for the provided source.
+
+=cut
+
+###############################################################################
+
+sub generate_fortification {
+    my ($military) = @_;
+
+    GenericGenerator::set_seed($military->{'seed'}+ 1);
+    if ( !defined $military->{'fortification_roll'} ) {
+        $military->{'fortification_roll'} = &d(100);
+    }
+    #Yes, fortification uses the same xml as preparation
+    $military->{'fortification'}
+        = roll_from_array( $military->{'fortification_roll'}, $xml_data->{'preparation'}->{'option'} )->{'content'}
+        if ( !defined $military->{'fortification'} );
+    return $military;
+}
 
 
 ###############################################################################
@@ -115,6 +147,7 @@ for the provided source.
 
 sub generate_preparation {
     my ($military) = @_;
+    GenericGenerator::set_seed($military->{'seed'}+2);
 
     if ( !defined $military->{'preparation_roll'} ) {
         if ( defined $military->{'mil_mod'} && $military->{'mil_mod'} < -1 ) {
@@ -143,11 +176,13 @@ sub generate_preparation {
 
 sub generate_favored_tactic {
     my ($military) = @_;
+    GenericGenerator::set_seed($military->{'seed'}+3);
 
     my $tactic = rand_from_array( $xml_data->{'tactictypes'}->{'option'} )->{'content'};
     $military->{'favored tactic'} = $tactic if ( !defined $military->{'favored tactic'} );
     return $military;
 }
+
 
 ###############################################################################
 
@@ -162,11 +197,31 @@ sub generate_favored_tactic {
 sub generate_reputation {
     my ($military) = @_;
 
+    GenericGenerator::set_seed($military->{'seed'}+4);
     my $rep = rand_from_array( $xml_data->{'reputation'}->{'option'} )->{'content'};
     $military->{'reputation'} = $rep if ( !defined $military->{'reputation'} );
     return $military;
 }
 
+
+###############################################################################
+
+=head2 generate_weapon_reputation()
+
+    generate weapon reputation in battle
+
+=cut
+
+###############################################################################
+
+sub generate_weapon_reputation {
+    my ($military) = @_;
+
+    GenericGenerator::set_seed($military->{'seed'}+5);
+    my $rep = rand_from_array( $xml_data->{'reputation'}->{'option'} )->{'content'};
+    $military->{'weapon reputation'} = $rep if ( !defined $military->{'weapon reputation'} );
+    return $military;
+}
 
 ###############################################################################
 
@@ -180,6 +235,7 @@ generate favored_weapon preferred by the military.
 
 sub generate_favored_weapon {
     my ($military) = @_;
+    GenericGenerator::set_seed($military->{'seed'}+6);
 
     my $weaponclass = rand_from_array( $xml_data->{'weapontypes'}->{'weapon'} );
     $military->{'favored weapon'} = rand_from_array( $weaponclass->{'option'} )->{'content'}
@@ -201,6 +257,7 @@ Set the size of the troops for the population
 
 sub set_troop_size {
     my ($military) = @_;
+    GenericGenerator::set_seed($military->{'seed'}+7);
 
     #If no population total is provided, make one up!
     $military->{'population_total'} = d(1000) * 10 if ( !defined $military->{'population_total'} );

@@ -21,6 +21,7 @@ use LocaleFormatter;
 use MapJSONFormatter;
 use PeopleFormatter;
 use EconomyFormatter;
+use EventFormatter;
 my $q = CGI->new;
 
 
@@ -90,7 +91,7 @@ sub print_page {
     my $vars = {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
-        'seed'          => $city->{'seed'},
+        'seed'          => "$city->{'seed'}",
         'onload'        => "create_flag( $json,  \"flag\");",
 
         'content'       => print_content($city),
@@ -144,6 +145,7 @@ sub print_content {
 
         'wallstext'     => CityscapeFormatter::printWalls($city),
         'streetstext'   => CityscapeFormatter::printStreets($city),
+        'districtstext'  => CityscapeFormatter::printDistricts($city),
 
         'govtsummarytext'   => GovtFormatter::printSummary($city),
         'govtleadertext'    => GovtFormatter::printLeader($city),
@@ -151,13 +153,16 @@ sub print_content {
         'govtcrimetext'     => GovtFormatter::printCrime($city),
         'govtmilitarytext'  => GovtFormatter::printMilitary($city),
 
+        'eventstext'        => EventFormatter::printSummary($city),
+        'postingstext'      => EventFormatter::printPostings($city),
+
         'citizenstext'      => PeopleFormatter::printCitizens($city),
         'travelerstext'     => PeopleFormatter::printTravelers($city),
 
         'resourcestext'     => EconomyFormatter::printResources($city),
         'businessestext'    => EconomyFormatter::printBusinesses($city),
 
-        'tavernstext'       => LocaleFormatter::printTaverns($city),
+        'establishmentstext' => LocaleFormatter::printEstablishments($city),
 
     };
     $templates->process('citygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";

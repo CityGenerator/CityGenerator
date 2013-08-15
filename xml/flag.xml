@@ -65,20 +65,21 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </color>
     </colors>
     <shape>
-        <option name="para">
+        <option          max="50" type="square">        </option>
+        <option min="51" max="60" type="para">
         </option>
-        <option name="tri">
+        <option min="61" max="70" type="tri">
         </option>
-        <option name="pennant">
+        <option min="71" max="80" type="pennant">
         </option>
-        <option name="swallow">
+        <option min="81" max="90" type="swallow">
             <depth>
 		        <option>10</option>
 		        <option>20</option>
 		        <option>30</option>
             </depth>
         </option>
-        <option name="tongued">
+        <option min="91"          type="tongued">
             <type>
                 <option>square</option>
                 <option>triangle</option>
@@ -98,7 +99,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 		        <option>.2</option>
             </depth>
         </option>
-        <option name="square">        </option>
     </shape>
 
     <ratio>

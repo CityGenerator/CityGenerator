@@ -44,11 +44,20 @@ subtest 'Test Cityscape walls' => sub {
 subtest 'Test Cityscape streets' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
+    $city->{'streets'}->{'mainroads'}=1;
+    $city->{'streets'}->{'roads'}=1;
+
     my $cityscape = CityscapeFormatter::printStreets($city);
-    is( $cityscape,
-        'There is 1 road leading to Kanhall; none are major.  The city is lined with crude cobblestone streets in an irregular pattern.',
-        "ensure streets are printing"
-    );
+    like( $cityscape, '/There is.* leading to .*/',   "ensure streets are printing"    );
+
+    $city->{'streets'}->{'mainroads'}=2;
+    $city->{'streets'}->{'roads'}=2;
+
+    $cityscape = CityscapeFormatter::printStreets($city);
+    like( $cityscape, '/There are.* leading to .*/',   "ensure streets are printing"    );
+
+
+
 
     done_testing();
 };
@@ -56,9 +65,23 @@ subtest 'Test Cityscape streets' => sub {
 subtest 'Test Cityscape districts' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
-    my $cityscape = CityscapeFormatter::printDistrictList($city);
+    my $cityscape = CityscapeFormatter::printDistricts($city);
     is( $cityscape, 
-        "The city is broken into the following Districts: market, mercy, wealthy, middleclass and civic.",
+        "The city is broken into the following districts: market, mercy, wealthy, middleclass, and civic. \n",
+        "ensure district is printed"
+     );
+
+    $city->{'districts'} ={'foo'=>{},};
+    $cityscape = CityscapeFormatter::printDistricts($city);
+    is( $cityscape, 
+        "The city includes a foo district. \n",
+        "ensure district is printed"
+     );
+
+    $city->{'districts'} ={};
+    $cityscape = CityscapeFormatter::printDistricts($city);
+    is( $cityscape, 
+        "There are no defined districts in this city. \n",
         "ensure district is printed"
      );
 
@@ -73,6 +96,7 @@ subtest 'Test Cityscape housing' => sub {
 
     done_testing();
 };
+
 
 
 1;

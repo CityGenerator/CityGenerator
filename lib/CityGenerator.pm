@@ -35,15 +35,18 @@ use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object seed);
 use Math::Complex ':pi';
 use NPCGenerator;
+use PostingGenerator;
 use RegionGenerator;
 use GovtGenerator;
-use TavernGenerator;
+use MilitaryGenerator;
+use EstablishmentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -183,6 +186,7 @@ select the stat descriptions for the 6 major stats.
 ###############################################################################
 sub set_stat_descriptions {
     #TODO merge this with base_stats like the other cool kids do.
+    #This will require refactoring base_stats to use 1-100 rather that -5 - 5
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 23 );
 
@@ -320,7 +324,8 @@ sub flesh_out_city {
     generate_housing($city);
     generate_specialists($city);
     generate_businesses($city);
-    generate_taverns($city);
+    generate_establishments($city);
+    generate_postings($city);
     generate_districts($city);
 
 
@@ -328,10 +333,11 @@ sub flesh_out_city {
     generate_crime($city);
     set_dominance($city);
 
-    $city->{'govt'}      = GovtGenerator::create_govt( { 'seed' => $city->{'seed'} } );
-    $city->{'climate'}   = ClimateGenerator::create_climate( { 'seed' => $city->{'seed'} } );
+    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
+    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
+    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
-    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $city->{'seed'} } );
+    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
 
 
     return $city;
@@ -959,33 +965,7 @@ sub generate_businesses {
     return $city;
 }
 
-###############################################################################
 
-=head2 generate_taverns
-
-Generate a list of taverns based on the business section
-
-=cut
-
-###############################################################################
-
-
-sub generate_taverns {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} + 28);
-
-    $city->{'taverns'} = [] if ( !defined $city->{'taverns'} );
-
-
-    if ( defined $city->{'businesses'}->{'tavern'} ) {
-        my $taverncount = min( 5, $city->{'businesses'}->{'tavern'}->{'count'} );
-        for ( my $tavernID = 0 ; $tavernID < $taverncount ; $tavernID++ ) {
-            $city->{'taverns'}->[$tavernID] = TavernGenerator::create_tavern()
-                if ( !defined $city->{'taverns'}->[$tavernID] );
-        }
-    }
-    return $city;
-}
 ###############################################################################
 
 =head2 generate_districts
@@ -1173,6 +1153,70 @@ sub generate_housing {
     return $city;
 }
 
+
+###############################################################################
+
+=head2 generate_establishments
+
+Generate a list of establishments based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_establishments {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
+
+    if ( defined $city->{'businesses'} ) {
+        $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5) * 1.2) if ( !defined $city->{'establishment_count'} );
+        my $patrons = floor($city->{'population_total'} / 3);
+        if ( $patrons > ($city->{'establishment_count'} * 3) ){
+            $patrons = $city->{'establishment_count'} * 3;
+        }
+        for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
+            if ( !defined $city->{'establishments'}->[$establishmentID] ) {
+                $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+                if( $patrons > 0 ) {
+                    my $roll = $patrons;
+                    if ($patrons > 10){
+                        $roll = 10;
+                    }
+                    my $occupants = d(floor($roll / 2));
+                    $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
+                    $patrons = $patrons - $occupants;
+                }
+            }    
+        }
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_postings
+
+Generate a list of postings based on the business section
+
+=cut
+
+###############################################################################
+sub generate_postings {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'postings'} = [] if ( !defined $city->{'postings'} );
+
+    #ghetto, yes, but gives us a range of 6-23.
+    $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
+    for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
+        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
+    }
+    return $city;
+}
 
 1;
 

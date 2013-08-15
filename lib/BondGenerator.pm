@@ -1,24 +1,25 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package EventGenerator;
+package BondGenerator;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_event);
+@EXPORT_OK = qw( create_bond);
+
 
 ###############################################################################
 
 =head1 NAME
 
-    EventGenerator - used to generate Events
+    BondGenerator - used to generate Bonds
 
 =head1 SYNOPSIS
 
-    use EventGenerator;
-    my $event=EventGenerator::create_event();
+    use BondGenerator;
+    my $bond=BondGenerator::create_bond();
 
 =cut
 
@@ -29,15 +30,14 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator;
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed select_features);
 use List::Util 'shuffle', 'min', 'max';
+use NPCGenerator;
 use POSIX;
 use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
-local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -45,13 +45,13 @@ local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 =head2 Data files
 
-The following datafiles are used by EventGenerator.pm:
+The following datafiles are used by BondGenerator.pm:
 
 =over
 
 =item F<xml/data.xml>
 
-=item F<xml/events.xml>
+=item F<xml/bonds.xml>
 
 =back
 
@@ -61,84 +61,101 @@ The following datafiles are used by EventGenerator.pm:
 =cut
 
 ###############################################################################
-# FIXME This needs to stop using our
-my $xml_data   = $xml->XMLin( "xml/data.xml",   ForceContent => 1, ForceArray => ['option'] );
-my $event_data = $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => ['option'] );
-
+my $xml_data        = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $bond_data       = $xml->XMLin( "xml/bonds.xml", ForceContent => 1, ForceArray => ['option'] );
 ###############################################################################
 
 =head2 Core Methods
 
-The following methods are used to create the core of the event structure.
+The following methods are used to create the core of the bond structure.
 
 
-=head3 create_event()
+=head3 create_bond()
 
-This method is used to create a simple event with nothing more than:
+This method is used to create a simple bond with nothing more than:
 
 =over
 
 =item * a seed
+
+=item * content
 
 =back
 
 =cut
 
 ###############################################################################
-sub create_event {
+sub create_bond {
     my ($params) = @_;
-    my $event = {};
+    my $bond = {};
 
     if ( ref $params eq 'HASH' ) {
         foreach my $key ( sort keys %$params ) {
-            $event->{$key} = $params->{$key};
+            $bond->{$key} = $params->{$key};
         }
     }
 
-    if ( !defined $event->{'seed'} ) {
-        $event->{'seed'} = set_seed();
+    if ( !defined $bond->{'seed'} ) {
+        $bond->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed($bond->{'seed'});
+   
+    GenericGenerator::select_features($bond, $bond_data); 
 
-    return $event;
-} ## end sub create_event
+    select_persons($bond);
+    select_reason($bond);
 
-###############################################################################
+    GenericGenerator::parse_template($bond);
+    $bond->{'content'}=$bond->{'when'}.", ".$bond->{'content'} if (defined $bond->{'when'} );
+    $bond->{'content'}=ucfirst($bond->{'content'});
+    $bond->{'content'}=$bond->{'content'}." ".$bond->{'reason'}  if (defined $bond->{'reason'} );
 
-=head3 select_base()
-
-select the base type of event.
-
-=cut
-
-###############################################################################
-sub select_base {
-    my ($event) = @_;
-
-    $event->{'base'} = rand_from_array( [ keys %{ $event_data->{'event'} } ] ) if ( !defined $event->{'base'} );
-    $event->{'name'} = $event->{'base'};
-
-    return $event;
+    $bond->{'content'};
+    return $bond;
 }
 
 
 ###############################################################################
 
-=head3 select_modifier()
+=head2 select_persons()
 
-select the modifier for a given base type of event.
+generate an npc, and put it, yourself, and one of you again into a 3-person array.
 
 =cut
 
 ###############################################################################
-sub select_modifier {
-    my ($event) = @_;
+sub select_persons{
+    my ($bond)=@_;
+    my $npc= NPCGenerator::create_npc({'seed'=>$bond->{'seed'} });
+    if (!defined $bond->{'other'}){
+        $bond->{'other'} = $npc->{'firstname'} || $npc->{'name'};
+    }
+    $bond->{'person'} = [shuffle($bond->{'other'}, 'you'   )];
 
-    my $base = $event_data->{'event'}->{ $event->{'base'} };
+    push @{$bond->{'person'}}, rand_from_array( $bond->{'person'} );
+    return $bond;
+}
 
-    $event->{'modifier'} = rand_from_array( $base->{'option'} )->{'content'} if ( !defined $event->{'modifier'} );
-    $event->{'name'} = $event->{'modifier'} . " " . $event->{'base'};
 
-    return $event;
+###############################################################################
+
+=head2 select_reason()
+
+generate an npc, and put it, yourself, and one of you again into a 3-person array.
+
+=cut
+
+###############################################################################
+sub select_reason{
+    my ($bond)=@_;
+    if ( defined $bond->{'reasontype'} ) {
+        $bond->{'reason_chance'} = d(100) if ( !defined $bond->{'reason_chance'} );
+        if ($bond->{'reason_chance'} < 50 ){
+           $bond->{'reason'}= rand_from_array($bond_data->{'reason'}->{$bond->{'reasontype'}}->{'option'})->{'content'} if (!defined $bond->{'reason'});
+        }
+    }
+
+    return $bond;
 }
 
 

@@ -30,18 +30,50 @@ subtest 'Test Govt' => sub {
     done_testing();
 };
 
+subtest 'Test Military print' => sub {
+    my $city = CityGenerator::create_city( { seed => 1  } );
+    CityGenerator::flesh_out_city($city);
+    my $military = GovtFormatter::printMilitary($city);
+    like( $military, '/attitude towards the military/', 'make sure base text is returned'    );
+
+    $city = CityGenerator::create_city( { seed => 1, 'tactics'=>{'content'=>'foo' }  } );
+    CityGenerator::flesh_out_city($city);
+    $city->{'walls'}->{'condition'}="some value" ;
+    $military = GovtFormatter::printMilitary($city);
+    like( $military, '/some value/', 'make sure some value is found'    );
+    done_testing();
+};
+
 subtest 'Test Govt Crime' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $crime = GovtFormatter::printCrime($city);
-    is(
-        $crime,
-        "Crime is rampant. \n"
-            . "The most common crime is fraud. \n"
-            . "The imprisonment rate is 0.44% of the population (5 adults). \n",
-        'ensure crime is printed'
-    );
+    like(        $crime,         "/Crime is /",  'ensure crime is printed'    );
     done_testing();
 };
+
+subtest 'Test Govt Leader' => sub {
+    my $city = CityGenerator::create_city( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $text = GovtFormatter::printLeader($city);
+    like( $text, '/has been in power/', 'leader returns text'    );
+
+    delete $city->{'govt'}->{'leader'}->{'name'};
+    $text = GovtFormatter::printLeader($city);
+    like( $text, "/is ruled by The $city->{'govt'}->{'leader'}->{'title'}./", 'leader returns Title text'    );
+
+    done_testing();
+};
+
+subtest 'Test Govt laws' => sub {
+    my $city = CityGenerator::create_city( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $text = GovtFormatter::printLaw($city);
+    like( $text, '/Laws are enforced by/', 'leader returns text'    );
+
+    done_testing();
+};
+
+
 
 1;

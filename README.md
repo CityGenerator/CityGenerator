@@ -235,3 +235,8 @@ Taverns are often central gathering places for the citizens. In Steelhall can fi
 
 * The Hilltop Cup is a humdrum tavern that is constantly crowded. It has a reputation for food poisoning. Prices at the Hilltop Cup are a real steal and is owned by a dwarf named Bargan Feasttunnel who seems impatient. The law protects the tavern and its patrons, however most violence is handled by ignoring it.
 * The Sleepy Dwarves is a familiar tavern that holds the record for worst brew in the region. It has a reputation for having good booze. Prices at the Sleepy Dwarves are moderate and is owned by a lizardfolk named S'herzin ahn Yerzor who seems a worrywart. The law protects the tavern and its patrons, however most violence is handled by swift justice.
+
+
+---
+
+Follow us at [Google+](https://plus.google.com/112661873200782342936)

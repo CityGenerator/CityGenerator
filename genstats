@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo -e "Lines of Perl:\t\t`           head -n -28 */*.pm *generator|  sort| grep -v '^ *\#'|  grep -v '^ *$'|wc -l`"
+echo -e "Lines of Perl Comments:\t`  head -n -28 */*.pm *generator|  sort| grep '^ *\#'|     grep -v '^ *$'|wc -l`"
+echo -e "Lines of javascript:\t`     head -n -28 */*.js|             sort| grep -v '^ *//'|  grep -v '^ *$'|wc -l`"
+echo -e "Lines of xml:\t\t`cat xml/*.xml |sort| grep -v '^ *$'|wc -l`"
+echo
+echo -e "Perl Modules:\t\t`find . |grep '\(lib\|tests\)/.*.pm'|wc -l`"
+echo -e "    Front ends:\t\t`ls *generator|wc -l`"
+echo -e "    Generators:\t\t`find . |grep 'lib/.*Generator.pm'|wc -l`"
+echo -e "    Formatters:\t\t`find . |grep 'lib/.*Formatter.pm'|wc -l`"
+echo -e "    Test Modules:\t`find . |grep 'tests/Test.*.pm'|wc -l`"
+echo -e "        subtests:\t`grep '^ *subtest' tests/*|wc -l`"
+echo -e "        total tests:\t`grep '^ *\(is\|cmp_ok\|isnt\|ok\|is_deeply\|like\)(' tests/*|wc -l`"
+

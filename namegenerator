@@ -94,9 +94,10 @@ sub generate_names {
                 use CityGenerator;
                 $item= CityGenerator::generate_city_name($item);
             }
-            when('tavern') {  
-                use TavernGenerator;
-                $item= TavernGenerator::generate_tavern_name($item);
+            when('establishment') {  
+                #FIXME this doesn't work by itself
+                use EstablishmentGenerator;
+                $item= EstablishmentGenerator::generate_establishment_name($item);
             }
             when('npc') {
                 use NPCGenerator;

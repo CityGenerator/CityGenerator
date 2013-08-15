@@ -455,9 +455,6 @@ subtest 'test generate_streets' => sub {
     done_testing();
 };
 
-#-------------------------------------------------------------------
-#-----------------------Refactor after this ------------------------
-#-------------------------------------------------------------------
 
 subtest 'test set_stat_descriptions' => sub {
     my $city;
@@ -467,21 +464,23 @@ subtest 'test set_stat_descriptions' => sub {
         isnt($city->{$value."_description"}, undef, "ensure $value is defined");
     } 
 
-    $city = CityGenerator::create_city(
-        {
-            'seed'  => 1,
-            'stats' => {
+    my $stats={
                 'education' => 0,
                 'authority' => 0,
                 'magic'     => 0,
                 'military'  => 0,
                 'tolerance' => 0,
                 'economy'   => 0
-            }
+            };
+    $city = CityGenerator::create_city(
+        {
+            'seed'  => 1,
+            'stats' => $stats
         }
     );
     CityGenerator::set_stat_descriptions($city);
     foreach my $value (qw( education authority magic military tolerance economy )){
+        is($city->{'stats'}->{$value}, 0, "ensure $value is set");
         isnt($city->{$value."_description"}, undef, "ensure $value is defined");
     } 
 
@@ -505,6 +504,7 @@ subtest 'test set_stat_descriptions' => sub {
     is( $city->{'economy_description'},   'foo6' );
 
     $city = CityGenerator::create_city( { 'seed' => 1 } );
+    #FIXME this is kludgy.
     $city->{'stats'}->{'education'} = undef;
     $city->{'stats'}->{'authority'} = undef;
     $city->{'stats'}->{'magic'}     = undef;
@@ -518,8 +518,6 @@ subtest 'test set_stat_descriptions' => sub {
 
     done_testing();
 };
-
-
 
 
 subtest 'test generate_walls' => sub {
@@ -548,16 +546,17 @@ subtest 'test generate_walls' => sub {
     done_testing();
 };
 
+
 subtest 'test generate_watchtowers' => sub {
     #NOTE area is included because generate_walls requires it to mark protected areas
     my $city;
     $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'walls' => { 'length' => 1.9 } } );
     CityGenerator::generate_watchtowers($city);
-    is( $city->{'watchtowers'}->{'count'}, 5 );
-
+    is( $city->{'watchtowers'}->{'count'}, 5, "FIXME why is this hardcoded to 5? it's dumb. fix it." );
 
     done_testing();
 };
+
 
 subtest 'test set_laws' => sub {
     my $city;
@@ -581,11 +580,8 @@ subtest 'test set_laws' => sub {
     is( $city->{'laws'}->{'enforcer'},    'd' );
     is( $city->{'laws'}->{'commoncrime'}, 'e' );
 
-
     done_testing();
 };
-
-
 
 
 subtest 'test generate_area' => sub {
@@ -595,23 +591,6 @@ subtest 'test generate_area' => sub {
     isnt( $city->{'area'},               undef );
     isnt( $city->{'arable_percentage'},  undef );
     isnt( $city->{'arable_description'}, undef );
-
-    $city = CityGenerator::create_city(
-        {
-            'seed'               => 1,
-            'population_total'   => 1000,
-            'population_density' => 100,
-            protected_percent    => '100',
-            'protected_area'     => 9.29
-        }
-    );
-
-    #FIXME Why is the support area different? between this and the one above?
-    CityGenerator::generate_area($city);
-    isnt( $city->{'area'},               undef );
-    isnt( $city->{'arable_percentage'},  undef );
-    isnt( $city->{'arable_description'}, undef );
-
 
     $city = CityGenerator::create_city(
         {
@@ -680,9 +659,9 @@ subtest 'test generate_travelers' => sub {
     CityGenerator::generate_travelers($city);
     is( $city->{'traveler_count'},           6 );
     is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-    isnt( $city->{'travelers'}->[0]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[1]->{'race'}, undef );
-    isnt( $city->{'travelers'}->[2]->{'race'}, undef );
+    foreach my $traveler ( @{ $city->{'travelers'} }) {
+        isnt( $traveler->{'race'}, undef );
+    }
 
     $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => -5 } } );
     CityGenerator::generate_travelers($city);
@@ -763,8 +742,8 @@ subtest 'test generate_crime' => sub {
     my $city;
     $city = CityGenerator::create_city( { 'seed' => 1, } );
     CityGenerator::generate_crime($city);
-    is( $city->{'crime_roll'},        6 );
-    is( $city->{'crime_description'}, 'rampant' );
+    isnt( $city->{'crime_roll'},        undef );
+    isnt( $city->{'crime_description'}, undef );
 
     $city = CityGenerator::create_city( { 'seed' => 1, 'crime_roll' => 99 } );
     CityGenerator::generate_crime($city);
@@ -802,6 +781,11 @@ subtest 'test generate_crime' => sub {
 
     done_testing();
 };
+
+
+#-------------------------------------------------------------------
+#-----------------------Refactor after this ------------------------
+#-------------------------------------------------------------------
 
 
 subtest 'test set_dominance' => sub {
@@ -938,6 +922,18 @@ subtest 'test generate_districts' => sub {
     is( $city->{'specialists'}->{'teacher'}->{'count'},          50 );
     is( $city->{'businesses'}->{'school'}->{'specialist_count'}, 50 );
     is( $city->{'businesses'}->{'school'}->{'count'},            5 );
+
+    done_testing();
+};
+
+subtest 'test generate_postings' => sub {
+    my $city;
+    my $count=3;
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000','postingcount'=>$count, 'postings'=>['dummy']} );
+    CityGenerator::generate_postings($city);
+    is(scalar(@{$city->{'postings'}}), 3);
+    is( $city->{'postings'}->[0], 'dummy');
 
     done_testing();
 };
