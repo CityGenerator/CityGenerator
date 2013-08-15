@@ -9,6 +9,7 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator;
 use EstablishmentGenerator;
+use NPCGenerator;
 use Test::More;
 use XML::Simple;
 
@@ -18,8 +19,7 @@ use base qw(Exporter);
 
 subtest 'test create_establishment' => sub {
     my $establishment;
-    GenericGenerator::set_seed(1);
-    $establishment = EstablishmentGenerator::create_establishment( { } );
+    $establishment = EstablishmentGenerator::create_establishment( );
     isnt( $establishment->{'seed'}, undef );
     isnt( $establishment->{'name'}, undef );
     isnt( $establishment->{'manager'}, undef);
@@ -27,85 +27,45 @@ subtest 'test create_establishment' => sub {
         cmp_ok( $establishment->{'stats'}->{$stat}, '<=', 100, "$stat max" );
         cmp_ok( $establishment->{'stats'}->{$stat}, '>=', 1,   "$stat min" );
     }
-    isnt( $establishment->{'type'}, undef );
-    isnt( $establishment->{'manager_title'}, undef );
-    isnt( $establishment->{'manager_class'}, undef );
-    isnt( $establishment->{'manager'}, undef );
 
-    $establishment = EstablishmentGenerator::create_establishment(
-        {
-            'seed'  => 41630,
-            'name'  => 'test',
-            'type'  => 'pottery',
-            'stats' => { 'price' => 11, 'popularity' => 11, 'size' => 11, 'reputation' => 11 },
-            'price_description'         => 'bummer',
-            'popularity_description'    => 'bummer',
-            'size_description'          => 'bummer',
-            'reputation_description'    => 'bummer',
-        }
-    );
-    is( $establishment->{'seed'},                  41630 );
-    is( $establishment->{'name'},                  undef );
-    foreach my $stat (qw(price popularity size reputation)){
-        is( $establishment->{'stats'}->{$stat},       11 );
-        is( $establishment->{$stat."_description"},    "bummer" );
+    my $stats={
+             'reputation'=>50, 'size'=>50, 'price'=>50, 'popularity'=>50
+        };
+
+
+    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'name'=>'sleepy beaver', 'stats'=>$stats, 'type'=>'barbershop', 'manager_title'=>'briggadoon' } );
+    is( $establishment->{'seed'}, 1 );
+    is( $establishment->{'name'}, 'Sleepy Beaver' );
+    is( $establishment->{'type'}, 'barbershop' );
+    is( $establishment->{'manager_title'}, 'briggadoon' );
+    foreach my $stat (qw/ price popularity size reputation /) {
+        is( $establishment->{'stats'}->{$stat}, 50, "$stat is set" );
     }
-    is( $establishment->{'type'}, 'pottery' );
-    is( $establishment->{'manager_title'}, 'potter' );
-    isnt( $establishment->{'manager_class'}, undef );
-    isnt( $establishment->{'manager'}, undef );
 
-    #print DUMPER $establishment; 
-    
-    is( $establishment->{'condition'},              'cluttered'      );
-    is( $establishment->{'direction'},              'north'          ); 
-    is( $establishment->{'enforcer'},               'local thugs'    ); 
-    is( $establishment->{'graft'},                  'gives protection to'); 
-    is( $establishment->{'manager_class'},          'expert'         ); 
-    is( $establishment->{'manager_title'},          'potter'         ); 
-    is( $establishment->{'name'},                   undef            );
-    is( $establishment->{'neighborhood'},           'seedy'          ); 
-    is( $establishment->{'occupants'},              undef            ); 
-    is( $establishment->{'popularity_description'}, 'bummer'         ); 
-    is( $establishment->{'price_description'},      'bummer'         ); 
-    is( $establishment->{'reputation_description'}, 'bummer'         ); 
-    is( $establishment->{'seed'},                   41630            ); 
-    is( $establishment->{'service_type'},           'service'        ); 
-    is( $establishment->{'size_description'},       'bummer'         ); 
-    is( $establishment->{'storefront'},             'mud'            ); 
-    is( $establishment->{'storeroof'},              'turf'           ); 
-    is( $establishment->{'trailer'},                'inc.'           ); 
-    is( $establishment->{'type'},                   'pottery'        );
-    is( $establishment->{'windows'},                'small'          ); 
-    
-    
-    $establishment = EstablishmentGenerator::create_establishment(
-        {
-            'seed'          => 41630,
-            'type'          => 'pottery',
-            'manager_class' => 'dogbert',
-            'manager_title' => 'catbert',
-        }
-    );
-    is( $establishment->{'seed'},                  41630 );
-    is( $establishment->{'type'}, 'pottery' );
-    is( $establishment->{'manager_title'}, 'catbert' );
-    is( $establishment->{'manager_class'}, 'dogbert' );
-    is( $establishment->{'manager'}->{'class'}, 'dogbert' );
-    is( $establishment->{'manager'}->{'profession'}, 'catbert' );
-    is( $establishment->{'manager'}->{'business'}, 'pottery' );
+    my $descriptors;
+    foreach my $stat (qw/ price popularity size reputation /) {
+        $descriptors->{$stat."_description"}= "foo";
+    }
 
-    done_testing();
-};
+    $establishment = EstablishmentGenerator::create_establishment( $descriptors);
+    foreach my $stat (qw/ price popularity size reputation /) {
+        is ($establishment->{$stat."_description"}, "foo", "$stat description set to foo" );
+    }
 
-subtest 'test generate_manager' => sub {
-    my $establishment;
 
-    $establishment = EstablishmentGenerator::create_establishment( { 'seed' => 22 } );
-    is( $establishment->{'manager'}->{'race'}, 'drow' );
+    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'trailer'=>'Foo', 'manager_class'=>'Derp', 'graft'=>'foo', 'enforcer'=>'bob', 'condition'=>'shiny', 'direction'=>'west', 'service_type'=>'foo'});
+    is( $establishment->{'trailer'}, 'Foo' );
+    is( $establishment->{'service_type'}, 'foo' );
+    is( $establishment->{'graft'}, 'foo' );
+    is( $establishment->{'direction'}, 'west');
+    is( $establishment->{'condition'}, 'shiny' );
+    is( $establishment->{'enforcer'}, 'bob' );
+    like( $establishment->{'name'}, '/Foo$/' );
+    is( $establishment->{'manager_class'}, 'Derp' );
 
-    $establishment = EstablishmentGenerator::create_establishment( { 'seed' => 22, 'manager' => { 'race' => 'ogre' } } );
-    is( $establishment->{'manager'}->{'race'}, 'ogre' );
+    my $manager=NPCGenerator::create_npc({'seed'=>1}) ;
+    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'manager'=>$manager});
+    is( $establishment->{'manager'}, $manager );
 
     done_testing();
 };
