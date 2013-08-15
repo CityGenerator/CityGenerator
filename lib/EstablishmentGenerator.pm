@@ -108,6 +108,7 @@ sub create_establishment {
     generate_law($establishment);
     generate_graft($establishment);
     generate_condition($establishment);
+    generate_district($establishment);
     
     return $establishment;
 }
@@ -424,6 +425,25 @@ sub generate_direction {
 
     my $establishment_data = $xml_data->{'direction'};
     $establishment->{'direction'} = rand_from_array($establishment_data->{'option'})->{'content'};
+    
+    return $establishment;
+
+}
+
+
+###############################################################################
+
+=head2 generate_district()
+ 
+generate the sound category of an establishment
+ 
+=cut
+
+###############################################################################
+sub generate_district {
+    my ($establishment) = @_;
+
+    $establishment->{'district'} = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}}->{'district'};
     
     return $establishment;
 

@@ -124,15 +124,15 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'neighborhood'} ) {    
-        $content .= " in ".A($establishment->{'neighborhood'})." part of town ";
+        $content .= " in ".A($establishment->{'neighborhood'})." neighborhood ";
+    }
+
+    if ( defined $establishment->{'district'} ) {    
+        $content .= " of the $establishment->{'district'} district. ";
     }
 
     if ( defined $establishment->{'manager'}->{'behavior'} ) {    
-        $content .= " run by ".A($establishment->{'manager'}->{'behavior'})." ";
-    }
-
-    if ( defined $establishment->{'manager'}->{'sex'} ) {    
-        $content .= " $establishment->{'manager'}->{'sex'} ";
+        $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." ";
     }
 
     if ( defined $establishment->{'manager'}->{'race'} ) {    
