@@ -1,4 +1,4 @@
-Here's a example city produced by CityGenerator:  Test
+Here's a example city produced by CityGenerator:
 
 
 #Welcome to Steelhall!#
