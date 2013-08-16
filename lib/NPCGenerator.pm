@@ -118,6 +118,7 @@ sub create_npc {
     set_level($npc);
     set_motivation($npc);
     set_class($npc);
+    GenericGenerator::select_features($npc,$npc_data);
     return $npc;
 }
 

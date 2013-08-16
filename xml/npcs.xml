@@ -5,6 +5,64 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
 <npcs>
+    <feature>
+        <height>
+            <option>short</option>
+            <option>average height</option>
+            <option>tall</option>
+        </height>
+        <build>
+            <option>frail</option>
+            <option>thin</option>
+            <option>skinny</option>
+            <option>average build</option>
+            <option>chubby</option>
+            <option>stocky</option>
+            <option>obese</option>
+        </build>
+        <mark chance="20">
+            <option>mole</option>
+            <option>small scar</option>
+            <option>large scar</option>
+            <option>birth mark</option>
+            <option>tattoo</option>
+            <option>deformity</option>
+        </mark>
+        <marklocation>
+            <option>face</option>
+            <option>head</option>
+            <option>leg</option>
+            <option>arm</option>
+            <option>hand</option>
+            <option>shoulder</option>
+            <option>chest</option>
+            <option>throat</option>
+        </marklocation>
+        <complexion>
+            <option>fair</option>
+            <option>light</option>
+            <option>dark</option>
+            <option>muddled</option>
+        </complexion>
+        <eyes>
+            <option>beady</option>
+            <option>light</option>
+            <option>dark</option>
+            <option>clear</option>
+            <option>bloodshot</option>
+            <option>cross-eyed</option>
+            <option>deep-set</option>
+            <option>close-set</option>
+            <option>heavy</option>
+            <option>hollow</option>
+            <option>piggish</option>
+            <option>sunken</option>
+            <option>brooding</option>
+            <option>glazed</option>
+            <option>haunted</option>
+        </eyes>
+    </feature>
+
 	<classes>
 	    <option          max="23" type="Commoner"   />
 	    <option min="24" max="35" type="Expert"     />
