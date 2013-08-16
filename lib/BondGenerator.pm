@@ -106,9 +106,9 @@ sub create_bond {
     select_reason($bond);
 
     GenericGenerator::parse_template($bond);
-    $bond->{'content'}=$bond->{'when'}.", ".$bond->{'content'} if (defined $bond->{'when'} );
-    $bond->{'content'}=ucfirst($bond->{'content'});
-    $bond->{'content'}=$bond->{'content'}." ".$bond->{'reason'}  if (defined $bond->{'reason'} );
+    $bond->{'template'}=$bond->{'when'}.", ".$bond->{'template'} if (defined $bond->{'when'} );
+    $bond->{'template'}=ucfirst($bond->{'template'});
+    $bond->{'template'}=$bond->{'template'}." ".$bond->{'reason'}  if (defined $bond->{'reason'} );
 
     return $bond;
 }
