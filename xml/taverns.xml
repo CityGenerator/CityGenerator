@@ -96,16 +96,15 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="91"          >being a pillar of the community</option>
     </reputation>
 
-    <cost><!--  Prices at The Gray Goose Tavern are _________. -->
+    <cost><!--  ...whose prices are _________. -->
         <option          max="5"  >suspiciously low</option>
         <option min="6"  max="10" >next to nothing</option>
         <option min="10" max="15" >a real steal</option>
         <option min="16" max="20" >dirt cheap</option>
         <option min="20" max="25" >inexpensive</option>
-        <option min="26" max="30" >thrifty</option>
         <option min="30" max="35" >economical</option>
         <option min="36" max="40" >fair</option>
-        <option min="40" max="45" >shrewd</option>
+        <option min="40" max="45" >a bit high</option>
         <option min="46" max="50" >justifiable</option>
         <option min="50" max="55" >moderate</option>
         <option min="56" max="60" >sensible</option>
@@ -145,6 +144,50 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option type="accepts bribes from"/>
         <option type="protects"/>
     </law>
+    
+    <!--  ... and the patrons seem/appear _______.  -->
+    <atmosphere>
+        <option type="angry"/>
+        <option type="anxious"/>
+        <option type="calm"/>
+        <option type="cheerful"/>
+        <option type="comfortable"/>
+        <option type="crazy"/>
+        <option type="dirty"/>
+        <option type="drunk"/>
+        <option type="frantic"/>
+        <option type="friendly"/>
+        <option type="gay"/>
+        <option type="happy"/>
+        <option type="hostile"/>
+        <option type="hushed"/>
+        <option type="incensed"/>
+        <option type="kind"/>
+        <option type="laid back"/>
+        <option type="relaxed"/>
+        <option type="seedy"/>
+        <option type="shady"/>
+        <option type="sleepy"/>
+        <option type="tense"/>
+        <option type="to be arguing"/>
+        <option type="to be gambling"/>
+        <option type="to be playing games"/>
+        <option type="to be singing"/>
+        <option type="to be telling jokes"/>
+        <option type="to be waiting for news"/>
+        <option type="to be waiting for someone"/>
+        <option type="to be waiting for you"/>
+        <option type="to dislike change"/>
+        <option type="to dislike magic"/>
+        <option type="to dislike strangers"/>
+        <option type="to keep to themselves"/>
+        <option type="to like it that way"/>
+        <option type="to smell"/>
+        <option type="uneasy"/>
+        <option type="upbeat"/>
+        <option type="vengeful"/>
+        <option type="worried"/>
+    </atmosphere>
 
     <name trailer_chance="30">
         <title>Angry</title>

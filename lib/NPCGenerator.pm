@@ -37,6 +37,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -66,8 +67,8 @@ The following datafiles are used by CityGenerator.pm:
 ###############################################################################
 my $xml_data        = $xml->XMLin( "xml/data.xml",        ForceContent => 1, ForceArray => ['option'] );
 my $npc_data        = $xml->XMLin( "xml/npcs.xml",        ForceContent => 1, ForceArray => ['option'] );
-my $names_data      = $xml->XMLin( "xml/npcnames.xml",    ForceContent => 1, ForceArray => ['allow'] );
-my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => [] );
+my $names_data      = $xml->XMLin( "xml/npcnames.xml",    ForceContent => 1, ForceArray => ['option','allow'] );
+my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -100,9 +101,14 @@ sub create_npc {
     $npc->{'available_races'} = [ shuffle( @{ $npc->{'available_races'} } ) ];
 
     $npc->{'race'} = rand_from_array( $npc->{'available_races'} ) if ( !defined $npc->{'race'} );
+    delete $npc->{'available_races'};
     $npc->{'race'} = lc $npc->{'race'};
 
     generate_npc_name( $npc->{'race'}, $npc );
+    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other'){
+        #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
+        $npc->{'race'}='oddball';
+    }
     $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
     $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
     $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
@@ -191,29 +197,44 @@ Take a provided NPC and select a profession from the list of available choices.
 
 sub set_profession {
     my ($npc) = @_;
+
+    #First make sure we have allowed list
     if ( !defined $npc->{'allowed_professions'} || scalar( @{ $npc->{'allowed_professions'} } ) == 0 ) {
         $npc->{'allowed_professions'} = [ keys %{ $specialist_data->{'option'} } ];
     }
 
+    # shuffle that list
     $npc->{'allowed_professions'} = [ shuffle( @{ $npc->{'allowed_professions'} } ) ];
 
+    # select a potential specialty and remove allowed professionals.
     my $specialty = pop @{ $npc->{'allowed_professions'} };
+    delete $npc->{'allowed_professions'};
 
+    # at this point we have specialty selected....
+
+    #set profession to $specialty if it's not already set.
     $npc->{'profession'} = $specialty if ( !defined $npc->{'profession'} );
 
+
+    # If a business is not defined...
     if ( !defined $npc->{'business'} ) {
-        if (    defined $specialist_data->{'option'}->{$specialty}
-            and defined $specialist_data->{'option'}->{$specialty}->{'building'} )
+        #If the profession exisists in the specialist data and has a building name, set the NPC business
+        if (    defined $specialist_data->{'option'}->{$npc->{'profession'}}
+            and defined $specialist_data->{'option'}->{$npc->{'profession'}}->{'building'} )
         {
             $npc->{'business'} = $specialist_data->{'option'}->{$specialty}->{'building'};
         } else {
+        # Or set the name to the profession
             $npc->{'business'} = $npc->{'profession'};
         }
+        #FIXME if the business has a  comma, split on commas and select one of them.
         if ( $npc->{'business'} =~ /,/x ) {
             my @businesses = shuffle( split( /,/x, $npc->{'business'} ) );
             $npc->{'business'} = pop @businesses;
         }
     }
+
+    
 
     return $npc;
 }

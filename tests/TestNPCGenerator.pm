@@ -16,11 +16,13 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-my $xml = XML::Simple->new();
 
 subtest 'test set_sex' => sub {
     my $npc;
     $npc = NPCGenerator::create_npc( { seed => 4 } );
+    isnt( $npc->{'pronoun'}, undef );
+
+    $npc = NPCGenerator::create_npc( { 'seed' => 4, 'pronoun' => 'she' } );
     is( $npc->{'pronoun'}, 'she' );
 
     $npc = NPCGenerator::create_npc( { 'seed' => 4, 'pronoun' => 'it' } );
@@ -100,7 +102,7 @@ subtest 'test create_npc' => sub {
         is( $npc->{'race'}, 'deep dwarf', );
 
         $npc = NPCGenerator::create_npc( { 'seed' => 1, 'available_races' => [ 'deep dwarf', 'human', 'halfling' ] } );
-        is_deeply( $npc->{'available_races'}, [ 'human', 'halfling', 'deep dwarf' ] );
+        is_deeply( $npc->{'available_races'}, undef, "ensure available races were removed" );
         is( $npc->{'race'}, 'deep dwarf' );
 
         done_testing();
@@ -116,8 +118,8 @@ subtest 'test create_npc' => sub {
         my $npc;
 
         $npc = NPCGenerator::create_npc( { 'seed' => '1', 'race' => 'elf' } );
-        is( $npc->{'profession'}, 'harness-maker' );
-        is( $npc->{'business'},   'harness-maker' );
+        is( $npc->{'profession'}, 'actor' );
+        is( $npc->{'business'},   'theater' );
 
         $npc = NPCGenerator::create_npc(
             { 'seed' => '1', 'race' => 'elf', 'allowed_professions' => [ 'cobbler', 'priest' ] } );
@@ -137,12 +139,11 @@ subtest 'test create_npc' => sub {
 
     subtest 'test create_npc attitudes' => sub {
         my $npc;
-        my $tempdata = $NPCGenerator::xml_data;
 
         $npc = NPCGenerator::create_npc( { 'seed' => 1 } );
-        is( $npc->{'primary_attitude'},   'Fear',        "emotional state" );
-        is( $npc->{'secondary_attitude'}, 'Nervousness', "emotional state" );
-        is( $npc->{'ternary_attitude'},   'Uneasiness',  "emotional state" );
+        foreach my $value (qw( primary_attitude secondary_attitude ternary_attitude)){
+            isnt($npc->{$value},undef, "$value 'emotional state");
+        }
 
         $npc = NPCGenerator::create_npc(
             {
@@ -241,8 +242,9 @@ subtest 'test NPC motivations' => sub {
 
     $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'finding a missing' } );
     is( $npc->{'motivation'},             'finding a missing', );
-    is( $npc->{'motivation_detail'},      'parent', );
-    is( $npc->{'motivation_description'}, 'finding a missing parent', );
+    foreach my $value (qw( motivation_detail  motivation_description)){
+        isnt($npc->{$value},undef, "$value 'ensure value exists");
+    }
 
     done_testing();
 

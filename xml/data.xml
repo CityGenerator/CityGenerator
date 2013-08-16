@@ -118,59 +118,54 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 </streets>
 
 <walls chance='40' >
-    <wall          max='10' type='rubble' heightmin='4' heightmax='6' >
-        <title></title>
-        <title>low</title>
-        <title>crumbling</title>
-        <root>rubble</root>
-        <trailer>embankment</trailer>
-        <trailer>barrier</trailer>
-    </wall>
-    <wall min='11' max='20' type='mud brick' heightmin='8' heightmax='20' >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <root>brick</root>
-        <root>mud brick</root>
-        <trailer>barricade</trailer>
-        <trailer>fortification</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>enclosure</trailer>
-        <trailer>rampart</trailer>
-    </wall>
-    <wall min='21' max='60' type='wood' heightmin='8' heightmax='30' >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <title>massive</title>
-        <root>wood</root>
-        <root>oak</root>
-        <trailer>stockade</trailer>
-        <trailer>rampart</trailer>
-        <trailer>barricade</trailer>
-        <trailer>fortification</trailer>
-        <trailer>palisade</trailer>
-        <trailer>fence</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>enclosure</trailer>
-    </wall>
-    <wall min='61'          type='stone' heightmin='15' heightmax='50'  >
-        <title></title>
-        <title>fortified</title>
-        <title>thick</title>
-        <title>massive</title>
-        <root>stone</root>
-        <root>marble</root>
-        <root>granite</root>
-        <trailer>rampart</trailer>
-        <trailer>fortification</trailer>
-        <trailer>partition</trailer>
-        <trailer>wall</trailer>
-        <trailer>bulwark</trailer>
-        <trailer>enclosure</trailer>
-    </wall>
+    <condition>
+        <option          max="10" >destroyed</option>
+        <option min="11" max="20" >crumbling</option>
+        <option min="21" max="25" >poorly maintained</option>
+        <option min="26" max="30" >cracking</option>
+        <option min="31" max="35" >battered</option>
+        <option min="36" max="40" >scarred</option>
+        <option min="41" max="45" >weather-beaten</option>
+        <option min="46" max="50" >flimsy</option>
+        <option min="51" max="60" >solid</option>
+        <option min="61" max="70" >sturdy</option>
+        <option min="71" max="75" >recently repaired</option>
+        <option min="76" max="80" >reinforced</option>
+        <option min="81" max="85" >fortified</option>
+        <option min="86" max="90" >polished</option>
+        <option min="91" max="95" >newly finished</option>
+        <option min="96" max="98" >pristine</option>
+        <option min="99"          >magically reinforced</option>
+    </condition>
+    <material> <!--   height is in meters -->
+        <option          max="10" minheight="1"  maxheight="3"  >rubble</option>
+        <option min="11" max="20" minheight="2"  maxheight="4"  >mud brick</option>
+        <option min="21" max="25" minheight="2"  maxheight="6"  >wood</option>
+        <option min="26" max="30" minheight="3"  maxheight="6"  >oak</option>
+        <option min="31" max="35" minheight="3"  maxheight="10" >brick</option>
+        <option min="36" max="40" minheight="3"  maxheight="15" >sandstone</option>
+        <option min="41" max="45" minheight="3"  maxheight="15" >limestone</option>
+        <option min="46" max="50" minheight="3"  maxheight="15" >conglomerate stone</option>
+        <option min="51" max="60" minheight="3"  maxheight="20" >stone</option>
+        <option min="61" max="70" minheight="3"  maxheight="20" >marble</option>
+        <option min="71" max="75" minheight="3"  maxheight="20" >slate</option>
+        <option min="76" max="80" minheight="3"  maxheight="20" >basalt</option>
+        <option min="81" max="95" minheight="3"  maxheight="20" >granite</option>
+        <option min="96"          minheight="3"  maxheight="22" >Iron</option>
+    </material>
+    <style>
+        <option          max="5"  >embankment</option>
+        <option min="6"  max="10" >fence</option>
+        <option min="11" max="20" >wall</option>
+        <option min="21" max="30" >enclosure</option>
+        <option min="31" max="40" >barrier</option>
+        <option min="41" max="50" >barricade</option>
+        <option min="51" max="60" >fortification</option>
+        <option min="61" max="70" >palisade</option>
+        <option min="71" max="80" >partition</option>
+        <option min="81" max="90" >rampart</option>
+        <option min="91"          >stockade</option>
+    </style>
 </walls>
 <preparation>
     <option          max='5'>abysmally</option>
@@ -210,11 +205,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 </specialties>
 
 <pop_types>
-    <pop_type type="basic"        min="1"   max="50"  base_pop="basic"   add_other=""           >normal population</pop_type>
-    <pop_type type="basic+1"      min="51"  max="80"  base_pop="basic"   add_other="monster"    >fairly normal population (with one monstrous race)</pop_type>
-    <pop_type type="monstrous"    min="81"  max="91"  base_pop="monster" add_other=""           >monstrous population</pop_type>
-    <pop_type type="monstrous+1"  min="91"  max="95"  base_pop="monster" add_other="basic"      >monstrous population (with one common race)</pop_type>
-    <pop_type type="random"       min="96"  max="100" base_pop="mixed"   add_other=""           >mixed population</pop_type>
+    <pop_type type="normal"             max="60" base_pop="normal"  />
+    <pop_type type="mixed"     min="61" max="80" base_pop="mixed"   />
+    <pop_type type="monstrous" min="81" max="91" base_pop="monster" />
 </pop_types>
 
 
@@ -621,14 +614,47 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option>a octagonal</option>
 </cityshape>
 
+<condition>
+    <option>neat</option>
+    <option>tidy</option>
+    <option>messy</option>
+    <option>crowded</option>
+    <option>dirty</option>
+    <option>clean</option>
+    <option>packed</option>
+    <option>orderly</option>
+    <option>dusty</option>
+    <option>cluttered</option>
+    <option>damp</option>
+    <option>smelly</option>
+    <option>disgusting</option>
+    <option>filthy</option>
+</condition>
+
 <laws>
-    <enforcer>
+    <enforcer> <!-- The ________ ... -->
+        <option>grifters</option>    
         <option>city guard</option>
         <option>city watch</option>
         <option>neighborhood watch</option>
-        <option>mob</option>
-        <option>sheriff</option>
+        <option>crime mobs</option>
+        <option>police</option>
+        <option>local thugs</option>
+        <option>organized crime bosses</option>
+        <option>local gangs</option>
+        <option>roving thieves</option>
+        <option>racketeers</option>
+        <option>mobsters</option>
+        <option>trade guild</option>
     </enforcer>
+    <graft>
+        <option>shakes down</option>
+        <option>gives protection to</option>
+        <option>hit up</option>
+        <option>steals from</option>
+        <option>taxes</option>
+        <option>harass</option>
+    </graft>
     <enforcement>
         <option>but are loosely enforced</option>
         <option>and are strictly enforced</option>
@@ -663,13 +689,13 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </trial>
 </laws>
 
-<crime>
-    <option min="1"   max="10">rampant</option>
+<crime> <!-- fixme this is backwards!!! -->
+    <option           max="10">rampant</option>
     <option min="11"  max="30">common</option>
     <option min="31"  max="50">occasional</option>
     <option min="51"  max="70">unusual</option>
     <option min="71"  max="90">rare</option>
-    <option min="91" max="100">unheard of</option>
+    <option min="91"          >unheard of</option>
 </crime>
 
 
@@ -762,8 +788,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="contrarian"        > </trait>
     <trait type="cowed"             > </trait>
     <trait type="deluded"           > </trait>
-    <trait type="to despise Locals" > </trait>
-    <trait type="a drunkard"        > </trait>
+    <trait type="drunken"           > </trait>
     <trait type="easily offended"   > </trait>
     <trait type="efficient"         > </trait>
     <trait type="egotistical"       > </trait>
@@ -791,7 +816,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="idealistic"        > </trait>
     <trait type="impatient"         > </trait>
     <trait type="importunate"       > </trait>
-    <trait type="an imposter"       > </trait>
+    <trait type="imposter"          > </trait>
     <trait type="insecure"          > </trait>
     <trait type="intimidating"      > </trait>
     <trait type="intimidated"       > </trait>

@@ -12,15 +12,15 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 #################################################################################
 -->
-    <race name='half-elf' type="basic"   moral="5"   order="-1"  magic="0"  authority='-1' economy='0'  education='1'  tolerance='5'  military='-1'>
+    <race name='half-elf' type="normal"   moral="5"   order="-1"  magic="0"  authority='-1' economy='0'  education='1'  tolerance='5'  military='-1'>
         <allow>human</allow>
         <allow>elf</allow>
     </race>
-    <race name='half-orc' type="basic"   moral="-2"  order="-2"  magic="-2" authority='-1' economy='-1' education='-2' tolerance='2'  military='2'>
+    <race name='half-orc' type="normal"   moral="-2"  order="-2"  magic="-2" authority='-1' economy='-1' education='-2' tolerance='2'  military='2'>
         <allow>human</allow>
         <allow>orc</allow>
     </race>
-    <race name='half-dwarf' type="basic"   moral="4"   order="-5"  magic="-3" authority='-1' economy='-3' education='-3' tolerance='5'  military='3'>
+    <race name='half-dwarf' type="normal"   moral="4"   order="-5"  magic="-3" authority='-1' economy='-3' education='-3' tolerance='5'  military='3'>
         <allow>human</allow>
         <allow>dwarf</allow>
     </race>
@@ -33,6 +33,18 @@ Based on a work at https://github.com/morgajel/CityGenerator.
      <race name='lycanthrope' type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-1' education='0'  tolerance='0'  military='-3'>
         <allow>human</allow>
     </race>
+    <race name='other'            type="other"   moral="2"   order="-1"  magic="0"  authority='-1' economy='0'  education='0'  tolerance='2'  military='0'>
+        <allow>human</allow>
+        <allow>halfling</allow>
+        <allow>lizardfolk</allow>
+        <allow>ogre</allow>
+        <allow>troglodyte</allow>
+        <allow>elf</allow>
+        <allow>dwarf</allow>
+        <allow>gnome</allow>
+        <allow>kobold</allow>
+        <allow>goblin</allow>
+    </race>
     <race name='any'   type="any"  >
         <allow>human</allow>
         <allow>halfling</allow>
@@ -42,6 +54,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <allow>elf</allow>
         <allow>dwarf</allow>
         <allow>gnome</allow>
+        <allow>kobold</allow>
+        <allow>goblin</allow>
+
     </race>
 <!--
 #################################################################################
@@ -50,13 +65,500 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 #################################################################################
 -->
-    <race name='mindflayer'   type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  tolerance='-5' military='-5'>    </race>
-    <race name='minotaur'      type="monster" moral="2"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' tolerance='-5' military='3'>       </race>
-    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>     </race>
-    <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>    </race>
-    <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >    </race>
-    <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>    </race>
-    <race name='other'            type="other"   moral="2"   order="-1"  magic="0"  authority='-1' economy='0'  education='0'  tolerance='2'  military='0'>    </race>
+    <race name='mindflayer'   type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  tolerance='-5' military='-5'>
+        <firstname>
+			<pre>Blo</pre>
+			<pre>Chtu</pre>
+			<pre>Dis</pre>
+			<pre>En</pre>
+			<pre>Flu</pre>
+			<pre>Goi</pre>
+			<pre>Grin</pre>
+			<pre>Har</pre>
+			<pre>Hu</pre>
+			<pre>Ilix</pre>
+			<pre>Kil</pre>
+			<pre>Klon</pre>
+			<pre>Mas</pre>
+			<pre>Mer</pre>
+			<pre>Prar</pre>
+			<pre>Pri</pre>
+			<pre>Ssz</pre>
+			<pre>Thzz</pre>
+			<pre>Trell</pre>
+			<pre>Vess</pre>
+			<pre>Wae</pre>
+			<pre>Wou</pre>
+			<pre>Wra</pre>
+
+			<root>ide</root>
+			<root>'ith</root>
+			<root>'k'morn</root>
+			<root>m</root>
+			<root>pair</root>
+			<root>pne</root>
+			<root>rall</root>
+			<root>rc</root>
+			<root>re</root>
+			<root>ril</root>
+			<root>rr</root>
+			<root>rrl</root>
+			<root>ter</root>
+			<root>th</root>
+			<root>thul</root>
+			<root>'toor</root>
+			<root>tra</root>
+			<root>vy</root>
+        </firstname>
+
+    </race>
+    <race name='minotaur'      type="monster" moral="2"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' tolerance='-5' military='3'>
+        <firstname>
+			<pre>Ag</pre>
+			<pre>Ali</pre>
+			<pre>Ap</pre>
+			<pre>Ar</pre>
+			<pre>Ar</pre>
+			<pre>Aster</pre>
+			<pre>Aya</pre>
+			<pre>Az</pre>
+			<pre>Bai</pre>
+			<pre>Bas</pre>
+			<pre>Beau</pre>
+			<pre>Beli</pre>
+			<pre>Beru</pre>
+			<pre>Bes</pre>
+			<pre>Bjork</pre>
+			<pre>Bob</pre>
+			<pre>Boo</pre>
+			<pre>Bo</pre>
+			<pre>Bro</pre>
+			<pre>Bru</pre>
+			<pre>Burun</pre>
+			<pre>Byle</pre>
+			<pre>Cair</pre>
+			<pre>Cali</pre>
+			<pre>Cav</pre>
+			<pre>Ceri</pre>
+			<pre>Cin</pre>
+			<pre>Ciri</pre>
+			<pre>Clap</pre>
+			<pre>Cod</pre>
+			<pre>Cyr</pre>
+			<pre>Dag</pre>
+			<pre>Dast</pre>
+			<pre>Del</pre>
+			<pre>Delom</pre>
+			<pre>Duu</pre>
+			<pre>Edd</pre>
+			<pre>Ela</pre>
+			<pre>Erin</pre>
+			<pre>Este</pre>
+			<pre>Ferdi</pre>
+			<pre>Flia</pre>
+			<pre>Foos</pre>
+			<pre>Fosh</pre>
+			<pre>Gald</pre>
+			<pre>Ganthi</pre>
+			<pre>Gara</pre>
+			<pre>Ga</pre>
+			<pre>Genlon</pre>
+			<pre>Gill</pre>
+			<pre>Goe</pre>
+			<pre>Goh</pre>
+			<pre>Gor</pre>
+			<pre>Grenda</pre>
+			<pre>Halfa</pre>
+			<pre>Ham</pre>
+			<pre>Hath</pre>
+			<pre>Hecari</pre>
+			<pre>Hela</pre>
+			<pre>Hes</pre>
+			<pre>Hru</pre>
+			<pre>Il</pre>
+			<pre>Jak</pre>
+			<pre>Jed</pre>
+			<pre>Jem</pre>
+			<pre>Kar</pre>
+			<pre>Keel</pre>
+			<pre>Klar</pre>
+			<pre>Kuon</pre>
+			<pre>Kyr</pre>
+			<pre>Loa</pre>
+			<pre>Loo</pre>
+			<pre>Maga</pre>
+			<pre>Mar</pre>
+			<pre>Mer</pre>
+			<pre>Min</pre>
+			<pre>Mog</pre>
+			<pre>Mor</pre>
+			<pre>Mul</pre>
+			<pre>Noost</pre>
+			<pre>Oest</pre>
+			<pre>Per</pre>
+			<pre>Pod</pre>
+			<pre>Raas</pre>
+			<pre>Rin</pre>
+			<pre>Sar</pre>
+			<pre>Sees</pre>
+			<pre>Sek</pre>
+			<pre>Ser</pre>
+			<pre>She</pre>
+			<pre>Sik</pre>
+			<pre>Tar</pre>
+			<pre>Taur</pre>
+			<pre>Tav</pre>
+			<pre>Tek</pre>
+			<pre>Tel</pre>
+			<pre>Ter</pre>
+			<pre>Thar</pre>
+			<pre>The</pre>
+			<pre>Toh</pre>
+			<pre>Tosh</pre>
+			<pre>Tur</pre>
+			<pre>Uov</pre>
+			<pre>Weo</pre>
+			<pre>Xain</pre>
+			<pre>Zurg</pre>
+
+			<root>a</root>
+			<root>al</root>
+			<root>alia</root>
+			<root>an</root>
+			<root>ana</root>
+			<root>anu</root>
+			<root>ara</root>
+			<root>as</root>
+			<root>ban</root>
+			<root>dar</root>
+			<root>dek</root>
+			<root>der</root>
+			<root>dol</root>
+			<root>don</root>
+			<root>dra</root>
+			<root>du</root>
+			<root>er</root>
+			<root>eras</root>
+			<root>est</root>
+			<root>fort</root>
+			<root>ga</root>
+			<root>gani</root>
+			<root>gas</root>
+			<root>go</root>
+			<root>ia</root>
+			<root>iki</root>
+			<root>ina</root>
+			<root>inand</root>
+			<root>ion</root>
+			<root>ios</root>
+			<root>ith</root>
+			<root>ius</root>
+			<root>killian</root>
+			<root>laca</root>
+			<root>leana</root>
+			<root>li</root>
+			<root>lia</root>
+			<root>Loa</root>
+			<root>ma</root>
+			<root>main</root>
+			<root>max</root>
+			<root>more</root>
+			<root>n</root>
+			<root>nas</root>
+			<root>ne</root>
+			<root>nic</root>
+			<root>norgath</root>
+			<root>nus</root>
+			<root>o</root>
+			<root>ok</root>
+			<root>on</root>
+			<root>oren</root>
+			<root>ose</root>
+			<root>ra</root>
+			<root>rath</root>
+			<root>rell</root>
+			<root>rian</root>
+			<root>ris</root>
+			<root>ron</root>
+			<root>ros</root>
+			<root>ru</root>
+			<root>run</root>
+			<root>rus</root>
+			<root>sey</root>
+			<root>sha</root>
+			<root>sil</root>
+			<root>soe</root>
+			<root>star</root>
+			<root>ta</root>
+			<root>tek</root>
+			<root>tha</root>
+			<root>tmos</root>
+			<root>toron</root>
+			<root>tra</root>
+			<root>trah</root>
+			<root>tred</root>
+			<root>ula</root>
+			<root>ule</root>
+			<root>un</root>
+			<root>una</root>
+			<root>urg</root>
+			<root>uri</root>
+			<root>us</root>
+			<root>uul</root>
+			<root>verani</root>
+			<root>yes</root>
+        </firstname>
+        <lastname>
+
+			<pre>Armi</pre>
+			<pre>Ath</pre>
+			<pre>Blood</pre>
+			<pre>Boro</pre>
+			<pre>Breg</pre>
+			<pre>Claw</pre>
+			<pre>Cloud</pre>
+			<pre>Dark</pre>
+			<pre>Dawn</pre>
+			<pre>Dom</pre>
+			<pre>Eagle</pre>
+			<pre>Earth</pre>
+			<pre>Entra</pre>
+			<pre>Grim</pre>
+			<pre>Ice</pre>
+			<pre>Kazi</pre>
+			<pre>Lagran</pre>
+			<pre>Long</pre>
+			<pre>Mas</pre>
+			<pre>Mist</pre>
+			<pre>Oat</pre>
+			<pre>Or</pre>
+			<pre>Plain</pre>
+			<pre>Quill</pre>
+			<pre>Rage</pre>
+			<pre>Rain</pre>
+			<pre>River</pre>
+			<pre>Rune</pre>
+			<pre>Sky</pre>
+			<pre>Spirit</pre>
+			<pre>Stone</pre>
+			<pre>Storm</pre>
+			<pre>Strong</pre>
+			<pre>Sum</pre>
+			<pre>Swift</pre>
+			<pre>Tes</pre>
+			<pre>Thunder</pre>
+			<pre>White</pre>
+			<pre>Wild</pre>
+			<pre>Wind</pre>
+			<pre>Winter</pre>
+			<pre>Young</pre>
+			<pre>Zha</pre>
+
+			<root>ak</root>
+			<root>bash</root>
+			<root>breaker</root>
+			<root>caller</root>
+			<root>chaser</root>
+			<root>cloud</root>
+			<root>fury</root>
+			<root>gan</root>
+			<root>ganthi</root>
+			<root>gath</root>
+			<root>hoof</root>
+			<root>ilg</root>
+			<root>is</root>
+			<root>kan</root>
+			<root>kos</root>
+			<root>mane</root>
+			<root>marr</root>
+			<root>mist</root>
+			<root>non</root>
+			<root>rangli</root>
+			<root>runner</root>
+			<root>singer</root>
+			<root>soult</root>
+			<root>spire</root>
+			<root>splitter</root>
+			<root>stalker</root>
+			<root>stride</root>
+			<root>strider</root>
+			<root>talon</root>
+			<root>thorn</root>
+			<root>vidol</root>
+			<root>walker</root>
+			<root>wind</root>
+
+        </lastname>
+    </race>
+    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>
+        <firstname>
+			<root>Bat</root>
+			<root>Bap</root>
+			<root>Bit</root>
+			<root>Bip</root>
+			<root>Bot</root>
+			<root>Car</root>
+			<root>Cor</root>
+			<root>Cak</root>
+			<root>Dat</root>
+			<root>Dit</root>
+			<root>Dot</root>
+			<root>Fax</root>
+			<root>Fat</root>
+			<root>Fot</root>
+			<root>Gat</root>
+			<root>Git</root>
+			<root>Gip</root>
+			<root>Got</root>
+			<root>Jat</root>
+			<root>Jit</root>
+			<root>Jot</root>
+			<root>Jop</root>
+			<root>Lat</root>
+			<root>Lik</root>
+			<root>Lot</root>
+			<root>Nat</root>
+			<root>Niz</root>
+			<root>Nip</root>
+			<root>Not</root>
+			<root>Nop</root>
+			<root>Pat</root>
+			<root>Paz</root>
+			<root>Pot</root>
+			<root>Rat</root>
+			<root>Rap</root>
+			<root>Rit</root>
+			<root>Rot</root>
+			<root>Rop</root>
+			<root>Taz</root>
+			<root>Teb</root>
+			<root>Tean</root>
+			<root>Vab</root>
+			<root>Vaz</root>
+			<root>Vit</root>
+			<root>Vor</root>
+			<root>Wat</root>
+			<root>Wit</root>
+			<root>Wot</root>
+			<root>Yat</root>
+			<root>Yap</root>
+			<root>Yik</root>
+			<root>Yip</root>
+			<root>Yot</root>
+			<root>Yop</root>
+			<root>Zat</root>
+			<root>Zit</root>
+			<root>Zol</root>
+        </firstname>
+     </race>
+    <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>
+        <firstname>
+			<pre>Br</pre>
+			<pre>Dzu</pre>
+			<pre>Gkut</pre>
+			<pre>K</pre>
+			<pre>K</pre>
+			<pre>Kz</pre>
+			<pre>M</pre>
+			<pre>M</pre>
+			<pre>Nar</pre>
+			<pre>Nb</pre>
+			<pre>Rb</pre>
+			<pre>Rug</pre>
+			<pre>Rx</pre>
+			<pre>Tb</pre>
+			<pre>Tg</pre>
+			<pre>Tm</pre>
+			<pre>Tr</pre>
+			<pre>Tud</pre>
+			<pre>Xod</pre>
+			<pre>Xr</pre>
+			<pre>Xt</pre>
+			<pre>Xu</pre>
+			<pre>Z</pre>
+			<root>adr</root>
+			<root>bok</root>
+			<root>eb</root>
+			<root>egd</root>
+			<root>emt</root>
+			<root>erm</root>
+			<root>et</root>
+			<root>exn</root>
+			<root>ezn</root>
+			<root>kasr</root>
+			<root>ods</root>
+			<root>og</root>
+			<root>ok</root>
+			<root>omd</root>
+			<root>omn</root>
+			<root>or</root>
+			<root>ot</root>
+			<root>oten</root>
+			<root>ub</root>
+			<root>uk</root>
+			<root>un</root>
+			<root>unk</root>
+			<root>urm</root>
+			<root>us</root>
+			<root>zar</root>
+        </firstname>
+        <lastname>
+			<pre>Big</pre>
+			<pre>Blade</pre>
+			<pre>Brain</pre>
+			<pre>Cleaver</pre>
+			<pre>Damn</pre>
+			<pre>Dark</pre>
+			<pre>Dread</pre>
+			<pre>Evil</pre>
+			<pre>Foul</pre>
+			<pre>Ghostt</pre>
+			<pre>Giant</pre>
+			<pre>Great</pre>
+			<pre>Great</pre>
+			<pre>Iron</pre>
+			<pre>Laugh</pre>
+			<pre>Metal</pre>
+			<pre>Metal</pre>
+			<pre>Night</pre>
+			<pre>Ogre</pre>
+			<pre>Ooze</pre>
+			<pre>Rant</pre>
+			<pre>Rock</pre>
+			<pre>Worm</pre>
+
+			<root>basher</root>
+			<root>beast</root>
+			<root>bone</root>
+			<root>cutter</root>
+			<root>damn</root>
+			<root>death</root>
+			<root>doom</root>
+			<root>fury</root>
+			<root>gloom</root>
+			<root>hand</root>
+			<root>host</root>
+			<root>howl</root>
+			<root>kill</root>
+			<root>maw</root>
+			<root>mouth</root>
+			<root>murder</root>
+			<root>render</root>
+			<root>rot</root>
+			<root>shadow</root>
+			<root>shredder</root>
+			<root>slay</root>
+			<root>stomach</root>
+			<root>wiser</root>
+        </lastname>
+    </race>
+    <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >
+        <allow>goblin</allow>
+        <allow>orc</allow>
+    </race>
+    <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>
+        <allow>goblin</allow>
+    </race>
 
     <race name='lizardfolk' type="monster" moral="0"   order="0"   magic="0"  authority='-3' economy='-2' education='-3' tolerance='-2' military='2'>
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
@@ -92,7 +594,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>zor</post>
         </lastname>
     </race>
-    <race name='gnome' type="basic"   moral="5"   order="5"   magic="2"  authority='-1' economy='1'  education='1'  tolerance='3'  military='-1'>
+    <race name='gnome' type="normal"   moral="5"   order="5"   magic="2"  authority='-1' economy='1'  education='1'  tolerance='3'  military='-1'>
         <firstname post_chance='70'>
             <pre>Ada</pre>
             <pre>Ai</pre>
@@ -197,7 +699,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>karo</post>
         </firstname>
     </race>
-    <race name='halfling' type="basic"   moral="5"   order="0"   magic="-1" authority='-1' economy='1'  education='1'  tolerance='3'  military='-2'>
+    <race name='halfling' type="normal"   moral="5"   order="0"   magic="-1" authority='-1' economy='1'  education='1'  tolerance='3'  military='-2'>
         <firstname root_chance='50' post_chance='50'>
             <pre>Ada</pre>
             <pre>Ama</pre>
@@ -424,7 +926,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>wolf</post> 
         </lastname>
     </race>
-    <race name='dwarf' type="basic"   moral="5"   order="5"   magic="-2" authority='2'  economy='1'  education='0'  tolerance='1'  military='4'>
+    <race name='dwarf' type="normal"   moral="5"   order="5"   magic="-2" authority='2'  economy='1'  education='0'  tolerance='1'  military='4'>
         <firstname>
 
             <pre>Aba</pre>
@@ -676,7 +1178,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>vest</post>
         </lastname>
     </race>
-    <race name='elf' type="basic"   moral="5"   order="-5"  magic="3"  authority='-1' economy='1'  education='2'  tolerance='1'  military='1'>
+    <race name='elf' type="normal"   moral="5"   order="-5"  magic="3"  authority='-1' economy='1'  education='2'  tolerance='1'  military='1'>
         <firstname>
 
             <pre>Aba</pre>
@@ -927,7 +1429,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>nut</post>
         </lastname>
     </race>
-    <race name='human' type="basic"  moral="0" order="5" magic="0" authority='1' economy='1' education='2' tolerance='3' military='1' >
+    <race name='human' type="normal"  moral="0" order="5" magic="0" authority='1' economy='1' education='2' tolerance='3' military='1' >
         <firstname title_chance='5' pre_chance='1' post_chance='70'>
 
             <pre>Le</pre>

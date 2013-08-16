@@ -1,0 +1,70 @@
+
+<h2> City Specific</h2>
+
+<p>Hint: only enabed options will be used.</p>
+<form action="/citygenerator" method="get" name="detailform" enctype="application/x-www-form-urlencoded" target="_blank">
+<fieldset style="width:45%;display:inline">
+    <legend>City Basic</legend>
+    <label for="seed">Seed</label>          <input type="checkbox" onclick="disablefield('seed')" >       <input type="number" disabled name="seed" value="1"><br>
+    <label for="size_roll">Size roll</label><input type="checkbox" onclick="disablefield('size_roll')" >  <input type="range"  disabled name="size_roll" min="1" max="100"><br>
+    <label for="moral">Moral</label>        <input type="checkbox" onclick="disablefield('moral')" >      <input type="range"  disabled name="moral" min="0" max="100"><br>
+    <label for="order">Order</label>        <input type="checkbox" onclick="disablefield('order')" >      <input type="range"  disabled name="order" min="0" max="100"><br>
+</fieldset>
+
+<fieldset style="width:45%;display:inline">
+    <legend>City Stats</legend>
+    <label for="education">Education</label>    <input type="checkbox" onclick="disablefield('education')"  > <input type="range" disabled name="education"    min="-5" max="5" value="0"/><br>
+    <label for="magic">Magic</label>            <input type="checkbox" onclick="disablefield('magic')"      > <input type="range" disabled name="magic"        min="-5" max="5" value="0"/><br>
+    <label for="military">Military</label>      <input type="checkbox" onclick="disablefield('military')"   > <input type="range" disabled name="military"     min="-5" max="5" value="0"/><br>
+    <label for="tolerance">Tolerance</label>    <input type="checkbox" onclick="disablefield('tolerance')"  > <input type="range" disabled name="tolerance"    min="-5" max="5" value="0"/><br>
+    <label for="economy">Economy</label>        <input type="checkbox" onclick="disablefield('economy')"    > <input type="range" disabled name="economy"      min="-5" max="5" value="0"/><br>
+    <label for="authority">Authority</label>    <input type="checkbox" onclick="disablefield('authority')"  > <input type="range" disabled name="authority"    min="-5" max="5" value="0"/><br>
+</fieldset>
+
+<fieldset style="width:45%;display:inline">
+    <legend>Population Breakdown</legend>
+    <label for="child_percent">Percent Children</label>   <input type="checkbox" onclick="disablefield('child_percent')"    > <input type="range" disabled name="child_percent"   min="0" max="100"><br>
+    <label for="elderly_percent">Percent Elderly</label>  <input type="checkbox" onclick="disablefield('elderly_percent')"  > <input type="range" disabled name="elderly_percent" min="0" max="100"><br>
+ </fieldset>
+
+    <label for="type">Dump it?</label>    <input type="checkbox" name="type" value="dump"  >
+    <input type="submit" value="Generate it!" >
+</form>
+<!--
+<h2> Government specific</h2>
+
+Govt Seed:   <input type="number"       min="0"       max="100000000"       step="1"       value="1"><br>
+Govt stats
+theology:       <input type="range" name='theology'   min="0" max="100"><br>
+unity:          <input type="range" name='unity'      min="0" max="100"><br>
+corruption:     <input type="range" name='corruption' min="0" max="100"><br>
+efficiency:     <input type="range" name='efficiency' min="0" max="100"><br>
+approval:       <input type="range" name='approval'   min="0" max="100"><br>
+influence:      <input type="range" name='influence'  min="0" max="100"><br>
+
+
+traveler_count  <input type="range" name="traveler_count"   min="0" max="20"><br>
+citizen_count   <input type="range" name="citizen_count"    min="0" max="20"><br>
+
+
+    'climate' => {
+pressure       <input type="range" name='pressure'        min="0" max="100"><br>
+latitude       <input type="range" name='latitude'        min="0" max="100"><br>
+continentality <input type="range" name='continentality'  min="0" max="100"><br>
+altitude       <input type="range" name='altitude'        min="0" max="100"><br>
+
+temperature     <input type="range" name='temperature'     min="0" max="100"><br>
+precipitation   <input type="range" name='precipitation'   min="0" max="100"><br>
+cloudcover_roll <input type="range" name='cloudcover_roll' min="0" max="100"><br>
+wind_roll       <input type="range" name='wind_roll'       min="0" max="100"><br>
+
+
+    
+          'wall_chance_roll' => 58,
+
+          'resourcecount' => 6,
+          'size_roll' => 88
+-->
+
+
+

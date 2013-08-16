@@ -21,21 +21,19 @@ function  VoronoiMap(params) {
     this.height=params.canvas.height;
 
 
-    this.xmultiplier=1
-    this.ymultiplier=1
-    this.xoffset=0
-    this.yoffset=0
-    // colors are used by world and regional maps.
-    this.colors = [ '255,105,100', '139,0,0', '255,140,0', '255,255,0', '124,252,0', '127,255,212', '95,158,160', '30,144,255', '238,130,238',  '128,0,128','12,12,120','220,12,12','220,100,12'      ];
+    this.xmultiplier=1;
+    this.ymultiplier=1;
+    this.xoffset=0;
+    this.yoffset=0;
 
-    // default constant values
+// default constant values
     this.num_lloyd_iterations=2;
-//    this.scale=1
+    //    this.scale=1
     // These are important bits to track
     this.voronoi = new Voronoi();
 
-    //First generate points,
-    this.points=params.points;
+    /*//First generate points,*/
+    this.points=this.generateRandomPoints(params.total_cell_count);
 
     // then compute the virinoi
     this.buildGraph();

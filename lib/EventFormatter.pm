@@ -1,23 +1,23 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package PopulationFormatter;
+package EventFormatter;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printRaces printAges);
+@EXPORT_OK = qw( printEvents printPostings);
 
 ###############################################################################
 
 =head1 NAME
 
-    PopulationFormatter - used to format population details
+    EventFormatter - used to format the summary.
 
 =head1 DESCRIPTION
 
- Prints and formats details about the population races and ages
+ This take a city, strips the important info, and generates a Summary.
 
 =cut
 
@@ -28,57 +28,51 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
-use Lingua::EN::Inflect qw(A PL_N);
-
 use POSIX;
 use version;
 
 ###############################################################################
 
-=head2 printRaces()
+=head2 printSummary()
 
-printRaces strips out important info from a City object and returns details about races
-
-=cut
-
-###############################################################################
-sub printRaces {
-    my ($city) = @_;
-    my $content;
-
-    #TODO add dominant race
-    #TODO add moral and order descriptions
-    #$content.="$city->{'name'} is a $city->{'moraldescription'} and $city->{'orderdescription'} population. \n";
-    $content .= "Here's the breakdown of this $city->{'type'} population:";
-
-    $content .= "<ul> \n";
-    foreach my $race ( reverse sort { $a->{'percent'} <=> $b->{'percent'} } @{ $city->{'races'} } ) {
-        $content
-            .= "<li style='margin-left:200px;'>$race->{'population'} ".PL_N($race->{'race'}, $race->{'population'})." ($race->{'percent'}%) </li> \n";
-    }
-    $content .= "</ul>";
-
-    return $content;
-}
-
-###############################################################################
-
-=head2 printAges()
-
-printAges strips out important info from a City object and returns details 
-about population ages.
+printSummary strips out important info from a City object and returns formatted text.
 
 =cut
 
 ###############################################################################
-sub printAges {
+sub printSummary {
+#FIXME flesh this out I guess... does it even need to be here?
     my ($city) = @_;
     my $content;
-    $content
-        .= "Children account for $city->{'children'}->{'percent'}% ($city->{'children'}->{'population'}), and the elderly account for $city->{'elderly'}->{'percent'}% ($city->{'elderly'}->{'population'}) of this $city->{'age_description'} city. \n";
+    $content .= "$city->{'name'} is a lively city with many opportunities available.";
+    return $content;
+}
+
+
+###############################################################################
+
+=head2 printPostings()
+
+printPostings displays a list of current job postings
+
+=cut
+
+###############################################################################
+
+sub printPostings {
+    my ($city) = @_;
+    my $content = "You'll find the following job postings:";
+    $content .= "<ul class='twocolumn'> \n";
+    foreach my $posting (@{ $city->{'postings'} } ){
+        $content.= "<li>".$posting->{'content'}."</li>\n";
+    
+    }    
+
+    $content .= "</ul>\n";
 
     return $content;
 }
+
 
 1;
 

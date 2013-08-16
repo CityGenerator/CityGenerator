@@ -90,13 +90,20 @@ header {
     margin:0px;
     padding:0px;
 }
-section h2 {
+    h2 {
     margin-top:10px;
     font: 18pt 'OldNewspaper';
 }
-section h3 {
+    h3 {
     margin-top:10px;
     font: 12pt 'OldNewspaper';
+}
+
+.collapser{
+    font-size:0.8em;
+    font-weight:bold;
+    color: #777777;
+    cursor:pointer;
 }
 
 #worlddata, #censusdata{
@@ -154,10 +161,11 @@ img {
 #citymap_small{
     float:left;
     margin:0px 10px 10px 0px;
-    -webkit-filter: sepia(80%);
+/*    -webkit-filter: sepia(80%);
     -moz-filter: sepia(80%);
     -ms-filter: sepia(80%); 
     -o-filter: sepia(80%);
+*/
 }
 #regionmap_small{
     float:right;
@@ -202,25 +210,13 @@ img {
     border:0px solid green;
     margin-top:1em;
 }
-.demolistfinal {
-    column-count:3;
-    -moz-column-count:3; /* Firefox */
-    -webkit-column-count:3; /* Safari and Chrome */
 
-    column-gap:0em;
-    -moz-column-gap:0em; /* Firefox */
-    -webkit-column-gap:0em; /* Safari and Chrome */
-
-    border:0px solid green;
-    margin-top:1em;
-}
-
-.demolistfinal li::before, .twocolumn li::before, .threecolumn li::before {
+.twocolumn li::before, .threecolumn li::before {
     content:"\2600";
     margin-right:0.25em;
 }
 
-.demolistfinal li, .twocolumn li, .threecolumn li  {
+.twocolumn li, .threecolumn li  {
     list-style-type: none;
     padding-left:0em;
     text-indent:-1em;
@@ -230,7 +226,10 @@ img {
 }
 
 
-
+.establishment{
+    text-indent:0px;
+    display:none;
+}
 
 
 

@@ -41,6 +41,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -65,7 +66,7 @@ The following datafiles are used by WorldGenerator.pm:
 
 ###############################################################################
 my $world_data = $xml->XMLin( "xml/worlddata.xml", ForceContent => 1, ForceArray => [ 'option', 'reason' ] );
-my $worldnames_data = $xml->XMLin( "xml/worldnames.xml", ForceContent => 1, ForceArray => [] );
+my $worldnames_data = $xml->XMLin( "xml/worldnames.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

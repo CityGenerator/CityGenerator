@@ -8,7 +8,7 @@ use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( create_govt);
-
+#FIXME TODO add a stat for Government Size
 ###############################################################################
 
 =head1 NAME
@@ -37,6 +37,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 

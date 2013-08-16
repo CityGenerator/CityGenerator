@@ -52,9 +52,11 @@ Here's the breakdown of this basic+1 population:
 * 36 halflings (0.9%)
 * 36 half-elves (0.9%)
 * 36 dwarves (0.9%)
+
 ###Ages###
 
 Children account for 26.99% (988), and the elderly account for 5.00% (183) of this old city.
+
 ##Cityscape##
 
 ###Walls###
@@ -227,9 +229,11 @@ The following travelers are worth mentioning:
 
 ##Locales##
 
-###Taverns###
+###Establishments###
 
-Taverns are often central gathering places for the citizens. In Steelhall can find the following taverns:
+* The Rolling Cesspit Inc. is a large, orderly-looking spicemerchant. The building faces east with a lap board storefront, a roof made from thatch, and no windows. It is located in an empty neighborhood of the market district. This place is run by a gambler gnome named Gabtsy Greasefiz. The spicemerchant is known for slightly high prices for the service there, and is always busy, regardless of the time. There are 3 customers in the spicemerchant. The local thugs harass the owner and patrons.
+* The Belching Wagon Shoppe is a large, damp-looking magic shop. The building faces southeast with dirty windows, a roof made from tile, and a lap board storefront. It is located in an expensive neighborhood of the fine shops district. This place is run by an embittered lizardfolk named Khalzor se Yeral. The magic shop is known for steep prices for the service there, and is crowded every night. There are 3 customers in the magic shop. The mobsters hit up the owner and patrons.
 
-* The Hilltop Cup is a humdrum tavern that is constantly crowded. It has a reputation for food poisoning. Prices at the Hilltop Cup are a real steal and is owned by a dwarf named Bargan Feasttunnel who seems impatient. The law protects the tavern and its patrons, however most violence is handled by ignoring it.
-* The Sleepy Dwarves is a familiar tavern that holds the record for worst brew in the region. It has a reputation for having good booze. Prices at the Sleepy Dwarves are moderate and is owned by a lizardfolk named S'herzin ahn Yerzor who seems a worrywart. The law protects the tavern and its patrons, however most violence is handled by swift justice.
+---
+
+Follow us at [Google+](https://plus.google.com/112661873200782342936)

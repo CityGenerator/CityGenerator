@@ -40,9 +40,9 @@ subtest 'Test CensusData General Information' => sub {
     is(
         $censusdata, "                    <h3>General Information</h3>
                     <ul>
-                        <li> Pop. Estimate: 18554 </li>
-                        <li> Children: 25.00% (4638) </li>
-                        <li> Elderly: 1.50% (278) </li>
+                        <li> Pop. Estimate: 833 </li>
+                        <li> Children: 28.93% (241) </li>
+                        <li> Elderly: 11.88% (99) </li>
                     </ul>
 "
     );
@@ -53,15 +53,13 @@ subtest 'Test CensusData Racial Breakdown' => sub {
     my $city = CityGenerator::create_city( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printRacialBreakdown($city);
-
     is(
         $censusdata, "                    <h3>Racial Breakdown</h3>
                     <ul>
-                        <li>17366 ogre (93.5%)</li>
-                        <li>593 drow (3.1%)</li>
-                        <li>225 other (1.2%)</li>
-                        <li>185 minotaur (0.9%)</li>
-                        <li>185 bugbear (0.9%)</li>
+                        <li>644 half-dwarf (77.3%)</li>
+                        <li>160 halfling (19.2%)</li>
+                        <li>28 half-orc (3.3%)</li>
+                        <li>1 other (0.1%)</li>
                     </ul>
 "
     );
@@ -77,10 +75,10 @@ subtest 'Test CensusData Misc' => sub {
     is(
         $censusdata, "                    <h3>Misc.</h3>
                     <ul>
-                        <li>5 Districts</li>
-                        <li>351 Businesses</li>
-                        <li>2838 Specialists</li>
-                        <li>1884 Residences</li>
+                        <li>4 Districts</li>
+                        <li>40 Businesses</li>
+                        <li>70 Specialists</li>
+                        <li>107 Residences</li>
                     </ul>
 "
     );

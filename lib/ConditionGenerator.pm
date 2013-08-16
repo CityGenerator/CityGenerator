@@ -38,6 +38,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -60,7 +61,7 @@ The following datafiles are used by ConditionGenerator.pm:
 
 ###############################################################################
 # FIXME This needs to stop using our
-my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => [] );
+my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

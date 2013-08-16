@@ -37,6 +37,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -62,7 +63,7 @@ The following datafiles are used by EventGenerator.pm:
 ###############################################################################
 # FIXME This needs to stop using our
 my $xml_data   = $xml->XMLin( "xml/data.xml",   ForceContent => 1, ForceArray => ['option'] );
-my $event_data = $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => [] );
+my $event_data = $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 

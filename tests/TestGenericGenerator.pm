@@ -17,9 +17,6 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-my $xml = XML::Simple->new();
-my $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => ['option'] );
-
 
 subtest 'test rand_from_array' => sub {
     my $result;
@@ -39,6 +36,11 @@ subtest 'test rand_from_array' => sub {
         $result = GenericGenerator::rand_from_array($testarray);
         is( $result, 'baz', 'test array results' );
     }
+
+    dies_ok( sub { GenericGenerator::rand_from_array(undef) }, "undef is not a valid array" );
+
+
+
     done_testing();
 };
 
@@ -60,6 +62,16 @@ subtest 'test set_seed' => sub {
     done_testing();
 };
 
+subtest 'test set_seed and get_seed' => sub {
+    my $result;
+
+    foreach my $value (qw( 0 1 2 4 10000 ) ){
+        GenericGenerator::set_seed($value);
+        is (GenericGenerator::get_seed(), $value, "ensure value is $value");
+    }
+    done_testing();
+};
+
 
 subtest 'test single d() ' => sub {
     my $result;
@@ -70,7 +82,6 @@ subtest 'test single d() ' => sub {
     is( GenericGenerator::d(3), 2 );
     dies_ok( sub { GenericGenerator::d('pie') }, "pie is not a valid dice format." );
     done_testing();
-
 };
 
 subtest 'test multi d() ' => sub {
@@ -235,6 +246,70 @@ subtest 'test roll_from_array' => sub {
 
     done_testing();
 };
+
+
+subtest 'test select_features' => sub {
+
+    GenericGenerator::set_seed(1);
+    my $ds={};
+    my $xml={
+             'feature'=>{
+                            'pre'=>{
+                                    'option'=>[{'content'=>'a'},{'content'=>'b'},{'content'=>'c'}],
+                                    },
+                            'root'=>{
+                                    'chance'=>100,
+                                    'option'=>[{'content'=>'a'},{'content'=>'b'},{'content'=>'c'}],
+                                    },
+                            'post'=>{
+                                    'chance'=>1,
+                                    'option'=>[{'content'=>'a'},{'content'=>'b'},{'content'=>'c'}],
+                                    },
+                            'trailer'=>{
+                                    'chance'=>99,
+                                    'option'=>[{'type'=>'foo','content'=>'a'},{'type'=>'foo','content'=>'b'},{'type'=>'foo','content'=>'c'}],
+                                    },
+                        }
+            };
+
+    GenericGenerator::select_features($ds,$xml);
+
+    isnt( $ds->{'pre'},     undef,  'pre exists' );
+    isnt( $ds->{'root'},    undef,  'root exists' );
+    is( $ds->{'post'},      undef,  'post doesnt' );
+    is( $ds->{'trailer_type'},      'foo',  'foo is set' );
+    GenericGenerator::set_seed(1);
+
+    $ds={'post_roll'=>99, 'root'=>'foo', 'trailer_type'=>'bar'};
+
+    GenericGenerator::select_features($ds,$xml);
+    isnt( $ds->{'pre'},     undef,  'pre exists' );
+    is( $ds->{'root'},      'foo',  'root exists' );
+    is( $ds->{'post'},      undef,  'post doesnt' );
+    is( $ds->{'trailer_type'},      'bar',  'bar is preset' );
+
+    done_testing();
+};
+
+
+subtest 'test parse_template' => sub {
+
+    my $ds={ 'template'=>'some [%adverb%] test', 'adverb'=>'quick' };
+
+    GenericGenerator::parse_template($ds);
+    is( $ds->{'content'},    'some quick test', 'ensure variables are parsing' );
+
+
+
+    $ds={ 'template'=>'Broken template [%adverb[1]%] ', 'adverb'=>'quick' };
+
+    dies_ok( sub { GenericGenerator::parse_template($ds) }, "bad template dies" );
+
+
+    done_testing();
+};
+
+
 
 
 1;

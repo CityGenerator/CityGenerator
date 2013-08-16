@@ -32,18 +32,21 @@ use ContinentGenerator;
 use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object seed);
 use Math::Complex ':pi';
 use NPCGenerator;
+use PostingGenerator;
 use RegionGenerator;
 use GovtGenerator;
-use TavernGenerator;
+use MilitaryGenerator;
+use EstablishmentGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -80,13 +83,11 @@ The following datafiles are used by CityGenerator.pm:
 
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => [] );
-my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => [] );
-my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => [] );
-my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => [] );
-my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => [] );
-my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => [] );
-my $district_data       = $xml->XMLin( "xml/districts.xml",      ForceContent => 1, ForceArray => [] );
+my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['option'] );
+my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $resource_data       = $xml->XMLin( "xml/resources.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $specialist_data     = $xml->XMLin( "xml/specialists.xml",    ForceContent => 1, ForceArray => ['option'] );
+my $district_data       = $xml->XMLin( "xml/districts.xml",      ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -125,9 +126,8 @@ sub create_city {
     }
 
     if ( !defined $city->{'seed'} ) {
-        $city->{'seed'} = set_seed();
+        $city->{'seed'} = GenericGenerator::set_seed();
     }
-    $city->{'original_seed'} = $city->{'seed'};
 
     generate_city_name($city);
     generate_base_stats($city);
@@ -136,51 +136,7 @@ sub create_city {
     set_age($city);
 
     return $city;
-} ## end sub create_city
-
-###############################################################################
-
-=head3 generate_base_stats()
-
-    generate basic stats for a city.
-
-=cut
-
-###############################################################################
-sub generate_base_stats {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'stats'}->{'education'} = d(11) - 5 if ( !defined $city->{'stats'}->{'education'} );
-    $city->{'stats'}->{'authority'} = d(11) - 5 if ( !defined $city->{'stats'}->{'authority'} );
-    $city->{'stats'}->{'magic'}     = d(11) - 5 if ( !defined $city->{'stats'}->{'magic'} );
-    $city->{'stats'}->{'military'}  = d(11) - 5 if ( !defined $city->{'stats'}->{'military'} );
-    $city->{'stats'}->{'tolerance'} = d(11) - 5 if ( !defined $city->{'stats'}->{'tolerance'} );
-    $city->{'stats'}->{'economy'}   = d(11) - 5 if ( !defined $city->{'stats'}->{'economy'} );
-
-    return $city;
-} ## end sub generate_base_stats
-
-
-###############################################################################
-
-=head3 generate_alignment()
-
-    generate core alignment for the city
-
-=cut
-
-###############################################################################
-sub generate_alignment {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'order'} = d(100) if ( !defined $city->{'order'} );
-    $city->{'moral'} = d(100) if ( !defined $city->{'moral'} );
-
-    $city->{'order'} = min( 100, max( 0, $city->{'order'} ) );
-    $city->{'moral'} = min( 100, max( 0, $city->{'moral'} ) );
-
-    return $city;
-} ## end sub generate_alignment
+}
 
 
 ###############################################################################
@@ -194,11 +150,79 @@ sub generate_alignment {
 ###############################################################################
 sub generate_city_name {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-    my $nameobj = parse_object($citynames_data);
-    $city->{'name'} = $nameobj->{'content'} if ( !defined $city->{'name'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 1);
+    $city->{'name'} = parse_object($citynames_data)->{'content'} if ( !defined $city->{'name'} );
     return $city;
-} ## end sub generate_city_name
+}
+
+
+###############################################################################
+
+=head3 generate_base_stats()
+
+    generate basic stats for a city.
+
+=cut
+
+###############################################################################
+sub generate_base_stats {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 2);
+    foreach my $stat ( qw( education authority magic military tolerance economy ) ){
+        $city->{'stats'}->{$stat} = d(11) - 5 if ( !defined $city->{'stats'}->{$stat} );
+        $city->{'stats'}->{$stat}=max(-5,min(5,$city->{'stats'}->{$stat}));
+    }
+    return $city;
+} ## end sub generate_base_stats
+
+###############################################################################
+
+=head2 set_stat_descriptions
+
+select the stat descriptions for the 6 major stats.
+
+=cut
+
+###############################################################################
+sub set_stat_descriptions {
+    #TODO merge this with base_stats like the other cool kids do.
+    #This will require refactoring base_stats to use 1-100 rather that -5 - 5
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 23 );
+
+    foreach my $stat ( sort keys %{ $city->{'stats'} } ) {
+        $city->{'stats'}->{$stat} = 0 if ( !defined $city->{'stats'}->{$stat} );
+        #FIXME adjectives should be an ordered array, not a random array, like govt does.
+        my $statoption
+            = roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{ $stat . "_description" }->{'option'} );
+        $city->{ $stat . "_description" } = rand_from_array( $statoption->{'option'} )->{'content'}
+            if ( !defined $city->{ $stat . "_description" } );
+    }
+
+    return $city;
+}
+
+
+
+###############################################################################
+
+=head3 generate_alignment()
+
+    generate core alignment for the city
+
+=cut
+
+###############################################################################
+sub generate_alignment {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 3);
+    foreach my $stat ( qw( moral order ) ){
+        $city->{$stat} = d(100) if ( !defined $city->{$stat} );
+        $city->{$stat} = max( 1, min( 100, $city->{$stat} ) );
+    }
+    return $city;
+} ## end sub generate_alignment
+
 
 ###############################################################################
 
@@ -212,7 +236,7 @@ Find the size of the city by selecting from the citysize
 ###############################################################################
 sub set_city_size {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 4 );
     my $citysizelist = $xml_data->{'citysize'}->{'city'};
 
     $city->{'size_roll'}= &d(100) if (!defined $city->{'size_roll'});
@@ -232,6 +256,30 @@ sub set_city_size {
 
 ###############################################################################
 
+=head3 set_age()
+
+Set the current age of the city
+
+=cut
+
+###############################################################################
+sub set_age {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 5 );
+
+    my $agelist = $xml_data->{'cityages'}->{'cityage'};
+    $city->{'age_roll'} = d(100) + $city->{'size_modifier'} if ( !defined $city->{'age_roll'} );
+
+    my $result = roll_from_array( $city->{'age_roll'}, $agelist );
+    $city->{'age_description'} = $result->{'content'} if ( !defined $city->{'age_description'} );
+    $city->{'age_mod'}         = $result->{'age_mod'} if ( !defined $city->{'age_mod'} );
+
+    return $city;
+} ## end sub set_age
+
+
+###############################################################################
+
 =head2 Secondary Methods
 
 The following methods are used to flesh out the city.
@@ -245,7 +293,7 @@ Add the other features beyond the core city.
 ###############################################################################
 sub flesh_out_city {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 6 );
     $city->{'region'}    = RegionGenerator::create_region( $city->{'seed'} );
     $city->{'continent'} = ContinentGenerator::create_continent( $city->{'seed'} );
 
@@ -254,7 +302,6 @@ sub flesh_out_city {
     set_available_races($city);
     generate_race_percentages($city);
     set_races($city);
-    assign_race_stats($city);
     recalculate_populations($city);
     generate_citizens($city);
     generate_children($city);
@@ -265,7 +312,6 @@ sub flesh_out_city {
     generate_resources($city);
     generate_city_crest($city);
     generate_shape($city);
-    generate_city_age($city);
     generate_streets($city);
     set_stat_descriptions($city);
     set_laws($city);
@@ -278,7 +324,8 @@ sub flesh_out_city {
     generate_housing($city);
     generate_specialists($city);
     generate_businesses($city);
-    generate_taverns($city);
+    generate_establishments($city);
+    generate_postings($city);
     generate_districts($city);
 
 
@@ -286,10 +333,11 @@ sub flesh_out_city {
     generate_crime($city);
     set_dominance($city);
 
-    $city->{'govt'} = GovtGenerator::create_govt( { 'seed' => $city->{'seed'} } );
-    $city->{'climate'}   = ClimateGenerator::create_climate( { 'seed' => $city->{'seed'} } );
+    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
+    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
+    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
-    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $city->{'seed'} } );
+    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
 
 
     return $city;
@@ -307,73 +355,38 @@ the base population, type, description and whether or not it's a mixed city.
 ###############################################################################
 sub set_pop_type {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 7);
     my $citytypelist = $xml_data->{'pop_types'}->{'pop_type'};
     my $citytype = roll_from_array( &d(100), $citytypelist );
     $city->{'base_pop'}    = $citytype->{'base_pop'}  if ( !defined $city->{'base_pop'} );
     $city->{'type'}        = $citytype->{'type'}      if ( !defined $city->{'type'} );
-    $city->{'description'} = $citytype->{'content'}   if ( !defined $city->{'description'} );
-    $city->{'add_other'}   = $citytype->{'add_other'} if ( !defined $city->{'add_other'} );
     return $city;
 } ## end sub set_pop_type
 
 
 ###############################################################################
 
-=head3 generate_walls()
+=head2 set_available_races()
 
-Determine information about the streets. 
+select the races that are available for the city's poptype.
 
 =cut
 
 ###############################################################################
-sub generate_walls {
+sub set_available_races {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 8 );
 
-    # chance of -25 to +60
-    my $modifier = $city->{'size_modifier'} || 0;
-
-    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if ( !defined $city->{'wall_chance_roll'} );
-
-    if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
-        $city->{'wall_size_roll'} = &d(100) + $modifier if ( !defined $city->{'wall_size_roll'} );
-        my $wall = roll_from_array( $city->{'wall_size_roll'}, $xml_data->{'walls'}->{'wall'} );
-        $city->{'walls'} = parse_object($wall);
-        $city->{'walls'}->{'height'}
-            = $wall->{'heightmin'} + &d( $wall->{'heightmax'} - $wall->{'heightmin'} ) + $modifier;
-
-        $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
-            if ( !defined $city->{'protected_percent'} );
-        $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
-            if ( !defined $city->{'protected_area'} );
-
-        my $radius = sqrt( $city->{'protected_area'} / pi );
-        $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
-
-
-    } else {
-        $city->{'walls'}->{'content'} = "none";
-        $city->{'walls'}->{'height'}  = 0;
+    if ( !defined $city->{'available_races'} ) {
+        $city->{'available_races'} = [];
+        foreach my $racename ( keys %{ $names_data->{'race'} } ) {
+            my $race = $names_data->{'race'}->{$racename};
+            if ( $race->{'type'} eq $city->{'base_pop'} or $city->{'base_pop'} eq 'mixed' ) {
+                push @{ $city->{'available_races'} }, $racename;
+            }
+        }
     }
-    return $city;
-} ## end sub generate_walls
-
-###############################################################################
-
-=head3 generate_watchtowers()
-
-Determine information about the city watchtowers.
-
-=cut
-
-###############################################################################
-sub generate_watchtowers {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    #FIXME this shouldn't be hardcoded to 5
-    $city->{'watchtowers'}->{'count'} = 5;
+    shuffle @{ $city->{'available_races'} };
 
     return $city;
 }
@@ -381,46 +394,232 @@ sub generate_watchtowers {
 
 ###############################################################################
 
-=head3 set_laws()
+=head2 generate_race_percentages
 
-Set the laws for the city.
+select the percentages used for each race.
 
 =cut
 
 ###############################################################################
-
-sub set_laws {
+sub generate_race_percentages {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 9 );
 
-    for my $facet ( keys %{ $xml_data->{'laws'} } ) {
-        my $facetlist = $xml_data->{'laws'}->{$facet}->{'option'};
-        $city->{'laws'}->{$facet} = rand_from_array($facetlist)->{'content'} if ( !defined $city->{'laws'}->{$facet} );
+    if ( !defined $city->{'race percentages'} ) {
+
+        $city->{'race percentages'} = [];
+        my $total_percent = 0;
+        $city->{'race_limit'} = 6 if (!defined $city->{'race_limit'});
+        while ( $total_percent < 98 and scalar( @{ $city->{'race percentages'} } ) <  $city->{'race_limit'} ) {
+
+            # Of the total amount or percentage left, how much is for this race?
+            my $race_percent = max( 1, int( rand() * ( 100 - $total_percent ) * 10 ) / 10 );
+
+            # Add to percentage
+            $total_percent += $race_percent;
+
+            # Add it to our array for later usage
+            push @{ $city->{'race percentages'} }, $race_percent;
+        }
+    }
+    $city->{'race percentages'} = [ sort @{ $city->{'race percentages'} } ];
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 set_races
+
+set the races and percentages with the population
+
+=cut
+
+###############################################################################
+sub set_races {
+    my ($city) = @_;
+
+    #FIXME should account for existing values
+    GenericGenerator::set_seed( $city->{'seed'} + 10 );
+    if ( !defined $city->{'races'} ) {
+        my $totalpercent = 0;
+        # ensure we save space for one "other"
+        $city->{'population_total'} = 1;
+        $city->{'races'}            = [];
+
+        my @racenames = @{ $city->{'available_races'} };
+        @racenames = shuffle @racenames;
+        foreach my $racepercent ( sort { $b <=> $a } @{ $city->{'race percentages'} } ) {
+            my $racename   = pop @racenames;
+            my $population = ceil( $racepercent * $city->{'pop_estimate'} / 100 );
+            my $race       = { 'race' => $racename, 'percent' => $racepercent, 'population' => $population };
+
+            $totalpercent += $racepercent;
+            $city->{'population_total'} += $population;
+            push @{ $city->{'races'} }, $race;
+
+        }
+        # remove the 1 we added above
+        $city->{'population_total'}--;
+        my $other = {
+            'race'       => 'other',
+            'percent'    => max(1, 100 - $totalpercent ),
+            'population' => max(1,$city->{'pop_estimate'} - $city->{'population_total'})
+        };
+        push @{ $city->{'races'} }, $other;
+        $city->{'population_total'} += $other->{'population'};
+
+    }
+
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 recalculate_populations
+
+Given the races and percentages, recalculate the total number of each.
+
+=cut
+
+###############################################################################
+sub recalculate_populations {
+
+    #TODO needs to account for existing values
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 11);
+    foreach my $race ( @{ $city->{'races'} } ) {
+        $race->{'percent'} = $race->{'population'} / $city->{'population_total'};
+        $race->{'percent'} = int( $race->{'percent'} * 1000 ) / 10;
     }
     return $city;
-} ## end sub set_laws
+}
 
 ###############################################################################
 
-=head3 set_age()
+=head2 generate_citizens
 
-Set the current age of the city
+Generate a list of citizens.
 
 =cut
 
 ###############################################################################
-sub set_age {
+sub generate_citizens {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'}  + 12);
 
-    my $agelist = $xml_data->{'cityages'}->{'cityage'};
-    $city->{'age_roll'} = d(100) + $city->{'size_modifier'} if ( !defined $city->{'age_roll'} );
-
-    my $result = roll_from_array( $city->{'age_roll'}, $agelist );
-    $city->{'age_description'} = $result->{'content'} if ( !defined $city->{'age_description'} );
-    $city->{'age_mod'}         = $result->{'age_mod'} if ( !defined $city->{'age_mod'} );
+    $city->{'citizen_count'} = 8 + floor( ($city->{'size_modifier'} + 5)*1.2) if ( !defined $city->{'citizen_count'} );
+    if ( !defined $city->{'citizens'} ) {
+        $city->{'citizens'} = [];
+        for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
+            push @{ $city->{'citizens'} },
+                NPCGenerator::create_npc( { 'available_races' => $city->{'available_races'} } );
+        }
+    }
     return $city;
-} ## end sub set_age
+}
+
+
+###############################################################################
+
+=head2 generate_children
+
+generate the number of children.
+
+=cut
+
+###############################################################################
+
+sub generate_children {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 13 );
+
+    #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
+    # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
+    my $origvalue= $city->{'children'}->{'percent'} if (defined $city->{'children'}->{'percent'});
+    $city->{'children'}->{'percent'} = 20 + &d(15) + ($city->{'age_mod'}||0)
+        if ( !defined $city->{'children'}->{'percent'} );
+
+    #calculate out the actual child population in whole numbers
+    $city->{'children'}->{'population'} = int( $city->{'children'}->{'percent'} / 100 * $city->{'population_total'} )
+        if ( !defined $city->{'children'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'children'}->{'percent'} = sprintf "%0.2f",
+        $city->{'children'}->{'population'} / $city->{'population_total'} * 100 if (!defined $origvalue);
+
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_elderly
+
+generate the number of elderly.
+
+=cut
+
+###############################################################################
+
+sub generate_elderly {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 14 );
+
+    #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
+    # 1.5% and 26%, which follows the reported international rates of the US census bureau, so STFU.
+
+    my $origvalue= $city->{'elderly'}->{'percent'} if (defined $city->{'elderly'}->{'percent'});
+    $city->{'elderly'}->{'percent'} = max( 1.5, ( 6 + &d(5) + $city->{'age_mod'} ) )
+        if ( !defined $city->{'elderly'}->{'percent'} );
+
+    #calculate out the actual child population in whole numbers
+    $city->{'elderly'}->{'population'} = int( $city->{'elderly'}->{'percent'} / 100 * $city->{'population_total'} )
+        if ( !defined $city->{'elderly'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'elderly'}->{'percent'} = sprintf "%0.2f",
+        $city->{'elderly'}->{'population'} / $city->{'population_total'} * 100 if(!defined $origvalue) ;
+
+
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_imprisonment_rate
+
+generate the number of imprisonment_rate.
+
+=cut
+
+###############################################################################
+
+sub generate_imprisonment_rate {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 15 );
+
+    # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
+    # high authority means more in jail
+    # low education means more in jail
+    # larger city means more in jail
+    # higher order means more in jail
+
+    my $percent_mod = $city->{'stats'}->{'authority'} - $city->{'stats'}->{'education'} + $city->{'size_modifier'};
+
+    my $rough_percent = ( ( ( 15 + $percent_mod ) / 5 ) + 1 ) * ( $city->{'order'} + 50 ) / 100 / 10;
+
+    #calculate out the actual child population in whole numbers
+    $city->{'imprisonment_rate'}->{'population'} = int( $rough_percent / 100 * $city->{'population_total'} )
+        if ( !defined $city->{'imprisonment_rate'}->{'population'} );
+
+    #recalulate to make the percent accurate with the population
+    $city->{'imprisonment_rate'}->{'percent'} = sprintf "%0.2f",
+        $city->{'imprisonment_rate'}->{'population'} / $city->{'population_total'} * 100
+        if ( !defined $city->{'imprisonment_rate'}->{'percent'} );
+
+    return $city;
+}
 
 
 ###############################################################################
@@ -437,7 +636,7 @@ TODO How do I really want to weight resource allocation?
 sub generate_resources {
     my ($city) = @_;
 
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 16);
 
     #ensure that the resource count is at most 13 and at least 2
     #shift from 2-13 to 1-12, then take a number from 1-12 total.
@@ -472,7 +671,7 @@ generate colors and the design
 
 sub generate_city_crest {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 17 );
     $city->{'crest'} = {};
 
     #TODO finish this later, possibly as CrestGenerator
@@ -492,225 +691,9 @@ generate the rough shape of the city.
 
 sub generate_shape {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 18 );
     $city->{'shape'} = rand_from_array( $xml_data->{'cityshape'}->{'option'} )->{'content'}
         if ( !defined $city->{'shape'} );
-    return $city;
-}
-
-
-###############################################################################
-
-=head2 generate_city_age()
-
-a simple selector
-
-=cut
-
-###############################################################################
-sub generate_city_age {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    $city->{'city_age'} = rand_from_array( $xml_data->{'cityages'}->{'cityage'} ) if ( !defined $city->{'city_age'} );
-    return $city;
-}
-
-
-###############################################################################
-
-=head2 set_available_races()
-
-select the races that are available for the city's poptype.
-
-=cut
-
-###############################################################################
-sub set_available_races {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    #FIXME TODO finish this.
-
-    if ( !defined $city->{'available_races'} ) {
-        $city->{'available_races'} = [];
-        foreach my $racename ( keys %{ $names_data->{'race'} } ) {
-            my $race = $names_data->{'race'}->{$racename};
-            if ( $race->{'type'} eq $city->{'base_pop'} or $city->{'base_pop'} eq 'mixed' ) {
-                push @{ $city->{'available_races'} }, $racename;
-            }
-        }
-    }
-    shuffle @{ $city->{'available_races'} };
-
-    return $city;
-}
-
-
-###############################################################################
-
-=head2 generate_race_percentages
-
-select the percentages used for each race.
-
-=cut
-
-###############################################################################
-sub generate_race_percentages {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    #FIXME TODO finish this.
-
-    if ( !defined $city->{'race percentages'} ) {
-
-        $city->{'race percentages'} = [];
-        my $total_percent = 0;
-        my $race_limit    = 6;
-        while ( $total_percent < 98 and scalar( @{ $city->{'race percentages'} } ) < $race_limit ) {
-
-            # Of the total amount or percentage left, how much is for this race?
-            my $race_percent = max( 1, int( rand() * ( 100 - $total_percent ) * 10 ) / 10 );
-
-            # Add to percentage
-            $total_percent += $race_percent;
-
-            # Add it to our array for later usage
-            push @{ $city->{'race percentages'} }, $race_percent;
-        }
-    }
-    $city->{'race percentages'} = [ sort @{ $city->{'race percentages'} } ];
-    return $city;
-}
-
-###############################################################################
-
-=head2 set_stat_descriptions
-
-select the stat descriptions for the 6 major stats.
-
-=cut
-
-###############################################################################
-sub set_stat_descriptions {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    foreach my $stat ( sort keys %{ $city->{'stats'} } ) {
-        $city->{'stats'}->{$stat} = 0 if ( !defined $city->{'stats'}->{$stat} );
-        my $statoption
-            = roll_from_array( $city->{'stats'}->{$stat}, $xml_data->{ $stat . "_description" }->{'option'} );
-        $city->{ $stat . "_description" } = rand_from_array( $statoption->{'option'} )->{'content'}
-            if ( !defined $city->{ $stat . "_description" } );
-    }
-
-    return $city;
-}
-
-###############################################################################
-
-=head2 set_races
-
-set the races and percentages with the population
-
-=cut
-
-###############################################################################
-sub set_races {
-    my ($city) = @_;
-
-    #FIXME should account for existing values
-    GenericGenerator::set_seed( $city->{'seed'} );
-    if ( !defined $city->{'races'} ) {
-        my $totalpercent = 0;
-        $city->{'population_total'} = 0;
-        $city->{'races'}            = [];
-        my @racenames = @{ $city->{'available_races'} };
-        @racenames = shuffle @racenames;
-        foreach my $racepercent ( sort { $b <=> $a } @{ $city->{'race percentages'} } ) {
-            my $racename   = pop @racenames;
-            my $population = int( $racepercent * $city->{'pop_estimate'} / 100 );
-            my $race       = { 'race' => $racename, 'percent' => $racepercent, 'population' => $population };
-
-            $totalpercent += $racepercent;
-            $city->{'population_total'} += $population;
-            push @{ $city->{'races'} }, $race;
-
-        }
-        my $other = {
-            'race'       => 'other',
-            'percent'    => ( 100 - $totalpercent ),
-            'population' => ( $city->{'pop_estimate'} - $city->{'population_total'} )
-        };
-        push @{ $city->{'races'} }, $other;
-        $city->{'population_total'} += $other->{'population'};
-
-    }
-
-    return $city;
-}
-
-###############################################################################
-
-=head2 assign_race_stats
-
-assign the racial stats to the race objects and update the city stats
-
-=cut
-
-###############################################################################
-sub assign_race_stats {
-
-    #TODO needs to account for existing values
-    my ($city) = @_;
-    my @newracelist;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    foreach my $race ( @{ $city->{'races'} } ) {
-        my $racename  = $race->{'race'};
-        my $racestats = $names_data->{'race'}->{$racename};
-        foreach my $stat (qw/ plural type /) {
-            $race->{$stat} = $racestats->{$stat};
-        }
-        foreach my $stat (qw/ magic economy authority education military tolerance /) {
-            $race->{$stat} = $racestats->{$stat};
-            $city->{'stats'}->{$stat} += $racestats->{$stat};
-        }
-        foreach my $stat (qw/ moral order /) {
-            $race->{$stat} = $racestats->{$stat};
-            $city->{$stat} += $racestats->{$stat};
-        }
-        push @newracelist, $race;
-    }
-    $city->{'races'} = \@newracelist;
-    foreach my $stat (qw/ magic economy authority education military tolerance /) {
-        $city->{'stats'}->{$stat} = min( 5, max( -5, $city->{'stats'}->{$stat} ) );
-    }
-    foreach my $stat (qw/ moral order /) {
-        $city->{$stat} = min( 100, max( 0, $city->{$stat} ) );
-    }
-
-    return $city;
-}
-
-###############################################################################
-
-=head2 recalculate_populations
-
-Given the races and percentages, recalculate the total number of each.
-
-=cut
-
-###############################################################################
-sub recalculate_populations {
-
-    #TODO needs to account for existing values
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-    foreach my $race ( @{ $city->{'races'} } ) {
-        $race->{'percent'} = $race->{'population'} / $city->{'population_total'};
-        $race->{'percent'} = int( $race->{'percent'} * 1000 ) / 10;
-    }
     return $city;
 }
 
@@ -728,7 +711,7 @@ sub generate_streets {
 
     #TODO needs to account for existing values
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 19 );
 
     $city->{'streets'}->{'content'} = parse_object( $xml_data->{'streets'} )->{'content'}
         if ( !defined $city->{'streets'}->{'content'} );
@@ -743,6 +726,97 @@ sub generate_streets {
     return $city;
 }
 
+
+
+
+
+###############################################################################
+
+=head3 generate_walls()
+
+Determine information about the streets. 
+
+=cut
+
+###############################################################################
+sub generate_walls {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 20 );
+
+    # chance of -25 to +60
+    my $modifier = $city->{'size_modifier'};
+
+    # Find a better way to determine if there's a wall.
+    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if ( !defined $city->{'wall_chance_roll'} );
+    if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
+
+
+        $city->{'walls'}->{'condition'} = roll_from_array(d(100), $xml_data->{'walls'}->{'condition'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'condition'});
+        $city->{'walls'}->{'style'}     = roll_from_array(d(100), $xml_data->{'walls'}->{'style'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'style'});
+        my $material                    = roll_from_array(d(100), $xml_data->{'walls'}->{'material'}->{'option'});
+        $city->{'walls'}->{'material'}  = $material->{'content'} if (!defined $city->{'walls'}->{'material'});
+
+        $city->{'walls'}->{'height'}    = int (rand( $material->{'maxheight'} - $material->{'minheight'} ) + $material->{'minheight'}  ) if (!defined  $city->{'walls'}->{'height'});
+
+
+
+        $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
+            if ( !defined $city->{'protected_percent'} );
+        $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
+            if ( !defined $city->{'protected_area'} );
+
+        my $radius = sqrt( $city->{'protected_area'} / pi );
+        $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
+
+
+    } else {
+        $city->{'walls'}->{'height'}  = 0;
+    }
+    return $city;
+} ## end sub generate_walls
+
+###############################################################################
+
+=head3 generate_watchtowers()
+
+Determine information about the city watchtowers.
+
+=cut
+
+###############################################################################
+sub generate_watchtowers {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 21 );
+
+    #FIXME this shouldn't be hardcoded to 5
+    $city->{'watchtowers'}->{'count'} = 5;
+
+    return $city;
+}
+
+
+###############################################################################
+
+=head3 set_laws()
+
+Set the laws for the city.
+
+=cut
+
+###############################################################################
+
+sub set_laws {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 22 );
+
+    for my $facet ( keys %{ $xml_data->{'laws'} } ) {
+        my $facetlist = $xml_data->{'laws'}->{$facet}->{'option'};
+        $city->{'laws'}->{$facet} = rand_from_array($facetlist)->{'content'} if ( !defined $city->{'laws'}->{$facet} );
+    }
+    return $city;
+} ## end sub set_laws
+
+
 ###############################################################################
 
 =head2 generate_area
@@ -756,8 +830,8 @@ sub generate_area {
 
     #TODO change to metric....
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'};
+    GenericGenerator::set_seed( $city->{'seed'} + 24 );
+    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'} if (!defined $city->{'area'});
 
     my $stat_modifier = $city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'};
     $city->{'arable_percentage'} = max( 1, min( 100, d(100) + $stat_modifier ) )
@@ -786,8 +860,9 @@ Generate the density of the population, given the base city size. Units are peop
 sub generate_popdensity {
 
     # TODO addmagic, economey, etc to impact density
+    #TODO change how this is calculated and get rid of delta in favor of a percentile range multiplier
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 25);
     my $range = $city->{'max_density'} - $city->{'min_density'};
     my $delta = &d($range);
     $city->{'population_density'} = $city->{'min_density'} + $delta if ( !defined $city->{'population_density'} );
@@ -797,30 +872,6 @@ sub generate_popdensity {
         if ( !defined $city->{'density_description'} );
 
 
-    return $city;
-}
-
-###############################################################################
-
-=head2 generate_citizens
-
-Generate a list of citizens.
-
-=cut
-
-###############################################################################
-sub generate_citizens {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    $city->{'citizen_count'} = 7 + int( $city->{'size_modifier'} / 2 ) if ( !defined $city->{'citizen_count'} );
-    if ( !defined $city->{'citizens'} ) {
-        $city->{'citizens'} = [];
-        for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
-            push @{ $city->{'citizens'} },
-                NPCGenerator::create_npc( { 'available_races' => $city->{'available_races'} } );
-        }
-    }
     return $city;
 }
 
@@ -836,7 +887,7 @@ Generate a list of specialists.
 ###############################################################################
 sub generate_specialists {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 26);
 
     if ( !defined $city->{'specialists'} ) {
         $city->{'specialists'} = {};
@@ -879,7 +930,7 @@ Generate a list of businesses from existing specialists
 
 sub generate_businesses {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 27);
     if ( !defined $city->{'businesses'} ) {
         $city->{'businesses'} = {};
     }
@@ -914,33 +965,7 @@ sub generate_businesses {
     return $city;
 }
 
-###############################################################################
 
-=head2 generate_taverns
-
-Generate a list of taverns based on the business section
-
-=cut
-
-###############################################################################
-
-
-sub generate_taverns {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    $city->{'taverns'} = [] if ( !defined $city->{'taverns'} );
-
-
-    if ( defined $city->{'businesses'}->{'tavern'} ) {
-        my $taverncount = min( 5, $city->{'businesses'}->{'tavern'}->{'count'} );
-        for ( my $tavernID = 0 ; $tavernID < $taverncount ; $tavernID++ ) {
-            $city->{'taverns'}->[$tavernID] = TavernGenerator::create_tavern()
-                if ( !defined $city->{'taverns'}->[$tavernID] );
-        }
-    }
-    return $city;
-}
 ###############################################################################
 
 =head2 generate_districts
@@ -954,7 +979,7 @@ Generate a list of districts from existing businesses
 
 sub generate_districts {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 29);
 
     my $district_percents = {};
 
@@ -995,7 +1020,7 @@ sub generate_travelers {
     my ($city) = @_;
 
     # NOTE adding offset of 10 to ensure travelers are not the same races as citizens...
-    GenericGenerator::set_seed( $city->{'seed'} + 10 );
+    GenericGenerator::set_seed( $city->{'seed'} + 30 );
 
     $city->{'traveler_count'} = 5 + $city->{'stats'}->{'tolerance'} if ( !defined $city->{'traveler_count'} );
     if ( !defined $city->{'available_traveler_races'} ) {
@@ -1029,12 +1054,12 @@ Generate the crime rate
 ###############################################################################
 sub generate_crime {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 31);
 
     my $moralmod = int( ( $city->{'moral'} - 50 ) / 10 );
 
     $city->{'crime_roll'}
-        = int( &d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod )
+        = min(100, max(1,int( &d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod )))
         if ( !defined $city->{'crime_roll'} );
     $city->{'crime_description'}
         = roll_from_array( $city->{'crime_roll'}, $xml_data->{'crime'}->{'option'} )->{'content'}
@@ -1055,7 +1080,7 @@ select a race to be dominant, as well as the level of dominance.
 ###############################################################################
 sub set_dominance {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} +32);
 
     $city->{'dominance_chance'} = d(100) if ( !defined $city->{'dominance_chance'} );
     if ( $city->{'dominance_chance'} < $xml_data->{'dominance'}->{'chance'} ) {
@@ -1072,106 +1097,6 @@ sub set_dominance {
 
 ###############################################################################
 
-=head2 generate_children
-
-generate the number of children.
-
-=cut
-
-###############################################################################
-
-sub generate_children {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    #calculate the pop based on 20 +random factor + city age modifier; should give us a rage between
-    # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
-    $city->{'children'}->{'percent'} = 20 + &d(15) + $city->{'age_mod'}
-        if ( !defined $city->{'children'}->{'percent'} );
-
-    #FIXME the agemod should skew the other way!!!
-    #calculate out the actual child population in whole numbers
-    $city->{'children'}->{'population'} = int( $city->{'children'}->{'percent'} / 100 * $city->{'population_total'} )
-        if ( !defined $city->{'children'}->{'population'} );
-
-    #recalulate to make the percent accurate with the population
-    $city->{'children'}->{'percent'} = sprintf "%0.2f",
-        $city->{'children'}->{'population'} / $city->{'population_total'} * 100;
-
-
-    return $city;
-}
-
-###############################################################################
-
-=head2 generate_elderly
-
-generate the number of elderly.
-
-=cut
-
-###############################################################################
-
-sub generate_elderly {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
-    # 1.5% and 26%, which follows the reported international rates of the US census bureau, so STFU.
-
-    $city->{'elderly'}->{'percent'} = max( 1.5, ( 6 + &d(5) + $city->{'age_mod'} ) )
-        if ( !defined $city->{'elderly'}->{'percent'} );
-
-    #calculate out the actual child population in whole numbers
-    $city->{'elderly'}->{'population'} = int( $city->{'elderly'}->{'percent'} / 100 * $city->{'population_total'} )
-        if ( !defined $city->{'elderly'}->{'population'} );
-
-    #recalulate to make the percent accurate with the population
-    $city->{'elderly'}->{'percent'} = sprintf "%0.2f",
-        $city->{'elderly'}->{'population'} / $city->{'population_total'} * 100;
-
-
-    return $city;
-}
-
-###############################################################################
-
-=head2 generate_imprisonment_rate
-
-generate the number of imprisonment_rate.
-
-=cut
-
-###############################################################################
-
-sub generate_imprisonment_rate {
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
-
-    # should range from ((15-5-5-5)*.5/5+1).5/10=.05% to ((15+5+5+12)*1.5/5+1)/10=1.815
-    # high authority means more in jail
-    # low education means more in jail
-    # larger city means more in jail
-    # higher order means more in jail
-
-    my $percent_mod = $city->{'stats'}->{'authority'} - $city->{'stats'}->{'education'} + $city->{'size_modifier'};
-
-    my $rough_percent = ( ( ( 15 + $percent_mod ) / 5 ) + 1 ) * ( $city->{'order'} + 50 ) / 100 / 10;
-
-    #calculate out the actual child population in whole numbers
-    $city->{'imprisonment_rate'}->{'population'} = int( $rough_percent / 100 * $city->{'population_total'} )
-        if ( !defined $city->{'imprisonment_rate'}->{'population'} );
-
-    #recalulate to make the percent accurate with the population
-    $city->{'imprisonment_rate'}->{'percent'} = sprintf "%0.2f",
-        $city->{'imprisonment_rate'}->{'population'} / $city->{'population_total'} * 100
-        if ( !defined $city->{'imprisonment_rate'}->{'percent'} );
-
-    return $city;
-}
-
-###############################################################################
-
 =head2 generate_housing
 
 generate the number of houses for the population
@@ -1182,7 +1107,7 @@ generate the number of houses for the population
 
 sub generate_housing {
     my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} );
+    GenericGenerator::set_seed( $city->{'seed'} + 33);
 
     my $housing_quality = $xml_data->{'housing'}->{'quality'};
     my $economy         = $city->{'stats'}->{'economy'};
@@ -1228,6 +1153,70 @@ sub generate_housing {
     return $city;
 }
 
+
+###############################################################################
+
+=head2 generate_establishments
+
+Generate a list of establishments based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_establishments {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
+
+    if ( defined $city->{'businesses'} ) {
+        $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5) * 1.2) if ( !defined $city->{'establishment_count'} );
+        my $patrons = floor($city->{'population_total'} / 3);
+        if ( $patrons > ($city->{'establishment_count'} * 3) ){
+            $patrons = $city->{'establishment_count'} * 3;
+        }
+        for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
+            if ( !defined $city->{'establishments'}->[$establishmentID] ) {
+                $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+                if( $patrons > 0 ) {
+                    my $roll = $patrons;
+                    if ($patrons > 10){
+                        $roll = 10;
+                    }
+                    my $occupants = d(floor($roll / 2));
+                    $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
+                    $patrons = $patrons - $occupants;
+                }
+            }    
+        }
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_postings
+
+Generate a list of postings based on the business section
+
+=cut
+
+###############################################################################
+sub generate_postings {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'postings'} = [] if ( !defined $city->{'postings'} );
+
+    #ghetto, yes, but gives us a range of 6-23.
+    $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
+    for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
+        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
+    }
+    return $city;
+}
 
 1;
 

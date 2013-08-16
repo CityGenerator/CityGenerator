@@ -39,6 +39,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -64,7 +65,7 @@ The following datafiles are used by AdventureGenerator.pm:
 ###############################################################################
 
 my $adv_data     = $xml->XMLin( "xml/adventure.xml",      ForceContent => 1, ForceArray => ['option'] );
-my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => [] );
+my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -117,7 +118,7 @@ sub create_adventure {
 
     generate the name of an adventure using a randomly selected pattern.
     # FIXME this is ugly as sin. refactor and simplify so it can be used
-    # FIXME for taverns as well.
+    # FIXME for establishments as well.
 
 =cut
 
