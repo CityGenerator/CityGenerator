@@ -1606,7 +1606,7 @@
 		</option>
 	    <option name="firepit"         perbuilding="10" limit=""   district="industry" >
 			<manager>
-				<option>charcoaler</option>
+				<option>collier</option>
 			</manager>
 		    <npc_class>
                 <option>commoner</option>
@@ -1616,6 +1616,7 @@
             </service>
             <trailer>
                 <option>charcoalers</option>
+                <option>firepit</option>
                 <option>shoppe</option>
             </trailer>
             

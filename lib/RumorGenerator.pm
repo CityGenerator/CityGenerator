@@ -109,6 +109,7 @@ sub create_rumor {
     GenericGenerator::parse_template($rumor,'belief') if (defined $rumor->{'belief'});
     GenericGenerator::parse_template($rumor,'heardit') if (defined $rumor->{'heardit'});
 
+# FIXME append extras before parsing the template and you can get rid of the above calls.
     GenericGenerator::parse_template($rumor, 'template');
     append_extras($rumor);
     return $rumor;
