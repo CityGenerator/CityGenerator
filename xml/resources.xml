@@ -4,7 +4,183 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<resources>
+<!-- Scarcity of the resource -->
+<resource>
+    <scarcity> 
+        <option          max="3"  >rare</option>
+        <option min="4"  max="6"  >endangered</option>
+        <option min="7"  max="14" >paltry</option>
+        <option min="15" max="18" >scarce</option>
+        <option min="19" max="22" >scant</option>
+        <option min="23" max="34" >abundant</option>
+        <option min="35" max="46" >substantial</option>
+        <option min="47" max="55" >magical</option>
+        <option min="56" max="67" >many</option>
+        <option min="68" max="79" >plentiful</option>
+        <option min="80" max="83" >rich</option>
+        <option min="84" max="87" >bountiful</option>
+        <option min="88" max="93" >vast</option>
+        <option min="94" max="96" >boundless</option>
+        <option min="97"          >unlimited</option>
+    </scarcity>
+    <ravished>
+        <type>guarded by</type>
+        <type>protected by</type>
+        <type>ravished by</type>
+        <type>wrecked by</type>
+        <type>surrounded by</type>
+        <option>a strange fungus</option>
+        <option>draught</option>
+        <option>fire</option>
+        <option>forces of nature</option>
+        <option>high wind</option>
+        <option>nomadic dragons</option>
+        <option>roving bands of brigands</option>
+        <option>spells and incantations</option>
+        <option>strange weather</option>
+        <option>the effects of magic</option>
+        <option>the effects of battle</option>
+        <option>the effects of time</option>
+        <option>vipers</option>
+    </ravished>
+
+    <structures>
+        <option>cave</option>
+        <option>mine</option>
+        <option>castle</option>
+        <option>gazebo</option>
+        <option>fort</option>
+        <option>tower</option>
+        <option>grave yard</option>
+    </structures>
+    <wildlife>
+        <type>carnivorous</type>
+        <type>dangerous</type>
+        <type>defenseless</type>
+        <type>poisonous</type>
+        <type>tame</type>
+        <type>wild</type>
+        <animal group="beds"        >clam</animal>
+        <animal group="beds"        >scorpion</animal>
+        <animal group="bevies"      >quail</animal>
+        <animal group="clouds"      >bat</animal>
+        <animal group="clouds"      >locust</animal>
+        <animal group="clusters"    >spider</animal>
+        <animal group="coffles"     >ass</animal>
+        <animal group="companies"   >parrot</animal>
+        <animal group="descents"    >woodpecker</animal>
+        <animal group="glarings"    >kitten</animal>
+        <animal group="murders"     >crow</animal>
+        <animal group="musters"     >peacock</animal>
+        <animal group="nests"       >caterpillar</animal>
+        <animal group="parades"     >elephant</animal>
+        <animal group="troops"      >monkey</animal>
+    </wildlife>
+    <natural>
+        <age>
+            <option>ancient</option>
+            <option>primordial</option>
+            <option>primal</option>
+            <option>old</option>
+            <option>new</option>
+            <option>fresh</option>
+            <option>young</option>
+        </age>
+        <type>amber<suffix>
+                <option>deposits</option>
+                <option>mines</option>
+            </suffix>
+        </type>
+        <type>bamboo<suffix>
+                <option>stands</option>
+                <option>patches</option>
+            </suffix>
+        </type>
+        <type>berry<suffix>
+                <option>fields</option>
+                <option>patches</option>
+            </suffix>
+        </type>
+        <type>clay<suffix>
+                <option>deposits</option>
+                <option>banks</option>
+            </suffix>
+        </type>
+        <type>cocoa bean<suffix>
+                <option>fields</option>
+                <option>plantations</option>
+            </suffix>
+        </type>
+        <type>coconut<suffix>
+                <option>plantations</option>
+                <option>harvests</option>
+            </suffix>
+        </type>
+        <type>coffee<suffix>
+                <option>fields</option>
+                <option>patches</option>
+            </suffix>
+        </type>
+        <type>cork<suffix>
+                <option>trees</option>
+                <option>bushes</option>
+            </suffix>
+        </type>
+        <type>fruit<suffix>
+                <option>plantations</option>
+                <option>fields</option>
+            </suffix>
+        </type>
+        <type>guano<suffix>
+                <option>deposits</option>
+                <option>banks</option>
+            </suffix>
+        </type>
+        <type>hemp<suffix>
+                <option>bales</option>
+                <option>fields</option>
+            </suffix>
+        </type>
+        <type>palm oil<suffix>
+                <option>trees</option>
+                <option>harvests</option>
+            </suffix>
+        </type>
+        <type>peat<suffix>
+                <option>bogs</option>
+                <option>swamps</option>
+            </suffix>
+        </type>
+        <type>rubber<suffix>
+                <option>trees</option>
+                <option>plantations</option>
+            </suffix>
+        </type>
+        <type>pigment<suffix>
+                <option>deposits</option>
+                <option>banks</option>
+            </suffix>
+        </type>
+        <type>rock salt<suffix>
+                <option>deposits</option>
+                <option>fields</option>
+            </suffix>
+        </type>
+        <type>timber<suffix>
+                <option>forests</option>
+                <option>plantations</option>
+            </suffix>
+        </type>
+        <type>vegetable<suffix>
+                <option>patches</option>
+                <option>fields</option>
+            </suffix>
+        </type>
+    </natural>
+</resource>
+<!--
+>
+
     <resource type="beaches">
         <title>pristine</title>
         <title>plentiful</title>
@@ -20,26 +196,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <root>black</root>
         <root></root>
         <trailer>sandy beaches</trailer>
-    </resource>
-    <resource type="wildlife">
-        <title>wild</title>
-        <title>dangerous</title>
-        <title>plentiful</title>
-        <title>now scarce</title>
-        <title>endangered</title>
-        <title>unique</title>
-        <title>tame</title>
-        <title></title>
-        <root>carnivorous</root>
-        <root>poisonous</root>
-        <root>timid</root>
-        <root>woodland</root>
-        <root>aquatic</root>
-        <root>marine</root>
-        <root></root>
-        <trailer>wildlife</trailer>
-        <trailer>caterpillar</trailer>
-        <trailer>spiders</trailer>
     </resource>
     <resource types="foods">
         <title>plentiful</title>
@@ -406,3 +562,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <root>spirits</root>
     </resource>
 </resources>
+-->
