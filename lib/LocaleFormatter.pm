@@ -107,7 +107,7 @@ sub describe_establishment {
         $content .= " with ".conjunction(shuffle @features);
     }
     $content.=". \n";
-    print STDERR Dumper $establishment;
+    #print STDERR Dumper $establishment;
     $content .= "It is located in ".A($establishment->{'neighborhood'})." neighborhood";
 
     if ( defined $establishment->{'district'} ) {    
