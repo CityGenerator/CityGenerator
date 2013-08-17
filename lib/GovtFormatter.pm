@@ -148,8 +148,8 @@ sub printMilitary {
     my $content = "";
 
     my $walls="lack of defensible wall";
-    if   (defined $city->{'walls'}->{'condition'} ){
-        $walls=$city->{'walls'}->{'condition'}." ".$city->{'walls'}->{'condition'} ;
+    if   (defined $city->{'walls'}->{'condition'} and defined $city->{'walls'}->{'style'}  ){
+        $walls=$city->{'walls'}->{'condition'}." ".$city->{'walls'}->{'style'} ;
     }
 
     my $tactic=define_tactics($city);
