@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<data>
+
+    <template>
+        <option>[%storytime%], [%chumps%] of [%location%] [%goodstart%]. Things were [%goodstatus%]. One day, [%problem%], and [%badaction%]. [%chumps%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%heroname%] had a plan to [%plan%] and [%planaction%]. When [%heroname%] faced the [%badtype%], [%hero%] [%results%][%victory%]. That day, [%chumps%] learned the value of a [%talent%].</option>
+
+<!-- Many years ago, The villagers of Grimnow lived happily. Things were peaceful. One day a dragon named Bolthdex appeared and destroyed a village. Along came a hero named Bob who was an expert bowman. Bob had a plan to making a wager with the dragon and kill the dragon while it sleeps. When Bob faced the dragon, he banished the dragon and rescued Grimnow. That day, the villagers learned the value of an expert bowman.
+-->
+    </template>
+
+    <hero>
+        <option>a hero named [%npc.name%]%</option>
+    </hero>
+
+    <storytime>
+        <option>Long, long ago</option>
+        <option>A long time ago</option>
+        <option>Many years ago</option>
+        <option></option>
+    
+    </storytime>
+
+    <chumps>
+        <option>The villagers</option>
+        <option>The constable</option>
+        <option>The townsfolk</option>
+    </chumps>
+    <goodstart>
+        <option>lived happily</option>
+        <option>lived in peace</option>
+        <option></option>
+        <option></option>
+        <option></option>
+        <option></option>
+    </goodstart>
+    <goodstatus>
+        <option>good</option>
+        <option>quiet</option>
+        <option>peaceful</option>
+    </goodstatus>
+
+    <victory chance='50'>
+        <option>and was killed in the process</option>
+        <option>and rescued [%location%]</option>
+    </victory>
+
+    <results>
+        <option>defeated [%villain%]</option>
+        <option>tricked [%villian%]</option>
+        <option>banished [%villian%]</option>
+    </results>
+
+    <planaction>
+        <option>killing the [%badtype%] while it sleeps</option>
+        <option>making a wager with [%villain%]</option>
+        <option>causing a distraction while others struck</option>
+    </planaction>
+    <plan>
+        <option>trick the [%villain%]</option>
+        <option>slay the  [%badtype%]</option>
+    </plan>
+
+    <talent>
+        <option>skilled storyteller</option>
+        <option>valiant knight</option>
+        <option>expert bowman</option>
+        <option>sneaky thief</option>
+    </talent>
+
+    <caughtfailing>
+        <option>failed miserably</option>
+        <option>didn't get close</option>
+        <option>were caught</option>
+    </caughtfailing>
+
+
+    <badaction>
+        <option>destroyed a nearby village</option>
+        <option>kidnapped a princess</option>
+    </badaction>
+
+    <failedresolution>
+        <option>stop the [%badtype%]</option>
+        <option>kill [%villian%] </option>
+    </failedresolution>
+
+    <setting>
+        <option>[%past%], there was a [%size%][%city%]</option>
+        <option>Sentence describing setting</option>
+    </setting>
+    <problem>
+        <option>a [%badtype%] named [%villain%] appeared</option>
+    </problem>
+
+
+
+
+
+</data>
+
