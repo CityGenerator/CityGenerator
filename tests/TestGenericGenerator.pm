@@ -294,10 +294,15 @@ subtest 'test select_features' => sub {
 
 subtest 'test parse_template' => sub {
 
-    my $ds={ 'template'=>'some [%adverb%] test', 'adverb'=>'quick' };
+    my $ds={ 'template'=>'wait what [%adverb%]', 'dogtoy'=>'some [%adverb%] test', 'adverb'=>'quick' };
+
+    GenericGenerator::parse_template($ds,'dogtoy');
+    is( $ds->{'dogtoy'},    'some quick test', 'ensure variables are parsing' );
 
     GenericGenerator::parse_template($ds);
-    is( $ds->{'content'},    'some quick test', 'ensure variables are parsing' );
+    is( $ds->{'template'},    'wait what quick', 'ensure variables are parsing' );
+
+
 
 
 

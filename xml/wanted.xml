@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<wanted>
+    <feature>
+        <title chance="50"> <!-- TITLE bob: Wanted for CRIME -->
+            <option>"Creepy"</option>
+            <option>"Wild"</option>
+            <option>Ol'</option>
+            <option>Mean Old</option>
+            <option>"Boisterous'</option>
+            <option>"Eager"</option>
+            <option>"Foolish"</option>
+            <option>"Giddy"</option>
+            <option>"Mad"</option>
+            <option>"Reckless"</option>
+            <option>"Violent"</option>
+            <option>"Awful"</option>
+            <option>"Itchy"</option>
+            <option>"Weird"</option>
+            <option>"Grody"</option>
+            <option>"Loathsome"</option>
+            <option>"Nasty"</option>
+            <option>"Odious"</option>
+            <option>"Rotten"</option>
+            <option>"Scuzzy"</option>
+        </title>
+        <!-- FIXME placeholder, use establishment generator to generate a gang name -->
+        <crime>
+            <option>Abuse of the Disabled</option>
+            <option>Aggravated Assault</option>
+            <option>Animal Abuse</option>
+            <option>Arson</option>
+            <option>Assassination</option>
+            <option>Assault</option>
+            <option>Battery</option>
+            <option>Burglary</option>
+            <option>Conspiracy</option>
+            <option>Counterfeiting</option>
+            <option>Crimes Against Nature</option>
+            <option>Desecration</option>
+            <option>Disturbing the Peace</option>
+            <option>Domestic Violence</option>
+            <option>Drunk Driving</option>
+            <option>Elder Abuse</option>
+            <option>Embezzlement</option>
+            <option>Environmental Crime</option>
+            <option>Extortion</option>
+            <option>False Imprisonment</option>
+            <option>False Pretenses</option>
+            <option>Forbidden Magic</option>
+            <option>Forgery</option>
+            <option>Fraud</option>
+            <option>Genocide</option>
+            <option>Graffiti</option>
+            <option>Grand Theft</option>
+            <option>Happy Slapping</option>
+            <option>Hate Crimes</option>
+            <option>Heresy</option>
+            <option>High Treason</option>
+            <option>Homicide </option>
+            <option>Illegal Drug Use</option>
+            <option>Illegal Gambling</option>
+            <option>Illegal Slavery</option>
+            <option>Jaywalking</option>
+            <option>Kidnapping</option>
+            <option>Larceny</option>
+            <option>Manslaughter</option>
+            <option>Money Laundering</option>
+            <option>Murder</option>
+            <option>Necromancy</option>
+            <option>Perjury</option>
+            <option>Petty Theft</option>
+            <option>Prostitution</option>
+            <option>Public Urination</option>
+            <option>Public Indecency</option>
+            <option>Reason</option>
+            <option>Receipt of Stolen Goods</option>
+            <option>Robbery</option>
+            <option>Sex Crimes</option>
+            <option>Slander</option>
+            <option>Slavery</option>
+            <option>Squatting</option>
+            <option>Stalking </option>
+            <option>Terrorism </option>
+            <option>Theft</option>
+            <option>Torture</option>
+            <option>Treason</option>
+            <option>Vagrancy</option>
+            <option>Vehicular Homicide</option>
+            <option>War Crimes</option>
+        </crime>
+        <by>
+            <option>Sheriff</option>
+            <option>City Watch</option>
+            <option>Authorities</option>
+        </by>
+        <warning chance="30">
+            <option>armed and dangerous</option>
+            <option>has killed before</option>
+            <option>will attack if approached</option>
+        </warning>
+        <headline>
+            <option>Wanted!</option>
+            <option>-- Wanted --</option>
+            <option>Wanted for [%crime%]</option>
+            <option>Reward!</option>
+            <option>$$ Reward $$</option>
+            <option>Notice</option>
+            <option>Notice:</option>
+            <option>Proclamation</option>
+            <option>Proclamation!</option>
+            <option>Dead or Alive</option>
+        </headline>
+        <condition>
+            <option>information leading to their capture</option>
+            <option>proof of death</option>
+            <option>their capture</option>
+        </condition>
+        <reward>
+            <option>1 gold</option>
+            <option>10 silver</option>
+            <option>30 silver</option>
+            <option>5 gold</option>
+            <option>50 silver</option>
+            <option>80 silver</option>
+            <option>100 silver</option>
+            <option>10 gold</option>
+            <option>200 silver</option>
+            <option>20 gold</option>
+            <option>300 silver</option>
+            <option>30 gold</option>
+            <option>500 silver</option>
+            <option>50 gold</option>
+            <option>800 silver</option>
+            <option>80 gold</option>
+            <option>1000 silver</option>
+            <option>100 gold</option>
+            <option>200 gold</option>
+            <option>300 gold</option>
+            <option>400 gold</option>
+            <option>500 gold</option>
+            <option>600 gold</option>
+            <option>700 gold</option>
+            <option>800 gold</option>
+            <option>1000 gold</option>
+        </reward>
+
+    </feature>
+    <lastseen>
+        <option>in town</option>
+        <option>outside town</option>
+        <option>in the country</option>
+        <option>in a cave</option>
+        <option>underground</option>
+    </lastseen>
+</wanted>

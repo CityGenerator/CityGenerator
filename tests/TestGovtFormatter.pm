@@ -39,6 +39,7 @@ subtest 'Test Military print' => sub {
     $city = CityGenerator::create_city( { seed => 1, 'tactics'=>{'content'=>'foo' }  } );
     CityGenerator::flesh_out_city($city);
     $city->{'walls'}->{'condition'}="some value" ;
+    $city->{'walls'}->{'style'}="foo" ;
     $military = GovtFormatter::printMilitary($city);
     like( $military, '/some value/', 'make sure some value is found'    );
     done_testing();

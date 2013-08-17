@@ -83,78 +83,50 @@ sub describe_establishment {
     my ($establishment) = @_;
     my $content = "<li>";
    
-    $content .= "<b>The $establishment->{'name'} <span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' > [+]</span></b> ";
-    $content.='<span style="display:none" class="establishment" id="establishment'.$establishment->{'seed'}.'"> The '. $establishment->{'name'};
     #FIXME we need to re-evaluate these if statements; text should be readable if any one is missing.
     #FIXME for example. "The Wet Frog is a greasy looing average sized..." vs. "The West Frog average sized..."
     #FIXME is needs to be moved above, and these need an article on whichever one is first.
     #FIXME we may need to re-evaluate how this is generated :/
-    if ( defined $establishment->{'condition'} ) {    
-        $content .= " is ".A($establishment->{'condition'})." looking ";
-    }
+    $content .= "<b>The $establishment->{'name'}</b>\n";
+    $content .= "<span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' >[+]</span>\n";
+    $content .= '<span style="display:none" class="establishment" id="establishment'.$establishment->{'seed'}.'">';
+    $content .= "The $establishment->{'name'} is ".A($establishment->{'size_description'}).", $establishment->{'condition'}-looking  $establishment->{'type'}. \n";
+    $content .= "The building ";
     
-    if ( defined $establishment->{'size_description'} ) {    
-        $content .= " $establishment->{'size_description'} sized ";
-    }
-    
-    if ( defined $establishment->{'type'} ) {    
-        $content .= " $establishment->{'type'} ";
-    }
-
     if ( defined $establishment->{'direction'} ) {    
-        $content .= " facing $establishment->{'direction'} ";
+        $content .= "faces $establishment->{'direction'}";
     }
     
-    if ( defined $establishment->{'storefront'} ) {    
-        $content .= " with ".A($establishment->{'storefront'})." storefront, ";
-    }
+    my @features = ();
 
-    if ( defined $establishment->{'windows'} ) {    
-        $content .= " $establishment->{'windows'} windows, ";
-    }
-    
-    if ( defined $establishment->{'storeroof'} ) {    
-        $content .= " and a roof made from $establishment->{'storeroof'} ";
-    }
+    push( @features, A("$establishment->{'storefront'} storefront") )    if ( defined $establishment->{'storefront'} );
+    push( @features, "$establishment->{'windows'} windows" )             if ( defined $establishment->{'windows'} );
+    push( @features, A("roof made from $establishment->{'storeroof'}") ) if ( defined $establishment->{'storeroof'} );
+    if (scalar(@features) >0){
 
-    if ( defined $establishment->{'neighborhood'} ) {    
-        $content .= " in ".A($establishment->{'neighborhood'})." neighborhood ";
+        $content .= " with ".conjunction(shuffle @features);
     }
+    $content.=". \n";
+    #print STDERR Dumper $establishment;
+    $content .= "It is located in ".A($establishment->{'neighborhood'})." neighborhood";
 
     if ( defined $establishment->{'district'} ) {    
-        $content .= " of the $establishment->{'district'} district. ";
+        $content .= " of the $establishment->{'district'} district";
     }
-
-    if ( defined $establishment->{'manager'}->{'behavior'} ) {    
-        $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." ";
-    }
-
-    if ( defined $establishment->{'manager'}->{'race'} ) {    
-        $content .= " $establishment->{'manager'}->{'race'} ";
-    }
-
-    if ( defined $establishment->{'manager'}->{'name'} ) {    
-        $content .= " named $establishment->{'manager'}->{'name'}. ";
-    }
+    $content.=". \n";
+    $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." $establishment->{'manager'}->{'race'} named $establishment->{'manager'}->{'name'}. \n";
 
     if ( defined $establishment->{'service_type'} ) {    
-        $content .= "This $establishment->{'type'} is known for  ";
-    }
-
-    if ( defined $establishment->{'price_description'} ) {    
-        $content .= " $establishment->{'price_description'} prices for the $establishment->{'service_type'} there ";
-    }
-    
-    if ( defined $establishment->{'popularity_description'} ) {    
+        $content .= "The $establishment->{'type'} is known for $establishment->{'price_description'} prices for the $establishment->{'service_type'} there, ";
         $content .= " and $establishment->{'popularity_description'}. ";
     }
 
     my @senses;
-    push @senses,  "you smell $establishment->{'smell'}" if ( defined $establishment->{'smell'} );
-    push @senses,  "you hear $establishment->{'sound'}" if ( defined $establishment->{'sound'} );
-    push @senses,  "you see $establishment->{'sight'}" if ( defined $establishment->{'sight'} );
+    push @senses, "you smell $establishment->{'smell'}" if ( defined $establishment->{'smell'} );
+    push @senses, "you hear $establishment->{'sound'}"  if ( defined $establishment->{'sound'} );
+    push @senses, "you see $establishment->{'sight'}"   if ( defined $establishment->{'sight'} );
     if (@senses != 0){
-        $content .= " Upon entering " . conjunction(shuffle @senses ) . ".";
+        $content .= " Upon entering " . conjunction(shuffle @senses ) . ".\n";
     }    
     
     my $verb= ($establishment->{'occupants'} ==1) ? 'is' : 'are';
@@ -165,7 +137,7 @@ sub describe_establishment {
     }
 
     if ( defined $establishment->{'graft'} ) {
-        $content .= " $establishment->{'graft'} the owner and patrons at the $establishment->{'type'}.";
+        $content .= " $establishment->{'graft'} the owner and patrons.";
     }
 
     $content .= "</span></li>";

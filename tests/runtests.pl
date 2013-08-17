@@ -31,5 +31,7 @@ use TestEstablishmentGenerator;
 use TestBondGenerator;
 use TestExampleGenerator;
 use TestPostingGenerator;
+use TestRumorGenerator;
+use TestWantedPosterGenerator;
 done_testing();
 

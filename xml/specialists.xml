@@ -118,7 +118,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="maidservant"      building="townhouse"            sv="250"  perbuilding="10" limit=""   district="hotel" />
     <option name="navigator"        building="dock"                 sv="3000" perbuilding="10" limit=""   district="docks" />
     <option name="doctor"           building="hospital,clinic"      sv="350"  perbuilding="10" limit=""   district="industry" />
-    <option name="charcoaler"       building="firepit"              sv="400"  perbuilding="10" limit=""   district="industry" />
+    <option name="collier"          building="firepit"              sv="400"  perbuilding="10" limit=""   district="industry" />
     <option name="seamstress"       building="shop"                 sv="500"  perbuilding="10" limit=""   district="shops" />
     <option name="carpenter"        building="sawmill"              sv="550"  perbuilding="10" limit=""   district="industry" />
     <option name="timberwright"     building="sawmill"              sv="700"  perbuilding="10" limit=""   district="industry" />
