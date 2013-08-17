@@ -1099,7 +1099,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <level min='51' max='70' >decent</level>
     <level min='71' max='80' >skilled</level>
     <level min='81' max='90' >gifted</level>
-    <level min='91' max='98' >renown</level>
+    <level min='91' max='98' >renowned</level>
     <level min='99'          >legendary</level>
 
 </skill>
