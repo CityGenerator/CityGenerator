@@ -2,6 +2,21 @@
 <!--
 CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 Based on a work at https://github.com/morgajel/CityGenerator.
+
+Geography == what the area looks like based on climate and terrain. LandscapeGenerator
+Landmarks Locations > Landmark  == Some place other than a city.   LandmarkGenerator
+Attraction/features == unique places within/right outside the city.   AttractionGenerator
+
+
+[%storytime%], [%chumps%] of [%location%] [%goodstart%]. Things were [%goodstatus%]. One day, [%problem%], 
+and [%badaction%]. [%chumps%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], 
+who was [%talent%]. [%heroname%] had a plan to [%plan%] and [%planaction%]. When [%heroname%] faced 
+the [%badtype%], [%hero%] [%results%][%victory%]. That day, [%chumps%] learned the value of a [%talent%].
+
+how do the townspeople feel about it
+history
+changes
+
 -->
 
 <!-- Scarcity of the resource -->
@@ -20,15 +35,34 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="80" max="83" >rich</option>
         <option min="84" max="87" >bountiful</option>
         <option min="88" max="93" >vast</option>
-        <option min="94" max="96" >boundless</option>
+        <option min="94" max="96" >huge</option>
         <option min="97"          >unlimited</option>
     </scarcity>
+    <groups> 
+        <option>townspeople</option>
+        <option>travelers</option>
+        <option>zombies</option>
+        <option>gru</option>
+        <option>children</option>
+        <option>kittens</option>
+        <option>vampires</option>
+        <option>locals</option>
+    </groups>
+    <feelings> 
+        <option>frequented</option>
+        <option>avoided</option>
+        <option>hunted</option>
+        <option>feared</option>
+        <option>visited frequently</option>
+    </feelings>
     <ravished>
         <type>guarded by</type>
         <type>protected by</type>
         <type>ravished by</type>
         <type>wrecked by</type>
         <type>surrounded by</type>
+        <option>a curse</option>
+        <option>a spell</option>
         <option>a strange fungus</option>
         <option>draught</option>
         <option>fire</option>
@@ -36,17 +70,53 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>high wind</option>
         <option>nomadic dragons</option>
         <option>roving bands of brigands</option>
-        <option>spells and incantations</option>
         <option>strange weather</option>
-        <option>the effects of magic</option>
         <option>the effects of battle</option>
+        <option>the effects of magic</option>
         <option>the effects of time</option>
+        <option>the undead</option>
         <option>vipers</option>
     </ravished>
 
+    <precious>
+        <find>one might find</find>
+        <find>the locals speak of</find>
+        <find>one might dig up</find>
+        <find>rumors tell of</find>
+        <find>somoeone said someone found</find>
+        <type>a stash of</type>
+        <type>piles of</type>
+        <type>a chest containing</type>
+        <type>bags of</type>
+        <option>copper</option>
+        <option>gold</option>
+        <option>silver</option>
+        <option>platinum</option>
+        <option>diamonds</option>
+        <option>emeralds</option>
+        <option>rubies</option>
+        <option>saphires</option>
+        <post>buried near there</post>
+        <post>hidden around there</post>
+        <post>in a tomb nearby</post>
+        <post>in a nearby pit</post>
+    </precious>
+
     <structures>
+        <age>
+            <option>an ancient</option>
+            <option>an old</option>
+            <option>a new</option>
+            <option>a magical</option>
+            <option>a haunted</option>
+            <option>a creepy</option>
+            <option>a cursed</option>
+            <option>a blessed</option>
+        </age>
+        <option>battle field</option>
         <option>cave</option>
         <option>mine</option>
+        <option>shrine</option>
         <option>castle</option>
         <option>gazebo</option>
         <option>fort</option>
@@ -56,35 +126,36 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <wildlife>
         <type>carnivorous</type>
         <type>dangerous</type>
-        <type>defenseless</type>
+        <type>defenseless</type>tended
         <type>poisonous</type>
         <type>tame</type>
         <type>wild</type>
-        <animal group="beds"        >clam</animal>
-        <animal group="beds"        >scorpion</animal>
-        <animal group="bevies"      >quail</animal>
-        <animal group="clouds"      >bat</animal>
-        <animal group="clouds"      >locust</animal>
-        <animal group="clusters"    >spider</animal>
-        <animal group="coffles"     >ass</animal>
-        <animal group="companies"   >parrot</animal>
-        <animal group="descents"    >woodpecker</animal>
-        <animal group="glarings"    >kitten</animal>
-        <animal group="murders"     >crow</animal>
-        <animal group="musters"     >peacock</animal>
-        <animal group="nests"       >caterpillar</animal>
-        <animal group="parades"     >elephant</animal>
-        <animal group="troops"      >monkey</animal>
+        <animal group="beds"     >clam</animal>
+        <animal group="beds"     >scorpion</animal>
+        <animal group="bevies"   >quail</animal>
+        <animal group="wiers"    >dragon</animal>
+        <animal group="clouds"   >bat</animal>
+        <animal group="clouds"   >locust</animal>
+        <animal group="clusters" >spider</animal>
+        <animal group="coffles"  >ass</animal>
+        <animal group="companies">parrot</animal>
+        <animal group="descents" >woodpecker</animal>
+        <animal group="glarings" >kitten</animal>
+        <animal group="murders"  >crow</animal>
+        <animal group="musters"  >peacock</animal>
+        <animal group="nests"    >caterpillar</animal>
+        <animal group="parades"  >elephant</animal>
+        <animal group="troops"   >monkey</animal>
     </wildlife>
     <natural>
         <age>
             <option>ancient</option>
-            <option>primordial</option>
+            <option>creepy</option>
             <option>primal</option>
             <option>old</option>
             <option>new</option>
             <option>fresh</option>
-            <option>young</option>
+            <option>magic</option>
         </age>
         <type>amber<suffix>
                 <option>deposits</option>
