@@ -21,31 +21,27 @@ if (defined $q->param('seed')){
     $seed=$q->param('seed');
 }
 
-my $wantedposters;
-
-for(my $i=0; $i<10 ; $i++){
-    push @$wantedposters, WantedPosterGenerator::create_wantedposter({seed=>($seed+$i)   });
-}
+my $wantedposter = WantedPosterGenerator::create_wantedposter({seed=>($seed)   });
 
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='utf-8' ?>\n";
-    print XMLout($wantedposters);
+    print XMLout($wantedposter);
 
 } elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
-    print $JSON->encode($wantedposters);
+    print $JSON->encode($wantedposter);
 
 } elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    print Dumper $wantedposters;
+    print Dumper $wantedposter;
 
 } else {
     print $q->header( 'text/html; charset=utf-8' );
-    print_page($wantedposters);
+    print_page($wantedposter);
 }
 
 exit;
@@ -55,7 +51,7 @@ exit;
 #################################################################################################
 
 sub print_page {
-    my ($wantedposters)=@_;
+    my ($wantedposter)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
@@ -63,16 +59,16 @@ sub print_page {
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        'title'         => 'Most Wanted ('.$wantedposters->[0]->{'seed'}.")",
+        'title'         => 'Most Wanted ('.$wantedposter->{'seed'}.")",
 
-        'content'       => print_content($wantedposters),
+        'content'       => print_content($wantedposter),
     };
     return $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }
 
 
 sub print_content {
-    my ($wantedposters)=@_;
+    my ($wantedposter)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
@@ -80,10 +76,7 @@ sub print_content {
     }) || die "$Template::ERROR\n";
 
     my $formtmpl;
-    my $vars = {
-        'wantedposters'   => $wantedposters,
-    };
-    $templates->process('wantedpostergenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+    $templates->process('wantedpostergenerator_content.tmpl', $wantedposter, \$formtmpl) || die $templates->error(), "\n";
 
     return $formtmpl;
 }

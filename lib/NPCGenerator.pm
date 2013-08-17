@@ -31,6 +31,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use Lingua::EN::Gender;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -182,6 +183,7 @@ sub set_sex {
 
     $npc->{'sex'}     = $sex->{'content'} if ( !defined $npc->{'sex'} );
     $npc->{'pronoun'} = $sex->{'pronoun'} if ( !defined $npc->{'pronoun'} );
+    $npc->{'posessivepronoun'}= pronoun ( 'posessive-subjective', $npc->{'sex'} ) if (!defined $npc->{'posessivepronoun'} );
     return $npc;
 }
 

@@ -3,13 +3,25 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-            <section id="wantedposters">
-                <h2>Wanted Poster</h2>
-                The following people are wanted:
-                <ul>
-                [%  FOREACH wantedposter IN wantedposters %]
-                    <li>[% wantedposter.template %]</li>
-                [%  END %]
-                </ul>
+            <section id="wantedposter">
+                <h1 >[% headline %]</h1>
+                <h2> [%npc.name%] </h2>
+                [% IF title   %]
+                <p>A.K.A.</p>
+                <h2>[%title%] [%npc.firstname %]</h2>
+                [% END%]
+                <h3>Wanted for [%crime%] by the [%by%]. </h3>
+                <p>[%npc.name%] was last seen [%lastseen%]. May claim to be a [%npc.skill%] [%npc.profession%]. 
+                [% IF npc.mark   %]
+                [% IF npc.firstname%][%npc.firstname%][%ELSE%][%npc.pronoun FILTER ucfirst%][%END%] is recognizable by a [%npc.mark%] on [%npc.posessivepronoun%] [%npc.marklocation%].
+                [% END %]
+                </p>
+                <p>Description: [%npc.behavior%] [%npc.sex%] [%npc.race%], [%npc.height%], [%npc.build%], with [%npc.eyes%] eyes. </p>
+                [% IF warning   %]
+                <h2>Warning! [%warning FILTER ucfirst %].</h2>
+                [% END %]
+                <p>A reward of [%reward%] for [%condition%].</p>
+   
+ 
             </section>
 

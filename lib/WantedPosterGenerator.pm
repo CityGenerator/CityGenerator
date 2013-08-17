@@ -102,17 +102,22 @@ sub create_wantedposter {
 
     GenericGenerator::select_features($wantedposter,$wantedposter_data);
 
-    foreach my $npctitle (qw(believer source culprit victim)){
-        $wantedposter->{$npctitle}=NPCGenerator::create_npc()->{'name'} if (!defined $wantedposter->{$npctitle});
-    }
+    $wantedposter->{'npc'}=NPCGenerator::create_npc() if (!defined $wantedposter->{'npc'});
+
+    $wantedposter->{'acceptable_locations'}= $wantedposter_data->{'lastseen'}->{'option'} if (!defined $wantedposter->{'acceptable_locations'});
+
+    $wantedposter->{'lastseen'}= rand_from_array($wantedposter->{'acceptable_locations'}  )->{'content'}  if (!defined $wantedposter->{'lastseen'}); 
+
+    #TODO gangs
+
+    GenericGenerator::parse_template($wantedposter, 'headline');
+
 
     return $wantedposter;
 }
 
-
-
-
 1;
+
 
 __END__
 
