@@ -17,57 +17,63 @@ my $xml_data = $xml->XMLin( "xml/resources.xml", ForceContent => 1, ForceArray =
 #(11:59:46 AM) Jesse Morgan: $city->{'resources'}=[]
 #(12:00:07 PM) Jesse Morgan: push @{$city->{'resources'} } , ResourceGenerator::create_resource();
 # my $resources->{'resources'}=[]
+# $resources->{'resources'}=[]
 
-my $d = 0;
+###############################################################################
+
+=head2 create_resource()
+
+This method is used to create a resource
+
+=over
+
+=item * a seed
+
+=item * a name
+
+=back
+
+=cut
+
+###############################################################################
+sub create_resource(){
 my $loop = 0;
-my $max = d(30);
-
-my $output = "\n";
-my $age;
-my $scarcity;
-my $wildlife;
-my $group;
-my $type;
-my $suffix;
-my $natural;
-my $ravished;
-my $structure; 
-my $precious;
-my $feelings;  
-my $groups;
+my $max = d(3);
+my $output = '';
 my $roll;
-
-while ($loop < $max) {
-   
-    $roll = d(3);
+    while ($loop < $max) {
+       
+        $roll = d(3);
+        
+        if($roll == 1){ # Wildlife
+            $output = create_wildlife();   
+        }
     
-    if($roll == 1){ # Wildlife
-        $output = create_wildlife();   
-    }
-
-    if($roll == 2){ # Natural
-        $output = create_natural();       
-    }
-
-    if($roll == 3){ # Structure
-        $output = create_structure();   
-    }
+        if($roll == 2){ # Natural
+            $output = create_natural();       
+        }
     
-    if(d(1) == 1){ 
-        $output .= add_visitors();
-    }else{
-        $output .= '. ';
+        if($roll == 3){ # Structure
+            $output = create_structure();   
+        }
+        
+        if(d(1) == 1){ 
+            $output .= add_visitors();
+        }else{
+            $output .= '. ';
+        }
+        
+        if(d(6) < 5){ 
+            $output .= add_precious();    
+        }
+        
+        print Dumper $output;
+        
+        $loop++;
     }
-    
-    if(d(6) < 5){ 
-        $output .= add_precious();    
-    }
-    
-    print Dumper $output;
-    
-    $loop++;
 }
 
+create_resource();
 
 ###############################################################################
 
@@ -84,7 +90,7 @@ sub create_structure {
     $content = ucfirst(rand_from_array( $xml_data->{'structures'}->{'age'}->{'option'} )->{'content'}) .' ';
     $content .= rand_from_array( $xml_data->{'structures'}->{'option'} )->{'content'} .' ';
     $content .= 'inhabited by ';
-    $content .= $wildlife = rand_from_array( $xml_data->{'wildlife'}->{'type'} )->{'content'} .' '. rand_from_array(    $xml_data->{'wildlife'}->{'animal'} )->{'content'} .'s';
+    $content .= rand_from_array( $xml_data->{'wildlife'}->{'type'} )->{'content'} .' '. rand_from_array(    $xml_data->{'wildlife'}->{'animal'} )->{'content'} .'s';
     
     return $content;
 }
