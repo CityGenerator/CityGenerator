@@ -1,100 +1,132 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <data>
-
-    <template>
-        <option>[%storytime%], [%chumps%] of [%location%] [%goodstart%]. Things were [%goodstatus%]. One day, [%problem%], and [%badaction%]. [%chumps%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%heroname%] had a plan to [%plan%] and [%planaction%]. When [%heroname%] faced the [%badtype%], [%hero%] [%results%][%victory%]. That day, [%chumps%] learned the value of a [%talent%].</option>
-
-<!-- Many years ago, The villagers of Grimnow lived happily. Things were peaceful. One day a dragon named Bolthdex appeared and destroyed a village. Along came a hero named Bob who was an expert bowman. Bob had a plan to making a wager with the dragon and kill the dragon while it sleeps. When Bob faced the dragon, he banished the dragon and rescued Grimnow. That day, the villagers learned the value of an expert bowman.
--->
-    </template>
-
-    <hero>
-        <option>a hero named [%npc.name%]%</option>
-    </hero>
-
-    <storytime>
-        <option>Long, long ago</option>
-        <option>A long time ago</option>
-        <option>Many years ago</option>
-        <option></option>
+    <feature>
+        <template>
+            <option>[%storytime%], [%chumps%] of [%location.name%] [%goodstart%]. Things were [%goodstatus%], but one day [%badguy %] [%badaction%]. [%chumps FILTER ucfirst%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%npc.firstname%] had [%plan%] [%planaction%]. When [%npc.name%] faced the [%badtype%], [%npc.name%] [%results%][%victory%]. That day, [%chumps%] learned the value of [%virtue%].</option>
+        </template>
     
-    </storytime>
+        <hero>
+            <option>a hero named [%npc.name%]</option>
+            <option>a [%npc.race%] named [%npc.name%]</option>
+            <option>a [%npc.behavior%] [%npc.race%] named [%npc.name%]</option>
+            <option>[%npc.name%] the [%npc.race%]</option>
+        </hero>
+        <badguy>
+            <option>a [%badtype%] named [%villain.name%]</option>
+            <option>an evil [%badtype%] named [%villain.name%]</option>
+            <option>[%villain.name%] the [%badtype%]</option>
+        </badguy>
+        <badtype>
+            <option>dragon</option>
+            <option>minotaur</option>
+            <option>wizard</option>
+            <option>monster</option>
+            <option>demon</option>
+            <option>cyclops</option>
+            <option>ghoul</option>
+            <option>lich</option>
+            <option>vampire</option>
+            <option>witch</option>
+        </badtype>
+        <badaction>
+            <option>destroyed a nearby village</option>
+            <option>took over the town</option>
+            <option>kidnapped a princess</option>
+            <option>took a hostage and demanded a ransom</option>
+            <option>slayed a local hero</option>
+            <option>stole a priceless heirloom</option>
+        </badaction>
 
-    <chumps>
-        <option>The villagers</option>
-        <option>The constable</option>
-        <option>The townsfolk</option>
-    </chumps>
-    <goodstart>
-        <option>lived happily</option>
-        <option>lived in peace</option>
-        <option></option>
-        <option></option>
-        <option></option>
-        <option></option>
-    </goodstart>
-    <goodstatus>
-        <option>good</option>
-        <option>quiet</option>
-        <option>peaceful</option>
-    </goodstatus>
+        <storytime>
+            <option>Long, long ago</option>
+            <option>A long, long ago in a city far, far away</option>
+            <option>A long time ago</option>
+            <option>Many years ago</option>
+            <option>Once upon a time</option>
+            <option>In the olden days</option>
+            <option>In the days of yore</option>
+            <option>Some time ago</option>
+            <option>In times past</option>
+            <option>In times gone by</option>
+            <option>Long ago</option>
+            <option>In days gone by</option>
+            <option>Years ago</option>
+            <option>In olden times</option>
+            <option>Way back when</option>
+        </storytime>
+    
+        <virtue>
+            <option>a clever idea</option>
+            <option>a crazy idea</option>
+            <option>one brave person</option>
+            <option>gumption</option>
+            <option>never giving up</option>
+            <option>never losing hope</option>
+            <option>never trusting another [%badtype%]</option>
+        </virtue>
+    
+        <chumps>
+            <option>the villagers</option>
+            <option>the constable</option>
+            <option>the townsfolk</option>
+            <option>the royals</option>
+        </chumps>
+        <goodstart>
+            <option>lived happily</option>
+            <option>lived in peace</option>
+            <option>thrived</option>
+            <option>lived in harmony</option>
+        </goodstart>
+        <goodstatus>
+            <option>always nice</option>
+            <option>good</option>
+            <option>quiet</option>
+            <option>peaceful</option>
+        </goodstatus>
+        <victory chance='50'>
+            <option> and was killed in the process</option>
+            <option> and rescued the hostages</option>
+            <option> and rescued [%location.name%]</option>
+        </victory>
+    
+        <results>
+            <option>defeated [%villain.name%]</option>
+            <option>killed the [%badtype%]</option>
+            <option>tricked [%villain.name%]</option>
+            <option>banished [%villain.name%]</option>
+        </results>
+    
+        <planaction>
+            <option>by killing the [%badtype%] while [%villain.pronoun%] slept</option>
+            <option>by making a wager with [%villain.name%]</option>
+            <option>by causing a distraction while others struck</option>
+            <option>by using magic to banish it</option>
+        </planaction>
+        <plan>
+            <option>a plan to trick the [%badtype%]</option>
+            <option>an idea to slay the [%badtype%]</option>
+            <option>the thought to slay the [%badtype%]</option>
+        </plan>
+    
+        <talent>
+            <option>a skilled storyteller</option>
+            <option>a valiant knight</option>
+            <option>an expert bowman</option>
+            <option>a sneaky thief</option>
+        </talent>
+    
+        <caughtfailing>
+            <option>failed miserably</option>
+            <option>didn't get close</option>
+            <option>were caught</option>
+        </caughtfailing>
+    
+        <failedresolution>
+            <option>stop the [%badtype%]</option>
+            <option>kill [%villain.name%]</option>
+        </failedresolution>
 
-    <victory chance='50'>
-        <option>and was killed in the process</option>
-        <option>and rescued [%location%]</option>
-    </victory>
-
-    <results>
-        <option>defeated [%villain%]</option>
-        <option>tricked [%villian%]</option>
-        <option>banished [%villian%]</option>
-    </results>
-
-    <planaction>
-        <option>killing the [%badtype%] while it sleeps</option>
-        <option>making a wager with [%villain%]</option>
-        <option>causing a distraction while others struck</option>
-    </planaction>
-    <plan>
-        <option>trick the [%villain%]</option>
-        <option>slay the  [%badtype%]</option>
-    </plan>
-
-    <talent>
-        <option>skilled storyteller</option>
-        <option>valiant knight</option>
-        <option>expert bowman</option>
-        <option>sneaky thief</option>
-    </talent>
-
-    <caughtfailing>
-        <option>failed miserably</option>
-        <option>didn't get close</option>
-        <option>were caught</option>
-    </caughtfailing>
-
-
-    <badaction>
-        <option>destroyed a nearby village</option>
-        <option>kidnapped a princess</option>
-    </badaction>
-
-    <failedresolution>
-        <option>stop the [%badtype%]</option>
-        <option>kill [%villian%] </option>
-    </failedresolution>
-
-    <setting>
-        <option>[%past%], there was a [%size%][%city%]</option>
-        <option>Sentence describing setting</option>
-    </setting>
-    <problem>
-        <option>a [%badtype%] named [%villain%] appeared</option>
-    </problem>
-
-
-
-
+    </feature>
 
 </data>
 
