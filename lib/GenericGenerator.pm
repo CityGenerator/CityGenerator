@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features seed);
+@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features seed generate_stats);
 
 ###############################################################################
 
@@ -250,6 +250,34 @@ sub parse_object {
     # return the slimmed down version
     return $newobj;
 }
+
+
+###############################################################################
+
+=head2 generate_stats()
+
+generate the stats and their descriptions from the xml
+
+=cut
+
+###############################################################################
+sub generate_stats {
+    my ($ds, $xml) = @_;
+
+    #Loop through each tag underneath stats- it's important that <stat> does NOT have any attributes
+    foreach my $statname (keys %{ $xml->{'stats'} } ){
+        #Simplify the reference for reading pleasure.
+        my $stat=$xml->{'stats'}->{$statname};
+
+        # select one of the stats options.
+        $ds->{'stats'}->{$statname}=d(100) if (!defined $ds->{'stats'}->{$statname} );
+        my $statoption= roll_from_array($ds->{'stats'}->{$statname}, $stat->{'option'});
+        $ds->{$statname."_description"}= $statoption->{'content'} if (!defined $ds->{$statname."_description"});
+    }
+    return $ds;
+}
+
+
 
 ###############################################################################
 
