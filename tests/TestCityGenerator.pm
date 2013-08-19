@@ -405,30 +405,27 @@ subtest 'test generate_popdensity' => sub {
 ###};
 ###
 ###
-###subtest 'test set_laws' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1' } );
-###    CityGenerator::set_laws($city);
-###    foreach my $value (qw( punishment enforcement trial enforcer commoncrime )){
-###        isnt($city->{'laws'}->{$value}, undef, "ensure $value is defined");
-###    } 
-###
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed' => '1',
-###            'laws' =>
-###                { 'punishment' => 'a', 'enforcement' => 'b', 'trial' => 'c', 'enforcer' => 'd', 'commoncrime' => 'e' }
-###        }
-###    );
-###    CityGenerator::set_laws($city);
-###    is( $city->{'laws'}->{'punishment'},  'a' );
-###    is( $city->{'laws'}->{'enforcement'}, 'b' );
-###    is( $city->{'laws'}->{'trial'},       'c' );
-###    is( $city->{'laws'}->{'enforcer'},    'd' );
-###    is( $city->{'laws'}->{'commoncrime'}, 'e' );
-###
-###    done_testing();
-###};
+subtest 'test set_laws' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1' } );
+    CityGenerator::set_laws($city);
+    foreach my $value (qw( punishment enforcement trial enforcer commoncrime )){
+        isnt($city->{'laws'}->{$value}, undef, "ensure $value is defined");
+    } 
+
+    my $presets= {
+            'seed' => '1',
+            'laws' =>
+                { 'punishment' => 'a', 'enforcement' => 'b', 'trial' => 'c', 'enforcer' => 'd', 'commoncrime' => 'e' }
+        };
+    $city = CityGenerator::create_city( $presets  );
+    CityGenerator::set_laws($city);
+    foreach my $law (keys %{$presets->{'laws'}}){
+        is( $city->{'laws'}->{$law},  $presets->{'laws'}->{$law}, "$law is preset to $presets->{'laws'}->{$law}" );
+    }
+
+    done_testing();
+};
 ###
 ###
 ###subtest 'test generate_area' => sub {

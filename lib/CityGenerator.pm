@@ -223,7 +223,7 @@ sub flesh_out_city {
     generate_resources($city);
     generate_city_crest($city);
     generate_streets($city);
-###    set_laws($city);
+    set_laws($city);
 ###
 ###    #Generate
     generate_popdensity($city);
@@ -713,28 +713,28 @@ sub generate_popdensity {
 ###}
 ###
 ###
-##################################################################################
-###
-###=head3 set_laws()
-###
-###Set the laws for the city.
-###
-###=cut
-###
-##################################################################################
-###
-###sub set_laws {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 22 );
-###
-###    for my $facet ( keys %{ $xml_data->{'laws'} } ) {
-###        my $facetlist = $xml_data->{'laws'}->{$facet}->{'option'};
-###        $city->{'laws'}->{$facet} = rand_from_array($facetlist)->{'content'} if ( !defined $city->{'laws'}->{$facet} );
-###    }
-###    return $city;
-###} ## end sub set_laws
-###
-###
+###############################################################################
+
+=head3 set_laws()
+
+Set the laws for the city.
+
+=cut
+
+###############################################################################
+
+sub set_laws {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 22 );
+
+    for my $facet ( keys %{ $xml_data->{'laws'} } ) {
+        my $facetlist = $xml_data->{'laws'}->{$facet}->{'option'};
+        $city->{'laws'}->{$facet} = rand_from_array($facetlist)->{'content'} if ( !defined $city->{'laws'}->{$facet} );
+    }
+    return $city;
+} ## end sub set_laws
+
+
 ##################################################################################
 ###
 ###=head2 generate_area
