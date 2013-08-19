@@ -186,37 +186,37 @@ subtest 'test recalculate_populations' => sub {
     done_testing();
 };
 
-#subtest 'test generate_citizens' => sub {
-#    my $city;
-#    $city = CityGenerator::create_city( { 'seed' => 1, } );
-#    CityGenerator::flesh_out_city($city);
-#    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
-#    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-#
-##    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => -5 } );
-##    CityGenerator::generate_citizens($city);
-##    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
-##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-##
-##    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12 } );
-##    CityGenerator::generate_citizens($city);
-##    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
-##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-#
-#
-##    $city = CityGenerator::create_city( { 'seed' => 1,  'citizen_count' => 2   }  );
-##    CityGenerator::generate_citizens($city);
-##    is( $city->{'citizen_count'},           2 );
-##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-##
-##
-##    $city = CityGenerator::create_city( { 'seed' => 1, 'citizen_count' => 2, 'citizens' => [] } );
-##    CityGenerator::generate_citizens($city);
-##    is( $city->{'citizen_count'},           2 );
-##    is( scalar( @{ $city->{'citizens'} } ), 0, 'intentionally mismatched' );
-#
-#    done_testing();
-#};
+subtest 'test generate_citizens' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, } );
+    CityGenerator::flesh_out_city($city);
+    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => -5 } );
+    CityGenerator::generate_citizens($city);
+    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12 } );
+    CityGenerator::generate_citizens($city);
+    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+
+
+    $city = CityGenerator::create_city( { 'seed' => 1,  'citizen_count' => 2   }  );
+    CityGenerator::generate_citizens($city);
+    is( $city->{'citizen_count'},           2, "we have 2 citizens" );
+    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'}, "we have 2 citizens" );
+
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'citizen_count' => 2, 'citizens' => [] } );
+    CityGenerator::generate_citizens($city);
+    is( $city->{'citizen_count'},           2 );
+    is( scalar( @{ $city->{'citizens'} } ), 0, 'intentionally mismatched' );
+
+    done_testing();
+};
 
 
 subtest 'test generate_children' => sub {
@@ -368,41 +368,49 @@ subtest 'test generate_popdensity' => sub {
     done_testing();
 };
 
-###
-###subtest 'test generate_walls' => sub {
-###    #NOTE area is included because generate_walls requires it to mark protected areas
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1 } );
-###    print STDERR Dumper $city;
-###    CityGenerator::generate_walls($city);
-###    isnt( $city->{'wall_chance_roll'},   undef, "ensure roll is created" );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1, 'walls'=>{'material'=>'cloth', 'style'=>'mesh','height'=>99, 'condition'=>'buff'}, 'wall_chance_roll'=>2 } );
-###    CityGenerator::generate_walls($city);
-###    is( $city->{'wall_chance_roll'},   '2' );
-###    is( $city->{'walls'}->{'material'},    'cloth' );
-###    is( $city->{'walls'}->{'style'},       'mesh' );
-###    is( $city->{'walls'}->{'height'},      '99' );
-###    is( $city->{'walls'}->{'condition'},   'buff' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'protected_percent'=>10, 'protected_area'=>10 } );
-###    CityGenerator::generate_walls($city);
-###    is( $city->{'protected_percent'},   '10' );
-###    is( $city->{'protected_area'},   '10' );
-###
-###    done_testing();
-###};
+
+subtest 'test generate_walls' => sub {
+    #NOTE area is included because generate_walls requires it to mark protected areas
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1 } );
+    CityGenerator::generate_walls($city);
+    isnt( $city->{'wall_chance_roll'},   undef, "ensure roll is created" );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1, 'walls'=>{'material'=>'cloth', 'style'=>'mesh','height'=>99, 'condition'=>'buff'}, 'wall_chance_roll'=>2 } );
+    CityGenerator::generate_walls($city);
+    is( $city->{'wall_chance_roll'},   '2' );
+    is( $city->{'walls'}->{'material'},    'cloth' );
+    is( $city->{'walls'}->{'style'},       'mesh' );
+    is( $city->{'walls'}->{'height'},      '99' );
+    is( $city->{'walls'}->{'condition'},   'buff' );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1, 'wall_chance_roll'=>99 } );
+    CityGenerator::generate_walls($city);
+    is( $city->{'wall_chance_roll'},   '99' );
+    is( $city->{'walls'}->{'material'},    undef );
+    is( $city->{'walls'}->{'style'},       undef );
+    is( $city->{'walls'}->{'height'},      '0' );
+    is( $city->{'walls'}->{'condition'},   undef );
 
 
-###subtest 'test generate_watchtowers' => sub {
-###    #NOTE area is included because generate_walls requires it to mark protected areas
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'walls' => { 'length' => 1.9 } } );
-###    CityGenerator::generate_watchtowers($city);
-###    is( $city->{'watchtowers'}->{'count'}, 5, "FIXME why is this hardcoded to 5? it's dumb. fix it." );
-###
-###    done_testing();
-###};
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'protected_percent'=>10, 'protected_area'=>10 } );
+    CityGenerator::generate_walls($city);
+    is( $city->{'protected_percent'},   '10' );
+    is( $city->{'protected_area'},   '10' );
+
+    done_testing();
+};
+
+
+subtest 'test generate_watchtowers' => sub {
+    #NOTE area is included because generate_walls requires it to mark protected areas
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1,'walls' => { 'length' => 1.9 } } );
+    CityGenerator::generate_watchtowers($city);
+    is( $city->{'watchtowers'}->{'count'}, 5, "FIXME why is this hardcoded to 5? it's dumb. fix it." );
+
+    done_testing();
+};
 
 
 subtest 'test set_laws' => sub {
@@ -454,136 +462,50 @@ subtest 'test generate_area' => sub {
 
 
 
-###subtest 'test generate_travelers' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           6 );
-###    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-###    foreach my $traveler ( @{ $city->{'travelers'} }) {
-###        isnt( $traveler->{'race'}, undef );
-###    }
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => -5 } } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           0 );
-###    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-###    is( $city->{'travelers'}->[0]->{'race'}, undef );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => 5 } } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           10 );
-###    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-###    foreach my $traveler ( @{ $city->{'travelers'} }) {
-###        isnt( $traveler->{'race'}, undef );
-###    }
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => 0 } } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           5 );
-###    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-###    foreach my $traveler ( @{ $city->{'travelers'} }) {
-###        isnt( $traveler->{'race'}, undef );
-###    }
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 2 } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           2 );
-###    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
-###    is( $city->{'travelers'}->[2], undef, 'ensure 3rd traveler is undefined' );
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 2, 'stats' => { 'tolerance' => 5 } } );
-###    CityGenerator::generate_travelers($city);
-###    is_deeply(
-###        $city->{'available_traveler_races'},
-###        [
-###            'human',     'bugbear', 'mindflayer', 'lizardfolk', 'minotaur',    'half-elf',
-###            'hobgoblin', 'elf',     'troglodyte', 'drow',       'lycanthrope', 'halfling',
-###            'half-orc',  'kobold',  'any',        'deep dwarf', 'half-dwarf',  'orc',
-###            'gnome',     'other',   'goblin',     'dwarf',      'ogre'
-###        ]
-###    );
-###
-###    my $races=[ 'human', 'half-elf', 'elf', 'halfling', 'half-orc', 'half-dwarf', 'gnome', 'dwarf' ];
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'            => 1,
-###            'size_modifier'   => 12,
-###            'traveler_count'  => 2,
-###            'stats'           => { 'tolerance' => -5 },
-###            'available_races' =>$races,
-###        }
-###    );
-###    CityGenerator::generate_travelers($city);
-###    is_deeply( $city->{'available_traveler_races'}, $races );
-###
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 2, 'travelers' => [] } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           2 );
-###    is( scalar( @{ $city->{'travelers'} } ), 0 );
-###
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 6, 'available_traveler_races' => ['human'] } );
-###    CityGenerator::generate_travelers($city);
-###    is( $city->{'traveler_count'},           6 );
-###    foreach my $traveler (@{$city->{'travelers'}}){
-###        is( $traveler->{'race'}, 'human' );
-###    }
-###
-###    #TODO test if they're a specialist, once I add specialists
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_crime' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, } );
-###    CityGenerator::generate_crime($city);
-###    isnt( $city->{'crime_roll'},        undef );
-###    isnt( $city->{'crime_description'}, undef );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'crime_roll' => 99 } );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'},        99 );
-###    is( $city->{'crime_description'}, 'unheard of' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>0}, 'moral'=>50} );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'},        4 );
-###    is( $city->{'crime_description'}, 'rampant' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>0}, 'moral'=>100 } );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'}, 9 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1,'stats'=>{'education'=>5, 'authority'=>0}, 'moral'=>50 } );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'}, 1 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>0, 'authority'=>5}, 'moral'=>50} );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'}, 9 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>5, 'authority'=>-5}, 'moral'=>0} );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'}, 1 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'stats'=>{'education'=>-5, 'authority'=>5}, 'moral'=>100 } );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_roll'}, 19 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'crime_description' => 'fun' } );
-###    CityGenerator::generate_crime($city);
-###    is( $city->{'crime_description'}, 'fun' );
-###
-###    done_testing();
-###};
-###
-###
+subtest 'test generate_travelers' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, } );
+    CityGenerator::generate_travelers($city);
+    isnt($city->{'travelers'}, undef);
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier'=>-5, 'stats' => { 'tolerance' => 1 } } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           1, "ensure there is only 1 traveler" );
+    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'}, 'ensure there is only one.' );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier'=>-5, 'stats' => { 'tolerance' => 100 } } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           3 , "small, welcoming town has 3 travelers" );
+    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'}, 'ensure count matches number' );
+
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'traveler_count'=>10,  'stats' => { 'tolerance' => 50 } } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           10 );
+    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'stats' => { 'tolerance' => 1 },  'traveler_count' => 2,   'available_traveler_races'=>['human',     'bugbear', 'mindflayer'] } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           2 );
+    is( scalar( @{ $city->{'travelers'} } ), $city->{'traveler_count'} );
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 6, 'available_traveler_races' =>['human'] } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           6 );
+    foreach my $traveler (@{$city->{'travelers'}}){
+        is( $traveler->{'race'}, 'human' );
+    }
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'size_modifier' => 12, 'traveler_count' => 6, 'travelers'=>[] } );
+    CityGenerator::generate_travelers($city);
+    is( $city->{'traveler_count'},           6 );
+
+
+
+    done_testing();
+};
 ####-------------------------------------------------------------------
 ####-----------------------Refactor after this ------------------------
 ####-------------------------------------------------------------------
@@ -682,48 +604,77 @@ subtest 'test generate_housing' => sub {
         $city->{'housing'}, $housing, "ensure housing doesn't change when provided" );
     done_testing();
 };
-###
-###subtest 'test generate_specialists' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
-###    CityGenerator::generate_specialists($city);
-###    is( $city->{'specialists'}->{'teacher'}->{'count'},    50 );
-###    is( $city->{'specialists'}->{'magic shop'}->{'count'}, undef );
-###    is( $city->{'specialists'}->{'porter'}->{'count'},     5 );
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'population_total' => '10000', 'specialists' => { 'porter' => { 'count' => 10 } } } );
-###    CityGenerator::generate_specialists($city);
-###    is( $city->{'specialists'}->{'porter'}->{'count'}, 10 );
-###
-###    done_testing();
-###};
-###
-###subtest 'test generate_businesses' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
-###    CityGenerator::generate_specialists($city);
-###    CityGenerator::generate_businesses($city);
-###    is( $city->{'specialists'}->{'teacher'}->{'count'}, 50 );
-###    is( $city->{'businesses'}->{'school'}->{'count'},   5 );
-###
-###    #TODO test hardcoded business counts regardless of specialists
-###    done_testing();
-###};
-###
-###subtest 'test generate_districts' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
-###    CityGenerator::generate_specialists($city);
-###    CityGenerator::generate_businesses($city);
-###    CityGenerator::generate_districts($city);
-###    is( $city->{'specialists'}->{'teacher'}->{'count'},          50 );
-###    is( $city->{'businesses'}->{'school'}->{'specialist_count'}, 50 );
-###    is( $city->{'businesses'}->{'school'}->{'count'},            5 );
-###
-###    done_testing();
-###};
-###
+
+subtest 'test generate_specialists' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
+    CityGenerator::generate_specialists($city);
+    is( $city->{'specialists'}->{'teacher'}->{'count'},    50 );
+    is( $city->{'specialists'}->{'magic shop'}->{'count'}, undef );
+    is( $city->{'specialists'}->{'porter'}->{'count'},     5 );
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'population_total' => '10000', 'specialists' => { 'porter' => { 'count' => 10 } } } );
+    CityGenerator::generate_specialists($city);
+    is( $city->{'specialists'}->{'porter'}->{'count'}, 10 );
+
+    done_testing();
+};
+
+subtest 'test generate_businesses' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    is( $city->{'specialists'}->{'teacher'}->{'count'}, 50 );
+    is( $city->{'businesses'}->{'school'}->{'count'},   5 );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'businesses'=>{'school'=>{'count'=>5}} } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    is( $city->{'businesses'}->{'school'}->{'count'},   5 );
+
+    #TODO test hardcoded business counts regardless of specialists
+    done_testing();
+};
+
+subtest 'test generate_districts' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    CityGenerator::generate_districts($city);
+    is( $city->{'specialists'}->{'teacher'}->{'count'},          50 );
+    is( $city->{'businesses'}->{'school'}->{'specialist_count'}, 50 );
+    is( $city->{'businesses'}->{'school'}->{'count'},            5 );
+
+    done_testing();
+};
+
+
+subtest 'test generate_establishments' =>sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    CityGenerator::generate_establishments($city);
+    isnt($city->{'establishments'},undef, 'ensure establishments are created');
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10', 'establishments'=>['one' ] } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    CityGenerator::generate_establishments($city);
+    isnt($city->{'establishments'},undef, 'ensure establishments are created');
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'establishment_count'=>4 } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    CityGenerator::generate_establishments($city);
+    is(scalar( @{$city->{'establishments'}}) ,4, 'There are 4 establishments');
+
+    done_testing();
+};
+
 subtest 'test generate_postings' => sub {
     my $city;
     my $count=3;

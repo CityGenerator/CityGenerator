@@ -8,7 +8,6 @@ use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features seed generate_stats);
-
 ###############################################################################
 
 =head1 NAME
@@ -24,12 +23,14 @@ use base qw(Exporter);
 
 ###############################################################################
 
+#TODO Idea, stat_multiplier($ds,'stat') returns a 0.5 to 1.5 multiplier based on the stat
 #TODO add a bound function- bound(1,100,$val)
 use Carp;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use Template;
 use version;
 use Carp qw(longmess);
 ###############################################################################

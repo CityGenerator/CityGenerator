@@ -215,7 +215,7 @@ sub flesh_out_city {
     generate_race_percentages($city);
     set_races($city);
     recalculate_populations($city);
-#    generate_citizens($city);
+    generate_citizens($city);
     generate_children($city);
     generate_elderly($city);
     generate_imprisonment_rate($city);
@@ -228,27 +228,25 @@ sub flesh_out_city {
     #Generate
     generate_popdensity($city);
     generate_area($city);
-###    generate_walls($city);
-###    generate_watchtowers($city);
+    generate_walls($city);
+    generate_watchtowers($city);
     generate_housing($city);
-###    generate_specialists($city);
-###    generate_businesses($city);
-###    generate_establishments($city);
+    generate_specialists($city);
+    generate_businesses($city);
+    generate_establishments($city);
     generate_postings($city);
-###    generate_districts($city);
-###
-###
-###    generate_travelers($city);
-###    generate_crime($city);
+    generate_districts($city);
+
+    generate_travelers($city);
     set_dominance($city);
-###
-###    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
-###    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
-###    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
-###    $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
-###    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
-###
-###
+
+    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
+    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
+    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
+    $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
+    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
+
+
     return $city;
 }
 
@@ -415,32 +413,30 @@ sub recalculate_populations {
     return $city;
 }
 
-##################################################################################
-###
-###=head2 generate_citizens
-###
-###Generate a list of citizens.
-###=cut
-###
-##################################################################################
-#### TODO can this be refactored in a sane way with establishments and other "lists" of generator output?
-###sub generate_citizens {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'}  + 9);
-###
-###    
-###    $city->{'citizen_count'} = 8 + floor( ($city->{'size_modifier'} + 5)*1.2) if ( !defined $city->{'citizen_count'} );
-###
-###    if ( !defined $city->{'citizens'} ) {
-###        $city->{'citizens'} = [];
-###        for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
-###            push @{ $city->{'citizens'} },
-###                NPCGenerator::create_npc( { 'available_races' => $city->{'available_races'} } );
-###        }
-###    }
-###    print STDERR Dumper $city->{'available_races'};
-###    return $city;
-###}
+###############################################################################
+
+=head2 generate_citizens
+
+Generate a list of citizens.
+=cut
+
+###############################################################################
+# TODO can this be refactored in a sane way with establishments and other "lists" of generator output?
+sub generate_citizens {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'}  + 9);
+    
+    $city->{'citizen_count'} = 8 + floor( ($city->{'size_modifier'} + 5)*1.2) if ( !defined $city->{'citizen_count'} );
+
+    if ( !defined $city->{'citizens'} ) {
+        $city->{'citizens'} = [];
+        for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
+            push @{ $city->{'citizens'} },
+                NPCGenerator::create_npc( { 'available_races' => $city->{'available_races'} } );
+        }
+    }
+    return $city;
+}
 
 
 ###############################################################################
@@ -648,72 +644,89 @@ sub generate_popdensity {
 
 
 
-##################################################################################
-###
-###=head3 generate_walls()
-###
-###Determine information about the streets. 
-###
-###=cut
-###
-##################################################################################
-###sub generate_walls {
-###    #TODO refactor this method.... it's fugly.
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 20 );
-###
-###    # chance of -25 to +60
-###    my $modifier = $city->{'size_modifier'};
-###
-###    # Find a better way to determine if there's a wall.
-###    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if ( !defined $city->{'wall_chance_roll'} );
-###    if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
-###
-###        $city->{'walls'}->{'condition'} = roll_from_array(d(100), $xml_data->{'walls'}->{'condition'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'condition'});
-###        $city->{'walls'}->{'style'}     = roll_from_array(d(100), $xml_data->{'walls'}->{'style'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'style'});
-###        my $material                    = roll_from_array(d(100), $xml_data->{'walls'}->{'material'}->{'option'});
-###        $city->{'walls'}->{'material'}  = $material->{'content'} if (!defined $city->{'walls'}->{'material'});
-###
-###        $city->{'walls'}->{'height'}    = int (rand( $material->{'maxheight'} - $material->{'minheight'} ) + $material->{'minheight'}  ) if (!defined  $city->{'walls'}->{'height'});
-###
-###        $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
-###            if ( !defined $city->{'protected_percent'} );
-###
-###    print STDERR Dumper $city->{'area'} ;
-###
-###        $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
-###            if ( !defined $city->{'protected_area'} );
-###
-###        my $radius = sqrt( $city->{'protected_area'} / pi );
-###        $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
-###    } else {
-###        $city->{'walls'}->{'height'}  = 0;
-###    }
-###    return $city;
-###}
-
-
-##################################################################################
-###
-###=head3 generate_watchtowers()
-###
-###Determine information about the city watchtowers.
-###
-###=cut
-###
-##################################################################################
-###sub generate_watchtowers {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 21 );
-###
-###    #FIXME this shouldn't be hardcoded to 5
-###    $city->{'watchtowers'}->{'count'} = 5;
-###
-###    return $city;
-###}
-###
-###
 ###############################################################################
+
+=head3 generate_walls()
+
+Determine information about the streets. 
+
+=cut
+
+###############################################################################
+sub generate_walls {
+    #TODO refactor this method.... it's fugly.
+    #TODO this should take into account population density
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 20 );
+
+    # chance of -25 to +60
+    my $modifier = $city->{'size_modifier'};
+
+    # Find a better way to determine if there's a wall.
+    $city->{'wall_chance_roll'} = &d(100) - ($modifier) * 5 if ( !defined $city->{'wall_chance_roll'} );
+    if ( $city->{'wall_chance_roll'} <= $xml_data->{'walls'}->{'chance'} ) {
+
+        $city->{'walls'}->{'condition'} = roll_from_array(d(100), $xml_data->{'walls'}->{'condition'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'condition'});
+        $city->{'walls'}->{'style'}     = roll_from_array(d(100), $xml_data->{'walls'}->{'style'}->{'option'})->{'content'} if (!defined $city->{'walls'}->{'style'});
+ 
+        my $material                    = roll_from_array(d(100), $xml_data->{'walls'}->{'material'}->{'option'});
+        $city->{'walls'}->{'material'}  = $material->{'content'} if (!defined $city->{'walls'}->{'material'});
+        $city->{'walls'}->{'height'}    = int (rand( $material->{'maxheight'} - $material->{'minheight'} ) + $material->{'minheight'}  ) if (!defined  $city->{'walls'}->{'height'});
+
+        generate_protected_area($city)
+    } else {
+        $city->{'walls'}->{'height'}  = 0;
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head3 generate_protected_area()
+
+If a city has a wall, calcualte how much is protected.
+
+=cut
+
+###############################################################################
+
+sub generate_protected_area {
+    #TODO this should take into account population density
+    my ($city) = @_;
+        $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
+            if ( !defined $city->{'protected_percent'} );
+
+        $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
+            if ( !defined $city->{'protected_area'} );
+
+        my $radius = sqrt( $city->{'protected_area'} / pi );
+        $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
+
+
+}
+
+
+###############################################################################
+
+=head3 generate_watchtowers()
+
+Determine information about the city watchtowers.
+
+=cut
+
+###############################################################################
+sub generate_watchtowers {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 21 );
+
+    #FIXME this shouldn't be hardcoded to 5
+    $city->{'watchtowers'}->{'count'} = 5;
+
+    return $city;
+}
+
+
+############################################################################
 
 =head3 set_laws()
 
@@ -768,198 +781,187 @@ sub generate_area {
 
 
 
-##################################################################################
-###
-###=head2 generate_specialists
-###
-###Generate a list of specialists.
-###
-###=cut
-###
-##################################################################################
-###sub generate_specialists {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 26);
-###
-###    if ( !defined $city->{'specialists'} ) {
-###        $city->{'specialists'} = {};
-###    }
-###
-###    $city->{'specialist_total'} = 0;
-###
-###    foreach my $specialist_name ( sort keys %{ $specialist_data->{'option'} } ) {
-###        if ( !defined $city->{'specialists'}->{$specialist_name} ) {
-###
-###            my $specialist = $specialist_data->{'option'}->{$specialist_name};
-###            if ( $specialist->{'sv'} <= $city->{'population_total'} ) {
-###                $city->{'specialists'}->{$specialist_name}
-###                    = { 'count' => floor( $city->{'population_total'} / $specialist->{'sv'} ), };
-###                $city->{'specialist_total'} += $city->{'specialists'}->{$specialist_name}->{'count'};
-###            } else {
-###
-###                if ( &d( $specialist->{'sv'} ) == 1 ) {
-###                    $city->{'specialists'}->{$specialist_name} = { 'count' => 1 };
-###                    $city->{'specialist_total'} += $city->{'specialists'}->{$specialist_name}->{'count'};
-###                }
-###            }
-###        }
-###    }
-###
-###
-###    return $city;
-###}
-###
-##################################################################################
-###
-###=head2 generate_businesses
-###
-###Generate a list of businesses from existing specialists
-###
-###=cut
-###
-##################################################################################
-###
-###
-###sub generate_businesses {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 27);
-###    if ( !defined $city->{'businesses'} ) {
-###        $city->{'businesses'} = {};
-###    }
-###    $city->{'business_total'} = 0;
-###    foreach my $specialist_name ( sort keys %{ $city->{'specialists'} } ) {
-###        my $specialist = $specialist_data->{'option'}->{$specialist_name};
-###
-###        # Check to see if the specialist has a building associated with it.
-###        if ( defined $specialist->{'building'} ) {
-###            my $building = $specialist->{'building'};
-###            $city->{'businesses'}->{$building}->{'perbuilding'}
-###                = $specialist_data->{'option'}->{$specialist_name}->{'perbuilding'};
-###            $city->{'businesses'}->{$building}->{'district'}
-###                = $specialist_data->{'option'}->{$specialist_name}->{'district'};
-###            if ( defined $city->{'businesses'}->{$building}->{'specialist_count'} ) {
-###                $city->{'businesses'}->{$building}->{'specialist_count'}
-###                    += $city->{'specialists'}->{$specialist_name}->{'count'};
-###            } else {
-###                $city->{'businesses'}->{$building}->{'specialist_count'}
-###                    = $city->{'specialists'}->{$specialist_name}->{'count'};
-###            }
-###        }
-###    }
-###
-###    foreach my $business_name ( keys %{ $city->{'businesses'} } ) {
-###        my $business = $city->{'businesses'}->{$business_name};
-###        $city->{'businesses'}->{$business_name}->{'count'}
-###            = ceil( $business->{'specialist_count'} / $business->{'perbuilding'} );
-###        $city->{'business_total'} += $city->{'businesses'}->{$business_name}->{'count'};
-###    }
-###
-###    return $city;
-###}
-###
-###
-##################################################################################
-###
-###=head2 generate_districts
-###
-###Generate a list of districts from existing businesses
-###
-###=cut
-###
-##################################################################################
-###
-###
-###sub generate_districts {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 29);
-###
-###    my $district_percents = {};
-###
-###    #loop through our businesses and add up modifiers for district percents
-###    foreach my $business_name ( keys %{ $city->{'businesses'} } ) {
-###        my $business      = $city->{'businesses'}->{$business_name};
-###        my $district_name = $business->{'district'};
-###        $district_percents->{$district_name}
-###            += ( defined $district_percents->{$district_name} ) ? &d( $business->{'count'} ) : 0;
-###    }
-###
-###    foreach my $district_name ( keys %{ $district_data->{'option'} } ) {
-###        my $district = $district_data->{'option'}->{$district_name};
-###
-###        my $district_modifier
-###            = ( defined $district_percents->{$district_name} ) ? $district_percents->{$district_name} : 0;
-###        my $district_roll = &d(100);
-###
-###        # modify our district chance in the xml by our district_modifier
-###        if ( $district_roll <= $district->{'chance'} + $district_modifier + $city->{'size_modifier'} ) {
-###            $city->{'districts'}->{$district_name}->{'stat'}           = $district->{'stat'};
-###            $city->{'districts'}->{$district_name}->{'business_count'} = $district_modifier;
-###        }
-###
-###    }
-###    return $city;
-###}
-##################################################################################
-###
-###=head2 generate_travelers
-###
-###Generate a list of travelers.
-###
-###=cut
-###
-##################################################################################
-###sub generate_travelers {
-###    my ($city) = @_;
-###
-###    # NOTE adding offset of 10 to ensure travelers are not the same races as citizens...
-###    GenericGenerator::set_seed( $city->{'seed'} + 30 );
-###
-###    $city->{'traveler_count'} = 5 + $city->{'stats'}->{'tolerance'} if ( !defined $city->{'traveler_count'} );
-###    if ( !defined $city->{'available_traveler_races'} ) {
-###
-###        #If tolerance is negative, only city races are allowed inside.
-###        if ( $city->{'stats'}->{'tolerance'} < 0 ) {
-###            $city->{'available_traveler_races'} = $city->{'available_races'};
-###        } else {
-###            $city->{'available_traveler_races'} = [ keys %{ $names_data->{'race'} } ];
-###        }
-###    }
-###
-###    if ( !defined $city->{'travelers'} ) {
-###        $city->{'travelers'} = [];
-###        for ( my $i = 0 ; $i < $city->{'traveler_count'} ; $i++ ) {
-###            push @{ $city->{'travelers'} },
-###                NPCGenerator::create_npc( { 'available_races' => $city->{'available_traveler_races'} } );
-###        }
-###    }
-###    return $city;
-###}
-###
-##################################################################################
-###
-###=head2 generate_crime
-###
-###Generate the crime rate
-###
-###=cut
-###
-##################################################################################
-###sub generate_crime {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 31);
-###
-###    my $moralmod = int( ( $city->{'moral'} - 50 ) / 10 );
-###
-###    $city->{'crime_roll'}
-###        = min(100, max(1,int( &d(100) - $city->{'stats'}->{'education'} + $city->{'stats'}->{'authority'} + $moralmod )))
-###        if ( !defined $city->{'crime_roll'} );
-###    $city->{'crime_description'}
-###        = roll_from_array( $city->{'crime_roll'}, $xml_data->{'crime'}->{'option'} )->{'content'}
-###        if ( !defined $city->{'crime_description'} );
-###
-###    return $city;
-###}
+###############################################################################
 
+=head2 generate_specialists
+
+Generate a list of specialists.
+
+=cut
+
+###############################################################################
+sub generate_specialists {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 26);
+
+    if ( !defined $city->{'specialists'} ) {
+        $city->{'specialists'} = {};
+    }
+
+    $city->{'specialist_total'} = 0;
+
+    foreach my $specialist_name ( sort keys %{ $specialist_data->{'option'} } ) {
+        if ( !defined $city->{'specialists'}->{$specialist_name} ) {
+
+            my $specialist = $specialist_data->{'option'}->{$specialist_name};
+            if ( $specialist->{'sv'} <= $city->{'population_total'} ) {
+                $city->{'specialists'}->{$specialist_name}
+                    = { 'count' => floor( $city->{'population_total'} / $specialist->{'sv'} ), };
+                $city->{'specialist_total'} += $city->{'specialists'}->{$specialist_name}->{'count'};
+            } else {
+
+                if ( &d( $specialist->{'sv'} ) == 1 ) {
+                    $city->{'specialists'}->{$specialist_name} = { 'count' => 1 };
+                    $city->{'specialist_total'} += $city->{'specialists'}->{$specialist_name}->{'count'};
+                }
+            }
+        }
+    }
+
+
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_businesses
+
+Generate a list of businesses from existing specialists
+
+=cut
+
+###############################################################################
+
+
+sub generate_businesses {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 27);
+    if ( !defined $city->{'businesses'} ) {
+        $city->{'businesses'} = {};
+    }
+    $city->{'business_total'} = 0;
+    foreach my $specialist_name ( sort keys %{ $city->{'specialists'} } ) {
+        my $specialist = $specialist_data->{'option'}->{$specialist_name};
+
+        # Check to see if the specialist has a building associated with it.
+        if ( defined $specialist->{'building'} ) {
+            my $building = $specialist->{'building'};
+            $city->{'businesses'}->{$building}->{'perbuilding'}
+                = $specialist_data->{'option'}->{$specialist_name}->{'perbuilding'};
+            $city->{'businesses'}->{$building}->{'district'}
+                = $specialist_data->{'option'}->{$specialist_name}->{'district'};
+            if ( defined $city->{'businesses'}->{$building}->{'specialist_count'} ) {
+                $city->{'businesses'}->{$building}->{'specialist_count'}
+                    += $city->{'specialists'}->{$specialist_name}->{'count'};
+            } else {
+                $city->{'businesses'}->{$building}->{'specialist_count'}
+                    = $city->{'specialists'}->{$specialist_name}->{'count'};
+            }
+        }
+    }
+
+    foreach my $business_name ( keys %{ $city->{'businesses'} } ) {
+        my $business = $city->{'businesses'}->{$business_name};
+        $city->{'businesses'}->{$business_name}->{'count'}
+            = ceil( $business->{'specialist_count'} / $business->{'perbuilding'} );
+        $city->{'business_total'} += $city->{'businesses'}->{$business_name}->{'count'};
+    }
+
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 generate_districts
+
+Generate a list of districts from existing businesses
+
+=cut
+
+###############################################################################
+
+
+sub generate_districts {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 29);
+
+    my $district_percents = {};
+
+    #loop through our businesses and add up modifiers for district percents
+    foreach my $business_name ( keys %{ $city->{'businesses'} } ) {
+        my $business      = $city->{'businesses'}->{$business_name};
+        my $district_name = $business->{'district'};
+        $district_percents->{$district_name}
+            += ( defined $district_percents->{$district_name} ) ? &d( $business->{'count'} ) : 0;
+    }
+
+    foreach my $district_name ( keys %{ $district_data->{'option'} } ) {
+        my $district = $district_data->{'option'}->{$district_name};
+
+        my $district_modifier
+            = ( defined $district_percents->{$district_name} ) ? $district_percents->{$district_name} : 0;
+        my $district_roll = &d(100);
+
+        # modify our district chance in the xml by our district_modifier
+        if ( $district_roll <= $district->{'chance'} + $district_modifier + $city->{'size_modifier'} ) {
+            $city->{'districts'}->{$district_name}->{'stat'}           = $district->{'stat'};
+            $city->{'districts'}->{$district_name}->{'business_count'} = $district_modifier;
+        }
+
+    }
+    return $city;
+}
+
+
+###############################################################################
+
+=head2 generate_travelers
+
+Generate a list of travelers.
+
+=cut
+
+###############################################################################
+sub generate_travelers {
+    my ($city) = @_;
+
+    # NOTE adding offset to ensure travelers are not the same races as citizens...
+    GenericGenerator::set_seed( $city->{'seed'} + 30 );
+
+    $city->{'traveler_count'} = floor((7 + $city->{'size_modifier'})* ($city->{'stats'}->{'tolerance'}+50)/100)  if ( !defined $city->{'traveler_count'} );
+
+
+    # Calculate traveler races if they don't exist
+    if ( !defined $city->{'available_traveler_races'} ) {
+
+        #If tolerance is negative, only city races are allowed inside.
+        if ( $city->{'stats'}->{'tolerance'} < 30 ) {
+
+            $city->{'available_traveler_races'} =[  map {$_->{'race'}}   @{ $city->{'races'} } ];
+
+            $city->{'available_traveler_races'} =[ grep {!/other/} @{ $city->{'available_traveler_races'}}];
+
+        #If tolerance is good, any available race is allowe.
+        }elsif ( $city->{'stats'}->{'tolerance'} < 60 ) {
+            $city->{'available_traveler_races'} = $city->{'available_races'};
+            $city->{'available_traveler_races'} = [grep {!/other/} @{ $city->{'available_traveler_races'}}];
+        # if tolerance is excellent, ANY race is allowed.
+        } else {
+            $city->{'available_traveler_races'} = [ keys %{ $names_data->{'race'} } ];
+            $city->{'available_traveler_races'} = [grep {!/other/} @{ $city->{'available_traveler_races'}}];
+        }
+    }
+
+    if ( !defined $city->{'travelers'} ) {
+        $city->{'travelers'} = [];
+        for ( my $i = 0 ; $i < $city->{'traveler_count'} ; $i++ ) {
+            push @{ $city->{'travelers'} },
+                NPCGenerator::create_npc( { 'available_races' => $city->{'available_traveler_races'} } );
+        }
+    }
+    return $city;
+}
 
 ###############################################################################
 
@@ -1039,46 +1041,44 @@ sub generate_housing {
 }
 
 
-##################################################################################
-###
-###=head2 generate_establishments
-###
-###Generate a list of establishments based on the business section
-###
-###=cut
-###
-##################################################################################
-###
-###
-###sub generate_establishments {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 34);
-###
-###    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
-###
-###    if ( defined $city->{'businesses'} ) {
-###        $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5) * 1.2) if ( !defined $city->{'establishment_count'} );
-###        my $patrons = floor($city->{'population_total'} / 3);
-###        if ( $patrons > ($city->{'establishment_count'} * 3) ){
-###            $patrons = $city->{'establishment_count'} * 3;
-###        }
-###        for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
-###            if ( !defined $city->{'establishments'}->[$establishmentID] ) {
-###                $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
-###                if( $patrons > 0 ) {
-###                    my $roll = $patrons;
-###                    if ($patrons > 10){
-###                        $roll = 10;
-###                    }
-###                    my $occupants = d(floor($roll / 2));
-###                    $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
-###                    $patrons = $patrons - $occupants;
-###                }
-###            }    
-###        }
-###    }
-###    return $city;
-###}
+###############################################################################
+
+=head2 generate_establishments
+
+Generate a list of establishments based on the business section
+
+=cut
+
+###############################################################################
+
+
+sub generate_establishments {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'establishments'} = [] if ( !defined $city->{'establishments'} );
+
+    $city->{'establishment_count'} = 8 + floor( ($city->{'size_modifier'} + 5) * 1.2) if ( !defined $city->{'establishment_count'} );
+    my $patrons = floor($city->{'population_total'} / 3);
+    if ( $patrons > ($city->{'establishment_count'} * 3) ){
+        $patrons = $city->{'establishment_count'} * 3;
+    }
+    for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
+        if ( !defined $city->{'establishments'}->[$establishmentID] ) {
+            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+            if( $patrons > 0 ) {
+                my $roll = $patrons;
+                if ($patrons > 10){
+                    $roll = 10;
+                }
+                my $occupants = d(floor($roll / 2));
+                $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
+                $patrons = $patrons - $occupants;
+            }
+        }    
+    }
+    return $city;
+}
 
 
 ###############################################################################

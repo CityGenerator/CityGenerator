@@ -197,94 +197,94 @@ subtest 'test create_npc' => sub {
     };
     done_testing();
 };
-###
-###subtest 'test get_races' => sub {
-###
-###    my $races = NPCGenerator::get_races();
-###
-###    is( scalar(@$races), 23, "Total of 23 races allowed." );
-###
-###    done_testing();
-###};
-###
-###subtest 'test generate_npc_names' => sub {
-###    GenericGenerator::set_seed(1);
-###    my $names = NPCGenerator::generate_npc_names( 'human', 2 );
-###    is( scalar(@$names), 2 );
-###    $names = NPCGenerator::generate_npc_names( 'any', 2 );
-###    is( scalar(@$names), 2 );
-###    $names = NPCGenerator::generate_npc_names( 'any', 'ef' );
-###    is( scalar(@$names), 10 );
-###    $names = NPCGenerator::generate_npc_names( 'any', );
-###    is( scalar(@$names), 10 );
-###    $names = NPCGenerator::generate_npc_names( 'fakerace', );
-###    is( scalar(@$names), 10 );
-###    done_testing();
-###};
-###
-###subtest 'test generate_npc_name' => sub {
-###
-###    subtest 'test generating Mutt Race' => sub {
-###        GenericGenerator::set_seed(1);
-###        my $name = NPCGenerator::generate_npc_name('any');
-###        is( $name, 'Dave Matgton' );
-###
-###        for ( my $i = 0 ; $i < 10 ; $i++ ) {
-###            GenericGenerator::set_seed( 2 + $i );
-###            $name = NPCGenerator::generate_npc_name('half-orc');
-###
-###            #like($name, qr/(\(orc\)|\(human\))/, "should be human or orc" );
-###        }
-###        done_testing();
-###    };
-###    subtest 'test generating unknown race' => sub {
-###        GenericGenerator::set_seed(1);
-###        my $name = NPCGenerator::generate_npc_name('CongressCritter');
-###        is( $name, 'unnamed congresscritter' );
-###        done_testing();
-###    };
-###
-###    done_testing();
-###};
-###
-###subtest 'test NPC motivations' => sub {
-###    my $npc;
-###    $npc = NPCGenerator::create_npc( { 'seed' => 1 } );
-###    isnt( $npc->{'motivation'},        undef, );
-###    isnt( $npc->{'motivation_detail'}, undef, );
-###    is( $npc->{'motivation_description'}, $npc->{'motivation'} . " " . $npc->{'motivation_detail'}, );
-###
-###    $npc = NPCGenerator::create_npc(
-###        {
-###            'seed'                   => 1,
-###            'motivation'             => 'to play',
-###            'motivation_detail'      => 'whirlyball',
-###            'motivation_description' => 'to hate whirlyball'
-###        }
-###    );
-###    is( $npc->{'motivation'},             'to play', );
-###    is( $npc->{'motivation_detail'},      'whirlyball', );
-###    is( $npc->{'motivation_description'}, 'to hate whirlyball', );
-###
-###    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'to play', 'motivation_detail' => 'whirlyball' } );
-###    is( $npc->{'motivation'},             'to play', );
-###    is( $npc->{'motivation_detail'},      'whirlyball', );
-###    is( $npc->{'motivation_description'}, 'to play whirlyball', );
-###
-###    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'to play' } );
-###    is( $npc->{'motivation'},             'to play', );
-###    is( $npc->{'motivation_detail'},      '', );
-###    is( $npc->{'motivation_description'}, 'to play', );
-###
-###    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'finding a missing' } );
-###    is( $npc->{'motivation'},             'finding a missing', );
-###    foreach my $value (qw( motivation_detail  motivation_description)){
-###        isnt($npc->{$value},undef, "$value 'ensure value exists");
-###    }
-###
-###    done_testing();
-###
-###};
-###
-###
+
+subtest 'test get_races' => sub {
+
+    my $races = NPCGenerator::get_races();
+
+    is( scalar(@$races), 23, "Total of 23 races allowed." );
+
+    done_testing();
+};
+
+subtest 'test generate_npc_names' => sub {
+    GenericGenerator::set_seed(1);
+    my $names = NPCGenerator::generate_npc_names( 'human', 2 );
+    is( scalar(@$names), 2 );
+    $names = NPCGenerator::generate_npc_names( 'any', 2 );
+    is( scalar(@$names), 2 );
+    $names = NPCGenerator::generate_npc_names( 'any', 'ef' );
+    is( scalar(@$names), 10 );
+    $names = NPCGenerator::generate_npc_names( 'any', );
+    is( scalar(@$names), 10 );
+    $names = NPCGenerator::generate_npc_names( 'fakerace', );
+    is( scalar(@$names), 10 );
+    done_testing();
+};
+
+subtest 'test generate_npc_name' => sub {
+
+    subtest 'test generating Mutt Race' => sub {
+        GenericGenerator::set_seed(1);
+        my $name = NPCGenerator::generate_npc_name('any');
+        is( $name, 'Dave Matgton' );
+
+        for ( my $i = 0 ; $i < 10 ; $i++ ) {
+            GenericGenerator::set_seed( 2 + $i );
+            $name = NPCGenerator::generate_npc_name('half-orc');
+
+            #like($name, qr/(\(orc\)|\(human\))/, "should be human or orc" );
+        }
+        done_testing();
+    };
+    subtest 'test generating unknown race' => sub {
+        GenericGenerator::set_seed(1);
+        my $name = NPCGenerator::generate_npc_name('CongressCritter');
+        is( $name, 'unnamed congresscritter' );
+        done_testing();
+    };
+
+    done_testing();
+};
+
+subtest 'test NPC motivations' => sub {
+    my $npc;
+    $npc = NPCGenerator::create_npc( { 'seed' => 1 } );
+    isnt( $npc->{'motivation'},        undef, );
+    isnt( $npc->{'motivation_detail'}, undef, );
+    is( $npc->{'motivation_description'}, $npc->{'motivation'} . " " . $npc->{'motivation_detail'}, );
+
+    $npc = NPCGenerator::create_npc(
+        {
+            'seed'                   => 1,
+            'motivation'             => 'to play',
+            'motivation_detail'      => 'whirlyball',
+            'motivation_description' => 'to hate whirlyball'
+        }
+    );
+    is( $npc->{'motivation'},             'to play', );
+    is( $npc->{'motivation_detail'},      'whirlyball', );
+    is( $npc->{'motivation_description'}, 'to hate whirlyball', );
+
+    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'to play', 'motivation_detail' => 'whirlyball' } );
+    is( $npc->{'motivation'},             'to play', );
+    is( $npc->{'motivation_detail'},      'whirlyball', );
+    is( $npc->{'motivation_description'}, 'to play whirlyball', );
+
+    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'to play' } );
+    is( $npc->{'motivation'},             'to play', );
+    is( $npc->{'motivation_detail'},      '', );
+    is( $npc->{'motivation_description'}, 'to play', );
+
+    $npc = NPCGenerator::create_npc( { 'seed' => 1, 'motivation' => 'finding a missing' } );
+    is( $npc->{'motivation'},             'finding a missing', );
+    foreach my $value (qw( motivation_detail  motivation_description)){
+        isnt($npc->{$value},undef, "$value 'ensure value exists");
+    }
+
+    done_testing();
+
+};
+
+
 1;
