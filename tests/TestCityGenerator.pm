@@ -429,43 +429,21 @@ subtest 'test set_laws' => sub {
 
 
 subtest 'test generate_area' => sub {
-    #TODO re-evealuate how much of this is needed.
     my $city;
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 1000, 'population_density' => 100 } );
+    my$presets={ 'seed' => 1, 'population_total' => 1000, 'population_density' => 100 } ;
+    $city = CityGenerator::create_city( $presets);
     CityGenerator::generate_area($city);
     isnt( $city->{'area'},               undef );
     isnt( $city->{'arable_percentage'},  undef );
     isnt( $city->{'arable_description'}, undef );
 
-    $city = CityGenerator::create_city(
-        {
-            'seed'               => 1,
-            'population_total'   => 1000,
-            'population_density' => 150,
-            'arable_percentage'  => 100,
-            'arable_description' => 'meh'
-        }
-    );
+    $presets->{'arable_percentage'}=100;
+    $presets->{'arable_description'}='meh';
+    $city = CityGenerator::create_city( $presets);
     CityGenerator::generate_area($city);
-    is( $city->{'area'},               6.67 );
+    is( $city->{'area'},               '10.00' );
     is( $city->{'arable_percentage'},  100 );
     is( $city->{'arable_description'}, 'meh' );
-
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 1000, 'population_density' => 300, } );
-    CityGenerator::generate_area($city);
-    is( $city->{'area'}, 3.33 );
-
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 1000, 'population_density' => 1000 } );
-    CityGenerator::generate_area($city);
-    is( $city->{'area'}, '1.00' );
-
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 2000, 'population_density' => 1000 } );
-    CityGenerator::generate_area($city);
-    is( $city->{'area'}, '2.00' );
-
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 3000, 'population_density' => 1000 } );
-    CityGenerator::generate_area($city);
-    is( $city->{'area'}, '3.00' );
 
     $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => 3000, 'population_density' => 1000, 'area'=>22 } );
     CityGenerator::generate_area($city);
