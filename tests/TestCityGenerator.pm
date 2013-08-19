@@ -587,104 +587,101 @@ subtest 'test generate_area' => sub {
 ####-------------------------------------------------------------------
 ####-----------------------Refactor after this ------------------------
 ####-------------------------------------------------------------------
-###
-###
-###subtest 'test set_dominance' => sub {
-###    #FIXME this whole section is garbage;
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, } );
-###    $city->{'available_races'}  = [ 'dwarf', 'human', 'halfling' ];
-###    $city->{'race percentages'} = [ 85,      10,      3 ];
-###
-###    $city->{'pop_estimate'} = 93;
-###    CityGenerator::set_races($city);
-###    CityGenerator::set_dominance($city);
-###    foreach my $value (qw( dominant_race dominance_level dominance_description)){
-###        is($city->{$value}, undef, "ensure $value is undefined");
-###    }
-###
-###    $city->{'dominance_chance'}      = 1;
-###    $city->{'dominant_race'}         = undef;
-###    $city->{'dominance_level'}       = undef;
-###    $city->{'dominance_description'} = undef;
-###    CityGenerator::set_dominance($city);
-###    foreach my $value (qw(dominance_chance dominant_race dominance_level dominance_description)){
-###        isnt($city->{$value}, undef, "ensure $value is defined");
-###    }
-###
-###    $city->{'dominance_chance'}      = 90;
-###    $city->{'dominant_race'}         = undef;
-###    $city->{'dominance_level'}       = undef;
-###    $city->{'dominance_description'} = undef;
-###    CityGenerator::set_dominance($city);
-###    is( $city->{'dominance_chance'},      '90' );
-###    foreach my $value (qw( dominant_race dominance_level dominance_description)){
-###        is($city->{$value}, undef, "ensure $value is undefined");
-###    }
-###
-###    $city->{'dominance_chance'}      = 5;
-###    $city->{'dominant_race'}         = undef;
-###    $city->{'dominance_level'}       = 50;
-###    $city->{'dominance_description'} = undef;
-###    CityGenerator::set_dominance($city);
-###    foreach my $value (qw(dominance_chance dominant_race dominance_level dominance_description)){
-###        isnt($city->{$value}, undef, "ensure $value is defined");
-###    }
-###
-###    $city->{'dominance_chance'}      = 5;
-###    $city->{'dominant_race'}         = 'human';
-###    $city->{'dominance_level'}       = 50;
-###    $city->{'dominance_description'} = 'smelly';
-###    CityGenerator::set_dominance($city);
-###    is( $city->{'dominance_chance'},      5 );
-###    is( $city->{'dominant_race'},         'human' );
-###    is( $city->{'dominance_level'},       50 );
-###    is( $city->{'dominance_description'}, 'smelly' );
-###
-###    done_testing();
-###};
-###
-###subtest 'test generate_housing' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', } );
-###    CityGenerator::generate_housing($city);
-###    foreach my $value ( qw( poor wealthy average abandoned total poor_population wealthy_population average_population poor_percent wealthy_percent average_percent abandoned_percent ) ){
-###        isnt($city->{'housing'}->{$value}, undef, "ensure $value is defined");
-###    }
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'stats' => { 'economy' => 0 } } );
-###    CityGenerator::generate_housing($city);
-###    foreach my $value ( qw( poor wealthy average abandoned total poor_population wealthy_population average_population poor_percent wealthy_percent average_percent abandoned_percent ) ){
-###        isnt($city->{'housing'}->{$value}, undef, "ensure $value is defined");
-###    }
-###
-###    my $housing={
-###                'poor'               => 20,
-###                'wealthy'            => 2,
-###                'average'            => 98,
-###                'abandoned'          => 13,
-###                'total'              => 120,
-###                'poor_population'    => 300,
-###                'wealthy_population' => 10,
-###                'average_population' =>,
-###                690,
-###                'poor_percent'    => 30,
-###                'wealthy_percent' => 1,
-###                'average_percent' =>,
-###                69, 'abandoned_percent' => 11
-###            };
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'             => 1,
-###            'population_total' => '10000',
-###            'stats'            => { 'economy' => 0 },
-###            'housing'          => $housing, 
-###        }
-###    );
-###    CityGenerator::generate_housing($city);
-###    is_deeply(
-###        $city->{'housing'}, $housing, "ensure housing doesn't change when provided" );
-###    done_testing();
-###};
+
+
+subtest 'test set_dominance' => sub {
+    #FIXME this whole section is garbage;
+    my $city;
+    my $presets={ 'seed' => 1,
+            'races' => [
+                       { 'population' => 80, 'percent' => 85, 'race' => 'halfling' },
+                       { 'population' => 10, 'percent' => 10, 'race' => 'human'    },
+                       { 'population' => 3,  'percent' => 3,  'race' => 'dwarf'    },
+                       { 'population' => 1,  'percent' => 2,  'race' => 'other'    }
+                     ],
+            'available_races' => [  'dwarf', 'human', 'halfling' ],
+            'race percentages' => [ 85,      10,      3          ],
+
+            'pop_estimate'=> 93,
+    } ;
+
+    $city = CityGenerator::create_city( $presets);
+
+    CityGenerator::set_races($city);
+    CityGenerator::set_dominance($city);
+    foreach my $value (qw( dominant_race dominance_level dominance_description)){
+        is($city->{$value}, undef, "ensure $value is undefined");
+    }
+    $presets->{'dominance_chance'}=1;
+    $city = CityGenerator::create_city( $presets);
+
+    CityGenerator::set_races($city);
+    CityGenerator::set_dominance($city);
+    foreach my $value (qw(dominance_chance dominant_race dominance_level dominance_description)){
+        isnt($city->{$value}, undef, "ensure $value is defined");
+    }
+
+    $presets->{'dominance_chance'}=99;
+    $city = CityGenerator::create_city( $presets);
+
+    CityGenerator::set_races($city);
+    CityGenerator::set_dominance($city);
+    foreach my $value (qw( dominant_race dominance_level dominance_description)){
+        is($city->{$value}, undef, "ensure $value is undefined");
+    }
+
+    $presets->{'dominance_chance'}=1;
+    $presets->{'dominant_race'}='human';
+    $presets->{'dominance_level'}=50;
+    $presets->{'dominance_description'}='smelly';
+    $city = CityGenerator::create_city( $presets);
+
+    CityGenerator::set_races($city);
+    CityGenerator::set_dominance($city);
+    is( $city->{'dominance_chance'},      1 );
+    is( $city->{'dominant_race'},         'human' );
+    is( $city->{'dominance_level'},       50 );
+    is( $city->{'dominance_description'}, 'smelly' );
+
+    done_testing();
+};
+
+subtest 'test generate_housing' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', } );
+    CityGenerator::generate_housing($city);
+    foreach my $value ( qw( poor wealthy average abandoned total poor_population wealthy_population average_population poor_percent wealthy_percent average_percent abandoned_percent ) ){
+        isnt($city->{'housing'}->{$value}, undef, "ensure $value is defined");
+    }
+
+    my $housing={
+                'poor'               => 20,
+                'wealthy'            => 2,
+                'average'            => 98,
+                'abandoned'          => 13,
+                'total'              => 120,
+                'poor_population'    => 300,
+                'wealthy_population' => 10,
+                'average_population' =>,
+                690,
+                'poor_percent'    => 30,
+                'wealthy_percent' => 1,
+                'average_percent' =>,
+                69, 'abandoned_percent' => 11
+            };
+    $city = CityGenerator::create_city(
+        {
+            'seed'             => 1,
+            'population_total' => '10000',
+            'stats'            => { 'economy' => 0 },
+            'housing'          => $housing, 
+        }
+    );
+    CityGenerator::generate_housing($city);
+    is_deeply(
+        $city->{'housing'}, $housing, "ensure housing doesn't change when provided" );
+    done_testing();
+};
 ###
 ###subtest 'test generate_specialists' => sub {
 ###    my $city;

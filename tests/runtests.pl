@@ -6,7 +6,8 @@ use lib "tests/";
 use Test::More;
 
 use TestGenericGenerator;
-use TestCityGenerator;
+#use TestCityGenerator;
+use TestNPCGenerator;
 
 #use TestAdventureGenerator;
 #use TestAstronomyGenerator;
@@ -23,7 +24,6 @@ use TestCityGenerator;
 #use TestGovtGenerator;
 #use TestMilitaryGenerator;
 #use TestMythGenerator;
-#use TestNPCGenerator;
 #use TestRegionGenerator;
 #use TestSummaryFormatter;
 #use TestWorldFormatter;

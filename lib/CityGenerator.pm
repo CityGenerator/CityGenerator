@@ -230,7 +230,7 @@ sub flesh_out_city {
     generate_area($city);
 ###    generate_walls($city);
 ###    generate_watchtowers($city);
-###    generate_housing($city);
+    generate_housing($city);
 ###    generate_specialists($city);
 ###    generate_businesses($city);
 ###    generate_establishments($city);
@@ -240,7 +240,7 @@ sub flesh_out_city {
 ###
 ###    generate_travelers($city);
 ###    generate_crime($city);
-###    set_dominance($city);
+    set_dominance($city);
 ###
 ###    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
 ###    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
@@ -959,93 +959,86 @@ sub generate_area {
 ###
 ###    return $city;
 ###}
-###
-###
-##################################################################################
-###
-###=head2 set_dominance
-###
-###select a race to be dominant, as well as the level of dominance.
-###
-###=cut
-###
-##################################################################################
-###sub set_dominance {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} +32);
-###
-###    $city->{'dominance_chance'} = d(100) if ( !defined $city->{'dominance_chance'} );
-###    if ( $city->{'dominance_chance'} < $xml_data->{'dominance'}->{'chance'} ) {
-###        $city->{'dominant_race'} = rand_from_array( $city->{'races'} )->{'race'}
-###            if ( !defined $city->{'dominant_race'} );
-###        $city->{'dominance_level'} = d(100) + $city->{'stats'}->{'authority'} - $city->{'stats'}->{'tolerance'}
-###            if ( !defined $city->{'dominance_level'} );
-###        my $dominance_option = roll_from_array( $city->{'dominance_level'}, $xml_data->{'dominance'}->{'option'} );
-###        $city->{'dominance_description'} = $dominance_option->{'content'}
-###            if ( !defined $city->{'dominance_description'} );
-###    }
-###    return $city;
-###}
-###
-##################################################################################
-###
-###=head2 generate_housing
-###
-###generate the number of houses for the population
-###
-###=cut
-###
-##################################################################################
-###
-###sub generate_housing {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 33);
-###
-###    my $housing_quality = $xml_data->{'housing'}->{'quality'};
-###    my $economy         = $city->{'stats'}->{'economy'};
-###
-###    $city->{'housing'}->{'poor_percent'} = $housing_quality->{'poor'}->{'percent'} - ( $economy * 5 )
-###        if ( !defined $city->{'housing'}->{'poor_percent'} );
-###    $city->{'housing'}->{'average_percent'} = $housing_quality->{'average'}->{'percent'} + ( $economy * 5 )
-###        if ( !defined $city->{'housing'}->{'average_percent'} );
-###    $city->{'housing'}->{'wealthy_percent'} = $housing_quality->{'wealthy'}->{'percent'}
-###        if ( !defined $city->{'housing'}->{'wealthy_percent'} );
-###    $city->{'housing'}->{'abandoned_percent'} = ( 11 - ($economy) * 2 )
-###        if ( !defined $city->{'housing'}->{'abandoned_percent'} );    # 1-21%
-###
-###
-###    $city->{'housing'}->{'poor_population'}
-###        = ceil( $city->{'population_total'} * $city->{'housing'}->{'poor_percent'} / 100 )
-###        if ( !defined $city->{'housing'}->{'poor_population'} );
-###    $city->{'housing'}->{'average_population'}
-###        = ceil( $city->{'population_total'} * $city->{'housing'}->{'average_percent'} / 100 )
-###        if ( !defined $city->{'housing'}->{'average_population'} );
-###    $city->{'housing'}->{'wealthy_population'}
-###        = ceil( $city->{'population_total'} * $city->{'housing'}->{'wealthy_percent'} / 100 )
-###        if ( !defined $city->{'housing'}->{'wealthy_population'} );
-###
-###
-###    $city->{'housing'}->{'poor'}
-###        = ceil( $city->{'housing'}->{'poor_population'} / $housing_quality->{'poor'}->{'density'} )
-###        if ( !defined $city->{'housing'}->{'poor'} );
-###    $city->{'housing'}->{'average'}
-###        = int( $city->{'housing'}->{'average_population'} / $housing_quality->{'average'}->{'density'} )
-###        if ( !defined $city->{'housing'}->{'average'} );
-###    $city->{'housing'}->{'wealthy'}
-###        = int( $city->{'housing'}->{'wealthy_population'} / $housing_quality->{'wealthy'}->{'density'} )
-###        if ( !defined $city->{'housing'}->{'wealthy'} );
-###
-###    $city->{'housing'}->{'total'}
-###        = $city->{'housing'}->{'poor'} + $city->{'housing'}->{'average'} + $city->{'housing'}->{'wealthy'}
-###        if ( !defined $city->{'housing'}->{'total'} );
-###    $city->{'housing'}->{'abandoned'}
-###        = int( $city->{'housing'}->{'total'} * $city->{'housing'}->{'abandoned_percent'} / 100 );
-###
-###
-###    return $city;
-###}
-###
-###
+
+
+###############################################################################
+
+=head2 set_dominance
+
+select a race to be dominant, as well as the level of dominance.
+
+=cut
+
+###############################################################################
+sub set_dominance {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} +32);
+
+    $city->{'dominance_chance'} = d(100) if ( !defined $city->{'dominance_chance'} );
+
+    if ( $city->{'dominance_chance'} < $xml_data->{'dominance'}->{'chance'} ) {
+        $city->{'dominant_race'} = rand_from_array( $city->{'races'} )->{'race'}
+            if ( !defined $city->{'dominant_race'} );
+        $city->{'dominance_level'} = d(100) * ((100-$city->{'stats'}->{'tolerance'}) + 50)/100
+            if ( !defined $city->{'dominance_level'} );
+        my $dominance_option = roll_from_array( $city->{'dominance_level'}, $city_data->{'dominance'}->{'option'} );
+        $city->{'dominance_description'} = $dominance_option->{'content'}
+            if ( !defined $city->{'dominance_description'} );
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_housing
+
+generate the number of houses for the population
+
+=cut
+
+###############################################################################
+
+sub generate_housing {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 33);
+
+    my $housing_quality = $xml_data->{'housing'}->{'quality'};
+    my $econmultiplier         = ($city->{'stats'}->{'economy'}+50)/100;
+
+    # ranges from 20% to 60% good to bad econ
+    $city->{'housing'}->{'poor_percent'} = $housing_quality->{'poor'}->{'percent'}/ $econmultiplier
+        if ( !defined $city->{'housing'}->{'poor_percent'} );
+    # ranges from 3% to 1%  good to bad econ
+    $city->{'housing'}->{'wealthy_percent'} = $housing_quality->{'wealthy'}->{'percent'} * $econmultiplier
+        if ( !defined $city->{'housing'}->{'wealthy_percent'} );
+
+    # ranges from 77% to 38% good to bad
+    $city->{'housing'}->{'average_percent'} = 100 - $city->{'housing'}->{'wealthy_percent'} - $city->{'housing'}->{'poor_percent'}
+        if ( !defined $city->{'housing'}->{'average_percent'} );
+
+    # ((100-econ)/60+1)^4
+    # this scales nicely from 1% to 11.3% to 50.5%
+    #                        Good   neutral  bad
+    $city->{'housing'}->{'abandoned_percent'} = (1 + ((100-$city->{'stats'}->{'economy'})/60))**4   
+        if ( !defined $city->{'housing'}->{'abandoned_percent'} );    # 1-21%
+
+    my $total=0;
+    foreach my $type (qw( poor average wealthy )){
+        $city->{'housing'}->{$type.'_population'} = ceil( $city->{'population_total'} * $city->{'housing'}->{$type.'_percent'} / 100 )
+            if ( !defined $city->{'housing'}->{$type.'_population'} );
+
+        $city->{'housing'}->{$type} = ceil( $city->{'housing'}->{$type.'_population'} / $housing_quality->{$type}->{'density'} )
+            if ( !defined $city->{'housing'}->{$type} );
+        $total+=$city->{'housing'}->{$type};
+    }
+
+    $city->{'housing'}->{'total'} = $total if ( !defined $city->{'housing'}->{'total'} );
+    $city->{'housing'}->{'abandoned'} = int( $city->{'housing'}->{'total'} * $city->{'housing'}->{'abandoned_percent'} / 100 );
+
+    return $city;
+}
+
+
 ##################################################################################
 ###
 ###=head2 generate_establishments

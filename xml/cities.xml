@@ -234,11 +234,19 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="81"          type="densely"    />
     </popdensity>
 
-<arable>
-    <option type="poor"     min='1' max='33'>desolate</option>
-    <option type="neutral"  min='34' max='66'>modest</option>
-    <option type="rich"     min='67' >fertile</option>
-</arable>
+    <arable>
+        <option type="poor"     min='1' max='33'>desolate</option>
+        <option type="neutral"  min='34' max='66'>modest</option>
+        <option type="rich"     min='67' >fertile</option>
+    </arable>
+    
+    <dominance chance='30'>
+        <option          max="20" >snobbish</option>
+        <option min="21" max="40" >mean</option>
+        <option min="41" max="60" >cruel</option>
+        <option min="61" max="80" >very oppressive</option>
+        <option min="81"          >brutally oppressive</option>
+    </dominance>
 
 
 </data>

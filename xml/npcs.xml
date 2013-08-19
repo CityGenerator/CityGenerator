@@ -220,183 +220,188 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </motive>
     </motivation>
     <attitude>
-        <option type="Love">
-            <option type="Affection">
-                <option type="Adoration"/>
-                <option type="Fondness"/>
-                <option type="Liking"/>
-                <option type="Attractiveness"/>
-                <option type="Caring"/>
-                <option type="Tenderness"/>
-                <option type="Compassion"/>
-                <option type="Sentimentality"/>
+        <option name="Love">
+            <option name="Affection">
+                <option name="Adoration"/>
+                <option name="Fondness"/>
+                <option name="Liking"/>
+                <option name="Attractiveness"/>
+                <option name="Caring"/>
+                <option name="Tenderness"/>
+                <option name="Compassion"/>
+                <option name="Sentimentality"/>
             </option>
-            <option type="Lust/Sexual desire">
-                <option type="Desire"/>
-                <option type="Passion"/>
-                <option type="Infatuation"/>
+            <option name="Lust/Sexual desire">
+                <option name="Desire"/>
+                <option name="Passion"/>
+                <option name="Infatuation"/>
             </option>
-            <option type="Longing">
-                <option type="Longing"/>
+            <option name="Longing">
+                <option name="Longing"/>
             </option>
         </option>
-        <option type="Joy">
-            <option type="Cheerfulness">
-                <option type="Amusement"/>
-                <option type="Bliss"/>
-                <option type="Gaiety"/>
-                <option type="Glee"/>
-                <option type="Jolliness"/>
-                <option type="Joviality"/>
-                <option type="Joy"/>
-                <option type="Delight"/>
-                <option type="Enjoyment"/>
-                <option type="Gladness"/>
-                <option type="Happiness"/>
-                <option type="Jubilation"/>
-                <option type="Elation"/>
-                <option type="Satisfaction"/>
-                <option type="Ecstasy"/>
-                <option type="Euphoria"/>
+        <option name="Joy">
+            <option name="Cheerfulness">
+                <option name="Amusement"/>
+                <option name="Bliss"/>
+                <option name="Gaiety"/>
+                <option name="Glee"/>
+                <option name="Jolliness"/>
+                <option name="Joviality"/>
+                <option name="Joy"/>
+                <option name="Delight"/>
+                <option name="Enjoyment"/>
+                <option name="Gladness"/>
+                <option name="Happiness"/>
+                <option name="Jubilation"/>
+                <option name="Elation"/>
+                <option name="Satisfaction"/>
+                <option name="Ecstasy"/>
+                <option name="Euphoria"/>
            </option>
-            <option type="Zest">
-                <option type="Enthusiasm"/>
-                <option type="Zeal"/>
-                <option type="Excitement"/>
-                <option type="Thrill"/>
-                <option type="Exhilaration"/>
+            <option name="Zest">
+                <option name="Enthusiasm"/>
+                <option name="Zeal"/>
+                <option name="Excitement"/>
+                <option name="Thrill"/>
+                <option name="Exhilaration"/>
             </option>
-            <option type="Contentment">
-                <option type="Pleasure"/>
+            <option name="Contentment">
+                <option name="Pleasure"/>
             </option>
-            <option type="Pride">
-                <option type="Triumph"/>
+            <option name="Pride">
+                <option name="Triumph"/>
             </option>
-            <option type="Optimism">
-                <option type="Eagerness"/>
-                <option type="Hope"/>
+            <option name="Optimism">
+                <option name="Eagerness"/>
+                <option name="Hope"/>
             </option>
-            <option type="Enthrallment">
-                <option type="Enthrallment"/>
-                <option type="Rapture"/>
+            <option name="Enthrallment">
+                <option name="Enthrallment"/>
+                <option name="Rapture"/>
             </option>
-            <option type="Relief">
-                <option type="Relief"/>
-            </option>
-         </option>
-        <option type="Surprise">
-            <option type="Surprise">
-                <option type="Amazement"/>
-                <option type="Astonishment"/>
+            <option name="Relief">
+                <option name="Relief"/>
             </option>
          </option>
-        <option type="Anger">
-            <option type="Irritability">
-                <option type="Aggravation"/>
-                <option type="Agitation"/>
-                <option type="Annoyance"/>
-                <option type="Grouchy"/>
-                <option type="Grumpy"/>
-                <option type="Crosspatch"/>
-            </option>
-            <option type="Exasperation">
-                <option type="Frustration"/>
-            </option>
-            <option type="Rage">
-                <option type="Anger"/>
-                <option type="Outrage"/>
-                <option type="Fury"/>
-                <option type="Wrath"/>
-                <option type="Hostility"/>
-                <option type="Ferocity"/>
-                <option type="Bitter"/>
-                <option type="Hatred"/>
-                <option type="Scorn"/>
-                <option type="Spite"/>
-                <option type="Vengefulness"/>
-                <option type="Dislike"/>
-                <option type="Resentment"/>
-            </option>
-            <option type="Disgust">
-                <option type="Revulsion"/>
-                <option type="Contempt"/>
-                <option type="Loathing"/>
-            </option>
-            <option type="Envy">
-                <option type="Jealousy"/>
-            </option>
-            <option type="Torment">
-                <option type="Torment"/>
+        <option name="Surprise">
+            <option name="Surprise">
+                <option name="Amazement"/>
+                <option name="Astonishment"/>
             </option>
          </option>
-        <option type="Sadness">
-            <option type="Suffering">
-                <option type="Agony"/>
-                <option type="Anguish"/>
-                <option type="Hurt"/>
+        <option name="Anger">
+            <option name="Irritability">
+                <option name="Aggravation"/>
+                <option name="Agitation"/>
+                <option name="Annoyance"/>
+                <option name="Grouchy"/>
+                <option name="Grumpy"/>
+                <option name="Crosspatch"/>
             </option>
-            <option type="Sadness">
-                <option type="Depression"/>
-                <option type="Despair"/>
-                <option type="Gloom"/>
-                <option type="Glumness"/>
+            <option name="Exasperation">
+                <option name="Frustration"/>
+            </option>
+            <option name="Rage">
+                <option name="Anger"/>
+                <option name="Outrage"/>
+                <option name="Fury"/>
+                <option name="Wrath"/>
+                <option name="Hostility"/>
+                <option name="Ferocity"/>
+                <option name="Bitter"/>
+                <option name="Hatred"/>
+                <option name="Scorn"/>
+                <option name="Spite"/>
+                <option name="Vengefulness"/>
+                <option name="Dislike"/>
+                <option name="Resentment"/>
+            </option>
+            <option name="Disgust">
+                <option name="Revulsion"/>
+                <option name="Contempt"/>
+                <option name="Loathing"/>
+            </option>
+            <option name="Envy">
+                <option name="Jealousy"/>
+            </option>
+            <option name="Torment">
+                <option name="Torment"/>
+            </option>
+         </option>
+        <option name="Sadness">
+            <option name="Suffering">
+                <option name="Agony"/>
+                <option name="Anguish"/>
+                <option name="Hurt"/>
+            </option>
+            <option name="Sadness">
+                <option name="Depression"/>
+                <option name="Despair"/>
+                <option name="Gloom"/>
+                <option name="Glumness"/>
      
-                <option type="Unhappy"/>
-                <option type="Grief"/>
-                <option type="Sorrow"/>
-                <option type="Woe"/>
-                <option type="Misery"/>
-                <option type="Melancholy'"/>
+                <option name="Unhappy"/>
+                <option name="Grief"/>
+                <option name="Sorrow"/>
+                <option name="Woe"/>
+                <option name="Misery"/>
+                <option name="Melancholy'"/>
             </option>
-            <option type="Disappointment">
-                <option type="Dismay"/>
-                <option type="Displeasure"/>
+            <option name="Disappointment">
+                <option name="Dismay"/>
+                <option name="Displeasure"/>
             </option>
-            <option type="Shame">
-                <option type="Guilt"/>
-                <option type="Regret"/>
-                <option type="Remorse"/>
+            <option name="Shame">
+                <option name="Guilt"/>
+                <option name="Regret"/>
+                <option name="Remorse"/>
             </option>
-            <option type="Neglect">
-                <option type="Alienation"/>
-                <option type="Defeatism"/>
-                <option type="Dejection"/>
-                <option type="Embarrassment"/>
-                <option type="Homesickness"/>
-                <option type="Humiliation"/>
-                <option type="Insecurity"/>
-                <option type="Insult"/>
-                <option type="Isolation"/>
-                <option type="Loneliness"/>
-                <option type="Rejection"/>
+            <option name="Neglect">
+                <option name="Alienation"/>
+                <option name="Defeatism"/>
+                <option name="Dejection"/>
+                <option name="Embarrassment"/>
+                <option name="Homesickness"/>
+                <option name="Humiliation"/>
+                <option name="Insecurity"/>
+                <option name="Insult"/>
+                <option name="Isolation"/>
+                <option name="Loneliness"/>
+                <option name="Rejection"/>
             </option>
-            <option type="Sympathy">
-                <option type="Pity"/>
-                <option type="Sympathy"/>
+            <option name="Sympathy">
+                <option name="Pity"/>
+                <option name="Sympathy"/>
             </option>
          </option>
-        <option type="Fear">
-            <option type="Horror">
-                <option type="Alarm"/>
-                <option type="Shock"/>
-                <option type="Fear"/>
-                <option type="Fright"/>
-                <option type="Horror"/>
-                <option type="Terror"/>
-                <option type="Panic"/>
-                <option type="Hysteria"/>
-                <option type="Mortification"/>
+        <option name="Fear">
+            <option name="Horror">
+                <option name="Alarm"/>
+                <option name="Shock"/>
+                <option name="Fear"/>
+                <option name="Fright"/>
+                <option name="Horror"/>
+                <option name="Terror"/>
+                <option name="Panic"/>
+                <option name="Hysteria"/>
+                <option name="Mortification"/>
             </option>
-            <option type="Nervousness">
-                <option type="Anxiety"/>
-                <option type="Suspense"/>
-                <option type="Uneasiness"/>
-                <option type="Apprehension"/>
-                <option type="Worry"/>
-                <option type="Distress"/>
-                <option type="Dread"/>
+            <option name="Nervousness">
+                <option name="Anxiety"/>
+                <option name="Suspense"/>
+                <option name="Uneasiness"/>
+                <option name="Apprehension"/>
+                <option name="Worry"/>
+                <option name="Distress"/>
+                <option name="Dread"/>
             </option>
         </option>
     </attitude>
+    <sex>
+        <option          max="49" pronoun='he' >male</option>
+        <option min="50" max="98" pronoun='she'>female</option>
+        <option min="99"          pronoun='it'>androgynous</option>
+    </sex>
 
 </npcs>
