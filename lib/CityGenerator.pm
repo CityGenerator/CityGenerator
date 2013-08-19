@@ -224,10 +224,10 @@ sub flesh_out_city {
     generate_city_crest($city);
     generate_streets($city);
     set_laws($city);
-###
-###    #Generate
+
+    #Generate
     generate_popdensity($city);
-###    generate_area($city);
+    generate_area($city);
 ###    generate_walls($city);
 ###    generate_watchtowers($city);
 ###    generate_housing($city);
@@ -735,38 +735,38 @@ sub set_laws {
 } ## end sub set_laws
 
 
-##################################################################################
-###
-###=head2 generate_area
-###
-###Generate the area the city covers.
-###
-###=cut
-###
-##################################################################################
-###sub generate_area {
-###
-###    #TODO change to metric....
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 24 );
-###    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'} if (!defined $city->{'area'});
-###
-###    my $stat_modifier = $city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'};
-###    $city->{'arable_percentage'} = max( 1, min( 100, d(100) + $stat_modifier ) )
-###        if ( !defined $city->{'arable_percentage'} );
-###
-###
-###    $city->{'arable_description'}
-###        = rand_from_array(
-###        roll_from_array( $city->{'arable_percentage'}, $xml_data->{'arable_description'}->{'option'} )->{'option'} )
-###        ->{'content'}
-###        if ( !defined $city->{'arable_description'} );
-###
-###
-###    return $city;
-###}
-###
-###
+###############################################################################
+
+=head2 generate_area
+
+Generate the area the city covers.
+
+=cut
+
+###############################################################################
+sub generate_area {
+
+    #TODO change to metric....
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 24 );
+    $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'} if (!defined $city->{'area'});
+
+    #3-300/3=1-100= * + 50= 51-150 /100 = .5-1.5
+
+    my $stat_modifier = (($city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'})/3 +50)/100  ;
+
+    $city->{'arable_percentage'} = max( 1, min( 100, d(100)* $stat_modifier  ) )
+        if ( !defined $city->{'arable_percentage'} );
+
+    $city->{'arable_description'}
+        = roll_from_array( $city->{'arable_percentage'}, $city_data->{'arable'}->{'option'} )->{'content'}
+        if ( !defined $city->{'arable_description'} );
+
+
+    return $city;
+}
+
+
 
 ##################################################################################
 ###

@@ -72,34 +72,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </fact>
 
 </trivia>
-<streets>
-    <title>rough</title>
-    <title>broken</title>
-    <title>pristine</title>
-    <title>irregular</title>
-    <title>smooth</title>
-    <title>bumpy</title>
-    <title>crude</title>
-    <title>even</title>
-    <title>well-maintained</title>
-    <title>filthy</title>
-    <title>muddy</title>
-    <root>dirt roads</root>
-    <root>dirt tracks</root>
-    <root>cobblestone streets</root>
-    <root>cobblestone paths</root>
-    <trailer>in a grid pattern</trailer>
-    <trailer>in a ray pattern</trailer>
-    <trailer>in a contour-forming pattern</trailer>
-    <trailer>in an irregular pattern</trailer>
-    <trailer>in a random mesh pattern</trailer>
-    <trailer>in an organic pattern</trailer>
-    <trailer>in a fragmented parallel pattern</trailer>
-    <trailer>in a looped pattern</trailer>
-    <trailer>in a warped parallel pattern</trailer>
-    <trailer>in a linear pattern</trailer>
-    <trailer>in a wheel and spoke pattern</trailer>
-</streets>
 
 <walls chance='40' >
     <condition>
