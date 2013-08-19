@@ -5,10 +5,12 @@ use lib "lib/";
 use lib "tests/";
 use Test::More;
 
+use TestGenericGenerator;
+use TestCityGenerator;
+
 #use TestAdventureGenerator;
 #use TestAstronomyGenerator;
 #use TestCensusDataFormatter;
-#use TestCityGenerator;
 #use TestCityscapeFormatter;
 #use TestClimateGenerator;
 #use TestConditionGenerator;
@@ -17,7 +19,6 @@ use Test::More;
 #use TestEventFormatter;
 #use TestEventGenerator;
 #use TestFlagGenerator;
-#use TestGenericGenerator;
 #use TestGovtFormatter;
 #use TestGovtGenerator;
 #use TestMilitaryGenerator;
@@ -33,6 +34,6 @@ use Test::More;
 #use TestPostingGenerator;
 #use TestRumorGenerator;
 #use TestWantedPosterGenerator;
-use TestLegendGenerator;
+#use TestLegendGenerator;
 done_testing();
 

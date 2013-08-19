@@ -782,13 +782,13 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <relation>is ready for war with</relation>
     <relation>is oblivious of</relation>
 </neighbor>
-<area>
-    <scope>the neighborhood</scope>
-    <scope>that part of town</scope>
-    <scope>the city</scope>
-    <scope>the region</scope>
-    <scope>the world</scope>
-</area>
+<scope>
+    <option>the neighborhood</option>
+    <option>that part of town</option>
+    <option>the city</option>
+    <option>the region</option>
+    <option>the world</option>
+</scope>
 <classes>
     <class name="Commoner"   min="0"  max="23" max_level="4d4" />
     <class name="Expert"     min="24" max="35" max_level="3d4" />

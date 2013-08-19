@@ -64,312 +64,288 @@ subtest 'test set_pop_type' => sub {
     CityGenerator::flesh_out_city($city);
     is( $city->{'poptype'},      'mixed', 'poptype created' );
     is( $city->{'poptype_roll'}, 100,     'poptype_roll is created' );
-    is( $city->{'available_races'}, $races, 'available races are preset' );
+    is_deeply( $city->{'available_races'}, $races, 'available races are preset' );
 
     done_testing();
 };
 
-###subtest 'test set_available_races' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'monster' } );
-###    CityGenerator::set_available_races($city);
-###    is( scalar( @{ $city->{'available_races'} } ), 13 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'normal' } );
-###    CityGenerator::set_available_races($city);
-###    is( scalar( @{ $city->{'available_races'} } ), 8 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'mixed' } );
-###    CityGenerator::set_available_races($city);
-###    is( scalar( @{ $city->{'available_races'} } ), 23 );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'monster', 'available_races'=>[1,2,3] } );
-###    CityGenerator::set_available_races($city);
-###    is( scalar( @{ $city->{'available_races'} } ), 3 );
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_race_percentages' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'monster' } );
-###    CityGenerator::generate_race_percentages($city);
-###    is( scalar( @{ $city->{'race percentages'} } ), 3 );
-###    ok( sum( @{ $city->{'race percentages'} })>=98 && sum( @{ $city->{'race percentages'} })<=100,  'ensure race percentages are between 98 and 100%' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'monster', 'race percentages' => [ 75, 20, 4 ] } );
-###    CityGenerator::generate_race_percentages($city);
-###    is( scalar( @{ $city->{'race percentages'} } ), 3 );
-###    ok( sum( @{ $city->{'race percentages'} })>=98 && sum( @{ $city->{'race percentages'} })<=100,  'ensure race percentages are between 98 and 100%' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'base_pop' => 'monster', 'race_limit'=>2 });
-###    CityGenerator::generate_race_percentages($city);
-###    is( scalar( @{ $city->{'race percentages'} } ), 2 );
-###
-###    done_testing();
-###};
-###
-###subtest 'test set_races' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'             => 1,
-###            'available_races'  => [ 'dwarf', 'human', 'halfling' ],
-###            'race percentages' => [ 85, 10, 5 ],
-###            'pop_estimate'     => 100
-###        }
-###    );
-###    CityGenerator::set_races($city);
-###
-###    is( $city->{'races'}->[0]->{'race'},'halfling' );
-###    is( $city->{'races'}->[0]->{'percent'}, 85 );
-###    is( $city->{'races'}->[0]->{'population'}, 85 );
-###
-###    is( $city->{'races'}->[1]->{'race'},'human' );
-###    is( $city->{'races'}->[1]->{'percent'}, 10 );
-###    is( $city->{'races'}->[1]->{'population'}, 10 );
-###
-###    is( $city->{'races'}->[2]->{'race'},'dwarf' );
-###    is( $city->{'races'}->[2]->{'percent'}, 5 );
-###    is( $city->{'races'}->[2]->{'population'}, 5 );
-###
-###    is( $city->{'races'}->[3]->{'race'},'other' );
-###    is( $city->{'races'}->[3]->{'percent'}, 1 ,     'other percent');
-###    is( $city->{'races'}->[3]->{'population'}, 1,   'other population' );
-###
-###    my $racestruct=[
-###                { 'race' => 'human',    'percent' => 85, 'population' => 85 },
-###                { 'race' => 'halfling', 'percent' => 10, 'population' => 10 },
-###                { 'race' => 'dwarf',    'percent' => 3,  'population' => 3 },
-###                { 'race' => 'other',    'percent' => 2,  'population' => 2 }
-###            ];
-###
-###    $city = CityGenerator::create_city( { 'seed'  => 1, 'races' =>$racestruct } );
-###    CityGenerator::set_races($city);
-###    is_deeply( $city->{'races'}, $racestruct);
-###
-###    done_testing();
-###};
-###
-###subtest 'test recalculate_populations' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'             => 1,
-###            'available_races'  => [ 'dwarf', 'human', 'halfling' ],
-###            'race percentages' => [ 85, 10, 3 ],
-###            'pop_estimate'     => 93
-###        }
-###    );
-###    CityGenerator::set_races($city);
-###
-###    is( $city->{'races'}->[3]->{'race'},'other' );
-###    is( $city->{'races'}->[3]->{'percent'}, 2 );
-###    is( $city->{'races'}->[3]->{'population'}, 1 );
-###
-###    CityGenerator::recalculate_populations($city);
-###
-###    is( $city->{'population_total'}, 94 );
-###    is( $city->{'races'}->[0]->{'percent'}, 85.1 );
-###    is( $city->{'races'}->[1]->{'percent'}, 10.6 );
-###    is( $city->{'races'}->[2]->{'percent'}, 3.1 );
-###    is( $city->{'races'}->[3]->{'percent'}, 1 );
-###
-###    done_testing();
-###};
-###
-###subtest 'test generate_citizens' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, } );
-###    CityGenerator::generate_citizens($city);
-###    is( $city->{'citizen_count'},           14 );
-###    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => -5 } );
-###    CityGenerator::generate_citizens($city);
-###    is( $city->{'citizen_count'},           8 );
-###    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12 } );
-###    CityGenerator::generate_citizens($city);
-###    is( $city->{'citizen_count'},           28 );
-###    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-###
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1,  'citizen_count' => 2   }  );
-###    CityGenerator::generate_citizens($city);
-###    is( $city->{'citizen_count'},           2 );
-###    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
-###
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'citizen_count' => 2, 'citizens' => [] } );
-###    CityGenerator::generate_citizens($city);
-###    is( $city->{'citizen_count'},           2 );
-###    is( scalar( @{ $city->{'citizens'} } ), 0, 'intentionally mismatched' );
-###
-###    done_testing();
-###};
-###
-###
-###
-###subtest 'test generate_children' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000'  } );
-###    CityGenerator::generate_children($city);
-###    isnt( $city->{'children'}->{'percent'},     undef );
-###    isnt( $city->{'children'}->{'population'},     undef );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'age_mod' => 0, 'children'=>{ 'population'=>200} } );
-###    CityGenerator::generate_children($city);
-###    is( $city->{'children'}->{'percent'},     '20.00' );
-###    is( $city->{'children'}->{'population'},   200);
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'children'=>{'percent'=>40,'population'=>200} } );
-###    CityGenerator::generate_children($city);
-###    is( $city->{'children'}->{'percent'},     40 );
-###    is( $city->{'children'}->{'population'},   200);
-###    
-###
-###    done_testing();
-###};
-###
-###subtest 'test generate_elderly' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000',  } );
-###    CityGenerator::generate_elderly($city);
-###    isnt( $city->{'elderly'}->{'percent'},     undef );
-###    isnt( $city->{'elderly'}->{'population'},     undef );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'age_mod' => 0, 'elderly'=>{ 'population'=>200} } );
-###    CityGenerator::generate_elderly($city);
-###    is( $city->{'elderly'}->{'percent'},     '20.00' );
-###    is( $city->{'elderly'}->{'population'},   200);
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'elderly'=>{'percent'=>40,'population'=>200} } );
-###    CityGenerator::generate_elderly($city);
-###    is( $city->{'elderly'}->{'percent'},     40 );
-###    is( $city->{'elderly'}->{'population'},   200);
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_imprisonment_rate' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'age_mod' => 0 } );
-###    CityGenerator::generate_imprisonment_rate($city);
-###    isnt( $city->{'imprisonment_rate'}->{'percent'},     undef );
-###    isnt( $city->{'imprisonment_rate'}->{'population'},     undef );
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'population_total' => '1000', 'age_mod' => 5, 'imprisonment_rate' => { 'percent' => 25, } } );
-###    CityGenerator::generate_imprisonment_rate($city);
-###    is( $city->{'imprisonment_rate'}->{'percent'},     25 );
-###    is( $city->{'imprisonment_rate'}->{'population'},   4);
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'population_total' => '1000', 'age_mod' => 5, 'imprisonment_rate' => { 'percent' => 25, 'population'=>200} } );
-###    CityGenerator::generate_imprisonment_rate($city);
-###    is( $city->{'imprisonment_rate'}->{'percent'},     25 );
-###    is( $city->{'imprisonment_rate'}->{'population'},   200);
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_resources' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1' } );
-###    CityGenerator::generate_resources($city);
-###    isnt( $city->{'resourcecount'},  undef );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'});
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'economy' => 20 } );
-###    CityGenerator::generate_resources($city);
-###    is( $city->{'resourcecount'},  25 );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'economy' => 20 } );
-###    $city->{'economy'} = undef;
-###    CityGenerator::generate_resources($city);
-###    is( $city->{'resourcecount'},  5 );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '2' } );
-###    CityGenerator::generate_resources($city);
-###    ok( $city->{'resourcecount'}>=5 && $city->{'resourcecount'} <=22, 'resourcecount in range',   );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4 } );
-###    CityGenerator::generate_resources($city);
-###    is( $city->{'resourcecount'},  4 );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4, 'resources' => 1 } );
-###    CityGenerator::generate_resources($city);
-###    is( $city->{'resourcecount'},  4 );
-###    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4, 'resources' => [] } );
-###    CityGenerator::generate_resources($city);
-###    is( $city->{'resourcecount'},  4 );
-###    is( @{ $city->{'resources'} }, 0, 'intentional mismatch' );
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_city_crest' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1' } );
-###    CityGenerator::generate_city_crest($city);
-###    is_deeply( $city->{'crest'}, {} );
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_shape' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => '1' } );
-###    CityGenerator::generate_shape($city);
-###    isnt( $city->{'shape'}, undef, 'shape is defined' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => '1', 'shape' => 'fool' } );
-###    CityGenerator::generate_shape($city);
-###    is( $city->{'shape'}, 'fool' );
-###
-###    done_testing();
-###};
-###
-###
-###subtest 'test generate_streets' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 4 } );
-###    CityGenerator::generate_streets($city);
-###    foreach my $value (qw( content mainroads roads )){
-###        isnt($city->{'streets'}->{$value}, undef, "ensure $value is defined");
-###    } 
-###
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'streets' => { 'content' => 'foo', 'mainroads' => -1, 'roads' => -1 } } );
-###    CityGenerator::generate_streets($city);
-###    is( $city->{'streets'}->{'content'},   'foo' );
-###    is( $city->{'streets'}->{'mainroads'}, 0 );
-###    is( $city->{'streets'}->{'roads'},     1 );
-###
-###    
-###    $city = CityGenerator::create_city(
-###        { 'seed' => 1, 'streets' => {  'mainroads' => 5, 'roads' => 5 } } );
-###    CityGenerator::generate_streets($city);
-###    is( $city->{'streets'}->{'mainroads'}, 5 );
-###    is( $city->{'streets'}->{'roads'},     5 );
-###
-###    done_testing();
-###};
-###
-###
+subtest 'test set_available_races' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster' } );
+    CityGenerator::set_available_races($city);
+    is( scalar( @{ $city->{'available_races'} } ), 13 );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'normal' } );
+    CityGenerator::set_available_races($city);
+    is( scalar( @{ $city->{'available_races'} } ), 8 );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'mixed' } );
+    CityGenerator::set_available_races($city);
+    is( scalar( @{ $city->{'available_races'} } ), 23 );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster', 'available_races'=>[1,2,3] } );
+    CityGenerator::set_available_races($city);
+    is( scalar( @{ $city->{'available_races'} } ), 3 );
+
+    done_testing();
+};
+
+
+subtest 'test generate_race_percentages' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster' } );
+    CityGenerator::generate_race_percentages($city);
+    ok( scalar( @{ $city->{'race percentages'} } )== $city->{'race_limit'}  ||   (sum(@{ $city->{'race percentages'} })>=98  && sum( @{ $city->{'race percentages'} })<=100),  
+        sum( @{ $city->{'race percentages'} }).' ensure total race percentages are between 98 and 100% or '.scalar( @{ $city->{'race percentages'} } ).' is 6 races' );
+
+
+    # ensure race percentages can be set
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster', 'race percentages' => [ 75, 20, 4,1 ] } );
+    CityGenerator::generate_race_percentages($city);
+
+    is( scalar( @{ $city->{'race percentages'} } ), 4 );
+    ok( scalar( @{ $city->{'race percentages'} } ) == $city->{'race_limit'}  ||   (sum(@{ $city->{'race percentages'} })>=98  && sum( @{ $city->{'race percentages'} })<=100),  
+        sum( @{ $city->{'race percentages'} }).' ensure total race percentages are between 98 and 100% or '.scalar( @{ $city->{'race percentages'} } ).' is 6 races' );
+
+
+    # ensure it will go over 98%
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster', 'race_limit' =>'12' } );
+    CityGenerator::generate_race_percentages($city);
+    is( scalar( @{ $city->{'race percentages'} } ), 8 );
+    ok( scalar( @{ $city->{'race percentages'} } )== $city->{'race_limit'}  ||   (sum(@{ $city->{'race percentages'} })>=98  && sum( @{ $city->{'race percentages'} })<=100),  
+        sum( @{ $city->{'race percentages'} }).' ensure total race percentages are between 98 and 100% or '.scalar( @{ $city->{'race percentages'} } ).' is 6 races' );
+
+    # ensure it cuts off at 1
+    $city = CityGenerator::create_city( { 'seed' => '1', 'poptype' => 'monster', 'race_limit'=>1,  });
+    CityGenerator::generate_race_percentages($city);
+    is( scalar( @{ $city->{'race percentages'} } ), 1 );
+
+    done_testing();
+};
+
+subtest 'test set_races' => sub {
+    my $city;
+    my $presets={
+            'seed'             => 1,
+            'available_races'  => [ 'dwarf', 'human', 'halfling' ],
+            'race percentages' => [ 85, 10, 5 ],
+            'pop_estimate'     => 100
+        };
+    $city = CityGenerator::create_city(  $presets   );
+    CityGenerator::generate_race_percentages($city);
+    CityGenerator::set_available_races($city);
+    CityGenerator::set_races($city);
+
+    foreach my $race (@{$city->{'races'}} ){
+        isnt(   $race->{'race'}, undef,      'race is set.' );
+        ok(     $race->{'percent'} < 100,    'percent is under 100' );
+        ok(     $race->{'population'} < 100, 'pop is under 100' );
+    }# note the initial total won't sum up exacty to 100%.
+    is(scalar @{$city->{'races'}}, 4, 'three races plus other.');
+
+
+    my $racestruct=[
+                { 'race' => 'human',    'percent' => 85, 'population' => 85 },
+                undef,
+                undef,
+                { 'race' => 'other',    'percent' => 10, 'population' => 10 },
+            ];
+    $presets->{'races'}=$racestruct;
+    $city = CityGenerator::create_city( $presets );
+    CityGenerator::set_races($city);
+    CityGenerator::generate_race_percentages($city);
+    CityGenerator::set_available_races($city);
+
+    done_testing();
+};
+
+subtest 'test recalculate_populations' => sub {
+    my $city;
+    $city = CityGenerator::create_city(
+        {
+            'seed'             => 1,
+            'available_races'  => [ 'dwarf', 'human', 'halfling' ],
+            'race percentages' => [ 85, 10, 3 ],
+            'pop_estimate'     => 93
+        }
+    );
+    CityGenerator::set_races($city);
+
+    is( $city->{'races'}->[3]->{'race'},'other' );
+    is( $city->{'races'}->[3]->{'percent'}, 2 );
+    is( $city->{'races'}->[3]->{'population'}, 1 );
+
+    CityGenerator::recalculate_populations($city);
+
+    is( $city->{'population_total'}, 94 );
+    is( $city->{'races'}->[0]->{'percent'}, 85.1 );
+    is( $city->{'races'}->[1]->{'percent'}, 10.6 );
+    is( $city->{'races'}->[2]->{'percent'}, 3.1 );
+    is( $city->{'races'}->[3]->{'percent'}, 1 );
+
+    done_testing();
+};
+
+#subtest 'test generate_citizens' => sub {
+#    my $city;
+#    $city = CityGenerator::create_city( { 'seed' => 1, } );
+#    CityGenerator::flesh_out_city($city);
+#    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+#    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+#
+##    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => -5 } );
+##    CityGenerator::generate_citizens($city);
+##    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+##
+##    $city = CityGenerator::create_city( { 'seed' => 1, 'size_modifier' => 12 } );
+##    CityGenerator::generate_citizens($city);
+##    ok( $city->{'citizen_count'}>= 8 && $city->{'citizen_count'} <=28 , " $city->{'citizen_count'} count falls within 8-28 range"   );
+##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+#
+#
+##    $city = CityGenerator::create_city( { 'seed' => 1,  'citizen_count' => 2   }  );
+##    CityGenerator::generate_citizens($city);
+##    is( $city->{'citizen_count'},           2 );
+##    is( scalar( @{ $city->{'citizens'} } ), $city->{'citizen_count'} );
+##
+##
+##    $city = CityGenerator::create_city( { 'seed' => 1, 'citizen_count' => 2, 'citizens' => [] } );
+##    CityGenerator::generate_citizens($city);
+##    is( $city->{'citizen_count'},           2 );
+##    is( scalar( @{ $city->{'citizens'} } ), 0, 'intentionally mismatched' );
+#
+#    done_testing();
+#};
+
+
+subtest 'test generate_children' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000'  } );
+    CityGenerator::generate_children($city);
+    isnt( $city->{'children'}->{'percent'},     undef );
+    isnt( $city->{'children'}->{'population'},     undef );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'stats'=>{'age'=>100} } );
+    CityGenerator::generate_children($city);
+    is( $city->{'children'}->{'percent'},     '10.00' );
+    is( $city->{'children'}->{'population'},   100);
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'stats'=>{'age'=>1} } );
+    CityGenerator::generate_children($city);
+    is( $city->{'children'}->{'percent'},     '44.60' );
+    is( $city->{'children'}->{'population'},   446);
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'children'=>{'percent'=>40,'population'=>200} } );
+    CityGenerator::generate_children($city);
+    is( $city->{'children'}->{'percent'},     40 );
+    is( $city->{'children'}->{'population'},   200);
+
+    done_testing();
+};
+
+subtest 'test generate_elderly' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000',  } );
+    CityGenerator::generate_elderly($city);
+    isnt( $city->{'elderly'}->{'percent'},     undef );
+    isnt( $city->{'elderly'}->{'population'},     undef );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'stats'=>{'age'=>100} } );
+    CityGenerator::generate_elderly($city);
+    is( $city->{'elderly'}->{'percent'},     '26.00' );
+    is( $city->{'elderly'}->{'population'},   260);
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'stats'=>{'age'=>1} } );
+    CityGenerator::generate_elderly($city);
+    is( $city->{'elderly'}->{'percent'},     '1.20' );
+    is( $city->{'elderly'}->{'population'},   12);
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', 'elderly'=>{'percent'=>40,'population'=>200} } );
+    CityGenerator::generate_elderly($city);
+    is( $city->{'elderly'}->{'percent'},     40 );
+    is( $city->{'elderly'}->{'population'},   200);
+
+    done_testing();
+};
+
+
+subtest 'test generate_imprisonment_rate' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '1000', } );
+    CityGenerator::generate_imprisonment_rate($city);
+    isnt( $city->{'imprisonment_rate'}->{'percent'},     undef );
+    isnt( $city->{'imprisonment_rate'}->{'population'},     undef );
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'population_total' => '1000',  'imprisonment_rate' => { 'percent' => 25, } } );
+    CityGenerator::generate_imprisonment_rate($city);
+    is( $city->{'imprisonment_rate'}->{'percent'},     25 );
+    is( $city->{'imprisonment_rate'}->{'population'},   250);
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'population_total' => '1000',  'imprisonment_rate' => { 'percent' => 25, 'population'=>200} } );
+    CityGenerator::generate_imprisonment_rate($city);
+    is( $city->{'imprisonment_rate'}->{'percent'},     25 );
+    is( $city->{'imprisonment_rate'}->{'population'},   200);
+
+    done_testing();
+};
+
+
+subtest 'test generate_resources' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1' } );
+    CityGenerator::generate_resources($city);
+    isnt( $city->{'resourcecount'},  undef );
+    is( @{ $city->{'resources'} }, $city->{'resourcecount'});
+
+
+
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4 } );
+    CityGenerator::generate_resources($city);
+    is( $city->{'resourcecount'},  4 );
+    is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
+
+    $city = CityGenerator::create_city( { 'seed' => '1', 'resourcecount' => 4, 'resources' => [] } );
+    CityGenerator::generate_resources($city);
+    is( $city->{'resourcecount'},  4 );
+    is( @{ $city->{'resources'} }, 0, 'intentional mismatch' );
+
+    done_testing();
+};
+
+
+subtest 'test generate_city_crest' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => '1' } );
+    CityGenerator::generate_city_crest($city);
+    is_deeply( $city->{'crest'}, {} );
+
+    done_testing();
+};
+
+
+subtest 'test generate_streets' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 4 } );
+    CityGenerator::generate_streets($city);
+    foreach my $value (qw( content mainroads roads )){
+        isnt($city->{'streets'}->{$value}, undef, "ensure $value is defined");
+    } 
+
+    $city = CityGenerator::create_city(
+        { 'seed' => 1, 'streets' => { 'content'=>'fugly', 'mainroads' => 5, 'roads' => 5 } } );
+    CityGenerator::generate_streets($city);
+    is( $city->{'streets'}->{'mainroads'}, 5 );
+    is( $city->{'streets'}->{'roads'},     5 );
+    is( $city->{'streets'}->{'content'},   'fugly' );
+
+    done_testing();
+};
+
+
 ###subtest 'test set_stat_descriptions' => sub {
 ###    my $city;
 ###    $city = CityGenerator::create_city( { 'seed' => 1 } );
@@ -438,10 +414,8 @@ subtest 'test set_pop_type' => sub {
 ###    #NOTE area is included because generate_walls requires it to mark protected areas
 ###    my $city;
 ###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1 } );
+###    print STDERR Dumper $city;
 ###    CityGenerator::generate_walls($city);
-###    foreach my $value (qw( material style condition )){
-###        is($city->{'walls'}->{$value}, undef, "ensure $value is defined");
-###    } 
 ###    isnt( $city->{'wall_chance_roll'},   undef, "ensure roll is created" );
 ###
 ###    $city = CityGenerator::create_city( { 'seed' => '1', 'area'=>1, 'walls'=>{'material'=>'cloth', 'style'=>'mesh','height'=>99, 'condition'=>'buff'}, 'wall_chance_roll'=>2 } );
@@ -459,8 +433,8 @@ subtest 'test set_pop_type' => sub {
 ###
 ###    done_testing();
 ###};
-###
-###
+
+
 ###subtest 'test generate_watchtowers' => sub {
 ###    #NOTE area is included because generate_walls requires it to mark protected areas
 ###    my $city;
@@ -543,28 +517,28 @@ subtest 'test set_pop_type' => sub {
 ###    done_testing();
 ###};
 ###
-###subtest 'test generate_popdensity' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000' } );
-###    CityGenerator::generate_popdensity($city);
-###    isnt( $city->{'population_density'},  undef );
-###    isnt( $city->{'density_description'}, undef );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'population_density' => 20000 } );
-###    CityGenerator::generate_popdensity($city);
-###    is( $city->{'population_density'},  20000 );
-###    is( $city->{'density_description'}, 'densely' );
-###
-###    $city
-###        = CityGenerator::create_city(
-###        { 'seed' => 1, 'population_total' => '10000', 'population_density' => 10000, 'density_description' => 'dovey' }
-###        );
-###    CityGenerator::generate_popdensity($city);
-###    is( $city->{'population_density'},  10000 );
-###    is( $city->{'density_description'}, 'dovey' );
-###
-###    done_testing();
-###};
+subtest 'test generate_popdensity' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000' } );
+    CityGenerator::generate_popdensity($city);
+    isnt( $city->{'population_density'},  undef );
+    isnt( $city->{'density_description'}, undef );
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'population_density' => 20000 } );
+    CityGenerator::generate_popdensity($city);
+    is( $city->{'population_density'},  20000 );
+    is( $city->{'density_description'}, 'densely' );
+
+    $city
+        = CityGenerator::create_city(
+        { 'seed' => 1, 'population_total' => '10000', 'population_density' => 10000, 'density_description' => 'dovey' }
+        );
+    CityGenerator::generate_popdensity($city);
+    is( $city->{'population_density'},  10000 );
+    is( $city->{'density_description'}, 'dovey' );
+
+    done_testing();
+};
 ###
 ###
 ###subtest 'test generate_travelers' => sub {

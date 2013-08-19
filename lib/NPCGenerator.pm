@@ -110,9 +110,7 @@ sub create_npc {
         #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
         $npc->{'race'}='oddball';
     }
-    $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
-    $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
-    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
+    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'scope'}->{'option'} )->{'content'};
     set_attitudes($npc);
     set_sex($npc);
     set_profession($npc);
@@ -179,7 +177,7 @@ Take a provided NPC and select a sex from the list of available choices.
 
 sub set_sex {
     my ($npc) = @_;
-    my $sex = roll_from_array( &d(100), $xml_data->{'sex'}->{'option'} );
+    my $sex = roll_from_array( &d(100), $npc_data->{'sex'}->{'option'} );
 
     $npc->{'sex'}     = $sex->{'content'} if ( !defined $npc->{'sex'} );
     $npc->{'pronoun'} = $sex->{'pronoun'} if ( !defined $npc->{'pronoun'} );
@@ -255,9 +253,9 @@ Take a provided npc structure and set the primary, secondary and ternary attitud
 
 sub set_attitudes {
     my ($npc) = @_;
-    if ( defined $xml_data->{'attitude'} and ref $xml_data->{'attitude'} eq 'HASH' ) {
-        if ( defined $xml_data->{'attitude'}->{'option'} and ref $xml_data->{'attitude'}->{'option'} eq 'ARRAY' ) {
-            my $primary_attitude = rand_from_array( $xml_data->{'attitude'}->{'option'} );
+    if ( defined $npc_data->{'attitude'} and ref $npc_data->{'attitude'} eq 'HASH' ) {
+        if ( defined $npc_data->{'attitude'}->{'option'} and ref $npc_data->{'attitude'}->{'option'} eq 'ARRAY' ) {
+            my $primary_attitude = rand_from_array( $npc_data->{'attitude'}->{'option'} );
             $npc->{'primary_attitude'} = $primary_attitude->{'type'} if ( !defined $npc->{'primary_attitude'} );
 
             if ( defined $primary_attitude->{'option'} and ref $primary_attitude->{'option'} eq 'ARRAY' ) {

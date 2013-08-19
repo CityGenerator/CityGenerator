@@ -169,7 +169,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option min="71" max="80" >is very strict</option>
             <option min="81"          >is very authoritarian</option>
         </authority>
-        <crime> <!-- fixme this is backwards!!! -->
+        <crime>
             <option           max="10">rampant</option>
             <option min="11"  max="30">common</option>
             <option min="31"  max="50">occasional</option>
@@ -198,6 +198,40 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="81"         >monster</option>
     </poptype>
 
-
+    <streets>
+        <title>rough</title>
+        <title>broken</title>
+        <title>pristine</title>
+        <title>irregular</title>
+        <title>smooth</title>
+        <title>bumpy</title>
+        <title>crude</title>
+        <title>even</title>
+        <title>well-maintained</title>
+        <title>filthy</title>
+        <title>muddy</title>
+        <root>dirt roads</root>
+        <root>dirt tracks</root>
+        <root>cobblestone streets</root>
+        <root>cobblestone paths</root>
+        <trailer>in a grid pattern</trailer>
+        <trailer>in a ray pattern</trailer>
+        <trailer>in a contour-forming pattern</trailer>
+        <trailer>in an irregular pattern</trailer>
+        <trailer>in a random mesh pattern</trailer>
+        <trailer>in an organic pattern</trailer>
+        <trailer>in a fragmented parallel pattern</trailer>
+        <trailer>in a looped pattern</trailer>
+        <trailer>in a warped parallel pattern</trailer>
+        <trailer>in a linear pattern</trailer>
+        <trailer>in a wheel and spoke pattern</trailer>
+    </streets>
+    <popdensity>
+        <option          max="20" type="sparsely"   />
+        <option min="21" max="40" type="lightly"    />
+        <option min="41" max="60" type="nominally"  />
+        <option min="61" max="80" type="moderately" />
+        <option min="81"          type="densely"    />
+    </popdensity>
 
 </data>
