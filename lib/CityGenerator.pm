@@ -246,7 +246,6 @@ sub flesh_out_city {
     $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
     $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
 
-
     return $city;
 }
 
@@ -335,7 +334,6 @@ sub generate_race_percentages {
 
     # sort whatever is left.
     $city->{'race percentages'} = [ sort @{ $city->{'race percentages'} } ];
-
 
     return $city;
 }
