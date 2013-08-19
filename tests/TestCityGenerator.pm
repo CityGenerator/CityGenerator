@@ -345,70 +345,29 @@ subtest 'test generate_streets' => sub {
     done_testing();
 };
 
+subtest 'test generate_popdensity' => sub {
+    my $city;
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000' } );
+    CityGenerator::generate_popdensity($city);
+    isnt( $city->{'population_density'},  undef );
+    isnt( $city->{'density_description'}, undef );
 
-###subtest 'test set_stat_descriptions' => sub {
-###    my $city;
-###    $city = CityGenerator::create_city( { 'seed' => 1 } );
-###    CityGenerator::set_stat_descriptions($city);
-###    foreach my $value (qw( education authority magic military tolerance economy )){
-###        isnt($city->{$value."_description"}, undef, "ensure $value is defined");
-###    } 
-###
-###    my $stats={
-###                'education' => 0,
-###                'authority' => 0,
-###                'magic'     => 0,
-###                'military'  => 0,
-###                'tolerance' => 0,
-###                'economy'   => 0
-###            };
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'  => 1,
-###            'stats' => $stats
-###        }
-###    );
-###    CityGenerator::set_stat_descriptions($city);
-###    foreach my $value (qw( education authority magic military tolerance economy )){
-###        is($city->{'stats'}->{$value}, 0, "ensure $value is set");
-###        isnt($city->{$value."_description"}, undef, "ensure $value is defined");
-###    } 
-###
-###    $city = CityGenerator::create_city(
-###        {
-###            'seed'                  => 1,
-###            'education_description' => 'foo1',
-###            'authority_description' => 'foo2',
-###            'magic_description'     => 'foo3',
-###            'military_description'  => 'foo4',
-###            'tolerance_description' => 'foo5',
-###            'economy_description'   => 'foo6'
-###        }
-###    );
-###    CityGenerator::set_stat_descriptions($city);
-###    is( $city->{'education_description'}, 'foo1' );
-###    is( $city->{'authority_description'}, 'foo2' );
-###    is( $city->{'magic_description'},     'foo3' );
-###    is( $city->{'military_description'},  'foo4' );
-###    is( $city->{'tolerance_description'}, 'foo5' );
-###    is( $city->{'economy_description'},   'foo6' );
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1 } );
-###    #FIXME this is kludgy.
-###    $city->{'stats'}->{'education'} = undef;
-###    $city->{'stats'}->{'authority'} = undef;
-###    $city->{'stats'}->{'magic'}     = undef;
-###    $city->{'stats'}->{'military'}  = undef;
-###    $city->{'stats'}->{'tolerance'} = undef;
-###    $city->{'stats'}->{'economy'}   = undef;
-###    CityGenerator::set_stat_descriptions($city);
-###    foreach my $value (qw( education authority magic military tolerance economy )){
-###        isnt($city->{$value."_description"}, undef, "ensure $value is defined");
-###    } 
-###
-###    done_testing();
-###};
-###
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'population_density' => 20000 } );
+    CityGenerator::generate_popdensity($city);
+    is( $city->{'population_density'},  20000 );
+    is( $city->{'density_description'}, 'densely' );
+
+    $city
+        = CityGenerator::create_city(
+        { 'seed' => 1, 'population_total' => '10000', 'population_density' => 10000, 'density_description' => 'dovey' }
+        );
+    CityGenerator::generate_popdensity($city);
+    is( $city->{'population_density'},  10000 );
+    is( $city->{'density_description'}, 'dovey' );
+
+    done_testing();
+};
+
 ###
 ###subtest 'test generate_walls' => sub {
 ###    #NOTE area is included because generate_walls requires it to mark protected areas
@@ -517,28 +476,6 @@ subtest 'test generate_streets' => sub {
 ###    done_testing();
 ###};
 ###
-subtest 'test generate_popdensity' => sub {
-    my $city;
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000' } );
-    CityGenerator::generate_popdensity($city);
-    isnt( $city->{'population_density'},  undef );
-    isnt( $city->{'density_description'}, undef );
-
-    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000', 'population_density' => 20000 } );
-    CityGenerator::generate_popdensity($city);
-    is( $city->{'population_density'},  20000 );
-    is( $city->{'density_description'}, 'densely' );
-
-    $city
-        = CityGenerator::create_city(
-        { 'seed' => 1, 'population_total' => '10000', 'population_density' => 10000, 'density_description' => 'dovey' }
-        );
-    CityGenerator::generate_popdensity($city);
-    is( $city->{'population_density'},  10000 );
-    is( $city->{'density_description'}, 'dovey' );
-
-    done_testing();
-};
 ###
 ###
 ###subtest 'test generate_travelers' => sub {
@@ -814,18 +751,18 @@ subtest 'test generate_popdensity' => sub {
 ###    done_testing();
 ###};
 ###
-###subtest 'test generate_postings' => sub {
-###    my $city;
-###    my $count=3;
-###
-###    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000','postingcount'=>$count, 'postings'=>['dummy']} );
-###    CityGenerator::generate_postings($city);
-###    is(scalar(@{$city->{'postings'}}), 3);
-###    is( $city->{'postings'}->[0], 'dummy');
-###
-###    done_testing();
-###};
-###
+subtest 'test generate_postings' => sub {
+    my $city;
+    my $count=3;
+
+    $city = CityGenerator::create_city( { 'seed' => 1, 'population_total' => '10000','postingcount'=>$count, 'postings'=>['dummy']} );
+    CityGenerator::generate_postings($city);
+    is(scalar(@{$city->{'postings'}}), 3);
+    is( $city->{'postings'}->[0], 'dummy');
+
+    done_testing();
+};
+
 
 1;
 

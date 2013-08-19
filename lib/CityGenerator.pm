@@ -223,7 +223,6 @@ sub flesh_out_city {
     generate_resources($city);
     generate_city_crest($city);
     generate_streets($city);
-###    set_stat_descriptions($city);
 ###    set_laws($city);
 ###
 ###    #Generate
@@ -235,7 +234,7 @@ sub flesh_out_city {
 ###    generate_specialists($city);
 ###    generate_businesses($city);
 ###    generate_establishments($city);
-###    generate_postings($city);
+    generate_postings($city);
 ###    generate_districts($city);
 ###
 ###
@@ -622,6 +621,33 @@ sub generate_streets {
 }
 
 
+###############################################################################
+
+=head2 generate_popdensity
+
+Generate the density of the population, given the base city size. Units are people per sq km.
+=cut
+
+###############################################################################
+sub generate_popdensity {
+
+    # TODO addmagic, economey, etc to impact density
+    #TODO change how this is calculated and get rid of delta in favor of a percentile range multiplier
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 25);
+    my $range = $city->{'max_density'} - $city->{'min_density'};
+    my $delta = &d($range);
+    $city->{'population_density'} = $city->{'min_density'} + $delta if ( !defined $city->{'population_density'} );
+
+    my $percentile = ( $city->{'population_density'} - $city->{'min_density'} ) / $range * 100;
+    $city->{'density_description'} = roll_from_array( $percentile, $city_data->{'popdensity'}->{'option'} )->{'type'}
+        if ( !defined $city->{'density_description'} );
+
+    return $city;
+}
+
+
+
 ##################################################################################
 ###
 ###=head3 generate_walls()
@@ -741,31 +767,6 @@ sub generate_streets {
 ###}
 ###
 ###
-###############################################################################
-
-=head2 generate_popdensity
-
-Generate the density of the population, given the base city size. Units are people per sq km.
-=cut
-
-###############################################################################
-sub generate_popdensity {
-
-    # TODO addmagic, economey, etc to impact density
-    #TODO change how this is calculated and get rid of delta in favor of a percentile range multiplier
-    my ($city) = @_;
-    GenericGenerator::set_seed( $city->{'seed'} + 25);
-    my $range = $city->{'max_density'} - $city->{'min_density'};
-    my $delta = &d($range);
-    $city->{'population_density'} = $city->{'min_density'} + $delta if ( !defined $city->{'population_density'} );
-
-    my $percentile = ( $city->{'population_density'} - $city->{'min_density'} ) / $range * 100;
-    $city->{'density_description'} = roll_from_array( $percentile, $city_data->{'popdensity'}->{'option'} )->{'type'}
-        if ( !defined $city->{'density_description'} );
-
-    return $city;
-}
-
 
 ##################################################################################
 ###
@@ -1085,32 +1086,33 @@ sub generate_popdensity {
 ###    }
 ###    return $city;
 ###}
-###
-##################################################################################
-###
-###=head2 generate_postings
-###
-###Generate a list of postings based on the business section
-###
-###=cut
-###
-##################################################################################
-###sub generate_postings {
-###    my ($city) = @_;
-###    GenericGenerator::set_seed( $city->{'seed'} + 34);
-###
-###    $city->{'postings'} = [] if ( !defined $city->{'postings'} );
-###
-###    #ghetto, yes, but gives us a range of 6-23.
-###    $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
-###    for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
-###        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
-###    }
-###    return $city;
-###}
-###
-###1;
-###
+
+
+###############################################################################
+
+=head2 generate_postings
+
+Generate a list of postings based on the business section
+
+=cut
+
+###############################################################################
+sub generate_postings {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'postings'} = [] if ( !defined $city->{'postings'} );
+
+    #ghetto, yes, but gives us a range of 6-23.
+    $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
+    for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
+        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
+    }
+    return $city;
+}
+
+1;
+
 __END__
 
 
