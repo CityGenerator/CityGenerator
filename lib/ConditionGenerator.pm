@@ -96,6 +96,8 @@ sub create_condition {
     if ( !defined $condition->{'seed'} ) {
         $condition->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $condition->{'seed'} );
+
     $condition->{'original_seed'} = $condition->{'seed'};
     $condition->{'pop_mod'}       = {} if ( !defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH' );
     $condition->{'bar_mod'}       = {} if ( !defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH' );

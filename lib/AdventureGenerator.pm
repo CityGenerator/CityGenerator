@@ -102,9 +102,8 @@ sub create_adventure {
 
     if ( !defined $adventure->{'seed'} ) {
         $adventure->{'seed'} = GenericGenerator::set_seed();
-    } else {
-        GenericGenerator::set_seed( $adventure->{'seed'} );
     }
+    GenericGenerator::set_seed( $adventure->{'seed'} );
 
     generate_name($adventure);
 

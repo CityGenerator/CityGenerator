@@ -86,6 +86,7 @@ sub create_establishment {
         }
     }
     $establishment->{'seed'} = set_seed() if ( !defined $establishment->{'seed'} );
+    GenericGenerator::set_seed( $establishment->{'seed'} );
 
     foreach my $stat (qw( reputation size price popularity)) {
         $establishment->{'stats'}->{$stat} = d(100) if ( !defined $establishment->{'stats'}->{$stat} );

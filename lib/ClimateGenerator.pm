@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_climate flesh_out_climate);
+@EXPORT_OK = qw( create_climate );
 
 ###############################################################################
 
@@ -184,47 +184,19 @@ sub create_climate {
     if ( !defined $climate->{'seed'} ) {
         $climate->{'seed'} = set_seed();
     }
-
-    #set base stat values, and if they don't exist, set new value.
-    foreach my $stat (qw( altitude continentality latitude pressure )) {
-        if ( !defined $climate->{$stat} ) {
-            $climate->{$stat} = d(100);
-        } else {
-            $climate->{$stat} = min( 100, max( 1, $climate->{$stat} ) );
-        }
-    }
+    GenericGenerator::set_seed($climate->{'seed'});
+    GenericGenerator::generate_stats($climate,$climate_data);
 
     # The higher the latitude or altitude, the lower the temp.
-    $climate->{'temperature'} = ( ( 100 - $climate->{'altitude'} ) + ( 100 - $climate->{'latitude'} ) ) / 2
-        if ( !defined $climate->{'temperature'} );
+    $climate->{'stats'}->{'temperature'} = ( ( 100 - $climate->{'stats'}->{'altitude'} ) + ( 100 - $climate->{'stats'}->{'latitude'} ) ) / 2
+        if ( !defined $climate->{'stats'}->{'temperature'} );
 
     # The higher the pressure and lower the continentality, the higher the precip
-    $climate->{'precipitation'} = ( $climate->{'pressure'} + ( 100 - $climate->{'continentality'} ) ) / 2
-        if ( !defined $climate->{'precipitation'} );
+    $climate->{'stats'}->{'precipitation'} = ( $climate->{'stats'}->{'pressure'} + ( 100 - $climate->{'stats'}->{'continentality'} ) ) / 2
+        if ( !defined $climate->{'stats'}->{'precipitation'} );
 
     #calculate the biome based on temp and precip
-    $climate = calculate_biome($climate);
-
-    return $climate;
-}
-
-
-###############################################################################
-
-=head2 Secondary Methods
-
-The following methods are used to flesh out the climate.
-
-=head3 flesh_out_climate()
-
-Add the other features beyond the core climate.
-
-=cut
-
-###############################################################################
-sub flesh_out_climate {
-    my ($climate) = @_;
-    GenericGenerator::set_seed( $climate->{'seed'} );
+    calculate_biome($climate);
     calculate_wind($climate);
     calculate_temp($climate);
     calculate_precip($climate);
@@ -247,8 +219,8 @@ sub calculate_biome {
     my ($climate) = @_;
 
     # These two lines are ugly ways to translate 0-100 precip and temp values to array indexes
-    my $precipkey = ceil( $climate->{'precipitation'} / 100 * ( scalar(@$biomematrix) - 1 ) );
-    my $tempkey   = ceil( $climate->{'temperature'} / 100 *   ( scalar( @{ $biomematrix->[$precipkey] } ) - 1 ) );
+    my $precipkey = ceil( $climate->{'stats'}->{'precipitation'} / 100 * ( scalar(@$biomematrix) - 1 ) );
+    my $tempkey   = ceil( $climate->{'stats'}->{'temperature'} / 100 *   ( scalar( @{ $biomematrix->[$precipkey] } ) - 1 ) );
 
     # once we know what are keys are, set the biome key, then look up the climate name.
     $climate->{'biomekey'} = $biomematrix->[$precipkey][$tempkey] if ( !defined $climate->{'biomekey'} );
@@ -304,7 +276,7 @@ sub calculate_wind {
 sub calculate_temp {
     my ($climate) = @_;
     $climate->{'temp_variation_roll'} = d(100) if ( !defined $climate->{'temp_variation_roll'} );
-    $climate->{'temp'} = roll_from_array( $climate->{'temperature'}, $climate_data->{'temp'}->{'option'} )->{'content'}
+    $climate->{'temp'} = roll_from_array( $climate->{'stats'}->{'temperature'}, $climate_data->{'temp'}->{'option'} )->{'content'}
         if ( !defined $climate->{'temp'} );
     $climate->{'temp_variation'}
         = roll_from_array( $climate->{'temp_variation_roll'}, $climate_data->{'variation'}->{'option'} )->{'content'}
@@ -325,7 +297,7 @@ sub calculate_precip {
     my ($climate) = @_;
     $climate->{'precip_variation_roll'} = d(100) if ( !defined $climate->{'precip_variation_roll'} );
     $climate->{'precip'}
-        = roll_from_array( $climate->{'precipitation'}, $climate_data->{'precip'}->{'option'} )->{'content'}
+        = roll_from_array( $climate->{'stats'}->{'precipitation'}, $climate_data->{'precip'}->{'option'} )->{'content'}
         if ( !defined $climate->{'precip'} );
     $climate->{'precip_variation'}
         = roll_from_array( $climate->{'precip_variation_roll'}, $climate_data->{'variation'}->{'option'} )->{'content'}

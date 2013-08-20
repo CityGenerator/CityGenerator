@@ -87,7 +87,7 @@ subtest 'Test World Land Summary' => sub {
     my $world = WorldGenerator::create_world( { seed => 1, } );
     my $summary = WorldFormatter::printLandSummary($world);
     is( $summary,
-              "Macurto is 760,399,542 square kilometers (with a circumfrence of 48,870 kilometers).\n"
+              "Macurto is 760,399,542 square kilometers (with a circumference of 48,870 kilometers).\n"
             . "Surface water is rare, covering 27% of the planet.\n"
             . "Around 52% of the planet's water is fresh water.\n"
             . "The crust is split into 8 plates, resulting in 2 continents.\n" );

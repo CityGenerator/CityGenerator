@@ -98,6 +98,7 @@ sub create_event {
     if ( !defined $event->{'seed'} ) {
         $event->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $event->{'seed'} );
 
     return $event;
 } ## end sub create_event

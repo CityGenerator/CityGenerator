@@ -102,6 +102,7 @@ sub create_astronomy {
     if ( !defined $astronomy->{'seed'} ) {
         $astronomy->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $astronomy->{'seed'} );
 
     $astronomy = generate_starsystem($astronomy);
     $astronomy = generate_moons($astronomy);

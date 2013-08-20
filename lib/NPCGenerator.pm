@@ -93,9 +93,8 @@ sub create_npc {
     }
     if ( defined $npc->{'seed'} ) {
         $npc->{'seed'} = GenericGenerator::set_seed( $npc->{'seed'} );
-    } else {
-        $npc->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed($npc->{'seed'});
 
     #Available races is an array of race names.
     $npc->{'available_races'} = [ keys %{ $names_data->{'race'} } ] if ( !defined $npc->{'available_races'} );

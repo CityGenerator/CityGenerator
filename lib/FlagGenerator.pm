@@ -94,6 +94,7 @@ sub create_flag {
     if ( !defined $flag->{'seed'} ) {
         $flag->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $flag->{'seed'} );
     $flag = generate_colors($flag);
     $flag = generate_shape($flag);
     $flag = generate_ratio($flag);

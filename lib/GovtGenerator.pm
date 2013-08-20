@@ -100,6 +100,7 @@ sub create_govt {
     if ( !defined $govt->{'seed'} ) {
         $govt->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $govt->{'seed'} );
     generate_stats($govt);
     set_govt_type($govt);
     generate_leader($govt);

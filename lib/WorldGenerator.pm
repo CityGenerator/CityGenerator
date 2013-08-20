@@ -103,6 +103,7 @@ sub create_world {
     if ( !defined $world->{'seed'} ) {
         $world->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $world->{'seed'} );
 
     generate_name($world);
     generate_atmosphere($world);
@@ -328,7 +329,7 @@ sub generate_surface {
 
     # Calculated values
     $world->{'radius'} = int sqrt( $world->{'surface'} / ( 4 * pi ) ) if ( !defined $world->{'radius'} );
-    $world->{'circumfrence'} = int( pi * $world->{'radius'} * 2 );
+    $world->{'circumference'} = int( pi * $world->{'radius'} * 2 );
 
 
     return $world;

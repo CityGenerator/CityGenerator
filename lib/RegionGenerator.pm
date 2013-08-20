@@ -97,6 +97,7 @@ sub create_region {
     if ( !defined $region->{'seed'} ) {
         $region->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $region->{'seed'} );
 
     # This knocks off the city IDs
     $region->{'seed'} = $region->{'seed'} - $region->{'seed'} % 10;

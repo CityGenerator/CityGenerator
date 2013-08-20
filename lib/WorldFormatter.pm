@@ -171,8 +171,8 @@ sub printLandSummary {
     $content
         .= "$world->{'name'} is "
         . $de->format_number( $world->{'surface'} )
-        . " square kilometers (with a circumfrence of "
-        . $de->format_number( $world->{'circumfrence'} )
+        . " square kilometers (with a circumference of "
+        . $de->format_number( $world->{'circumference'} )
         . " kilometers).\n"
         . "Surface water is $world->{'surfacewater_description'}, covering $world->{'surfacewater_percent'}% of the planet.\n"
         . "Around $world->{'freshwater_percent'}% of the planet's water is fresh water.\n"

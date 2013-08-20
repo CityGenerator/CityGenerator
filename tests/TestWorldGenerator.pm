@@ -122,21 +122,21 @@ subtest 'test generate_surface' => sub {
     is( $world->{'surface'},      "711688464" );
     is( $world->{'size'},         "average" );
     is( $world->{'radius'},       "7525" );
-    is( $world->{'circumfrence'}, "47280" );
+    is( $world->{'circumference'}, "47280" );
 
     $world = WorldGenerator::create_world( { 'seed' => 765373, 'surface_roll' => 1 } );
     is( $world->{'surface_roll'}, "1" );
     is( $world->{'surface'},      "77237844" );
     is( $world->{'size'},         "tiny" );
     is( $world->{'radius'},       "2479" );
-    is( $world->{'circumfrence'}, "15576" );
+    is( $world->{'circumference'}, "15576" );
 
     $world = WorldGenerator::create_world( { 'seed' => 765373, 'surface' => 100000 } );
     is( $world->{'surface_roll'}, "62" );
     is( $world->{'surface'},      "100000" );
     is( $world->{'size'},         "average" );
     is( $world->{'radius'},       "89" );
-    is( $world->{'circumfrence'}, "559" );
+    is( $world->{'circumference'}, "559" );
 
     done_testing();
 };

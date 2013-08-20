@@ -132,6 +132,7 @@ sub create_city {
     if ( !defined $city->{'seed'} ) {
         $city->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $city->{'seed'} );
 
     generate_city_name($city);
     GenericGenerator::generate_stats($city,$city_data);
@@ -240,11 +241,18 @@ sub flesh_out_city {
     generate_travelers($city);
     set_dominance($city);
 
-    $city->{'govt'}      = GovtGenerator::create_govt( {            'seed' => $city->{'seed'} } );
-    $city->{'military'}  = MilitaryGenerator::create_military( {    'seed' => $city->{'seed'}, 'population_total'=>$city->{'population_total'}  } );
-    $city->{'climate'}   = ClimateGenerator::create_climate( {      'seed' => $city->{'seed'} } );
-    $city->{'climate'}   = ClimateGenerator::flesh_out_climate( $city->{'climate'} );
-    $city->{'astronomy'} = AstronomyGenerator::create_astronomy( $city->{'astronomy'} );
+    $city->{'govt'}->{'seed'}      = $city->{'seed'} if ( !defined $city->{'govt'}->{'seed'} );
+    $city->{'military'}->{'seed'}  = $city->{'seed'} if ( !defined $city->{'military'}->{'seed'} );
+    $city->{'climate'}->{'seed'}   = $city->{'seed'} if ( !defined $city->{'climate'}->{'seed'} );
+    $city->{'astronomy'}->{'seed'} = $city->{'seed'} if ( !defined $city->{'astronomy'}->{'seed'} );
+    
+
+    $city->{'military'}->{'population_total'} = $city->{'population_total'}  if (!defined $city->{'military'}->{'population_total'} );
+
+    $city->{'govt'}      = GovtGenerator::create_govt(              $city->{'govt'}  );
+    $city->{'military'}  = MilitaryGenerator::create_military(      $city->{'military'} );
+    $city->{'climate'}   = ClimateGenerator::create_climate(        $city->{'climate'}   );
+    $city->{'astronomy'} = AstronomyGenerator::create_astronomy(    $city->{'astronomy'} );
 
     return $city;
 }

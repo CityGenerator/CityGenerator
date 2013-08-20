@@ -98,6 +98,7 @@ sub create_continent {
     if ( !defined $continent->{'seed'} ) {
         $continent->{'seed'} = set_seed();
     }
+    GenericGenerator::set_seed( $continent->{'seed'} );
 
     # This knocks off the city IDs
     $continent->{'seed'} = $continent->{'seed'} - $continent->{'seed'} % 100;
