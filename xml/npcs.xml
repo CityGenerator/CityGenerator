@@ -26,7 +26,14 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </experience>
     </stats>
     <feature>
-
+        <regret><!-- Bob's major regret was that he ____ -->
+            <option>was unable to save a loved one</option>
+            <option>didn't lie to protect a close friend</option>
+            <option>accidentally killed an innocent person</option>
+            <option>seriously injured a friend goofing around</option>
+            <option>ran away from home long ago</option>
+            <option>scared a child</option>
+        </regret>
         <height>
             <option>short</option>
             <option>average height</option>
