@@ -133,9 +133,9 @@ sub select_establishment_type {
 
     $establishment->{'manager_title'}= rand_from_array($type->{'manager'}->{'option'})->{'content'} if (!defined $establishment->{'manager_title'});
 
-    $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'} and defined $type->{'trailer'}->{'option'});
+    $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'});
 
-    $establishment->{'manager_class'}= rand_from_array($type->{'npc_class'}->{'option'})->{'content'} if (!defined $establishment->{'manager_class'} and defined $type->{'npc_class'}->{'option'});
+    $establishment->{'manager_class'}= rand_from_array($type->{'npc_class'}->{'option'})->{'content'} if (!defined $establishment->{'manager_class'});
 
     return $establishment;
 }
@@ -157,7 +157,14 @@ sub generate_establishment_name {
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
 
-    $establishment->{'name'}  = "$nameobj->{'content'} $establishment->{'trailer'}" if ( !defined $establishment->{'name'} );
+    if ( !defined $establishment->{'name'} ){
+        if (defined $establishment->{'trailer'}){
+            $establishment->{'name'} = "$nameobj->{'content'} $establishment->{'trailer'}" ;
+        }
+        else{
+            $establishment->{'name'} = $nameobj->{'content'} ;
+        }
+    }
     
     my $tc = Lingua::EN::Titlecase->new( $establishment->{'name'}  );
 
@@ -267,7 +274,7 @@ sub generate_servicetype {
     my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( !defined $establishment->{'service_type'} and defined $type->{'service'} );
+    $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( !defined $establishment->{'service_type'}  );
     
     return $establishment;
 

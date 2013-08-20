@@ -110,9 +110,7 @@ sub create_npc {
         #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
         $npc->{'race'}='oddball';
     }
-    $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
-    $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
-    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
+    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'scope'}->{'option'} )->{'content'};
     set_attitudes($npc);
     set_sex($npc);
     set_profession($npc);
@@ -159,10 +157,9 @@ sub set_level {
     my ($npc) = @_;
     my $size_modifier = ( $npc->{'size_modifier'} || 0 ) + 5;
 
-    $npc->{'level'} = d('3d4') + d($size_modifier) - 5 if ( !defined $npc->{'level'} );
-
     #keep levels between 1 and 20.
-    $npc->{'level'} = max( 1, min( 20, $npc->{'level'} ) );
+    $npc->{'level'} =max( 1, min( 20, d('3d4') + d($size_modifier) - 5)) if ( !defined $npc->{'level'} );
+
     return $npc;
 }
 
@@ -179,12 +176,13 @@ Take a provided NPC and select a sex from the list of available choices.
 
 sub set_sex {
     my ($npc) = @_;
-    my $sex = roll_from_array( &d(100), $xml_data->{'sex'}->{'option'} );
+    my $sex = roll_from_array( &d(100), $npc_data->{'sex'}->{'option'} );
 
     $npc->{'sex'}     = $sex->{'content'} if ( !defined $npc->{'sex'} );
     $npc->{'pronoun'} = $sex->{'pronoun'} if ( !defined $npc->{'pronoun'} );
     $npc->{'posessivepronoun'}= pronoun ( 'posessive-subjective', $npc->{'sex'} ) if (!defined $npc->{'posessivepronoun'} );
     return $npc;
+
 }
 
 
@@ -255,23 +253,31 @@ Take a provided npc structure and set the primary, secondary and ternary attitud
 
 sub set_attitudes {
     my ($npc) = @_;
-    if ( defined $xml_data->{'attitude'} and ref $xml_data->{'attitude'} eq 'HASH' ) {
-        if ( defined $xml_data->{'attitude'}->{'option'} and ref $xml_data->{'attitude'}->{'option'} eq 'ARRAY' ) {
-            my $primary_attitude = rand_from_array( $xml_data->{'attitude'}->{'option'} );
-            $npc->{'primary_attitude'} = $primary_attitude->{'type'} if ( !defined $npc->{'primary_attitude'} );
 
-            if ( defined $primary_attitude->{'option'} and ref $primary_attitude->{'option'} eq 'ARRAY' ) {
-                my $secondary_attitude = rand_from_array( $primary_attitude->{'option'} );
-                $npc->{'secondary_attitude'} = $secondary_attitude->{'type'}
-                    if ( !defined $npc->{'secondary_attitude'} );
+    # Select a primary attitude;
+    my $primary_attitude = rand_from_array( [ keys %{$npc_data->{'attitude'}->{'option'} } ]);
+    $npc->{'primary_attitude'} = $primary_attitude  if ( !defined $npc->{'primary_attitude'} );
 
-                if ( defined $secondary_attitude->{'option'} and ref $secondary_attitude->{'option'} eq 'ARRAY' ) {
-                    my $ternary_attitude = rand_from_array( $secondary_attitude->{'option'} );
-                    $npc->{'ternary_attitude'} = $ternary_attitude->{'type'} if ( !defined $npc->{'ternary_attitude'} );
-                }
-            }
+    if (defined $npc_data->{'attitude'}->{'option'}->{ $npc->{'primary_attitude'}  } ){
+        my $primary=$npc_data->{'attitude'}->{'option'}->{ $npc->{'primary_attitude'}  };
+        my $secondary_attitude = rand_from_array( [ keys %{$primary->{'option'} } ] );
+        $npc->{'secondary_attitude'} = $secondary_attitude if ( !defined $npc->{'secondary_attitude'} );
+
+        if (defined $primary->{'option'}->{ $npc->{'secondary_attitude'}  } ){
+            my $secondary=$primary->{'option'}->{ $npc->{'secondary_attitude'}  };
+            my $ternary_attitude = rand_from_array( [ keys %{$secondary->{'option'} } ] );
+            $npc->{'ternary_attitude'} = $ternary_attitude if ( !defined $npc->{'ternary_attitude'} );
+    
+        }else{
+            $npc->{'ternary_attitude'}= $npc->{'secondary_attitude'} if (!defined $npc->{'ternary_attitude'}) ;
         }
+    }else{
+        $npc->{'secondary_attitude'}= $npc->{'primary_attitude'} if (!defined  $npc->{'secondary_attitude'});
+        $npc->{'ternary_attitude'}= $npc->{'primary_attitude'} if (!defined $npc->{'ternary_attitude'}) ;
     }
+
+
+
     return $npc;
 }
 

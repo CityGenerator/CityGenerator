@@ -302,10 +302,6 @@ subtest 'test parse_template' => sub {
     GenericGenerator::parse_template($ds);
     is( $ds->{'template'},    'wait what quick', 'ensure variables are parsing' );
 
-
-
-
-
     $ds={ 'template'=>'Broken template [%adverb[1]%] ', 'adverb'=>'quick' };
 
     dies_ok( sub { GenericGenerator::parse_template($ds) }, "bad template dies" );
@@ -314,6 +310,35 @@ subtest 'test parse_template' => sub {
     done_testing();
 };
 
+subtest 'test generate_stats' => sub {
+    my $ds={    };
+    my $xml={
+             'stats'=>{ 
+                        'age'=>{ 'option'=>[
+                                          {           'max'=>30, 'content'=>'foo'},
+                                          {'min'=>31, 'max'=>60, 'content'=>'fbar'},
+                                          {'min'=>61,            'content'=>'baz'},
+                                        ]
+                             },
+                        'str'=>{ 'option'=>[
+                                          {           'max'=>30, 'content'=>'foo'},
+                                          {'min'=>31, 'max'=>60, 'content'=>'fbar'},
+                                          {'min'=>61,            'content'=>'baz'},
+                                        ]
+                             }
+                }
+            };
+    GenericGenerator::generate_stats($ds,$xml);
+    foreach my $stat ( keys %{$xml->{'stats'}} ) {
+        ok($ds->{'stats'}->{$stat} >=1 &&$ds->{'stats'}->{$stat} <=100, "$ds->{'stats'}->{$stat} between 1-100 for $stat");
+        isnt($ds->{$stat."_description"}, undef,  $ds->{$stat."_description"}." between is text for $stat description");
+    }
+    $ds={'stats'=>{'age'=>99}, 'age_description'=>'qwe'};
+    GenericGenerator::generate_stats($ds,$xml);
+    is($ds->{'stats'}->{'age'},99, 'set a stat');
+    is($ds->{'age_description'},'qwe', 'set a stat description');
+    done_testing();
+};
 
 
 

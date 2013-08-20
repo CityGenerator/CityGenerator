@@ -22,7 +22,8 @@ subtest 'Test Summary' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $summary = SummaryFormatter::printSummary($city);
-    is( $summary, "Kanhall is a small town in the Britkan Province with a normal population.",
+    like( $summary, 
+        "/is a.* in the .* with a .* population\./",
         "summary text" );
 
     done_testing();

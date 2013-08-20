@@ -33,18 +33,18 @@ subtest 'Test CensusData General Information' => sub {
 };
 
 subtest 'Test CensusData General Information' => sub {
-    my $city = CityGenerator::create_city( { seed => '126405' } );
+    my $city = CityGenerator::create_city( { seed => '1' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printGeneralInformation($city);
 
-    is(
-        $censusdata, "                    <h3>General Information</h3>
+    like(
+        $censusdata, 
+        "/<h3>.*<\/h3>
                     <ul>
-                        <li> Pop. Estimate: 833 </li>
-                        <li> Children: 28.93% (241) </li>
-                        <li> Elderly: 11.88% (99) </li>
-                    </ul>
-"
+                        <li> Pop. Estimate: .*<\/li>
+                        <li> Children: .*% \(.*\) <\/li>
+                        <li> Elderly: .*% \(.*\) <\/li>
+                    <\/ul>/"
     );
     done_testing();
 };
@@ -53,15 +53,11 @@ subtest 'Test CensusData Racial Breakdown' => sub {
     my $city = CityGenerator::create_city( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printRacialBreakdown($city);
-    is(
-        $censusdata, "                    <h3>Racial Breakdown</h3>
+    like(
+        $censusdata, 
+        "/<h3>Racial Breakdown<\/h3>
                     <ul>
-                        <li>644 half-dwarf (77.3%)</li>
-                        <li>160 halfling (19.2%)</li>
-                        <li>28 half-orc (3.3%)</li>
-                        <li>1 other (0.1%)</li>
-                    </ul>
-"
+                        <li>.* \\(.*%\\)<\/li>/"
     );
     done_testing();
 };
@@ -71,16 +67,15 @@ subtest 'Test CensusData Misc' => sub {
     my $city = CityGenerator::create_city( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printMisc($city);
-    is( 1, 1 );
-    is(
-        $censusdata, "                    <h3>Misc.</h3>
+    like(
+        $censusdata,
+        "/<h3>Misc.<\/h3>
                     <ul>
-                        <li>4 Districts</li>
-                        <li>40 Businesses</li>
-                        <li>70 Specialists</li>
-                        <li>107 Residences</li>
-                    </ul>
-"
+                        <li>.* Districts?<\/li>
+                        <li>.* Businesses?<\/li>
+                        <li>.* Specialists?<\/li>
+                        <li>.* Residences?<\/li>
+                    <\/ul>/"
     );
     done_testing();
 };

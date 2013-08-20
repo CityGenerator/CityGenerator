@@ -6,22 +6,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 <data>
 
-<citysize>
-    <city size="settlement"    min="1"   max="10"  size_modifier="-5"   minpop="25"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>
-    <city size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>
-    <city size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>
-    <city size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>
-    <city size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"  min_density="75"  max_density="4000"  gplimit="1000"/>
-    <city size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"  min_density="90"  max_density="6000"  gplimit="1500"/>
-    <city size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"  min_density="100" max_density="9000"  gplimit="3500"/>
-    <city size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"  min_density="110" max_density="10000" gplimit="5000"/>
-    <city size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"  min_density="150" max_density="15000" gplimit="8000"/>
-    <city size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000" min_density="180" max_density="22000" gplimit="15000"/>
-    <city size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000" min_density="200" max_density="28000" gplimit="22000"/>
-    <city size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000" min_density="220" max_density="30000" gplimit="30000"/>
-    <city size="capitol"       min="100" max="100" size_modifier="12"   minpop="30001"  maxpop="80000" min_density="240" max_density="40000" gplimit="50000"/>
-</citysize>
-
 <trivia>their official _______ is the ________
     <fact type='tree'>
         <title>red</title>
@@ -88,34 +72,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </fact>
 
 </trivia>
-<streets>
-    <title>rough</title>
-    <title>broken</title>
-    <title>pristine</title>
-    <title>irregular</title>
-    <title>smooth</title>
-    <title>bumpy</title>
-    <title>crude</title>
-    <title>even</title>
-    <title>well-maintained</title>
-    <title>filthy</title>
-    <title>muddy</title>
-    <root>dirt roads</root>
-    <root>dirt tracks</root>
-    <root>cobblestone streets</root>
-    <root>cobblestone paths</root>
-    <trailer>in a grid pattern</trailer>
-    <trailer>in a ray pattern</trailer>
-    <trailer>in a contour-forming pattern</trailer>
-    <trailer>in an irregular pattern</trailer>
-    <trailer>in a random mesh pattern</trailer>
-    <trailer>in an organic pattern</trailer>
-    <trailer>in a fragmented parallel pattern</trailer>
-    <trailer>in a looped pattern</trailer>
-    <trailer>in a warped parallel pattern</trailer>
-    <trailer>in a linear pattern</trailer>
-    <trailer>in a wheel and spoke pattern</trailer>
-</streets>
 
 <walls chance='40' >
     <condition>
@@ -204,13 +160,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <specialty>logging</specialty>
 </specialties>
 
-<pop_types>
-    <pop_type type="normal"             max="60" base_pop="normal"  />
-    <pop_type type="mixed"     min="61" max="80" base_pop="mixed"   />
-    <pop_type type="monstrous" min="81" max="91" base_pop="monster" />
-</pop_types>
-
-
 
 <tactictypes>
     <option>rigid formations</option>
@@ -298,69 +247,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>martial arts</option>
     </weapon>
 </weapontypes>
-
-<popdensity>
-    <option          max="20" type="sparsely"   />
-    <option min="21" max="40" type="lightly"    />
-    <option min="41" max="60" type="nominally"  />
-    <option min="61" max="80" type="moderately" />
-    <option min="81"          type="densely"    />
-</popdensity>
-
-<nameoptions>
-	<race name='other'>
-	    <option>human</option>
-	    <option>elf</option>
-	    <option>orc</option>
-	    <option>dwarf</option>
-	    <option>gnome</option>
-	</race>
-	<race name='Half-elf'>
-	    <option>human</option>
-	    <option>elf</option>
-	</race>
-	<race name='Half-orc'>
-	    <option>human</option>
-	    <option>orc</option>
-	</race>
-	<race name='Half-dwarf'>
-	    <option>human</option>
-	    <option>dwarf</option>
-	</race>
-	 <race name='Deep Dwarf'>
-	    <option>dwarf</option>
-	</race>
-	 <race name='Drow'>
-	    <option>elf</option>
-	</race>
-	 <race name='Lycanthrope'>
-	    <option>human</option>
-	</race>
-</nameoptions>
-
-<moral>
-    <option min="1"   max="33"  >evil</option>
-    <option min="34"  max="66"  >neutral</option>
-    <option min="67"  max="100" >good</option>
-</moral>
-
-<order>
-    <option min="1"   max="33"  >chaotic</option>
-    <option min="34"  max="66"  >neutral</option>
-    <option min="67"  max="100" >lawful</option>
-</order>
-
-<cityages>
-    <cityage          max='10' age_mod='10'  >young</cityage>
-    <cityage min='11' max='20' age_mod='8'   >youthful</cityage>
-    <cityage min='21' max='30' age_mod='5'   >new</cityage>
-    <cityage min='31' max='40' age_mod='3'   >established</cityage>
-    <cityage min='41' max='60' age_mod='0'   >modern</cityage>
-    <cityage min='61' max='70' age_mod='-3'  >mature</cityage>
-    <cityage min='71' max='80' age_mod='-5'  >old</cityage>
-    <cityage min='81' max='90' age_mod='-8'  >elderly</cityage>
-    <cityage min='91'          age_mod='-10' >ancient</cityage>
-</cityages>
 
 <locations>
     <landmarkdesc chance="50">
@@ -605,14 +491,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option>southwest</option>
     <option>south</option>
 </direction>
-<cityshape>The densly populated town proper is a circular 0.58 hectare region.
-    <option>a circular</option>
-    <option>an oval</option>
-    <option>a square</option>
-    <option>a rectangular</option>
-    <option>a hexagonal</option>
-    <option>a octagonal</option>
-</cityshape>
 
 <condition>
     <option>neat</option>
@@ -688,16 +566,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>by mob rule</option>
     </trial>
 </laws>
-
-<crime> <!-- fixme this is backwards!!! -->
-    <option           max="10">rampant</option>
-    <option min="11"  max="30">common</option>
-    <option min="31"  max="50">occasional</option>
-    <option min="51"  max="70">unusual</option>
-    <option min="71"  max="90">rare</option>
-    <option min="91"          >unheard of</option>
-</crime>
-
 
 <markets>
     <option type="guild" chance="62" marketname="Thieves" secret="100">
@@ -776,10 +644,8 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="apologetic"        > </trait>
     <trait type="attentive"         > </trait>
     <trait type="authoritarian"     > </trait>
-    <trait type="avuncular"         > </trait>
     <trait type="battle-ready"      > </trait>
     <trait type="beligerent"        > </trait>
-    <trait type="blinkered"         > </trait>
     <trait type="boastful"          > </trait>
     <trait type="cautious"          > </trait>
     <trait type="chatty"            > </trait>
@@ -793,7 +659,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="efficient"         > </trait>
     <trait type="egotistical"       > </trait>
     <trait type="embittered"        > </trait>
-    <trait type="ensorcelled"       > </trait>
     <trait type="exhausted"         > </trait>
     <trait type="fashion concious"  > </trait>
     <trait type="fatalistic"        > </trait>
@@ -804,19 +669,14 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="gluttonous"        > </trait>
     <trait type="gosipy"            > </trait>
     <trait type="greedy"            > </trait>
-    <trait type="gregarious"        > </trait>
     <trait type="grieving"          > </trait>
     <trait type="guarded"           > </trait>
     <trait type="guilty"            > </trait>
-    <trait type="harried"           > </trait>
     <trait type="healthy"           > </trait>
     <trait type="helpful"           > </trait>
-    <trait type="hero-worshipping"  > </trait>
     <trait type="homesick"          > </trait>
     <trait type="idealistic"        > </trait>
     <trait type="impatient"         > </trait>
-    <trait type="importunate"       > </trait>
-    <trait type="imposter"          > </trait>
     <trait type="insecure"          > </trait>
     <trait type="intimidating"      > </trait>
     <trait type="intimidated"       > </trait>
@@ -826,30 +686,22 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="lonely"            > </trait>
     <trait type="loud"              > </trait>
     <trait type="lovelorn"          > </trait>
-    <trait type="machiavellian"     > </trait>
     <trait type="melancholy"        > </trait>
     <trait type="mocking"           > </trait>
     <trait type="mopey"             > </trait>
     <trait type="nervous"           > </trait>
     <trait type="nihilistic"        > </trait>
     <trait type="nosy"              > </trait>
-    <trait type="oracular"          > </trait>
     <trait type="outlandish"        > </trait>
     <trait type="pacifistic"        > </trait>
     <trait type="patriotic"         > </trait>
     <trait type="patronizing"       > </trait>
-    <trait type="picayune"          > </trait>
     <trait type="pious"             > </trait>
     <trait type="prejudiced"        > </trait>
-    <trait type="public spirited"   > </trait>
-    <trait type="puckish"           > </trait>
-    <trait type="pugnacious"        > </trait>
     <trait type="quiet"             > </trait>
-    <trait type="revellious"        > </trait>
     <trait type="resentful"         > </trait>
     <trait type="scattered"         > </trait>
     <trait type="self-obsessed"     > </trait>
-    <trait type="servile"           > </trait>
     <trait type="shifty"            > </trait>
     <trait type="sick"              > </trait>
     <trait type="skeptical"         > </trait>
@@ -860,73 +712,16 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trait type="territorial"       > </trait>
     <trait type="thick"             > </trait>
     <trait type="treasure-obsessed" > </trait>
-    <trait type="trivial"           > </trait>
     <trait type="trusting"          > </trait>
     <trait type="unreliable"        > </trait>
     <trait type="vengeful"          > </trait>
     <trait type="violent"           > </trait>
-    <trait type="a gambler"         > </trait>
-    <trait type="a worrywart"       > </trait>
+    <trait type="gambling"          > </trait>
+    <trait type="worrying"          > </trait>
     <trait type="xenophobic"        > </trait>
 
 </behavioraltraits>
 
-<orderalignment >
-    <option type="chaotic" min='1' max='33'>
-        <adjective>unreliable</adjective>
-        <adjective>irresponsible</adjective>
-        <adjective>questionable</adjective>
-        <adjective>unpredictable</adjective>
-        <adjective>deranged</adjective>
-        <adjective>incoherent</adjective>
-        <adjective>vague</adjective>
-    </option>
-    <option type="neutral" min='34' max='66'>
-        <adjective>bystanding</adjective>
-        <adjective>detached</adjective>
-        <adjective>non-participating</adjective>
-        <adjective>non-conformist</adjective>
-        <adjective>unflappable</adjective>
-    </option>
-    <option type="lawful" min='67' max='100'>
-        <adjective>reliable</adjective>
-        <adjective>dependable</adjective>
-        <adjective>sure</adjective>
-        <adjective>legitimized</adjective>
-        <adjective>organized</adjective>
-        <adjective>dutiful</adjective>
-        <adjective>honorable</adjective>
-    </option>
-</orderalignment>
-<moralalignment >
-    <option type="evil" min='1' max='33'>
-        <adjective>untrustworthy</adjective>
-        <adjective>mean</adjective>
-        <adjective>venomous</adjective>
-        <adjective>corrupt</adjective>
-        <adjective>repungent</adjective>
-        <adjective>unpleasant</adjective>
-        <adjective>opportunistic</adjective>
-        <adjective>villianous</adjective>
-        <adjective>nefarious</adjective>
-    </option>
-    <option type="neutral" min='34' max='66'>
-        <adjective>unconcerned</adjective>
-        <adjective>undecided</adjective>
-        <adjective>uncomitted</adjective>
-        <adjective>cold</adjective>
-        <adjective>indifferent</adjective>
-    </option>
-    <option type="good" min='67' >
-        <adjective>well meaning</adjective>
-        <adjective>trustworty</adjective>
-        <adjective>nice</adjective>
-        <adjective>ethical</adjective>
-        <adjective>honest</adjective>
-        <adjective>praise-worthy</adjective>
-        <adjective>virtuous</adjective>
-    </option>
-</moralalignment>
 <arable_description>
     <option type="poor" min='1' max='33'>
         <option>desolate</option>
@@ -940,138 +735,8 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>fertile</option>
     </option>
 </arable_description>
-<!-- ============================================================== -->
 
 
-<education_description>
-    <option type="positive" min='2'      >
-        <option>high</option>
-        <option>expected</option>
-        <option>enforced</option>
-        <option>flourishing</option>
-        <option>growing</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>instutionalized</option>
-        <option>middling</option>
-        <option>mediocre</option>
-        <option>allowed, but not enforced</option>
-    </option>
-    <option type="negative"         max='-2'>
-        <option>mocked</option>
-        <option>low</option>
-        <option>poor</option>
-        <option>rare</option>
-    </option>
-</education_description>
-<authority_description>
-    <option type="positive" min='2' >
-        <option>is very authoritarian</option>
-        <option>is very strict</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>is neutral towards</option>
-        <option>ignores</option>
-    </option>
-    <option type="negative"  max='-2'>
-        <option>is chaotic</option>
-        <option>is a mess</option>
-    </option>
-</authority_description>
-<magic_description>
-    <option type="positive" min='2'      >
-        <option>common</option>
-        <option>plentiful</option>
-        <option>accepted</option>
-        <option>flourishing</option>
-        <option>growing</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>instutionalized</option>
-        <option>rare but accepted</option>
-        <option>allowed</option>
-    </option>
-    <option type="negative"         max='-2'>
-        <option>not a factor</option>
-        <option>rarely used</option>
-        <option>rare</option>
-    </option>
-</magic_description>
-<military_description>
-    <option type="positive" min='2' >
-        <option>positive</option>
-        <option>reverent</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>neutral</option>
-        <option>laid back</option>
-    </option>
-    <option type="negative"  max='-2'>
-        <option>disinterested</option>
-        <option>negative</option>
-    </option>
-</military_description>
-<tolerance_description>
-    <option type="positive" min='2' >
-        <option>is accepting of</option>
-        <option>accepts</option>
-        <option>loves</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>is neutral towards</option>
-        <option>ignores</option>
-    </option>
-    <option type="negative"  max='-2'>
-        <option>is critical of</option>
-        <option>despises</option>
-        <option>hates</option>
-    </option>
-</tolerance_description>
-<economy_description>
-    <option type="positive" min='2'    >
-        <option>vibrant</option>
-        <option>healthy</option>
-        <option>good</option>
-        <option>flourishing</option>
-        <option>lively</option>
-        <option>growing</option>
-    </option>
-    <option type="neutral" min='-1' max='1'>
-        <option>stable</option>
-        <option>insulated</option>
-        <option>calm</option>
-        <option>unwavering</option>
-        <option>resiliant</option>
-        <option>steadfast</option>
-        <option>steady</option>
-    </option>
-    <option type="negative"      max='-2'>
-        <option>weak</option>
-        <option>failing</option>
-        <option>shaky</option>
-        <option>uncertain</option>
-        <option>crumbling</option>
-    </option>
-</economy_description>
-
-<!-- ============================================================== -->
-
-
-
-
-
-
-<climate>
-        <option pop_support="180" >moist tropical</option>
-        <option pop_support="180" >dry tropical</option>
-        <option pop_support="180" >humid sub-tropical</option>
-        <option pop_support="180" >humid continental</option>
-        <option pop_support="180" >mild continental</option>
-        <option pop_support="140" >temperate steppe</option>
-        <option pop_support="60"  >desert</option>
-        <option pop_support="100" >tundra</option>
-        <option pop_support="60" >polar</option>
-</climate>
 <neighbor>
     <relation>has a neutral relationship with</relation>
     <relation>has strained relations with</relation>
@@ -1089,205 +754,13 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <relation>is ready for war with</relation>
     <relation>is oblivious of</relation>
 </neighbor>
-<skill> <!-- Bubbles is a ________ brewer in _______-->
-    <level          max='5' >horribly skilled</level>
-    <level min='6'  max='10' >mocked</level>
-    <level min='11' max='20' >laughably skilled</level>
-    <level min='21' max='30' >poorly skilled</level>
-    <level min='31' max='40' >mediocre</level>
-    <level min='41' max='50' >reasonably skilled</level>
-    <level min='51' max='70' >decent</level>
-    <level min='71' max='80' >skilled</level>
-    <level min='81' max='90' >gifted</level>
-    <level min='91' max='98' >renowned</level>
-    <level min='99'          >legendary</level>
-
-</skill>
-<attitude>
-    <option type="Love">
-		<option type="Affection">
-	 		<option type="Adoration"/>
-	 		<option type="Fondness"/>
-	 		<option type="Liking"/>
-	 		<option type="Attractiveness"/>
-	 		<option type="Caring"/>
-	 		<option type="Tenderness"/>
-	 		<option type="Compassion"/>
-	 		<option type="Sentimentality"/>
-	    </option>
-		<option type="Lust/Sexual desire">
-	 		<option type="Desire"/>
-	 		<option type="Passion"/>
-	 		<option type="Infatuation"/>
-	    </option>
-		<option type="Longing">
-	 		<option type="Longing"/>
-	    </option>
-    </option>
-	<option type="Joy">
-		<option type="Cheerfulness">
-	 		<option type="Amusement"/>
-	 		<option type="Bliss"/>
-	 		<option type="Gaiety"/>
-	 		<option type="Glee"/>
-	 		<option type="Jolliness"/>
-	 		<option type="Joviality"/>
-	 		<option type="Joy"/>
-	 		<option type="Delight"/>
-	 		<option type="Enjoyment"/>
-	 		<option type="Gladness"/>
-	 		<option type="Happiness"/>
-	 		<option type="Jubilation"/>
-	 		<option type="Elation"/>
-	 		<option type="Satisfaction"/>
-	 		<option type="Ecstasy"/>
-	 		<option type="Euphoria"/>
-	    </option>
-		<option type="Zest">
-	 		<option type="Enthusiasm"/>
-	 		<option type="Zeal"/>
-	 		<option type="Excitement"/>
-	 		<option type="Thrill"/>
-	 		<option type="Exhilaration"/>
-	    </option>
-		<option type="Contentment">
-	 		<option type="Pleasure"/>
-	    </option>
-		<option type="Pride">
-	 		<option type="Triumph"/>
-	    </option>
-		<option type="Optimism">
-	 		<option type="Eagerness"/>
-	 		<option type="Hope"/>
-	    </option>
-		<option type="Enthrallment">
-	 		<option type="Enthrallment"/>
-	 		<option type="Rapture"/>
-	    </option>
-		<option type="Relief">
-	 		<option type="Relief"/>
-	    </option>
-    </option>
-	<option type="Surprise">
-		<option type="Surprise">
-	 		<option type="Amazement"/>
-	 		<option type="Astonishment"/>
-	    </option>
-    </option>
-	<option type="Anger">
-		<option type="Irritability">
-	 		<option type="Aggravation"/>
-	 		<option type="Agitation"/>
-	 		<option type="Annoyance"/>
-	 		<option type="Grouchy"/>
-	 		<option type="Grumpy"/>
-	 		<option type="Crosspatch"/>
-	    </option>
-		<option type="Exasperation">
-	 		<option type="Frustration"/>
-	    </option>
-		<option type="Rage">
-	 		<option type="Anger"/>
-	 		<option type="Outrage"/>
-	 		<option type="Fury"/>
-	 		<option type="Wrath"/>
-	 		<option type="Hostility"/>
-	 		<option type="Ferocity"/>
-	 		<option type="Bitter"/>
-	 		<option type="Hatred"/>
-	 		<option type="Scorn"/>
-	 		<option type="Spite"/>
-	 		<option type="Vengefulness"/>
-	 		<option type="Dislike"/>
-	 		<option type="Resentment"/>
-	    </option>
-		<option type="Disgust">
-	 		<option type="Revulsion"/>
-	 		<option type="Contempt"/>
-	 		<option type="Loathing"/>
-	    </option>
-		<option type="Envy">
-	 		<option type="Jealousy"/>
-	    </option>
-		<option type="Torment">
-	 		<option type="Torment"/>
-	    </option>
-    </option>
-	<option type="Sadness">
-		<option type="Suffering">
-	 		<option type="Agony"/>
-	 		<option type="Anguish"/>
-	 		<option type="Hurt"/>
-	    </option>
-		<option type="Sadness">
-	 		<option type="Depression"/>
-	 		<option type="Despair"/>
-	 		<option type="Gloom"/>
-	 		<option type="Glumness"/>
-	 		<option type="Unhappy"/>
-	 		<option type="Grief"/>
-	 		<option type="Sorrow"/>
-	 		<option type="Woe"/>
-	 		<option type="Misery"/>
-	 		<option type="Melancholy'"/>
-	    </option>
-		<option type="Disappointment">
-	 		<option type="Dismay"/>
-	 		<option type="Displeasure"/>
-	    </option>
-		<option type="Shame">
-	 		<option type="Guilt"/>
-	 		<option type="Regret"/>
-	 		<option type="Remorse"/>
-	    </option>
-		<option type="Neglect">
-	 		<option type="Alienation"/>
-	 		<option type="Defeatism"/>
-	 		<option type="Dejection"/>
-	 		<option type="Embarrassment"/>
-	 		<option type="Homesickness"/>
-	 		<option type="Humiliation"/>
-	 		<option type="Insecurity"/>
-	 		<option type="Insult"/>
-	 		<option type="Isolation"/>
-	 		<option type="Loneliness"/>
-	 		<option type="Rejection"/>
-	    </option>
-		<option type="Sympathy">
-	 		<option type="Pity"/>
-	 		<option type="Sympathy"/>
-	    </option>
-    </option>
-	<option type="Fear">
-		<option type="Horror">
-	 		<option type="Alarm"/>
-	 		<option type="Shock"/>
-	 		<option type="Fear"/>
-	 		<option type="Fright"/>
-	 		<option type="Horror"/>
-	 		<option type="Terror"/>
-	 		<option type="Panic"/>
-	 		<option type="Hysteria"/>
-	 		<option type="Mortification"/>
-	    </option>
-		<option type="Nervousness">
-	 		<option type="Anxiety"/>
-	 		<option type="Suspense"/>
-	 		<option type="Uneasiness"/>
-	 		<option type="Apprehension"/>
-	 		<option type="Worry"/>
-	 		<option type="Distress"/>
-	 		<option type="Dread"/>
-	    </option>
-	</option>
-</attitude>
-<area>
-    <scope>the neighborhood</scope>
-    <scope>that part of town</scope>
-    <scope>the city</scope>
-    <scope>the region</scope>
-    <scope>the world</scope>
-</area>
+<scope>
+    <option>the neighborhood</option>
+    <option>that part of town</option>
+    <option>the city</option>
+    <option>the region</option>
+    <option>the world</option>
+</scope>
 <classes>
     <class name="Commoner"   min="0"  max="23" max_level="4d4" />
     <class name="Expert"     min="24" max="35" max_level="3d4" />
@@ -1314,19 +787,12 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option min="61" max="80" >very oppressive</option>
     <option min="81"          >brutally oppressive</option>
 </dominance>
-<sex>
-    <option          max="49" pronoun='he' >male</option>
-    <option min="50" max="98" pronoun='she'>female</option>
-    <option min="99"          pronoun='it'>androgynous</option>
-</sex>
 <housing>
     <quality name="poor"    percent="30" density="15"/>
-    <quality name="average" percent="69" density="7"/>
-    <quality name="wealthy"   percent="1"  density="5"/>
+    <quality name="average" percent="68" density="7"/>
+    <quality name="wealthy" percent="2"  density="5"/>
 
-<!-- quality descriptors: dilapidated, poor, ramshackle, etc
-
--->
+<!-- quality descriptors: dilapidated, poor, ramshackle, etc -->
 
 
     <house_type type="small hut" value="5gp" max="5" />

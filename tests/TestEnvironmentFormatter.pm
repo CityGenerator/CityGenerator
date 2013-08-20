@@ -22,9 +22,9 @@ subtest 'Test Environment Geography' => sub {
     my $city = CityGenerator::create_city( { 'seed' => 1, 'area'=>"3.00" } );
     CityGenerator::flesh_out_city($city);
     my $environment = EnvironmentFormatter::printGeography($city);
-    is(
+    like(
         $environment,
-        "This fertile small town is densely populated (4,888/sq km) and covers 3.00 square kilometers.",
+        "/This .* is .* populated .*/sq km. and covers .* square kilometers./",
         'ensure string is returned'
     );
 
