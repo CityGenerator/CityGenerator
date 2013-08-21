@@ -81,9 +81,12 @@ sub print_content {
 
     my $formtmpl;
     my $vars = {
-        'postings'   => $postings,
+        'items'   => $postings,
+        'section'       => 'postings',
+        'sectionname'   => 'Job Postings',
+        'sectionintro'  => "You find the following job postings:",
     };
-    $templates->process('postinggenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+    $templates->process('sharedgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
     return $formtmpl;
 }

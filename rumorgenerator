@@ -81,9 +81,12 @@ sub print_content {
 
     my $formtmpl;
     my $vars = {
-        'rumors'   => $rumors,
+        'items'   => $rumors,
+        'section'       => 'rumors',
+        'sectionname'   => 'Rumors',
+        'sectionintro'  => "Around town, you'll hear the following rumors:",
     };
-    $templates->process('rumorgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+    $templates->process('sharedgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
     return $formtmpl;
 }
