@@ -22,6 +22,39 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </size>
 
     <stats>
+        <happiness>
+            <option          max='10' >despair</option>
+            <option min='11' max='20' >miserable</option>
+            <option min='21' max='30' >disappointed</option>
+            <option min='31' max='40' >bored</option>
+            <option min='41' max='60' >content</option>
+            <option min='61' max='70' >good</option>
+            <option min='71' max='80' >happy</option>
+            <option min='81' max='90' >overjoyed</option>
+            <option min='91'          >estatic</option>
+        </happiness>
+        <health>
+            <option          max='10' >diseased</option>
+            <option min='11' max='20' >sickly</option>
+            <option min='21' max='30' >ailing</option>
+            <option min='31' max='40' >feeble</option>
+            <option min='41' max='60' >able-bodied</option>
+            <option min='61' max='70' >healthy</option>
+            <option min='71' max='80' >hardy</option>
+            <option min='81' max='90' >sturdy</option>
+            <option min='91'          >vigorous</option>
+        </health>
+        <terrain>
+            <option          max='10' >flat</option>
+            <option min='11' max='20' >even</option>
+            <option min='21' max='30' >rolling</option>
+            <option min='31' max='40' >hilly</option>
+            <option min='41' max='60' >uneven</option>
+            <option min='61' max='70' >rough</option>
+            <option min='71' max='80' >rugged</option>
+            <option min='81' max='90' >broken</option>
+            <option min='91'          >jagged</option>
+        </terrain>
         <age>
             <option          max='10' >young</option>
             <option min='11' max='20' >youthful</option>
@@ -33,7 +66,17 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option min='81' max='90' >elderly</option>
             <option min='91'          >ancient</option>
         </age>
-
+        <pollution>
+            <option          max='10' >pristine</option>
+            <option min='11' max='20' >sterile</option>
+            <option min='21' max='30' >clean</option>
+            <option min='31' max='40' >tidy</option>
+            <option min='41' max='60' >disheveled</option>
+            <option min='61' max='70' >grungy</option>
+            <option min='71' max='80' >poluted</option>
+            <option min='81' max='90' >filthy</option>
+            <option min='91'          >squalid</option>
+        </pollution>
         <moral>
             <option          max="4"  >untrustworthy</option>
             <option min="5"  max="8"  >mean</option>
