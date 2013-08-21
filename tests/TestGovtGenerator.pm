@@ -18,106 +18,58 @@ use base qw(Exporter);
 
 subtest 'test create_govt' => sub {
     my $govt;
-    $govt = GovtGenerator::create_govt( { 'seed' => 12 } );
-    is( $govt->{'seed'}, 12 );
+    $govt = GovtGenerator::create_govt(  );
+    isnt( $govt->{'seed'},          undef, 'seed is set' );
+    isnt( $govt->{'description'},   undef, 'description is set'  );
+    isnt( $govt->{'type'},          undef, 'type is set' );
+    isnt( $govt->{'title'},         undef, 'title is set' );
 
     done_testing();
 };
 
 subtest 'test set_govt_type' => sub {
     my $govt;
-    $govt = GovtGenerator::create_govt( { 'seed' => 41630 } );
-    is( $govt->{'seed'}, 41630 );
-    is( $govt->{'description'},
-        'the ruler or small clique wield absolute power (not restricted by a constitution or laws)' );
-    is( $govt->{'type'},            'dictatorship' );
-    is( $govt->{'title'}->{'male'}, 'Inquisitor' );
 
     $govt = GovtGenerator::create_govt(
-        { 'seed' => 41630, 'description' => 'he says he wins', 'type' => 'blah', 'title' => { 'male' => 'Sir' } } );
-    is( $govt->{'seed'},            41630 );
+        { 'seed' => 1, 'description' => 'he says he wins', 'type' => 'blah', 'title' => { 'male' => 'Sir' } } );
+    is( $govt->{'seed'},            1 );
     is( $govt->{'description'},     'he says he wins' );
     is( $govt->{'type'},            'blah' );
     is( $govt->{'title'}->{'male'}, 'Sir' );
 
     done_testing();
 };
-subtest 'test set_ruler' => sub {
-    my $govt;
-    $govt = GovtGenerator::create_govt( { 'seed' => 41630 } );
-    is( $govt->{'seed'}, 41630 );
 
-    #    is($govt->{'leader'}->{'right'},        'by revolution');
-    #    is($govt->{'leader'}->{'reputation'},   '');
-    #    is($govt->{'leader'}->{'length'},       '');
-    #    is($govt->{'leader'}->{'opposition'},   '');
-    #    is($govt->{'leader'}->{'maintained'},   '');
-
-    $govt = GovtGenerator::create_govt( { 'seed' => 41630, } );
-    is( $govt->{'seed'}, 41630 );
-
-    done_testing();
-};
-
-#
-#
-#subtest 'test set_reputation' => sub {
-#    my $govt;
-#    $govt=GovtGenerator::create_govt({'seed'=>41630});
-#    GovtGenerator::set_reputation($govt);
-#    is($govt->{'seed'},41630);
-#    is($govt->{'reputation'},'revered');
-#
-#    #FIXME check for collisions like approval_mod
-#    $govt=GovtGenerator::create_govt({'seed'=>12, 'reputation'=>'foo', 'reputation_approval_mod'=>'5'});
-#    GovtGenerator::set_reputation($govt);
-#    is($govt->{'seed'},12);
-#    is($govt->{'reputation_approval_mod'},5);
-#    is($govt->{'reputation'},"foo");
-#
-#    done_testing();
-#};
-#
-#
 subtest 'test generate_stats' => sub {
     my $govt;
-    $govt = GovtGenerator::create_govt( { 'seed' => 41630 } );
-    is( $govt->{'seed'}, 41630 );
+    $govt = GovtGenerator::create_govt( { 'seed' => 1 } );
+    is( $govt->{'seed'}, 1 );
     foreach my $stat (qw/ corruption approval efficiency influence unity theology/) {
-        cmp_ok( $govt->{'stats'}->{$stat}, '<=', 100, "$stat max" );
-        cmp_ok( $govt->{'stats'}->{$stat}, '>=', 1,   "$stat min" );
+        ok( $govt->{'stats'}->{$stat} >= 1 && $govt->{'stats'}->{$stat} <= 100, "$govt->{'stats'}->{$stat} is between 1 and 100" );
+        isnt( $govt->{$stat.'_description'}, undef, "$stat description is set" );
     }
 
-    is( $govt->{'corruption_description'}, 'decent' );
-    is( $govt->{'approval_description'},   'honored' );
-    is( $govt->{'efficiency_description'}, 'mostly sufficient' );
-    is( $govt->{'unity_description'},      'overcomes their differences' );
-    is( $govt->{'influence_description'},  'enduring' );
-    is( $govt->{'influencereason'},        'riots in the region' );
-
-    $govt = GovtGenerator::create_govt(
-        {
-            'seed'  => 41630,
-            'stats' => {
+    my $stats= {
                 'corruption' => 12,
                 'approval'   => 33,
                 'efficiency' => 44,
                 'influence'  => 55,
                 'unity'      => 66,
                 'theology'   => 77
-            }
-        }
-    );
-    is( $govt->{'seed'},                  41630 );
-    is( $govt->{'stats'}->{'corruption'}, 12 );
-    is( $govt->{'stats'}->{'approval'},   33 );
-    is( $govt->{'stats'}->{'efficiency'}, 44 );
-    is( $govt->{'stats'}->{'influence'},  55 );
-    is( $govt->{'stats'}->{'unity'},      66 );
-    is( $govt->{'stats'}->{'theology'},   77 );
+            };
 
-    $govt = GovtGenerator::create_govt(
-        {
+
+    $govt = GovtGenerator::create_govt( { 'seed'=>1, 'stats'=>$stats, } );
+
+    is( $govt->{'seed'}, 1 );
+
+    foreach my $key ( keys %$stats  ){
+        is( $govt->{'stats'}->{$key}, $stats->{$key}, "$key is $stats->{$key} " );
+
+    }
+
+
+    my $presets={
             'seed'                   => 41630,
             'corruption_description' => '',
             'approval_description'   => '',
@@ -125,20 +77,17 @@ subtest 'test generate_stats' => sub {
             'unity_description'      => '',
             'influence_description'  => '',
             'influencereason'        => ''
-        }
-    );
-    is( $govt->{'corruption_description'}, '' );
-    is( $govt->{'approval_description'},   '' );
-    is( $govt->{'efficiency_description'}, '' );
-    is( $govt->{'unity_description'},      '' );
-    is( $govt->{'influence_description'},  '' );
-    is( $govt->{'influencereason'},        '' );
+        };
 
 
+    $govt = GovtGenerator::create_govt( $presets  );
+    foreach my $key ( keys %$stats  ){
+        is( $govt->{$key}, $presets->{$key}, "$key is $presets>{$key} " );
+
+    }
     done_testing();
 };
 
-#
 #subtest 'test set_secondary_power' => sub {
 #    my $govt;
 #    $govt=GovtGenerator::create_govt({'seed'=>41630});
@@ -167,12 +116,6 @@ subtest 'test generate_stats' => sub {
 #
 #    done_testing();
 #};
-#
-#
-#
-#
-#
-#
 #
 #
 
