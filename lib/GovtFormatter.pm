@@ -83,11 +83,11 @@ sub printLeader {
     $content
         .= "$city->{'name'} is ruled by $leadername. ";
     $content
-        .= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'leader'}->{'length'} and is $city->{'govt'}->{'leader'}->{'reputation'} by the people. ";
+        .= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'length'} and is $city->{'govt'}->{'reputation_description'} by the people. ";
     $content
-        .= "There is $city->{'govt'}->{'leader'}->{'opposition'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. ";
+        .= "There is $city->{'govt'}->{'opposition_description'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. ";
     $content
-        .= "The right to rule was granted $city->{'govt'}->{'leader'}->{'right'}, and that power is maintained $city->{'govt'}->{'leader'}->{'maintained'}. ";
+        .= "The right to rule was granted $city->{'govt'}->{'right'}, and that power is maintained $city->{'govt'}->{'maintained'}. ";
 
 #
 #$city->{'name'} is ruled a $govt->{'reputation'} $govt->{'description'}. Within the city there is a $govt->{'secondary_power'}->{'power'} that $govt->{'secondary_power'}->{'plot'} current leadership. The population approves of $govt->{'description'} policies in general.";

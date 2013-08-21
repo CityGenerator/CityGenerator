@@ -22,9 +22,9 @@ subtest 'Test Govt' => sub {
     my $city = CityGenerator::create_city( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $govt = GovtFormatter::printSummary($city);
-    is(
+    like(
         $govt,
-"Kanhall is governed through a totalitarian government, where the government subordinates individuals by controlling all political and economic matters, as well as the attitudes, values, and beliefs. The government as a whole is seen as shrewd. Officials in Kanhall are often seen as the epitome corruption and the policies are mocked. The political influence of Kanhall in the region is receding due to riots in the region. In times of crisis, the population squabbles amongst themselves. ",
+            "/.* is governed through a .*, where .* The government as a whole is seen as .* Officials in .* are often seen as .* and the policies are .* The political influence of .* in the region is .* In times of crisis, the population .*/",
         'ensure summary is printed'
     );
     done_testing();

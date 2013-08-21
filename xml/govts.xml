@@ -15,198 +15,202 @@ Where does their "right to rule" come from?
 How do they enforce that power?
 
 -->
-    <right>
-        <option>by forgery</option>
-        <option>by divine will</option>
-        <option>by consensus</option>
-        <option>by constitution</option>
-        <option>by hereditary succession</option>
-        <option>by election</option>
-        <option>by appointment</option>
-        <option>by force</option>
-        <option>by revolution</option>
-        <option>by foreign imposition</option>
-    </right>
+    <stats>
+        <reputation>
+            <option          max="10" >despised</option>
+            <option min="11" max="20" >hated</option>
+            <option min="21" max="30" >feared</option>
+            <option min="31" max="40" >ridiculed</option>
+            <option min="41" max="50" >mocked</option>
+            <option min="51" max="60" >praised</option>
+            <option min="61" max="70" >loved</option>
+            <option min="71" max="80" >respected</option>
+            <option min="81" max="90" >honored</option>
+            <option min="91"          >revered</option>
+        </reputation>
+        <opposition>
+            <option          max="10" >no visible</option>
+            <option min="11" max="20" >secret</option>
+            <option min="21" max="30" >minor</option>
+            <option min="31" max="40" >peaceful</option>
+            <option min="41" max="50" >open</option>
+            <option min="51" max="60" >public</option>
+            <option min="61" max="70" >strong</option>
+            <option min="71" max="80" >hostile</option>
+            <option min="81" max="90" >forceful</option>
+            <option min="91"          >violent</option>
+        </opposition>
+        <corruption> <!-- Officials in __CITY__ are often seen as __CORRUPTION__  -->
+            <option          max="5"  >the epitome corruption</option>
+            <option min="6"  max="10" >corrupt and nefarious</option>
+            <option min="10" max="15" >willing to look the other way for the right price</option>
+            <option min="16" max="20" >crooked</option>
+            <option min="20" max="25" >on the take</option>
+            <option min="26" max="30" >underhanded</option>
+            <option min="30" max="35" >unethical</option>
+            <option min="36" max="40" >disreputable</option>
+            <option min="40" max="45" >equitable</option>
+            <option min="46" max="50" >reasonable</option>
+            <option min="50" max="55" >fair</option>
+            <option min="56" max="60" >honest</option>
+            <option min="60" max="65" >principled</option>
+            <option min="66" max="70" >decent</option>
+            <option min="70" max="75" >resolute</option>
+            <option min="76" max="80" >honorable</option>
+            <option min="80" max="85" >trustworthy</option>
+            <option min="86" max="90" >upright</option>
+            <option min="90" max="95" >virtuous</option>
+            <option min="96"          >incorruptible</option>
+        </corruption>
+        <approval>
+            <option          max="10" >despised</option>
+            <option min="11" max="20" >hated</option>
+            <option min="21" max="30" >feared</option>
+            <option min="31" max="40" >ridiculed</option>
+            <option min="41" max="50" >mocked</option>
+            <option min="51" max="60" >praised</option>
+            <option min="61" max="70" >loved</option>
+            <option min="71" max="80" >respected</option>
+            <option min="81" max="90" >honored</option>
+            <option min="91"          >revered</option>
+        </approval>
+        <efficiency><!-- The government as a whole is seen as __EFFICIENT__. -->
+            <option          max="5"  >the pinnacle of inefficiency</option>
+            <option min="6"  max="10" >incapable of even simple tasks</option>
+            <option min="10" max="15" >clearly incompetent</option>
+            <option min="16" max="20" >horribly inefficient</option>
+            <option min="20" max="25" >sloppy and disorganized</option>
+            <option min="26" max="30" >inept and inadequate</option>
+            <option min="30" max="35" >slipshod</option>
+            <option min="36" max="40" >minimally competent</option>
+            <option min="40" max="45" >somwhat capable</option>
+            <option min="46" max="50" >adequate</option>
+            <option min="50" max="55" >satisfactory</option>
+            <option min="56" max="60" >mostly sufficient</option>
+            <option min="60" max="65" >surprisingly decent</option>
+            <option min="66" max="70" >effective overall</option>
+            <option min="70" max="75" >on the ball</option>
+            <option min="76" max="80" >efficient</option>
+            <option min="80" max="85" >shrewd</option>
+            <option min="86" max="90" >surprisingly skillful</option>
+            <option min="90" max="95" >magnificently organized</option>
+            <option min="96"          >ruthlessly effective</option>
+    
+    
+        </efficiency>
+        <influence><!-- The political influence of __CITY__ in the region is __INFLUENCE__  -->
+            <option          max="5"  >negligible</option>
+            <option min="6"  max="10" >dwindling rapidly</option>
+            <option min="10" max="15" >wilting</option>
+            <option min="16" max="20" >wasting away</option>
+            <option min="20" max="25" >shrinking</option>
+            <option min="26" max="30" >declining</option>
+            <option min="30" max="35" >receding</option>
+            <option min="36" max="40" >consistent</option>
+            <option min="40" max="45" >steady</option>
+            <option min="46" max="50" >lasting</option>
+            <option min="50" max="55" >enduring</option>
+            <option min="56" max="60" >steadfast</option>
+            <option min="60" max="65" >unwavering</option>
+            <option min="66" max="70" >broadening</option>
+            <option min="70" max="75" >improving</option>
+            <option min="76" max="80" >spreading</option>
+            <option min="80" max="85" >growing</option>
+            <option min="86" max="90" >maturing</option>
+            <option min="90" max="95" >flourishing</option>
+            <option min="96"          >thriving</option>
+        </influence>
+        <unity> <!-- In times of crisis, the population ___________. -->
+            <option          max="10" >turns against itself</option>
+            <option min="11" max="20" >is eager to point fingers</option>
+            <option min="21" max="30" >gives up their freedom in exchange for security</option>
+            <option min="31" max="40" >flees for the hills</option>
+            <option min="41" max="50" >cowers in fear</option>
+            <option min="51" max="60" >squabbles amongst themselves</option>
+            <option min="61" max="70" >stages ineffective protests</option>
+            <option min="71" max="80" >overcomes their differences</option>
+            <option min="81" max="90" >comes together and fights as one</option>
+            <option min="91"          >rallies behind its leaders</option>
+        </unity>
+        <theology> <!-- Religion in Willis ________. -->
+            <option           max="5"  >is strictly forbidden on pain of death</option>
+            <option  min="6"  max="10" >is forbidden</option>
+            <option  min="10" max="15" >will get you in trouble</option>
+            <option  min="16" max="20" >is unwelcome</option>
+            <option  min="20" max="25" >is unregulated</option>
+            <option  min="26" max="30" >is taxed heavily</option>
+            <option  min="30" max="35" >is tightly regulated by the government</option>
+            <option  min="36" max="40" >is viewed as a nusiance</option>
+            <option  min="40" max="45" >is practiced behind closed doors</option>
+            <option  min="46" max="50" >is left to the people</option>
+            <option  min="50" max="55" >is common place</option>
+            <option  min="56" max="60" >is unregulated and diverse, making it a melting pot of many faiths</option>
+            <option  min="60" max="65" >enjoys many legal benefits</option>
+            <option  min="66" max="70" >is widespread</option>
+            <option  min="70" max="75" >is sanctioned by the government</option>
+            <option  min="76" max="80" >is limited to a single deity</option>
+            <option  min="80" max="85" >plays a central role in the lawmaking process</option>
+            <option  min="86" max="90" >controlled by the government</option>
+            <option  min="90" max="95" >is sacred, and the words of the gods are law</option>
+            <option  min="96"          >is used to control the populace</option>
+        </theology>
+    </stats>
 
-    <reputation>
-        <option          max="10" >despised</option>
-        <option min="11" max="20" >hated</option>
-        <option min="21" max="30" >feared</option>
-        <option min="31" max="40" >ridiculed</option>
-        <option min="41" max="50" >mocked</option>
-        <option min="51" max="60" >praised</option>
-        <option min="61" max="70" >loved</option>
-        <option min="71" max="80" >respected</option>
-        <option min="81" max="90" >honored</option>
-        <option min="91"          >revered</option>
-    </reputation>
+    <feature>
 
-    <length> <!-- The King has been in power-->
-        <option>for mere hours</option>
-        <option>for mere days</option>
-        <option>for a few months</option>
-        <option>for years</option>
-        <option>for several years</option>
-        <option>for many years</option>
-        <option>for decades</option>
-        <option>for several decades</option>
-        <option>far longer than should be allowed</option>
-    </length>
-    <opposition>
-        <option          max="10" >no visible</option>
-        <option min="11" max="20" >secret</option>
-        <option min="21" max="30" >minor</option>
-        <option min="31" max="40" >peaceful</option>
-        <option min="41" max="50" >open</option>
-        <option min="51" max="60" >public</option>
-        <option min="61" max="70" >strong</option>
-        <option min="71" max="80" >hostile</option>
-        <option min="81" max="90" >forceful</option>
-        <option min="91"          >violent</option>
-    </opposition>
-    <maintained><!-- and that power is maintained __________ -->
-        <option >through the tip of a sword</option>
-        <option >through random violence</option>
-        <option >through the ignorance of the plebeian society</option>
-        <option >through vague threats and a constant state of fear</option>
-        <option >through financial oppression</option>
-        <option >by secret police raiding homes in the dead of night</option>
-        <option >by strict laws and corrupt guards</option>
-        <option >by strict laws and incorruptible guards</option>
-        <option >by draconian laws and underpaid guards</option>
-        <option >through spying and assassination</option>
-        <option >through a fair and just legal system</option>
-        <option >through the writ of law</option>
-        <option >through a knowledgeable and just populace</option>
-        <option >through vague promises and a constant state of hope</option>
-        <option >through sheer willpower</option>
-        <option >through the acclaim of the nobles</option>
-        <option >by unwavering supporters</option>
-        <option >through the support of merchant groups</option>
-    </maintained>
-
-    <corruption> <!-- Officials in __CITY__ are often seen as __CORRUPTION__  -->
-        <option          max="5"  >the epitome corruption</option>
-        <option min="6"  max="10" >corrupt and nefarious</option>
-        <option min="10" max="15" >willing to look the other way for the right price</option>
-        <option min="16" max="20" >crooked</option>
-        <option min="20" max="25" >on the take</option>
-        <option min="26" max="30" >underhanded</option>
-        <option min="30" max="35" >unethical</option>
-        <option min="36" max="40" >disreputable</option>
-        <option min="40" max="45" >equitable</option>
-        <option min="46" max="50" >reasonable</option>
-        <option min="50" max="55" >fair</option>
-        <option min="56" max="60" >honest</option>
-        <option min="60" max="65" >principled</option>
-        <option min="66" max="70" >decent</option>
-        <option min="70" max="75" >resolute</option>
-        <option min="76" max="80" >honorable</option>
-        <option min="80" max="85" >trustworthy</option>
-        <option min="86" max="90" >upright</option>
-        <option min="90" max="95" >virtuous</option>
-        <option min="96"          >incorruptible</option>
-    </corruption>
-    <approval>
-        <option          max="10" >despised</option>
-        <option min="11" max="20" >hated</option>
-        <option min="21" max="30" >feared</option>
-        <option min="31" max="40" >ridiculed</option>
-        <option min="41" max="50" >mocked</option>
-        <option min="51" max="60" >praised</option>
-        <option min="61" max="70" >loved</option>
-        <option min="71" max="80" >respected</option>
-        <option min="81" max="90" >honored</option>
-        <option min="91"          >revered</option>
-    </approval>
-    <efficiency><!-- The government as a whole is seen as __EFFICIENT__. -->
-        <option          max="5"  >the pinnacle of inefficiency</option>
-        <option min="6"  max="10" >incapable of even simple tasks</option>
-        <option min="10" max="15" >clearly incompetent</option>
-        <option min="16" max="20" >horribly inefficient</option>
-        <option min="20" max="25" >sloppy and disorganized</option>
-        <option min="26" max="30" >inept and inadequate</option>
-        <option min="30" max="35" >slipshod</option>
-        <option min="36" max="40" >minimally competent</option>
-        <option min="40" max="45" >somwhat capable</option>
-        <option min="46" max="50" >adequate</option>
-        <option min="50" max="55" >satisfactory</option>
-        <option min="56" max="60" >mostly sufficient</option>
-        <option min="60" max="65" >surprisingly decent</option>
-        <option min="66" max="70" >effective overall</option>
-        <option min="70" max="75" >on the ball</option>
-        <option min="76" max="80" >efficient</option>
-        <option min="80" max="85" >shrewd</option>
-        <option min="86" max="90" >surprisingly skillful</option>
-        <option min="90" max="95" >magnificently organized</option>
-        <option min="96"          >ruthlessly effective</option>
-
-
-    </efficiency>
-    <influence><!-- The political influence of __CITY__ in the region is __INFLUENCE__  -->
-        <option          max="5"  >negligible</option>
-        <option min="6"  max="10" >dwindling rapidly</option>
-        <option min="10" max="15" >wilting</option>
-        <option min="16" max="20" >wasting away</option>
-        <option min="20" max="25" >shrinking</option>
-        <option min="26" max="30" >declining</option>
-        <option min="30" max="35" >receding</option>
-        <option min="36" max="40" >consistent</option>
-        <option min="40" max="45" >steady</option>
-        <option min="46" max="50" >lasting</option>
-        <option min="50" max="55" >enduring</option>
-        <option min="56" max="60" >steadfast</option>
-        <option min="60" max="65" >unwavering</option>
-        <option min="66" max="70" >broadening</option>
-        <option min="70" max="75" >improving</option>
-        <option min="76" max="80" >spreading</option>
-        <option min="80" max="85" >growing</option>
-        <option min="86" max="90" >maturing</option>
-        <option min="90" max="95" >flourishing</option>
-        <option min="96"          >thriving</option>
-    </influence>
-
-    <influencereason>
-        <option >riots in the region</option>
-        <option >food shortages in the region</option>
-        <option >racial tensions</option>
-        <option >a thwarted assassination attempt</option>
-    </influencereason>
-
-    <unity> <!-- In times of crisis, the population ___________. -->
-        <option          max="10" >turns against itself</option>
-        <option min="11" max="20" >is eager to point fingers</option>
-        <option min="21" max="30" >gives up their freedom in exchange for security</option>
-        <option min="31" max="40" >flees for the hills</option>
-        <option min="41" max="50" >cowers in fear</option>
-        <option min="51" max="60" >squabbles amongst themselves</option>
-        <option min="61" max="70" >stages ineffective protests</option>
-        <option min="71" max="80" >overcomes their differences</option>
-        <option min="81" max="90" >comes together and fights as one</option>
-        <option min="91"          >rallies behind its leaders</option>
-    </unity>
-    <theology> <!-- Religion in Willis ________. -->
-        <option           max="5"  >is strictly forbidden on pain of death</option>
-        <option  min="6"  max="10" >is forbidden</option>
-        <option  min="10" max="15" >will get you in trouble</option>
-        <option  min="16" max="20" >is unwelcome</option>
-        <option  min="20" max="25" >is unregulated</option>
-        <option  min="26" max="30" >is taxed heavily</option>
-        <option  min="30" max="35" >is tightly regulated by the government</option>
-        <option  min="36" max="40" >is viewed as a nusiance</option>
-        <option  min="40" max="45" >is practiced behind closed doors</option>
-        <option  min="46" max="50" >is left to the people</option>
-        <option  min="50" max="55" >is common place</option>
-        <option  min="56" max="60" >is unregulated and diverse, making it a melting pot of many faiths</option>
-        <option  min="60" max="65" >enjoys many legal benefits</option>
-        <option  min="66" max="70" >is widespread</option>
-        <option  min="70" max="75" >is sanctioned by the government</option>
-        <option  min="76" max="80" >is limited to a single deity</option>
-        <option  min="80" max="85" >plays a central role in the lawmaking process</option>
-        <option  min="86" max="90" >controlled by the government</option>
-        <option  min="90" max="95" >is sacred, and the words of the gods are law</option>
-        <option  min="96"          >is used to control the populace</option>
-    </theology>
+        <right>
+            <option>by forgery</option>
+            <option>by divine will</option>
+            <option>by consensus</option>
+            <option>by constitution</option>
+            <option>by hereditary succession</option>
+            <option>by election</option>
+            <option>by appointment</option>
+            <option>by force</option>
+            <option>by revolution</option>
+            <option>by foreign imposition</option>
+        </right>
+    
+    
+        <length> <!-- The King has been in power-->
+            <option>for mere hours</option>
+            <option>for mere days</option>
+            <option>for a few months</option>
+            <option>for years</option>
+            <option>for several years</option>
+            <option>for many years</option>
+            <option>for decades</option>
+            <option>for several decades</option>
+            <option>far longer than should be allowed</option>
+        </length>
+        <maintained><!-- and that power is maintained __________ -->
+            <option >through the tip of a sword</option>
+            <option >through random violence</option>
+            <option >through the ignorance of the plebeian society</option>
+            <option >through vague threats and a constant state of fear</option>
+            <option >through financial oppression</option>
+            <option >by secret police raiding homes in the dead of night</option>
+            <option >by strict laws and corrupt guards</option>
+            <option >by strict laws and incorruptible guards</option>
+            <option >by draconian laws and underpaid guards</option>
+            <option >through spying and assassination</option>
+            <option >through a fair and just legal system</option>
+            <option >through the writ of law</option>
+            <option >through a knowledgeable and just populace</option>
+            <option >through vague promises and a constant state of hope</option>
+            <option >through sheer willpower</option>
+            <option >through the acclaim of the nobles</option>
+            <option >by unwavering supporters</option>
+            <option >through the support of merchant groups</option>
+        </maintained>
+    
+        <influencereason>
+            <option >riots in the region</option>
+            <option >food shortages in the region</option>
+            <option >racial tensions</option>
+            <option >a thwarted assassination attempt</option>
+        </influencereason>
+    </feature>
 
 <!-- 
 __CITY___ is ruled by ___TITLE___ (__TITLE__ __NAME__) through an __GOVTYPE__, where __DESCRIPTION__. 
