@@ -5,40 +5,96 @@
     -->
     
 <data trailer_chance="30" >
+    <stats>
 
-    <size> <!-- The Perfumed Twins Vinters is a[n] _______, disgusting-looking vinyard.  -->
-        <option          max="16" >small</option>
-        <option min="17" max="32" >normal sized</option>
-        <option min="33" max="48" >typical sized</option>
-        <option min="49" max="65" >average sized</option>
-        <option min="66" max="82" >large</option>
-        <option min="83"          >huge</option>
-    </size>
 
-    <!--
-        <size> 
-        <option          max="5"  >tiny</option>
-        <option min="6"  max="10" >insignificant</option>
-        <option min="10" max="15" >squat little</option>
-        <option min="16" max="20" >small hole in the wall</option>
-        <option min="20" max="25" >minor</option>
-        <option min="26" max="30" >insubstantial</option>
-        <option min="30" max="35" >paltry</option>
-        <option min="36" max="40" >normal</option>
-        <option min="40" max="45" >typical</option>
-        <option min="46" max="50" >humdrum</option>
-        <option min="50" max="55" >garden-variety</option>
-        <option min="56" max="60" >average</option>
-        <option min="60" max="65" >familiar</option>
-        <option min="66" max="70" >large</option>
-        <option min="70" max="75" >sizeable</option>
-        <option min="76" max="80" >epic</option>
-        <option min="80" max="85" >monumental</option>
-        <option min="86" max="90" >massive</option>
-        <option min="90" max="95" >enormous</option>
-        <option min="96"          >vast</option>
-    </size>
-    -->
+        <size> <!-- The Perfumed Twins Vinters is a[n] _______, disgusting-looking vinyard.  -->
+            <option          max="16" >small</option>
+            <option min="17" max="32" >normal sized</option>
+            <option min="33" max="48" >typical sized</option>
+            <option min="49" max="65" >average sized</option>
+            <option min="66" max="82" >large</option>
+            <option min="83"          >huge</option>
+        </size>
+        <!--
+            <size> 
+            <option          max="5"  >tiny</option>
+            <option min="6"  max="10" >insignificant</option>
+            <option min="10" max="15" >squat little</option>
+            <option min="16" max="20" >small hole in the wall</option>
+            <option min="20" max="25" >minor</option>
+            <option min="26" max="30" >insubstantial</option>
+            <option min="30" max="35" >paltry</option>
+            <option min="36" max="40" >normal</option>
+            <option min="40" max="45" >typical</option>
+            <option min="46" max="50" >humdrum</option>
+            <option min="50" max="55" >garden-variety</option>
+            <option min="56" max="60" >average</option>
+            <option min="60" max="65" >familiar</option>
+            <option min="66" max="70" >large</option>
+            <option min="70" max="75" >sizeable</option>
+            <option min="76" max="80" >epic</option>
+            <option min="80" max="85" >monumental</option>
+            <option min="86" max="90" >massive</option>
+            <option min="90" max="95" >enormous</option>
+            <option min="96"          >vast</option>
+        </size>
+        -->
+        <popularity><!-- The Wet Frog is a garden-variety tavern that  ____________. -->
+            <option          max="5"  >is avoided by the locals for reasons unknown</option>
+            <option min="6"  max="10" >is unappreciated by the locals</option>
+            <option min="10" max="15" >is usually empty</option>
+            <option min="16" max="20" >is usually busy but is strangely quiet as of late</option>
+            <option min="20" max="25" >holds the record for worst service in the region</option>
+            <option min="26" max="30" >has strange opening hours</option>
+            <option min="30" max="35" >only attracts people from out of town</option>
+            <option min="36" max="40" >is popular on market days</option>
+            <option min="40" max="45" >is eerily empty </option>
+            <option min="46" max="50" >is completely abandoned, and often forgotten</option>
+            <option min="50" max="55" >usually has few visitors</option>
+            <option min="56" max="60" >is empty during the day but busy in the evening</option>
+            <option min="60" max="65" >is on the verge of closing</option>
+            <option min="66" max="70" >is busy most days</option>
+            <option min="70" max="75" >is crowded every night</option>
+            <option min="76" max="80" >rarely has room for new business</option>
+            <option min="80" max="85" >has people queing out in the street</option>
+            <option min="86" max="90" >is one of the busiest places in town</option>
+            <option min="90" max="95" >is always busy, regardless of the time</option>
+            <option min="96"          >is constantly crowded</option>
+        </popularity>
+    
+        <reputation> <!-- The tavern has a reputation for _____________."-->
+            <option          max="10" >deplorable clientele</option>
+            <option min="11" max="20" >being a hive of scum and villiany</option>
+            <option min="21" max="30" >unpaid bills being bad for your health</option>
+            <option min="31" max="40" >poor sanitation</option>
+            <option min="41" max="50" >unfortunate accidents</option>
+            <option min="51" max="60" >being dull</option>
+            <option min="61" max="70" >being open all hours</option>
+            <option min="71" max="80" >having good services</option>
+            <option min="81" max="90" >being a good place to find rumors</option>
+            <option min="91"          >being a pillar of the community</option>
+        </reputation>
+    
+        <price><!--  ... is known for ______________ prices for... -->
+            <option          max="6"  >suspiciously low</option>
+            <option min="7"  max="12" >next to nothing</option>
+            <option min="13" max="18" >dirt cheap</option>
+            <option min="19" max="24" >inexpensive</option>
+            <option min="25" max="30" >fair</option>
+            <option min="31" max="36" >slightly high</option>
+            <option min="37" max="42" >minimal</option>
+            <option min="43" max="48" >varying</option>
+            <option min="49" max="54" >reasonable</option>
+            <option min="55" max="60" >moderate</option>
+            <option min="61" max="66" >steep</option>
+            <option min="67" max="72" >unreasonable</option>
+            <option min="73" max="78" >extravagant</option>
+            <option min="79" max="94" >high</option>
+            <option min="95"          >very high</option>
+        </price>
+    </stats>
+
     <feature>
         <age>
             <option>old</option>
@@ -95,60 +151,6 @@
             <option>trashy</option>
         </neighborhood>
     </feature>
-    <popularity><!-- The Wet Frog is a garden-variety tavern that  ____________. -->
-        <option          max="5"  >is avoided by the locals for reasons unknown</option>
-        <option min="6"  max="10" >is unappreciated by the locals</option>
-        <option min="10" max="15" >is usually empty</option>
-        <option min="16" max="20" >is usually busy but is strangely quiet as of late</option>
-        <option min="20" max="25" >holds the record for worst service in the region</option>
-        <option min="26" max="30" >has strange opening hours</option>
-        <option min="30" max="35" >only attracts people from out of town</option>
-        <option min="36" max="40" >is popular on market days</option>
-        <option min="40" max="45" >is eerily empty </option>
-        <option min="46" max="50" >is completely abandoned, and often forgotten</option>
-        <option min="50" max="55" >usually has few visitors</option>
-        <option min="56" max="60" >is empty during the day but busy in the evening</option>
-        <option min="60" max="65" >is on the verge of closing</option>
-        <option min="66" max="70" >is busy most days</option>
-        <option min="70" max="75" >is crowded every night</option>
-        <option min="76" max="80" >rarely has room for new business</option>
-        <option min="80" max="85" >has people queing out in the street</option>
-        <option min="86" max="90" >is one of the busiest places in town</option>
-        <option min="90" max="95" >is always busy, regardless of the time</option>
-        <option min="96"          >is constantly crowded</option>
-    </popularity>
-
-    <reputation> <!-- The tavern has a reputation for _____________."-->
-        <option          max="10" >deplorable clientele</option>
-        <option min="11" max="20" >being a hive of scum and villiany</option>
-        <option min="21" max="30" >unpaid bills being bad for your health</option>
-        <option min="31" max="40" >poor sanitation</option>
-        <option min="41" max="50" >unfortunate accidents</option>
-        <option min="51" max="60" >being dull</option>
-        <option min="61" max="70" >being open all hours</option>
-        <option min="71" max="80" >having good services</option>
-        <option min="81" max="90" >being a good place to find rumors</option>
-        <option min="91"          >being a pillar of the community</option>
-    </reputation>
-
-    <price><!--  ... is known for ______________ prices for... -->
-        <option          max="6"  >suspiciously low</option>
-        <option min="7"  max="12" >next to nothing</option>
-        <option min="13" max="18" >dirt cheap</option>
-        <option min="19" max="24" >inexpensive</option>
-        <option min="25" max="30" >fair</option>
-        <option min="31" max="36" >slightly high</option>
-        <option min="37" max="42" >minimal</option>
-        <option min="43" max="48" >varying</option>
-        <option min="49" max="54" >reasonable</option>
-        <option min="55" max="60" >moderate</option>
-        <option min="61" max="66" >steep</option>
-        <option min="67" max="72" >unreasonable</option>
-        <option min="73" max="78" >extravagant</option>
-        <option min="79" max="94" >high</option>
-        <option min="95"          >very high</option>
-    </price>
-
     <name trailer_chance="30">
         <title>Angry</title>
         <title>Beefy</title>

@@ -88,12 +88,7 @@ sub create_establishment {
     $establishment->{'seed'} = set_seed() if ( !defined $establishment->{'seed'} );
     GenericGenerator::set_seed( $establishment->{'seed'} );
 
-    foreach my $stat (qw( reputation size price popularity)) {
-        $establishment->{'stats'}->{$stat} = d(100) if ( !defined $establishment->{'stats'}->{$stat} );
-        $establishment->{ $stat . "_description" }
-            = roll_from_array( $establishment->{'stats'}->{$stat}, $establishment_data->{$stat}->{'option'} )->{'content'}
-            if ( !defined $establishment->{ $stat . "_description" } );
-    }
+    GenericGenerator::generate_stats($establishment, $establishment_data);
 
     GenericGenerator::select_features($establishment, $establishment_data);
     select_establishment_type($establishment);
