@@ -35,5 +35,8 @@ use TestPostingGenerator;
 use TestRumorGenerator;
 use TestWantedPosterGenerator;
 use TestLegendGenerator;
+
+use TestMagicItemGenerator;
+
 done_testing();
 

@@ -29,19 +29,20 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option min="81"          >excellent</option>
         </quality>
     </stats>
-
-    <item>
-        <option>armor</option>
-        <option>weapons</option>
-        <option>potions</option>
-<!--        <option>scrolls</option>
-        <option>rings</option>
-        <option>rods</option>
-        <option>staves</option>
-        <option>wands</option>
-        <option>Wonderous Items</option>
--->
-    </item>
+    <feature>
+	    <item>
+	        <option>armor</option>
+	        <option>weapon</option>
+	        <option>potion</option>
+	<!--        <option>scrolls</option>
+	        <option>rings</option>
+	        <option>rods</option>
+	        <option>staves</option>
+	        <option>wands</option>
+	        <option>Wonderous Items</option>
+	-->
+	    </item>
+    </feature>
     <!--alternative name and history.
 
     Gothetenk's Axe - Once wielded/crafted created by the [class/race/profession] Gothetenk, this Axes
@@ -49,26 +50,27 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     Gothetenk's Chopper - 
 -->
     <potion>
-        <feature>
+        <stats>
             <strength>
-                <option>weak</option>
-                <option>mediocre</option>
-                <option>moderate</option>
-                <option>strong</option>
-                <option>powerful</option>
+                <option          max="20" >weak</option>
+                <option min="21" max="40" >mediocre</option>
+                <option min="41" max="60" >moderate</option>
+                <option min="61" max="80" >strong</option>
+                <option min="81"          >powerful</option>
             </strength>
-            <type>
-                <option type="healing"></option>
-                <option type="neutralize poison"></option>
-                <option type="endure elements"></option>
-                <option type="jump"></option>
-                <option type="remove fear"></option>
-                <option type="bravery"></option>
-                <option type="blur"></option>
-                <option type="fly"></option>
-                <option type="levitate"></option>
-                <option type="haste"></option>
-            </type>
+        </stats>
+        <feature>
+            <category>
+                <option type="healing">can heal various wounds and ailments</option>
+                <option type="neutralize poison">can neutralize various poisons</option>
+                <option type="endure elements">increases resistance to the elements</option>
+                <option type="jump">allows user to jump to amazing heights and distances</option>
+                <option type="remove fear">fortifies the user against the most terrifying foes</option>
+                <option type="blur">causes user to blur with movement</option>
+                <option type="fly">allows unassisted flight for a limited duration</option>
+                <option type="levitate">allows unassisted levitation for a limited duration</option>
+                <option type="haste">allows user to move with extreme speed.</option>
+            </category>
             <color>
                 <option>yellow</option>
                 <option>red</option>
@@ -126,14 +128,14 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <armor><!-- 
                 -->
         <feature>
-	        <type>
+	        <category>
 	            <option >leather</option>
 	            <option >breastplate</option>
 	            <option >chainmail</option>
 	            <option >hide</option>
 	            <option >plate</option>
 	            <option >shield</option>
-	        </type>
+	        </category>
             <ability chance="20">
                 <option type="of shock">has a chance of stunning an attacker</option>
                 <option type="of the shadows">makes the wearer virtually undetectable in shadows</option>
@@ -197,7 +199,8 @@ Based on a work at https://github.com/morgajel/CityGenerator.
                 target and grants the user an unnatural grace. You notice a small chip on the weapon. Unbeknownst to the user, this weapon has a 
                 narcolepcy curse, meaning it has small chance of causing the user to drop unconscious when used.
                 -->
-        <type>
+        <feature>
+            <category>
                 <option >sword</option>
                 <option >dagger</option>
                 <option >axe</option>
@@ -205,8 +208,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
                 <option >bow</option>
                 <option >crossbow</option>
                 <option >quarterstaff</option>
-        </type>
-        <feature>
+            </category>
             <ability chance="20">
                 <option type="of the bull">grants the user unnatural strength</option>
                 <option type="of grace">grants the user an unnatural grace</option>
