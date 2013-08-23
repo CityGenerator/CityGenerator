@@ -167,16 +167,12 @@ sub generate_shape {
 
     $flag->{'shape'}->{'name'} = $shape->{'type'} if (!defined $flag->{'shape'}->{'name'});
 
-    # Lets see what attributes the shape has, and select some.
-    foreach my $attribute_name ( keys %$shape ) {
-        # select the option from the array
-        if (ref $shape->{$attribute_name} eq 'HASH' ){
-	        my $attr = rand_from_array( $shape->{$attribute_name}->{'option'} );
-	        # If the attribute_name is already defined, don't use attr->content
-	        $flag->{'shape'}->{$attribute_name} = $attr->{'content'} if ( !defined $flag->{'shape'}->{$attribute_name} );
-	
-        }
+
+    if (defined $shape->{'feature'} ){
+        GenericGenerator::select_features($flag->{'shape'}, $shape);
     }
+
+
     return $flag;
 }
 
@@ -216,21 +212,10 @@ sub generate_division {
     $flag->{'division'}->{'name'} = rand_from_array( [ keys %{ $flag_data->{'division'}->{'option'} } ] )
         if ( !defined $flag->{'division'}->{'name'} );
 
-    # Now that we have the name, lets grab the rest of it, including features.
-    my $division = $flag_data->{'division'}->{'option'}->{ $flag->{'division'}->{'name'} };
-
-
-    # Lets see what attributes the division has, and select some.
-    foreach my $attribute_name ( keys %$division ) {
-
-        # select the option from the array
-        my $attr = rand_from_array( $division->{$attribute_name}->{'option'} );
-
-        # If the attribute_name is already defined, don't use attr->content
-        $flag->{'division'}->{$attribute_name} = $attr->{'content'}
-            if ( !defined $flag->{'division'}->{$attribute_name} );
-
+    if (defined $flag_data->{'division'}->{'option'}->{$flag->{'division'}->{'name'}}->{'feature'} ){
+        GenericGenerator::select_features($flag->{'division'}, $flag_data->{'division'}->{'option'}->{$flag->{'division'}->{'name'}});
     }
+
     return $flag;
 }
 

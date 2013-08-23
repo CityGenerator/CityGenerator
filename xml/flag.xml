@@ -74,31 +74,35 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="71" max="80" type="pennant">
         </option>
         <option min="81" max="90" type="swallow">
-            <depth>
-		        <option>10</option>
-		        <option>20</option>
-		        <option>30</option>
-            </depth>
+            <feature>
+                <depth>
+    		        <option>10</option>
+    		        <option>20</option>
+    		        <option>30</option>
+                </depth>
+            </feature>
         </option>
         <option min="91"          type="tongued">
-            <tongueshape>
-                <option>square</option>
-                <option>triangle</option>
-                <option>sine</option>
-                <option>scallop</option>
-            </tongueshape>
-            <count>
-		        <option>3</option>
-		        <option>5</option>
-		        <option>7</option>
-		        <option>9</option>
-		        <option>11</option>
-            </count>
-            <depth>
-		        <option>.3</option>
-		        <option>.1</option>
-		        <option>.2</option>
-            </depth>
+            <feature>
+                <tongueshape>
+                    <option>square</option>
+                    <option>triangle</option>
+                    <option>sine</option>
+                    <option>scallop</option>
+                </tongueshape>
+                <count>
+    		        <option>3</option>
+    		        <option>5</option>
+    		        <option>7</option>
+    		        <option>9</option>
+    		        <option>11</option>
+                </count>
+                <depth>
+    		        <option>.3</option>
+    		        <option>.1</option>
+    		        <option>.2</option>
+                </depth>
+            </feature>
         </option>
     </shape>
 
@@ -122,27 +126,31 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option name="quads"></option>
         <option name="diagquads"></option>
         <option name="diagonal">
-            <direction>
-                <option>right-to-left</option>
-                <option>left-to-right</option>
-            </direction>
+            <feature>
+                <direction>
+                    <option>right-to-left</option>
+                    <option>left-to-right</option>
+                </direction>
+            </feature>
         </option>
         <option name="stripes">
-            <side>
-                <option>vertical</option>
-                <option>horizontal</option>
-            </side>
-            <count>
-                <option>2</option>
-                <option>3</option>
-                <option>5</option>
-                <option>9</option>
-                <option>13</option>
-            </count>
-            <color_count>
-                <option>2</option>
-                <option>3</option>
-            </color_count>
+            <feature>
+                <side>
+                    <option>vertical</option>
+                    <option>horizontal</option>
+                </side>
+                <count>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>5</option>
+                    <option>9</option>
+                    <option>13</option>
+                </count>
+                <color_count>
+                    <option>2</option>
+                    <option>3</option>
+                </color_count>
+            </feature>
         </option>
     </division>
     <overlay>
