@@ -116,6 +116,11 @@ subtest 'test create_npc' => sub {
         isnt( $npc->{'business'},   undef, 'business is set' );
 
         $npc = NPCGenerator::create_npc(
+            { 'seed' => '1', 'race' => 'elf', 'allowed_professions' => [ ] } );
+        isnt( $npc->{'profession'}, undef, 'business is set' );
+        isnt( $npc->{'business'},   undef, 'business is set' );
+
+        $npc = NPCGenerator::create_npc(
             { 'seed' => '1', 'race' => 'elf', 'allowed_professions' => [ 'cobbler', 'cheesemaker' ] } );
         ok( $npc->{'profession'} eq 'cobbler' || $npc->{'profession'} eq 'cheesemaker',  "$npc->{'profession'} is either a cobbler or cheesemaker" );
         ok( $npc->{'business'} eq  'cobblershop' || $npc->{'business'} eq  'cheeseshop', "$npc->{'business'} is a cobblershop or a cheeseshop");
@@ -240,7 +245,7 @@ subtest 'test generate_npc_name' => sub {
     subtest 'test generating unknown race' => sub {
         GenericGenerator::set_seed(1);
         my $name = NPCGenerator::generate_npc_name('CongressCritter');
-        is( $name, 'unnamed congresscritter' );
+        isnt( $name, undef, "something is returned." );
         done_testing();
     };
 

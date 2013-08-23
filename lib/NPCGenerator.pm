@@ -26,7 +26,7 @@ use base qw(Exporter);
 ###############################################################################
 
 #TODO treat certain data as stats...
-use Carp;
+use Carp qw(longmess croak);
 use CGI;
 use Data::Dumper;
 use Exporter;
@@ -219,15 +219,14 @@ sub set_profession {
     # If a business is not defined...
     if ( !defined $npc->{'business'} ) {
         #If the profession exisists in the specialist data and has a building name, set the NPC business
-        if (    defined $specialist_data->{'option'}->{$npc->{'profession'}}
-            and defined $specialist_data->{'option'}->{$npc->{'profession'}}->{'building'} )
-        {
+        if (defined $specialist_data->{'option'}->{$specialty}->{'building'}){
             $npc->{'business'} = $specialist_data->{'option'}->{$specialty}->{'building'};
-        } else {
-        # Or set the name to the profession
-            $npc->{'business'} = $npc->{'profession'};
+        }else{
+            $npc->{'business'}=$npc->{'profession'};
         }
+
         #FIXME if the business has a  comma, split on commas and select one of them.
+        #This is bad and you should feel bad.
         if ( $npc->{'business'} =~ /,/x ) {
             my @businesses = shuffle( split( /,/x, $npc->{'business'} ) );
             $npc->{'business'} = pop @businesses;
@@ -309,36 +308,30 @@ generate an npc name if they're available for that race.
 sub generate_npc_name {
     my ( $race, $npc ) = @_;
     $race = lc $race;
+    if ( !defined $names_data->{'race'}->{$race}){
+        $race="any";
+    }
 
     # Check to see if this is a mutt race like any
-    if ( defined $names_data->{'race'}->{$race} and defined $names_data->{'race'}->{$race}->{'allow'} ) {
+    if ( defined $names_data->{'race'}->{$race}->{'allow'} ) {
         $race = rand_from_array( $names_data->{'race'}->{$race}->{'allow'} )->{'content'};
     }
 
-    if ( defined $names_data->{'race'}->{$race} ) {
-        my $racenameparts = $names_data->{'race'}->{$race};
+    my $racenameparts = $names_data->{'race'}->{$race};
 
-        if ( defined $racenameparts->{'firstname'} ) {
-            $npc->{'firstname'} = parse_object( $racenameparts->{'firstname'} )->{'content'};
-            if ( $npc->{'firstname'} ne '' ) {
-                $npc->{'name'} = $npc->{'firstname'};
-            }
-        }
-        if ( defined $racenameparts->{'lastname'} ) {
-            $npc->{'lastname'} = parse_object( $racenameparts->{'lastname'} )->{'content'};
-            if ( $npc->{'lastname'} ne '' ) {
-                $npc->{'name'} = $npc->{'lastname'};
-            }
-        }
-        if (    defined $npc->{'firstname'}
-            and defined $npc->{'lastname'}
-            and $npc->{'firstname'} ne ''
-            and $npc->{'lastname'}  ne '' )
-        {
-            $npc->{'name'} = $npc->{'firstname'} . " " . $npc->{'lastname'};
-        }
-    } else {
-        $npc->{'name'} = "unnamed $race";
+    # NPCs will always have a firstname.        
+    $npc->{'firstname'} = parse_object( $racenameparts->{'firstname'} )->{'content'};
+    $npc->{'name'} = $npc->{'firstname'};
+    if ($npc->{'firstname'} =~/[sxz]$/){
+        $npc->{'firstnames'} =$npc->{'firstname'}."'";
+    }else{
+        $npc->{'firstnames'} =$npc->{'firstname'}."'s";
+    }
+
+    
+    if ( defined $racenameparts->{'lastname'} ) {
+        $npc->{'lastname'} = parse_object( $racenameparts->{'lastname'} )->{'content'};
+        $npc->{'name'} = "$npc->{'firstname'} $npc->{'lastname'}";
     }
     return $npc->{'name'};
 }

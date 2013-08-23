@@ -31,7 +31,11 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
+use NPCGenerator;
+use Lingua::EN::Inflect qw ( PL PL_N PL_V PL_ADJ NO NUM PL_eq PL_N_eq PL_V_eq PL_ADJ_eq );
+use Lingua::EN::Titlecase;
 use POSIX;
+use Template;
 use version;
 use XML::Simple;
 
@@ -101,12 +105,15 @@ sub create_item {
     GenericGenerator::select_features( $item,$item_data );
     GenericGenerator::generate_stats(  $item,$item_data->{$item->{'item'}} );
     GenericGenerator::select_features( $item,$item_data->{$item->{'item'}} );
+    $item->{'creator'}=NPCGenerator::create_npc();
+
+    GenericGenerator::parse_template($item, 'template');
+    my $tc = Lingua::EN::Titlecase->new( $item->{'template'}  );
+    $item->{'name'}= $tc->title();
+
 
     return $item;
 }
-
-
-
 
 1;
 
