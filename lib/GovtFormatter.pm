@@ -45,18 +45,11 @@ sub printSummary {
     my ($city)  = @_;
     my $content = "";
     my $govt    = $city->{'govt'};
-    $content
-        .= "$city->{'name'} is governed through "
-        . A( $city->{'govt'}->{'type'} )
-        . ", where "
-        . $city->{'govt'}->{'description'} . ". ";
-    $content .= "The government as a whole is seen as $city->{'govt'}->{'efficiency_description'}. ";
-    $content
-        .= "Officials in $city->{'name'} are often seen as $city->{'govt'}->{'corruption_description'} and the policies are $city->{'govt'}->{'approval_description'}. ";
-    $content
-        .= "The political influence of $city->{'name'} in the region is $city->{'govt'}->{'influence_description'} due to $city->{'govt'}->{'influencereason'}. ";
-    $content .= "In times of crisis, the population $city->{'govt'}->{'unity_description'}. ";
-
+    $content .= "$city->{'name'} is governed through ".A( $city->{'govt'}->{'type'} ).", where $city->{'govt'}->{'description'}. \n";
+    $content .= "The government as a whole is seen as $city->{'govt'}->{'efficiency_description'}. \n";
+    $content .= "Officials in $city->{'name'} are often seen as $city->{'govt'}->{'corruption_description'} and the policies are $city->{'govt'}->{'approval_description'}. \n";
+    $content .= "The political influence of $city->{'name'} in the region is $city->{'govt'}->{'influence_description'} due to $city->{'govt'}->{'influencereason'}. \n";
+    $content .= "In times of crisis, the population $city->{'govt'}->{'unity_description'}. \n";
     return $content;
 }
 
@@ -80,14 +73,10 @@ sub printLeader {
         $leadername="The $city->{'govt'}->{'leader'}->{'title'}";
     }
 
-    $content
-        .= "$city->{'name'} is ruled by $leadername. ";
-    $content
-        .= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'length'} and is $city->{'govt'}->{'reputation_description'} by the people. ";
-    $content
-        .= "There is $city->{'govt'}->{'opposition_description'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. ";
-    $content
-        .= "The right to rule was granted $city->{'govt'}->{'right'}, and that power is maintained $city->{'govt'}->{'maintained'}. ";
+    $content .= "$city->{'name'} is ruled by $leadername. \n";
+    $content .= "The $city->{'govt'}->{'leader'}->{'title'} has been in power $city->{'govt'}->{'length'} and is $city->{'govt'}->{'reputation_description'} by the people. \n";
+    $content .= "There is $city->{'govt'}->{'opposition_description'} opposition to the $city->{'govt'}->{'leader'}->{'title'} and policies. \n";
+    $content .= "The right to rule was granted $city->{'govt'}->{'right'}, and that power is maintained $city->{'govt'}->{'maintained'}. \n";
 
 #
 #$city->{'name'} is ruled a $govt->{'reputation'} $govt->{'description'}. Within the city there is a $govt->{'secondary_power'}->{'power'} that $govt->{'secondary_power'}->{'plot'} current leadership. The population approves of $govt->{'description'} policies in general.";
@@ -106,9 +95,8 @@ printLaw provides details about the laws in the city
 sub printLaw {
     my ($city) = @_;
     my $content = "";
-    $content .= "Laws are enforced by " . A( $city->{'laws'}->{'enforcer'} ) . ", $city->{'laws'}->{'enforcement'}. \n";
-    $content
-        .= "Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. \n";
+    $content .= "Laws are enforced by ". A( $city->{'laws'}->{'enforcer'} ) .", $city->{'laws'}->{'enforcement'}. \n";
+    $content .= "Justice is served $city->{'laws'}->{'trial'}, with a common punishment being $city->{'laws'}->{'punishment'}. \n";
 
     return $content;
 }
@@ -127,8 +115,7 @@ sub printCrime {
     my $content = "";
     $content .= "Crime is $city->{'crime_description'}. \n";
     $content .= "The most common crime is $city->{'laws'}->{'commoncrime'}. \n";
-    $content
-        .= "The imprisonment rate is $city->{'imprisonment_rate'}->{'percent'}% of the population ($city->{'imprisonment_rate'}->{'population'} "
+    $content .= "The imprisonment rate is $city->{'imprisonment_rate'}->{'percent'}% of the population ($city->{'imprisonment_rate'}->{'population'} "
         . PL_N( "adult", $city->{'imprisonment_rate'}->{'population'} ) . "). \n";
 
     return $content;
