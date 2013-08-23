@@ -95,6 +95,51 @@ sub create_npc {
         $npc->{'seed'} = GenericGenerator::set_seed( $npc->{'seed'} );
     }
     GenericGenerator::set_seed($npc->{'seed'});
+    GenericGenerator::generate_stats($npc, $npc_data);
+    GenericGenerator::select_features($npc,$npc_data);
+    
+    set_race($npc);
+
+    generate_npc_name( $npc->{'race'}, $npc );
+
+    #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
+    $npc->{'race'}='oddball'    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other');
+    set_reputation($npc);
+    set_attitudes($npc);
+    set_class($npc);
+    set_sex($npc);
+    set_profession($npc);
+    set_motivation($npc);
+    return $npc;
+}
+###############################################################################
+
+=head2 set_reputation()
+
+Take a provided NPC and set their reputation scope
+
+=cut
+
+###############################################################################
+
+sub set_reputation {
+    my ($npc) = @_;
+    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'scope'}->{'option'} )->{'content'};
+    return $npc;
+}
+
+###############################################################################
+
+=head2 set_race()
+
+Take a provided NPC and set their race
+
+=cut
+
+###############################################################################
+
+sub set_race {
+    my ($npc) = @_;
 
     #Available races is an array of race names.
     $npc->{'available_races'} = [ keys %{ $names_data->{'race'} } ] if ( !defined $npc->{'available_races'} );
@@ -104,19 +149,6 @@ sub create_npc {
     delete $npc->{'available_races'};
     $npc->{'race'} = lc $npc->{'race'};
 
-    generate_npc_name( $npc->{'race'}, $npc );
-    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other'){
-        #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
-        $npc->{'race'}='oddball';
-    }
-    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'scope'}->{'option'} )->{'content'};
-    set_attitudes($npc);
-    set_sex($npc);
-    set_profession($npc);
-    set_level($npc);
-    set_motivation($npc);
-    set_class($npc);
-    GenericGenerator::select_features($npc,$npc_data);
     return $npc;
 }
 
@@ -135,32 +167,13 @@ sub set_class {
     my ($npc) = @_;
 
     $npc->{'class_roll'} = d(100) if ( !defined $npc->{'class_roll'} );
-    $npc->{'class'} = roll_from_array( $npc->{'class_roll'}, $npc_data->{'classes'}->{'option'} )->{'type'}
+    $npc->{'class'} = roll_from_array( $npc->{'class_roll'}, $npc_data->{'class'}->{'option'} )->{'content'}
         if ( !defined $npc->{'class'} );
 
     return $npc;
 }
 
 
-###############################################################################
-
-=head2 set_level()
-
-Take a provided NPC and set their level.
-
-=cut
-
-###############################################################################
-
-sub set_level {
-    my ($npc) = @_;
-    my $size_modifier = ( $npc->{'size_modifier'} || 0 ) + 5;
-
-    #keep levels between 1 and 20.
-    $npc->{'level'} =max( 1, min( 20, d('3d4') + d($size_modifier) - 5)) if ( !defined $npc->{'level'} );
-
-    return $npc;
-}
 
 
 ###############################################################################

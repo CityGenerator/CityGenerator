@@ -5,6 +5,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
 <npcs>
+    <sex>
+        <option          max="49" pronoun='he' >male</option>
+        <option min="50" max="98" pronoun='she'>female</option>
+        <option min="99"          pronoun='it'>androgynous</option>
+    </sex>
     <stats>
         <skill> <!-- Bubbles is a ________ brewer in _______-->
             <option          max='5' >horribly skilled</option>
@@ -20,9 +25,28 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option min='99'          >legendary</option>
         </skill>
         <experience>
-            <option          max="30" >new</option>
-            <option min="31" max="60" >average</option>
-            <option min="61"          >grizzled</option>
+            <option          max="5"  >new</option>
+            <option min="6"  max="10" >naive</option>
+            <option min="11" max="15" >green</option>
+            <option min="16" max="20" >amatuer</option>
+            <option min="21" max="25" >fledgling</option>
+            <option min="26" max="30" >inexperienced</option>
+            <option min="31" max="35" >rookie</option>
+
+            <option min="36" max="40" >trained</option>
+            <option min="41" max="45" >capable</option>
+            <option min="46" max="50" >qualified</option>
+            <option min="51" max="55" >proficient</option>
+            <option min="56" max="60" >average</option>
+            <option min="61" max="65" >effective</option>
+
+            <option min="66" max="70" >accomplished</option>
+            <option min="71" max="75" >gifted</option>
+            <option min="76" max="80" >adept</option>
+            <option min="81" max="85" >worldly</option>
+            <option min="86" max="90" >expert</option>
+            <option min="91" max="95" >vetran</option>
+            <option min="96"          >grizzled</option>
         </experience>
         <strength>      
             <option          max="30" >weak</option>
@@ -125,25 +149,25 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>haunted</option>
         </eyes>
     </feature>
+    <class> <!-- TODO features need to allow weighting so I can make this a feature -->
+        <option          max="23" >Commoner</option>
+	    <option min="24" max="35" >Expert</option>
+	    <option min="36" max="43" >Warrior</option>
+	    <option min="44" max="49" >Rogue</option>
+	    <option min="50" max="52" >Barbarian</option>
+	    <option min="53" max="55" >Monk</option>
+	    <option min="56" max="59" >Bard</option>
+	    <option min="60" max="65" >Cleric</option>
+	    <option min="66" max="69" >Druid</option>
+	    <option min="70" max="77" >Fighter</option>
+	    <option min="78" max="83" >Adept</option>
+	    <option min="84" max="87" >Sorcerer</option>
+	    <option min="88" max="91" >Wizard</option>
+	    <option min="92" max="95" >Aristocrat</option>
+	    <option min="96" max="97" >Paladin</option>
+	    <option min="99"          >Ranger</option>
+	</class>
 
-    <classes>
-        <option          max="23" type="Commoner"   />
-        <option min="24" max="35" type="Expert"     />
-        <option min="36" max="43" type="Warrior"    />
-        <option min="44" max="49" type="Rogue"      />
-        <option min="50" max="52" type="Barbarian"  />
-        <option min="53" max="55" type="Monk"       />
-        <option min="56" max="59" type="Bard"       />
-        <option min="60" max="65" type="Cleric"     />
-        <option min="66" max="69" type="Druid"      />
-        <option min="70" max="77" type="Fighter"    />
-        <option min="78" max="83" type="Adept"      />
-        <option min="84" max="87" type="Sorcerer"   />
-        <option min="88" max="91" type="Wizard"     />
-        <option min="92" max="95" type="Aristocrat" />
-        <option min="96" max="97" type="Paladin"    />
-        <option min="99"          type="Ranger"     />
-    </classes>
 
     <motivation><!-- Bob is a bard who is -->
         <motive name="on a mission">
@@ -440,10 +464,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             </option>
         </option>
     </attitude>
-    <sex>
-        <option          max="49" pronoun='he' >male</option>
-        <option min="50" max="98" pronoun='she'>female</option>
-        <option min="99"          pronoun='it'>androgynous</option>
-    </sex>
 
 </npcs>
