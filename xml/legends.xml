@@ -3,8 +3,9 @@
     <feature>
         <template>
             <option>[%storytime%], [%chumps%] of [%location.name%] [%goodstart%]. Things were [%goodstatus%], but one day [%badguy %] [%badaction%]. [%chumps FILTER ucfirst%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%npc.firstname%] had [%plan%] [%planaction%]. When [%npc.name%] faced the [%badtype%], [%npc.name%] [%results%][%victory%]. That day, [%chumps%] learned the value of [%virtue%].</option>
+<!--            <option>Legend says that [%storytime%], a [%person or critter%]</option> -->
         </template>
-    
+
         <hero>
             <option>a hero named [%npc.name%]</option>
             <option>a [%npc.race%] named [%npc.name%]</option>
