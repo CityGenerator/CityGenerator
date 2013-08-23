@@ -127,7 +127,7 @@ sub select_persons{
     my ($bond)=@_;
     my $npc= NPCGenerator::create_npc({'seed'=>$bond->{'seed'} });
     if (!defined $bond->{'other'}){
-        $bond->{'other'} = $npc->{'firstname'} || $npc->{'name'};
+        $bond->{'other'} = $npc->{'firstname'};
     }
     $bond->{'person'} = [shuffle($bond->{'other'}, 'you'   )];
 
