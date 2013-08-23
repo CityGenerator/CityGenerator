@@ -65,7 +65,8 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </color>
     </colors>
     <shape>
-        <option          max="50" type="square">        </option>
+        <option          max="50" type="square">
+        </option>
         <option min="51" max="60" type="para">
         </option>
         <option min="61" max="70" type="tri">
@@ -80,12 +81,12 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             </depth>
         </option>
         <option min="91"          type="tongued">
-            <type>
+            <tongueshape>
                 <option>square</option>
                 <option>triangle</option>
                 <option>sine</option>
                 <option>scallop</option>
-            </type>
+            </tongueshape>
             <count>
 		        <option>3</option>
 		        <option>5</option>
@@ -146,317 +147,346 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </division>
     <overlay>
         <option name="quaddiag">
-            <side>
-                <option>north</option>
-                <option>south</option>
-                <option>east</option>
-                <option>west</option>
-            </side>
+            <feature>
+                <side>
+                    <option>north</option>
+                    <option>south</option>
+                    <option>east</option>
+                    <option>west</option>
+                </side>
+            </feature>
         </option>
         <option name="quad">
-            <side>
-                <option>ne</option>
-                <option>nw</option>
-                <option>se</option>
-                <option>sw</option>
-            </side>
+            <feature>
+                <side>
+                    <option>ne</option>
+                    <option>nw</option>
+                    <option>se</option>
+                    <option>sw</option>
+                </side>
+            </feature>
         </option>
         <option name="stripe">
-            <side>
-                <option>vertical</option>
-                <option>horizontal</option>
-            </side>
-            <count numeric="true">
-                <option>2</option>
-                <option>3</option>
-                <option>5</option>
-                <option>9</option>
-                <option>13</option>
-            </count>
+            <feature>
+                <side>
+                    <option>vertical</option>
+                    <option>horizontal</option>
+                </side>
+                <count>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>5</option>
+                    <option>9</option>
+                    <option>13</option>
+                </count>
+            </feature>
         </option>
         <option name="slash">
-            <direction>
-                <option>right-to-left</option>
-                <option>left-to-right</option>
-            </direction>
-            <width>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.1</option>
-                <option>0.05</option>
-            </width>
+            <feature>
+                <direction>
+                    <option>right-to-left</option>
+                    <option>left-to-right</option>
+                </direction>
+                <width>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.1</option>
+                    <option>0.05</option>
+                </width>
+            </feature>
         </option>
 
         <option name="asterisk">
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
+            <feature>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+            </feature>
         </option>
         <option name="x">
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
-            <width>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.1</option>
-                <option>0.05</option>
-            </width>
+            <feature>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+                <width>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.1</option>
+                    <option>0.05</option>
+                </width>
+            </feature>
         </option>
         <option name="jack">
-            <width>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.1</option>
-                <option>0.05</option>
-            </width>
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
-            <horlength>
-                <option>1</option>
-            </horlength>
-            <vertlength>
-                <option>1</option>
-            </vertlength>
-            <horwidth>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.10</option>
-            </horwidth>
-            <vertwidth>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.1</option>
-                <option>0.075</option>
-                <option>0.05</option>
-            </vertwidth>
-            <horpos>
-                <option>0.5</option>
-            </horpos>
+            <feature>
+                <width>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.1</option>
+                    <option>0.05</option>
+                </width>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+                <horlength>
+                    <option>1</option>
+                </horlength>
+                <vertlength>
+                    <option>1</option>
+                </vertlength>
+                <horwidth>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.10</option>
+                </horwidth>
+                <vertwidth>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.1</option>
+                    <option>0.075</option>
+                    <option>0.05</option>
+                </vertwidth>
+                <horpos>
+                    <option>0.5</option>
+                </horpos>
+            </feature>
         </option>
         <option name="cross">
-            <vertlength>
-                <option>1</option>
-                <option>0.8</option>
-            </vertlength>
-            <vertwidth>
-                <option>0.2</option>
-                <option>0.15</option>
-                <option>0.1</option>
-                <option>0.075</option>
-                <option>0.05</option>
-            </vertwidth>
-            <horwidth>
-                <option>0.3</option>
-                <option>0.2</option>
-            </horwidth>
-            <horlength>
-                <option>0.3</option>
-                <option>0.5</option>
-                <option>0.8</option>
-                <option>0.9</option>
-                <option>1</option>
-            </horlength>
-            <horpos>
-                <option>0.33</option>
-                <option>0.5</option>
-            </horpos>
+            <feature>
+                <vertlength>
+                    <option>1</option>
+                    <option>0.8</option>
+                </vertlength>
+                <vertwidth>
+                    <option>0.2</option>
+                    <option>0.15</option>
+                    <option>0.1</option>
+                    <option>0.075</option>
+                    <option>0.05</option>
+                </vertwidth>
+                <horwidth>
+                    <option>0.3</option>
+                    <option>0.2</option>
+                </horwidth>
+                <horlength>
+                    <option>0.3</option>
+                    <option>0.5</option>
+                    <option>0.8</option>
+                    <option>0.9</option>
+                    <option>1</option>
+                </horlength>
+                <horpos>
+                    <option>0.33</option>
+                    <option>0.5</option>
+                </horpos>
+            </feature>
         </option>
-
         <option name="diamond">
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
+            <feature>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+            </feature>
         </option>
         <option name="circle">
-            <outline_width>
-                <option>1</option>
-                <option>2</option>
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-            </outline_width>
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
-            <radius_direction>
-                <option>horizontal</option>
-                <option>vertical</option>
-            </radius_direction>
-            <xlocation>
-                <option>-1</option>
-                <option>-.5</option>
-                <option>0</option>
-                <option>.25</option>
-                <option>.333</option>
-                <option>.5</option>
-                <option>.666</option>
-                <option>.75</option>
-                <option>1</option>
-                <option>1.5</option>
-                <option>2</option>
-            </xlocation>
-            <ylocation>
-                <option>-1</option>
-                <option>0</option>
-                <option>.25</option>
-                <option>.5</option>
-                <option>.75</option>
-                <option>1</option>
-                <option>2</option>
-            </ylocation>
-            <radius>
-                <option>.25</option>
-                <option>.333</option>
-                <option>.5</option>
-                <option>.666</option>
-                <option>.75</option>
-                <option>1</option>
-                <option>1.5</option>
-                <option>2</option>
-            </radius>
+            <feature>
+                <outline_width>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>30</option>
+                </outline_width>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+                <radius_direction>
+                    <option>horizontal</option>
+                    <option>vertical</option>
+                </radius_direction>
+                <xlocation>
+                    <option>-1</option>
+                    <option>-.5</option>
+                    <option>0</option>
+                    <option>.25</option>
+                    <option>.333</option>
+                    <option>.5</option>
+                    <option>.666</option>
+                    <option>.75</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                </xlocation>
+                <ylocation>
+                    <option>-1</option>
+                    <option>0</option>
+                    <option>.25</option>
+                    <option>.5</option>
+                    <option>.75</option>
+                    <option>1</option>
+                    <option>2</option>
+                </ylocation>
+                <radius>
+                    <option>.25</option>
+                    <option>.333</option>
+                    <option>.5</option>
+                    <option>.666</option>
+                    <option>.75</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                </radius>
+            </feature>
         </option>
         <option name="rays">
-            <offset>
-                <option>0</option>
-                <option>.05</option>
-                <option>.15</option>
-                <option>.25</option>
-                <option>.33</option>
-            </offset>
-            <count>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>12</option>
-                <option>15</option>
-                <option>20</option>
-            </count>
-            <xlocation>
-                <option>-1</option>
-                <option>-.5</option>
-                <option>0</option>
-                <option>.25</option>
-                <option>.333</option>
-                <option>.5</option>
-                <option>.666</option>
-                <option>.75</option>
-                <option>1</option>
-                <option>1.5</option>
-                <option>2</option>
-            </xlocation>
-            <ylocation>
-                <option>-1</option>
-                <option>0</option>
-                <option>.25</option>
-                <option>.5</option>
-                <option>.75</option>
-                <option>1</option>
-                <option>2</option>
-            </ylocation>
+            <feature>
+                <offset>
+                    <option>0</option>
+                    <option>.05</option>
+                    <option>.15</option>
+                    <option>.25</option>
+                    <option>.33</option>
+                </offset>
+                <count>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>12</option>
+                    <option>15</option>
+                    <option>20</option>
+                </count>
+                <xlocation>
+                    <option>-1</option>
+                    <option>-.5</option>
+                    <option>0</option>
+                    <option>.25</option>
+                    <option>.333</option>
+                    <option>.5</option>
+                    <option>.666</option>
+                    <option>.75</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                </xlocation>
+                <ylocation>
+                    <option>-1</option>
+                    <option>0</option>
+                    <option>.25</option>
+                    <option>.5</option>
+                    <option>.75</option>
+                    <option>1</option>
+                    <option>2</option>
+                </ylocation>
+            </feature>
         </option>
     </overlay>
     <symbol>
         <option name="none"></option>
         <option name="circle">
-            <outline>
-                <option>true</option>
-                <option>false</option>
-            </outline>
-            <radius_direction>
-                <option>horizontal</option>
-                <option>vertical</option>
-            </radius_direction>
-            <xlocation>
-                <option>.25</option>
-                <option>.5</option>
-            </xlocation>
-            <ylocation>
-                <option>.25</option>
-                <option>.5</option>
-            </ylocation>
-            <radius>
-                <option>.10</option>
-                <option>.15</option>
-                <option>.20</option>
-                <option>.25</option>
-            </radius>
+            <feature>
+                <outline>
+                    <option>true</option>
+                    <option>false</option>
+                </outline>
+                <radius_direction>
+                    <option>horizontal</option>
+                    <option>vertical</option>
+                </radius_direction>
+                <xlocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </xlocation>
+                <ylocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </ylocation>
+                <radius>
+                    <option>.10</option>
+                    <option>.15</option>
+                    <option>.20</option>
+                    <option>.25</option>
+                </radius>
+            </feature>
         </option>
         <option name="star">
-            <points>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>8</option>
-                <option>12</option>
-                <option>20</option>
-            </points>
-            <inset>
-                <option>.25</option>
-                <option>.33</option>
-                <option>.5</option>
-            </inset>
-            <xlocation>
-                <option>.25</option>
-                <option>.5</option>
-            </xlocation>
-            <ylocation>
-                <option>.25</option>
-                <option>.5</option>
-            </ylocation>
+            <feature>
+                <points>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>8</option>
+                    <option>12</option>
+                    <option>20</option>
+                </points>
+                <inset>
+                    <option>.25</option>
+                    <option>.33</option>
+                    <option>.5</option>
+                </inset>
+                <xlocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </xlocation>
+                <ylocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </ylocation>
+            </feature>
         </option>
         <option name="letter">
-            <fontfamily>
-                <option>Arial Black</option>
-                <option>Comic Sans MS Bold</option>
-                <option>Courier New Bold</option>
-                <option>Courier New Bold Italic</option>
-                <option>Impact</option>
-                <option>Lucida Console</option>
-                <option>Trebuchet MS</option>
-                <option>Trebuchet MS Bold</option>
-                <option>Trebuchet MS Italic</option>
-                <option>Trebuchet MS Bold Italic</option>
-                <option>Verdana</option>
-                <option>Verdana Bold</option>
-                <option>Verdana Bold Italic</option>
-                <option>sans serif</option>
-            </fontfamily>
-            <size>
-                <option>.40</option>
-                <option>.30</option>
-                <option>.25</option>
-            </size>
-            <xlocation>
-                <option>.25</option>
-                <option>.5</option>
-            </xlocation>
-            <ylocation>
-                <option>.25</option>
-                <option>.5</option>
-            </ylocation>
+            <feature>
+                <fontfamily>
+                    <option>Arial Black</option>
+                    <option>Comic Sans MS Bold</option>
+                    <option>Courier New Bold</option>
+                    <option>Courier New Bold Italic</option>
+                    <option>Impact</option>
+                    <option>Lucida Console</option>
+                    <option>Trebuchet MS</option>
+                    <option>Trebuchet MS Bold</option>
+                    <option>Trebuchet MS Italic</option>
+                    <option>Trebuchet MS Bold Italic</option>
+                    <option>Verdana</option>
+                    <option>Verdana Bold</option>
+                    <option>Verdana Bold Italic</option>
+                    <option>sans serif</option>
+                </fontfamily>
+                <size>
+                    <option>.40</option>
+                    <option>.30</option>
+                    <option>.25</option>
+                </size>
+                <xlocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </xlocation>
+                <ylocation>
+                    <option>.25</option>
+                    <option>.5</option>
+                </ylocation>
+            </feature>
         </option>
     </symbol>
     <border>
         <option name="none">       </option>
         <option name="solid">
-            <size>
-                <option>.08</option>
-                <option>.05</option>
-                <option>.01</option>
-            </size>
+            <feature>
+                <size>
+                    <option>.08</option>
+                    <option>.05</option>
+                    <option>.01</option>
+                </size>
+            </feature>
         </option>
     </border>
 

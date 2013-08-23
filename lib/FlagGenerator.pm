@@ -102,7 +102,7 @@ sub create_flag {
     $flag = generate_overlay($flag);
     $flag = generate_symbol($flag);
 
-    #$flag = generate_border($flag);
+#    $flag = generate_border($flag);
     $flag = generate_letter($flag);
     return $flag;
 } ## end sub create_flag
@@ -172,20 +172,9 @@ sub generate_shape {
         # select the option from the array
         if (ref $shape->{$attribute_name} eq 'HASH' ){
 	        my $attr = rand_from_array( $shape->{$attribute_name}->{'option'} );
-	
 	        # If the attribute_name is already defined, don't use attr->content
 	        $flag->{'shape'}->{$attribute_name} = $attr->{'content'} if ( !defined $flag->{'shape'}->{$attribute_name} );
 	
-	        # If the field is numeric and a value is not already set, randomly generate it.
-	        if (    defined $shape->{$attribute_name}->{'numeric'}
-	            and $shape->{$attribute_name}->{'numeric'}
-	            and ( !defined $flag->{'shape'}->{ $attribute_name . "_selected" } ) )
-	        {
-	
-	            # Note that we're setting the seed here so passing in a paramter (say side=>top),
-	            # followup parameters will still be generated properly (count will still be 5)
-	            $flag->{'shape'}->{ $attribute_name . "_selected" } = d( $flag->{'shape'}->{$attribute_name} );
-	        }
         }
     }
     return $flag;
@@ -214,7 +203,7 @@ sub generate_ratio {
 
 =head2 generate_division()
 
-Determine which type of division and how it is numerically divided
+Determine which type of division and how it is divided
 
 =cut
 
@@ -241,16 +230,6 @@ sub generate_division {
         $flag->{'division'}->{$attribute_name} = $attr->{'content'}
             if ( !defined $flag->{'division'}->{$attribute_name} );
 
-        # If the field is numeric and a value is not already set, randomly generate it.
-        if (    defined $division->{$attribute_name}->{'numeric'}
-            and $division->{$attribute_name}->{'numeric'}
-            and ( !defined $flag->{'division'}->{ $attribute_name . "_selected" } ) )
-        {
-
-            # Note that we're setting the seed here so passing in a paramter (say side=>top),
-            # followup parameters will still be generated properly (count will still be 5)
-            $flag->{'division'}->{ $attribute_name . "_selected" } = d( $flag->{'division'}->{$attribute_name} );
-        }
     }
     return $flag;
 }
@@ -273,30 +252,13 @@ sub generate_overlay {
     $flag->{'overlay'}->{'name'} = rand_from_array( [ keys %{ $flag_data->{'overlay'}->{'option'} } ] )
         if ( !defined $flag->{'overlay'}->{'name'} );
 
-    # Now that we have the name, lets grab the rest of it, including features.
-    my $overlay = $flag_data->{'overlay'}->{'option'}->{ $flag->{'overlay'}->{'name'} };
+    if (defined $flag_data->{'overlay'}->{'option'}->{$flag->{'overlay'}->{'name'}}->{'feature'} ){
+        GenericGenerator::select_features($flag->{'overlay'}, $flag_data->{'overlay'}->{'option'}->{$flag->{'overlay'}->{'name'}});
+    }
 
-
-    # Lets see what attributes the overlay has, and select some.
-    foreach my $attribute_name ( keys %$overlay ) {
-
-        # select the option from the array
-        my $attr = rand_from_array( $overlay->{$attribute_name}->{'option'} );
-
-        # If the attribute_name is already defined, don't use attr->content
-        $flag->{'overlay'}->{$attribute_name} = $attr->{'content'}
-            if ( !defined $flag->{'overlay'}->{$attribute_name} );
-
-        # If the field is numeric and a value is not already set, randomly generate it.
-        if (    defined $overlay->{$attribute_name}->{'numeric'}
-            and $overlay->{$attribute_name}->{'numeric'}
-            and ( !defined $flag->{'overlay'}->{ $attribute_name . "_selected" } ) )
-        {
-
-            # Note that we're setting the seed here so passing in a paramter (say side=>top),
-            # followup parameters will still be generated properly (count will still be 5)
-            $flag->{'overlay'}->{ $attribute_name . "_selected" } = d( $flag->{'overlay'}->{$attribute_name} );
-        }
+    # If the overlay is a stripe, select one of them to be colored
+    if ($flag->{'overlay'}->{'name'} eq 'stripe'){
+            $flag->{'overlay'}->{ "count_selected" } = d( $flag->{'overlay'}->{'count'} ) if (!defined  $flag->{'overlay'}->{ "count_selected" });
     }
     return $flag;
 }
@@ -319,29 +281,10 @@ sub generate_symbol {
     $flag->{'symbol'}->{'name'} = rand_from_array( [ keys %{ $flag_data->{'symbol'}->{'option'} } ] )
         if ( !defined $flag->{'symbol'}->{'name'} );
 
-    # Now that we have the name, lets grab the rest of it, including features.
-    my $symbol = $flag_data->{'symbol'}->{'option'}->{ $flag->{'symbol'}->{'name'} };
-
-    # Lets see what attributes the symbol has, and select some.
-    foreach my $attribute_name ( keys %$symbol ) {
-
-        # select the option from the array
-        my $attr = rand_from_array( $symbol->{$attribute_name}->{'option'} );
-
-        # If the attribute_name is already defined, don't use attr->content
-        $flag->{'symbol'}->{$attribute_name} = $attr->{'content'} if ( !defined $flag->{'symbol'}->{$attribute_name} );
-
-        # If the field is numeric and a value is not already set, randomly generate it.
-        if (    defined $symbol->{$attribute_name}->{'numeric'}
-            and $symbol->{$attribute_name}->{'numeric'}
-            and ( !defined $flag->{'symbol'}->{ $attribute_name . "_selected" } ) )
-        {
-
-            # Note that we're setting the seed here so passing in a paramter (say side=>top),
-            # followup parameters will still be generated properly (count will still be 5)
-            $flag->{'symbol'}->{ $attribute_name . "_selected" } = d( $flag->{'symbol'}->{$attribute_name} );
-        }
+    if (defined $flag_data->{'symbol'}->{'option'}->{$flag->{'symbol'}->{'name'}}->{'feature'} ){
+        GenericGenerator::select_features($flag->{'symbol'}, $flag_data->{'symbol'}->{'option'}->{$flag->{'symbol'}->{'name'}});
     }
+
     return $flag;
 }
 
@@ -358,12 +301,14 @@ Determine which type of border to use
 sub generate_border {
     my ($flag) = @_;
     GenericGenerator::set_seed( $flag->{'seed'} );
-    $flag->{'border'} = rand_from_array( $flag_data->{'border'}->{'option'} )->{'content'}
-        if ( !defined $flag->{'border'} );
+    $flag->{'border'}->{'name'} = rand_from_array( [keys %{ $flag_data->{'border'}->{'option'}} ] ) if ( !defined $flag->{'border'}->{'name'} );
+    if (defined $flag_data->{'border'}->{'option'}->{$flag->{'border'}->{'name'}}->{'feature'} ){
+        GenericGenerator::select_features($flag->{'border'}, $flag_data->{'border'}->{'option'}->{$flag->{'border'}->{'name'}});
+    }
     return $flag;
 }
 
-
+#TODO investigate using select_features for each level of a flag...
 ###############################################################################
 
 =head2 generate_letter()

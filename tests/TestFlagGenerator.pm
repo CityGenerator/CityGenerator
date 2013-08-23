@@ -41,12 +41,18 @@ subtest 'test create_flag' => sub {
 subtest 'test generate_shape' => sub {
     my $flag;
     $flag = FlagGenerator::create_flag( { 'seed' => 41630 } );
-    FlagGenerator::generate_shape($flag);
     isnt( $flag->{'shape'}->{'name'}, undef );
 
     $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'shape' => { 'name' => 'bone' } } );
-    FlagGenerator::generate_shape($flag);
     is( $flag->{'shape'}->{'name'}, 'bone' );
+
+    $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'shape_roll' =>92 } );
+    is( $flag->{'shape'}->{'name'}, 'tongued' );
+
+    $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'shape_roll' =>92, 'shape'=>{'tongueshape'=>'sine', } } );
+    is( $flag->{'shape'}->{'name'}, 'tongued' );
+    is( $flag->{'shape'}->{'tongueshape'}, 'sine' );
+
 };
 
 subtest 'test generate_ratio' => sub {
@@ -104,16 +110,16 @@ subtest 'test generate_overlay' => sub {
     FlagGenerator::generate_overlay($flag);
     is( $flag->{'overlay'}->{'name'},           'stripe' );
     is( $flag->{'overlay'}->{'side'},           'horizontal' );
-    is( $flag->{'overlay'}->{'count'},          '9' );
-    is( $flag->{'overlay'}->{'count_selected'}, '8' );
+    isnt( $flag->{'overlay'}->{'count'},          undef );
+    ok( $flag->{'overlay'}->{'count_selected'}<=$flag->{'overlay'}->{'count'} , "make sure the selected item is less than count" );
 
     $flag = FlagGenerator::create_flag(
         { 'seed' => 41630, 'overlay' => { 'name' => 'stripe', 'side' => 'vertical', 'count_selected' => '1' } } );
     FlagGenerator::generate_overlay($flag);
     is( $flag->{'overlay'}->{'name'},           'stripe' );
     is( $flag->{'overlay'}->{'side'},           'vertical' );
-    is( $flag->{'overlay'}->{'count'},          '9' );
-    is( $flag->{'overlay'}->{'count_selected'}, '1' );
+    isnt( $flag->{'overlay'}->{'count'},          undef );
+    ok( $flag->{'overlay'}->{'count_selected'}<=$flag->{'overlay'}->{'count'} , "make sure the selected item is less than count" );
 
     $flag = FlagGenerator::create_flag(
         { 'seed' => 41630, 'overlay' => { 'name' => 'stripe', 'side' => 'vertical', 'count' => '13' } } );
@@ -121,8 +127,15 @@ subtest 'test generate_overlay' => sub {
     is( $flag->{'overlay'}->{'name'},           'stripe' );
     is( $flag->{'overlay'}->{'side'},           'vertical' );
     is( $flag->{'overlay'}->{'count'},          '13' );
-    is( $flag->{'overlay'}->{'count_selected'}, '12' );
+    ok( $flag->{'overlay'}->{'count_selected'}<=$flag->{'overlay'}->{'count'} , "make sure the selected item is less than count" );
 
+    $flag = FlagGenerator::create_flag(
+        { 'seed' => 41630, 'overlay' => { 'name' => 'stripe', 'side' => 'vertical', 'count' => '13', 'count_selected'=>2 } } );
+    FlagGenerator::generate_overlay($flag);
+    is( $flag->{'overlay'}->{'name'},           'stripe' );
+    is( $flag->{'overlay'}->{'side'},           'vertical' );
+    is( $flag->{'overlay'}->{'count'},          '13' );
+    is( $flag->{'overlay'}->{'count_selected'}, 2 , "make sure the selected item is 2" );
 
     $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'overlay' => { 'name' => 'bunny' } } );
     FlagGenerator::generate_overlay($flag);
@@ -135,11 +148,33 @@ subtest 'test generate_symbol' => sub {
     FlagGenerator::generate_symbol($flag);
     is( $flag->{'symbol'}->{'name'}, 'circle' );
 
-    $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'symbol' => { 'name' => 'bunny' } } );
+    $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'symbol' => { 'name' => 'circle' } } );
     FlagGenerator::generate_symbol($flag);
-    is( $flag->{'symbol'}->{'name'}, 'bunny' );
+    is( $flag->{'symbol'}->{'name'}, 'circle' );
+    isnt( $flag->{'symbol'}->{'radius_direction'}, undef );
 };
 
+subtest 'test generate_border' => sub {
+    my $flag;
+    $flag = FlagGenerator::create_flag( { 'seed' => 41630 } );
+    FlagGenerator::generate_border($flag);
+    isnt( $flag->{'border'}->{'name'}, undef );
+
+    $flag = FlagGenerator::create_flag( { 'seed' => 41630, 'border' => { 'name' => 'solid' } } );
+    FlagGenerator::generate_border($flag);
+    is( $flag->{'border'}->{'name'}, 'solid' );
+    like( $flag->{'border'}->{'size'}, '/\.\\d\\d/' );
+};
+
+subtest 'test generate_letter' => sub {
+    my $flag;
+    $flag = FlagGenerator::create_flag( { 'seed' => 1, } );
+    isnt( $flag->{'symbol'}->{'letter'}, undef, "make sure it's something" );
+
+    $flag = FlagGenerator::create_flag( { 'seed' => 1, 'cityname'=>'Aba' } );
+    is( $flag->{'symbol'}->{'letter'}, 'A' );
+
+};
 
 1;
 
