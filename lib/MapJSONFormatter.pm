@@ -44,6 +44,7 @@ sub printCityMapJSON {
     # Things we might care about:
     $mapdata->{'seed'}      = $city->{'seed'};
     $mapdata->{'area'}      = $city->{'area'};
+    $mapdata->{'diameter'}  = $city->{'diameter'};
     $mapdata->{'density'}   = $city->{'population_density'};
     $mapdata->{'roads'}     = $city->{'streets'}->{'roads'};
     $mapdata->{'mainroads'} = $city->{'streets'}->{'mainroads'};

@@ -24,7 +24,7 @@ subtest 'Test Environment Geography' => sub {
     my $environment = EnvironmentFormatter::printGeography($city);
     like(
         $environment,
-        "/This .* is .* populated .*/sq km. and covers .* square kilometers./",
+        "/This .+ .+ is .+ populated [(].*/sq km[)], covers .+ square kilometers, and roughly has a diameter of .+ meters\. \n/",
         'ensure string is returned'
     );
 

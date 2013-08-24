@@ -50,7 +50,7 @@ sub printGeography {
     my ($city) = @_;
     my $content = "";
     $content
-        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated (".format_number($city->{'population_density'})."/sq km) and covers $city->{'area'} square kilometers.";
+        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated (".format_number($city->{'population_density'})."/sq km), covers $city->{'area'} square kilometers, and roughly has a diameter of $city->{'diameter'} meters. \n";
 
     return $content;
 }

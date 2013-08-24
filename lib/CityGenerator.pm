@@ -765,12 +765,11 @@ Generate the area the city covers.
 ###############################################################################
 sub generate_area {
 
-    #TODO change to metric....
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 24 );
     $city->{'area'} = sprintf "%4.2f", $city->{'population_total'} / $city->{'population_density'} if (!defined $city->{'area'});
-
-    #3-300/3=1-100= * + 50= 51-150 /100 = .5-1.5
+    #presume city is roughly round...
+    $city->{'diameter'} = int(2* sqrt($city->{'area'} / pi)*1000)   if (! defined $city->{'diameter'} ) ; 
 
     my $stat_modifier = (($city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'})/3 +50)/100  ;
 
