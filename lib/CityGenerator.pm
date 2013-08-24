@@ -37,6 +37,7 @@ use Math::Complex ':pi';
 use NPCGenerator;
 use PostingGenerator;
 use RegionGenerator;
+use ResourceGenerator;
 use GovtGenerator;
 use MilitaryGenerator;
 use EstablishmentGenerator;
@@ -646,12 +647,22 @@ sub generate_resources {
 
     #resetting $resource_count to reflect potential existing value.
     $resource_count = $city->{'resourcecount'};
-
+    
     if ( !defined $city->{'resources'} || ref $city->{'resources'} ne 'ARRAY' ) {
         $city->{'resources'} = [];
         while ( $resource_count-- > 0 ) {
             GenericGenerator::set_seed( GenericGenerator::get_seed() + 1 );
-            my $resource = rand_from_array( $resource_data->{'resource'} );
+            #my $resource = rand_from_array( $resource_data->{'resource'} );
+            my $resource = ResourceGenerator::create_resource();
+
+            # My error
+            # Undefined subroutine &ResourceGenerator::create_resource called at lib//CityGenerator.pm line 656.
+
+            
+            #EstablishmentGenerator::create_establishment();
+            # $city->{'establishments'}->[$establishmentID] = 
+            
+            #$resource_data->{'resource'}
             push @{ $city->{'resources'} }, parse_object($resource);
         }
     } ## end if ( !defined $city->{...})

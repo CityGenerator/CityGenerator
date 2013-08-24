@@ -91,10 +91,12 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>rubies</option>
         <option>saphires</option>
         <post>buried near there</post>
-        <post>hidden around there</post>
+        <post>hidden around somewhere</post>
         <post>in a tomb nearby</post>
         <post>in a nearby pit</post>
-    </precious>
+        <post>in a well</post>        
+        <post>in a dungeon</post>
+     </precious>
     <structures>
         <age>
             <option>an ancient</option>

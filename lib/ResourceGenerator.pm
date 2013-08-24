@@ -36,7 +36,7 @@ This method is used to create a resource
 =cut
 
 ###############################################################################
-sub create_resource(){
+sub create_resource {
 my $loop = 0;
 my $max = d(3);
 my $output = '';
@@ -67,7 +67,7 @@ my $roll;
             $output .= add_precious();    
         }
         
-        print Dumper $output;
+        #print Dumper $output;
         
         $loop++;
     }
