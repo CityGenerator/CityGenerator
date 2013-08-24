@@ -9,6 +9,7 @@ CityGenerator has been a labor of love for several years. Originally a bash scri
 #How do I use it?#
 
 There are three ways to use it:
+
 1. Try the existing [Demo site](http://citygenerator.morgajel.net/)
 2. Download the [latest version](https://github.com/CityGenerator/CityGenerator/releases) and run it on the command line (Requires perl and many many CPAN modules).
 3. Download the [latest version](https://github.com/CityGenerator/CityGenerator/releases) and run it as a CGI application under nginx/fastcgi or apache (Again, requires perl and many many CPAN modules).
