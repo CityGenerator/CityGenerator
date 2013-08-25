@@ -229,7 +229,7 @@ sub generate_alignment {
 
 =head3 set_city_size()
 
-Find the size of the city by selecting from the citysize 
+Find the size of the city by selecting from the citysize
  list, then populate the size, gp limit, population, and size modifier.
 
 =cut
@@ -310,7 +310,6 @@ sub flesh_out_city {
     generate_imprisonment_rate($city);
 
     # generate basic cityscape details
-    generate_resources($city);
     generate_city_crest($city);
     generate_shape($city);
     generate_streets($city);
@@ -328,7 +327,7 @@ sub flesh_out_city {
     generate_establishments($city);
     generate_postings($city);
     generate_districts($city);
-
+    generate_resources($city);
 
     generate_travelers($city);
     generate_crime($city);
@@ -348,7 +347,7 @@ sub flesh_out_city {
 
 =head3 set_pop_type()
 
-Find the type of city by selecting it from the citytype list, Then populate 
+Find the type of city by selecting it from the citytype list, Then populate
 the base population, type, description and whether or not it's a mixed city.
 
 =cut
@@ -639,33 +638,15 @@ sub generate_resources {
 
     GenericGenerator::set_seed( $city->{'seed'} + 16);
 
-    #ensure that the resource count is at most 13 and at least 2
-    #shift from 2-13 to 1-12, then take a number from 1-12 total.
-    my $resource_count =  max( $city->{'size_modifier'} + 5 + ( $city->{'economy'} || 0 ), 5 ) ;
-
-    $city->{'resourcecount'} = $resource_count if ( !defined $city->{'resourcecount'} );
-
-    #resetting $resource_count to reflect potential existing value.
-    $resource_count = $city->{'resourcecount'};
-    
-    if ( !defined $city->{'resources'} || ref $city->{'resources'} ne 'ARRAY' ) {
-        $city->{'resources'} = [];
-        while ( $resource_count-- > 0 ) {
-            GenericGenerator::set_seed( GenericGenerator::get_seed() + 1 );
-            #my $resource = rand_from_array( $resource_data->{'resource'} );
-            my $resource = ResourceGenerator::create_resource();
-
-            # My error
-            # Undefined subroutine &ResourceGenerator::create_resource called at lib//CityGenerator.pm line 656.
-
-            
-            #EstablishmentGenerator::create_establishment();
-            # $city->{'establishments'}->[$establishmentID] = 
-            
-            #$resource_data->{'resource'}
-            push @{ $city->{'resources'} }, parse_object($resource);
-        }
-    } ## end if ( !defined $city->{...})
+    $city->{'resourcecount'} = $city->{'stats'}->{'economy'} if ( defined $city->{'stats'}->{'economy'} );
+    $city->{'resources'} = [];
+    my $loop = 0;
+    while ( $loop <= $city->{'resourcecount'} ) {
+        GenericGenerator::set_seed( GenericGenerator::get_seed() + 1 );
+        my $resource = ResourceGenerator->create_resource();
+        push @{ $city->{'resources'} }, $resource;
+        $loop++;
+    }
     return $city;
 } ## end sub generate_resources
 
@@ -745,7 +726,7 @@ sub generate_streets {
 
 =head3 generate_walls()
 
-Determine information about the streets. 
+Determine information about the streets.
 
 =cut
 
@@ -1200,7 +1181,7 @@ sub generate_establishments {
                     $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
                     $patrons = $patrons - $occupants;
                 }
-            }    
+            }
         }
     }
     return $city;
