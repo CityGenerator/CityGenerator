@@ -48,7 +48,7 @@ sub printResources {
     my $content = "";
     if ( scalar( @{ $city->{'resources'} } ) > 0 ) {
         $content .= "<p>$city->{'name'} is known for the following resources:</p>\n";
-        $content .= "<ul class='threecolumn'>";
+        $content .= "<ul class='twocolumn'>";
         foreach my $resource ( @{ $city->{'resources'} } ) {
             $content .= "<li>" . $resource->{'template'} . "</li>";
         }

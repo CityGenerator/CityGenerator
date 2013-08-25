@@ -561,9 +561,9 @@ sub generate_resources {
     GenericGenerator::set_seed( $city->{'seed'} + 16);
     my $econmodifier=($city->{'stats'}->{'economy'}+50)/100;
 
-    #ranges  from (-5+10)/5=  1*econmodifier
-    #        to  (12+10)/5)=4 * econmodifier
-    $city->{'resourcecount'} = ceil( ($city->{'size_modifier'}+10)/5*$econmodifier) if ( ! defined $city->{'resourcecount'} );
+    #ranges  from (-5+10)/5=  1*econmodifier   +1 = 2-3
+    #        to  (12+10)/5)=  4 * econmodifier  +1 = 3-7
+    $city->{'resourcecount'} = ceil( ($city->{'size_modifier'}+10)/5*$econmodifier)+1 if ( ! defined $city->{'resourcecount'} );
     $city->{'resources'} = [] if (!defined $city->{'resources'}  );
     for (my $i=0 ; $i < $city->{'resourcecount'}; $i++ ) {
         $city->{'resources'}->[$i] =  ResourceGenerator::create() if (!defined $city->{'resources'}->[$i] );
