@@ -66,6 +66,7 @@ sub create {
     if(d(6) < 5){
         $output .= add_precious();
     }
+    return {'template'=>$output};
 }
 
 #create_resource(); #FIXME Not sure why this is here?
