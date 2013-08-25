@@ -80,11 +80,13 @@ CityMap.prototype.generate_scale= function(canvas){
     var lengthofvertical=diameter*1.3;// in meters
     var meterperpixel=lengthofvertical/canvas.height;
 
-    var scalenumber=500;  // 500 meters seems a good size
+    var scalenumber=1000;  // 500 meters seems a good size
 
     var pixelsforscale=scalenumber/meterperpixel;
     
     var linelength=pixelsforscale;
+    
+    scalenumber=scalenumber/1000;
 
     c.strokeStyle='#000000';
     c.lineWidth=2;
@@ -94,7 +96,7 @@ CityMap.prototype.generate_scale= function(canvas){
     c.lineCap = 'butt';
 
     c.textAlign="start"; 
-    c.fillText(scalenumber+"m", 10, 15);
+    c.fillText(scalenumber+"km", 10, 15);
 
     c.font = "20pt Arial";
     c.closePath();
