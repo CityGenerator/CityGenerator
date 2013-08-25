@@ -129,7 +129,7 @@ sub describe_establishment {
         $content .= " Upon entering " . conjunction(shuffle @senses ) . ".\n";
     }    
     
-    my $verb= ($establishment->{'occupants'} ==1) ? 'is' : 'are';
+    my $verb= (defined $establishment->{'occupants'} && $establishment->{'occupants'} ==1) ? 'is' : 'are';
     $content .= " There $verb ".NO('customer', $establishment->{'occupants'})." in the $establishment->{'type'}.";
 
     if ( defined $establishment->{'enforcer'} ) {
