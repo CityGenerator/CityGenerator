@@ -17,6 +17,7 @@ use EnvironmentFormatter;
 use CityscapeFormatter;
 use CensusDataFormatter;
 use GovtFormatter;
+use CultureFormatter;
 use LocaleFormatter;
 use MapJSONFormatter;
 use PeopleFormatter;
@@ -159,9 +160,13 @@ sub print_content {
         'eventstext'        => EventFormatter::printSummary($city),
         'postingstext'      => EventFormatter::printPostings($city),
 
+        'legendstext'      => CultureFormatter::printLegends($city),
+
+        'peopletext'        => PeopleFormatter::printSummary($city),
         'citizenstext'      => PeopleFormatter::printCitizens($city),
         'travelerstext'     => PeopleFormatter::printTravelers($city),
 
+        'economytext'       => EconomyFormatter::printSummary($city),
         'resourcestext'     => EconomyFormatter::printResources($city),
         'businessestext'    => EconomyFormatter::printBusinesses($city),
 

@@ -130,14 +130,14 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </order>
 
         <tolerance>
-            <option          max="20" >despises</option>
-            <option min="21" max="30" >hates</option>
-            <option min="31" max="40" >is critical of</option>
-            <option min="41" max="50" >ignores</option>
-            <option min="51" max="60" >is neutral towards</option>
-            <option min="61" max="70" >is accepting of</option>
-            <option min="71" max="80" >accepts</option>
-            <option min="81"          >loves</option>
+            <option          max="20" >despise</option>
+            <option min="21" max="30" >hate</option>
+            <option min="31" max="40" >are critical of</option>
+            <option min="41" max="50" >ignore</option>
+            <option min="51" max="60" >are neutral towards</option>
+            <option min="61" max="70" >are accepting of</option>
+            <option min="71" max="80" >accept</option>
+            <option min="81"          >love</option>
         </tolerance>
         <economy>
             <option          max="6"  >crumbling</option>

@@ -34,6 +34,24 @@ use Number::Format;
 use POSIX;
 use version;
 
+
+###############################################################################
+
+=head2 printSummary()
+
+printSummary strips out important info from a City object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printSummary {
+    my ($city) = @_;
+    my $content = "The economy in $city->{'name'} is currently $city->{'economy_description'}.";
+
+    return $content;
+}
+
+
 ###############################################################################
 
 =head2 printResources()

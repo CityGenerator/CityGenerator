@@ -35,6 +35,7 @@ use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Math::Complex ':pi';
 use NPCGenerator;
 use PostingGenerator;
+use LegendGenerator;
 use RegionGenerator;
 use ResourceGenerator;
 use GovtGenerator;
@@ -238,6 +239,7 @@ sub flesh_out_city {
     generate_businesses($city);
     generate_establishments($city);
     generate_postings($city);
+    generate_legends($city);
     generate_districts($city);
     generate_resources($city);
 
@@ -1082,6 +1084,30 @@ sub generate_establishments {
     }
     return $city;
 }
+
+###############################################################################
+
+=head2 generate_legends
+
+Generate a list of legends based on the business section
+
+=cut
+
+###############################################################################
+sub generate_legends {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'legends'} = [] if ( !defined $city->{'legends'} );
+
+    #ghetto, yes, but gives us a range of 1-5, depending on age
+    $city->{'legendcount'}= ceil($city->{'stats'}->{'age'}/10/2) if (!defined $city->{'legendcount'});
+    for ( my $legendID = 0 ; $legendID < $city->{'legendcount'} ; $legendID++ ) {
+        $city->{'legends'}->[$legendID] = LegendGenerator::create() if ( !defined $city->{'legends'}->[$legendID] );
+    }
+    return $city;
+}
+
 
 ###############################################################################
 
