@@ -186,7 +186,8 @@ sub generate_manager {
         $establishment->{'manager'} = NPCGenerator::create(
             {   'profession'=>$establishment->{'manager_title'},
                 'business'=>$establishment->{'type'},
-                'class'=>$establishment->{'manager_class'}
+                'class'=>$establishment->{'manager_class'},
+                'available_races'=>$establishment->{'available_races'},
             });
 
         #TODO flesh out npc here, need to add to NPCGenerator.

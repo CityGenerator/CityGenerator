@@ -438,9 +438,11 @@ sub generate_citizens {
 
     if ( !defined $city->{'citizens'} ) {
         $city->{'citizens'} = [];
+        my $racelist=[ map {$_->{'race'}} @{$city->{'races'}}];
+        $racelist=[ grep {!/other/} @$racelist];
         for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
             push @{ $city->{'citizens'} },
-                NPCGenerator::create( { 'available_races' => $city->{'available_races'} } );
+                NPCGenerator::create( { 'available_races' => $racelist } );
         }
     }
     return $city;
@@ -1070,9 +1072,11 @@ sub generate_establishments {
     if ( $patrons > ($city->{'establishment_count'} * 3) ){
         $patrons = $city->{'establishment_count'} * 3;
     }
+    my $racelist=[ map {$_->{'race'}} @{$city->{'races'}}];
+    $racelist=[ grep {!/other/} @$racelist];
     for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
         if ( !defined $city->{'establishments'}->[$establishmentID] ) {
-            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create();
+            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create({'available_races'=> $racelist });
             if( $patrons > 0 ) {
                 my $roll = $patrons;
                 if ($patrons > 10){

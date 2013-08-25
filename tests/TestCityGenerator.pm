@@ -59,12 +59,10 @@ subtest 'test set_pop_type' => sub {
     is( $city->{'poptype_roll'}, 100,      'poptype_roll is created' );
 
 
-    my $races=['human'];
-    $city = CityGenerator::create( { 'seed' => 1, 'poptype'=>'mixed', 'poptype_roll'=>100 , 'available_races'=>$races} );
+    $city = CityGenerator::create( { 'seed' => 1, 'poptype'=>'mixed', 'poptype_roll'=>100 } );
     CityGenerator::flesh_out_city($city);
     is( $city->{'poptype'},      'mixed', 'poptype created' );
     is( $city->{'poptype_roll'}, 100,     'poptype_roll is created' );
-    is_deeply( $city->{'available_races'}, $races, 'available races are preset' );
 
     done_testing();
 };
