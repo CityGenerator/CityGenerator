@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_legend );
+@EXPORT_OK = qw( create );
 
 ###############################################################################
 
@@ -16,8 +16,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use LegendGenerator;
-    my $legend1=LegendGenerator::create_legend();
-    my $legend2=LegendGenerator::create_legend($parameters);
+    my $legend1=LegendGenerator::create();
+    my $legend2=LegendGenerator::create($parameters);
 
 =cut
 
@@ -72,7 +72,7 @@ my $legend_data    = $xml->XMLin( "xml/legends.xml",  ForceContent => 1, ForceAr
 
 The following methods are used to create the core of the legend structure.
 
-=head3 create_legend()
+=head3 create()
 
 This method is used to create a simple legend with nothing more than:
 
@@ -85,7 +85,7 @@ This method is used to create a simple legend with nothing more than:
 =cut
 
 ###############################################################################
-sub create_legend {
+sub create {
     my ($params) = @_;
     my $legend = {};
 
@@ -102,8 +102,8 @@ sub create_legend {
 
     GenericGenerator::select_features($legend,$legend_data);
 
-    $legend->{'npc'}=NPCGenerator::create_npc() if (!defined $legend->{'npc'});
-    $legend->{'villain'}=NPCGenerator::create_npc({ 'available_races'=>['mindflayer','minotaur','kobold', 'goblin','lizardfolk','troglodyte', 'ogre', 'orc']  }) if (!defined $legend->{'villain'});
+    $legend->{'npc'}=NPCGenerator::create() if (!defined $legend->{'npc'});
+    $legend->{'villain'}=NPCGenerator::create({ 'available_races'=>['mindflayer','minotaur','kobold', 'goblin','lizardfolk','troglodyte', 'ogre', 'orc']  }) if (!defined $legend->{'villain'});
     $legend->{'location'}=CityGenerator::generate_city_name({ 'seed'=>$legend->{'seed'}} ) if (!defined $legend->{'location'});
 
     GenericGenerator::parse_template($legend, 'template');

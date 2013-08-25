@@ -22,7 +22,7 @@ if (defined $q->param('seed')){
     $seed=$q->param('seed');
 }
 
-my $npc=NPCGenerator::create_npc({seed=>$seed});
+my $npc=NPCGenerator::create({seed=>$seed});
 
 
 

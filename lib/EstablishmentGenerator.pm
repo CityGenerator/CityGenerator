@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_establishment);
+@EXPORT_OK = qw( create);
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -62,7 +62,7 @@ my $establishment_data  = $xml->XMLin( "xml/establishments.xml",    ForceContent
 ###############################################################################
 
 
-=head2 create_establishment()
+=head2 create()
 
 This method is used to create a simple establishment with nothing more than:
 
@@ -77,7 +77,7 @@ This method is used to create a simple establishment with nothing more than:
 =cut
 
 ###############################################################################
-sub create_establishment {
+sub create {
     my ($params) = @_;
     my $establishment = {};
     if ( ref $params eq 'HASH' ) {
@@ -183,7 +183,7 @@ sub generate_manager {
     my ($establishment) = @_;
     if ( !defined $establishment->{'manager'} ) {
 
-        $establishment->{'manager'} = NPCGenerator::create_npc(
+        $establishment->{'manager'} = NPCGenerator::create(
             {   'profession'=>$establishment->{'manager_title'},
                 'business'=>$establishment->{'type'},
                 'class'=>$establishment->{'manager_class'}

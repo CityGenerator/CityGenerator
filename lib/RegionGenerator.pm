@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_region generate_name);
+@EXPORT_OK = qw( create generate_name);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use RegionGenerator;
-    my $region=RegionGenerator::create_region();
+    my $region=RegionGenerator::create();
 
 =cut
 
@@ -69,7 +69,7 @@ my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent =>
 ###############################################################################
 
 
-=head2 create_region()
+=head2 create()
 
 This method is used to create a simple region with nothing more than:
 
@@ -84,7 +84,7 @@ This method is used to create a simple region with nothing more than:
 =cut
 
 ###############################################################################
-sub create_region {
+sub create {
     my ($params) = @_;
     my $region = {};
 

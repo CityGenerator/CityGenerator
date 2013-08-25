@@ -19,7 +19,7 @@ use base qw(Exporter);
 
 
 subtest 'Test Summary' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $summary = SummaryFormatter::printSummary($city);
     like( $summary, 

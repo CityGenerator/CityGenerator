@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_military);
+@EXPORT_OK = qw( create);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use MilitaryGenerator;
-    my $military=MilitaryGenerator::create_military($source);
+    my $military=MilitaryGenerator::create($source);
   
 =cut
 
@@ -63,7 +63,7 @@ my $xml_data = $xml->XMLin( "xml/data.xml", ForceContent => 1, ForceArray => ['o
 The following methods are used to create the core of the military structure.
 
 
-=head3 create_military()
+=head3 create()
 
 This method is used to create a simple military from a given object.
 
@@ -82,7 +82,7 @@ This method is used to create a simple military from a given object.
 =cut
 
 ###############################################################################
-sub create_military {
+sub create {
     my ($params) = @_;
     my $military = {};
 

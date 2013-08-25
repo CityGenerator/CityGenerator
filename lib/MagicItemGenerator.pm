@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_item );
+@EXPORT_OK = qw( create );
 
 
 ###############################################################################
@@ -17,8 +17,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use MagicItemGenerator;
-    my $item1=MagicItemGenerator::create_item();
-    my $item2=MagicItemGenerator::create_item($parameters);
+    my $item1=MagicItemGenerator::create();
+    my $item2=MagicItemGenerator::create($parameters);
 
 =cut
 
@@ -74,7 +74,7 @@ my $item_data       = $xml->XMLin( "xml/magicitems.xml",    ForceContent => 1, F
 
 The following methods are used to create the core of the item structure.
 
-=head3 create_item()
+=head3 create()
 
 This method is used to create a simple item with nothing more than:
 
@@ -87,7 +87,7 @@ This method is used to create a simple item with nothing more than:
 =cut
 
 ###############################################################################
-sub create_item {
+sub create {
     my ($params) = @_;
     my $item = {};
 
@@ -105,7 +105,7 @@ sub create_item {
     GenericGenerator::select_features( $item,$item_data );
     GenericGenerator::generate_stats(  $item,$item_data->{$item->{'item'}} );
     GenericGenerator::select_features( $item,$item_data->{$item->{'item'}} );
-    $item->{'creator'}=NPCGenerator::create_npc();
+    $item->{'creator'}=NPCGenerator::create();
 
     GenericGenerator::parse_template($item, 'template');
     my $tc = Lingua::EN::Titlecase->new( $item->{'template'}  );

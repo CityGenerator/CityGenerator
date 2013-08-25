@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_govt);
+@EXPORT_OK = qw( create);
 #FIXME TODO add a stat for Government Size
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use GovtGenerator;
-    my $govt=GovtGenerator::create_govt();
+    my $govt=GovtGenerator::create();
 
 =cut
 
@@ -72,7 +72,7 @@ my $govt_data = $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => [
 The following methods are used to create the core of the govt structure.
 
 
-=head3 create_govt()
+=head3 create()
 
 This method is used to create a simple govt with nothing more than:
 
@@ -87,7 +87,7 @@ This method is used to create a simple govt with nothing more than:
 =cut
 
 ###############################################################################
-sub create_govt {
+sub create {
     my ($params) = @_;
     my $govt = {};
 
@@ -111,7 +111,7 @@ sub create_govt {
     #    set_secondary_power($govt);
     #    set_reputation($govt);
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
 
 ###############################################################################
@@ -127,7 +127,7 @@ This method is used to generate a leader for the government
 sub generate_leader {
     my ($govt) = @_;
 
-    $govt->{'leader'} = NPCGenerator::create_npc( { 'seed' => $govt->{'seed'} } ) if (!defined $govt->{'leader'});
+    $govt->{'leader'} = NPCGenerator::create( { 'seed' => $govt->{'seed'} } ) if (!defined $govt->{'leader'});
 
 
     $govt->{'leader'}->{'title'} = $govt->{'title'}->{'male'};
@@ -135,7 +135,7 @@ sub generate_leader {
     
 
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
 ###############################################################################
 
@@ -158,7 +158,7 @@ sub set_govt_type {
 
 
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
 
 1;

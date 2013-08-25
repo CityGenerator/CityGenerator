@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_climate );
+@EXPORT_OK = qw( create );
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ClimateGenerator;
-    my $climate=ClimateGenerator::create_climate();
+    my $climate=ClimateGenerator::create();
 
 =cut
 
@@ -158,7 +158,7 @@ my $biomematrix = [
 The following methods are used to create the core of the city structure.
 
 
-=head3 create_climate()
+=head3 create()
 
 This method is used to create a simple climate with nothing more than:
 
@@ -171,7 +171,7 @@ This method is used to create a simple climate with nothing more than:
 =cut
 
 ###############################################################################
-sub create_climate {
+sub create {
     my ($params) = @_;
     my $climate = {};
 

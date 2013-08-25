@@ -30,7 +30,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_example );
+@EXPORT_OK = qw( create );
 
 
 ###############################################################################
@@ -42,8 +42,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ExampleGenerator;
-    my $example1=ExampleGenerator::create_example();
-    my $example2=ExampleGenerator::create_example($parameters);
+    my $example1=ExampleGenerator::create();
+    my $example2=ExampleGenerator::create($parameters);
 
 =cut
 
@@ -95,7 +95,7 @@ my $example_data    = $xml->XMLin( "xml/examples.xml",  ForceContent => 1, Force
 
 The following methods are used to create the core of the example structure.
 
-=head3 create_example()
+=head3 create()
 
 This method is used to create a simple example with nothing more than:
 
@@ -108,7 +108,7 @@ This method is used to create a simple example with nothing more than:
 =cut
 
 ###############################################################################
-sub create_example {
+sub create {
     my ($params) = @_;
     my $example = {};
 

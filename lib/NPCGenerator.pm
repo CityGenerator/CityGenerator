@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
+@EXPORT_OK = qw( generate_npc_names get_races names_data create xml_data generate_npc_name );
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -19,7 +19,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use NPCGenerator;
-    my $npc=NPCGenerator::create_npc();
+    my $npc=NPCGenerator::create();
 
 =cut
 
@@ -73,7 +73,7 @@ my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, For
 
 ###############################################################################
 
-=head2 create_npc( params )
+=head2 create( params )
 
 Create an NPC Object and fill it out.
 
@@ -81,7 +81,7 @@ Create an NPC Object and fill it out.
 
 ###############################################################################
 
-sub create_npc {
+sub create {
     my ($params) = @_;
     my $npc = {};
 

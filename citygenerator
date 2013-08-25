@@ -27,9 +27,9 @@ my $q = CGI->new;
 
     my $city_presets=parse_presets($q);
 
-    my $city=CityGenerator::create_city($city_presets);
+    my $city=CityGenerator::create($city_presets);
     CityGenerator::flesh_out_city($city);
-    $city->{'flag'}=FlagGenerator::create_flag({seed=>$city->{'seed'}, 'cityname'=>$city->{'name'}});
+    $city->{'flag'}=FlagGenerator::create({seed=>$city->{'seed'}, 'cityname'=>$city->{'name'}});
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='utf-8' ?>\n";
@@ -95,7 +95,7 @@ sub print_page {
         'title'         => 'Welcome to '.$city->{'name'}."!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
         'seed'          => "$city->{'seed'}",
-        'onload'        => "create_flag( $json,  \"flag\");",
+        'onload'        => "create( $json,  \"flag\");",
 
         'content'       => print_content($city),
         'worldnav'      => print_worldnav($city),

@@ -22,43 +22,43 @@ use base qw(Exporter);
 
 
 subtest 'Test MagicItem Summary' => sub {
-    my $item = MagicItemGenerator::create_item( { seed => 1 } );
+    my $item = MagicItemGenerator::create( { seed => 1 } );
     my $itemsummary = MagicItemFormatter::printSummary($item);
     isnt($itemsummary, undef, "");
 
 	subtest 'Test MagicItem Summary' => sub {
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'potion', 'sideeffect_roll'=>99 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'potion', 'sideeffect_roll'=>99 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'potion', 'sideeffect_roll'=>1 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'potion', 'sideeffect_roll'=>1 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 	};
 	subtest 'Test MagicItem Summary' => sub {
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'scroll','sideeffect_roll'=>1, 'decorations_roll'=>1  } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'scroll','sideeffect_roll'=>1, 'decorations_roll'=>1  } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'scroll','sideeffect_roll'=>99, 'decorations_roll'=>99 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'scroll','sideeffect_roll'=>99, 'decorations_roll'=>99 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 	};
 	subtest 'Test MagicItem Summary' => sub {
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'armor','sideeffect_roll'=>1, 'decorations_roll'=>1, 'ability_roll'=>1 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'armor','sideeffect_roll'=>1, 'decorations_roll'=>1, 'ability_roll'=>1 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'armor','sideeffect_roll'=>99, 'decorations_roll'=>99,'ability_roll'=>99  } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'armor','sideeffect_roll'=>99, 'decorations_roll'=>99,'ability_roll'=>99  } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 	};
 	subtest 'Test MagicItem Summary' => sub {
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'weapon','sideeffect_roll'=>1, 'decorations_roll'=>1, 'ability_roll'=>1 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'weapon','sideeffect_roll'=>1, 'decorations_roll'=>1, 'ability_roll'=>1 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 
-	    $item = MagicItemGenerator::create_item( { seed => 1, 'item'=>'weapon','sideeffect_roll'=>99, 'decorations_roll'=>99, 'ability_roll'=>99 } );
+	    $item = MagicItemGenerator::create( { seed => 1, 'item'=>'weapon','sideeffect_roll'=>99, 'decorations_roll'=>99, 'ability_roll'=>99 } );
 	    $itemsummary = MagicItemFormatter::printSummary($item);
 	    isnt($itemsummary, undef, "");
 	};

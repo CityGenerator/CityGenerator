@@ -24,7 +24,7 @@ if (defined $q->param('seed')){
 my $bonds;
 
 for(my $i=0; $i<10 ; $i++){
-    push @$bonds, BondGenerator::create_bond({seed=>($seed+$i)   });
+    push @$bonds, BondGenerator::create({seed=>($seed+$i)   });
 }
 
 

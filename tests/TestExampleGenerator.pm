@@ -39,12 +39,12 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_example' => sub {
+subtest 'test create' => sub {
     my $example;
-    $example = ExampleGenerator::create_example( );
+    $example = ExampleGenerator::create( );
     isnt( $example->{'seed'}, undef, 'ensure seed is set.' );
 
-    $example = ExampleGenerator::create_example( { 'seed' => 12 } );
+    $example = ExampleGenerator::create( { 'seed' => 12 } );
     is( $example->{'seed'}, 12, 'ensure seed is set.' );
 
     done_testing();

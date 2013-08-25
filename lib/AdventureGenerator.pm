@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_adventure create_name );
+@EXPORT_OK = qw( );
 
 
 ###############################################################################
@@ -19,7 +19,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use AdventureGenerator;
-    my $adventure=AdventureGenerator::create_adventure();
+    my $adventure=AdventureGenerator::create();
 
 =cut
 
@@ -74,7 +74,7 @@ my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, For
 The following methods are used to create the core of the adventure structure.
 
 
-=head3 create_adventure()
+=head3 create()
 
 This method is used to create a simple adventure with nothing more than:
 
@@ -89,7 +89,7 @@ This method is used to create a simple adventure with nothing more than:
 =cut
 
 ###############################################################################
-sub create_adventure {
+sub create {
     my ($params) = @_;
     my $adventure = {};
 

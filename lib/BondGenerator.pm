@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_bond);
+@EXPORT_OK = qw( create);
 
 
 ###############################################################################
@@ -19,7 +19,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use BondGenerator;
-    my $bond=BondGenerator::create_bond();
+    my $bond=BondGenerator::create();
 
 =cut
 
@@ -70,7 +70,7 @@ my $bond_data       = $xml->XMLin( "xml/bonds.xml", ForceContent => 1, ForceArra
 The following methods are used to create the core of the bond structure.
 
 
-=head3 create_bond()
+=head3 create()
 
 This method is used to create a simple bond with nothing more than:
 
@@ -85,7 +85,7 @@ This method is used to create a simple bond with nothing more than:
 =cut
 
 ###############################################################################
-sub create_bond {
+sub create {
     my ($params) = @_;
     my $bond = {};
 
@@ -125,7 +125,7 @@ generate an npc, and put it, yourself, and one of you again into a 3-person arra
 ###############################################################################
 sub select_persons{
     my ($bond)=@_;
-    my $npc= NPCGenerator::create_npc({'seed'=>$bond->{'seed'} });
+    my $npc= NPCGenerator::create({'seed'=>$bond->{'seed'} });
     if (!defined $bond->{'other'}){
         $bond->{'other'} = $npc->{'firstname'};
     }

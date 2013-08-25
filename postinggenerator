@@ -24,7 +24,7 @@ if (defined $q->param('seed')){
 my $postings;
 
 for(my $i=0; $i<10 ; $i++){
-    push @$postings, PostingGenerator::create_posting({seed=>($seed+$i)   });
+    push @$postings, PostingGenerator::create({seed=>($seed+$i)   });
 }
 
 

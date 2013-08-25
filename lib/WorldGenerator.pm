@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_world generate_name);
+@EXPORT_OK = qw( create generate_name);
 
 #FIXME TODO I don't need to reassign back to world when passing in a reference
 # i.e. I can simplify $world=generate_foo($world); as generate_foo($world);
@@ -20,7 +20,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use WorldGenerator;
-    my $world=WorldGenerator::create_world();
+    my $world=WorldGenerator::create();
 
 =cut
 
@@ -75,7 +75,7 @@ my $worldnames_data = $xml->XMLin( "xml/worldnames.xml", ForceContent => 1, Forc
 The following methods are used to create the core of the world structure.
 
 
-=head3 create_world()
+=head3 create()
 
 This method is used to create a simple world with nothing more than:
 
@@ -90,7 +90,7 @@ This method is used to create a simple world with nothing more than:
 =cut
 
 ###############################################################################
-sub create_world {
+sub create {
     my ($params) = @_;
     my $world = {};
 
@@ -122,7 +122,7 @@ sub create_world {
     generate_precipitation($world);
     generate_clouds($world);
     return $world;
-} ## end sub create_world
+} ## end sub create
 
 
 ###############################################################################
@@ -492,7 +492,7 @@ sub generate_clouds {
 sub generate_astronomy {
     my ($world) = @_;
 
-    $world->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $world->{'seed'} } )
+    $world->{'astronomy'} = AstronomyGenerator::create( { 'seed' => $world->{'seed'} } )
         if ( !defined $world->{'astronomy'} );
 
     return $world;

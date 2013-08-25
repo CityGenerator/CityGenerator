@@ -24,7 +24,7 @@ if (defined $q->param('seed')){
 my $legends;
 
 for(my $i=0; $i<10 ; $i++){
-    push @$legends, LegendGenerator::create_legend({seed=>($seed+$i)   });
+    push @$legends, LegendGenerator::create({seed=>($seed+$i)   });
 }
 
 

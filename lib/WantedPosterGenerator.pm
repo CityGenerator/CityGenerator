@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_wantedposter );
+@EXPORT_OK = qw( create );
 
 
 ###############################################################################
@@ -17,8 +17,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use WantedPosterGenerator;
-    my $wantedposter1=WantedPosterGenerator::create_wantedposter();
-    my $wantedposter2=WantedPosterGenerator::create_wantedposter($parameters);
+    my $wantedposter1=WantedPosterGenerator::create();
+    my $wantedposter2=WantedPosterGenerator::create($parameters);
 
 =cut
 
@@ -72,7 +72,7 @@ my $wantedposter_data    = $xml->XMLin( "xml/wanted.xml",  ForceContent => 1, Fo
 
 The following methods are used to create the core of the wantedposter structure.
 
-=head3 create_wantedposter()
+=head3 create()
 
 This method is used to create a simple wantedposter with nothing more than:
 
@@ -85,7 +85,7 @@ This method is used to create a simple wantedposter with nothing more than:
 =cut
 
 ###############################################################################
-sub create_wantedposter {
+sub create {
     my ($params) = @_;
     my $wantedposter = {};
 
@@ -102,7 +102,7 @@ sub create_wantedposter {
 
     GenericGenerator::select_features($wantedposter,$wantedposter_data);
 
-    $wantedposter->{'npc'}=NPCGenerator::create_npc() if (!defined $wantedposter->{'npc'});
+    $wantedposter->{'npc'}=NPCGenerator::create() if (!defined $wantedposter->{'npc'});
 
     $wantedposter->{'acceptable_locations'}= $wantedposter_data->{'lastseen'}->{'option'} if (!defined $wantedposter->{'acceptable_locations'});
 

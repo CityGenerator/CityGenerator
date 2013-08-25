@@ -16,9 +16,9 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_govt' => sub {
+subtest 'test create' => sub {
     my $govt;
-    $govt = GovtGenerator::create_govt(  );
+    $govt = GovtGenerator::create(  );
     isnt( $govt->{'seed'},          undef, 'seed is set' );
     isnt( $govt->{'description'},   undef, 'description is set'  );
     isnt( $govt->{'type'},          undef, 'type is set' );
@@ -30,7 +30,7 @@ subtest 'test create_govt' => sub {
 subtest 'test set_govt_type' => sub {
     my $govt;
 
-    $govt = GovtGenerator::create_govt(
+    $govt = GovtGenerator::create(
         { 'seed' => 1, 'description' => 'he says he wins', 'type' => 'blah', 'title' => { 'male' => 'Sir' } } );
     is( $govt->{'seed'},            1 );
     is( $govt->{'description'},     'he says he wins' );
@@ -42,7 +42,7 @@ subtest 'test set_govt_type' => sub {
 
 subtest 'test generate_stats' => sub {
     my $govt;
-    $govt = GovtGenerator::create_govt( { 'seed' => 1 } );
+    $govt = GovtGenerator::create( { 'seed' => 1 } );
     is( $govt->{'seed'}, 1 );
     foreach my $stat (qw/ corruption approval efficiency influence unity theology/) {
         ok( $govt->{'stats'}->{$stat} >= 1 && $govt->{'stats'}->{$stat} <= 100, "$govt->{'stats'}->{$stat} is between 1 and 100" );
@@ -59,7 +59,7 @@ subtest 'test generate_stats' => sub {
             };
 
 
-    $govt = GovtGenerator::create_govt( { 'seed'=>1, 'stats'=>$stats, } );
+    $govt = GovtGenerator::create( { 'seed'=>1, 'stats'=>$stats, } );
 
     is( $govt->{'seed'}, 1 );
 
@@ -80,7 +80,7 @@ subtest 'test generate_stats' => sub {
         };
 
 
-    $govt = GovtGenerator::create_govt( $presets  );
+    $govt = GovtGenerator::create( $presets  );
     foreach my $key ( keys %$stats  ){
         is( $govt->{$key}, $presets->{$key}, "$key is $presets>{$key} " );
 
@@ -90,7 +90,7 @@ subtest 'test generate_stats' => sub {
 
 #subtest 'test set_secondary_power' => sub {
 #    my $govt;
-#    $govt=GovtGenerator::create_govt({'seed'=>41630});
+#    $govt=GovtGenerator::create({'seed'=>41630});
 #    GovtGenerator::set_secondary_power($govt);
 #    is($govt->{'seed'},41630);
 #    is($govt->{'secondary_power'}->{'plot'},"openly denounces");
@@ -98,7 +98,7 @@ subtest 'test generate_stats' => sub {
 #    is($govt->{'secondary_power'}->{'subplot_roll'},"74");
 #    is($govt->{'secondary_power'}->{'subplot'},undef);
 #
-#    $govt=GovtGenerator::create_govt({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'subplot_roll'=>3}});
+#    $govt=GovtGenerator::create({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'subplot_roll'=>3}});
 #    GovtGenerator::set_secondary_power($govt);
 #    is($govt->{'seed'},2);
 #    is($govt->{'secondary_power'}->{'plot'},"foo");
@@ -106,7 +106,7 @@ subtest 'test generate_stats' => sub {
 #    is($govt->{'secondary_power'}->{'subplot_roll'},"3");
 #    is($govt->{'secondary_power'}->{'subplot'},"wishing to rule with a violent, iron fist");
 #
-#    $govt=GovtGenerator::create_govt({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'power'=>'bar', 'subplot_roll'=>3, 'subplot'=>'baz'}});
+#    $govt=GovtGenerator::create({'seed'=>2, 'secondary_power'=>{'plot'=>'foo', 'power'=>'bar', 'subplot_roll'=>3, 'subplot'=>'baz'}});
 #    GovtGenerator::set_secondary_power($govt);
 #    is($govt->{'seed'},2);
 #    is($govt->{'secondary_power'}->{'plot'},"foo");

@@ -23,7 +23,7 @@ if (defined $q->param('seed')){
     $seed=$q->param('seed');
 }
 
-my $item=MagicItemGenerator::create_item({seed=>$seed});
+my $item=MagicItemGenerator::create({seed=>$seed});
 
 
 

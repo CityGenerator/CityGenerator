@@ -18,12 +18,12 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test create_myth' => sub {
+subtest 'test create' => sub {
     my $myth;
-    $myth = MythGenerator::create_myth();
+    $myth = MythGenerator::create();
     isnt( $myth->{'seed'}, undef, 'ensure seed is set' );
 
-    $myth = MythGenerator::create_myth( { 'seed' => 12 } );
+    $myth = MythGenerator::create( { 'seed' => 12 } );
     is( $myth->{'seed'}, 12, 'ensure seed is set to 12' );
 
 

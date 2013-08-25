@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_astronomy generate_star_name generate_moon_name);
+@EXPORT_OK = qw( create generate_star_name generate_moon_name);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use AstronomyGenerator;
-    my $astronomy=AstronomyGenerator::create_astronomy();
+    my $astronomy=AstronomyGenerator::create();
 
 =cut
 
@@ -75,7 +75,7 @@ my $moonnames_data = $xml->XMLin( "xml/moonnames.xml",     ForceContent => 1, Fo
 The following methods are used to create the core of the astronomy structure.
 
 
-=head3 create_astronomy()
+=head3 create()
 
 This method is used to create a simple astronomy with nothing more than:
 
@@ -90,7 +90,7 @@ This method is used to create a simple astronomy with nothing more than:
 =cut
 
 ###############################################################################
-sub create_astronomy {
+sub create {
     my ($params) = @_;
     my $astronomy = {};
     if ( ref $params eq 'HASH' ) {
@@ -109,7 +109,7 @@ sub create_astronomy {
     $astronomy = generate_celestial_objects($astronomy);
 
     return $astronomy;
-} ## end sub create_astronomy
+}
 
 
 ###############################################################################

@@ -21,9 +21,9 @@ use base qw(Exporter);
 subtest 'test generate_adventure ' => sub {
     my $adventure;
 
-    $adventure = AdventureGenerator::create_adventure();
+    $adventure = AdventureGenerator::create();
 
-    $adventure = AdventureGenerator::create_adventure( { 'seed' => 2 } );
+    $adventure = AdventureGenerator::create( { 'seed' => 2 } );
     is( $adventure->{'seed'}, 2, 'ensure seed is set' );
 
     done_testing();

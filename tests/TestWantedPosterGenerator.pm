@@ -17,20 +17,20 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_wantedposter' => sub {
+subtest 'test create' => sub {
     my $wantedposter;
 
-    $wantedposter = WantedPosterGenerator::create_wantedposter( );
+    $wantedposter = WantedPosterGenerator::create( );
     isnt( $wantedposter->{'seed'}, undef, 'ensure seed is set.' );
 
-    my $npc=NPCGenerator::create_npc({'seed'=>1});
-    $wantedposter = WantedPosterGenerator::create_wantedposter( { 'seed' => 12, 'npc'=>$npc, 'acceptable_locations'=>[{'content'=>'foo'},{'content'=>'bar'},]  } );
+    my $npc=NPCGenerator::create({'seed'=>1});
+    $wantedposter = WantedPosterGenerator::create( { 'seed' => 12, 'npc'=>$npc, 'acceptable_locations'=>[{'content'=>'foo'},{'content'=>'bar'},]  } );
 
     is( $wantedposter->{'seed'}, 12, 'ensure seed is set.' );
     is($wantedposter->{'npc'}->{'name'}, $npc->{'name'}, 'NPC is the value passed in');
 
 
-    $wantedposter = WantedPosterGenerator::create_wantedposter( { 'seed' => 12, 'npc'=>$npc, 'lastseen'=>'baz'  } );
+    $wantedposter = WantedPosterGenerator::create( { 'seed' => 12, 'npc'=>$npc, 'lastseen'=>'baz'  } );
 
     is( $wantedposter->{'seed'}, 12, 'ensure seed is set.' );
     is($wantedposter->{'lastseen'}, 'baz', 'baz is preset');

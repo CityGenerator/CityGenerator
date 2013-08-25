@@ -17,16 +17,16 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test create_continent' => sub {
+subtest 'test create' => sub {
     my $continent;
-    $continent = ContinentGenerator::create_continent();
+    $continent = ContinentGenerator::create();
     isnt( $continent->{'seed'}, undef, "ensure seed is set" );
 
-    $continent = ContinentGenerator::create_continent( { 'seed' => 12345 } );
+    $continent = ContinentGenerator::create( { 'seed' => 12345 } );
     is( $continent->{'seed'}, 12300, 'ensure continent ID is stripped' );
 
     #FIXME need name testing
-    $continent = ContinentGenerator::create_continent( { 'seed' => 12345, 'name' => 'test' } );
+    $continent = ContinentGenerator::create( { 'seed' => 12345, 'name' => 'test' } );
     is( $continent->{'name'}, 'test', 'ensure name is set' );
 
     done_testing();

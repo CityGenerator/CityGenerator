@@ -20,7 +20,7 @@ use base qw(Exporter);
 
 
 subtest 'Test CensusData General Information' => sub {
-    my $city = CityGenerator::create_city( { seed => '126405' } );
+    my $city = CityGenerator::create( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printCensusData($city);
 
@@ -33,7 +33,7 @@ subtest 'Test CensusData General Information' => sub {
 };
 
 subtest 'Test CensusData General Information' => sub {
-    my $city = CityGenerator::create_city( { seed => '1' } );
+    my $city = CityGenerator::create( { seed => '1' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printGeneralInformation($city);
 
@@ -50,7 +50,7 @@ subtest 'Test CensusData General Information' => sub {
 };
 
 subtest 'Test CensusData Racial Breakdown' => sub {
-    my $city = CityGenerator::create_city( { seed => '126405' } );
+    my $city = CityGenerator::create( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printRacialBreakdown($city);
     like(
@@ -64,7 +64,7 @@ subtest 'Test CensusData Racial Breakdown' => sub {
 
 
 subtest 'Test CensusData Misc' => sub {
-    my $city = CityGenerator::create_city( { seed => '126405' } );
+    my $city = CityGenerator::create( { seed => '126405' } );
     CityGenerator::flesh_out_city($city);
     my $censusdata = CensusDataFormatter::printMisc($city);
     like(

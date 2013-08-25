@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_city generate_city_name);
+@EXPORT_OK = qw( create generate_city_name);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use CityGenerator;
-    my $city=CityGenerator::create_city();
+    my $city=CityGenerator::create();
 
 =cut
 
@@ -97,7 +97,7 @@ my $district_data       = $xml->XMLin( "xml/districts.xml",     ForceContent => 
 The following methods are used to create the core of the city structure.
 
 
-=head3 create_city()
+=head3 create()
 
 This method is used to create a simple city with nothing more than:
 
@@ -116,7 +116,7 @@ This method is used to create a simple city with nothing more than:
 =cut
 
 ###############################################################################
-sub create_city {
+sub create {
     my ($params) = @_;
     my $city = {};
 
@@ -207,8 +207,8 @@ Add the other features beyond the core city.
 sub flesh_out_city {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 3 );
-    $city->{'region'}    = RegionGenerator::create_region( $city->{'seed'} )  if (!defined $city->{'region'});
-    $city->{'continent'} = ContinentGenerator::create_continent( $city->{'seed'} ) if(!defined $city->{'continent'});
+    $city->{'region'}    = RegionGenerator::create( $city->{'seed'} )  if (!defined $city->{'region'});
+    $city->{'continent'} = ContinentGenerator::create( $city->{'seed'} ) if(!defined $city->{'continent'});
 
     # calculate population and race information
     set_pop_type($city);
@@ -249,10 +249,10 @@ sub flesh_out_city {
 
     $city->{'military'}->{'population_total'} = $city->{'population_total'}  if (!defined $city->{'military'}->{'population_total'} );
 
-    $city->{'govt'}      = GovtGenerator::create_govt(              $city->{'govt'}  );
-    $city->{'military'}  = MilitaryGenerator::create_military(      $city->{'military'} );
-    $city->{'climate'}   = ClimateGenerator::create_climate(        $city->{'climate'}   );
-    $city->{'astronomy'} = AstronomyGenerator::create_astronomy(    $city->{'astronomy'} );
+    $city->{'govt'}      = GovtGenerator::create(              $city->{'govt'}  );
+    $city->{'military'}  = MilitaryGenerator::create(      $city->{'military'} );
+    $city->{'climate'}   = ClimateGenerator::create(        $city->{'climate'}   );
+    $city->{'astronomy'} = AstronomyGenerator::create(    $city->{'astronomy'} );
 
     return $city;
 }
@@ -438,7 +438,7 @@ sub generate_citizens {
         $city->{'citizens'} = [];
         for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
             push @{ $city->{'citizens'} },
-                NPCGenerator::create_npc( { 'available_races' => $city->{'available_races'} } );
+                NPCGenerator::create( { 'available_races' => $city->{'available_races'} } );
         }
     }
     return $city;
@@ -962,7 +962,7 @@ sub generate_travelers {
         $city->{'travelers'} = [];
         for ( my $i = 0 ; $i < $city->{'traveler_count'} ; $i++ ) {
             push @{ $city->{'travelers'} },
-                NPCGenerator::create_npc( { 'available_races' => $city->{'available_traveler_races'} } );
+                NPCGenerator::create( { 'available_races' => $city->{'available_traveler_races'} } );
         }
     }
     return $city;
@@ -1070,7 +1070,7 @@ sub generate_establishments {
     }
     for ( my $establishmentID = 0 ; $establishmentID < $city->{'establishment_count'} ; $establishmentID++ ) {
         if ( !defined $city->{'establishments'}->[$establishmentID] ) {
-            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create_establishment();
+            $city->{'establishments'}->[$establishmentID] = EstablishmentGenerator::create();
             if( $patrons > 0 ) {
                 my $roll = $patrons;
                 if ($patrons > 10){
@@ -1104,7 +1104,7 @@ sub generate_postings {
     #ghetto, yes, but gives us a range of 6-23.
     $city->{'postingcount'}= $city->{'size_modifier'}+11 if (!defined $city->{'postingcount'});
     for ( my $postingID = 0 ; $postingID < $city->{'postingcount'} ; $postingID++ ) {
-        $city->{'postings'}->[$postingID] = PostingGenerator::create_posting() if ( !defined $city->{'postings'}->[$postingID] );
+        $city->{'postings'}->[$postingID] = PostingGenerator::create() if ( !defined $city->{'postings'}->[$postingID] );
     }
     return $city;
 }

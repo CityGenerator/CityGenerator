@@ -21,7 +21,7 @@ if (defined $q->param('seed')){
     $seed=$q->param('seed');
 }
 
-my $wantedposter = WantedPosterGenerator::create_wantedposter({seed=>($seed)   });
+my $wantedposter = WantedPosterGenerator::create({seed=>($seed)   });
 
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){

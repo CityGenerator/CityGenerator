@@ -19,7 +19,7 @@ use base qw(Exporter);
 
 
 subtest 'Test Govt' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $govt = GovtFormatter::printSummary($city);
     like( $govt, "/.+ is governed through a.+, where .+\. \nThe government as a whole is seen as .+\. \nOfficials in .+ are often seen as .+ and the policies are .+\. \nThe political influence of .+ in the region is .+ due to .+\. \nIn times of crisis, the population .+\. /", 'ensure that summary is formatted properly.');
@@ -27,7 +27,7 @@ subtest 'Test Govt' => sub {
 };
 
 subtest 'Test Military print' => sub {
-    my $city = CityGenerator::create_city( { seed => 1  } );
+    my $city = CityGenerator::create( { seed => 1  } );
     CityGenerator::flesh_out_city($city);
     my $military = GovtFormatter::printMilitary($city);
 
@@ -63,7 +63,7 @@ subtest 'Test Military print' => sub {
 };
 
 subtest 'Test Govt Crime' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $crime = GovtFormatter::printCrime($city);
     like( $crime, "/Crime is .+\. \nThe most common crime is .+\. \nThe imprisonment rate is .+% of the population [(].+ adults?[)]. /");
@@ -72,7 +72,7 @@ subtest 'Test Govt Crime' => sub {
 };
 
 subtest 'Test Govt Leader' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $text = GovtFormatter::printLeader($city);
     like($text, "/The .+ has been in power .+ and is .+ by the people\. \nThere is .+ opposition to the .+ and policies\. \nThe right to rule was granted .+, and that power is maintained .+\. \n/");
@@ -89,7 +89,7 @@ subtest 'Test Govt Leader' => sub {
 };
 
 subtest 'Test Govt laws' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $text = GovtFormatter::printLaw($city);
     like( $text, "/Laws are enforced by a.+, .+\. \nJustice is served .+, with a common punishment being .+\. \n/");

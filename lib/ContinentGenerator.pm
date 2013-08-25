@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_continent generate_continent_name);
+@EXPORT_OK = qw( create generate_continent_name);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ContinentGenerator;
-    my $continent=ContinentGenerator::create_continent();
+    my $continent=ContinentGenerator::create();
 
 =cut
 
@@ -70,7 +70,7 @@ my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent =>
 The following methods are used to create the core of the continent structure.
 
 
-=head3 create_continent()
+=head3 create()
 
 This method is used to create a simple continent with nothing more than:
 
@@ -85,7 +85,7 @@ This method is used to create a simple continent with nothing more than:
 =cut
 
 ###############################################################################
-sub create_continent {
+sub create {
     my ($params) = @_;
     my $continent = {};
 
@@ -106,7 +106,7 @@ sub create_continent {
     generate_continent_name($continent);
 
     return $continent;
-} ## end sub create_continent
+} ## end sub create
 
 
 ###############################################################################

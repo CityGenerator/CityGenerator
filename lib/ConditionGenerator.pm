@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_condition flesh_out_condition);
+@EXPORT_OK = qw( create flesh_out_condition);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ConditionGenerator;
-    my $condition=ConditionGenerator::create_condition();
+    my $condition=ConditionGenerator::create();
 
 =cut
 
@@ -70,7 +70,7 @@ my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, Force
 The following methods are used to create the core of the city structure.
 
 
-=head3 create_condition()
+=head3 create()
 
 This method is used to create a simple condition with nothing more than:
 
@@ -83,7 +83,7 @@ This method is used to create a simple condition with nothing more than:
 =cut
 
 ###############################################################################
-sub create_condition {
+sub create {
     my ($params) = @_;
     my $condition = {};
 
@@ -102,7 +102,7 @@ sub create_condition {
     $condition->{'pop_mod'}       = {} if ( !defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH' );
     $condition->{'bar_mod'}       = {} if ( !defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH' );
     return $condition;
-} ## end sub create_condition
+} ## end sub create
 
 
 ###############################################################################

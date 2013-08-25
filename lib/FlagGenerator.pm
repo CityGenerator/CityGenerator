@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_flag generate_colors);
+@EXPORT_OK = qw( create generate_colors);
 
 ###############################################################################
 
@@ -18,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use FlagGenerator;
-    my $flag=CityGenerator::create_flag();
+    my $flag=CityGenerator::create();
 
 =cut
 
@@ -68,7 +68,7 @@ my $flag_data = $xml->XMLin( "xml/flag.xml", ForceContent => 1, ForceArray => ['
 The following methods are used to create the core of the flagstructure.
 
 
-=head3 create_flag()
+=head3 create()
 
 This method is used to create a simple flag with nothing more than:
 
@@ -81,7 +81,7 @@ This method is used to create a simple flag with nothing more than:
 =cut
 
 ###############################################################################
-sub create_flag {
+sub create {
     my ($params) = @_;
     my $flag = {};
 
@@ -105,7 +105,7 @@ sub create_flag {
 #    $flag = generate_border($flag);
     $flag = generate_letter($flag);
     return $flag;
-} ## end sub create_flag
+} ## end sub create
 
 
 ###############################################################################
