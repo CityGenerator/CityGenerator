@@ -298,9 +298,6 @@ subtest 'test generate_resources' => sub {
     isnt( $city->{'resourcecount'},  undef );
     is( @{ $city->{'resources'} }, $city->{'resourcecount'});
 
-
-
-
     $city = CityGenerator::create( { 'seed' => '1', 'resourcecount' => 4 } );
     CityGenerator::generate_resources($city);
     is( $city->{'resourcecount'},  4 );
@@ -309,7 +306,7 @@ subtest 'test generate_resources' => sub {
     $city = CityGenerator::create( { 'seed' => '1', 'resourcecount' => 4, 'resources' => [] } );
     CityGenerator::generate_resources($city);
     is( $city->{'resourcecount'},  4 );
-    is( @{ $city->{'resources'} }, 0, 'intentional mismatch' );
+    is( @{ $city->{'resources'} }, 4, 'intentional mismatch' );
 
     done_testing();
 };

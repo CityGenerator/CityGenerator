@@ -50,7 +50,7 @@ sub printResources {
         $content .= "<p>$city->{'name'} is known for the following resources:</p>\n";
         $content .= "<ul class='threecolumn'>";
         foreach my $resource ( @{ $city->{'resources'} } ) {
-            $content .= "<li>" . $resource->{'content'} . "</li>";
+            $content .= "<li>" . $resource->{'template'} . "</li>";
         }
 
         $content .= "</ul>";

@@ -36,6 +36,7 @@ use Math::Complex ':pi';
 use NPCGenerator;
 use PostingGenerator;
 use RegionGenerator;
+use ResourceGenerator;
 use GovtGenerator;
 use MilitaryGenerator;
 use EstablishmentGenerator;
@@ -167,7 +168,7 @@ sub generate_city_name {
 
 =head3 set_city_size()
 
-Find the size of the city by selecting from the citysize 
+Find the size of the city by selecting from the citysize
  list, then populate the size, gp limit, population, and size modifier.
 
 =cut
@@ -223,7 +224,6 @@ sub flesh_out_city {
     generate_elderly($city);
     generate_imprisonment_rate($city);
 
-    generate_resources($city);
     generate_city_crest($city);
     generate_streets($city);
     set_laws($city);
@@ -239,6 +239,7 @@ sub flesh_out_city {
     generate_establishments($city);
     generate_postings($city);
     generate_districts($city);
+    generate_resources($city);
 
     generate_travelers($city);
     set_dominance($city);
@@ -263,7 +264,7 @@ sub flesh_out_city {
 
 =head3 set_pop_type()
 
-Find the type of city by selecting it from the citytype list, Then populate 
+Find the type of city by selecting it from the citytype list, Then populate
 the base population, type, description and whether or not it's a mixed city.
 
 =cut
@@ -558,22 +559,14 @@ sub generate_resources {
     my ($city) = @_;
 
     GenericGenerator::set_seed( $city->{'seed'} + 16);
+    my $econmodifier=($city->{'stats'}->{'economy'}+50)/100;
 
-    #ensure that the resource count is at most 13 and at least 2
-    #shift from 2-13 to 1-12, then take a number from 1-12 total.
-    my $resource_count =  max( $city->{'size_modifier'} + 5, 5 ) ;
-
-    $city->{'resourcecount'} = $resource_count if ( !defined $city->{'resourcecount'} );
-
-    #resetting $resource_count to reflect potential existing value.
-    $resource_count = $city->{'resourcecount'};
-
-    if ( !defined $city->{'resources'} ) {
-        $city->{'resources'} = [];
-        while ( $resource_count-- > 0 ) {
-            my $resource = rand_from_array( $resource_data->{'resource'} );
-            push @{ $city->{'resources'} }, parse_object($resource);
-        }
+    #ranges  from (-5+10)/5=  1*econmodifier
+    #        to  (12+10)/5)=4 * econmodifier
+    $city->{'resourcecount'} = ceil( ($city->{'size_modifier'}+10)/5*$econmodifier) if ( ! defined $city->{'resourcecount'} );
+    $city->{'resources'} = [] if (!defined $city->{'resources'}  );
+    for (my $i=0 ; $i < $city->{'resourcecount'}; $i++ ) {
+        $city->{'resources'}->[$i] =  ResourceGenerator::create() if (!defined $city->{'resources'}->[$i] );
     }
     return $city;
 }
@@ -657,7 +650,7 @@ sub generate_popdensity {
 
 =head3 generate_walls()
 
-Determine information about the streets. 
+Determine information about the streets.
 
 =cut
 
@@ -1085,11 +1078,10 @@ sub generate_establishments {
                 $city->{'establishments'}->[$establishmentID]->{'occupants'} = $occupants;
                 $patrons = $patrons - $occupants;
             }
-        }    
+        }
     }
     return $city;
 }
-
 
 ###############################################################################
 
