@@ -63,15 +63,55 @@ CityMap.prototype.redraw = function(canvas){
 
     this.drawRoads(canvas, this.roads, this.mainroads);
     this.generate_scale(canvas);    
+    this.generate_legend(canvas);    
 }
  
+/* ========================================================================= */
+/* What's the scale of a city? 
+/* 
+/* ========================================================================= */
+
+CityMap.prototype.generate_legend = function(canvas){
+    var c = canvas.getContext('2d');
+
+    //set starting coordinates
+    var startx=canvas.width-10;
+    var starty=canvas.height-10;
+     
+    for (var i=0; i < this.districts.length; i++ ){
+
+        c.save();
+        this.paintDot(canvas, startx,starty, 6,"rgba("+this.district_colors[i]+',.5)') ;
+        c.beginPath();
+        c.textAlign="end"; 
+        c.strokeStyle='#000000';
+        console.log(this.districts[i])
+
+        c.font = "8pt Arial";
+        c.fillText( this.districts[i].name, startx-10,starty+4);
+        c.closePath();
+        c.stroke()
+        starty=starty-15;
+        c.restore();
+    }
+        c.save();
+        c.strokeStyle='#000000';
+        c.textAlign="end"; 
+        c.font = "bold 10pt Arial";
+        c.fillText( "Districts", startx-10,starty+2);
+        c.closePath();
+        c.stroke()
+        starty=starty-15;
+        c.restore();
+
+}
 
 /* ========================================================================= */
 /* What's the scale of a city? 
 /* 
 /* ========================================================================= */
 
-CityMap.prototype.generate_scale= function(canvas){
+CityMap.prototype.generate_scale = function(canvas){
     var c = canvas.getContext('2d');
     c.save();
 
@@ -113,12 +153,7 @@ CityMap.prototype.generate_scale= function(canvas){
     c.lineTo(9+linelength,25  );
     c.closePath();
     c.stroke()
-
-
-
-
     c.restore()
-
 
 }
  
