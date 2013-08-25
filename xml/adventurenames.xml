@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<adventurename>
+<data>
     <pattern adjective_chance="30" adverb_chance="30" article_chance="30" >
 
         <option >VERB SUBJECT</option>
@@ -838,4 +838,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 
 
-</adventurename>
+</data>

@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<climate>
+<data>
     <stats><!-- TODO replace these placeholder stat descriptions -->
         <latitude>
             <option          max='30' >equitorial</option>
@@ -102,4 +102,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="81"          >clear</option>
     </cloudcover>    
 
-</climate>
+</data>

@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<flag> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
+<data> <!-- http://www.crwflags.com/fotw/flags/fotwcols.html-->
     <colors>
         <color name="red" >
             <option type="Very light red"    red="255" green="102" blue="102" symbol="R--"  verb="love"    adverb="lovingly" />
@@ -499,5 +499,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </border>
 
 
-</flag>
+</data>
 

@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<resources>
+<data>
     <resource type="beaches">
         <title>pristine</title>
         <title>plentiful</title>
@@ -405,4 +405,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <root>wine</root>
         <root>spirits</root>
     </resource>
-</resources>
+</data>

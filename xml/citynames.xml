@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<cityname title_chance="20" pre_chance="5" trailer_chance="20">
+<data title_chance="20" pre_chance="5" trailer_chance="20">
     <title>Alta</title>
     <title>Bad</title>
     <title>Big</title>
@@ -499,4 +499,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trailer>Town</trailer>
     <trailer>Vista</trailer>
     <trailer>Vernon</trailer>
-</cityname>
+</data>

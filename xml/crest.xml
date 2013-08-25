@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<crest>
+<data>
     <linetype>Nebuly Line</linetype>
     <linetype>Wavy Line</linetype>
     <linetype>Embattled Line</linetype>
@@ -41,4 +41,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <animal>Stag</animal>
     <animal>Snake</animal>
 
-</crest>
+</data>

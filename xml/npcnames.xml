@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<names>
+<data>
 <!--
 #################################################################################
 
@@ -1780,4 +1780,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <trailer>The Strong</trailer>
         </lastname>
     </race>
-</names>
+</data>

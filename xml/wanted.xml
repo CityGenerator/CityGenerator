@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<wanted>
+<data>
     <feature>
         <title chance="50"> <!-- TITLE bob: Wanted for CRIME -->
             <option>"Creepy"</option>
@@ -152,4 +152,4 @@
         <option>in a cave</option>
         <option>underground</option>
     </lastseen>
-</wanted>
+</data>

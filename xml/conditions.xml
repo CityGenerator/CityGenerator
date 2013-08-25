@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<conditions>
+<data>
 
 <!--
 Average temp
@@ -144,5 +144,5 @@ pollution
         <option time="02:00" pop_mod="0.25" bar_mod="4"  >in the dead of night</option>
         <option time="04:00" pop_mod="0.5"  bar_mod="0"  >before dawn</option>
     </time>
-</conditions>
+</data>
 

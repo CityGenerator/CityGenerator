@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<specialist>
+<data>
     <option name="mercenary"        building="adventurers guild"    sv="2000" perbuilding="30" limit=""   district="professional" />
     <option name="adventurer"       building="adventurers guild"    sv="3000" perbuilding="30" limit=""   district="professional" />
     <option name="alchemist"        building="alchemy shop"         sv="1200" perbuilding="3"  limit=""   district="shops" />
@@ -127,4 +127,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="watercarrier"     building="pond,lake,dock"       sv="850"  perbuilding="10" limit=""   district="market" />
     <option name="social worker"    building="almshouse,orphanage"  sv="900"  perbuilding="10" limit=""   district="civic" />
     <option name="warehouse worker" building="warehouse,docks"      sv="250"  perbuilding="10" limit=""   district="warehouse" />
-</specialist>
+</data>
