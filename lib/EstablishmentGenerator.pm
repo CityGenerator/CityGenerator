@@ -106,7 +106,7 @@ sub create {
     generate_graft($establishment);
     generate_condition($establishment);
     generate_district($establishment);
-    
+
     return $establishment;
 }
 
@@ -164,7 +164,7 @@ sub generate_establishment_name {
     my $tc = Lingua::EN::Titlecase->new( $establishment->{'name'}  );
 
     $establishment->{'name'} = $tc->title();
-    
+
     return $establishment;
 }
 
@@ -172,9 +172,9 @@ sub generate_establishment_name {
 ###############################################################################
 
 =head2 generate_manager()
- 
+
 generate the manager for the establishment
- 
+
 =cut
 
 ###############################################################################
@@ -200,9 +200,9 @@ sub generate_manager {
 ###############################################################################
 
 =head2 generate_smell()
- 
+
 generate the smell category of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -210,8 +210,8 @@ sub generate_smell {
     my ($establishment) = @_;
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
-    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'} if ( defined $type->{'smell'} ); 
-    
+    $establishment->{'smell'} = rand_from_array($type->{'smell'}->{'option'})->{'content'} if ( defined $type->{'smell'} );
+
     return $establishment;
 
 }
@@ -220,9 +220,9 @@ sub generate_smell {
 ###############################################################################
 
 =head2 generate_sight()
- 
+
 generate the sight category of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -231,7 +231,7 @@ sub generate_sight {
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     $establishment->{'sight'} = rand_from_array($type->{'sight'}->{'option'})->{'content'} if ( defined $type->{'sight'} );
-    
+
     return $establishment;
 
 }
@@ -240,9 +240,9 @@ sub generate_sight {
 ###############################################################################
 
 =head2 generate_sound()
- 
+
 generate the sound category of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -251,7 +251,7 @@ sub generate_sound {
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     $establishment->{'sound'} = rand_from_array($type->{'sound'}->{'option'})->{'content'} if ( defined $type->{'sound'} );
-    
+
     return $establishment;
 
 }
@@ -260,9 +260,9 @@ sub generate_sound {
 ###############################################################################
 
 =head2 generate_servicetype()
- 
+
 generate the service type of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -271,7 +271,7 @@ sub generate_servicetype {
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
     $establishment->{'service_type'} = rand_from_array($type->{'service'}->{'option'})->{'content'} if ( !defined $establishment->{'service_type'}  );
-    
+
     return $establishment;
 
 }
@@ -280,9 +280,9 @@ sub generate_servicetype {
 ###############################################################################
 
 =head2 generate_law()
- 
+
 generate the law of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -291,7 +291,7 @@ sub generate_law {
 
     my $data = $xml_data->{'laws'};
     $establishment->{'enforcer'} = rand_from_array($data->{'enforcer'}->{'option'})->{'content'} if (!defined $establishment->{'enforcer'} );
-    
+
     return $establishment;
 
 }
@@ -300,9 +300,9 @@ sub generate_law {
 ###############################################################################
 
 =head2 generate_graft()
- 
+
 generate the graft of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -310,7 +310,7 @@ sub generate_graft {
     my ($establishment) = @_;
 
     $establishment->{'graft'} = rand_from_array($xml_data->{'laws'}->{'graft'}->{'option'})->{'content'} if ( !defined $establishment->{'graft'} );
-    
+
     return $establishment;
 
 }
@@ -319,9 +319,9 @@ sub generate_graft {
 ###############################################################################
 
 =head2 generate_condition()
- 
+
 generate the condition of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -329,7 +329,7 @@ sub generate_condition {
     my ($establishment) = @_;
 
     $establishment->{'condition'} = rand_from_array($xml_data->{'condition'}->{'option'})->{'content'} if (! defined $establishment->{'condition'}  );
-    
+
     return $establishment;
 
 }
@@ -340,9 +340,9 @@ sub generate_condition {
 ###############################################################################
 
 =head2 generate_direction()
- 
+
 generate the direction of an establishment
- 
+
 =cut
 
 ###############################################################################
@@ -350,7 +350,7 @@ sub generate_direction {
     my ($establishment) = @_;
 
     $establishment->{'direction'} = rand_from_array($xml_data->{'direction'}->{'option'})->{'content'} if (!defined $establishment->{'direction'});
-    
+
     return $establishment;
 
 }
@@ -359,9 +359,9 @@ sub generate_direction {
 ###############################################################################
 
 =head2 generate_district()
- 
-generate the sound category of an establishment 
- 
+
+generate the sound category of an establishment
+
 =cut
 
 ###############################################################################
@@ -369,7 +369,7 @@ sub generate_district {
     my ($establishment) = @_;
 
     $establishment->{'district'} = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}}->{'district'};
-    
+
     return $establishment;
 
 }
