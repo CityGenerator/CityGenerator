@@ -23,7 +23,7 @@ subtest 'Test Summary' => sub {
     CityGenerator::flesh_out_city($city);
     my $summary = SummaryFormatter::printSummary($city);
     like( $summary, 
-        "/is a.* in the .* with a .* population\./",
+        "/is a.+ in the .+ with a .+ population\./",
         "summary text" );
 
     done_testing();

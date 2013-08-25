@@ -29,7 +29,7 @@ subtest 'Test Cityscape walls' => sub {
     CityGenerator::flesh_out_city($city);
     $cityscape = CityscapeFormatter::printWalls($city);
     like( $cityscape,
-        '/Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core .*% of the city, with .* towers spread along the .* kilometer wall./',
+        '/Visitors are greeted with a borked jello shingle that is 90 meters tall. The city wall protects the core .+% of the city, with .+ towers spread along the .+ kilometer wall./',
         "ensure walls are printing"
     );
 
@@ -48,13 +48,13 @@ subtest 'Test Cityscape streets' => sub {
     $city->{'streets'}->{'roads'}=1;
 
     my $cityscape = CityscapeFormatter::printStreets($city);
-    like( $cityscape, '/There is.* leading to .*/',   "ensure streets are printing"    );
+    like( $cityscape, '/There is .+ leading to .+/',   "ensure streets are printing"    );
 
     $city->{'streets'}->{'mainroads'}=2;
     $city->{'streets'}->{'roads'}=2;
 
     $cityscape = CityscapeFormatter::printStreets($city);
-    like( $cityscape, '/There are.* leading to .*/',   "ensure streets are printing"    );
+    like( $cityscape, '/There are .+ leading to .+/',   "ensure streets are printing"    );
 
 
 
@@ -67,7 +67,7 @@ subtest 'Test Cityscape districts' => sub {
     CityGenerator::flesh_out_city($city);
     my $cityscape = CityscapeFormatter::printDistricts($city);
     like( $cityscape, 
-        "/The city is broken into the following districts: .*, and .*\./",
+        "/The city is broken into the following districts: .+, and .+\./",
         "ensure district is printed"
      );
 

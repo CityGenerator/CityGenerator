@@ -39,11 +39,11 @@ subtest 'Test CensusData General Information' => sub {
 
     like(
         $censusdata, 
-        "/<h3>.*<\/h3>
+        "/<h3>General Information<\/h3>
                     <ul>
-                        <li> Pop. Estimate: .*<\/li>
-                        <li> Children: .*% \(.*\) <\/li>
-                        <li> Elderly: .*% \(.*\) <\/li>
+                        <li> Pop. Estimate: .+<\/li>
+                        <li> Children: .+% \(.+\) <\/li>
+                        <li> Elderly: .+% \(.+\) <\/li>
                     <\/ul>/"
     );
     done_testing();
@@ -57,7 +57,7 @@ subtest 'Test CensusData Racial Breakdown' => sub {
         $censusdata, 
         "/<h3>Racial Breakdown<\/h3>
                     <ul>
-                        <li>.* \\(.*%\\)<\/li>/"
+                        <li>.+ .+ [(].+%[)]<\/li>/"
     );
     done_testing();
 };
@@ -71,10 +71,10 @@ subtest 'Test CensusData Misc' => sub {
         $censusdata,
         "/<h3>Misc.<\/h3>
                     <ul>
-                        <li>.* Districts?<\/li>
-                        <li>.* Businesses?<\/li>
-                        <li>.* Specialists?<\/li>
-                        <li>.* Residences?<\/li>
+                        <li>.+ Districts?<\/li>
+                        <li>.+ Businesses?<\/li>
+                        <li>.+ Specialists?<\/li>
+                        <li>.+ Residences?<\/li>
                     <\/ul>/"
     );
     done_testing();
