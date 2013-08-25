@@ -231,7 +231,24 @@ img {
     display:none;
 }
 
+#wantedposter{
+    text-align:center;
+    margin-bottom:80px;
+}
 
+#wantedposter h1{
+    font-size:5em;
+    margin-bottom:.3em;
+    margin-top:.3em;
+}
+#wantedposter h2{
+    font-size:3em;
+    margin-bottom:.3em;
+    margin-top:.3em;
+}
+#wantedposter h3{
+    font-size:2em;
+}
 
 
 

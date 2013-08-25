@@ -17,13 +17,13 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test create_event' => sub {
+subtest 'test create' => sub {
     my $event;
     GenericGenerator::set_seed(1);
-    $event = EventGenerator::create_event();
+    $event = EventGenerator::create();
     is( $event->{'seed'}, 41630 );
 
-    $event = EventGenerator::create_event( { 'seed' => 12 } );
+    $event = EventGenerator::create( { 'seed' => 12 } );
     is( $event->{'seed'}, 12 );
 
     done_testing();
@@ -31,14 +31,14 @@ subtest 'test create_event' => sub {
 
 subtest 'test select_base' => sub {
     my $event;
-    $event = EventGenerator::create_event( { 'seed' => 12 } );
+    $event = EventGenerator::create( { 'seed' => 12 } );
     EventGenerator::select_base($event);
 
     is( $event->{'seed'}, 12 );
     is( $event->{'base'}, 'festival' );
     is( $event->{'name'}, 'festival' );
 
-    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'foo' } );
+    $event = EventGenerator::create( { 'seed' => 12, 'base' => 'foo' } );
     EventGenerator::select_base($event);
 
     is( $event->{'seed'}, 12 );
@@ -51,16 +51,16 @@ subtest 'test select_base' => sub {
 
 subtest 'test select_modifier' => sub {
     my $event;
-    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'war' } );
+    $event = EventGenerator::create( { 'seed' => 12, 'base' => 'war' } );
     EventGenerator::select_modifier($event);
 
     is( $event->{'seed'},     12 );
     is( $event->{'base'},     'war' );
-    is( $event->{'modifier'}, 'the aftermath of a' );
-    is( $event->{'name'},     'the aftermath of a war' );
+    isnt( $event->{'modifier'}, undef );
+    like( $event->{'name'},     '/.+war/' );
 
 
-    $event = EventGenerator::create_event( { 'seed' => 12, 'base' => 'war', 'modifier' => 'foo' } );
+    $event = EventGenerator::create( { 'seed' => 12, 'base' => 'war', 'modifier' => 'foo' } );
     EventGenerator::select_modifier($event);
 
     is( $event->{'seed'},     12 );

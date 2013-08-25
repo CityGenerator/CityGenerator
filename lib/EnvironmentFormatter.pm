@@ -9,7 +9,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printEnvironment);
 
 ###############################################################################
 
@@ -50,7 +49,7 @@ sub printGeography {
     my ($city) = @_;
     my $content = "";
     $content
-        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated (".format_number($city->{'population_density'})."/sq km) and covers $city->{'area'} square kilometers.";
+        .= "This $city->{'arable_description'} $city->{'size'} is $city->{'density_description'} populated (".format_number($city->{'population_density'})."/sq km), covers $city->{'area'} square kilometers, and roughly has a diameter of $city->{'diameter'} meters. \n";
 
     return $content;
 }

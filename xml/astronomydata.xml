@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<astronomy>
+<data>
 
     <stars> <!--  ____ orbits around a ____ system- ___, ___ and ___ -->
         <option          max="70" count="1">single star</option>
@@ -85,4 +85,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 <!-- vegetation -->
 <!-- storms large, planetary storms like jupiter -->
 
-</astronomy>
+</data>

@@ -18,16 +18,16 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test create_bond' => sub {
+subtest 'test create' => sub {
     my $bond;
-    $bond = BondGenerator::create_bond();
+    $bond = BondGenerator::create();
     foreach my $value (qw( seed other template) ){
         isnt($bond->{$value}, undef, "ensure $value is set");
     }
 
     like ($bond->{'template'}, "/you/i", "make sure you is interpolated.");
     
-    $bond = BondGenerator::create_bond(
+    $bond = BondGenerator::create(
         {
             'seed'        => 12,
             'other'       => 'Zeus',
@@ -50,22 +50,22 @@ subtest 'test create_bond' => sub {
 };
 subtest 'test select_reason' => sub {
     my $bond;
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what',});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what',});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>100});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>100});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
     is( $bond->{'reason_chance'}, '100', 'ensure reason_chance is set' );
     is( $bond->{'reason'}, undef, 'ensure reason is not set' );
 
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>1});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>1});
 
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
     is( $bond->{'reason_chance'}, '1', 'ensure reason_chance is set' );
     isnt( $bond->{'reason'}, undef, 'ensure reason is set' );
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what','reason_chance'=>1, 'reason'=>'because'});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what','reason_chance'=>1, 'reason'=>'because'});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
 
     done_testing();

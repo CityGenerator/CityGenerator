@@ -5,7 +5,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_rumor );
 
 
 ###############################################################################
@@ -17,8 +16,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use RumorGenerator;
-    my $rumor1=RumorGenerator::create_rumor();
-    my $rumor2=RumorGenerator::create_rumor($parameters);
+    my $rumor1=RumorGenerator::create();
+    my $rumor2=RumorGenerator::create($parameters);
 
 =cut
 
@@ -72,7 +71,7 @@ my $rumor_data    = $xml->XMLin( "xml/rumors.xml",  ForceContent => 1, ForceArra
 
 The following methods are used to create the core of the rumor structure.
 
-=head3 create_rumor()
+=head3 create()
 
 This method is used to create a simple rumor with nothing more than:
 
@@ -85,7 +84,7 @@ This method is used to create a simple rumor with nothing more than:
 =cut
 
 ###############################################################################
-sub create_rumor {
+sub create {
     my ($params) = @_;
     my $rumor = {};
 
@@ -103,12 +102,13 @@ sub create_rumor {
     GenericGenerator::select_features($rumor,$rumor_data);
 
     foreach my $npctitle (qw(believer source culprit victim)){
-        $rumor->{$npctitle}=NPCGenerator::create_npc()->{'name'} if (!defined $rumor->{$npctitle});
+        $rumor->{$npctitle}=NPCGenerator::create()->{'name'} if (!defined $rumor->{$npctitle});
     }
 
     GenericGenerator::parse_template($rumor,'belief') if (defined $rumor->{'belief'});
     GenericGenerator::parse_template($rumor,'heardit') if (defined $rumor->{'heardit'});
 
+# FIXME append extras before parsing the template and you can get rid of the above calls.
     GenericGenerator::parse_template($rumor, 'template');
     append_extras($rumor);
     return $rumor;

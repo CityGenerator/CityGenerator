@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<resource>
+<data>
     <scarcity> 
         <option          max="3"  >rare</option>
         <option min="4"  max="6"  >endangered</option>
@@ -248,4 +248,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             </suffix>
         </type>
     </natural>
-</resource>
+</data>

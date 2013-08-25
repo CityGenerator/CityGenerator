@@ -5,14 +5,13 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw(create_resource);
 
 
 use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use Lingua::EN::Titlecase;
@@ -27,7 +26,7 @@ my $xml_data = $xml->XMLin( "xml/resources.xml", ForceContent => 1, ForceArray =
 
 ###############################################################################
 
-=head2 create_resource()
+=head2 create()
 
 This method is used to create a resource
 
@@ -42,7 +41,7 @@ This method is used to create a resource
 =cut
 
 ###############################################################################
-sub create_resource {
+sub create {
 	my $output;
 	my $roll = d(3);
 
@@ -69,7 +68,7 @@ sub create_resource {
     }
 }
 
-create_resource();
+#create_resource(); #FIXME Not sure why this is here?
 
 ###############################################################################
 
@@ -159,7 +158,7 @@ sub add_precious {
     my $who = '';
 
     if(d(2) == 1){
-        $who = NPCGenerator::create_npc()->{'name'} . ' said ';
+        $who = NPCGenerator::create()->{'name'} . ' said ';
     }
     $precious = ' ' . ucfirst($who . rand_from_array( $xml_data->{'precious'}->{'find'} )->{'content'}) . ' ' .
     rand_from_array( $xml_data->{'precious'}->{'type'} )->{'content'} . ' ' .

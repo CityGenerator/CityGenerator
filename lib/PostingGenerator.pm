@@ -5,7 +5,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_posting );
 
 
 ###############################################################################
@@ -17,8 +16,8 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use PostingGenerator;
-    my $posting1=PostingGenerator::create_posting();
-    my $posting2=PostingGenerator::create_posting($parameters);
+    my $posting1=PostingGenerator::create();
+    my $posting2=PostingGenerator::create($parameters);
 
 =cut
 
@@ -72,7 +71,7 @@ my $posting_data    = $xml->XMLin( "xml/postings.xml",  ForceContent => 1, Force
 
 The following methods are used to create the core of the posting structure.
 
-=head3 create_posting()
+=head3 create()
 
 This method is used to create a simple posting with nothing more than:
 
@@ -85,7 +84,7 @@ This method is used to create a simple posting with nothing more than:
 =cut
 
 ###############################################################################
-sub create_posting {
+sub create {
     my ($params) = @_;
     my $posting = {};
 
@@ -103,8 +102,8 @@ sub create_posting {
     foreach my $featurename (qw( template request hook payment duration requirement disclaimer detail critter skill item testitem supplies subject ) ){
         select_feature($posting, $featurename);
     }
-    $posting->{'contact'}= NPCGenerator::create_npc()->{'name'} if (!defined $posting->{'contact'});
-    $posting->{'person'}= NPCGenerator::create_npc()->{'name'} if (!defined $posting->{'person'});
+    $posting->{'contact'}= NPCGenerator::create()->{'name'} if (!defined $posting->{'contact'});
+    $posting->{'person'}= NPCGenerator::create()->{'name'} if (!defined $posting->{'person'});
     $posting->{'class'}= rand_from_array([keys %{$xml_data->{'classes'}->{'class'}}]) if (!defined $posting->{'class'}) ;
 
 

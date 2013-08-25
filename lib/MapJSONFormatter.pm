@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printCityMapJSON);
 
 ###############################################################################
 
@@ -44,6 +43,7 @@ sub printCityMapJSON {
     # Things we might care about:
     $mapdata->{'seed'}      = $city->{'seed'};
     $mapdata->{'area'}      = $city->{'area'};
+    $mapdata->{'diameter'}  = $city->{'diameter'};
     $mapdata->{'density'}   = $city->{'population_density'};
     $mapdata->{'roads'}     = $city->{'streets'}->{'roads'};
     $mapdata->{'mainroads'} = $city->{'streets'}->{'mainroads'};
@@ -51,7 +51,7 @@ sub printCityMapJSON {
     $mapdata->{'biome'}     = $city->{'climate'}->{'biomekey'};
 
     $mapdata->{'biome_color'}              = $city->{'climate'}->{'color'};
-    $mapdata->{'total_cell_count'}         = ($city->{'size_modifier'}+7)/2*100;
+    $mapdata->{'total_cell_count'}         = ($city->{'size_modifier'}+7)/2*100+50;    # maps range from 150 - 1000
     $mapdata->{'city_cell_count'}          = $mapdata->{'total_cell_count'}/3;
     $mapdata->{'maxdistrictpercent'}       = 0.9;
     $mapdata->{'maxsingledistrictpercent'} = 0.3;

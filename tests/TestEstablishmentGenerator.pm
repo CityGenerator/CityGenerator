@@ -17,9 +17,9 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_establishment' => sub {
+subtest 'test create' => sub {
     my $establishment;
-    $establishment = EstablishmentGenerator::create_establishment( );
+    $establishment = EstablishmentGenerator::create( );
     isnt( $establishment->{'seed'}, undef );
     isnt( $establishment->{'name'}, undef );
     isnt( $establishment->{'manager'}, undef);
@@ -33,7 +33,7 @@ subtest 'test create_establishment' => sub {
         };
 
 
-    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'name'=>'sleepy beaver', 'stats'=>$stats, 'type'=>'barbershop', 'manager_title'=>'briggadoon' } );
+    $establishment = EstablishmentGenerator::create( {'seed'=>1, 'name'=>'sleepy beaver', 'stats'=>$stats, 'type'=>'barbershop', 'manager_title'=>'briggadoon' } );
     is( $establishment->{'seed'}, 1 );
     is( $establishment->{'name'}, 'Sleepy Beaver' );
     is( $establishment->{'type'}, 'barbershop' );
@@ -47,13 +47,13 @@ subtest 'test create_establishment' => sub {
         $descriptors->{$stat."_description"}= "foo";
     }
 
-    $establishment = EstablishmentGenerator::create_establishment( $descriptors);
+    $establishment = EstablishmentGenerator::create( $descriptors);
     foreach my $stat (qw/ price popularity size reputation /) {
         is ($establishment->{$stat."_description"}, "foo", "$stat description set to foo" );
     }
 
 
-    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'trailer'=>'Foo', 'manager_class'=>'Derp', 'graft'=>'foo', 'enforcer'=>'bob', 'condition'=>'shiny', 'direction'=>'west', 'service_type'=>'foo'});
+    $establishment = EstablishmentGenerator::create( {'seed'=>1, 'trailer'=>'Foo', 'manager_class'=>'Derp', 'graft'=>'foo', 'enforcer'=>'bob', 'condition'=>'shiny', 'direction'=>'west', 'service_type'=>'foo'});
     is( $establishment->{'trailer'}, 'Foo' );
     is( $establishment->{'service_type'}, 'foo' );
     is( $establishment->{'graft'}, 'foo' );
@@ -63,8 +63,8 @@ subtest 'test create_establishment' => sub {
     like( $establishment->{'name'}, '/Foo$/' );
     is( $establishment->{'manager_class'}, 'Derp' );
 
-    my $manager=NPCGenerator::create_npc({'seed'=>1}) ;
-    $establishment = EstablishmentGenerator::create_establishment( {'seed'=>1, 'manager'=>$manager});
+    my $manager=NPCGenerator::create({'seed'=>1}) ;
+    $establishment = EstablishmentGenerator::create( {'seed'=>1, 'manager'=>$manager});
     is( $establishment->{'manager'}, $manager );
 
     done_testing();

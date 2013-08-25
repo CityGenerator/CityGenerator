@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_event);
 
 ###############################################################################
 
@@ -18,7 +17,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use EventGenerator;
-    my $event=EventGenerator::create_event();
+    my $event=EventGenerator::create();
 
 =cut
 
@@ -29,7 +28,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -72,7 +71,7 @@ my $event_data = $xml->XMLin( "xml/events.xml", ForceContent => 1, ForceArray =>
 The following methods are used to create the core of the event structure.
 
 
-=head3 create_event()
+=head3 create()
 
 This method is used to create a simple event with nothing more than:
 
@@ -85,7 +84,7 @@ This method is used to create a simple event with nothing more than:
 =cut
 
 ###############################################################################
-sub create_event {
+sub create {
     my ($params) = @_;
     my $event = {};
 
@@ -96,11 +95,12 @@ sub create_event {
     }
 
     if ( !defined $event->{'seed'} ) {
-        $event->{'seed'} = set_seed();
+        $event->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $event->{'seed'} );
 
     return $event;
-} ## end sub create_event
+} ## end sub create
 
 ###############################################################################
 

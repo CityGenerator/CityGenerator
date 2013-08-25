@@ -3,12 +3,12 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-            <section id="rumors">
-                <h2>Rumors</h2>
-                Around town, you'll hear the following rumors:
+            <section id="[%section%]">
+                <h2>[%sectionname%]</h2>
+                [%sectionintro%]
                 <ul>
-                [%  FOREACH rumor IN rumors %]
-                    <li>[% rumor.template %]</li>
+                [%  FOREACH item IN items %]
+                    <li>[% item.template %]</li>
                 [%  END %]
                 </ul>
             </section>

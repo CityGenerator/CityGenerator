@@ -4,141 +4,570 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<npcs>
-	<classes>
-	    <option          max="23" type="Commoner"   />
-	    <option min="24" max="35" type="Expert"     />
-	    <option min="36" max="43" type="Warrior"    />
-	    <option min="44" max="49" type="Rogue"      />
-	    <option min="50" max="52" type="Barbarian"  />
-	    <option min="53" max="55" type="Monk"       />
-	    <option min="56" max="59" type="Bard"       />
-	    <option min="60" max="65" type="Cleric"     />
-	    <option min="66" max="69" type="Druid"      />
-	    <option min="70" max="77" type="Fighter"    />
-	    <option min="78" max="83" type="Adept"      />
-	    <option min="84" max="87" type="Sorcerer"   />
-	    <option min="88" max="91" type="Wizard"     />
-	    <option min="92" max="95" type="Aristocrat" />
-	    <option min="96" max="97" type="Paladin"    />
-	    <option min="99"          type="Ranger"     />
-	</classes>
+<data>
+    <race>
+        <option type="normal">half-elf</option>
+        <option type="normal">half-orc</option>
+        <option type="normal">half-dwarf</option>
+        <option type="normal">gnome</option>
+        <option type="normal">halfling</option>
+        <option type="normal">dwarf</option>
+        <option type="normal">elf</option>
+        <option type="normal">human</option>
+        <option type="monster">deep dwarf</option>
+        <option type="monster">drow</option>
+        <option type="monster">lycanthrope</option>
+        <option type="monster">mindflayer</option>
+        <option type="monster">minotaur</option>
+        <option type="monster">kobold</option>
+        <option type="monster">goblin</option>
+        <option type="monster">bugbear</option>
+        <option type="monster">hobgoblin</option>
+        <option type="monster">lizardfolk</option>
+        <option type="monster">troglodyte</option>
+        <option type="monster">ogre</option>
+        <option type="monster">orc</option>
+    </race>
 
-	<motivation><!-- Bob is a bard who is -->
-	    <motive name="on a mission">
-	        <option>from the gods</option>
-	        <option>for diplomacy</option>
-	        <option>to collect a debt</option>
-	        <option>to capture someone</option>
-	    </motive>
-	    <motive name="traveling with">
-	        <option>a diplomat</option>
-	        <option>a circus</option>
-	        <option>an expidition</option>
-	        <option>an important person</option>
-	        <option>an acting troupe</option>
-	    </motive>
-	    <motive name="following">
-	        <option>rumors of riches</option>
-	        <option>rediscovered ancient lore</option>
-	        <option>the voices</option>
-	        <option>a message from an angel</option>
-	    </motive>
-	    <motive name="fleeing">
-	        <option>the law</option>
-	        <option>an assassin</option>
-	        <option>debtors</option>
-	        <option>an abusive lover</option>
-	        <option>a natural disaster</option>
-	        <option>overdue taxes</option>
-	        <option>a bad family situation</option>
-	        <option>from forced labor</option>
-	    </motive>
-	    <motive name="traveling the world as">
-	        <option>a trader</option>
-	        <option>a pilgrim</option>
-	        <option>a missionary</option>
-	        <option>a beggar</option>
-	        <option>an unemployed specialist</option>
-	    </motive>
-	
-	    <motive name="seeking">
-	        <option>thrills and adventure</option>
-	        <option>honest work</option>
-	        <option>dishonest work</option>
-	        <option>revenge</option>
-	        <option>healing for a crippling injury</option>
-	    </motive>
-	    <motive name="brokering a truce">
-	        <option>over a trade war</option>
-	        <option>over escalating tension</option>
-	    </motive>
-	    <motive name="doing something">
-	        <option>nefarious</option>
-	        <option>amazing</option>
-	        <option>impossible</option>
-	        <option>secret</option>
-	        <option>questionable</option>
-	    </motive>
-	    <motive name="seeing the">
-	        <option>world</option>
-	        <option>city</option>
-	    </motive>
-	    <motive name="finding a missing">
-	        <option>parent</option>
-	        <option>sibling</option>
-	        <option>friend</option>
-	        <option>nemesis</option>
-	        <option>criminal</option>
-	        <option>artifact</option>
-	        <option>treasure</option>
-	        <option>map</option>
-	        <option>heir</option>
-	        <option>artifact</option>
-	    </motive>
-	    <motive name="finding a long-lost">
-	        <option>parent</option>
-	        <option>sibling</option>
-	        <option>friend</option>
-	        <option>distant relative</option>
-	    </motive>
-	    <motive name="cleaning out">
-	        <option>a monster infestation</option>
-	        <option>a wealthy person</option>
-	        <option>a bug infestation</option>
-	        <option>a slum</option>
-	    </motive>
-	    <motive name="delivering a message to">
-	        <option>a ruler</option>
-	        <option>a merchant</option>
-	        <option>a peasant</option>
-	        <option>a scholar</option>
-	        <option>a thug</option>
-	    </motive>
-	    <motive name="here to secretly assassinate">
-	        <option>a ruler</option>
-	        <option>a merchant</option>
-	        <option>a peasant</option>
-	        <option>a scholar</option>
-	        <option>a thug</option>
-	    </motive>
-	    <motive name="finding work as">
-	        <option>a skilled laborer</option>
-	        <option>a merchant</option>
-	        <option>a mercenary</option>
-	        <option>a healer</option>
-	        <option>a spy</option>
-	    </motive>
-	    <motive name="here to destroy">
-	        <option>an artifact</option>
-	        <option>a misconception</option>
-	        <option>a rumor</option>
-	    </motive>
-	    <motive name="here to buy">
-	        <option>supplies</option>
-	        <option>spices</option>
-	        <option>slaves</option>
-	    </motive>
-	</motivation>
+    <sex>
+        <option          max="49" pronoun='he' >male</option>
+        <option min="50" max="98" pronoun='she'>female</option>
+        <option min="99"          pronoun='it'>androgynous</option>
+    </sex>
+    <stats>
+        <skill> <!-- Bubbles is a ________ brewer in _______-->
+            <option          max='5' >horribly skilled</option>
+            <option min='6'  max='10' >mocked</option>
+            <option min='11' max='20' >laughably skilled</option>
+            <option min='21' max='30' >poorly skilled</option>
+            <option min='31' max='40' >mediocre</option>
+            <option min='41' max='50' >reasonably skilled</option>
+            <option min='51' max='70' >decent</option>
+            <option min='71' max='80' >skilled</option>
+            <option min='81' max='90' >gifted</option>
+            <option min='91' max='98' >renowned</option>
+            <option min='99'          >legendary</option>
+        </skill>
+        <experience>
+            <option          max="5"  >new</option>
+            <option min="6"  max="10" >naive</option>
+            <option min="11" max="15" >green</option>
+            <option min="16" max="20" >amatuer</option>
+            <option min="21" max="25" >fledgling</option>
+            <option min="26" max="30" >inexperienced</option>
+            <option min="31" max="35" >rookie</option>
 
-</npcs>
+            <option min="36" max="40" >trained</option>
+            <option min="41" max="45" >capable</option>
+            <option min="46" max="50" >qualified</option>
+            <option min="51" max="55" >proficient</option>
+            <option min="56" max="60" >average</option>
+            <option min="61" max="65" >effective</option>
+
+            <option min="66" max="70" >accomplished</option>
+            <option min="71" max="75" >gifted</option>
+            <option min="76" max="80" >adept</option>
+            <option min="81" max="85" >worldly</option>
+            <option min="86" max="90" >expert</option>
+            <option min="91" max="95" >vetran</option>
+            <option min="96"          >grizzled</option>
+        </experience>
+        <strength>      
+            <option          max="30" >weak</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >strong</option>
+        </strength>
+        <dexterity>      
+            <option          max="30" >clumsy</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >agile</option>
+        </dexterity>
+        <constitution>
+            <option          max="30" >sickly</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >robust</option>
+        </constitution>
+        <wisdom>      
+            <option          max="30" >foolish</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >wise</option>
+        </wisdom>
+        <intelligence>      
+            <option          max="30" >dumb</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >brilliant</option>
+        </intelligence>
+        <charisma>      
+            <option          max="30" >obnoxious</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >inspiring</option>
+        </charisma>
+        <comeliness>      
+            <option          max="30" >ugly</option>
+            <option min="31" max="60" >average</option>
+            <option min="61"          >attractive</option>
+        </comeliness>
+    </stats>
+    <feature>
+        <behavior>
+            <option>accusatory</option>
+            <option>apologetic</option>
+            <option>attentive</option>
+            <option>authoritarian</option>
+            <option>battle-ready</option>
+            <option>beligerent</option>
+            <option>boastful</option>
+            <option>cautious</option>
+            <option>chatty</option>
+            <option>clumsy</option>
+            <option>conspirational</option>
+            <option>contrarian</option>
+            <option>cowed</option>
+            <option>deluded</option>
+            <option>drunken</option>
+            <option>easily offended</option>
+            <option>efficient</option>
+            <option>egotistical</option>
+            <option>embittered</option>
+            <option>exhausted</option>
+            <option>fashion concious</option>
+            <option>fatalistic</option>
+            <option>flirtatious</option>
+            <option>forbidding</option>
+            <option>forgetful</option>
+            <option>giddy</option>
+            <option>gluttonous</option>
+            <option>gosipy</option>
+            <option>greedy</option>
+            <option>grieving</option>
+            <option>guarded</option>
+            <option>guilty</option>
+            <option>healthy</option>
+            <option>helpful</option>
+            <option>homesick</option>
+            <option>idealistic</option>
+            <option>impatient</option>
+            <option>insecure</option>
+            <option>intimidating</option>
+            <option>intimidated</option>
+            <option>jaded</option>
+            <option>jesterly</option>
+            <option>jolly</option>
+            <option>lonely</option>
+            <option>loud</option>
+            <option>lovelorn</option>
+            <option>melancholy</option>
+            <option>mocking</option>
+            <option>mopey</option>
+            <option>nervous</option>
+            <option>nihilistic</option>
+            <option>nosy</option>
+            <option>outlandish</option>
+            <option>pacifistic</option>
+            <option>patriotic</option>
+            <option>patronizing</option>
+            <option>pious</option>
+            <option>prejudiced</option>
+            <option>quiet</option>
+            <option>resentful</option>
+            <option>scattered</option>
+            <option>self-obsessed</option>
+            <option>shifty</option>
+            <option>sick</option>
+            <option>skeptical</option>
+            <option>smitten</option>
+            <option>smug</option>
+            <option>solemn</option>
+            <option>spiteful</option>
+            <option>territorial</option>
+            <option>thick</option>
+            <option>treasure-obsessed</option>
+            <option>trusting</option>
+            <option>unreliable</option>
+            <option>vengeful</option>
+            <option>violent</option>
+            <option>gambling</option>
+            <option>worrying</option>
+            <option>xenophobic</option>
+        </behavior>
+        <regret><!-- Bob's major regret was that he ____ -->
+            <option>was unable to save a loved one</option>
+            <option>didn't lie to protect a close friend</option>
+            <option>accidentally killed an innocent person</option>
+            <option>seriously injured a friend goofing around</option>
+            <option>ran away from home long ago</option>
+            <option>scared a child</option>
+        </regret>
+        <height>
+            <option>short</option>
+            <option>average height</option>
+            <option>tall</option>
+        </height>
+        <build>
+            <option>frail</option>
+            <option>thin</option>
+            <option>skinny</option>
+            <option>average build</option>
+            <option>chubby</option>
+            <option>stocky</option>
+            <option>obese</option>
+        </build>
+        <mark chance="20">
+            <option>mole</option>
+            <option>small scar</option>
+            <option>large scar</option>
+            <option>birth mark</option>
+            <option>tattoo</option>
+            <option>deformity</option>
+        </mark>
+        <marklocation>
+            <option>face</option>
+            <option>head</option>
+            <option>leg</option>
+            <option>arm</option>
+            <option>hand</option>
+            <option>shoulder</option>
+            <option>chest</option>
+            <option>throat</option>
+        </marklocation>
+        <complexion>
+            <option>fair</option>
+            <option>light</option>
+            <option>dark</option>
+            <option>muddled</option>
+        </complexion>
+        <eyes>
+            <option>beady</option>
+            <option>light</option>
+            <option>dark</option>
+            <option>clear</option>
+            <option>bloodshot</option>
+            <option>cross-eyed</option>
+            <option>deep-set</option>
+            <option>close-set</option>
+            <option>heavy</option>
+            <option>hollow</option>
+            <option>piggish</option>
+            <option>sunken</option>
+            <option>brooding</option>
+            <option>glazed</option>
+            <option>haunted</option>
+        </eyes>
+    </feature>
+    <class> <!-- TODO features need to allow weighting so I can make this a feature -->
+        <option          max="23" >Commoner</option>
+	    <option min="24" max="35" >Expert</option>
+	    <option min="36" max="43" >Warrior</option>
+	    <option min="44" max="49" >Rogue</option>
+	    <option min="50" max="52" >Barbarian</option>
+	    <option min="53" max="55" >Monk</option>
+	    <option min="56" max="59" >Bard</option>
+	    <option min="60" max="65" >Cleric</option>
+	    <option min="66" max="69" >Druid</option>
+	    <option min="70" max="77" >Fighter</option>
+	    <option min="78" max="83" >Adept</option>
+	    <option min="84" max="87" >Sorcerer</option>
+	    <option min="88" max="91" >Wizard</option>
+	    <option min="92" max="95" >Aristocrat</option>
+	    <option min="96" max="97" >Paladin</option>
+	    <option min="99"          >Ranger</option>
+	</class>
+
+
+    <motivation><!-- Bob is a bard who is -->
+        <motive name="on a mission">
+            <option>from the gods</option>
+            <option>for diplomacy</option>
+            <option>to collect a debt</option>
+            <option>to capture someone</option>
+        </motive>
+        <motive name="traveling with">
+            <option>a diplomat</option>
+            <option>a circus</option>
+            <option>an expidition</option>
+            <option>an important person</option>
+            <option>an acting troupe</option>
+        </motive>
+        <motive name="following">
+            <option>rumors of riches</option>
+            <option>rediscovered ancient lore</option>
+            <option>the voices</option>
+            <option>a message from an angel</option>
+        </motive>
+        <motive name="fleeing">
+            <option>the law</option>
+            <option>an assassin</option>
+            <option>debtors</option>
+            <option>an abusive lover</option>
+            <option>a natural disaster</option>
+            <option>overdue taxes</option>
+            <option>a bad family situation</option>
+            <option>from forced labor</option>
+        </motive>
+        <motive name="traveling the world as">
+            <option>a trader</option>
+            <option>a pilgrim</option>
+            <option>a missionary</option>
+            <option>a beggar</option>
+            <option>an unemployed specialist</option>
+        </motive>
+    
+        <motive name="seeking">
+            <option>thrills and adventure</option>
+            <option>honest work</option>
+            <option>dishonest work</option>
+            <option>revenge</option>
+            <option>healing for a crippling injury</option>
+        </motive>
+        <motive name="brokering a truce">
+            <option>over a trade war</option>
+            <option>over escalating tension</option>
+        </motive>
+        <motive name="doing something">
+            <option>nefarious</option>
+            <option>amazing</option>
+            <option>impossible</option>
+            <option>secret</option>
+            <option>questionable</option>
+        </motive>
+        <motive name="seeing the">
+            <option>world</option>
+            <option>city</option>
+        </motive>
+        <motive name="finding a missing">
+            <option>parent</option>
+            <option>sibling</option>
+            <option>friend</option>
+            <option>nemesis</option>
+            <option>criminal</option>
+            <option>artifact</option>
+            <option>treasure</option>
+            <option>map</option>
+            <option>heir</option>
+            <option>artifact</option>
+        </motive>
+        <motive name="finding a long-lost">
+            <option>parent</option>
+            <option>sibling</option>
+            <option>friend</option>
+            <option>distant relative</option>
+        </motive>
+        <motive name="cleaning out">
+            <option>a monster infestation</option>
+            <option>a wealthy person</option>
+            <option>a bug infestation</option>
+            <option>a slum</option>
+        </motive>
+        <motive name="delivering a message to">
+            <option>a ruler</option>
+            <option>a merchant</option>
+            <option>a peasant</option>
+            <option>a scholar</option>
+            <option>a thug</option>
+        </motive>
+        <motive name="here to secretly assassinate">
+            <option>a ruler</option>
+            <option>a merchant</option>
+            <option>a peasant</option>
+            <option>a scholar</option>
+            <option>a thug</option>
+        </motive>
+        <motive name="finding work as">
+            <option>a skilled laborer</option>
+            <option>a merchant</option>
+            <option>a mercenary</option>
+            <option>a healer</option>
+            <option>a spy</option>
+        </motive>
+        <motive name="here to destroy">
+            <option>an artifact</option>
+            <option>a misconception</option>
+            <option>a rumor</option>
+        </motive>
+        <motive name="here to buy">
+            <option>supplies</option>
+            <option>spices</option>
+            <option>slaves</option>
+        </motive>
+    </motivation>
+    <attitude>
+        <option name="Love">
+            <option name="Affection">
+                <option name="Adoration"/>
+                <option name="Fondness"/>
+                <option name="Liking"/>
+                <option name="Attractiveness"/>
+                <option name="Caring"/>
+                <option name="Tenderness"/>
+                <option name="Compassion"/>
+                <option name="Sentimentality"/>
+            </option>
+            <option name="Lust/Sexual desire">
+                <option name="Desire"/>
+                <option name="Passion"/>
+                <option name="Infatuation"/>
+            </option>
+            <option name="Longing">
+                <option name="Longing"/>
+            </option>
+        </option>
+        <option name="Joy">
+            <option name="Cheerfulness">
+                <option name="Amusement"/>
+                <option name="Bliss"/>
+                <option name="Gaiety"/>
+                <option name="Glee"/>
+                <option name="Jolliness"/>
+                <option name="Joviality"/>
+                <option name="Joy"/>
+                <option name="Delight"/>
+                <option name="Enjoyment"/>
+                <option name="Gladness"/>
+                <option name="Happiness"/>
+                <option name="Jubilation"/>
+                <option name="Elation"/>
+                <option name="Satisfaction"/>
+                <option name="Ecstasy"/>
+                <option name="Euphoria"/>
+           </option>
+            <option name="Zest">
+                <option name="Enthusiasm"/>
+                <option name="Zeal"/>
+                <option name="Excitement"/>
+                <option name="Thrill"/>
+                <option name="Exhilaration"/>
+            </option>
+            <option name="Contentment">
+                <option name="Pleasure"/>
+            </option>
+            <option name="Pride">
+                <option name="Triumph"/>
+            </option>
+            <option name="Optimism">
+                <option name="Eagerness"/>
+                <option name="Hope"/>
+            </option>
+            <option name="Enthrallment">
+                <option name="Enthrallment"/>
+                <option name="Rapture"/>
+            </option>
+            <option name="Relief">
+                <option name="Relief"/>
+            </option>
+         </option>
+        <option name="Surprise">
+            <option name="Surprise">
+                <option name="Amazement"/>
+                <option name="Astonishment"/>
+            </option>
+         </option>
+        <option name="Anger">
+            <option name="Irritability">
+                <option name="Aggravation"/>
+                <option name="Agitation"/>
+                <option name="Annoyance"/>
+                <option name="Grouchy"/>
+                <option name="Grumpy"/>
+                <option name="Crosspatch"/>
+            </option>
+            <option name="Exasperation">
+                <option name="Frustration"/>
+            </option>
+            <option name="Rage">
+                <option name="Anger"/>
+                <option name="Outrage"/>
+                <option name="Fury"/>
+                <option name="Wrath"/>
+                <option name="Hostility"/>
+                <option name="Ferocity"/>
+                <option name="Bitter"/>
+                <option name="Hatred"/>
+                <option name="Scorn"/>
+                <option name="Spite"/>
+                <option name="Vengefulness"/>
+                <option name="Dislike"/>
+                <option name="Resentment"/>
+            </option>
+            <option name="Disgust">
+                <option name="Revulsion"/>
+                <option name="Contempt"/>
+                <option name="Loathing"/>
+            </option>
+            <option name="Envy">
+                <option name="Jealousy"/>
+            </option>
+            <option name="Torment">
+                <option name="Torment"/>
+            </option>
+         </option>
+        <option name="Sadness">
+            <option name="Suffering">
+                <option name="Agony"/>
+                <option name="Anguish"/>
+                <option name="Hurt"/>
+            </option>
+            <option name="Sadness">
+                <option name="Depression"/>
+                <option name="Despair"/>
+                <option name="Gloom"/>
+                <option name="Glumness"/>
+     
+                <option name="Unhappy"/>
+                <option name="Grief"/>
+                <option name="Sorrow"/>
+                <option name="Woe"/>
+                <option name="Misery"/>
+                <option name="Melancholy'"/>
+            </option>
+            <option name="Disappointment">
+                <option name="Dismay"/>
+                <option name="Displeasure"/>
+            </option>
+            <option name="Shame">
+                <option name="Guilt"/>
+                <option name="Regret"/>
+                <option name="Remorse"/>
+            </option>
+            <option name="Neglect">
+                <option name="Alienation"/>
+                <option name="Defeatism"/>
+                <option name="Dejection"/>
+                <option name="Embarrassment"/>
+                <option name="Homesickness"/>
+                <option name="Humiliation"/>
+                <option name="Insecurity"/>
+                <option name="Insult"/>
+                <option name="Isolation"/>
+                <option name="Loneliness"/>
+                <option name="Rejection"/>
+            </option>
+            <option name="Sympathy">
+                <option name="Pity"/>
+                <option name="Sympathy"/>
+            </option>
+         </option>
+        <option name="Fear">
+            <option name="Horror">
+                <option name="Alarm"/>
+                <option name="Shock"/>
+                <option name="Fear"/>
+                <option name="Fright"/>
+                <option name="Horror"/>
+                <option name="Terror"/>
+                <option name="Panic"/>
+                <option name="Hysteria"/>
+                <option name="Mortification"/>
+            </option>
+            <option name="Nervousness">
+                <option name="Anxiety"/>
+                <option name="Suspense"/>
+                <option name="Uneasiness"/>
+                <option name="Apprehension"/>
+                <option name="Worry"/>
+                <option name="Distress"/>
+                <option name="Dread"/>
+            </option>
+        </option>
+    </attitude>
+
+</data>

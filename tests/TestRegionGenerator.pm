@@ -17,13 +17,13 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_region' => sub {
+subtest 'test create' => sub {
     my $region;
-    $region = RegionGenerator::create_region( { 'seed' => 41630 } );
+    $region = RegionGenerator::create( { 'seed' => 41630 } );
     is( $region->{'seed'}, 41630, 'ensure seed is set' );
     is( $region->{'name'}, 'Conacania Province', 'ensure name is generated' );
 
-    $region = RegionGenerator::create_region( { 'seed' => 12345, 'name' => 'test' } );
+    $region = RegionGenerator::create( { 'seed' => 12345, 'name' => 'test' } );
     is( $region->{'seed'}, 12340,  'ensure seed is trimmed' );
     is( $region->{'name'}, 'test', 'ensure name is set' );
 

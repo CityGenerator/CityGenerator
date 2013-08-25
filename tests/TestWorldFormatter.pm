@@ -19,8 +19,8 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 subtest 'Test World Summary' => sub {
-    my $astro = AstronomyGenerator::create_astronomy( { seed => 1 } );
-    my $world = WorldGenerator::create_world( { seed => 1, 'astronomy' => $astro } );
+    my $astro = AstronomyGenerator::create( { seed => 1 } );
+    my $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     my $summary = WorldFormatter::printSummary($world);
     is( $summary,
               "Macurto is a large, warm planet orbiting a single star.\n"
@@ -30,9 +30,9 @@ subtest 'Test World Summary' => sub {
 };
 
 subtest 'Test World Sky Summary' => sub {
-    my $astro = AstronomyGenerator::create_astronomy(
+    my $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 1, 'moons_roll' => 1, 'celestial_roll' => 1 } );
-    my $world = WorldGenerator::create_world( { seed => 1, 'astronomy' => $astro } );
+    my $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     my $summary = WorldFormatter::printSkySummary($world);
     is(
         $summary,
@@ -43,9 +43,9 @@ subtest 'Test World Sky Summary' => sub {
             . "During the day, the sky is brown, which is partially due to pollution.\n"
     );
 
-    $astro = AstronomyGenerator::create_astronomy(
+    $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 1, 'moons_roll' => 31, 'celestial_roll' => 31 } );
-    $world = WorldGenerator::create_world( { seed => 1, 'astronomy' => $astro } );
+    $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
     is( $summary,
               "Macurto orbits a single star: Bek, an average orange star.\n"
@@ -54,9 +54,9 @@ subtest 'Test World Sky Summary' => sub {
             . "During the day, the sky is brown, which is partially due to pollution.\n" );
 
 
-    $astro = AstronomyGenerator::create_astronomy(
+    $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 71, 'moons_roll' => 71, 'celestial_roll' => 61 } );
-    $world = WorldGenerator::create_world( { seed => 1, 'astronomy' => $astro } );
+    $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
     is( $summary,
               "Macurto orbits a binary star: Bek, an average orange star and Abar, an average white star.\n"
@@ -65,9 +65,9 @@ subtest 'Test World Sky Summary' => sub {
             . "During the day, the sky is brown, which is partially due to pollution.\n" );
 
 
-    $astro = AstronomyGenerator::create_astronomy(
+    $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 97, 'moons_roll' => 96, 'celestial_roll' => 93 } );
-    $world = WorldGenerator::create_world( { seed => 1, 'astronomy' => $astro } );
+    $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
     is(
         $summary,
@@ -84,10 +84,10 @@ subtest 'Test World Sky Summary' => sub {
 
 subtest 'Test World Land Summary' => sub {
 
-    my $world = WorldGenerator::create_world( { seed => 1, } );
+    my $world = WorldGenerator::create( { seed => 1, } );
     my $summary = WorldFormatter::printLandSummary($world);
     is( $summary,
-              "Macurto is 760,399,542 square kilometers (with a circumfrence of 48,870 kilometers).\n"
+              "Macurto is 760,399,542 square kilometers (with a circumference of 48,870 kilometers).\n"
             . "Surface water is rare, covering 27% of the planet.\n"
             . "Around 52% of the planet's water is fresh water.\n"
             . "The crust is split into 8 plates, resulting in 2 continents.\n" );
@@ -97,7 +97,7 @@ subtest 'Test World Land Summary' => sub {
 
 
 subtest 'Test World Weather Summary' => sub {
-    my $world = WorldGenerator::create_world( { seed => 1, } );
+    my $world = WorldGenerator::create( { seed => 1, } );
     my $summary = WorldFormatter::printWeatherSummary($world);
     is(
         $summary,
@@ -111,7 +111,7 @@ subtest 'Test World Weather Summary' => sub {
 
 
 subtest 'Test World Data Summary' => sub {
-    my $world = WorldGenerator::create_world( { seed => 1, } );
+    my $world = WorldGenerator::create( { seed => 1, } );
     my $summary = WorldFormatter::printWorldDataSummary($world);
     is(
         $summary, "    <ul>

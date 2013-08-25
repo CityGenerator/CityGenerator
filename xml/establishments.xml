@@ -1,44 +1,100 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-	<!--
-	CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
-	Based on a work at https://github.com/morgajel/CityGenerator.
-	-->
-	
-<data trailer_chance="30" >
-
-    <size> <!-- The Perfumed Twins Vinters is a[n] _______, disgusting-looking vinyard.  -->
-        <option          max="16" >small</option>
-        <option min="17" max="32" >normal sized</option>
-        <option min="33" max="48" >typical sized</option>
-        <option min="49" max="65" >average sized</option>
-        <option min="66" max="82" >large</option>
-        <option min="83"          >huge</option>
-    </size>
-
     <!--
-        <size> 
-        <option          max="5"  >tiny</option>
-        <option min="6"  max="10" >insignificant</option>
-        <option min="10" max="15" >squat little</option>
-        <option min="16" max="20" >small hole in the wall</option>
-        <option min="20" max="25" >minor</option>
-        <option min="26" max="30" >insubstantial</option>
-        <option min="30" max="35" >paltry</option>
-        <option min="36" max="40" >normal</option>
-        <option min="40" max="45" >typical</option>
-        <option min="46" max="50" >humdrum</option>
-        <option min="50" max="55" >garden-variety</option>
-        <option min="56" max="60" >average</option>
-        <option min="60" max="65" >familiar</option>
-        <option min="66" max="70" >large</option>
-        <option min="70" max="75" >sizeable</option>
-        <option min="76" max="80" >epic</option>
-        <option min="80" max="85" >monumental</option>
-        <option min="86" max="90" >massive</option>
-        <option min="90" max="95" >enormous</option>
-        <option min="96"          >vast</option>
-    </size>
+    CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+    Based on a work at https://github.com/morgajel/CityGenerator.
     -->
+    
+<data trailer_chance="30" >
+    <stats>
+
+
+        <size> <!-- The Perfumed Twins Vinters is a[n] _______, disgusting-looking vinyard.  -->
+            <option          max="16" >small</option>
+            <option min="17" max="32" >normal sized</option>
+            <option min="33" max="48" >typical sized</option>
+            <option min="49" max="65" >average sized</option>
+            <option min="66" max="82" >large</option>
+            <option min="83"          >huge</option>
+        </size>
+        <!--
+            <size> 
+            <option          max="5"  >tiny</option>
+            <option min="6"  max="10" >insignificant</option>
+            <option min="10" max="15" >squat little</option>
+            <option min="16" max="20" >small hole in the wall</option>
+            <option min="20" max="25" >minor</option>
+            <option min="26" max="30" >insubstantial</option>
+            <option min="30" max="35" >paltry</option>
+            <option min="36" max="40" >normal</option>
+            <option min="40" max="45" >typical</option>
+            <option min="46" max="50" >humdrum</option>
+            <option min="50" max="55" >garden-variety</option>
+            <option min="56" max="60" >average</option>
+            <option min="60" max="65" >familiar</option>
+            <option min="66" max="70" >large</option>
+            <option min="70" max="75" >sizeable</option>
+            <option min="76" max="80" >epic</option>
+            <option min="80" max="85" >monumental</option>
+            <option min="86" max="90" >massive</option>
+            <option min="90" max="95" >enormous</option>
+            <option min="96"          >vast</option>
+        </size>
+        -->
+        <popularity><!-- The Wet Frog is a garden-variety tavern that  ____________. -->
+            <option          max="5"  >is avoided by the locals for reasons unknown</option>
+            <option min="6"  max="10" >is unappreciated by the locals</option>
+            <option min="10" max="15" >is usually empty</option>
+            <option min="16" max="20" >is usually busy but is strangely quiet as of late</option>
+            <option min="20" max="25" >holds the record for worst service in the region</option>
+            <option min="26" max="30" >has strange opening hours</option>
+            <option min="30" max="35" >only attracts people from out of town</option>
+            <option min="36" max="40" >is popular on market days</option>
+            <option min="40" max="45" >is eerily empty </option>
+            <option min="46" max="50" >is completely abandoned, and often forgotten</option>
+            <option min="50" max="55" >usually has few visitors</option>
+            <option min="56" max="60" >is empty during the day but busy in the evening</option>
+            <option min="60" max="65" >is on the verge of closing</option>
+            <option min="66" max="70" >is busy most days</option>
+            <option min="70" max="75" >is crowded every night</option>
+            <option min="76" max="80" >rarely has room for new business</option>
+            <option min="80" max="85" >has people queing out in the street</option>
+            <option min="86" max="90" >is one of the busiest places in town</option>
+            <option min="90" max="95" >is always busy, regardless of the time</option>
+            <option min="96"          >is constantly crowded</option>
+        </popularity>
+    
+        <reputation> <!-- The tavern has a reputation for _____________."-->
+            <option          max="10" >deplorable clientele</option>
+            <option min="11" max="20" >being a hive of scum and villiany</option>
+            <option min="21" max="30" >unpaid bills being bad for your health</option>
+            <option min="31" max="40" >poor sanitation</option>
+            <option min="41" max="50" >unfortunate accidents</option>
+            <option min="51" max="60" >being dull</option>
+            <option min="61" max="70" >being open all hours</option>
+            <option min="71" max="80" >having good services</option>
+            <option min="81" max="90" >being a good place to find rumors</option>
+            <option min="91"          >being a pillar of the community</option>
+        </reputation>
+    
+        <price><!--  ... is known for ______________ prices for... -->
+            <option          max="6"  >suspiciously low</option>
+            <option min="7"  max="12" >next to nothing</option>
+            <option min="13" max="18" >dirt cheap</option>
+            <option min="19" max="24" >inexpensive</option>
+            <option min="25" max="30" >fair</option>
+            <option min="31" max="36" >slightly high</option>
+            <option min="37" max="42" >minimal</option>
+            <option min="43" max="48" >varying</option>
+            <option min="49" max="54" >reasonable</option>
+            <option min="55" max="60" >moderate</option>
+            <option min="61" max="66" >steep</option>
+            <option min="67" max="72" >unreasonable</option>
+            <option min="73" max="78" >extravagant</option>
+            <option min="79" max="94" >high</option>
+            <option min="95"          >very high</option>
+        </price>
+    </stats>
+
     <feature>
         <age>
             <option>old</option>
@@ -95,60 +151,6 @@
             <option>trashy</option>
         </neighborhood>
     </feature>
-    <popularity><!-- The Wet Frog is a garden-variety tavern that  ____________. -->
-        <option          max="5"  >is avoided by the locals for reasons unknown</option>
-        <option min="6"  max="10" >is unappreciated by the locals</option>
-        <option min="10" max="15" >is usually empty</option>
-        <option min="16" max="20" >is usually busy but is strangely quiet as of late</option>
-        <option min="20" max="25" >holds the record for worst service in the region</option>
-        <option min="26" max="30" >has strange opening hours</option>
-        <option min="30" max="35" >only attracts people from out of town</option>
-        <option min="36" max="40" >is popular on market days</option>
-        <option min="40" max="45" >is eerily empty </option>
-        <option min="46" max="50" >is completely abandoned, and often forgotten</option>
-        <option min="50" max="55" >usually has few visitors</option>
-        <option min="56" max="60" >is empty during the day but busy in the evening</option>
-        <option min="60" max="65" >is on the verge of closing</option>
-        <option min="66" max="70" >is busy most days</option>
-        <option min="70" max="75" >is crowded every night</option>
-        <option min="76" max="80" >rarely has room for new business</option>
-        <option min="80" max="85" >has people queing out in the street</option>
-        <option min="86" max="90" >is one of the busiest places in town</option>
-        <option min="90" max="95" >is always busy, regardless of the time</option>
-        <option min="96"          >is constantly crowded</option>
-    </popularity>
-
-    <reputation> <!-- The tavern has a reputation for _____________."-->
-        <option          max="10" >deplorable clientele</option>
-        <option min="11" max="20" >being a hive of scum and villiany</option>
-        <option min="21" max="30" >unpaid bills being bad for your health</option>
-        <option min="31" max="40" >poor sanitation</option>
-        <option min="41" max="50" >unfortunate accidents</option>
-        <option min="51" max="60" >being dull</option>
-        <option min="61" max="70" >being open all hours</option>
-        <option min="71" max="80" >having good services</option>
-        <option min="81" max="90" >being a good place to find rumors</option>
-        <option min="91"          >being a pillar of the community</option>
-    </reputation>
-
-    <price><!--  ... is known for ______________ prices for... -->
-        <option          max="6"  >suspiciously low</option>
-        <option min="7"  max="12" >next to nothing</option>
-        <option min="13" max="18" >dirt cheap</option>
-        <option min="19" max="24" >inexpensive</option>
-        <option min="25" max="30" >fair</option>
-        <option min="31" max="36" >slightly high</option>
-        <option min="37" max="42" >minimal</option>
-        <option min="43" max="48" >varying</option>
-        <option min="49" max="54" >reasonable</option>
-        <option min="55" max="60" >moderate</option>
-        <option min="61" max="66" >steep</option>
-        <option min="67" max="72" >unreasonable</option>
-        <option min="73" max="78" >extravagant</option>
-        <option min="79" max="94" >high</option>
-        <option min="95"          >very high</option>
-    </price>
-
     <name trailer_chance="30">
         <title>Angry</title>
         <title>Beefy</title>
@@ -465,12 +467,12 @@
     </name>
 
     <establishment> <!-- manager options should be a key on the specialist list-->
-	    <option name="adventurers guild"    perbuilding="30" limit=""   district="professional" >
-			<manager>
-				<option>adventurer</option>
-				<option>mercenary</option>
-			</manager>
-			<npc_class>
+        <option name="adventurers guild"    perbuilding="30" limit=""   district="professional" >
+            <manager>
+                <option>adventurer</option>
+                <option>mercenary</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>warrior</option>
                 <option>rogue</option>
@@ -480,7 +482,7 @@
                 <option>sorcerer</option>
                 <option>wizard</option>
                 <option>ranger</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>contracts</option>
                 <option>protection</option>
@@ -512,18 +514,18 @@
                 <option>equipment lying around</option>
                 <option>a still dripping tarp in the corner covering something</option>
             </sight>
-		</option>
-	    <option name="alchemy shop"         perbuilding="3"  limit=""   district="shops" >
-			<manager>
-				<option>alchemist</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="alchemy shop"         perbuilding="3"  limit=""   district="shops" >
+            <manager>
+                <option>alchemist</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>adept</option>
                 <option>sorcerer</option>
                 <option>wizard</option>
                 <option>aristocrat</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>concotions</option>
                 <option>service</option>
@@ -548,12 +550,12 @@
                 <option>strange bottles and tubes everywhere</option>
                 <option>odd smoke coming from a large vat with</option>
             </sight>
-		</option>
-	    <option name="apothecary"           perbuilding="4"  limit=""   district="fine shops" >
-			<manager>
-				<option>apothecary</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="apothecary"           perbuilding="4"  limit=""   district="fine shops" >
+            <manager>
+                <option>apothecary</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>cleric</option>
                 <option>druid</option>
@@ -561,7 +563,7 @@
                 <option>sorcerer</option>
                 <option>wizard</option>
                 <option>ranger</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>products</option>
                 <option>service</option>
@@ -585,17 +587,17 @@
                 <option>bottles vials and stacks of grian and herbs</option>
                 <option>a small boy grinding something into powder in a bowl</option>
             </sight>
-		</option>
-	    <option name="armorsmithy"          perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>armorer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="armorsmithy"          perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>armorer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>warrior</option>
                 <option>fighter</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -612,15 +614,15 @@
             <sight>
                 <option>bit of armor in various states of repiar</option>
             </sight>
-		</option>
-	    <option name="astrologer"           perbuilding="1"  limit=""   district="fine shops" >
-			<manager>
-				<option>astrologer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="astrologer"           perbuilding="1"  limit=""   district="fine shops" >
+            <manager>
+                <option>astrologer</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>adept</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -632,16 +634,16 @@
                 <option>lots of charts with arcaine writing on them</option>
                 <option>scrolls leaning against the walls</option>
             </sight>
-		</option>
-	    <option name="bakery"               perbuilding="10" limit=""   district="shops" >
-			<manager>
-				<option>baker</option>
-				<option>pastrycook</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bakery"               perbuilding="10" limit=""   district="shops" >
+            <manager>
+                <option>baker</option>
+                <option>pastrycook</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>a warm smile</option>
                 <option>hot buns</option>
@@ -664,15 +666,15 @@
                 <option>fresh rolls</option>
                 <option>hot buns</option>
             </sight>
-		</option>
-	    <option name="bank"                 perbuilding="30" limit=""   district="wealthy" >
-			<manager>
-				<option>banker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bank"                 perbuilding="30" limit=""   district="wealthy" >
+            <manager>
+                <option>banker</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>aristocrat</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -690,14 +692,14 @@
             <sight>
                 <option>and empty counter with bars in front of it</option>
             </sight>
-		</option>
-	    <option name="barbershop"           perbuilding="4"  limit=""   district="trade" >
-			<manager>
-				<option>barber</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="barbershop"           perbuilding="4"  limit=""   district="trade" >
+            <manager>
+                <option>barber</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>a good story</option>
                 <option>a steady hand</option>
@@ -719,17 +721,17 @@
                 <option>hair clippings on the floor</option>
                 <option>somone in a chair covered by towels and a sheet</option>            
             </sight>
-		</option>
-	    <option name="barrack"              perbuilding="50" limit=""   district="civic" >
-			<manager>
-				<option>soldier</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="barrack"              perbuilding="50" limit=""   district="civic" >
+            <manager>
+                <option>soldier</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>warrior</option>
                 <option>fighter</option>
                 <option>paladin</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -747,15 +749,15 @@
             <sight>
                 <option>bunk beds and lockers</option>
             </sight>
-		</option>
-	    <option name="barrister"            perbuilding="10" limit=""   district="fine shops" >
-			<manager>
-				<option>lawyer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="barrister"            perbuilding="10" limit=""   district="fine shops" >
+            <manager>
+                <option>lawyer</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>aristocrat</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -766,14 +768,14 @@
             <smell>
                 <option>the scent of pork</option>
             </smell>
-		</option>
-	    <option name="bath house"           perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>bather</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bath house"           perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>bather</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -792,14 +794,14 @@
             <sight>
                 <option>naked people walking around</option>
             </sight>
-		</option>
-	    <option name="beer seller"          perbuilding="4"  limit=""   district="market" >
-			<manager>
-				<option>beer seller</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="beer seller"          perbuilding="4"  limit=""   district="market" >
+            <manager>
+                <option>beer seller</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -814,29 +816,29 @@
             <sight>
                 <option>casks of beer</option>
             </sight>
-		</option>
-	    <option name="bleacher"             perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>bleacher</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bleacher"             perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>bleacher</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
             <trailer>
                 <option>arena</option>
             </trailer>
-		</option>
-	    <option name="bookbinder"           perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>bookbinder</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bookbinder"           perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>bookbinder</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -851,15 +853,15 @@
             <sight>
                 <option>books and papers everywhere</option>
             </sight>
-		</option>
-	    <option name="bookstore"            perbuilding="4"  limit=""   district="fine shops" >
-			<manager>
-				<option>bookseller</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bookstore"            perbuilding="4"  limit=""   district="fine shops" >
+            <manager>
+                <option>bookseller</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -868,15 +870,15 @@
                 <option>book smith</option>
             </trailer>
             
-		</option>
-	    <option name="bowyer"               perbuilding="5"  limit=""   district="trade" >
-			<manager>
-				<option>bowyer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bowyer"               perbuilding="5"  limit=""   district="trade" >
+            <manager>
+                <option>bowyer</option>
+            </manager>
+            <npc_class>
                 <option>expert</option>
                 <option>ranger</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -885,15 +887,15 @@
                 <option>bows R us</option>
             </trailer>
             
-		</option>
-	    <option name="brewery"              perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>brewer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="brewery"              perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>brewer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -913,14 +915,14 @@
                 <option>piles of grain</option>
                 <option>bags of hops</option>
             </sight>
-		</option>
-	    <option name="brothel"              perbuilding="20" limit=""   district="poor" >
-			<manager>
-				<option>prostitute</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="brothel"              perbuilding="20" limit=""   district="poor" >
+            <manager>
+                <option>prostitute</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
                 <option>long back rubs</option>
@@ -943,30 +945,30 @@
                 <option>barely clothed women</option>
                 <option>candles and drapery</option>
             </sight>
-		</option>
-	    <option name="bucklery"             perbuilding="5"  limit=""   district="shop" >
-			<manager>
-				<option>bucklemaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="bucklery"             perbuilding="5"  limit=""   district="shop" >
+            <manager>
+                <option>bucklemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
             <trailer>
                 <option>our motto is the buckle stops here</option>
             </trailer>
-		</option>
-	    <option name="butchershop"          perbuilding="10" limit=""   district="market" >
-			<manager>
-				<option>butcher</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="butchershop"          perbuilding="10" limit=""   district="market" >
+            <manager>
+                <option>butcher</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -976,15 +978,15 @@
                 <option>butchers</option>
             </trailer>
             
-		</option>
-	    <option name="cartwright"           perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>cartwright</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="cartwright"           perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>cartwright</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -994,15 +996,15 @@
                 <option>cart repairs</option>
             </trailer>
             
-		</option>
-	    <option name="chandlery shop"       perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>chandler</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="chandlery shop"       perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>chandler</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1010,16 +1012,16 @@
                 <option>supplies</option>
             </trailer>
             
-		</option>
-	    <option name="cheeseshop"           perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>cheesemaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="cheeseshop"           perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>cheesemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
-		            <service>
+            </npc_class>
+            <service>
                 <option>service</option>
             </service>
             <trailer>
@@ -1036,18 +1038,18 @@
                 <option>jugs of milk and other tools</option>
             </sight>
 </option>
-	    <option name="church"               perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>priest</option>
-			</manager>
-			<npc_class>
+        <option name="church"               perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>priest</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>monk</option>
                 <option>cleric</option>
                 <option>druid</option>
                 <option>paladin</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>long prayers</option>
                 <option>clean sacrifices</option>
@@ -1071,16 +1073,16 @@
                 <option>people walking around in a daze</option>
                 <option>elegent golden decorations all around</option>
             </sight>
-		</option>
-	    <option name="civic center"         perbuilding="30" limit=""   district="civic" >
-			<manager>
-				<option>official</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="civic center"         perbuilding="30" limit=""   district="civic" >
+            <manager>
+                <option>official</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>aristocrat</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1089,17 +1091,17 @@
                 <option>arena</option>
             </trailer>
             
-		</option>
-	    <option name="clinic"               perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>physician</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="clinic"               perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>physician</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>cleric</option>
                 <option>adept</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1108,15 +1110,15 @@
                 <option>healers</option>
             </trailer>
             
-		</option>
-	    <option name="clothing shop"        perbuilding="20" limit=""   district="shops" >
-			<manager>
-				<option>tailor</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="clothing shop"        perbuilding="20" limit=""   district="shops" >
+            <manager>
+                <option>tailor</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1125,15 +1127,15 @@
                 <option>shop</option>
             </trailer>
             
-		</option>
-	    <option name="cobblershop"          perbuilding="4"  limit=""   district="market" >
-			<manager>
-				<option>cobbler</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="cobblershop"          perbuilding="4"  limit=""   district="market" >
+            <manager>
+                <option>cobbler</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>work</option>
                 <option>goods</option>
@@ -1155,15 +1157,15 @@
                 <option>old shoes and bit of leather</option>
                 <option>a kitten</option>
             </sight>
-		</option>
-	    <option name="cooperage"            perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>cooper</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="cooperage"            perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>cooper</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1172,16 +1174,16 @@
                 <option>coop hoop</option>
             </trailer>
             
-		</option>
-	    <option name="copyoffice"           perbuilding="20" limit=""   district="professional" >
-			<manager>
-				<option>copyist</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="copyoffice"           perbuilding="20" limit=""   district="professional" >
+            <manager>
+                <option>copyist</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
-		            <service>
+            </npc_class>
+            <service>
                 <option>service</option>
             </service>
             <trailer>
@@ -1190,14 +1192,14 @@
             </trailer>
             
         </option>
-	    <option name="cutlery shop"         perbuilding="5"  limit=""   district="trade" >
-			<manager>
-				<option>cutler</option>
-			</manager>
-			<npc_class>
+        <option name="cutlery shop"         perbuilding="5"  limit=""   district="trade" >
+            <manager>
+                <option>cutler</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1206,15 +1208,15 @@
                 <option>fine forks</option>
             </trailer>
             
-		</option>
-	    <option name="dyer"                 perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>dyer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="dyer"                 perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>dyer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1231,15 +1233,15 @@
             <sight>
                 <option>lots of colored cloth and pots of dye</option>
             </sight>
-		</option>
-	    <option name="engineering firm"     perbuilding="20" limit=""   district="professional" >
-			<manager>
-				<option>engineer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="engineering firm"     perbuilding="20" limit=""   district="professional" >
+            <manager>
+                <option>engineer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1247,15 +1249,15 @@
                 <option>designs</option>
                 <option>builders</option>
             </trailer>
-		</option>
-	    <option name="fishery"              perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>fishmonger</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="fishery"              perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>fishmonger</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1268,31 +1270,31 @@
                 <option>something fishy</option>
                 <option>no fish</option>
             </smell>
-		</option>
-	    <option name="furtrade"             perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>furrier</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="furtrade"             perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>furrier</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>ranger</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
             <trailer>
                 <option>furs</option>
             </trailer>
-		</option>
-	    <option name="general store"        perbuilding="4"  limit=""   district="market" >
-			<manager>
-				<option>outfitter</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="general store"        perbuilding="4"  limit=""   district="market" >
+            <manager>
+                <option>outfitter</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1302,15 +1304,15 @@
                 <option>dry goods</option>
             </trailer>
             
-		</option>
-	    <option name="glassmaker hut"       perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>glassmaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="glassmaker hut"       perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>glassmaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1327,15 +1329,15 @@
             <sight>
                 <option>panes of glass and mirrors</option>
             </sight>
-		</option>
-	    <option name="glove shop"           perbuilding="5"  limit=""   district="trade" >
-			<manager>
-				<option>glovemaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="glove shop"           perbuilding="5"  limit=""   district="trade" >
+            <manager>
+                <option>glovemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1347,16 +1349,16 @@
                 <option></option>
             </trailer>
             
-		</option>
-	    <option name="graveyard"            perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>undertaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="graveyard"            perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>undertaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>cleric</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1365,15 +1367,15 @@
                 <option>night smiths</option>
             </trailer>
             
-		</option>
-	    <option name="grocery store"        perbuilding="10" limit=""   district="market" >
-			<manager>
-				<option>grocer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="grocery store"        perbuilding="10" limit=""   district="market" >
+            <manager>
+                <option>grocer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1382,15 +1384,15 @@
                 <option>general mechandise</option>
             </trailer>
             
-		</option>
-	    <option name="harness maker"        perbuilding="5"  limit=""   district="shops" >
-			<manager>
-				<option>harness maker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="harness maker"        perbuilding="5"  limit=""   district="shops" >
+            <manager>
+                <option>harness maker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1399,15 +1401,15 @@
                 <option>harnesses</option>
             </trailer>
             
-		</option>
-	    <option name="hat shop"             perbuilding="10" limit=""   district="shops" >
-			<manager>
-				<option>hatmaker</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="hat shop"             perbuilding="10" limit=""   district="shops" >
+            <manager>
+                <option>hatmaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1416,15 +1418,15 @@
                 <option>hatters</option>
             </trailer>
             
-		</option>
-	    <option name="haymerchant"          perbuilding="5"  limit=""   district="industry" >
-			<manager>
-				<option>haymerchant</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="haymerchant"          perbuilding="5"  limit=""   district="industry" >
+            <manager>
+                <option>haymerchant</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1433,12 +1435,12 @@
                 <option>farmers market</option>
             </trailer>
             
-		</option>
-	    <option name="herbalist shop"       perbuilding="5"  limit=""   district="fine shops" >
-			<manager>
-				<option>herbalist</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="herbalist shop"       perbuilding="5"  limit=""   district="fine shops" >
+            <manager>
+                <option>herbalist</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>cleric</option>
@@ -1447,7 +1449,7 @@
                 <option>sorcerer</option>
                 <option>wizard</option>
                 <option>ranger</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1455,15 +1457,15 @@
                 <option>herbalist</option>
             </trailer>
             
-		</option>
-	    <option name="illuminator"          perbuilding="5"  limit=""   district="fine shops" >
-			<manager>
-				<option>illuminator</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="illuminator"          perbuilding="5"  limit=""   district="fine shops" >
+            <manager>
+                <option>illuminator</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1471,14 +1473,14 @@
                 <option>candle maker</option>
             </trailer>
             
-		</option>
-	    <option name="inn"                  perbuilding="3"  limit=""   district="shops" >
-			<manager>
-				<option>innkeeper</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="inn"                  perbuilding="3"  limit=""   district="shops" >
+            <manager>
+                <option>innkeeper</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1488,15 +1490,15 @@
                 <option>lodge</option>
             </trailer>
             
-		</option>
-	    <option name="jailhouse"            perbuilding="10" limit=""   district="prison" >
-			<manager>
-				<option>jailer</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="jailhouse"            perbuilding="10" limit=""   district="prison" >
+            <manager>
+                <option>jailer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>warrior</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1508,18 +1510,18 @@
                 <option>gaol</option>
             </trailer>
             
-		</option>
-	    <option name="jewelery store"       perbuilding="10" limit=""   district="shops" >
-			<manager>
-				<option>jeweler</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="jewelery store"       perbuilding="10" limit=""   district="shops" >
+            <manager>
+                <option>jeweler</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>rogue</option>
                 <option>aristocrat</option>
-			</npc_class>
-		    <service>
+            </npc_class>
+            <service>
                 <option>service</option>
             </service>
             <trailer>
@@ -1527,18 +1529,18 @@
             </trailer>
             
         </option>
-	    <option name="shrine"               perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>priest</option>
-			</manager>
-			<npc_class>
+        <option name="shrine"               perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>priest</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>monk</option>
                 <option>cleric</option>
                 <option>druid</option>
                 <option>paladin</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1548,18 +1550,18 @@
                 <option>worship house</option>
             </trailer>
             
-		</option>
-	    <option name="temple"               perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>priest</option>
-			</manager>
-			<npc_class>
+        </option>
+        <option name="temple"               perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>priest</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>monk</option>
                 <option>cleric</option>
                 <option>druid</option>
                 <option>paladin</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1569,15 +1571,15 @@
                 <option>worship house</option>
             </trailer>
             
-		</option>
-	    <option name="almshouse"       perbuilding="10" limit=""   district="civic" >
-			<manager>
-				<option>social worker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="almshouse"       perbuilding="10" limit=""   district="civic" >
+            <manager>
+                <option>social worker</option>
+            </manager>
+            <npc_class>
                 <option>cleric</option>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1586,15 +1588,15 @@
                 <option>poor house</option>
             </trailer>
             
-		</option>
-	    <option name="boat for hire"   perbuilding="1"  limit=""   district="port" >
-			<manager>
-				<option>ship captain</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="boat for hire"   perbuilding="1"  limit=""   district="port" >
+            <manager>
+                <option>ship captain</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1603,32 +1605,33 @@
                 <option>wharf</option>
             </trailer>
             
-		</option>
-	    <option name="firepit"         perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>charcoaler</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="firepit"         perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>collier</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
             <trailer>
                 <option>charcoalers</option>
+                <option>firepit</option>
                 <option>shoppe</option>
             </trailer>
             
-		</option>
-	    <option name="hospital"        perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>doctor</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="hospital"        perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>doctor</option>
+            </manager>
+            <npc_class>
                 <option>cleric</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1638,16 +1641,16 @@
                 <option>healing house</option>
             </trailer>
             
-		</option>
-	    <option name="hostel"          perbuilding="10" limit=""   district="mercy" >
-			<manager>
-				<option>good samaritan</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="hostel"          perbuilding="10" limit=""   district="mercy" >
+            <manager>
+                <option>good samaritan</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>cleric</option>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1656,15 +1659,15 @@
                 <option>Youth Hostel</option>
             </trailer>
             
-		</option>
-	    <option name="junkyard"        perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>tinker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="junkyard"        perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>tinker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1678,16 +1681,16 @@
                 <option>Waste Site</option>
             </trailer>
             
-		</option>
-	    <option name="law enforcement" perbuilding="20" limit=""   district="civic" >
-			<manager>
-				<option>deputy</option>
-				<option>sheriff</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="law enforcement" perbuilding="20" limit=""   district="civic" >
+            <manager>
+                <option>deputy</option>
+                <option>sheriff</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1695,15 +1698,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="leathershop"     perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>leatherworker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="leathershop"     perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>leatherworker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1711,18 +1714,18 @@
                 <option>Leatherworks</option>
             </trailer>
             
-		</option>
-	    <option name="library"         perbuilding="10" limit=""   district="fine shops" >
-			<manager>
-				<option>librarian</option>
-				<option>sage</option>
-				<option>scribe</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="library"         perbuilding="10" limit=""   district="fine shops" >
+            <manager>
+                <option>librarian</option>
+                <option>sage</option>
+                <option>scribe</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1732,19 +1735,19 @@
                 <option>Reference Center</option>
             </trailer>
             
-		</option>
-	    <option name="locksmith"       perbuilding="4"  limit=""   district="trade" >
-			<manager>
-				<option>locksmith</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="locksmith"       perbuilding="4"  limit=""   district="trade" >
+            <manager>
+                <option>locksmith</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>barbarian</option>
                 <option>bard</option>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>rogue</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1752,14 +1755,14 @@
                 <option>Locksmith</option>
             </trailer>
             
-		</option>
-	    <option name="lumbermill"      perbuilding="30" limit=""   district="industry" >
-			<manager>
-				<option>lumberjack</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="lumbermill"      perbuilding="30" limit=""   district="industry" >
+            <manager>
+                <option>lumberjack</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1769,14 +1772,14 @@
                 <option>Timber Mill</option>
             </trailer>
             
-		</option>
-	    <option name="lumberyard"      perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>woodseller</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="lumberyard"      perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>woodseller</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1785,12 +1788,12 @@
                 <option>Timberyard</option>
             </trailer>
             
-		</option>
-	    <option name="magic shop"      perbuilding="3"  limit=""   district="fine shops" >
-			<manager>
-				<option>magic dealer</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="magic shop"      perbuilding="3"  limit=""   district="fine shops" >
+            <manager>
+                <option>magic dealer</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>aristocrat</option>
                 <option>commoner</option>
@@ -1798,7 +1801,7 @@
                 <option>rogue</option>
                 <option>sorcerer</option>
                 <option>wizard</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1808,14 +1811,14 @@
                 <option>Magic Shop</option>
             </trailer>
             
-		</option>
-	    <option name="masonry shop"    perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>mason</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="masonry shop"    perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>mason</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1823,16 +1826,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="mercer"          perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>mercer</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="mercer"          perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>mercer</option>
+            </manager>
+            <npc_class>
                 <option>aristocrat</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1842,14 +1845,14 @@
                 <option>Cloth</option>
             </trailer>
             
-		</option>
-	    <option name="mill"            perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>miller</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="mill"            perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>miller</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1858,14 +1861,14 @@
                 <option>Mill</option>
             </trailer>
             
-		</option>
-	    <option name="post office"     perbuilding="10" limit=""   district="embassy" >
-			<manager>
-				<option>messenger</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="post office"     perbuilding="10" limit=""   district="embassy" >
+            <manager>
+                <option>messenger</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1875,15 +1878,15 @@
                 <option>Package Delivery</option>
             </trailer>
             
-		</option>
-	    <option name="pottery"         perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>potter</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="pottery"         perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>potter</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1893,16 +1896,16 @@
                 <option>Pottery House</option>
             </trailer>
             
-		</option>
-	    <option name="pursemaker"      perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>pursemaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="pursemaker"      perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>pursemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>rogue</option>
-		    </npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1912,14 +1915,14 @@
                 <option>Bags</option>
             </trailer>
             
-		</option>
-	    <option name="roofer"          perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>roofer</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="roofer"          perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>roofer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1928,14 +1931,14 @@
                 <option>Construction</option>
             </trailer>
             
-		</option>
-	    <option name="ropemaker"       perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>ropemaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="ropemaker"       perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>ropemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1945,14 +1948,14 @@
                 <option></option>
             </trailer>
             
-		</option>
-	    <option name="rugmaker"        perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>rugmaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="rugmaker"        perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>rugmaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1961,15 +1964,15 @@
                 <option>Rugs</option>
             </trailer>
             
-		</option>
-	    <option name="scabbard maker"  perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>scabbardmaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="scabbard maker"  perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>scabbardmaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -1978,12 +1981,12 @@
                 <option>Sheath Store</option>
             </trailer>
             
-		</option>
-	    <option name="school"          perbuilding="10" limit=""   district="education" >
-			<manager>
-				<option>teacher</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="school"          perbuilding="10" limit=""   district="education" >
+            <manager>
+                <option>teacher</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>aristocrat</option>
                 <option>bard</option>
@@ -1992,7 +1995,7 @@
                 <option>expert</option>
                 <option>monk</option>
                 <option>wizard</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2006,15 +2009,15 @@
                 <option>Military School</option>
             </trailer>
             
-		</option>
-	    <option name="sculpting house" perbuilding="10" limit=""   district="professional" >
-			<manager>
-				<option>sculptor</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="sculpting house" perbuilding="10" limit=""   district="professional" >
+            <manager>
+                <option>sculptor</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2023,15 +2026,15 @@
                 <option>Studio</option>
             </trailer>
             
-		</option>
-	    <option name="shipyard"        perbuilding="30" limit=""   district="port" >
-			<manager>
-				<option>shipwright</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="shipyard"        perbuilding="30" limit=""   district="port" >
+            <manager>
+                <option>shipwright</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2042,15 +2045,15 @@
                 <option>Dry Dock</option>
             </trailer>
             
-		</option>
-	    <option name="shoe shop"       perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>shoemaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="shoe shop"       perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>shoemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2071,17 +2074,17 @@
                 <option>old shoes and bit of leather</option>
                 <option>a kitten</option>
             </sight>
-		</option>
-	    <option name="shop"            perbuilding="30" limit=""   district="trade" >
-			<manager>
-				<option>tinker</option>
-				<option>plasterer</option>
-				<option>seamstress</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="shop"            perbuilding="30" limit=""   district="trade" >
+            <manager>
+                <option>tinker</option>
+                <option>plasterer</option>
+                <option>seamstress</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2092,15 +2095,15 @@
                 <option>Outlet</option>
             </trailer>
             
-		</option>
-	    <option name="slaughterhouse"  perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>chickenbutcher</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="slaughterhouse"  perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>chickenbutcher</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2112,19 +2115,19 @@
                 <option>Stockyard</option>
             </trailer>
             
-		</option>
-	    <option name="smithy"          perbuilding="5"  limit=""   district="shop" >
-			<manager>
-				<option>blacksmith</option>
-				<option>smith</option>
-				<option>specialty smith</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="smithy"          perbuilding="5"  limit=""   district="shop" >
+            <manager>
+                <option>blacksmith</option>
+                <option>smith</option>
+                <option>specialty smith</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>fighter</option>
                 <option>warrior</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2132,14 +2135,14 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="smokehouse"      perbuilding="30" limit=""   district="industry" >
-			<manager>
-				<option>salter</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="smokehouse"      perbuilding="30" limit=""   district="industry" >
+            <manager>
+                <option>salter</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2147,16 +2150,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="spicemerchant"   perbuilding="10" limit=""   district="market" >
-			<manager>
-				<option>spicemerchant</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="spicemerchant"   perbuilding="10" limit=""   district="market" >
+            <manager>
+                <option>spicemerchant</option>
+            </manager>
+            <npc_class>
                 <option>aristocrat</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2164,15 +2167,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="stable"          perbuilding="5"  limit=""   district="professional" >
-			<manager>
-				<option>ostler</option>
-				<option>stablehand</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="stable"          perbuilding="5"  limit=""   district="professional" >
+            <manager>
+                <option>ostler</option>
+                <option>stablehand</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2180,17 +2183,17 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="studio"          perbuilding="20" limit=""   district="trade" >
-			<manager>
-				<option>painter</option>
-				<option>artist</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="studio"          perbuilding="20" limit=""   district="trade" >
+            <manager>
+                <option>painter</option>
+                <option>artist</option>
+            </manager>
+            <npc_class>
                 <option>aristocrat</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2198,15 +2201,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="tack shop"       perbuilding="5"  limit=""   district="trade" >
-			<manager>
-				<option>saddler</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="tack shop"       perbuilding="5"  limit=""   district="trade" >
+            <manager>
+                <option>saddler</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2214,15 +2217,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="tannery"         perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>tanner</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="tannery"         perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>tanner</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2238,14 +2241,14 @@
             <sight>
                 <option>skins stretching</option>
             </sight>
-		</option>
-	    <option name="tavern"          perbuilding="5"  limit=""   district="market" >
-			<manager>
-				<option>tavern</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="tavern"          perbuilding="5"  limit=""   district="market" >
+            <manager>
+                <option>tavern</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2253,16 +2256,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="theater"         perbuilding="10" limit=""   district="entertainment" >
-			<manager>
-				<option>actor</option>
-				<option>entertainer</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="theater"         perbuilding="10" limit=""   district="entertainment" >
+            <manager>
+                <option>actor</option>
+                <option>entertainer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2270,14 +2273,14 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="tile shop"       perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>tilemaker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="tile shop"       perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>tilemaker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2285,14 +2288,14 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="townhouse"       perbuilding="10" limit=""   district="hotel" >
-			<manager>
-				<option>maidservant</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="townhouse"       perbuilding="10" limit=""   district="hotel" >
+            <manager>
+                <option>maidservant</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2300,15 +2303,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="trading post"    perbuilding="10" limit=""   district="shop" >
-			<manager>
-				<option>trader</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="trading post"    perbuilding="10" limit=""   district="shop" >
+            <manager>
+                <option>trader</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2318,16 +2321,16 @@
                 <option>general goods</option>
             </trailer>
             
-		</option>
-	    <option name="translator"      perbuilding="20" limit=""   district="embassy" >
-			<manager>
-				<option>interpreter</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="translator"      perbuilding="20" limit=""   district="embassy" >
+            <manager>
+                <option>interpreter</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2337,14 +2340,14 @@
                 <option>shop</option>
             </trailer>
             
-		</option>
-	    <option name="transportation"  perbuilding="3"  limit=""   district="professional" >
-			<manager>
-				<option>coach driver</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="transportation"  perbuilding="3"  limit=""   district="professional" >
+            <manager>
+                <option>coach driver</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2352,17 +2355,17 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="university"      perbuilding="20" limit=""   district="education" >
-			<manager>
-				<option>professor</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="university"      perbuilding="20" limit=""   district="education" >
+            <manager>
+                <option>professor</option>
+            </manager>
+            <npc_class>
                 <option>adept</option>
                 <option>aristocrat</option>
                 <option>commoner</option>
                 <option>wizard</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2370,15 +2373,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="vinyard"         perbuilding="10" limit=""   district="professional" >
-			<manager>
-				<option>vintner</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="vinyard"         perbuilding="10" limit=""   district="professional" >
+            <manager>
+                <option>vintner</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2388,15 +2391,15 @@
                 <option>vineyards</option>
             </trailer>
             
-		</option>
-	    <option name="wagon yard"      perbuilding="20" limit=""   district="industry" >
-			<manager>
-				<option>wagoneer</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="wagon yard"      perbuilding="20" limit=""   district="industry" >
+            <manager>
+                <option>wagoneer</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2404,16 +2407,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="warehouse"       perbuilding="10" limit=""   district="warehouse" >
-			<manager>
-				<option>laborer</option>
-				<option>teamster</option>
-				<option>warehouse worker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="warehouse"       perbuilding="10" limit=""   district="warehouse" >
+            <manager>
+                <option>laborer</option>
+                <option>teamster</option>
+                <option>warehouse worker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2421,16 +2424,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="dock"            perbuilding="10" limit=""   district="docks" >
-			<manager>
-				<option>navigator</option>
-				<option>teamster</option>
-				<option>warehouse worker</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="dock"            perbuilding="10" limit=""   district="docks" >
+            <manager>
+                <option>navigator</option>
+                <option>teamster</option>
+                <option>warehouse worker</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2438,18 +2441,18 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="weaponshop"      perbuilding="10" limit=""   district="merchant" >
-			<manager>
-				<option>weaponsmith</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="weaponshop"      perbuilding="10" limit=""   district="merchant" >
+            <manager>
+                <option>weaponsmith</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
                 <option>fighter</option>
                 <option>rogue</option>
                 <option>warrior</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2457,15 +2460,15 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="weaver"          perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>weaver</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="weaver"          perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>weaver</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2473,14 +2476,14 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="winery"          perbuilding="10" limit=""   district="merchant" >
-			<manager>
-				<option>wine seller</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="winery"          perbuilding="10" limit=""   district="merchant" >
+            <manager>
+                <option>wine seller</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2488,16 +2491,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="woodshop"        perbuilding="10" limit=""   district="trade" >
-			<manager>
-				<option>woodworker</option>
-				<option>woodcarver</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="woodshop"        perbuilding="10" limit=""   district="trade" >
+            <manager>
+                <option>woodworker</option>
+                <option>woodcarver</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>expert</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2505,16 +2508,16 @@
                 <option>inc.</option>
             </trailer>
             
-		</option>
-	    <option name="sawmill"         perbuilding="10" limit=""   district="industry" >
-			<manager>
-				<option>forester</option>
-				<option>carpenter</option>
-				<option>timberwright</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="sawmill"         perbuilding="10" limit=""   district="industry" >
+            <manager>
+                <option>forester</option>
+                <option>carpenter</option>
+                <option>timberwright</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2530,15 +2533,15 @@
             <sight>
                 <option>stacks of wood</option>
             </sight>
-		</option>
-	    <option name="workshop"        perbuilding="10" limit=""   district="shop" >
-			<manager>
-				<option>handyman</option>
-			</manager>
-		    <npc_class>
+        </option>
+        <option name="workshop"        perbuilding="10" limit=""   district="shop" >
+            <manager>
+                <option>handyman</option>
+            </manager>
+            <npc_class>
                 <option>commoner</option>
                 <option>rogue</option>
-			</npc_class>
+            </npc_class>
             <service>
                 <option>service</option>
             </service>
@@ -2554,6 +2557,6 @@
             <sight>
                 <option>tools and bits of wood lying around</option>
             </sight>
-		</option>
+        </option>
     </establishment>
 </data>

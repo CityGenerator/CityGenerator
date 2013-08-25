@@ -27,9 +27,9 @@ my $q = CGI->new;
 
     my $city_presets=parse_presets($q);
 
-    my $city=CityGenerator::create_city($city_presets);
+    my $city=CityGenerator::create($city_presets);
     CityGenerator::flesh_out_city($city);
-    $city->{'flag'}=FlagGenerator::create_flag({seed=>$city->{'seed'}, 'cityname'=>$city->{'name'}});
+    $city->{'flag'}=FlagGenerator::create({seed=>$city->{'seed'}, 'cityname'=>$city->{'name'}});
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='utf-8' ?>\n";
@@ -60,17 +60,20 @@ sub parse_presets {
     my ($q)=@_;
     my $presets;
     $presets->{'seed'}                  = $1 if ( defined $q->param('seed')            and $q->param('seed')              =~/^(\d+)$/x ); 
+    $presets->{'govt'}->{'seed'}        = $1 if ( defined $q->param('govtseed')        and $q->param('govtseed')          =~/^(\d+)$/x ); 
+    $presets->{'military'}->{'seed'}    = $1 if ( defined $q->param('militaryseed')    and $q->param('militaryseed')      =~/^(\d+)$/x ); 
+    $presets->{'climate'}->{'seed'}     = $1 if ( defined $q->param('climateseed')     and $q->param('climateseed')       =~/^(\d+)$/x ); 
     $presets->{'size_roll'}             = $1 if ( defined $q->param('size_roll')       and $q->param('size_roll')         =~/^(\d+)$/x );
-    $presets->{'moral'}                 = $1 if ( defined $q->param('moral')           and $q->param('moral')             =~/^(\d+)$/x );
-    $presets->{'order'}                 = $1 if ( defined $q->param('order')           and $q->param('order')             =~/^(\d+)$/x );
-    $presets->{'stats'}->{'education'}  = $1 if ( defined $q->param('education')       and $q->param('education')         =~/^(\d+)$/x );
-    $presets->{'stats'}->{'magic'}      = $1 if ( defined $q->param('magic')           and $q->param('magic')             =~/^(\d+)$/x );
-    $presets->{'stats'}->{'military'}   = $1 if ( defined $q->param('military')        and $q->param('military')          =~/^(\d+)$/x );
-    $presets->{'stats'}->{'tolerance'}  = $1 if ( defined $q->param('tolerance')       and $q->param('tolerance')         =~/^(\d+)$/x );
-    $presets->{'stats'}->{'economy'}    = $1 if ( defined $q->param('economy')         and $q->param('economy')           =~/^(\d+)$/x );
-    $presets->{'stats'}->{'authority'}  = $1 if ( defined $q->param('authority')       and $q->param('authority')         =~/^(\d+)$/x );
     $presets->{'children'}->{'precent'} = $1 if ( defined $q->param('child_precent')   and $q->param('child_precent')     =~/^(\d+)$/x );
     $presets->{'elderly'}->{'percent'}  = $1 if ( defined $q->param('elderly_percent') and $q->param('elderly_percent')   =~/^(\d+)$/x );
+
+    foreach my $stat ( ( 'moral', 'order','education','magic','military','tolerance','economy','authority' ) ){
+        $presets->{'stats'}->{$stat} = $1 if ( defined $q->param($stat)     and $q->param($stat)       =~/^(\d+)$/x ); 
+    }
+
+    foreach my $climatestat ( ('altitude', 'continentality', 'latitude', 'pressure', 'temperature', 'precipitation' ) ){
+        $presets->{'climate'}->{'stats'}->{$climatestat} = $1 if ( defined $q->param($climatestat)     and $q->param("climate_".$climatestat)       =~/^(\d+)$/x ); 
+    }
 
     return $presets;
 

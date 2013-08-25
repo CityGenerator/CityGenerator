@@ -7,7 +7,6 @@ CityMap.prototype = Object.create(VoronoiMap.prototype);
 CityMap.prototype.constructor = CityMap;
 
 function  CityMap(params) {
-
     // Set the randomization seed
     Math.seedrandom(params.seed)
 
@@ -16,6 +15,8 @@ function  CityMap(params) {
 
     // Call the Super constructor
     VoronoiMap.call(this,params);
+    this.diameter=params.diameter;
+    this.area=params.area;
     this.wall=params.wall;
     this.roads=params.roads
     this.mainroads=params.mainroads
@@ -27,10 +28,7 @@ function  CityMap(params) {
     this.designateCity();
     this.generateCityWalls();
     this.generateDistricts(params.districts);
-    
 }
-
-
 
 /* ========================================================================= */
 /* designateCity takes a canvas and a cell count and builds an array
@@ -64,8 +62,65 @@ CityMap.prototype.redraw = function(canvas){
     this.render(canvas)
 
     this.drawRoads(canvas, this.roads, this.mainroads);
+    this.generate_scale(canvas);    
 }
  
+
+/* ========================================================================= */
+/* What's the scale of a city? 
+/* 
+/* ========================================================================= */
+
+CityMap.prototype.generate_scale= function(canvas){
+    var c = canvas.getContext('2d');
+    c.save();
+
+    //quick math
+    var diameter=this.diameter;
+    var lengthofvertical=diameter*1.3;// in meters
+    var meterperpixel=lengthofvertical/canvas.height;
+
+    var scalenumber=1000;  // 500 meters seems a good size
+
+    var pixelsforscale=scalenumber/meterperpixel;
+    
+    var linelength=pixelsforscale;
+    
+    scalenumber=scalenumber/1000;
+
+    c.strokeStyle='#000000';
+    c.lineWidth=2;
+    c.beginPath();
+    c.lineTo(10,20);
+    c.lineTo(10+linelength,20  );
+    c.lineCap = 'butt';
+
+    c.textAlign="start"; 
+    c.fillText(scalenumber+"km", 10, 15);
+
+    c.font = "20pt Arial";
+    c.closePath();
+    c.stroke()
+
+    c.beginPath();
+    c.lineTo(11,20);
+    c.lineTo(11,25  );
+    c.closePath();
+    c.stroke()
+
+    c.beginPath();
+    c.lineTo(9+linelength,20);
+    c.lineTo(9+linelength,25  );
+    c.closePath();
+    c.stroke()
+
+
+
+
+    c.restore()
+
+
+}
  
 /* ========================================================================= */
 /* 
@@ -73,7 +128,6 @@ CityMap.prototype.redraw = function(canvas){
 /* ========================================================================= */
  
 CityMap.prototype.drawDistricts = function(canvas){
-    console.log( this);
     for (var i=0; i < this.districts.length; i++ ){
         this.paintCells(canvas,this.districts[i].cells,"rgba("+this.district_colors[i]+',.5)',false);
     }
@@ -115,7 +169,6 @@ CityMap.prototype.assignDistrictCores = function(districts){
 
 CityMap.prototype.generateDistricts = function(districts){
     // rainbows and unicorn farts go here.
-console.log(districts)
     var totalcells=this.citycells.length
 
     var cellIDlist=this.assignDistrictCores(districts);

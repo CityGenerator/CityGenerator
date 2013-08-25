@@ -19,7 +19,7 @@ use base qw(Exporter);
 
 
 subtest 'Test printSummary' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $event = EventFormatter::printSummary($city);
     isnt( $event, undef, "make sure something is returned." );
@@ -27,7 +27,7 @@ subtest 'Test printSummary' => sub {
 };
 
 subtest 'Test printPostings' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $event = EventFormatter::printPostings($city);
     isnt( $event, undef, "make sure something is returned." );

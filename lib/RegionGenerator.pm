@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_region generate_name);
 
 ###############################################################################
 
@@ -18,7 +17,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use RegionGenerator;
-    my $region=RegionGenerator::create_region();
+    my $region=RegionGenerator::create();
 
 =cut
 
@@ -27,7 +26,7 @@ use base qw(Exporter);
 
 use CGI;
 use Data::Dumper;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -69,7 +68,7 @@ my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent =>
 ###############################################################################
 
 
-=head2 create_region()
+=head2 create()
 
 This method is used to create a simple region with nothing more than:
 
@@ -84,7 +83,7 @@ This method is used to create a simple region with nothing more than:
 =cut
 
 ###############################################################################
-sub create_region {
+sub create {
     my ($params) = @_;
     my $region = {};
 
@@ -95,8 +94,9 @@ sub create_region {
     }
 
     if ( !defined $region->{'seed'} ) {
-        $region->{'seed'} = set_seed();
+        $region->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $region->{'seed'} );
 
     # This knocks off the city IDs
     $region->{'seed'} = $region->{'seed'} - $region->{'seed'} % 10;
@@ -118,7 +118,7 @@ sub create_region {
 ###############################################################################
 sub generate_region_name {
     my ($region) = @_;
-    set_seed( $region->{'seed'} );
+    GenericGenerator::set_seed( $region->{'seed'} );
     my $nameobj = parse_object($regionnames_data);
     $region->{'name'} = $nameobj->{'content'} if ( !defined $region->{'name'} );
     return $region;

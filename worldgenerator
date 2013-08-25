@@ -22,7 +22,7 @@ if (defined $q->param('worldid')){
     $worldid=$q->param('worldid');
 }
 
-my $world=WorldGenerator::create_world({seed=>$worldid});
+my $world=WorldGenerator::create({seed=>$worldid});
 
 
 
