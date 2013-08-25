@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create generate_npc_names get_races generate_npc_name );
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -30,7 +29,7 @@ use Carp qw(longmess croak);
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
 use Lingua::EN::Gender;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;

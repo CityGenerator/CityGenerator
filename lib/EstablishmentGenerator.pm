@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create);
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -28,7 +27,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use Lingua::EN::Titlecase;
@@ -85,7 +84,7 @@ sub create {
             $establishment->{$key} = $params->{$key};
         }
     }
-    $establishment->{'seed'} = set_seed() if ( !defined $establishment->{'seed'} );
+    $establishment->{'seed'} = GenericGenerator::set_seed() if ( !defined $establishment->{'seed'} );
     GenericGenerator::set_seed( $establishment->{'seed'} );
 
     GenericGenerator::generate_stats($establishment, $establishment_data);
@@ -122,7 +121,7 @@ sub create {
 ###############################################################################
 sub select_establishment_type {
     my ($establishment) = @_;
-    set_seed( $establishment->{'seed'} );
+    GenericGenerator::set_seed( $establishment->{'seed'} );
     $establishment->{'type'}= rand_from_array([keys %{$establishment_data->{'establishment'}->{'option'}}] )   if (!defined $establishment->{'type'});
 
     my $type=$establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
@@ -148,7 +147,7 @@ sub select_establishment_type {
 ###############################################################################
 sub generate_establishment_name {
     my ($establishment) = @_;
-    set_seed( $establishment->{'seed'} );
+    GenericGenerator::set_seed( $establishment->{'seed'} );
     my $nameobj = parse_object( $establishment_data->{'name'} );
 
     my $type = $establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};

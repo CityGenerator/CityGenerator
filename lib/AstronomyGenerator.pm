@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create generate_star_name generate_moon_name);
 
 ###############################################################################
 
@@ -29,7 +28,7 @@ use CGI;
 use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Lingua::EN::Inflect qw(A);
 use List::Util 'shuffle', 'min', 'max';
 use Math::Trig ':pi';
@@ -100,7 +99,7 @@ sub create {
     }
 
     if ( !defined $astronomy->{'seed'} ) {
-        $astronomy->{'seed'} = set_seed();
+        $astronomy->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed( $astronomy->{'seed'} );
 
@@ -123,7 +122,7 @@ sub create {
 ###############################################################################
 sub generate_starsystem {
     my ($astronomy) = @_;
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
     $astronomy->{'starsystem_roll'} = d(100) if ( !defined $astronomy->{'starsystem_roll'} );
 
@@ -149,7 +148,7 @@ sub generate_starsystem {
 ###############################################################################
 sub generate_moons {
     my ($astronomy) = @_;
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
     $astronomy->{'moons_roll'} = d(100) if ( !defined $astronomy->{'moons_roll'} );
 
@@ -179,7 +178,7 @@ sub generate_star {
     my ( $astronomy, $id ) = @_;
 
     $id = 0 if ( !defined $id );
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
 
     my $nameobj = parse_object($starnames_data);
     $astronomy->{'star'}[$id]->{'name'} = $nameobj->{'content'} if ( !defined $astronomy->{'star'}[$id]->{'name'} );
@@ -219,7 +218,7 @@ sub generate_moon {
     my ( $astronomy, $id ) = @_;
 
     $id = 0 if ( !defined $id );
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
     my $nameobj = parse_object($moonnames_data);
     $astronomy->{'moon'}[$id]->{'name'} = $nameobj->{'content'} if ( !defined $astronomy->{'moon'}[$id]->{'name'} );
 
@@ -255,7 +254,7 @@ sub generate_celestial {
     my ( $astronomy, $id ) = @_;
 
     $id = 0 if ( !defined $id );
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) + $id );
 
 
     $astronomy->{'celestial'}[$id]->{'size'}
@@ -291,7 +290,7 @@ sub generate_celestial {
 sub generate_celestial_objects {
     my ($astronomy) = @_;
 
-    set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $astronomy->{'seed'} + length( ( caller(0) )[3] ) );
 
     $astronomy->{'celestial_roll'} = d(100) if ( !defined $astronomy->{'celestial_roll'} );
     my $celestial

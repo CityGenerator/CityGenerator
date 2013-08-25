@@ -9,7 +9,6 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 use Number::Format 'format_number';
 
-@EXPORT_OK = qw( printCensusData);
 
 ###############################################################################
 

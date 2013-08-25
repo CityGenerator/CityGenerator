@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create generate_city_name);
 
 ###############################################################################
 
@@ -32,7 +31,7 @@ use ContinentGenerator;
 use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw( rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Math::Complex ':pi';
 use NPCGenerator;
 use PostingGenerator;

@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create generate_name);
 
 ###############################################################################
 
@@ -27,7 +26,7 @@ use base qw(Exporter);
 
 use CGI;
 use Data::Dumper;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -95,7 +94,7 @@ sub create {
     }
 
     if ( !defined $region->{'seed'} ) {
-        $region->{'seed'} = set_seed();
+        $region->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed( $region->{'seed'} );
 
@@ -119,7 +118,7 @@ sub create {
 ###############################################################################
 sub generate_region_name {
     my ($region) = @_;
-    set_seed( $region->{'seed'} );
+    GenericGenerator::set_seed( $region->{'seed'} );
     my $nameobj = parse_object($regionnames_data);
     $region->{'name'} = $nameobj->{'content'} if ( !defined $region->{'name'} );
     return $region;

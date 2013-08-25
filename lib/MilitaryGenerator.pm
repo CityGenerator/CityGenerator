@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create);
 
 ###############################################################################
 
@@ -29,7 +28,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -94,7 +93,7 @@ sub create {
     }
 
     if ( !defined $military->{'seed'} ) {
-        $military->{'seed'} = set_seed();
+        $military->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed($military->{'seed'});
 

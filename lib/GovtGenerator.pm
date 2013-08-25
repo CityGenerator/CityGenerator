@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create);
 #FIXME TODO add a stat for Government Size
 ###############################################################################
 
@@ -29,7 +28,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -98,7 +97,7 @@ sub create {
     }
 
     if ( !defined $govt->{'seed'} ) {
-        $govt->{'seed'} = set_seed();
+        $govt->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed( $govt->{'seed'} );
 

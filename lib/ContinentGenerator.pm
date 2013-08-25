@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create generate_continent_name);
 
 ###############################################################################
 
@@ -28,7 +27,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -96,7 +95,7 @@ sub create {
     }
 
     if ( !defined $continent->{'seed'} ) {
-        $continent->{'seed'} = set_seed();
+        $continent->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed( $continent->{'seed'} );
 
@@ -120,7 +119,7 @@ sub create {
 ###############################################################################
 sub generate_continent_name {
     my ($continent) = @_;
-    set_seed( $continent->{'seed'} );
+    GenericGenerator::set_seed( $continent->{'seed'} );
     my $nameobj = parse_object($continentnames_data);
     $continent->{'name'} = $nameobj->{'content'} if ( !defined $continent->{'name'} );
     return $continent;
