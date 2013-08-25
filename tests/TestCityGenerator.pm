@@ -81,7 +81,7 @@ subtest 'test set_available_races' => sub {
 
     $city = CityGenerator::create( { 'seed' => '1', 'poptype' => 'mixed' } );
     CityGenerator::set_available_races($city);
-    is( scalar( @{ $city->{'available_races'} } ), 23 );
+    is( scalar( @{ $city->{'available_races'} } ), 21 );
 
     $city = CityGenerator::create( { 'seed' => '1', 'poptype' => 'monster', 'available_races'=>[1,2,3] } );
     CityGenerator::set_available_races($city);

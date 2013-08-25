@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create xml_data generate_npc_name );
+@EXPORT_OK = qw( create generate_npc_names get_races generate_npc_name );
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -102,8 +102,6 @@ sub create {
 
     generate_npc_name( $npc->{'race'}, $npc );
 
-    #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
-    $npc->{'race'}='oddball'    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other');
     set_reputation($npc);
     set_attitudes($npc);
     set_class($npc);
@@ -142,12 +140,12 @@ sub set_race {
     my ($npc) = @_;
 
     #Available races is an array of race names.
-    $npc->{'available_races'} = [ keys %{ $names_data->{'race'} } ] if ( !defined $npc->{'available_races'} );
+    $npc->{'available_races'} = get_races() if ( !defined $npc->{'available_races'} );
     $npc->{'available_races'} = [ shuffle( @{ $npc->{'available_races'} } ) ];
 
     $npc->{'race'} = rand_from_array( $npc->{'available_races'} ) if ( !defined $npc->{'race'} );
     delete $npc->{'available_races'};
-    $npc->{'race'} = lc $npc->{'race'};
+    $npc->{'race'} = $npc->{'race'};
 
     return $npc;
 }
@@ -304,7 +302,8 @@ Return a list of supported races.
 ###############################################################################
 
 sub get_races {
-    return [ sort keys %{ $names_data->{'race'} } ];
+
+    return [  map {$_->{'content'} }   @{$npc_data->{'race'}->{'option'}}   ];
 }
 
 

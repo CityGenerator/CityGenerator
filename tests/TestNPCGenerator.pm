@@ -17,44 +17,22 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test set_sex' => sub {
-    my $npc;
-    $npc = NPCGenerator::create( { seed => 4 } );
-    isnt( $npc->{'pronoun'}, undef );
 
-    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'she' } );
-    is( $npc->{'pronoun'}, 'she' );
+subtest 'test get_races' => sub {
 
-    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'it', 'posessivepronoun'=>'frog', 'sex'=>'other' } );
-    is( $npc->{'pronoun'}, 'it' );
-    is( $npc->{'posessivepronoun'}, 'frog' );
-    is( $npc->{'sex'}, 'other' );
+    my $races = NPCGenerator::get_races();
 
-    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'he' } );
-    is( $npc->{'pronoun'}, 'he' );
-
+    is( scalar(@$races), 21, "Total of 21 races allowed." );
 
     done_testing();
 };
-
-subtest 'test set_class' => sub {
-    my $npc;
-
-    $npc = NPCGenerator::create( { 'seed' => 5 } );
-    isnt( $npc->{'class'}, undef, 'class exists' );
-
-    $npc = NPCGenerator::create( { 'seed' => 5, 'class_roll' => 12 } );
-    is( $npc->{'class'}, 'Commoner' );
-
-    $npc = NPCGenerator::create( { 'seed' => 5, 'class_roll' => 12, 'class' => 'Druid' } );
-    is( $npc->{'class'}, 'Druid', 'class is preset to Druid' );
-
-
-    done_testing();
-};
-
 
 subtest 'test create' => sub {
+    subtest 'test create empty' => sub {
+        my $npc;
+        $npc = NPCGenerator::create(  );
+        isnt( $npc->{'race'}, undef, 'race is set' );
+    };
     subtest 'test create race and seed' => sub {
         my $npc;
 
@@ -112,6 +90,15 @@ subtest 'test create' => sub {
         $npc = NPCGenerator::create( { 'seed' => '1',  'allowed_professions' => ['churchle'] } );
         is( $npc->{'profession'}, 'churchle', "$npc->{'profession'} a churchele isn't real, right?" );
         is( $npc->{'business'},   $npc->{'profession'}, "$npc->{'business'} should be the same as $npc->{'profession'}." );
+
+        $npc = NPCGenerator::create( { 'seed' => '1',  'profession'=>'goatherder' } );
+        is( $npc->{'profession'}, 'goatherder', "$npc->{'profession'} is a goatherder" );
+        isnt( $npc->{'business'},   $npc->{'profession'}, "$npc->{'business'} should different than profession $npc->{'profession'}." );
+
+        $npc = NPCGenerator::create( { 'seed' => '1',  'business'=>'goatherder' } );
+        isnt( $npc->{'profession'}, 'goatherder', "$npc->{'profession'} is a goatherder" );
+        is( $npc->{'business'},   'goatherder', "$npc->{'business'} should different than profession $npc->{'profession'}." );
+
 
         done_testing();
     };
@@ -182,15 +169,42 @@ subtest 'test create' => sub {
     };
     done_testing();
 };
+subtest 'test set_sex' => sub {
+    my $npc;
+    $npc = NPCGenerator::create( { seed => 4 } );
+    isnt( $npc->{'pronoun'}, undef );
 
-subtest 'test get_races' => sub {
+    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'she' } );
+    is( $npc->{'pronoun'}, 'she' );
 
-    my $races = NPCGenerator::get_races();
+    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'it', 'posessivepronoun'=>'frog', 'sex'=>'other' } );
+    is( $npc->{'pronoun'}, 'it' );
+    is( $npc->{'posessivepronoun'}, 'frog' );
+    is( $npc->{'sex'}, 'other' );
 
-    is( scalar(@$races), 23, "Total of 23 races allowed." );
+    $npc = NPCGenerator::create( { 'seed' => 4, 'pronoun' => 'he' } );
+    is( $npc->{'pronoun'}, 'he' );
+
 
     done_testing();
 };
+
+subtest 'test set_class' => sub {
+    my $npc;
+
+    $npc = NPCGenerator::create( { 'seed' => 5 } );
+    isnt( $npc->{'class'}, undef, 'class exists' );
+
+    $npc = NPCGenerator::create( { 'seed' => 5, 'class_roll' => 12 } );
+    is( $npc->{'class'}, 'Commoner' );
+
+    $npc = NPCGenerator::create( { 'seed' => 5, 'class_roll' => 12, 'class' => 'Druid' } );
+    is( $npc->{'class'}, 'Druid', 'class is preset to Druid' );
+
+
+    done_testing();
+};
+
 
 subtest 'test generate_npc_names' => sub {
     GenericGenerator::set_seed(1);

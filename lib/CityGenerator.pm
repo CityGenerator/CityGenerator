@@ -62,6 +62,8 @@ The following datafiles are used by CityGenerator.pm:
 
 =item * F<xml/npcnames.xml>
 
+=item * F<xml/npcs.xml>
+
 =item * F<xml/citynames.xml>
 
 =item * F<xml/regionnames.xml>
@@ -84,6 +86,7 @@ The following datafiles are used by CityGenerator.pm:
 ###############################################################################
 my $xml_data            = $xml->XMLin( "xml/data.xml",          ForceContent => 1, ForceArray => ['option'] );
 my $names_data          = $xml->XMLin( "xml/npcnames.xml",      ForceContent => 1, ForceArray => ['option'] );
+my $npc_data            = $xml->XMLin( "xml/npcs.xml",          ForceContent => 1, ForceArray => ['option'] );
 my $citynames_data      = $xml->XMLin( "xml/citynames.xml",     ForceContent => 1, ForceArray => ['option'] );
 my $city_data           = $xml->XMLin( "xml/cities.xml",        ForceContent => 1, ForceArray => ['option'] );
 my $resource_data       = $xml->XMLin( "xml/resources.xml",     ForceContent => 1, ForceArray => ['option'] );
@@ -292,10 +295,9 @@ sub set_available_races {
 
     if ( !defined $city->{'available_races'} ) {
         $city->{'available_races'} = [];
-        foreach my $racename ( keys %{ $names_data->{'race'} } ) {
-            my $race = $names_data->{'race'}->{$racename};
+        foreach my $race ( @{$npc_data->{'race'}->{'option'} }) {
             if ( $race->{'type'} eq $city->{'poptype'} or $city->{'poptype'} eq 'mixed' ) {
-                push @{ $city->{'available_races'} }, $racename;
+                push @{ $city->{'available_races'} }, $race->{'content'};
             }
         }
     }

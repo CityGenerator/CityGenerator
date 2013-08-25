@@ -5,6 +5,30 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
 <npcs>
+    <race>
+        <option type="normal">half-elf</option>
+        <option type="normal">half-orc</option>
+        <option type="normal">half-dwarf</option>
+        <option type="normal">gnome</option>
+        <option type="normal">halfling</option>
+        <option type="normal">dwarf</option>
+        <option type="normal">elf</option>
+        <option type="normal">human</option>
+        <option type="monster">deep dwarf</option>
+        <option type="monster">drow</option>
+        <option type="monster">lycanthrope</option>
+        <option type="monster">mindflayer</option>
+        <option type="monster">minotaur</option>
+        <option type="monster">kobold</option>
+        <option type="monster">goblin</option>
+        <option type="monster">bugbear</option>
+        <option type="monster">hobgoblin</option>
+        <option type="monster">lizardfolk</option>
+        <option type="monster">troglodyte</option>
+        <option type="monster">ogre</option>
+        <option type="monster">orc</option>
+    </race>
+
     <sex>
         <option          max="49" pronoun='he' >male</option>
         <option min="50" max="98" pronoun='she'>female</option>
@@ -85,6 +109,87 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </comeliness>
     </stats>
     <feature>
+        <behavior>
+            <option>accusatory</option>
+            <option>apologetic</option>
+            <option>attentive</option>
+            <option>authoritarian</option>
+            <option>battle-ready</option>
+            <option>beligerent</option>
+            <option>boastful</option>
+            <option>cautious</option>
+            <option>chatty</option>
+            <option>clumsy</option>
+            <option>conspirational</option>
+            <option>contrarian</option>
+            <option>cowed</option>
+            <option>deluded</option>
+            <option>drunken</option>
+            <option>easily offended</option>
+            <option>efficient</option>
+            <option>egotistical</option>
+            <option>embittered</option>
+            <option>exhausted</option>
+            <option>fashion concious</option>
+            <option>fatalistic</option>
+            <option>flirtatious</option>
+            <option>forbidding</option>
+            <option>forgetful</option>
+            <option>giddy</option>
+            <option>gluttonous</option>
+            <option>gosipy</option>
+            <option>greedy</option>
+            <option>grieving</option>
+            <option>guarded</option>
+            <option>guilty</option>
+            <option>healthy</option>
+            <option>helpful</option>
+            <option>homesick</option>
+            <option>idealistic</option>
+            <option>impatient</option>
+            <option>insecure</option>
+            <option>intimidating</option>
+            <option>intimidated</option>
+            <option>jaded</option>
+            <option>jesterly</option>
+            <option>jolly</option>
+            <option>lonely</option>
+            <option>loud</option>
+            <option>lovelorn</option>
+            <option>melancholy</option>
+            <option>mocking</option>
+            <option>mopey</option>
+            <option>nervous</option>
+            <option>nihilistic</option>
+            <option>nosy</option>
+            <option>outlandish</option>
+            <option>pacifistic</option>
+            <option>patriotic</option>
+            <option>patronizing</option>
+            <option>pious</option>
+            <option>prejudiced</option>
+            <option>quiet</option>
+            <option>resentful</option>
+            <option>scattered</option>
+            <option>self-obsessed</option>
+            <option>shifty</option>
+            <option>sick</option>
+            <option>skeptical</option>
+            <option>smitten</option>
+            <option>smug</option>
+            <option>solemn</option>
+            <option>spiteful</option>
+            <option>territorial</option>
+            <option>thick</option>
+            <option>treasure-obsessed</option>
+            <option>trusting</option>
+            <option>unreliable</option>
+            <option>vengeful</option>
+            <option>violent</option>
+            <option>gambling</option>
+            <option>worrying</option>
+            <option>xenophobic</option>
+        </behavior>
         <regret><!-- Bob's major regret was that he ____ -->
             <option>was unable to save a loved one</option>
             <option>didn't lie to protect a close friend</option>

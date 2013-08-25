@@ -12,28 +12,28 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 #################################################################################
 -->
-    <race name='half-elf' type="normal"   moral="5"   order="-1"  magic="0"  authority='-1' economy='0'  education='1'  tolerance='5'  military='-1'>
+    <race name='half-elf' >
         <allow>human</allow>
         <allow>elf</allow>
     </race>
-    <race name='half-orc' type="normal"   moral="-2"  order="-2"  magic="-2" authority='-1' economy='-1' education='-2' tolerance='2'  military='2'>
+    <race name='half-orc' >
         <allow>human</allow>
         <allow>orc</allow>
     </race>
-    <race name='half-dwarf' type="normal"   moral="4"   order="-5"  magic="-3" authority='-1' economy='-3' education='-3' tolerance='5'  military='3'>
+    <race name='half-dwarf' >
         <allow>human</allow>
         <allow>dwarf</allow>
     </race>
-     <race name='deep dwarf' type="monster" moral="-3"  order="3"   magic="-2" authority='1'  economy='1'  education='0'  tolerance='-1' military='5'>
+     <race name='deep dwarf' >
         <allow>dwarf</allow>
     </race>
-     <race name='drow' type="monster" moral="-10" order="-10" magic="4"  authority='3'  economy='0'  education='3'  tolerance='-5' military='2'>
+     <race name='drow' >
         <allow>elf</allow>
     </race>
-     <race name='lycanthrope' type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-1' education='0'  tolerance='0'  military='-3'>
+     <race name='lycanthrope' >
         <allow>human</allow>
     </race>
-    <race name='other'            type="other"   moral="2"   order="-1"  magic="0"  authority='-1' economy='0'  education='0'  tolerance='2'  military='0'>
+    <race name='other' >
         <allow>human</allow>
         <allow>halfling</allow>
         <allow>lizardfolk</allow>
@@ -45,7 +45,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <allow>kobold</allow>
         <allow>goblin</allow>
     </race>
-    <race name='any'   type="any"  >
+    <race name='any' >
         <allow>human</allow>
         <allow>halfling</allow>
         <allow>lizardfolk</allow>
@@ -65,7 +65,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
 #################################################################################
 -->
-    <race name='mindflayer'   type="monster" moral="-5"  order="10"  magic="2"  authority='2'  economy='3'  education='2'  tolerance='-5' military='-5'>
+    <race name='mindflayer'>
         <firstname>
 			<pre>Blo</pre>
 			<pre>Chtu</pre>
@@ -112,7 +112,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </firstname>
 
     </race>
-    <race name='minotaur'      type="monster" moral="2"   order="-5"  magic="-3" authority='-1' economy='-1' education='-1' tolerance='-5' military='3'>
+    <race name='minotaur' >
         <firstname>
 			<pre>Ag</pre>
 			<pre>Ali</pre>
@@ -390,7 +390,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
         </lastname>
     </race>
-    <race name='kobold'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-3'>
+    <race name='kobold' >
         <firstname>
 			<root>Bat</root>
 			<root>Bap</root>
@@ -451,7 +451,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 			<root>Zol</root>
         </firstname>
      </race>
-    <race name='goblin'           type="monster" moral="-5"  order="-5"  magic="1"  authority='-4' economy='-3' education='-3' tolerance='1'  military='0'>
+    <race name='goblin' >
         <firstname>
 			<pre>Br</pre>
 			<pre>Dzu</pre>
@@ -552,15 +552,15 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 			<root>wiser</root>
         </lastname>
     </race>
-    <race name='bugbear'          type="monster" moral="-5"  order="-5"  magic="-2" authority='-3' economy='-3' education='-3' tolerance='-1' military='2' >
+    <race name='bugbear' >
         <allow>goblin</allow>
         <allow>orc</allow>
     </race>
-    <race name='hobgoblin'     type="monster" moral="-5"  order="-5"  magic="-1" authority='-3' economy='-3' education='-3' tolerance='-1' military='-1'>
+    <race name='hobgoblin' >
         <allow>goblin</allow>
     </race>
 
-    <race name='lizardfolk' type="monster" moral="0"   order="0"   magic="0"  authority='-3' economy='-2' education='-3' tolerance='-2' military='2'>
+    <race name='lizardfolk' >
 <!-- Lizardfolk names are in the format of firstname hatchnumber mother -->
         <firstname>
             <pre>S'her</pre>
@@ -594,7 +594,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>zor</post>
         </lastname>
     </race>
-    <race name='gnome' type="normal"   moral="5"   order="5"   magic="2"  authority='-1' economy='1'  education='1'  tolerance='3'  military='-1'>
+    <race name='gnome' >
         <firstname post_chance='70'>
             <pre>Ada</pre>
             <pre>Ai</pre>
@@ -677,7 +677,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
         </lastname>
     </race>
-    <race name='troglodyte' type="monster" moral="-5"  order="-5"  magic="0"  authority='-3' economy='-3' education='-3' tolerance='1'  military='-1'>
+    <race name='troglodyte' >
         <firstname>
             <pre>An</pre>
             <pre>Cee</pre>
@@ -699,7 +699,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>karo</post>
         </firstname>
     </race>
-    <race name='halfling' type="normal"   moral="5"   order="0"   magic="-1" authority='-1' economy='1'  education='1'  tolerance='3'  military='-2'>
+    <race name='halfling' >
         <firstname root_chance='50' post_chance='50'>
             <pre>Ada</pre>
             <pre>Ama</pre>
@@ -926,7 +926,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>wolf</post> 
         </lastname>
     </race>
-    <race name='dwarf' type="normal"   moral="5"   order="5"   magic="-2" authority='2'  economy='1'  education='0'  tolerance='1'  military='4'>
+    <race name='dwarf' >
         <firstname>
 
             <pre>Aba</pre>
@@ -1178,7 +1178,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>vest</post>
         </lastname>
     </race>
-    <race name='elf' type="normal"   moral="5"   order="-5"  magic="3"  authority='-1' economy='1'  education='2'  tolerance='1'  military='1'>
+    <race name='elf' >
         <firstname>
 
             <pre>Aba</pre>
@@ -1389,7 +1389,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 
         </lastname>
     </race>
-    <race name='ogre' type="monster" moral="-5"  order="-5"  magic="-1" authority='-2' economy='-2' education='-2' tolerance='0'  military='-4'>
+    <race name='ogre' >
         <firstname>
 
             <root>Po</root>
@@ -1429,7 +1429,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>nut</post>
         </lastname>
     </race>
-    <race name='human' type="normal"  moral="0" order="5" magic="0" authority='1' economy='1' education='2' tolerance='3' military='1' >
+    <race name='human' >
         <firstname title_chance='5' pre_chance='1' post_chance='70'>
 
             <pre>Le</pre>
@@ -1578,7 +1578,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <post>er</post>
         </lastname>
     </race>
-    <race name='orc' type="monster" moral="-5"  order="-5"  magic="-1" authority='-4' economy='-3' education='-3' tolerance='-1' military='2'>
+    <race name='orc' >
         <firstname title_chance='5' post_chance='70'>
             <title>Chief</title>
             <title>Shaman</title>
