@@ -33,6 +33,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <location><!-- This ring can be found _________. -->
 	        <option>on a corpse</option>
 	        <option>in a chest</option>
+	        <option>in a crack in the wall</option>
 	        <option>forgotten on a shelf</option>
 	        <option>in a pile of refuse</option>
 	        <option>in a tomb</option>
