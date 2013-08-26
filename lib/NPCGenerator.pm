@@ -189,7 +189,8 @@ sub set_sex {
 
     $npc->{'sex'}     = $sex->{'content'} if ( !defined $npc->{'sex'} );
     $npc->{'pronoun'} = $sex->{'pronoun'} if ( !defined $npc->{'pronoun'} );
-    $npc->{'posessivepronoun'}= pronoun ( 'posessive-subjective', $npc->{'sex'} ) if (!defined $npc->{'posessivepronoun'} );
+    $npc->{'posessivepronoun'}= pronoun ( 'posessive-subjective', $npc->{'sex'} )||"its" if (!defined $npc->{'posessivepronoun'} );
+    $npc->{'objectivepronoun'}= pronoun ( 'objective', $npc->{'sex'} )||"it" if (!defined $npc->{'objectivepronoun'} );
     return $npc;
 
 }

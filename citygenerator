@@ -7,6 +7,7 @@ use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
+use Template::Plugin::Lingua::EN::Inflect; # This is used within the Templates
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;

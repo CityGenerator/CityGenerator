@@ -8,6 +8,7 @@ use JSON;
 use List::Util 'shuffle', 'min', 'max' ;
 use POSIX;
 use Template;
+use Template::Plugin::Lingua::EN::Inflect; # This is used within the Templates
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
@@ -15,16 +16,18 @@ use LegendGenerator;
 our $q = CGI->new;
 
 
-my $seed=GenericGenerator::set_seed();
+my $seed=GenericGenerator::set_seed() ;
 
 if (defined $q->param('seed')){
     $seed=$q->param('seed');
 }
+$seed=GenericGenerator::set_seed($seed);
+
 
 my $legends;
 
 for(my $i=0; $i<10 ; $i++){
-    push @$legends, LegendGenerator::create({seed=>($seed+$i)   });
+    push @$legends, LegendGenerator::create(   );
 }
 
 
@@ -63,7 +66,7 @@ sub print_page {
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        'title'         => 'That reminds me of a story... ('.$legends->[0]->{'seed'}.")",
+        'title'         => "That reminds me of a story... ($seed)",
 
         'content'       => print_content($legends),
     };
