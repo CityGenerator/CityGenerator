@@ -47,7 +47,7 @@ printSummary strips out important info from a NPC object and returns formatted t
 sub printSummary {
     my ($npc) = @_;
     my $content = "";
-    $content.= "$npc->{'name'} is ".A($npc->{'behavior'})." $npc->{'race'} who is ".A($npc->{'skill'})." $npc->{'profession'} by trade. \n";
+    $content.= "$npc->{'name'} is ".A($npc->{'behavior'})." $npc->{'race'} who is ".A($npc->{'skill_description'})." $npc->{'profession'} by trade. \n";
     $content.= ucfirst($npc->{'pronoun'})." is currently $npc->{'motivation_description'}. \n";
     return $content;
 }

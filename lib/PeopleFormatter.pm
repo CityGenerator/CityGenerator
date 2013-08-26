@@ -84,7 +84,7 @@ sub printCitizens {
                 .= "who is known in "
                 . $citizen->{'reputation_scope'}
                 . " as being "
-                . A( $citizen->{'skill'} )
+                . A( $citizen->{'skill_description'} )
                 . " $citizen->{'profession'}. \n";
             $content .= ucfirst( $citizen->{'pronoun'} ) . " appears " . $citizen->{'behavior'} . ". \n";
             $content .= "</li>";
