@@ -78,9 +78,11 @@ sub print_content {
 
     my $formtmpl;
     my $vars = {
-        'npcname'     => $npc->{'name'},
-        'seed'          => $npc->{'seed'},
-        'summarytext'   => NPCFormatter::printSummary($npc),
+        'npcname'             => $npc->{'name'},
+            'seed'            => $npc->{'seed'},
+            'summarytext'     => NPCFormatter::printSummary($npc),
+            'descriptiontext' => NPCFormatter::printDescription($npc),
+            'npcdatatext'     => NPCFormatter::printData($npc),
     };
     $templates->process('npcgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 

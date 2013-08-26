@@ -53,6 +53,51 @@ sub printSummary {
 }
 
 
+###############################################################################
+
+=head2 printDescription()
+
+Print a nice physical description of the NPC
+
+=cut
+
+###############################################################################
+sub printDescription {
+    my ($npc) = @_;
+    my $content = "";
+    $content.= "$npc->{'name'} is ".A($npc->{'height'})." $npc->{'race'} with ".A($npc->{'complexion'})." complexion. \n";
+    $content.= $npc->{'firstname'}." appears $npc->{'build'} and has $npc->{'eyes'} eyes. \n";
+    return $content;
+}
+
+
+
+
+
+
+###############################################################################
+
+=head2 printRacialBreakdown()
+
+printRacialBreakdown formats details about the races.
+
+=cut
+
+###############################################################################
+
+sub printData {
+    my ($npc) = @_;
+    my $content = "                    <h3>Vital Stats</h3>\n";
+    $content .= "                    <ul>\n";
+    foreach my $stat ( sort keys %{ $npc->{'stats'} } ) {
+        $content .= "                        <li>$stat: ".$npc->{$stat."_description"}."</li>\n"
+
+    }
+    $content .= "                    </ul>\n";
+    return $content;
+}
+
+
 
 1;
 
