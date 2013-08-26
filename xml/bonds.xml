@@ -1,101 +1,231 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<bonds>
-<!-- provided by squeakytoy for later use
-You think ___ is not the sharpest tool in the shed and working on enlighthing them.
-___ thinks you are not the sharpest tool in the shed and is working on enlighthing you.
+<data>
+<!-- should use Lingua::EN::Conjugate -->
 
-___ does not trust you and for good reason. Ask them for the reason.
-You do not trust ___ and for good reason. What was the reason?
+    <feature>
+        <when chance='50'>
+            <option>recently</option>
+            <option>Yesterday</option>
+            <option>long long ago</option>
+            <option>in the past</option>
+            <option>years ago</option>
+            <option>when it was most needed</option>
+            <option>at one time</option>
+            <option>on one occasion</option>
+        </when>
+        <template>
+    		<option>[%person.0%] accepted [%person.1%] despite obvious failings. Which failing was the hardest?</option>
+    		<option>[%person.0%] admired [%person.1%] secretly. Any idea why?</option>
+    		<option>[%person.0%] advised [%person.1%] incorrectly. What were the consequences?</option>
+    		<option>[%person.0%] advised [%person.1%] correctly. What were the consequences?</option>
+    		<option>[%person.0%] agreed with [%person.1%].</option>
+    		<option>[%person.0%] alerted [%person.1%] to impending danger.</option>
+    		<option>[%person.0%] amused [%person.1%] in an unusual way.</option>
+    		<option>[%person.0%] annoyed [%person.1%] in an unusual way.</option>
+    		<option>[%person.0%] argued with [%person.1%] at the worst possible moment.</option>
+    		<option>[%person.0%] accidentally lead to the arrest of [%person.1%].</option>
+    		<option>[%person.0%] attacked [%person.1%] over an unpaid bill long ago. Some think [%person.3%] still harbors a grudge.</option>
+    		<option>You and [%other%] battled on opposite sides of a conflict.</option>
+    		<option>You and [%other%] belonged to the same group.</option>
+    		<option>You and [%other%] burned an enemy's house down.</option>
+    		<option>[%person.0%] bet against [%person.1%] and lost.</option>
+    		<option>[%person.0%] bet against [%person.1%] and won.</option>
+    		<option>[%person.0%] bet against [%person.1%] and cheated to win.</option>
+    		<option>[%person.0%] camped together recently.</option>
+    		<option>[%person.0%] challenged each other to a duel to the death and both lost.</option>
+    		<option>[%person.0%] tampered with a jury for [%person.1%].</option>
+    		<option>[%person.0%] charged a bear with a chicken wing to defend [%person.1%].</option>
+    		<option>[%person.0%] chased a wild boar for [%person.1%].</option>
+    		<option>[%person.0%] cheated [%person.1%] at poker.</option>
+    		<option>[%person.0%] choked [%person.1%] in a brawl.</option>
+    		<option>[%person.0%] claim to have given [%person.1%] something of value.</option>
+    		<option>[%person.0%] cleaned [%person.1%] armor acter losing a bet.</option>
+    		<option>[%person.0%] collected a bounty on [%person.1%].</option>
+    		<option>[%person.0%] commanded [%person.1%] in battle.</option>
+    		<option>[%person.0%] competed for a prize with [%person.1%].</option>
+    		<option>[%person.0%] confessed to a crime [%person.1%] committed.</option>
+    		<option>[%person.0%] confused [%person.1%] with a bizarre story.</option>
+    		<option>[%person.0%] corrected [%person.1%] in front of royalty.</option>
+    		<option>[%person.0%] coughed blood on [%person.1%] after a battle.</option>
+    		<option>[%person.0%] counted on [%person.1%].</option>
+    		<option>[%person.0%] covered for [%person.1%] to prevent an execution.</option>
+    		<option>[%person.0%] literally crawled over broken glass for [%person.1%].</option>
+    		<option>[%person.0%] crossed a raging river to help [%person.1%].</option>
+    		<option>[%person.0%] cried openly in front of [%person.1%] about a dark secret.</option>
+    		<option>[%person.0%] found a cure for [%person.1%].</option>
+    		<option>[%person.0%] danced with the devil to save [%person.1%].</option>
+    		<option>[%person.0%] dared [%person.1%] to do something stupid- ending in arrest, fines and community service.</option>
+    		<option>[%person.0%] deceived [%person.1%] in an appalling way.</option>
+    		<option>[%person.0%] delayed [%person.1%], resulting in the death of a loved one.</option>
+    		<option>[%person.0%] delivered crushing news to [%person.1%].</option>
+    		<option>[%person.0%] depended on [%person.1%] to come through. [%person.1%] did.</option>
+    		<option>[%person.0%] depended on [%person.1%] to come through. [%person.1%] didn't.</option>
+    		<option>[%person.0%] deserted [%person.1%].</option>
+    		<option>[%person.0%] destroyed a cursed item to save [%person.1%].</option>
+    		<option>[%person.0%] disarmed [%person.1%] in an embarassing sparring session.</option>
+    		<option>[%person.0%] discovered that [%person.1%] has a deep, dark secret.</option>
+    		<option>[%person.0%] discovered that [%person.1%] lied about something critical.</option>
+    		<option>[%person.0%] divided the loot improperly with [%person.1%].</option>
+    		<option>[%person.0%] doubted [%person.1%] and was proven wrong.</option>
+    		<option>[%person.0%] dragged [%person.1%] somewhere dangerous.</option>
+    		<option>[%person.0%] had a prophetic dream about [%person.1%].</option>
+    		<option>[%person.0%] dressed up in drag to save [%person.1%].</option>
+    		<option>[%person.0%] dropped [%person.1%] down a well on accident.</option>
+    		<option>[%person.0%] nearly drown trying to save [%person.1%].</option>
+    		<option>[%person.0%] earned [%person.1%] an undeserved reputation.</option>
+    		<option>[%person.0%] educated [%person.1%] on the birds and the bees.</option>
+    		<option>[%person.0%] embarrassed [%person.1%] in front of royalty.</option>
+    		<option>[%person.0%] employed [%person.1%].</option>
+    		<option>[%person.0%] emptied a bottle that belonged to [%person.1%].</option>
+    		<option>[%person.0%] encouraged [%person.1%] to do something brave, despite the paralysing fear.</option>
+    		<option>[%person.0%] enjoyed traveling with [%person.1%].</option>
+    		<option>[%person.0%] entered into an agreement with [%person.1%].</option>
+    		<option>[%person.0%] entertained [%person.1%].</option>
+    		<option>[%person.0%] escaped with [%person.1%] from certain death.</option>
+    		<option>[%person.0%] examined an injury [%person.1%] would rather forget.</option>
+    		<option>[%person.0%] thinks of excuses for [%person.1%] when they're needed.</option>
+    		<option>[%person.0%] expected better of [%person.1%].</option>
+    		<option>[%person.0%] explained things in small words for [%person.1%].</option>
+    		<option>[%person.0%] faced [%person.1%] in single combat.  [%ucfirst(person.3)%] lost.</option>
+    		<option>[%person.0%] failed in a way that [%person.1%] will never forget.</option>
+    		<option>[%person.0%] fenced an item for [%person.1%] once.</option>
+    		<option>[%person.0%] fetched help when [%person.1%] got stuck.</option>
+    		<option>[%person.0%] fired [%person.1%] on a previous job.</option>
+    		<option>[%person.0%] fixed a bet with [%person.1%].</option>
+    		<option>[%person.0%] followed [%person.1%] into the wrong brothel.</option>
+    		<option>[%person.0%] unknowingly fooled [%person.1%].</option>
+    		<option>[%person.0%] forced [%person.1%] into a bad situation.</option>
+    		<option>[%person.0%] formed an incorrect option of [%person.1%].</option>
+    		<option>[%person.0%] found [%person.1%] on the verge of death.</option>
+    		<option>[%person.0%] accidentally framed [%person.1%] for murder.</option>
+    		<option>[%person.0%] accidentally framed [%person.1%] for theft.</option>
+    		<option>[%person.0%] frightened small children and blamed [%person.1%].</option>
+    		<option>[%person.0%] glued a fork to [%person.1%] in a prank gone horribly wrong.</option>
+    		<option>[%person.0%] guaranteed good behavior from [%person.1%] in return for lienency.</option>
+    		<option>[%person.0%] guarded treasure that [%person.1%] unsuccessfully tried to steal.</option>
+    		<option>[%person.0%] guarded treasure that [%person.1%] successfully to stole.</option>
+    		<option>[%person.0%] guided [%person.1%] into danger.</option>
+    		<option>[%person.0%] harassed [%person.1%] for amusement.</option>
+    		<option>[%person.0%] inadvertently harmed someone and [%person.1%] took the blame.</option>
+    		<option>[%person.0%] hated [%person.1%] at first sight.</option>
+    		<option>[%person.0%] swore to haunt [%person.1%] if [%person.0%] died.</option>
+    		<option>[%person.0%] healed [%person.1%].</option>
+    		<option>[%person.0%] helped [%person.1%].</option>
+    		<option>[%person.0%] hooked [%person.1%] with a fish hook on accident.</option>
+    		<option>[%person.0%] hoped to never see [%person.1%] again.</option>
+    		<option>[%person.0%] hovered over every decision [%person.1%] made.</option>
+    		<option>[%person.0%] hugged [%person.1%] inappropriately.</option>
+    		<option>[%person.0%] hums to drive [%person.1%] crazy.</option>
+    		<option>[%person.0%] likes to hunt with [%person.1%].</option>
+    		<option>[%person.0%] often felt hurried by [%person.1%].</option>
+    		<option>[%person.0%] identified [%person.1%] as the person responsible for an unsolved crime.</option>
+    		<option>[%person.0%] ignored [%person.1%].</option>
+    		<option>[%person.0%] imagined [%person.1%] without clothing on accident.</option>
+    		<option>[%person.0%] impressed [%person.1%] with a quick wit.</option>
+    		<option>[%person.0%] included [%person.1%] so [%person.1%] wouldn't feel bad.</option>
+    		<option>[%person.0%] influenced [%person.1%] in a good way.</option>
+    		<option>[%person.0%] influenced [%person.1%] in a bad way.</option>
+    		<option>[%person.0%] informed [%person.1%] of an approaching assassin.</option>
+    		<option>[%person.0%] drugged [%person.1%] for kicks.</option>
+    		<option>[%person.0%] injured [%person.1%] intentionally.</option>
+    		<option>[%person.0%] injured [%person.1%] unintentionally.</option>
+    		<option>[%person.0%] instructed [%person.1%] on how to play the spoons.</option>
+    		<option>[%person.0%] intended to turn [%person.1%] into the authorities.</option>
+    		<option>[%person.0%] interrupted [%person.1%].</option>
+    		<option>[%person.0%] introduced [%person.1%] to a bad influence.</option>
+    		<option>[%person.0%] invented a wonderous item which [%person.1%] destroyed.</option>
+    		<option>[%person.0%] invited [%person.1%] to the wrong party.</option>
+    		<option>[%person.0%] irritated [%person.1%] less than [%person.1%] would like to admit.</option>
+    		<option>[%person.0%] judged [%person.1%] too quickly.</option>
+    		<option>[%person.0%] kicked [%person.1%] in the groin.</option>
+    		<option>[%person.0%] nearly killed [%person.1%], and [%person.1%] knows it.</option>
+    		<option>[%person.0%] knocked [%person.1%] out.</option>
+    		<option>[%person.0%] learned not to trust [%person.1%] so easily.</option>
+    		<option>[%person.0%] lied to [%person.1%] about something and got caught.</option>
+    		<option>[%person.0%] liked [%person.1%] a lot more before "the incident".</option>
+    		<option>[%person.0%] lock [%person.1%] in the bottom of a privvy.</option>
+    		<option>[%person.0%] managed to irritate [%person.1%].</option>
+    		<option>[%person.0%] murdered someone to protect [%person.1%].</option>
+    		<option>[%person.0%] murdered someone to frame [%person.1%].</option>
+            <option>[%person.0%] nailed [%person.1%] to a tree.</option>
+            <option>[%person.0%] took notes for [%person.1%].</option>
+            <option>[%person.0%] obtained treasure for [%person.1%].</option>
+            <option>[%person.0%] offended [%person.1%].</option>
+            <option>[%person.0%] often offers his help to [%person.1%].</option>
+            <option>[%person.0%] opened doors for [%person.1%].</option>
+            <option>[%person.0%] ordered all his tools from [%person.1%].</option>
+            <option>[%person.0%] owed [%person.1%] his life.</option>
+            <option>[%person.0%] owned [%person.1%].</option>
+            <option>[%person.0%] painted [%person.1%] in a bad light.</option>
+            <option>[%person.0%] parked carriages for [%person.1%].</option>
+            <option>[%person.0%] parted ways with [%person.1%].</option>
+            <option>[%person.0%] paused to chat with [%person.1%].</option>
+            <option>[%person.0%] pecked [%person.1%] on the cheek.</option>
+            <option>[%person.0%] peeped when [%person.1%] is changing.</option>
+            <option>[%person.0%] performed heroic deeds for [%person.1%].</option>
+            <option>[%person.0%] permited [%person.1%] to live on his property.</option>
+            <option>[%person.0%] picked on [%person.1%].</option>
+            <option>[%person.0%] pined for the fjords with [%person.1%].</option>
+            <option>[%person.0%] placed [%person.1%] on a pedestal.</option>
+            <option>[%person.0%] planted evidence to frame [%person.1%].</option>
+            <option>[%person.0%] played mindgames with [%person.1%].</option>
+            <option>[%person.0%] poked fun at [%person.1%].</option>
+            <option>[%person.0%] polished the knobs for [%person.1%].</option>
+            <option>[%person.0%] popped pills with [%person.1%].</option>
+            <option>[%person.0%] poured wine for [%person.1%].</option>
+            <option>[%person.0%] practiced the magic arts with [%person.1%].</option>
+            <option>[%person.0%] preached to [%person.1%] about his religion.</option>
+            <option>[%person.0%] preceded [%person.1%] in the family tree.</option>
+            <option>[%person.0%] presented his poetry to [%person.1%].</option>
+            <option>[%person.0%] pressed [%person.1%] to take action.</option>
+            <option>[%person.0%] printed libelous pamphlets about [%person.1%].</option>
+            <option>[%person.0%] produced [%person.1%].</option>
+            <option>[%person.0%] promised the world to [%person.1%].</option>
+            <option>[%person.0%] provided [%person.1%].</option>
+            <option>[%person.0%] pulled practical jokes on [%person.1%].</option>
+            <option>[%person.0%] pumped water for [%person.1%].</option>
+            <option>[%person.0%] pushed [%person.1%] over a cliff.</option>
+        </template>
+    </feature>
+    <reason>
+        <where>
+            <option>Where did this happen?</option>
+            <option></option>
+        </where>
+        <what>
+			<option>What were the details?</option>
+			<option>What lead to this?</option>
+			<option>What happened?</option>
+			<option>What is missing?</option>
+			<option>What was the reason?</option>
+			<option>What will they do?</option>
+        </what>
+        <when>
+            <option></option>
+            <option></option>
+        </when>
+        <how>
+			<option>How?</option>
+			<option>How come?</option>
+			<option>How did you stop them?</option>
+        </how>
+        <application>
+            <option></option>
+            <option></option>
+        </application>
+        <analysis>
+            <option></option>
+            <option></option>
+        </analysis>
+        <synthesis> 
+            <option></option>
+            <option></option>
+        </synthesis> 
+        <evaluation>
+            <option></option>
+            <option></option>
+        </evaluation>
+    </reason>
 
-You have stolen something from ___. Ask them was it was.
-___ has stolen something from you. What was it?
+</data>
 
-___ is woefully misinformed about the world and you have decided to teach them all you know.
-___ is thinks you are woefully misinformed about the world and they have decided to teach them you all they know.
-
-___ belives you will play an important role in the future. Ask them what they think you will do?
-You believe that ___ will play an important role in the future. What will they do?
-
-___ has betrayed you once before and you still have unresolved emotions with them. Ask them what happened.
-You betrayed ___ once before and they still have unresolved emotions with you. What happened?
-
-___ has failed you once before and you still have unresolved emotions with them. Ask them what happened.
-You failed ___ once before and they still have unresolved emotions with you. What happened?
-
-You think ___ is misguided and you are working on converting them  to your faith and views. What faith or views could that be?
-___ thinks you are misguided and they are working on converting you to their faith or views. Ask them what faith or views they are.
-
-You know ___'s secret and you are watching them. What is that secret?
-___ knows your secret and is watching you. Ask them what secret it is.
-
-You have been rumours about ___ and do not fully trust them. What rumours would that be?
-___ has heard rumours about you and do not fully trust you. Ask them what rumours they were.
-
-For some reason you often do as ___ says. How come?
-For some reason ___ often does what you say. How come?
-
-___ saved you from doing a huge mistake once. Ask them when this was and what mistake was it?
-You saved ___ from doing a huge mistake once. When was this and what mistake was ir?
-
-___ is often the butt of your jokes. How come?
-You are often the butt if ___'s jokes. Ask them why.
-
-___ saw you absolutely lose it and go berserk once. Ask them what happened.
-You saw ___ absolutely lose it and go berserk once. What happened?
-
-___ owes you a favor, wether they admit it or not. Why?
-You owe ___ a favor, wether you admit it or not. Ask them why.
-
-You went to ___ for advice once. Ask them what advice that was.
-___ came to you for advice once. What advice was that?
-
-You knows incriminating details about ___. What details are these?
-___ knows incriminating details about you. Ask them what they know.
-
-You think that ___ is a liability and not an asset to the group. How come?
-___ thinks you are a liability and not an asset to the group. Ask them why.
-
-You met ___ in another adventure before. Ask them when this was.
-___ has met you in another adventure before. When was this?
-
-You think ___ is soft but you will make them hard as you. Why do you think they are soft?
-___ thinks you are soft and they want to make them hard as they. Ask them why they think you are soft.
-
-You lost control one time, and almost killed ___. Ask them how did they stopped you.
-___ lost control one time and almost killed you. How did you stop them?
-
-___ saved your life in a tight spot once. Ask them what happened.
-You saved ___'s life in a tight spot once. What happened?
-
-You fought together with ___ against the odds and prevailed. Ask them in what situation that this was.
-___ and you fought together against the odds and prevailed. In what situation was that?
-
-You and ___ have a con running. What is the plan?
-___ and you have a con running. Ask them what the plan is.
-
-You grew up with ___. Where was this?
-___ grew up with you. Ask them where this was.
-
-You saw ___ use their power for selfish or vincitive reasons. Who was the victim and what did they do?
-___ saw you use your power for selfish or vincitive reasons. Ask them who the victim was and what you did.
-
-At some point, you have sworn to protect ___. Why and what happened?
-At some point, ___ has sworn to protect you. Ask them why and what happened?
-
-You stood between ___ and what they needed. What was it and why did you do it?
-___ stood between you and what you wanted. Ask them what it was and why they did it.
-
-___ owes you their life, whether they admit it or not. How come?
-You owe ___ your life, whether you admit it or not. Ask them why.
-
-You and ___ lost a mutual friend or relative. Ask them who it was and what happened?
-___ and you lost a mutial friend or relative. Who was it and what happened?
-
-You respect ___'s hard-earned knowledge, and often come to them for advice.
-___ respects you for your hard-earned knowledge, and often come to you for advice.
-
-You helped ___ at a critical point in their quest for revenge. How?
-___ helped you at a critical point in your quest for revenge. Ask them how.
--->
-
-</bonds>

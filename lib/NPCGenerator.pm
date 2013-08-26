@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( generate_npc_names get_races names_data create_npc xml_data generate_npc_name );
 
 #TODO make generate_name method for use with namegenerator
 ###############################################################################
@@ -19,24 +18,26 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use NPCGenerator;
-    my $npc=NPCGenerator::create_npc();
+    my $npc=NPCGenerator::create();
 
 =cut
 
 ###############################################################################
 
 #TODO treat certain data as stats...
-use Carp;
+use Carp qw(longmess croak);
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
+use Lingua::EN::Gender;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -71,7 +72,7 @@ my $specialist_data = $xml->XMLin( "xml/specialists.xml", ForceContent => 1, For
 
 ###############################################################################
 
-=head2 create_npc( params )
+=head2 create( params )
 
 Create an NPC Object and fill it out.
 
@@ -79,7 +80,7 @@ Create an NPC Object and fill it out.
 
 ###############################################################################
 
-sub create_npc {
+sub create {
     my ($params) = @_;
     my $npc = {};
 
@@ -91,32 +92,60 @@ sub create_npc {
     }
     if ( defined $npc->{'seed'} ) {
         $npc->{'seed'} = GenericGenerator::set_seed( $npc->{'seed'} );
-    } else {
-        $npc->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed($npc->{'seed'});
+    GenericGenerator::generate_stats($npc, $npc_data);
+    GenericGenerator::select_features($npc,$npc_data);
+    
+    set_race($npc);
+
+    generate_npc_name( $npc->{'race'}, $npc );
+
+    set_reputation($npc);
+    set_attitudes($npc);
+    set_class($npc);
+    set_sex($npc);
+    set_profession($npc);
+    set_motivation($npc);
+    return $npc;
+}
+###############################################################################
+
+=head2 set_reputation()
+
+Take a provided NPC and set their reputation scope
+
+=cut
+
+###############################################################################
+
+sub set_reputation {
+    my ($npc) = @_;
+    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'scope'}->{'option'} )->{'content'};
+    return $npc;
+}
+
+###############################################################################
+
+=head2 set_race()
+
+Take a provided NPC and set their race
+
+=cut
+
+###############################################################################
+
+sub set_race {
+    my ($npc) = @_;
 
     #Available races is an array of race names.
-    $npc->{'available_races'} = [ keys %{ $names_data->{'race'} } ] if ( !defined $npc->{'available_races'} );
+    $npc->{'available_races'} = get_races() if ( !defined $npc->{'available_races'} );
     $npc->{'available_races'} = [ shuffle( @{ $npc->{'available_races'} } ) ];
 
     $npc->{'race'} = rand_from_array( $npc->{'available_races'} ) if ( !defined $npc->{'race'} );
     delete $npc->{'available_races'};
-    $npc->{'race'} = lc $npc->{'race'};
+    $npc->{'race'} = $npc->{'race'};
 
-    generate_npc_name( $npc->{'race'}, $npc );
-    if ($npc->{'race'} eq 'any' or $npc->{'race'} eq 'other'){
-        #FIXME this if statement is stupid; we should set it when the name is chosen and any is used.
-        $npc->{'race'}='oddball';
-    }
-    $npc->{'skill'}            = roll_from_array( &d(100), $xml_data->{'skill'}->{'level'} )->{'content'};
-    $npc->{'behavior'}         = rand_from_array( $xml_data->{'behavioraltraits'}->{'trait'} )->{'type'};
-    $npc->{'reputation_scope'} = rand_from_array( $xml_data->{'area'}->{'scope'} )->{'content'};
-    set_attitudes($npc);
-    set_sex($npc);
-    set_profession($npc);
-    set_level($npc);
-    set_motivation($npc);
-    set_class($npc);
     return $npc;
 }
 
@@ -135,33 +164,13 @@ sub set_class {
     my ($npc) = @_;
 
     $npc->{'class_roll'} = d(100) if ( !defined $npc->{'class_roll'} );
-    $npc->{'class'} = roll_from_array( $npc->{'class_roll'}, $npc_data->{'classes'}->{'option'} )->{'type'}
+    $npc->{'class'} = roll_from_array( $npc->{'class_roll'}, $npc_data->{'class'}->{'option'} )->{'content'}
         if ( !defined $npc->{'class'} );
 
     return $npc;
 }
 
 
-###############################################################################
-
-=head2 set_level()
-
-Take a provided NPC and set their level.
-
-=cut
-
-###############################################################################
-
-sub set_level {
-    my ($npc) = @_;
-    my $size_modifier = ( $npc->{'size_modifier'} || 0 ) + 5;
-
-    $npc->{'level'} = d('3d4') + d($size_modifier) - 5 if ( !defined $npc->{'level'} );
-
-    #keep levels between 1 and 20.
-    $npc->{'level'} = max( 1, min( 20, $npc->{'level'} ) );
-    return $npc;
-}
 
 
 ###############################################################################
@@ -176,11 +185,13 @@ Take a provided NPC and select a sex from the list of available choices.
 
 sub set_sex {
     my ($npc) = @_;
-    my $sex = roll_from_array( &d(100), $xml_data->{'sex'}->{'option'} );
+    my $sex = roll_from_array( &d(100), $npc_data->{'sex'}->{'option'} );
 
     $npc->{'sex'}     = $sex->{'content'} if ( !defined $npc->{'sex'} );
     $npc->{'pronoun'} = $sex->{'pronoun'} if ( !defined $npc->{'pronoun'} );
+    $npc->{'posessivepronoun'}= pronoun ( 'posessive-subjective', $npc->{'sex'} ) if (!defined $npc->{'posessivepronoun'} );
     return $npc;
+
 }
 
 
@@ -196,25 +207,36 @@ Take a provided NPC and select a profession from the list of available choices.
 
 sub set_profession {
     my ($npc) = @_;
+
+    #First make sure we have allowed list
     if ( !defined $npc->{'allowed_professions'} || scalar( @{ $npc->{'allowed_professions'} } ) == 0 ) {
         $npc->{'allowed_professions'} = [ keys %{ $specialist_data->{'option'} } ];
     }
 
+    # shuffle that list
     $npc->{'allowed_professions'} = [ shuffle( @{ $npc->{'allowed_professions'} } ) ];
 
+    # select a potential specialty and remove allowed professionals.
     my $specialty = pop @{ $npc->{'allowed_professions'} };
     delete $npc->{'allowed_professions'};
 
+    # at this point we have specialty selected....
+
+    #set profession to $specialty if it's not already set.
     $npc->{'profession'} = $specialty if ( !defined $npc->{'profession'} );
 
+
+    # If a business is not defined...
     if ( !defined $npc->{'business'} ) {
-        if (    defined $specialist_data->{'option'}->{$specialty}
-            and defined $specialist_data->{'option'}->{$specialty}->{'building'} )
-        {
+        #If the profession exisists in the specialist data and has a building name, set the NPC business
+        if (defined $specialist_data->{'option'}->{$specialty}->{'building'}){
             $npc->{'business'} = $specialist_data->{'option'}->{$specialty}->{'building'};
-        } else {
-            $npc->{'business'} = $npc->{'profession'};
+        }else{
+            $npc->{'business'}=$npc->{'profession'};
         }
+
+        #FIXME if the business has a  comma, split on commas and select one of them.
+        #This is bad and you should feel bad.
         if ( $npc->{'business'} =~ /,/x ) {
             my @businesses = shuffle( split( /,/x, $npc->{'business'} ) );
             $npc->{'business'} = pop @businesses;
@@ -239,23 +261,31 @@ Take a provided npc structure and set the primary, secondary and ternary attitud
 
 sub set_attitudes {
     my ($npc) = @_;
-    if ( defined $xml_data->{'attitude'} and ref $xml_data->{'attitude'} eq 'HASH' ) {
-        if ( defined $xml_data->{'attitude'}->{'option'} and ref $xml_data->{'attitude'}->{'option'} eq 'ARRAY' ) {
-            my $primary_attitude = rand_from_array( $xml_data->{'attitude'}->{'option'} );
-            $npc->{'primary_attitude'} = $primary_attitude->{'type'} if ( !defined $npc->{'primary_attitude'} );
 
-            if ( defined $primary_attitude->{'option'} and ref $primary_attitude->{'option'} eq 'ARRAY' ) {
-                my $secondary_attitude = rand_from_array( $primary_attitude->{'option'} );
-                $npc->{'secondary_attitude'} = $secondary_attitude->{'type'}
-                    if ( !defined $npc->{'secondary_attitude'} );
+    # Select a primary attitude;
+    my $primary_attitude = rand_from_array( [ keys %{$npc_data->{'attitude'}->{'option'} } ]);
+    $npc->{'primary_attitude'} = $primary_attitude  if ( !defined $npc->{'primary_attitude'} );
 
-                if ( defined $secondary_attitude->{'option'} and ref $secondary_attitude->{'option'} eq 'ARRAY' ) {
-                    my $ternary_attitude = rand_from_array( $secondary_attitude->{'option'} );
-                    $npc->{'ternary_attitude'} = $ternary_attitude->{'type'} if ( !defined $npc->{'ternary_attitude'} );
-                }
-            }
+    if (defined $npc_data->{'attitude'}->{'option'}->{ $npc->{'primary_attitude'}  } ){
+        my $primary=$npc_data->{'attitude'}->{'option'}->{ $npc->{'primary_attitude'}  };
+        my $secondary_attitude = rand_from_array( [ keys %{$primary->{'option'} } ] );
+        $npc->{'secondary_attitude'} = $secondary_attitude if ( !defined $npc->{'secondary_attitude'} );
+
+        if (defined $primary->{'option'}->{ $npc->{'secondary_attitude'}  } ){
+            my $secondary=$primary->{'option'}->{ $npc->{'secondary_attitude'}  };
+            my $ternary_attitude = rand_from_array( [ keys %{$secondary->{'option'} } ] );
+            $npc->{'ternary_attitude'} = $ternary_attitude if ( !defined $npc->{'ternary_attitude'} );
+    
+        }else{
+            $npc->{'ternary_attitude'}= $npc->{'secondary_attitude'} if (!defined $npc->{'ternary_attitude'}) ;
         }
+    }else{
+        $npc->{'secondary_attitude'}= $npc->{'primary_attitude'} if (!defined  $npc->{'secondary_attitude'});
+        $npc->{'ternary_attitude'}= $npc->{'primary_attitude'} if (!defined $npc->{'ternary_attitude'}) ;
     }
+
+
+
     return $npc;
 }
 
@@ -271,7 +301,8 @@ Return a list of supported races.
 ###############################################################################
 
 sub get_races {
-    return [ sort keys %{ $names_data->{'race'} } ];
+
+    return [  map {$_->{'content'} }   @{$npc_data->{'race'}->{'option'}}   ];
 }
 
 
@@ -288,36 +319,30 @@ generate an npc name if they're available for that race.
 sub generate_npc_name {
     my ( $race, $npc ) = @_;
     $race = lc $race;
+    if ( !defined $names_data->{'race'}->{$race}){
+        $race="any";
+    }
 
     # Check to see if this is a mutt race like any
-    if ( defined $names_data->{'race'}->{$race} and defined $names_data->{'race'}->{$race}->{'allow'} ) {
+    if ( defined $names_data->{'race'}->{$race}->{'allow'} ) {
         $race = rand_from_array( $names_data->{'race'}->{$race}->{'allow'} )->{'content'};
     }
 
-    if ( defined $names_data->{'race'}->{$race} ) {
-        my $racenameparts = $names_data->{'race'}->{$race};
+    my $racenameparts = $names_data->{'race'}->{$race};
 
-        if ( defined $racenameparts->{'firstname'} ) {
-            $npc->{'firstname'} = parse_object( $racenameparts->{'firstname'} )->{'content'};
-            if ( $npc->{'firstname'} ne '' ) {
-                $npc->{'name'} = $npc->{'firstname'};
-            }
-        }
-        if ( defined $racenameparts->{'lastname'} ) {
-            $npc->{'lastname'} = parse_object( $racenameparts->{'lastname'} )->{'content'};
-            if ( $npc->{'lastname'} ne '' ) {
-                $npc->{'name'} = $npc->{'lastname'};
-            }
-        }
-        if (    defined $npc->{'firstname'}
-            and defined $npc->{'lastname'}
-            and $npc->{'firstname'} ne ''
-            and $npc->{'lastname'}  ne '' )
-        {
-            $npc->{'name'} = $npc->{'firstname'} . " " . $npc->{'lastname'};
-        }
-    } else {
-        $npc->{'name'} = "unnamed $race";
+    # NPCs will always have a firstname.        
+    $npc->{'firstname'} = parse_object( $racenameparts->{'firstname'} )->{'content'};
+    $npc->{'name'} = $npc->{'firstname'};
+    if ($npc->{'firstname'} =~/[sxz]$/){
+        $npc->{'firstnames'} =$npc->{'firstname'}."'";
+    }else{
+        $npc->{'firstnames'} =$npc->{'firstname'}."'s";
+    }
+
+    
+    if ( defined $racenameparts->{'lastname'} ) {
+        $npc->{'lastname'} = parse_object( $racenameparts->{'lastname'} )->{'content'};
+        $npc->{'name'} = "$npc->{'firstname'} $npc->{'lastname'}";
     }
     return $npc->{'name'};
 }

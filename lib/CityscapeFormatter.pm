@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printCityscape);
 
 ###############################################################################
 
@@ -28,29 +27,12 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
+use Lingua::EN::Inflect qw(A PL PL_N NO);
+use Lingua::EN::Numbers qw(num2en);
+use Lingua::Conjunction;
 use POSIX;
 use version;
 
-###############################################################################
-
-=head2 printCityscape()
-
-printCityscape strips out important info from a City object and returns formatted text.
-
-=cut
-
-###############################################################################
-sub printCityscape {
-    my ($city) = @_;
-    my $content;
-    $content .= " " . printWalls($city);
-    $content .= " " . printStreets($city);
-    $content .= " " . printDistrictList($city);
-    $content .= " " . printHousingList($city);
-    $content .= "</p>";
-
-    return $content;
-}
 
 
 ###############################################################################
@@ -78,25 +60,6 @@ sub printWalls {
 
     return $content;
 }
-###############################################################################
-
-=head2 printBuildings()
-
-formats details about buildings around the city.
-
-=cut
-
-###############################################################################
-
-sub printBuildings {
-    my ($city) = @_;
-    my $content = "";
-    $content
-        .= "There are $city->{'business_total'} businesses in $city->{'name'} and $city->{'housing'}->{'total'} residences spread out across the city. \n";
-
-
-    return $content;
-}
 
 ###############################################################################
 
@@ -111,13 +74,11 @@ printStreets formats details about streets around the city.
 sub printStreets {
     my ($city) = @_;
 
-    #FIXME This could be simplified with perl's Lingua modules.
-    my $mainroads = $city->{'streets'}->{'mainroads'} == 0 ? "none" : $city->{'streets'}->{'mainroads'};
-    $mainroads = $mainroads eq "1" ? "1 is" : $mainroads . " are";
-    my $roads = $city->{'streets'}->{'roads'} == 1 ? "is 1 road" : "are " . $city->{'streets'}->{'roads'} . " roads";
+    my $streetverb   = ( $city->{'streets'}->{'roads'} == 1 )     ? "is" : "are";
+    my $mainroadverb = ( $city->{'streets'}->{'mainroads'} == 1 ) ? "is" : "are";
 
-    my $content = "There $roads leading to $city->{'name'}; $mainroads major.  ";
-
+    my $content = "There $streetverb ".NO('road', $city->{'streets'}->{'roads'})." leading to $city->{'name'}; \n";
+    $content.= NO('road', $city->{'streets'}->{'mainroads'})." $mainroadverb major. ";
     $content .= "The city is lined with " . $city->{'streets'}->{'content'} . ".";
 
     return $content;
@@ -125,26 +86,24 @@ sub printStreets {
 
 ###############################################################################
 
-=head2 printDistrictList()
+=head2 printDistricts()
 
-printDistrictList formats details about the District List.
+printDistricts formats details about the District List.
 
 =cut
 
 ###############################################################################
 
-sub printDistrictList {
+sub printDistricts {
     my ($city)    = @_;
     my @districts = keys %{ $city->{'districts'} };
     my $content   = "";
-    if ( scalar(@districts) == 0 ) {
-        $content = "There are no defined districts in this city.";
+    if ( scalar(@districts   ) == 0 ) {
+        $content = "There are no defined districts in this city. \n";
     } elsif ( scalar(@districts) == 1 ) {
-        $content = "The city includes the $districts[1] District.";
+        $content = "The city includes ".A( $districts[0])." district. \n";
     } else {
-        my $last_district = pop @districts;
-        $content
-            = "The city is broken into the following Districts: " . join( ", ", @districts ) . " and $last_district.";
+        $content = "The city is broken into the following districts: " . conjunction( @districts ) . ". \n";
     }
 
 

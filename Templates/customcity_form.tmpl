@@ -2,34 +2,53 @@
 <h2> City Specific</h2>
 
 <p>Hint: only enabed options will be used.</p>
-<form action="/citygenerator" method="post" name="detailform" enctype="application/x-www-form-urlencoded" target="_blank">
-<fieldset style="width:45%;display:inline">
+<form action="/citygenerator" method="get" name="detailform" enctype="application/x-www-form-urlencoded" target="_blank">
+<fieldset style="width:45%;display:inline; float:left;">
     <legend>City Basic</legend>
-    <label for="seed">Seed</label>          <input type="checkbox" onclick="disablefield('seed')" >       <input type="number" disabled name="seed" value="1"><br>
-    <label for="size_roll">Size roll</label><input type="checkbox" onclick="disablefield('size_roll')" >  <input type="range"  disabled name="size_roll" min="1" max="100"><br>
-    <label for="moral">Moral</label>        <input type="checkbox" onclick="disablefield('moral')" >      <input type="range"  disabled name="moral" min="0" max="100"><br>
-    <label for="order">Order</label>        <input type="checkbox" onclick="disablefield('order')" >      <input type="range"  disabled name="order" min="0" max="100"><br>
+    <div style="display:inline-block;text-align:right;">
+        <label for="seed">Seed</label>          <input type="checkbox" onclick="disablefield('seed')" >       <input type="number" disabled name="seed" value="1"><br>
+        <label for="size_roll">Size roll</label><input type="checkbox" onclick="disablefield('size_roll')" >  <input type="range"  disabled name="size_roll" min="1" max="100"><br>
+    [% FOREACH stat IN [ 'education' 'magic' 'military' 'tolerance' 'economy' 'authority' 'moral' 'order' ]  %] 
+        <label for="[% stat %]">[% stat FILTER ucfirst%]</label>  
+        <input type="checkbox" onclick="disablefield('[% stat %]')" > <input type="range" disabled name="[% stat %]" min="0" max="100" value="50"/><br>
+    [%END%]
+    </div>
 </fieldset>
 
-<fieldset style="width:45%;display:inline">
-    <legend>City Stats</legend>
-    <label for="education">Education</label>    <input type="checkbox" onclick="disablefield('education')"  > <input type="range" disabled name="education"    min="-5" max="5" value="0"/><br>
-    <label for="magic">Magic</label>            <input type="checkbox" onclick="disablefield('magic')"      > <input type="range" disabled name="magic"        min="-5" max="5" value="0"/><br>
-    <label for="military">Military</label>      <input type="checkbox" onclick="disablefield('military')"   > <input type="range" disabled name="military"     min="-5" max="5" value="0"/><br>
-    <label for="tolerance">Tolerance</label>    <input type="checkbox" onclick="disablefield('tolerance')"  > <input type="range" disabled name="tolerance"    min="-5" max="5" value="0"/><br>
-    <label for="economy">Economy</label>        <input type="checkbox" onclick="disablefield('economy')"    > <input type="range" disabled name="economy"      min="-5" max="5" value="0"/><br>
-    <label for="authority">Authority</label>    <input type="checkbox" onclick="disablefield('authority')"  > <input type="range" disabled name="authority"    min="-5" max="5" value="0"/><br>
+<fieldset style="width:45%;display:inline; float:left">
+    <legend>Climate Basic</legend>
+    <div style="display:inline-block;text-align:right;">
+    <label for="climateseed">Climate Seed</label> <input type="checkbox" onclick="disablefield('climateseed')" >   <input type="number" disabled name="climateseed" value="1"><br>
+    [% FOREACH stat IN [ 'altitude' 'continentality' 'latitude' 'pressure' 'temperature' 'precipitation' ]  %] 
+    <label for="[% stat %]">[% stat FILTER ucfirst%]</label>  
+    <input type="checkbox" onclick="disablefield('climate_[% stat %]')" > <input type="range" disabled name="climate_[% stat %]" min="0" max="100" value="50"/><br>
+    [%END%]
+    </div>
 </fieldset>
 
-<fieldset style="width:45%;display:inline">
+<fieldset style="width:45%;display:inline; float:left">
+    <legend>Military Basic</legend>
+    <label for="militaryseed">Military Seed</label> <input type="checkbox" onclick="disablefield('militaryseed')" >   <input type="number" disabled name="militaryseed" value="1"><br>
+</fieldset>
+
+<fieldset style="width:45%;display:inline; float:left;">
+    <legend>Government Basic</legend>
+    <label for="govtseed">Govt Seed</label> <input type="checkbox" onclick="disablefield('govtseed')" >   <input type="number" disabled name="govtseed" value="1"><br>
+</fieldset>
+<fieldset style="width:45%;display:inline; float:left;">
     <legend>Population Breakdown</legend>
     <label for="child_percent">Percent Children</label>   <input type="checkbox" onclick="disablefield('child_percent')"    > <input type="range" disabled name="child_percent"   min="0" max="100"><br>
     <label for="elderly_percent">Percent Elderly</label>  <input type="checkbox" onclick="disablefield('elderly_percent')"  > <input type="range" disabled name="elderly_percent" min="0" max="100"><br>
- </fieldset>
+</fieldset>
 
+
+<br clear="all"/>
+<fieldset style="width:45%;display:inline; float:left">
     <label for="type">Dump it?</label>    <input type="checkbox" name="type" value="dump"  >
     <input type="submit" value="Generate it!" >
+</fieldset>
 </form>
+<br clear="all"/>
 <!--
 <h2> Government specific</h2>
 

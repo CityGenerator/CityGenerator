@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<world root_chance='30' title_chance='10'>
+<data root_chance='30' title_chance='10'>
     <pre>Mer</pre>
     <pre>Ven</pre>
     <pre>Ea</pre>
@@ -37,5 +37,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <post>on</post>
     <post>can</post>
 
-</world>
+</data>
 

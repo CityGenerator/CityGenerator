@@ -19,33 +19,84 @@ use base qw(Exporter);
 
 
 subtest 'Test Govt' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $govt = GovtFormatter::printSummary($city);
-    is(
-        $govt,
-"Grisnow is governed through a totalitarian government, where the government subordinates individuals by controlling all political and economic matters, as well as the attitudes, values, and beliefs. "
-            . "The government as a whole is seen as shrewd. "
-            . "Officials in Grisnow are often seen as the epitome corruption and the policies are mocked. "
-            . "The political influence of Grisnow in the region is receding due to riots in the region. "
-            . "In times of crisis, the population squabbles amongst themselves. ",
-        'ensure summary is printed'
-    );
+    like( $govt, "/.+ is governed through a.+, where .+\. \nThe government as a whole is seen as .+\. \nOfficials in .+ are often seen as .+ and the policies are .+\. \nThe political influence of .+ in the region is .+ due to .+\. \nIn times of crisis, the population .+\. /", 'ensure that summary is formatted properly.');
+    done_testing();
+};
+
+subtest 'Test Military print' => sub {
+    my $city = CityGenerator::create( { seed => 1  } );
+    CityGenerator::flesh_out_city($city);
+    my $military = GovtFormatter::printMilitary($city);
+
+    like ($military,
+        "/.+ has a.+ attitude towards the military. \nTheir standing army of .+ citizens [(].+%[)] is at the ready, with a reserve force of .+ [(].+%[)]. \nOf the active duty military, .+ [(].+%[)] are special forces. \n/");
+    like ($military,
+        "/Due to their .+ attitude and .+, .+ is .+ fortified. \n.+ fighters are .+ for their use of .+ in battle. \nThey are .+ for their .+ and are considered .+ skilled in battle. \n/");
+
+    
+    subtest 'Test Military walls' => sub {
+        $city->{'walls'}->{'condition'}="red";
+        $city->{'walls'}->{'style'}="blue";
+        $military = GovtFormatter::printMilitary($city);
+        like ($military, "/red blue/");
+
+        $city->{'walls'}->{'condition'}=undef;
+        $city->{'walls'}->{'style'}="blue";
+        $military = GovtFormatter::printMilitary($city);
+        like ($military, "/lack of defensible wall/");
+
+        $city->{'walls'}->{'condition'}="red";
+        $city->{'walls'}->{'style'}=undef;
+        $military = GovtFormatter::printMilitary($city);
+        like ($military, "/lack of defensible wall/");
+
+        $city->{'walls'}->{'condition'}=undef;
+        $city->{'walls'}->{'style'}=undef;
+        $military = GovtFormatter::printMilitary($city);
+        like ($military, "/lack of defensible wall/");
+    };
+
     done_testing();
 };
 
 subtest 'Test Govt Crime' => sub {
-    my $city = CityGenerator::create_city( { seed => 1 } );
+    my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
     my $crime = GovtFormatter::printCrime($city);
-    is(
-        $crime,
-        "Crime is rampant. \n"
-            . "The most common crime is murder. \n"
-            . "The imprisonment rate is 0.00% of the population (0 adults). \n",
-        'ensure crime is printed'
-    );
+    like( $crime, "/Crime is .+\. \nThe most common crime is .+\. \nThe imprisonment rate is .+% of the population [(].+ adults?[)]. /");
+
     done_testing();
 };
+
+subtest 'Test Govt Leader' => sub {
+    my $city = CityGenerator::create( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $text = GovtFormatter::printLeader($city);
+    like($text, "/The .+ has been in power .+ and is .+ by the people\. \nThere is .+ opposition to the .+ and policies\. \nThe right to rule was granted .+, and that power is maintained .+\. \n/");
+
+    delete $city->{'govt'}->{'leader'}->{'name'};
+    $text = GovtFormatter::printLeader($city);
+    like($text, "/.+ is ruled by The .+\. /", "make sure it says 'The boss'" );
+
+    $city->{'govt'}->{'leader'}->{'name'}="Bob";
+    $text = GovtFormatter::printLeader($city);
+    like($text, "/.+ is ruled by .+ Bob\. /", "make sure it says 'Bob'" );
+
+    done_testing();
+};
+
+subtest 'Test Govt laws' => sub {
+    my $city = CityGenerator::create( { seed => 1 } );
+    CityGenerator::flesh_out_city($city);
+    my $text = GovtFormatter::printLaw($city);
+    like( $text, "/Laws are enforced by a.+, .+\. \nJustice is served .+, with a common punishment being .+\. \n/");
+
+    done_testing();
+};
+
+
 
 1;

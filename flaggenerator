@@ -28,7 +28,7 @@ if (defined $q->param('seed')){
 
 
 
-    my $flag=FlagGenerator::create_flag({seed=>$testcityid});
+    my $flag=FlagGenerator::create({seed=>$testcityid});
     # FlagGenerator::flesh_out_flag($flag);
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){

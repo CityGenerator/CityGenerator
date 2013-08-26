@@ -3,7 +3,7 @@
 CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
-<events>
+<data>
     <event name="festival">
         <option>a religious</option>
         <option>a trade</option>
@@ -50,5 +50,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option>drought</option>
         <option>crop failure</option>
    </event>
-</events>
+</data>
 

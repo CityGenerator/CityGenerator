@@ -1,0 +1,118 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use warnings;
+use CGI;
+use Data::Dumper;
+use JSON;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use Template;
+use XML::Simple;
+use lib "lib/";
+use Lingua::EN::Inflect qw(A);
+use GenericGenerator;
+use MagicItemGenerator;
+use MagicItemFormatter;
+our $q = CGI->new;
+
+
+my $seed=GenericGenerator::set_seed();
+
+if (defined $q->param('seed')){
+    $seed=$q->param('seed');
+}
+
+my $item=MagicItemGenerator::create({seed=>$seed});
+
+
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='utf-8' ?>\n";
+    print XMLout($item);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print $JSON->encode($item);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $item;
+
+} else {
+    print $q->header( 'text/html; charset=utf-8' );
+    print_page($item);
+}
+
+exit;
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+sub print_page {
+    my ($item)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Behold, '.A($item->{'name'})."! ($item->{'seed'})",
+        'seed'          => $item->{'seed'},
+        'content'       => print_content($item),
+    };
+    return $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+sub print_content {
+    my ($item)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'itemname'     => $item->{'name'},
+        'seed'          => $item->{'seed'},
+        'summarytext'   => MagicItemFormatter::printSummary($item),
+    };
+    $templates->process('magicitemgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+=head1 DISCLAIMER OF WARRANTY
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+=cut

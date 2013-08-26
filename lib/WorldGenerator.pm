@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_world generate_name);
 
 #FIXME TODO I don't need to reassign back to world when passing in a reference
 # i.e. I can simplify $world=generate_foo($world); as generate_foo($world);
@@ -20,7 +19,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use WorldGenerator;
-    my $world=WorldGenerator::create_world();
+    my $world=WorldGenerator::create();
 
 =cut
 
@@ -31,7 +30,7 @@ use CGI;
 use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
 use AstronomyGenerator;
 use Lingua::EN::Inflect qw(A);
 use List::Util 'shuffle', 'min', 'max';
@@ -41,6 +40,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -74,7 +74,7 @@ my $worldnames_data = $xml->XMLin( "xml/worldnames.xml", ForceContent => 1, Forc
 The following methods are used to create the core of the world structure.
 
 
-=head3 create_world()
+=head3 create()
 
 This method is used to create a simple world with nothing more than:
 
@@ -89,7 +89,7 @@ This method is used to create a simple world with nothing more than:
 =cut
 
 ###############################################################################
-sub create_world {
+sub create {
     my ($params) = @_;
     my $world = {};
 
@@ -102,6 +102,7 @@ sub create_world {
     if ( !defined $world->{'seed'} ) {
         $world->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $world->{'seed'} );
 
     generate_name($world);
     generate_atmosphere($world);
@@ -120,7 +121,7 @@ sub create_world {
     generate_precipitation($world);
     generate_clouds($world);
     return $world;
-} ## end sub create_world
+} ## end sub create
 
 
 ###############################################################################
@@ -134,7 +135,7 @@ sub create_world {
 ###############################################################################
 sub generate_name {
     my ($world) = @_;
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     my $nameobj = parse_object($worldnames_data);
     $world->{'name'} = $nameobj->{'content'} if ( !defined $world->{'name'} );
     return $world;
@@ -153,7 +154,7 @@ sub generate_name {
 sub generate_atmosphere {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
     $world->{'atmosphere'}->{'color_roll'} = d(100) if ( !defined $world->{'atmosphere'}->{'color_roll'} );
     my $atmosphere = roll_from_array( $world->{'atmosphere'}->{'color_roll'}, $world_data->{'atmosphere'}->{'option'} );
@@ -186,7 +187,7 @@ sub generate_atmosphere {
 sub generate_basetemp {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
     my $basetemp = rand_from_array( $world_data->{'basetemp'}->{'option'} );
     $world->{'basetemp'}          = $basetemp->{'content'} if ( !defined $world->{'basetemp'} );
@@ -209,7 +210,7 @@ sub generate_basetemp {
 sub generate_air {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'air'} = rand_from_array( $world_data->{'air'}->{'option'} )->{'content'} if ( !defined $world->{'air'} );
 
     return $world;
@@ -228,7 +229,7 @@ sub generate_air {
 sub generate_wind {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'wind'} = rand_from_array( $world_data->{'wind'}->{'option'} )->{'content'}
         if ( !defined $world->{'wind'} );
 
@@ -248,7 +249,7 @@ sub generate_wind {
 sub generate_year {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'year_roll'} = d(100) if ( !defined $world->{'year_roll'} );
 
     my $year = roll_from_array( $world->{'year_roll'}, $world_data->{'year'}->{'option'} );
@@ -271,7 +272,7 @@ sub generate_year {
 sub generate_day {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'day_roll'} = d(100) if ( !defined $world->{'day_roll'} );
 
     my $day = roll_from_array( $world->{'day_roll'}, $world_data->{'day'}->{'option'} );
@@ -294,7 +295,7 @@ sub generate_day {
 sub generate_plates {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'plates_roll'} = d(100) if ( !defined $world->{'plates_roll'} );
 
     my $plates = roll_from_array( $world->{'plates_roll'}, $world_data->{'plates'}->{'option'} );
@@ -317,7 +318,7 @@ sub generate_plates {
 sub generate_surface {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
     $world->{'surface_roll'} = d(100) if ( !defined $world->{'surface_roll'} );
 
     my $surface = roll_from_array( $world->{'surface_roll'}, $world_data->{'surface'}->{'option'} );
@@ -327,7 +328,7 @@ sub generate_surface {
 
     # Calculated values
     $world->{'radius'} = int sqrt( $world->{'surface'} / ( 4 * pi ) ) if ( !defined $world->{'radius'} );
-    $world->{'circumfrence'} = int( pi * $world->{'radius'} * 2 );
+    $world->{'circumference'} = int( pi * $world->{'radius'} * 2 );
 
 
     return $world;
@@ -346,7 +347,7 @@ sub generate_surface {
 sub generate_surfacewater {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
 
     $world->{'surfacewater_percent'} = d(100) if ( !defined $world->{'surfacewater_percent'} );
@@ -371,7 +372,7 @@ sub generate_freshwater {
     my ($world) = @_;
 
     # adding +1 so it doesn't match surface water exactly...
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
 
     $world->{'freshwater_percent'} = d(100) if ( !defined $world->{'freshwater_percent'} );
@@ -394,7 +395,7 @@ sub generate_freshwater {
 sub generate_civilization {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
 
     $world->{'civilization_percent'} = d(100) if ( !defined $world->{'civilization_percent'} );
@@ -419,7 +420,7 @@ sub generate_civilization {
 sub generate_smallstorms {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
 
     $world->{'smallstorms_percent'} = d(100) if ( !defined $world->{'smallstorms_percent'} );
@@ -443,7 +444,7 @@ sub generate_smallstorms {
 sub generate_precipitation {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
 
     $world->{'precipitation_percent'} = d(100) if ( !defined $world->{'precipitation_percent'} );
@@ -467,7 +468,7 @@ sub generate_precipitation {
 sub generate_clouds {
     my ($world) = @_;
 
-    set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
+    GenericGenerator::set_seed( $world->{'seed'} + length( ( caller(0) )[3] ) );
 
     $world->{'clouds_percent'} = d(100) if ( !defined $world->{'clouds_percent'} );
     $world->{'clouds_description'}
@@ -490,7 +491,7 @@ sub generate_clouds {
 sub generate_astronomy {
     my ($world) = @_;
 
-    $world->{'astronomy'} = AstronomyGenerator::create_astronomy( { 'seed' => $world->{'seed'} } )
+    $world->{'astronomy'} = AstronomyGenerator::create( { 'seed' => $world->{'seed'} } )
         if ( !defined $world->{'astronomy'} );
 
     return $world;

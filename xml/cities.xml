@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data>
+    <size>
+        <option size="settlement"              max="10"  size_modifier="-5"   minpop="25"     maxpop="100"   min_density="10"  max_density="400"   gplimit="100"/>
+        <option size="hamlet"        min="11"  max="30"  size_modifier="-4"   minpop="101"    maxpop="500"   min_density="20"  max_density="2000"  gplimit="500"/>
+        <option size="small village" min="31"  max="35"  size_modifier="-3"   minpop="501"    maxpop="600"   min_density="30"  max_density="2400"  gplimit="600"/>
+        <option size="village"       min="36"  max="40"  size_modifier="-2"   minpop="601"    maxpop="750"   min_density="60"  max_density="3000"  gplimit="750"/>
+        <option size="large village" min="41"  max="45"  size_modifier="-1"   minpop="751"    maxpop="1000"  min_density="75"  max_density="4000"  gplimit="1000"/>
+        <option size="small town"    min="46"  max="60"  size_modifier="0"    minpop="1001"   maxpop="1500"  min_density="90"  max_density="6000"  gplimit="1500"/>
+        <option size="town"          min="61"  max="70"  size_modifier="1"    minpop="1501"   maxpop="3500"  min_density="100" max_density="9000"  gplimit="3500"/>
+        <option size="large town"    min="71"  max="80"  size_modifier="2"    minpop="3501"   maxpop="5000"  min_density="110" max_density="10000" gplimit="5000"/>
+        <option size="small city"    min="81"  max="85"  size_modifier="4"    minpop="5001"   maxpop="8000"  min_density="150" max_density="15000" gplimit="8000"/>
+        <option size="city"          min="86"  max="90"  size_modifier="6"    minpop="8001"   maxpop="15000" min_density="180" max_density="22000" gplimit="15000"/>
+        <option size="large city"    min="91"  max="94"  size_modifier="8"    minpop="15001"  maxpop="22000" min_density="200" max_density="28000" gplimit="22000"/>
+        <option size="metropolis"    min="95"  max="99"  size_modifier="10"   minpop="22001"  maxpop="30000" min_density="220" max_density="30000" gplimit="30000"/>
+        <option size="capitol"       min="100"           size_modifier="12"   minpop="30001"  maxpop="80000" min_density="240" max_density="40000" gplimit="50000"/>
+    </size>
+
+    <stats>
+        <happiness>
+            <option          max='10' >despair</option>
+            <option min='11' max='20' >miserable</option>
+            <option min='21' max='30' >disappointed</option>
+            <option min='31' max='40' >bored</option>
+            <option min='41' max='60' >content</option>
+            <option min='61' max='70' >good</option>
+            <option min='71' max='80' >happy</option>
+            <option min='81' max='90' >overjoyed</option>
+            <option min='91'          >estatic</option>
+        </happiness>
+        <health>
+            <option          max='10' >diseased</option>
+            <option min='11' max='20' >sickly</option>
+            <option min='21' max='30' >ailing</option>
+            <option min='31' max='40' >feeble</option>
+            <option min='41' max='60' >able-bodied</option>
+            <option min='61' max='70' >healthy</option>
+            <option min='71' max='80' >hardy</option>
+            <option min='81' max='90' >sturdy</option>
+            <option min='91'          >vigorous</option>
+        </health>
+        <terrain>
+            <option          max='10' >flat</option>
+            <option min='11' max='20' >even</option>
+            <option min='21' max='30' >rolling</option>
+            <option min='31' max='40' >hilly</option>
+            <option min='41' max='60' >uneven</option>
+            <option min='61' max='70' >rough</option>
+            <option min='71' max='80' >rugged</option>
+            <option min='81' max='90' >broken</option>
+            <option min='91'          >jagged</option>
+        </terrain>
+        <age>
+            <option          max='10' >young</option>
+            <option min='11' max='20' >youthful</option>
+            <option min='21' max='30' >new</option>
+            <option min='31' max='40' >established</option>
+            <option min='41' max='60' >modern</option>
+            <option min='61' max='70' >mature</option>
+            <option min='71' max='80' >old</option>
+            <option min='81' max='90' >elderly</option>
+            <option min='91'          >ancient</option>
+        </age>
+        <pollution>
+            <option          max='10' >pristine</option>
+            <option min='11' max='20' >sterile</option>
+            <option min='21' max='30' >clean</option>
+            <option min='31' max='40' >tidy</option>
+            <option min='41' max='60' >disheveled</option>
+            <option min='61' max='70' >grungy</option>
+            <option min='71' max='80' >poluted</option>
+            <option min='81' max='90' >filthy</option>
+            <option min='91'          >squalid</option>
+        </pollution>
+        <moral>
+            <option          max="4"  >untrustworthy</option>
+            <option min="5"  max="8"  >mean</option>
+            <option min="9"  max="12" >venomous</option>
+            <option min="13" max="16" >corrupt</option>
+            <option min="17" max="20" >repungent</option>
+            <option min="21" max="24" >unpleasant</option>
+            <option min="25" max="28" >opportunistic</option>
+            <option min="29" max="32" >villianous</option>
+            <option min="33" max="36" >nefarious</option>
+    
+            <option min="37" max="40" >cold</option>
+            <option min="41" max="45" >unconcerned</option>
+            <option min="46" max="50" >undecided</option>
+            <option min="51" max="55" >uncomitted</option>
+            <option min="56" max="60" >indifferent</option>
+            <option min="61" max="65" >indifferent</option>
+    
+            <option min="66" max="70" >well meaning</option>
+            <option min="71" max="75" >trustworty</option>
+            <option min="76" max="80" >nice</option>
+            <option min="81" max="85" >ethical</option>
+            <option min="86" max="90" >honest</option>
+            <option min="91" max="95" >praise-worthy</option>
+            <option min="96"          >virtuous</option>
+
+        </moral>
+        
+        <order>
+            <option          max="5"  >unreliable</option>
+            <option min="6"  max="10" >irresponsible</option>
+            <option min="11" max="15" >questionable</option>
+            <option min="16" max="20" >unpredictable</option>
+            <option min="21" max="25" >deranged</option>
+            <option min="26" max="30" >incoherent</option>
+            <option min="31" max="35" >vague</option>
+    
+            <option min="36" max="40" >bystanding</option>
+            <option min="41" max="45" >detached</option>
+            <option min="46" max="50" >non-participating</option>
+            <option min="51" max="55" >non-conformist</option>
+            <option min="56" max="60" >unflappable</option>
+    
+            <option min="61" max="65" >reliable</option>
+            <option min="66" max="70" >dependable</option>
+            <option min="71" max="75" >sure</option>
+            <option min="76" max="80" >legitimized</option>
+            <option min="81" max="85" >organized</option>
+            <option min="86" max="90" >dutiful</option>
+            <option min="91"          >honorable</option>
+        </order>
+
+        <tolerance>
+            <option          max="20" >despise</option>
+            <option min="21" max="30" >hate</option>
+            <option min="31" max="40" >are critical of</option>
+            <option min="41" max="50" >ignore</option>
+            <option min="51" max="60" >are neutral towards</option>
+            <option min="61" max="70" >are accepting of</option>
+            <option min="71" max="80" >accept</option>
+            <option min="81"          >love</option>
+        </tolerance>
+        <economy>
+            <option          max="6"  >crumbling</option>
+            <option min="7"  max="12" >failing</option>
+            <option min="13" max="18"  >uncertain</option>
+            <option min="19" max="24" >shaky</option>
+            <option min="25" max="30" >weak</option>
+
+            <option min="31" max="36" >calm</option>
+            <option min="37" max="42" >stable</option>
+            <option min="43" max="48" >insulated</option>
+            <option min="49" max="54" >unwavering</option>
+            <option min="55" max="60" >steady</option>
+            <option min="61" max="66" >steadfast</option>
+
+            <option min="67" max="72" >good</option>
+            <option min="73" max="78" >healthy</option>
+            <option min="79" max="84" >flourishing</option>
+            <option min="85" max="90" >growing</option>
+            <option min="91" max="96" >vibrant</option>
+            <option min="97"          >lively</option>
+        </economy>
+        <military>
+            <option          max="20" >negative</option>
+            <option min="21" max="30" >disinterested</option>
+
+            <option min="31" max="50" >neutral</option>
+            <option min="51" max="70" >laid back</option>
+
+            <option min="71" max="80" >positive</option>
+            <option min="81"          >reverent</option>
+        </military>
+        <magic>
+            <option          max="10" >unwelcome</option>
+            <option min="11" max="20" >rarely used</option>
+            <option min="21" max="30" >rare</option>
+    
+            <option min="31" max="40" >rare but accepted</option>
+            <option min="41" max="50" >instutionalized</option>
+            <option min="51" max="60" >allowed</option>
+            <option min="61" max="70" >accepted</option>
+    
+            <option min="71" max="80" >plentiful</option>
+            <option min="81" max="90" >flourishing</option>
+            <option min="91"          >growing</option>
+        </magic>
+        <education>
+            <option          max="8"  >mocked</option>
+            <option min="9"  max="16" >poor</option>
+            <option min="17" max="24" >low</option>
+            <option min="25" max="32" >rare</option>
+
+            <option min="33" max="40" >middling</option>
+            <option min="41" max="48" >mediocre</option>
+            <option min="49" max="56" >allowed, but not enforced</option>
+            <option min="57" max="64" >instutionalized</option>
+
+            <option min="65" max="72" >enforced</option>
+            <option min="73" max="80" >high</option>
+            <option min="81" max="88" >expected</option>
+            <option min="89" max="96" >growing</option>
+            <option min="97"          >wonderful</option>
+        </education>
+
+        <authority>
+            <option          max="20" >ignores</option>
+            <option min="21" max="30" >is neutral towards</option>
+    
+            <option min="31" max="50" >is chaotic</option>
+            <option min="51" max="70" >is a mess</option>
+    
+            <option min="71" max="80" >is very strict</option>
+            <option min="81"          >is very authoritarian</option>
+        </authority>
+        <crime>
+            <option           max="10">rampant</option>
+            <option min="11"  max="30">common</option>
+            <option min="31"  max="50">occasional</option>
+            <option min="51"  max="70">unusual</option>
+            <option min="71"  max="90">rare</option>
+            <option min="91"          >unheard of</option>
+        </crime>
+
+
+    </stats>
+    <feature>
+        <cityshape><!--The densly populated town proper is a circular 0.58 hectare region.-->
+            <option>circular</option>
+            <option>oval</option>
+            <option>square</option>
+            <option>rectangular</option>
+            <option>hexagonal</option>
+            <option>octagonal</option>
+        </cityshape>
+    </feature>
+
+
+    <poptype>
+        <option          max="60">normal</option>
+        <option min="61" max="80">mixed</option>
+        <option min="81"         >monster</option>
+    </poptype>
+
+    <streets>
+        <title>rough</title>
+        <title>broken</title>
+        <title>pristine</title>
+        <title>irregular</title>
+        <title>smooth</title>
+        <title>bumpy</title>
+        <title>crude</title>
+        <title>even</title>
+        <title>well-maintained</title>
+        <title>filthy</title>
+        <title>muddy</title>
+        <root>dirt roads</root>
+        <root>dirt tracks</root>
+        <root>cobblestone streets</root>
+        <root>cobblestone paths</root>
+        <trailer>in a grid pattern</trailer>
+        <trailer>in a ray pattern</trailer>
+        <trailer>in a contour-forming pattern</trailer>
+        <trailer>in an irregular pattern</trailer>
+        <trailer>in a random mesh pattern</trailer>
+        <trailer>in an organic pattern</trailer>
+        <trailer>in a fragmented parallel pattern</trailer>
+        <trailer>in a looped pattern</trailer>
+        <trailer>in a warped parallel pattern</trailer>
+        <trailer>in a linear pattern</trailer>
+        <trailer>in a wheel and spoke pattern</trailer>
+    </streets>
+    <popdensity>
+        <option          max="20" type="sparsely"   />
+        <option min="21" max="40" type="lightly"    />
+        <option min="41" max="60" type="nominally"  />
+        <option min="61" max="80" type="moderately" />
+        <option min="81"          type="densely"    />
+    </popdensity>
+
+    <arable>
+        <option type="poor"     min='1' max='33'>desolate</option>
+        <option type="neutral"  min='34' max='66'>modest</option>
+        <option type="rich"     min='67' >fertile</option>
+    </arable>
+    
+    <dominance chance='30'>
+        <option          max="20" >snobbish</option>
+        <option min="21" max="40" >mean</option>
+        <option min="41" max="60" >cruel</option>
+        <option min="61" max="80" >very oppressive</option>
+        <option min="81"          >brutally oppressive</option>
+    </dominance>
+
+
+</data>

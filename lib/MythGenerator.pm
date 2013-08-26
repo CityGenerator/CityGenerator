@@ -7,10 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_myth);
 
-
-#TODO make generate_name method for use with namegenerator
 
 ###############################################################################
 
@@ -21,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use MythGenerator;
-    my $myth=MythGenerator::create_myth();
+    my $myth=MythGenerator::create();
 
 =cut
 
@@ -32,14 +29,14 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
-use NPCGenerator;
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -63,9 +60,9 @@ The following datafiles are used by MythGenerator.pm:
 =cut
 
 ###############################################################################
-# FIXME This needs to stop using our
-my $xml_data       = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
-my $mythnames_data = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => ['option'] );
+
+my $xml_data        = $xml->XMLin( "xml/data.xml",  ForceContent => 1, ForceArray => ['option'] );
+my $mythnames_data  = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
 
@@ -73,8 +70,7 @@ my $mythnames_data = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArray
 
 The following methods are used to create the core of the myth structure.
 
-
-=head3 create_myth()
+=head3 create()
 
 This method is used to create a simple myth with nothing more than:
 
@@ -82,14 +78,12 @@ This method is used to create a simple myth with nothing more than:
 
 =item * a seed
 
-=item * a name
-
 =back
 
 =cut
 
 ###############################################################################
-sub create_myth {
+sub create {
     my ($params) = @_;
     my $myth = {};
 
@@ -100,14 +94,14 @@ sub create_myth {
     }
 
     if ( !defined $myth->{'seed'} ) {
-        $myth->{'seed'} = set_seed();
+        $myth->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $myth->{'seed'} );
 
     return $myth;
-} ## end sub create_myth
+}
 
 
-#Generate Myths
 
 
 1;

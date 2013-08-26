@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<region post_chance='30' title_chance='22'>
+<data post_chance='30' title_chance='22'>
     <title>Eastern</title>
     <title>Central</title>
     <title>Greater</title>
@@ -81,5 +81,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trailer>Region</trailer>
     <trailer>Territory</trailer>
 
-</region>
+</data>
 

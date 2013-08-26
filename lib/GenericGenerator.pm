@@ -7,8 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object seed);
-
+@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features generate_stats);
 ###############################################################################
 
 =head1 NAME
@@ -24,12 +23,14 @@ use base qw(Exporter);
 
 ###############################################################################
 
+#TODO Idea, stat_multiplier($ds,'stat') returns a 0.5 to 1.5 multiplier based on the stat
 #TODO add a bound function- bound(1,100,$val)
 use Carp;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
+use Template;
 use version;
 use Carp qw(longmess);
 ###############################################################################
@@ -109,8 +110,7 @@ Select a random item from an array.
 sub rand_from_array {
     my ($array) = @_;
     if ( ref $array ne 'ARRAY' ) {
-        print STDERR longmess();
-        croak "you passed in something that wasn't an array reference. @!";
+        croak "you passed in something that wasn't an array reference. @!".longmess();
     }
     return $array->[ rand @$array ];
 }
@@ -252,6 +252,104 @@ sub parse_object {
     return $newobj;
 }
 
+
+###############################################################################
+
+=head2 generate_stats()
+
+generate the stats and their descriptions from the xml
+
+=cut
+
+###############################################################################
+sub generate_stats {
+    my ($ds, $xml) = @_;
+
+    #Loop through each tag underneath stats- it's important that <stat> does NOT have any attributes
+    foreach my $statname (keys %{ $xml->{'stats'} } ){
+        #Simplify the reference for reading pleasure.
+        my $stat=$xml->{'stats'}->{$statname};
+
+        # select one of the stats options.
+        $ds->{'stats'}->{$statname}=d(100) if (!defined $ds->{'stats'}->{$statname} );
+        my $statoption= roll_from_array($ds->{'stats'}->{$statname}, $stat->{'option'});
+        $ds->{$statname."_description"}= $statoption->{'content'} if (!defined $ds->{$statname."_description"});
+    }
+    return $ds;
+}
+
+
+
+###############################################################################
+
+=head2 select_features()
+
+Set the given features from the xml
+
+=cut
+
+###############################################################################
+sub select_features {
+    my ($ds, $xml) = @_;
+    # ds means datastructure. nice and generic.
+
+    #Loop through each tag underneath feature- it's important that <feature> does NOT have any attributes
+    foreach my $featurename (keys %{ $xml->{'feature'} } ){
+
+        #Simplify the reference for reading pleasure.
+        my $feature=$xml->{'feature'}->{$featurename};
+        # select one of the feature's options.
+        my $featureoption= rand_from_array($feature->{'option'});
+
+        #if this feature has a chance attribute, create a feature_roll
+        if (defined $feature->{'chance'} ){
+            $ds->{$featurename."_roll"} = d(100) if (!defined $ds->{$featurename."_roll"}); 
+        }
+        # if no chance is defined or our roll is less than the chance, add this feature to the datastructure
+        if (!defined $feature->{'chance'} || $ds->{$featurename."_roll"} <= $feature->{'chance'} ){
+            # If the feature isn't already defined, assign the content.
+            $ds->{$featurename}= $featureoption->{'content'} if (!defined $ds->{$featurename});
+
+            # If this featureoption has a type, assign it as well if we don't already have one.
+            if (defined $featureoption->{'type'}){
+                $ds->{$featurename."_type"} = $featureoption->{'type'}  if (!defined $ds->{$featurename."_type"}); 
+            }
+        }
+    }
+    return $ds;
+}
+
+
+###############################################################################
+
+=head2 parse_template()
+
+parse a structures template and fill it with it's bretheren.
+
+=cut
+
+###############################################################################
+sub parse_template{
+    my ($ds, $tmplname)=@_;
+
+    if (!defined $tmplname){
+        $tmplname='template';
+    }
+
+    my $tt_obj = Template->new();
+    my $content="";
+    my $tmpl="$ds->{$tmplname}";
+    my $template=$ds->{'template'};
+
+    $tt_obj->process(\$tmpl, $ds, \$content ) || die "Template bad? $tmpl\n$tt_obj->error()";
+    
+    #NOTE because of the way process() runs, 'template' is wiped out.
+    # while tmplname may be 'template', we need to set it twice in case it's not. Fugly, I know.
+    $ds->{'template'}=$template;
+    $ds->{$tmplname}=$content;
+
+    return $ds;
+}
 
 1;
 

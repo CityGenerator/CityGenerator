@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<star post_chance='30' title_chance='10'>
+<data post_chance='30' title_chance='10'>
     <pre>Mo</pre>
     <pre>Dei</pre>
     <pre>Pho</pre>
@@ -42,5 +42,5 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <post>pso</post>
     <post>theus</post>
 
-</star>
+</data>
 

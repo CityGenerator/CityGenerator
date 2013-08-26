@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_govt);
 #FIXME TODO add a stat for Government Size
 ###############################################################################
 
@@ -18,7 +17,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use GovtGenerator;
-    my $govt=GovtGenerator::create_govt();
+    my $govt=GovtGenerator::create();
 
 =cut
 
@@ -29,7 +28,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -37,6 +36,7 @@ use version;
 use XML::Simple;
 
 my $xml = XML::Simple->new();
+local $ENV{XML_SIMPLE_PREFERRED_PARSER} = 'XML::Parser';
 
 ###############################################################################
 
@@ -71,7 +71,7 @@ my $govt_data = $xml->XMLin( "xml/govts.xml", ForceContent => 1, ForceArray => [
 The following methods are used to create the core of the govt structure.
 
 
-=head3 create_govt()
+=head3 create()
 
 This method is used to create a simple govt with nothing more than:
 
@@ -86,7 +86,7 @@ This method is used to create a simple govt with nothing more than:
 =cut
 
 ###############################################################################
-sub create_govt {
+sub create {
     my ($params) = @_;
     my $govt = {};
 
@@ -97,40 +97,21 @@ sub create_govt {
     }
 
     if ( !defined $govt->{'seed'} ) {
-        $govt->{'seed'} = set_seed();
+        $govt->{'seed'} = GenericGenerator::set_seed();
     }
-    generate_stats($govt);
+    GenericGenerator::set_seed( $govt->{'seed'} );
+
+    GenericGenerator::generate_stats($govt, $govt_data);
+    GenericGenerator::select_features($govt, $govt_data);
+
     set_govt_type($govt);
     generate_leader($govt);
 
     #    set_secondary_power($govt);
     #    set_reputation($govt);
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
-###############################################################################
-
-
-=head3 generate_stats()
-
-This method is used to generate baseline stats
-
-=cut
-
-###############################################################################
-sub generate_stats {
-    my ($govt) = @_;
-    GenericGenerator::set_seed( $govt->{'seed'} );
-    foreach my $stat (qw( corruption approval efficiency influence unity theology )) {
-        $govt->{'stats'}->{$stat} = d(100) if ( !defined $govt->{'stats'}->{$stat} );
-        $govt->{ $stat . "_description" }
-            = roll_from_array( $govt->{'stats'}->{$stat}, $govt_data->{$stat}->{'option'} )->{'content'}
-            if ( !defined $govt->{ $stat . "_description" } );
-    }
-    $govt->{'influencereason'} = rand_from_array( $govt_data->{'influencereason'}->{'option'} )->{'content'}
-        if ( !defined $govt->{"influencereason"} );
-    return $govt;
-} ## end sub create_govt
 
 ###############################################################################
 
@@ -145,23 +126,15 @@ This method is used to generate a leader for the government
 sub generate_leader {
     my ($govt) = @_;
 
-    $govt->{'leader'} = NPCGenerator::create_npc( { 'seed' => $govt->{'seed'} } );
+    $govt->{'leader'} = NPCGenerator::create( { 'seed' => $govt->{'seed'} } ) if (!defined $govt->{'leader'});
 
-    $govt->{'leader'}->{'right'} = rand_from_array( $govt_data->{'right'}->{'option'} )->{'content'}
-        if ( !defined $govt->{'leader'}->{'right'} );
-    $govt->{'leader'}->{'reputation'} = rand_from_array( $govt_data->{'reputation'}->{'option'} )->{'content'}
-        if ( !defined $govt->{'leader'}->{'reputation'} );
-    $govt->{'leader'}->{'length'} = rand_from_array( $govt_data->{'length'}->{'option'} )->{'content'}
-        if ( !defined $govt->{'leader'}->{'length'} );
-    $govt->{'leader'}->{'opposition'} = rand_from_array( $govt_data->{'opposition'}->{'option'} )->{'content'}
-        if ( !defined $govt->{'leader'}->{'opposition'} );
-    $govt->{'leader'}->{'maintained'} = rand_from_array( $govt_data->{'maintained'}->{'option'} )->{'content'}
-        if ( !defined $govt->{'leader'}->{'maintained'} );
 
-    $govt->{'leader'}->{'title'} = $govt->{'title'}->{'male'} if ( !defined $govt->{'leader'}->{'title'} );
+    $govt->{'leader'}->{'title'} = $govt->{'title'}->{'male'};
+    #FIXME this should handle female titles as well
+    
 
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
 ###############################################################################
 
@@ -184,7 +157,7 @@ sub set_govt_type {
 
 
     return $govt;
-} ## end sub create_govt
+} ## end sub create
 
 
 1;
