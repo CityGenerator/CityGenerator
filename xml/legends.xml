@@ -2,10 +2,227 @@
 <data>
     <feature>
         <template>
-            <option>[%storytime%], [%chumps%] of [%location.name%] [%goodstart%]. Things were [%goodstatus%], but one day [%badguy %] [%badaction%]. [%chumps FILTER ucfirst%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%npc.firstname%] had [%plan%] [%planaction%]. When [%npc.name%] faced the [%badtype%], [%npc.name%] [%results%][%victory%]. That day, [%chumps%] learned the value of [%virtue%].</option>
-<!--            <option>Legend says that [%storytime%], a [%person or critter%]</option> -->
-        </template>
+            <option>[% USE infl = Lingua.EN.Inflect; -%]Legends tell of [%npc.firstnames%] [%object FILTER ucfirst%], [%infl.A(reputation)%] [%object%] with the [%abilitytype%] to [%ability%].  It  [%lastseen%].</option>
+            <option>[%storytime%], [%chumps%] of [%location.name%] [%goodstart%]. Things were [%goodstatus%], but one day [%badguy %] [%badaction%]. [%chumps FILTER ucfirst%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%npc.firstname%] had [%plan%] [%planaction%]. When [%npc.name%] faced the [%badtype%], [%npc.name%] [%results%][%victory%].</option>
+            <option>[% USE infl = Lingua.EN.Inflect; -%][%storytime%], [% infl.A( badtype) %] named [%villain.firstname%] [%wander%] the [%area%][%when%][%drawn%]. [%who%] say that if you [%detect%] [%villain.objectivepronoun%], you [%horriblefate%][%stopit%].</option>
+            <option>[% USE infl = Lingua.EN.Inflect; -%][%storytime%], [%  infl.A( imaginarymonster )%] [%wander%] the [%area%][%when%][%drawn%]. [%who%] say that the [%imaginarymonster%] will [%baityou%], then [%trapyou%].</option>
+<!--
 
+-->
+<!--            <option>Legend says that [%storytime%], a [%person or critter%]</option> 
+
+Legends tell of a Pooka that haunts the city. They will try to trick you into coming outside, then carry you away.
+Legends tell of the children of Lir, who were turned into swans by a jealous stepmother,
+Legends tell of saint Patrick, who was kidnapped and sold as a slave as a child, and once freed spent his life converting others.
+Legends tell of a warrior named Finn Maccool. He caught a magic salmon and gained great knowledge from eating it.
+Legends tell of a lost city named Atlantis that was lost under the waves in a great cataclysm.
+Legends tell of a god named Loki, who played horrible jokes on people.
+Legends tell of an alley that appears and disappears and contains horrors within it.
+Legends tell of a bad place, where a scary monster does bad things and hoards treasure.
+Legends tell of an old woman who can grant your wish at a horrible price
+Legends tell of a woman who wanders the streets at night wearing a white dress and steals children who are still awake
+Legends tell of a ghost who haunts a place, and townsfolk do something to keep her at bay.
+Legends tell of a young woman who fell in love with someone, and bad things happened.
+Legends say that many years ago, something happened that was bad, and when the prophecy is complete it will happen again.
+Legends tell of a demon called a succubus that tricked men into siring children with them.
+Legends tell of a lost tribe of people that will one day return.
+Legends tell of a fountain of youth that has the power to make you younger. It is guarded by a serpent.
+Legends tell of a wandering jew who taunted jesus and was cursed to walk the earth forever.
+Legends tell of a the only female pope of the catholic church. She was killed.
+Legends tell of a hero named Robin Hood, who robbed from the rich and stole from the poor.
+Legends tell of a magical chalice that possed miraculous powers. It was lost long ago.
+Legends tell of a king long ago who united the lands.
+Legends tell of a king who made a declaration that worked out poorly and cost him dearly.
+Legends tell of a prince who was banished for something bad, then came back to redeem himself.
+Legends tell of two brothers who were raised by a wolf and did something amazing, like found a city.
+Legends tell of a small creature that slowly grew larger and eventually terrorized the countryside.
+Legends tell of a boy who met a unicorn and befriended it.
+Legends tell of a boy who saved a lion and it later saved him.
+Legends tell of a hero who rescued a damsel from a monster.
+Legends tell of a giant with the head of a bull that was trapped in a maze.
+Legends tell of a man who traveled to a dangerous place to rescue his wife and faced a monster.
+
+Legends tell of Dagda's harp, a magical item said to possess the power to make people cry. It was stolen and lost for the ages
+-->
+
+        </template>
+        <lastseen>
+            <option>was last seen years ago</option>
+            <option>disappeared after an attack by bandits</option>
+            <option>was stolen from a locked vault</option>
+            <option>has been lost for ages</option>
+            <option>mysteriously disappeared</option>
+            <option>was never recovered</option>
+            <option>hasn't reappeared in years</option>
+        </lastseen>
+        <ability>
+            <option>make people cry</option>
+            <option>cause others to fall asleep</option>
+            <option>dominate others</option>
+            <option>summon angels</option>
+            <option>summon demons</option>
+            <option>grant wishes</option>
+            <option>solve any riddle</option>
+            <option>answer any question</option>
+            <option>find any item</option>
+            <option>disappear on its own</option>
+            <option>speak for itself</option>
+            <option>make someone speak the truth</option>
+            <option>move on its own accord</option>
+        </ability>
+        <abilitytype>
+            <option>power</option>
+            <option>ability</option>
+            <option>capability</option>
+            <option>knack</option>
+        </abilitytype>
+        <reputation>
+            <option>legendary</option>
+            <option>magical</option>
+            <option>special</option>
+            <option>unique</option>
+            <option>cursed</option>
+            <option>possessed</option>
+        </reputation>
+
+        <object>
+            <option>harp</option>
+            <option>mirror</option>
+            <option>ring</option>
+            <option>rake</option>
+			<option>throne</option>
+			<option>crown</option>
+			<option>tiara</option>
+			<option>amulet</option>
+			<option>hat</option>
+			<option>bedpan</option>
+			<option>sceptre</option>
+			<option>trident</option>
+			<option>helmet</option>
+			<option>brooch</option>
+			<option>sandwich</option>
+			<option>lasso</option>
+			<option>quill</option>
+			<option>fiddle</option>
+			<option>goose</option>
+			<option>cat</option>
+			<option>painting</option>
+			<option>coin</option>
+			<option>key</option>
+			<option>cauldron</option>
+			<option>apple</option>
+			<option>beans</option>
+			<option>needle</option>
+			<option>shoes</option>
+			<option>rose</option>
+			<option>jug</option>
+			<option>deck of cards</option>
+			<option>bag of beans</option>
+        </object>
+
+        <baityou>
+            <option>sneeze three times</option>
+            <option>offer you sweets</option>
+            <option>ask for your help</option>
+            <option>ask a favor of you</option>
+        </baityou>
+        <trapyou>
+            <option>sell you into slavery</option>
+            <option>eat you</option>
+            <option>carry you away</option>
+            <option>imprison you</option>
+            <option>turn you into a mouse</option>
+            <option>give you a gift if you are nice</option>
+            <option>banish you if you are cruel</option>
+            <option>steal your soul</option>
+        </trapyou>
+        <imaginarymonster> <!-- I want to create a monster generator to feed this -->
+            <option>Pooka</option>
+            <option>witch</option>
+            <option>hag</option>
+            <option>Boogyman</option>
+            <option>old woman</option>
+            <option>old man</option>
+        </imaginarymonster>
+        <who>
+            <option>They</option>
+            <option>Some</option>
+            <option>Folks</option>
+            <option>Villagers</option>
+            <option>Commoners</option>
+            <option>People</option>
+        </who>
+        <wander>
+            <option>roamed</option>
+            <option>wandered</option>
+            <option>hunted</option>
+            <option>haunted</option>
+            <option>stalked</option>
+            <option>frequented</option>
+            <option>lingered in</option>
+        </wander>
+        <stopit chance="10">
+            <option> unless you flee</option>
+            <option> unless you complete a quest</option>
+            <option> unless you return a lost possession</option>
+            <option> unless you offer a sacrifice</option>
+            <option> unless you offer your most valued possession</option>
+            <option> unless you pay a tribute</option>
+            <option> unless you answer a riddle</option>
+        </stopit>
+        <drawn chance="30">
+            <option> and was drawn towards misbehaving children</option>
+            <option> and was drawn towards murderers</option>
+            <option> and was drawn towards those that have killed innocents</option>
+            <option> and was drawn towards thieves</option>
+            <option> and was drawn towards acts of greed</option>
+            <option> and was drawn towards those that wronged others</option>
+        </drawn>
+        <when chance="40">
+            <option> at dusk</option>
+            <option> on gloomy days</option>
+            <option> on rainy days</option>
+            <option> before dawn</option>
+            <option> once a year</option>
+            <option> every six years</option>
+            <option> during a full moon</option>
+            <option> during a red moon</option>
+            <option> when the moon is new</option>
+            <option> during the summer solstice</option>
+            <option> when the wind blows from the north</option>
+            <option> when the wind blows from the south</option>
+            <option> when the wind blows from the east</option>
+            <option> when the wind blows from the west</option>
+        </when>
+        <detect>
+            <option>hear</option>
+            <option>see</option>
+            <option>touch</option>
+            <option>face</option>
+            <option>caught</option>
+            <option>confront</option>
+        </detect>
+        <horriblefate>
+            <option>will be driven mad</option>
+            <option>will be killed</option>
+            <option>will be eaten alive</option>
+            <option>will die within 24 hours</option>
+            <option>will be stricken blind</option>
+            <option>will be stricken deaf</option>
+            <option>will never be seen again</option>
+        </horriblefate>
+        <area>
+            <option>countryside</option>
+            <option>town</option>
+            <option>world</option>
+            <option>woods</option>
+            <option>field</option>
+            <option>region</option>
+            <option>swamps</option>
+            <option>fields</option>
+            <option>streets</option>
+        </area>
+        
         <hero>
             <option>a hero named [%npc.name%]</option>
             <option>a [%npc.race%] named [%npc.name%]</option>
@@ -22,12 +239,15 @@
             <option>minotaur</option>
             <option>wizard</option>
             <option>monster</option>
+            <option>serial killer</option>
+            <option>murderer</option>
             <option>demon</option>
+            <option>devil</option>
             <option>cyclops</option>
             <option>ghoul</option>
+            <option>spirit</option>
             <option>lich</option>
             <option>vampire</option>
-            <option>witch</option>
         </badtype>
         <badaction>
             <option>destroyed a nearby village</option>
@@ -40,7 +260,7 @@
 
         <storytime>
             <option>Long, long ago</option>
-            <option>A long, long ago in a city far, far away</option>
+            <option>Long, long ago in a city far, far away</option>
             <option>A long time ago</option>
             <option>Many years ago</option>
             <option>Once upon a time</option>

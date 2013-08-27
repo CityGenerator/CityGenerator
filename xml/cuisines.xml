@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+    <method>
+        <option>candied</option>
+        <option>stewed</option>
+        <option>roasted</option>
+        <option>smothered</option>
+        <option>baked</option>
+        <option>fried</option>
+        <option>boiled</option>
+        <option>raw</option>
+        <option>garlic</option>
+        <option>spiced</option>
+        <option>blackened</option>
+        <option>spicy</option>
+        <option>steamed</option>
+        <option>poached</option>
+        <option>broiled</option>
+        <option>sauteed</option>
+        <option>simmered</option>
+        <option>braised</option>
+        <option>slow-cooked</option>
+        <option>charred</option>
+        <option>minced</option>
+    </method>
+    <dish>
+        <option>eggplant</option>
+        <option>fish</option>
+        <option>chicken</option>
+        <option>dog</option>
+        <option>seal</option>
+        <option>veggies</option>
+    </dish>
+</data>
