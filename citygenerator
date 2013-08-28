@@ -167,6 +167,7 @@ sub print_content {
         'travelerstext'     => PeopleFormatter::printTravelers($city),
 
         'economytext'       => EconomyFormatter::printSummary($city),
+        'currenciestext'    => EconomyFormatter::printCurrencies($city),
         'resourcestext'     => EconomyFormatter::printResources($city),
         'businessestext'    => EconomyFormatter::printBusinesses($city),
 

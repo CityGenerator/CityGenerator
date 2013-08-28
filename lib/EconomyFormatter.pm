@@ -51,7 +51,27 @@ sub printSummary {
     return $content;
 }
 
+###############################################################################
 
+=head2 printCurrencies()
+
+printCurrencies lists common currencies in the city
+
+=cut
+
+###############################################################################
+sub printCurrencies {
+    my ($city) = @_;
+    my $content = "The following currencies are common in $city->{'name'}:";
+    $content .= "<ul >";
+    $content .= "<li>" . $city->{'currencies'}->{'low'}->{'template'} . "</li>";
+    $content .= "<li>" . $city->{'currencies'}->{'med'}->{'template'} . " Worth 10 $city->{'currencies'}->{'low'}->{'name'}.</li>\n";
+    $content .= "<li>" . $city->{'currencies'}->{'high'}->{'template'} . " Worth 10 $city->{'currencies'}->{'med'}->{'name'}.</li>\n";
+    $content .= "</ul>";
+    $content .= "Adventurers may also find an old $city->{'currencies'}->{'old'}->{'name'}. $city->{'currencies'}->{'old'}->{'template'}\n";
+
+    return $content;
+}
 ###############################################################################
 
 =head2 printResources()

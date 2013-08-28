@@ -38,6 +38,7 @@ use TestLegendGenerator;
 
 use TestMagicItemGenerator;
 use TestMagicItemFormatter;
+use TestCurrencyGenerator;
 
 done_testing();
 
