@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data>
+    <stats>
+        <size>
+            <option          max="10" >tiny ( 18mm )</option>
+            <option min="11" max="30" >small ( 20mm )</option>
+            <option min="31" max="70" >medium ( 24mm )</option>
+            <option min="71" max="90" >large ( 30mm )</option>
+            <option min="91"          >giant (40mm )</option>
+        </size>
+        <value><!-- the Bon is a worthless ingot-->
+            <option          max="10" >worthless</option>
+            <option min="11" max="30" >low-value</option>
+            <option min="31" max="80" >moderate-value</option>
+            <option min="81" max="98" >high-value</option>
+            <option min="99"          >priceless</option>
+        </value>
+        <scope>
+            <option          max="5"  >the city</option>
+            <option min="6"  max="95" >the region</option>
+            <option min="96"          >the continent</option>
+        </scope>
+        <detail><!-- The level of detail on the Dorsh is -->
+            <option          max="5"  >crude</option>
+            <option min="6"  max="10" >rough</option>
+            <option min="11" max="15" >careless</option>
+            <option min="16" max="20" >lax</option>
+            <option min="21" max="25" >uncomplicated</option>
+            <option min="26" max="30" >precise</option>
+            <option min="31" max="40" >refined</option>
+            <option min="41" max="50" >exact</option>
+            <option min="51" max="60" >sophisticated</option>
+            <option min="61" max="70" >intricate</option>
+            <option min="71" max="80" >elaborate</option>
+            <option min="81" max="90" >meticulous</option>
+            <option min="91"          >unmistakable</option>
+        </detail>
+        <weight><!-- the   kole is _____ for its size.-->
+            <option          max="20" >lightweight</option>
+            <option min="21" max="80" >ideally weighted</option>
+            <option min="81"          >hefty</option>
+        </weight>
+    </stats>
+    <feature>
+        <material>
+            <option>wood</option>
+            <option>shell</option>
+            <option>copper</option>
+            <option>silver</option>
+            <option>electrum</option>
+            <option>gold</option>
+            <option>platinum</option>
+            <option>steel</option>
+        </material>
+        <shape><!--the Drachma is a triangular ingot minted by the regional authority-->
+            <option>triangular</option>
+            <option>square</option>
+            <option>pentagonal</option>
+            <option>hexagonal</option>
+            <option>circular</option>
+        </shape>
+        <edges chance="10">
+            <option>ridged</option>
+            <option>cornered</option>
+            <option>ringed</option>
+        </edges>
+    </feature>
+
+
+    <name pre_chance='30' post_chance='30'>
+        <pre>bo</pre>
+        <pre>de</pre>
+        <pre>no</pre>
+        <pre>quala</pre>
+        <pre>di</pre>
+        <pre>nomo</pre>
+        <pre>ban</pre>
+        <pre>hol</pre>
+        <pre>zin</pre>
+        <pre>sul</pre>
+        <pre>soo</pre>
+        <pre>su</pre>
+        <pre>nib</pre>
+        <pre>yua</pre>
+        <root>chet</root>
+        <root>nar</root>
+        <root>bon</root>
+        <root>kol</root>
+        <root>dol</root>
+        <root>mul</root>
+        <root>pon</root>
+        <root>quat</root>
+        <root>wan</root>
+        <root>lod</root>
+        <root>juk</root>
+        <root>zin</root>
+        <root>pen</root>
+        <root>shil</root>
+        <post>oni</post>
+        <post>olo</post>
+        <post>abbi</post>
+        <post>ish</post>
+        <post>lar</post>
+        <post>er</post>
+        <post>un</post>
+        <post>ny</post>
+        <post>nie</post>
+        <post>ett</post>
+        <post>ull</post>
+        <post>ack</post>
+        <post>ik</post>
+        <post>ing</post>
+        <post>ar</post>
+        <post>ma</post>
+        <post>na</post>
+        <post>re</post>
+        <post>ra</post>
+        <post>so</post>
+        <post>tre</post>
+        <post>pee</post>
+        <post>kel</post>
+    </name>
+</data>
+
