@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printCitizens printTravelers);
 
 ###############################################################################
 
@@ -31,6 +30,22 @@ use List::Util 'shuffle', 'min', 'max';
 use Lingua::EN::Inflect qw( A PL_N );
 use POSIX;
 use version;
+
+###############################################################################
+
+=head2 printSummary()
+
+printSummary strips out important info from a City object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printSummary {
+    my ($city) = @_;
+    my $content = "The people in $city->{'name'} $city->{'tolerance_description'} outsiders.";
+
+    return $content;
+}
 
 ###############################################################################
 
@@ -69,7 +84,7 @@ sub printCitizens {
                 .= "who is known in "
                 . $citizen->{'reputation_scope'}
                 . " as being "
-                . A( $citizen->{'skill'} )
+                . A( $citizen->{'skill_description'} )
                 . " $citizen->{'profession'}. \n";
             $content .= ucfirst( $citizen->{'pronoun'} ) . " appears " . $citizen->{'behavior'} . ". \n";
             $content .= "</li>";

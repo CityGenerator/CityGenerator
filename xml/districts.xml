@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<districts>
+<data>
     <option name="civic"        chance='12' stat="authority"/>
     <option name="embassy"      chance='5'  stat="travel" />
     <option name="wealthy"      chance='34' stat="economy" />
@@ -26,4 +26,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <option name="military"     chance='7'  stat="authority" />
     <option name="mercy"        chance='20' stat="tolerance" />
     <option name="port"         chance='0'  stat="travel" />
-</districts>
+</data>

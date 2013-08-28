@@ -3,12 +3,12 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-            <section id="postings">
-                <h2>Job Postings</h2>
-                You find the following job postings:
+            <section id="[%section%]">
+                <h2>[%sectionname%]</h2>
+                [%sectionintro%]
                 <ul>
-                [%  FOREACH posting IN postings %]
-                    <li>[% posting.content %]</li>
+                [%  FOREACH item IN items %]
+                    <li>[% item.template %]</li>
                 [%  END %]
                 </ul>
             </section>

@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printEvents printPostings);
 
 ###############################################################################
 
@@ -64,7 +63,7 @@ sub printPostings {
     my $content = "You'll find the following job postings:";
     $content .= "<ul class='twocolumn'> \n";
     foreach my $posting (@{ $city->{'postings'} } ){
-        $content.= "<li>".$posting->{'content'}."</li>\n";
+        $content.= "<li>".$posting->{'template'}."</li>\n";
     
     }    
 

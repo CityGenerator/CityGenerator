@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printSummary);
 
 ###############################################################################
 
@@ -48,8 +47,53 @@ printSummary strips out important info from a NPC object and returns formatted t
 sub printSummary {
     my ($npc) = @_;
     my $content = "";
-    $content.= "$npc->{'name'} is ".A($npc->{'behavior'})." $npc->{'race'} who is ".A($npc->{'skill'})." $npc->{'profession'} by trade. \n";
+    $content.= "$npc->{'name'} is ".A($npc->{'behavior'})." $npc->{'race'} who is ".A($npc->{'skill_description'})." $npc->{'profession'} by trade. \n";
     $content.= ucfirst($npc->{'pronoun'})." is currently $npc->{'motivation_description'}. \n";
+    return $content;
+}
+
+
+###############################################################################
+
+=head2 printDescription()
+
+Print a nice physical description of the NPC
+
+=cut
+
+###############################################################################
+sub printDescription {
+    my ($npc) = @_;
+    my $content = "";
+    $content.= "$npc->{'name'} is ".A($npc->{'height'})." $npc->{'race'} with ".A($npc->{'complexion'})." complexion. \n";
+    $content.= $npc->{'firstname'}." appears $npc->{'build'} and has $npc->{'eyes'} eyes. \n";
+    return $content;
+}
+
+
+
+
+
+
+###############################################################################
+
+=head2 printRacialBreakdown()
+
+printRacialBreakdown formats details about the races.
+
+=cut
+
+###############################################################################
+
+sub printData {
+    my ($npc) = @_;
+    my $content = "                    <h3>Vital Stats</h3>\n";
+    $content .= "                    <ul>\n";
+    foreach my $stat ( sort keys %{ $npc->{'stats'} } ) {
+        $content .= "                        <li>$stat: ".$npc->{$stat."_description"}."</li>\n"
+
+    }
+    $content .= "                    </ul>\n";
     return $content;
 }
 

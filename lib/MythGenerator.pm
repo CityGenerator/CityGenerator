@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_myth);
 
 
 ###############################################################################
@@ -19,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use MythGenerator;
-    my $myth=MythGenerator::create_myth();
+    my $myth=MythGenerator::create();
 
 =cut
 
@@ -71,7 +70,7 @@ my $mythnames_data  = $xml->XMLin( "xml/myths.xml", ForceContent => 1, ForceArra
 
 The following methods are used to create the core of the myth structure.
 
-=head3 create_myth()
+=head3 create()
 
 This method is used to create a simple myth with nothing more than:
 
@@ -84,7 +83,7 @@ This method is used to create a simple myth with nothing more than:
 =cut
 
 ###############################################################################
-sub create_myth {
+sub create {
     my ($params) = @_;
     my $myth = {};
 

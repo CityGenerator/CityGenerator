@@ -18,16 +18,16 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'test create_bond' => sub {
+subtest 'test create' => sub {
     my $bond;
-    $bond = BondGenerator::create_bond();
-    foreach my $value (qw( seed other template content ) ){
+    $bond = BondGenerator::create();
+    foreach my $value (qw( seed other template) ){
         isnt($bond->{$value}, undef, "ensure $value is set");
     }
 
-    like ($bond->{'content'}, "/you/i", "make sure you is interpolated.");
+    like ($bond->{'template'}, "/you/i", "make sure you is interpolated.");
     
-    $bond = BondGenerator::create_bond(
+    $bond = BondGenerator::create(
         {
             'seed'        => 12,
             'other'       => 'Zeus',
@@ -40,33 +40,32 @@ subtest 'test create_bond' => sub {
     );
     is( $bond->{'seed'},        12,                                   'ensure seed is set to 12' );
     is( $bond->{'other'},       'Zeus',                               'ensure other is set' );
-    is( $bond->{'template'},    'Dog and [% other %] show.',                'ensure other is set' );
     is( $bond->{'when_chance'},   1,                                    'ensure when_chance is set' );
     is( $bond->{'reason_chance'}, 1,                                    'ensure reason_chance is set' );
     is( $bond->{'when'},        'Silly',                              'ensure when is set' );
     is( $bond->{'reason'},      'Because.',                           'ensure reason is set' );
-    is( $bond->{'content'},     'Silly, Dog and Zeus show. Because.', 'ensure content is sane' );
+    is( $bond->{'template'},     'Silly, Dog and Zeus show. Because.', 'ensure template is sane' );
 
     done_testing();
 };
 subtest 'test select_reason' => sub {
     my $bond;
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what',});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what',});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>100});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>100});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
     is( $bond->{'reason_chance'}, '100', 'ensure reason_chance is set' );
     is( $bond->{'reason'}, undef, 'ensure reason is not set' );
 
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>1});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what', 'reason_chance'=>1});
 
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
     is( $bond->{'reason_chance'}, '1', 'ensure reason_chance is set' );
     isnt( $bond->{'reason'}, undef, 'ensure reason is set' );
 
-    $bond = BondGenerator::create_bond({'seed'=>1, 'reasontype'=>'what','reason_chance'=>1, 'reason'=>'because'});
+    $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what','reason_chance'=>1, 'reason'=>'because'});
     is( $bond->{'reasontype'}, 'what', 'ensure reasontype is set' );
 
     done_testing();

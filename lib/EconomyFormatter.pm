@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( printResources printBusinesses);
 
 ###############################################################################
 
@@ -35,6 +34,24 @@ use Number::Format;
 use POSIX;
 use version;
 
+
+###############################################################################
+
+=head2 printSummary()
+
+printSummary strips out important info from a City object and returns formatted text.
+
+=cut
+
+###############################################################################
+sub printSummary {
+    my ($city) = @_;
+    my $content = "The economy in $city->{'name'} is currently $city->{'economy_description'}.";
+
+    return $content;
+}
+
+
 ###############################################################################
 
 =head2 printResources()
@@ -49,9 +66,9 @@ sub printResources {
     my $content = "";
     if ( scalar( @{ $city->{'resources'} } ) > 0 ) {
         $content .= "<p>$city->{'name'} is known for the following resources:</p>\n";
-        $content .= "<ul class='threecolumn'>";
+        $content .= "<ul class='twocolumn'>";
         foreach my $resource ( @{ $city->{'resources'} } ) {
-            $content .= "<li>" . $resource->{'content'} . "</li>";
+            $content .= "<li>" . $resource->{'template'} . "</li>";
         }
 
         $content .= "</ul>";

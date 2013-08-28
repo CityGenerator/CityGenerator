@@ -4,7 +4,31 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<climate>
+<data>
+    <stats><!-- TODO replace these placeholder stat descriptions -->
+        <latitude>
+            <option          max='30' >equitorial</option>
+            <option min="31" max='80' >mid-latitude</option>
+            <option min="81"          >polar</option>
+        </latitude>
+        <continentality>
+            <option          max='30' >coastal</option>
+            <option min="31" max='80' >river access</option>
+            <option min="81"          >landlocked</option>
+        </continentality>
+        <altitude>
+            <option          max='30' >sea level</option>
+            <option min="31" max='80' >mid altitude</option>
+            <option min="81"          >high altitude</option>
+        </altitude>
+        <pressure>
+            <option          max='30' >low pressure</option>
+            <option min="31" max='80' >ambient pressure</option>
+            <option min="81"          >high pressure</option>
+        </pressure>
+
+    </stats>
+
     <biomes> <!-- This climate is a ____, which is characterized by ____.-->
         <option name='AF' type='Tropical Rainforest'        hex="#9cbba9" variation="-40" seasons="1" >constant high temperatures, continual rain year-round, and has minimal natural seasons</option>
         <option name='AM' type='Tropical Seasonal Forest'   hex="#a9cca4" variation="-20" seasons="2,3">constant high temperatures and seasonal torrential rains</option>
@@ -78,4 +102,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="81"          >clear</option>
     </cloudcover>    
 
-</climate>
+</data>

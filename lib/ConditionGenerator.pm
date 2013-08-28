@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_condition flesh_out_condition);
 
 ###############################################################################
 
@@ -18,7 +17,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ConditionGenerator;
-    my $condition=ConditionGenerator::create_condition();
+    my $condition=ConditionGenerator::create();
 
 =cut
 
@@ -31,7 +30,7 @@ use Data::Dumper;
 use Exporter;
 use Date::Format qw(time2str);
 use Date::Parse qw( str2time );
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
@@ -70,7 +69,7 @@ my $condition_data = $xml->XMLin( "xml/conditions.xml", ForceContent => 1, Force
 The following methods are used to create the core of the city structure.
 
 
-=head3 create_condition()
+=head3 create()
 
 This method is used to create a simple condition with nothing more than:
 
@@ -83,7 +82,7 @@ This method is used to create a simple condition with nothing more than:
 =cut
 
 ###############################################################################
-sub create_condition {
+sub create {
     my ($params) = @_;
     my $condition = {};
 
@@ -94,13 +93,15 @@ sub create_condition {
     }
 
     if ( !defined $condition->{'seed'} ) {
-        $condition->{'seed'} = set_seed();
+        $condition->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $condition->{'seed'} );
+
     $condition->{'original_seed'} = $condition->{'seed'};
     $condition->{'pop_mod'}       = {} if ( !defined $condition->{'pop_mod'} || ref $condition->{'pop_mod'} ne 'HASH' );
     $condition->{'bar_mod'}       = {} if ( !defined $condition->{'bar_mod'} || ref $condition->{'bar_mod'} ne 'HASH' );
     return $condition;
-} ## end sub create_condition
+} ## end sub create
 
 
 ###############################################################################
@@ -137,7 +138,7 @@ sub flesh_out_condition {
 sub set_time {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $timeobj = rand_from_array( $condition_data->{'time'}->{'option'} );
     $condition->{'time_description'} = $timeobj->{'content'} if ( !defined $condition->{'time_description'} );
@@ -164,7 +165,7 @@ sub set_time {
 sub set_temp {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $tempobj = rand_from_array( $condition_data->{'temp'}->{'option'} );
     $condition->{'temp_description'} = $tempobj->{'content'} if ( !defined $condition->{'temp_description'} );
@@ -186,7 +187,7 @@ sub set_temp {
 sub set_air {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $airobj = rand_from_array( $condition_data->{'air'}->{'option'} );
     $condition->{'air_description'} = $airobj->{'content'} if ( !defined $condition->{'air_description'} );
@@ -208,7 +209,7 @@ sub set_air {
 sub set_wind {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $windobj = rand_from_array( $condition_data->{'wind'}->{'option'} );
     $condition->{'wind_description'} = $windobj->{'content'} if ( !defined $condition->{'wind_description'} );
@@ -230,7 +231,7 @@ sub set_wind {
 sub set_forecast {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $forecastobj = rand_from_array( $condition_data->{'forecast'}->{'option'} );
     $condition->{'forecast_description'} = $forecastobj->{'content'}
@@ -251,7 +252,7 @@ sub set_forecast {
 sub set_clouds {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
 
     my $cloudsobj = rand_from_array( $condition_data->{'clouds'}->{'option'} );
     $condition->{'clouds_description'} = $cloudsobj->{'content'} if ( !defined $condition->{'clouds_description'} );
@@ -271,7 +272,7 @@ sub set_clouds {
 sub set_precip {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
     $condition->{'precip_chance'} = d(100) if ( !defined $condition->{'precip_chance'} );
 
     if ( $condition->{'precip_chance'} <= $condition_data->{'precip'}->{'chance'} ) {
@@ -303,26 +304,26 @@ sub set_precip {
 sub set_storm {
 
     my ($condition) = @_;
-    set_seed( $condition->{'seed'} );
+    GenericGenerator::set_seed( $condition->{'seed'} );
     $condition->{'storm_chance'} = d(100) if ( !defined $condition->{'storm_chance'} );
-    set_seed();
+    GenericGenerator::set_seed();
     if ( $condition->{'storm_chance'} <= $condition_data->{'storm'}->{'chance'} ) {
         my $stormobj = rand_from_array( $condition_data->{'storm'}->{'option'} );
         $condition->{'storm_description'} = $stormobj->{'content'} if ( !defined $condition->{'storm_description'} );
 
-        set_seed();
+        GenericGenerator::set_seed();
         $condition->{'thunder_chance'} = d(100) if ( !defined $condition->{'thunder_chance'} );
         if ( $condition->{'thunder_chance'} <= $condition_data->{'storm'}->{'thunder'}->{'chance'} ) {
-            set_seed();
+            GenericGenerator::set_seed();
             my $thunderobj = rand_from_array( $condition_data->{'storm'}->{'thunder'}->{'option'} );
             $condition->{'thunder_description'} = $thunderobj->{'content'}
                 if ( !defined $condition->{'thunder_description'} );
         }
 
-        set_seed();
+        GenericGenerator::set_seed();
         $condition->{'lightning_chance'} = d(100) if ( !defined $condition->{'lightning_chance'} );
         if ( $condition->{'lightning_chance'} <= $condition_data->{'storm'}->{'lightning'}->{'chance'} ) {
-            set_seed();
+            GenericGenerator::set_seed();
             my $lightningobj = rand_from_array( $condition_data->{'storm'}->{'lightning'}->{'option'} );
             $condition->{'lightning_description'} = $lightningobj->{'content'}
                 if ( !defined $condition->{'lightning_description'} );

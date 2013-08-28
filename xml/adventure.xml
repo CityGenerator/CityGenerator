@@ -4,7 +4,7 @@ CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a 
 Based on a work at https://github.com/morgajel/CityGenerator.
 -->
 
-<adventure>
+<data>
     <type>
 
         <option> investigate </option> <!-- investigate a rumor, some ruins, or an event  -->
@@ -23,4 +23,4 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <reason>
         <option>For a reward</option>
     </reason>
-</adventure>
+</data>

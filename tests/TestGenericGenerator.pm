@@ -294,12 +294,13 @@ subtest 'test select_features' => sub {
 
 subtest 'test parse_template' => sub {
 
-    my $ds={ 'template'=>'some [%adverb%] test', 'adverb'=>'quick' };
+    my $ds={ 'template'=>'wait what [%adverb%]', 'dogtoy'=>'some [%adverb%] test', 'adverb'=>'quick' };
+
+    GenericGenerator::parse_template($ds,'dogtoy');
+    is( $ds->{'dogtoy'},    'some quick test', 'ensure variables are parsing' );
 
     GenericGenerator::parse_template($ds);
-    is( $ds->{'content'},    'some quick test', 'ensure variables are parsing' );
-
-
+    is( $ds->{'template'},    'wait what quick', 'ensure variables are parsing' );
 
     $ds={ 'template'=>'Broken template [%adverb[1]%] ', 'adverb'=>'quick' };
 
@@ -309,6 +310,35 @@ subtest 'test parse_template' => sub {
     done_testing();
 };
 
+subtest 'test generate_stats' => sub {
+    my $ds={    };
+    my $xml={
+             'stats'=>{ 
+                        'age'=>{ 'option'=>[
+                                          {           'max'=>30, 'content'=>'foo'},
+                                          {'min'=>31, 'max'=>60, 'content'=>'fbar'},
+                                          {'min'=>61,            'content'=>'baz'},
+                                        ]
+                             },
+                        'str'=>{ 'option'=>[
+                                          {           'max'=>30, 'content'=>'foo'},
+                                          {'min'=>31, 'max'=>60, 'content'=>'fbar'},
+                                          {'min'=>61,            'content'=>'baz'},
+                                        ]
+                             }
+                }
+            };
+    GenericGenerator::generate_stats($ds,$xml);
+    foreach my $stat ( keys %{$xml->{'stats'}} ) {
+        ok($ds->{'stats'}->{$stat} >=1 &&$ds->{'stats'}->{$stat} <=100, "$ds->{'stats'}->{$stat} between 1-100 for $stat");
+        isnt($ds->{$stat."_description"}, undef,  $ds->{$stat."_description"}." between is text for $stat description");
+    }
+    $ds={'stats'=>{'age'=>99}, 'age_description'=>'qwe'};
+    GenericGenerator::generate_stats($ds,$xml);
+    is($ds->{'stats'}->{'age'},99, 'set a stat');
+    is($ds->{'age_description'},'qwe', 'set a stat description');
+    done_testing();
+};
 
 
 

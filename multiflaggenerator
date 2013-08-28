@@ -28,7 +28,7 @@ if (defined $q->param('seed')){
 my $flags;
 
 for (my $i=0 ; $i <40; $i++){
-    push @$flags, FlagGenerator::create_flag({seed=>($testcityid+$i ), 'symbol'=>{'name'=>'letter'}   });
+    push @$flags, FlagGenerator::create({seed=>($testcityid+$i ), 'symbol'=>{'name'=>'letter'}   });
 }
 
 

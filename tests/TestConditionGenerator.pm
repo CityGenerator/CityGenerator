@@ -17,21 +17,21 @@ use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
 @EXPORT_OK = qw( );
 
-subtest 'test create_condition' => sub {
+subtest 'test create' => sub {
     my $condition;
     GenericGenerator::set_seed(1);
-    $condition = ConditionGenerator::create_condition();
+    $condition = ConditionGenerator::create();
     is( $condition->{'seed'}, 41630 );
     is_deeply( $condition->{'pop_mod'}, {} );
     is_deeply( $condition->{'bar_mod'}, {} );
 
-    $condition = ConditionGenerator::create_condition(
+    $condition = ConditionGenerator::create(
         { 'seed' => 12345, 'pop_mod' => { 'foo' => 1 }, 'bar_mod' => { 'foo' => 1 } } );
     is( $condition->{'seed'}, 12345 );
     is_deeply( $condition->{'pop_mod'}, { 'foo' => 1 } );
     is_deeply( $condition->{'bar_mod'}, { 'foo' => 1 } );
 
-    $condition = ConditionGenerator::create_condition( { 'seed' => 12345, 'pop_mod' => [], 'bar_mod' => 1 } );
+    $condition = ConditionGenerator::create( { 'seed' => 12345, 'pop_mod' => [], 'bar_mod' => 1 } );
     is( $condition->{'seed'}, 12345 );
     is_deeply( $condition->{'pop_mod'}, {} );
     is_deeply( $condition->{'bar_mod'}, {} );
@@ -256,7 +256,7 @@ subtest 'test flesh_out_condition' => sub {
     my $condition;
 
     $condition = { 'seed' => 1 };
-    ConditionGenerator::create_condition($condition);
+    ConditionGenerator::create($condition);
     ConditionGenerator::flesh_out_condition($condition);
 
     is( $condition->{'storm_chance'}, 5 );

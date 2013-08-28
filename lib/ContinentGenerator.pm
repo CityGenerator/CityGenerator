@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_continent generate_continent_name);
 
 ###############################################################################
 
@@ -18,7 +17,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use ContinentGenerator;
-    my $continent=ContinentGenerator::create_continent();
+    my $continent=ContinentGenerator::create();
 
 =cut
 
@@ -28,7 +27,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
@@ -70,7 +69,7 @@ my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent =>
 The following methods are used to create the core of the continent structure.
 
 
-=head3 create_continent()
+=head3 create()
 
 This method is used to create a simple continent with nothing more than:
 
@@ -85,7 +84,7 @@ This method is used to create a simple continent with nothing more than:
 =cut
 
 ###############################################################################
-sub create_continent {
+sub create {
     my ($params) = @_;
     my $continent = {};
 
@@ -96,8 +95,9 @@ sub create_continent {
     }
 
     if ( !defined $continent->{'seed'} ) {
-        $continent->{'seed'} = set_seed();
+        $continent->{'seed'} = GenericGenerator::set_seed();
     }
+    GenericGenerator::set_seed( $continent->{'seed'} );
 
     # This knocks off the city IDs
     $continent->{'seed'} = $continent->{'seed'} - $continent->{'seed'} % 100;
@@ -105,7 +105,7 @@ sub create_continent {
     generate_continent_name($continent);
 
     return $continent;
-} ## end sub create_continent
+} ## end sub create
 
 
 ###############################################################################
@@ -119,7 +119,7 @@ sub create_continent {
 ###############################################################################
 sub generate_continent_name {
     my ($continent) = @_;
-    set_seed( $continent->{'seed'} );
+    GenericGenerator::set_seed( $continent->{'seed'} );
     my $nameobj = parse_object($continentnames_data);
     $continent->{'name'} = $nameobj->{'content'} if ( !defined $continent->{'name'} );
     return $continent;

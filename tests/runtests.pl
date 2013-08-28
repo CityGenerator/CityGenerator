@@ -5,10 +5,13 @@ use lib "lib/";
 use lib "tests/";
 use Test::More;
 
+use TestGenericGenerator;
+use TestCityGenerator;
+use TestNPCGenerator;
+
 use TestAdventureGenerator;
 use TestAstronomyGenerator;
 use TestCensusDataFormatter;
-use TestCityGenerator;
 use TestCityscapeFormatter;
 use TestClimateGenerator;
 use TestConditionGenerator;
@@ -17,12 +20,10 @@ use TestEnvironmentFormatter;
 use TestEventFormatter;
 use TestEventGenerator;
 use TestFlagGenerator;
-use TestGenericGenerator;
 use TestGovtFormatter;
 use TestGovtGenerator;
 use TestMilitaryGenerator;
 use TestMythGenerator;
-use TestNPCGenerator;
 use TestRegionGenerator;
 use TestSummaryFormatter;
 use TestWorldFormatter;
@@ -31,5 +32,12 @@ use TestEstablishmentGenerator;
 use TestBondGenerator;
 use TestExampleGenerator;
 use TestPostingGenerator;
+use TestRumorGenerator;
+use TestWantedPosterGenerator;
+use TestLegendGenerator;
+
+use TestMagicItemGenerator;
+use TestMagicItemFormatter;
+
 done_testing();
 

@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data>
+
+    <stats>
+        <value>
+            <option          max="25" >trivial magical item</option>
+            <option min="26" max="65" >minor magical item</option>
+            <option min="66" max="90" >medium magical item</option>
+            <option min="91" max="97" >major magical item</option>
+            <option min="98"          >artifact</option>
+        </value>
+        <repair><!-- Foo is a quality greatsword that is _______ -->
+            <option          max="20" >broken</option>
+            <option min="21" max="40" >in disrepair</option>
+            <option min="41" max="60" >functional</option>
+            <option min="61" max="80" >well maintained</option>
+            <option min="81"          >in pristine condition</option>
+        </repair>
+        <quality><!-- Foo is a ________ greatsword that is well maintained-->
+            <option          max="20" >shoddy</option>
+            <option min="21" max="40" >poor</option>
+            <option min="41" max="60" >average</option>
+            <option min="61" max="80" >good</option>
+            <option min="81"          >excellent</option>
+        </quality>
+    </stats>
+    <feature>
+        <location><!-- This ring can be found _________. -->
+	        <option>on a corpse</option>
+	        <option>in a chest</option>
+	        <option>in a crack in the wall</option>
+	        <option>forgotten on a shelf</option>
+	        <option>in a pile of refuse</option>
+	        <option>in a tomb</option>
+	        <option>in a nest</option>
+	        <option>as a prize</option>
+	        <option>as a reward</option>
+	        <option>in the possession of a sage</option>
+        </location>
+	    <item>
+	        <option>armor</option>
+	        <option>weapon</option>
+	        <option>potion</option>
+	        <option>scroll</option>
+	  <!--  <option>rings</option>
+	        <option>rods</option>
+	        <option>staves</option>
+	        <option>wands</option>
+	        <option>Wonderous Items</option>
+	-->
+	    </item>
+        <curse change="10">
+            <option type="bezerker">has a small chance of causing an uncontrolled rage</option>
+            <option type="narcolepsy">has a small chance of causing the user to drop unconscious when used</option>
+            <option type="fanatic">causes overzealous feelings towards a person, action or thing</option>
+            <option type="greed">causes the user to take unnecessary risks for treasure</option>
+            <option type="hubris">causes the user to overvalue their ability</option>
+            <option type="addiction">causes the user to use it at any opportunity</option>
+            <option type="penalty">causes user to perform poorly</option>
+            <option type="derp">causes the user to become noticably stupider to everyone but themselves</option>
+            <option type="yawning">causes uncontrollable, loud yawning</option>
+            <option type="submission">will randomly submit to an enemy</option>
+            <option type="lethargy">has a small chance of causing the user to deny participating in any physical action</option>
+            <option type="big spender">causes user to overcompensate when making purchases</option>
+            <option type="truthteller">cannot lie or bend the rules while in your possession</option>
+            <option type="precious">causes paranoia relating to theft of the item</option>
+            <option type="braddoro">preoccupation with juvenile jokes, which causes giggles</option>
+            <option type="karrius">causes an obnoxious preoccupation with random topics that no one cares about</option>
+            <option type="quint">causes user to randomly berate and threaten friends and colleagues</option>
+            <option type="ibiwan">cannot comprehend being wrong, even if it leads to death</option>
+            <option type="greenimposter">causes user to suddenly believe their are unqualified for whatever task is at hand</option>
+            <option type="mabdelnour">causes random shortness of breath</option>
+            <option type="trammelle">causes fits of rage when fingerprints are left on a glossy surface</option>
+            <option type="jamangai">causes user to feel compelled to one-up others</option>
+            <option type="phobic">causes irrational fear of something</option>
+            <option type="babbler">causes incessant, uncontrollable talking that becomes worse with stressful situations</option>
+        </curse>
+    </feature>
+    <!--alternative name and history.
+
+    Gothetenk's Axe - Once wielded/crafted created by the [class/race/profession] Gothetenk, this Axes
+    Axe of Gothetenk - 
+    Gothetenk's Chopper - 
+-->
+    <scroll>
+        <stats>
+            <strength>
+                <option          max="20" >weak</option>
+                <option min="21" max="40" >mediocre</option>
+                <option min="41" max="60" >moderate</option>
+                <option min="61" max="80" >strong</option>
+                <option min="81"          >powerful</option>
+            </strength>
+        </stats>
+        <feature>
+            <category>
+                <option type="daze">can daze an opponent for a few seconds</option>
+                <option type="identification">can identify other magical items</option>
+                <option type="shield">projects the user through a magical shield</option>
+                <option type="knocking">can unlock or unbolt any lock</option>
+                <option type="darkness">summons a region of magical darkness</option>
+            </category>
+            <content>
+                <option>scroll</option>
+            </content>
+            <material>
+                <option>papyrus</option>
+                <option>sheepskin</option>
+                <option>paper</option>
+                <option>parchment</option>
+                <option>vellum</option>
+            </material>
+            <decorations chance="10">
+                <option>cryptic writing</option>
+                <option>strange symbols</option>
+                <option>arcane symbols</option>
+                <option>divine symbols</option>
+            </decorations>
+            <label chance="30">
+                <option>illegible</option>
+                <option>clearly labeled</option>
+                <option>written in an uncommon language</option>
+                <option>ideogram</option>
+            </label>
+            <container>
+                <option>scroll case</option>
+                <option>folder</option>
+                <option>book</option>
+                <option>clay cannister</option>
+            </container>
+            <template>
+                <option>[%strength_description%] [%category_type%] [%content%]</option>
+                <option>[%strength_description%] [%content%] of [%category_type%]</option>
+            </template>
+        </feature>
+    </scroll>
+    <potion>
+        <stats>
+            <strength>
+                <option          max="20" >weak</option>
+                <option min="21" max="40" >mediocre</option>
+                <option min="41" max="60" >moderate</option>
+                <option min="61" max="80" >strong</option>
+                <option min="81"          >powerful</option>
+            </strength>
+        </stats>
+        <feature>
+            <category>
+                <option type="healing">can heal various wounds and ailments</option>
+                <option type="neutralize poison">can neutralize various poisons</option>
+                <option type="endure elements">increases resistance to the elements</option>
+                <option type="jumping">allows user to jump to amazing heights and distances</option>
+                <option type="remove fear">fortifies the user against the most terrifying foes</option>
+                <option type="blur">causes user to blur with movement</option>
+                <option type="flight">allows unassisted flight for a limited duration</option>
+                <option type="levitation">allows unassisted levitation for a limited duration</option>
+                <option type="haste">allows user to move with extreme speed</option>
+                <option type="respiration">allows user breathe in otherwise dangerous environments</option>
+            </category>
+            <sideeffectduration> <!-- may cause blindness, which -->
+                <option>is temporary</option>
+                <option>lasts a few seconds</option>
+                <option>lasts a minute</option>
+                <option>lasts a few minutes</option>
+                <option>lasts several minutes</option>
+                <option>lasts an hour</option>
+                <option>lasts a few hours</option>
+                <option>lasts several hours</option>
+                <option>lasts a day</option>
+                <option>lasts a few days</option>
+                <option>lasts a week</option>
+                <option>lasts weeks</option>
+                <option>is permanent</option>
+            </sideeffectduration>
+            <sideeffect chance="5">
+                <option>seizures</option>
+                <option>blindness</option>
+                <option>death</option>
+                <option>melting flesh</option>
+                <option>spontaneous combustion</option>
+                <option>muteness</option>
+                <option>mouth glued shut</option>
+                <option>skin to turn an unnatural color</option>
+                <option>vomiting</option>
+                <option>nausea </option>
+                <option>irritability</option>
+                <option>dizziness</option>
+                <option>fatigue</option>
+                <option>allergic reactions</option>
+                <option>fever</option>
+                <option>apathy</option>
+                <option>lethargy</option>
+                <option>paranoia</option>
+                <option>irrational behavior</option>
+                <option>hallucinations</option>
+                <option>levitation</option>
+                <option>colour blindness</option>
+                <option>sprouting feathers</option>
+                <option>sprouting hairs</option>
+                <option>vertigo</option>
+                <option>uncontrolled bowel movements</option>
+                <option>uncontrolled urination</option>
+                <option>severe muscle cramps</option>
+                <option></option>
+            </sideeffect>
+            <content>
+                <option>potion</option>
+                <option>brew</option>
+                <option>elixer</option>
+                <option>nip</option>
+                <option>philer</option>
+                <option>tonic</option>
+                <option>balm</option>
+                <option>dram</option>
+                <option>formula</option>
+                <option>lotion</option>
+            </content>
+            <color>
+                <option>yellow</option>
+                <option>red</option>
+                <option>green</option>
+                <option>purple</option>
+                <option>pink</option>
+                <option>blue</option>
+                <option>black</option>
+            </color>
+            <smell>
+                <option>bubblegum</option>
+                <option>sewage</option>
+                <option>cornflour</option>
+                <option>vinegar</option>
+                <option>alcohol</option>
+                <option>straberries</option>
+                <option>sweat</option>
+                <option>lilac</option>
+                <option>fruit</option>
+                <option>fresh-cut grass</option>
+                <option>mint</option>
+                <option>harsh chemicals</option>
+                <option>stinkbugs</option>
+            </smell>
+            <material>
+                <option>glass</option>
+                <option>copper</option>
+                <option>tin</option>
+                <option>iron</option>
+                <option>ceramic</option>
+                <option>leather</option>
+            </material>
+            <decorations chance="30">
+                <option>cryptic writing</option>
+                <option>worthless jewels</option>
+                <option>feathers</option>
+                <option>beaded strings</option>
+            </decorations>
+            <label chance="30">
+                <option>illegible</option>
+                <option>clearly labeled</option>
+                <option>written in an uncommon language</option>
+                <option>ideogram</option>
+            </label>
+            <container>
+                <option>small vial</option>
+                <option>flask</option>
+                <option>figurine</option>
+                <option>ovoid container</option>
+                <option>Square container</option>
+                <option>conical container</option>
+            </container>
+            <template>
+                <option>[%strength_description%] [%category_type%] [%content%]</option>
+                <option>[%strength_description%] [%content%] of [%category_type%]</option>
+            </template>
+        </feature>
+    </potion>
+    <armor><!-- 
+                -->
+        <feature>
+	        <category>
+	            <option type="leather armor"></option>
+	            <option type="breastplate"></option>
+	            <option type="chainmail"></option>
+	            <option type="hide armor"></option>
+	            <option type="plate armor"></option>
+	            <option type="shield"></option>
+	        </category>
+            <template>
+                <option>[%effect_type%] [%category_type%][%IF ability_type%] [%ability_type%][%END%]</option>
+                <option>[%effect_type%] [%category_type%] of [%creator.firstname%]</option>
+            </template>
+            <ability chance="20">
+                <option type="of shock">has a chance of stunning an attacker</option>
+                <option type="of glory">emboldens comrades in battle</option>
+                <option type="of the shadows">makes the wearer virtually undetectable in shadows</option>
+            </ability>
+        
+            <effect>
+                <option type="muffled">allows the wearer to move more quietly than otherwise possible</option>
+                <option type="slick">cause the wearer to be difficult to grasp</option>
+                <option type="deflecting">deflects some projectiles that would otherwise hit</option>
+            </effect>
+            <flaw chance="30">
+                <option type="a small chip"></option>
+                <option type="a missing decoration"></option>
+                <option type="a crack"></option>
+                <option type="a discolored spot"></option>
+                <option type="blackened"></option>
+                <option type="bloodstained"></option>
+                <option type="tarnished"></option>
+                <option type="a dent"></option>
+                <option type="a ding"></option>
+            </flaw>
+            <visualeffect chance="10">
+                <option type="sparkles">a faint sparkle in low light</option>
+                <option type="glow">a faint glow in darkness</option>
+            </visualeffect>
+            <decoration chance="10">
+                <option type="flames">streaks of red and yellow</option>
+                <option type="inlay">beautiful gold and silver inlays</option>
+                <option type="carvings">decorative carvings</option>
+            </decoration>
+        </feature>
+    </armor>
+
+
+    <weapon><!-- 
+                effect type [ability] - effect description [ability description]. [flaw]. [curse]
+                Exploding Greatsword of Grace is an excellent greatsword that is in disrepair. This medium magical item causes a concussive blast against the 
+                target and grants the user an unnatural grace. You notice a small chip on the weapon. Unbeknownst to the user, this weapon has a 
+                narcolepcy curse, meaning it has small chance of causing the user to drop unconscious when used.
+                -->
+        <feature>
+            <category>
+                <option type="sword"></option>
+                <option type="dagger"></option>
+                <option type="axe"></option>
+                <option type="mace"></option>
+                <option type="bow"></option>
+                <option type="crossbow"></option>
+                <option type="quarterstaff"></option>
+            </category>
+            <template>
+                <option>[%effect_type%] [%category_type%][%IF ability_type%] [%ability_type%][%END%]</option>
+                <option>[%creator.firstnames%] [%category_type%]</option>
+                <option>[%creator.firstnames%] [%effect_type%] [%category_type%]</option>
+                <option>[%creator.firstname%] [%category_type%]</option>
+            </template>
+            <ability chance="20">
+                <option type="of the bull">grants the user unnatural strength</option>
+                <option type="of grace">grants the user an unnatural grace</option>
+                <option type="of toughness">grants the user unnatural constitution</option>
+                <option type="of the owl">grants the user unnatural insight</option>
+                <option type="of genius">grants the user unnatural intelligence</option>
+                <option type="of charm">grants the user unnatural charisma</option>
+
+                <option type="of the holy">may cause fear in the undead</option>
+                <option type="of defense">may protect the user from some attacks</option>
+                <option type="of returning">will return to the user if thrown</option>
+            </ability>
+        
+            <effect>
+                <option type="keen">will occasionally slice through anything</option>
+                <option type="painful">causes a traumatic jolt of unexpected pain</option>
+                <option type="magical">causes an unexpected jolt of magical energy</option>
+                <option type="flaming">causes a small flare of fire that burns the target</option>
+                <option type="electric">causes a small surge of electricity that stuns the target</option>
+                <option type="icy">causes a mind numbing cold that chills the target</option>
+                <option type="acidic">causes a wound that is drenched in acid</option>
+                <option type="sonic">causes a deafening roar that only affects the target</option>
+                <option type="exploding">causes a concussive blast against the target</option>
+            </effect>
+            <flaw chance="30">
+                <option type="a small chip"></option>
+                <option type="a missing decoration"></option>
+                <option type="a crack"></option>
+                <option type="a discolored spot"></option>
+                <option type="blackened"></option>
+                <option type="bloodstained"></option>
+                <option type="tarnished"></option>
+            </flaw>
+            <visualeffect chance="10">
+                <option type="sparkles">a faint sparkle in low light</option>
+                <option type="glow">a faint glow in darkness</option>
+            </visualeffect>
+            <decoration chance="10">
+                <option type="flames">streaks of red and yellow</option>
+                <option type="inlay">beautiful gold and silver inlays</option>
+                <option type="carvings">decorative carvings</option>
+            </decoration>
+        </feature>
+    </weapon>
+</data>

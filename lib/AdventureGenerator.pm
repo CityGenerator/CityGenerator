@@ -7,7 +7,6 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( create_adventure create_name );
 
 
 ###############################################################################
@@ -19,7 +18,7 @@ use base qw(Exporter);
 =head1 SYNOPSIS
 
     use AdventureGenerator;
-    my $adventure=AdventureGenerator::create_adventure();
+    my $adventure=AdventureGenerator::create();
 
 =cut
 
@@ -29,7 +28,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object seed);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use NPCGenerator;
 use Lingua::EN::Inflect qw( A );
 use Lingua::EN::Conjugate qw( gerund s_form participle );
@@ -74,7 +73,7 @@ my $advname_data = $xml->XMLin( "xml/adventurenames.xml", ForceContent => 1, For
 The following methods are used to create the core of the adventure structure.
 
 
-=head3 create_adventure()
+=head3 create()
 
 This method is used to create a simple adventure with nothing more than:
 
@@ -89,7 +88,7 @@ This method is used to create a simple adventure with nothing more than:
 =cut
 
 ###############################################################################
-sub create_adventure {
+sub create {
     my ($params) = @_;
     my $adventure = {};
 
@@ -102,9 +101,8 @@ sub create_adventure {
 
     if ( !defined $adventure->{'seed'} ) {
         $adventure->{'seed'} = GenericGenerator::set_seed();
-    } else {
-        GenericGenerator::set_seed( $adventure->{'seed'} );
     }
+    GenericGenerator::set_seed( $adventure->{'seed'} );
 
     generate_name($adventure);
 
