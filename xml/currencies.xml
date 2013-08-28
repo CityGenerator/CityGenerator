@@ -21,9 +21,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option min="99"          >priceless</option>
         </value>
         <scope>
-            <option          max="5"  >the city</option>
-            <option min="6"  max="95" >the region</option>
-            <option min="96"          >the continent</option>
+            <option          max="5"  >city</option>
+            <option min="6"  max="95" >region</option>
+            <option min="96"          >continent</option>
         </scope>
         <detail><!-- The level of detail on the Dorsh is -->
             <option          max="5"  >crude</option>
@@ -47,6 +47,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </weight>
     </stats>
     <feature>
+        <template>
+            <option>[% USE infl = Lingua.EN.Inflect; -%][%infl.A(name) FILTER ucfirst %] is [%infl.A(weight_description)%], [%value_description%] coin that is common in the [%scope_description%]. It is [%size_description%], [%shape%], and made of [%material%]. The coins are covered with [%detail_description%] designs.</option>
+        </template>
         <material>
             <option>wood</option>
             <option>shell</option>

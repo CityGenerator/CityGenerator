@@ -101,8 +101,9 @@ sub create {
     GenericGenerator::generate_stats($currency,$currency_data);
     GenericGenerator::select_features($currency,$currency_data);
 
-    $currency->{'name'}=parse_object($currency_data->{'name'})->{'content'};
+    $currency->{'name'}=ucfirst parse_object($currency_data->{'name'})->{'content'};
 
+    GenericGenerator::parse_template($currency, 'template');
     return $currency;
 }
 
