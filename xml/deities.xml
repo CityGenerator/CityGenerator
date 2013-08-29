@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+    <stats>
+        <importance>
+            <option          max="10" >quazi-diety</option>
+            <option min="11" max="20" >demi-deity</option>
+            <option min="21" max="30" >minor deity</option>
+            <option min="31" max="50" >lesser deity</option>
+            <option min="51" max="80" >intermediate deity</option>
+            <option min="81" max="99" >greater deity</option>
+            <option min="100"         >over deity</option>
+        </importance>
+        <jealousy>
+            <option          max="10" >trusting</option>
+            <option min="11" max="20" >unresentful</option>
+            <option min="21" max="30" >unquestioning</option>
+            <option min="31" max="40" >unsuspecting</option>
+            <option min="41" max="50" >content</option>
+            <option min="51" max="60" >covetous</option>
+            <option min="61" max="70" >demanding</option>
+            <option min="71" max="80" >suspicious</option>
+            <option min="81" max="90" >selfish</option>
+            <option min="91"          >jealous</option>
+        </jealousy>
+    </stats>
+    <feature>
+        <worship> <!--Orsis prefers ____ from his followers -->
+            <option>sacrifices</option>
+            <option>offerings</option>
+            <option>tithings</option>
+            <option>prayers</option>
+            <option>supplication</option>
+        <worship>
+        <primarycolor>
+            <option>black</option>
+            <option>blue</option>
+            <option>brown</option>
+            <option>dark blue</option>
+            <option>dark brown</option>
+            <option>dark green</option>
+            <option>dark grey</option>
+            <option>dark red</option>
+            <option>dark yellow</option>
+            <option>gold</option>
+            <option>green</option>
+            <option>grey</option>
+            <option>light blue</option>
+            <option>light brown</option>
+            <option>light green</option>
+            <option>light grey</option>
+            <option>light orange</option>
+            <option>light red</option>
+            <option>light yellow</option>
+            <option>orange</option>
+            <option>purple</option>
+            <option>red</option>
+            <option>very dark blue</option>
+            <option>very dark green</option>
+            <option>very dark grey</option>
+            <option>very dark red</option>
+            <option>very light blue</option>
+            <option>very light green</option>
+            <option>very light red</option>
+            <option>very light yellow</option>
+            <option>white</option>
+            <option>yellow</option>
+        </primarycolor>
+        <secondarycolor>
+            <option>black</option>
+            <option>blue</option>
+            <option>brown</option>
+            <option>dark blue</option>
+            <option>dark brown</option>
+            <option>dark green</option>
+            <option>dark grey</option>
+            <option>dark red</option>
+            <option>dark yellow</option>
+            <option>gold</option>
+            <option>green</option>
+            <option>grey</option>
+            <option>light blue</option>
+            <option>light brown</option>
+            <option>light green</option>
+            <option>light grey</option>
+            <option>light orange</option>
+            <option>light red</option>
+            <option>light yellow</option>
+            <option>orange</option>
+            <option>purple</option>
+            <option>red</option>
+            <option>very dark blue</option>
+            <option>very dark green</option>
+            <option>very dark grey</option>
+            <option>very dark red</option>
+            <option>very light blue</option>
+            <option>very light green</option>
+            <option>very light red</option>
+            <option>very light yellow</option>
+            <option>white</option>
+            <option>yellow</option>
+        </secondarycolor>
+        <weapon> <!-- in battle, Gokl prefers -->
+            <option>axes</option>
+            <option>bastard swords</option>
+            <option>battle axes</option>
+            <option>bladed gauntlets</option>
+            <option>bows</option>
+            <option>butterfly swords</option>
+            <option>claw bracers</option>
+            <option>composite bows</option>
+            <option>crossbows</option>
+            <option>curved swords</option>
+            <option>daggers</option>
+            <option>falchionn</option>
+            <option>flails, maces and clubs</option>
+            <option>glaives</option>
+            <option>greataxes</option>
+            <option>great clubs</option>
+            <option>great crossbows</option>
+            <option>greatswords</option>
+            <option>guisarmes</option>
+            <option>halberds</option>
+            <option>hand axes</option>
+            <option>hand crossbows</option>
+            <option>harpoons</option>
+            <option>heavy crossbows</option>
+            <option>heavy flail</option>
+            <option>heavy mace</option>
+            <option>javelins</option>
+            <option>Javelins</option>
+            <option>light crossbows</option>
+            <option>light flail</option>
+            <option>light mace</option>
+            <option>longbows</option>
+            <option>long spears</option>
+            <option>longswords</option>
+            <option>martial arts</option>
+            <option>morningstars</option>
+            <option>polearms</option>
+            <option>ranseurs</option>
+            <option>rapiers</option>
+            <option>repeating crossbows</option>
+            <option>scimitars</option>
+            <option>shortbows</option>
+            <option>short spears</option>
+            <option>shortswords</option>
+            <option>simple clubs</option>
+            <option>slings</option>
+            <option>spears</option>
+            <option>spiked clubs</option>
+            <option>stump knives</option>
+            <option>swords</option>
+            <option>throwing axes</option>
+            <option>throwing daggers</option>
+            <option>throwing hammers</option>
+            <option>thrown weapons</option>
+            <option>tonfas</option>
+            <option>tridents</option>
+            <option>unarmed combat</option>
+            <option>unique axes</option>
+        </weapon>
+    </feature>
+    <holysymbol>
+        <title>red</title>
+        <title>black</title>
+        <title>blue</title>
+        <title>double</title>
+        <title>triple</title>
+        <title>single</title>
+
+        <root>cross</root>
+        <root>star</root>
+        <root>potato</root>
+        <root>weapon</root>
+        <root>book</root>
+        <root>key</root>
+        <root>totem</root>
+        <root>feather</root>
+        <root>statue</root>
+        <root>bone</root>
+        <root>shield</root>
+        <root>gauntlet</root>
+        <root>helmet</root>
+        <root>mask</root>
+        <root>flask</root>
+        <root>coin</root>
+        <root>flower</root>
+        <root>insect</root>
+        <root>ankh</root>
+        <root>eye</root>
+        <root>candle</root>
+        <root>heart</root>
+        <root>ear</root>
+        <root>pearl</root>
+    </holysymbol>
+    <portfolio>
+        <option value="40">war</option>
+        <option value="40">death</option>
+        <option value="40">magic</option>
+        <option value="40">lore</option>
+        <option value="40">mercy</option>
+        <option value="1">stray cats</option>
+        <option value="1">abundance</option>
+        <option value="1">accidents</option>
+        <option value="1">accountability</option>
+        <option value="1">adventure</option>
+        <option value="1">agony</option>
+        <option value="1">agriculture</option>
+        <option value="1">air</option>
+        <option value="1">alcohol</option>
+        <option value="1">ambition</option>
+        <option value="1">ambush</option>
+        <option value="1">amphibians</option>
+        <option value="1">anger</option>
+        <option value="1">animals</option>
+        <option value="1">appraisal</option>
+        <option value="1">arcane knowledge</option>
+        <option value="1">archery</option>
+        <option value="1">architecture</option>
+        <option value="1">arctic beasts</option>
+        <option value="1">armies</option>
+        <option value="1">armor</option>
+        <option value="1">art</option>
+        <option value="1">artifice</option>
+        <option value="1">artisans</option>
+        <option value="1">assassination</option>
+        <option value="1">astrology</option>
+        <option value="1">astronomy</option>
+        <option value="1">athletes</option>
+        <option value="1">atmosphere</option>
+        <option value="1">authority</option>
+        <option value="1">autumn</option>
+        <option value="1">avariels</option>
+        <option value="1">bad fortune</option>
+        <option value="1">bad luck</option>
+        <option value="1">bad weather</option>
+        <option value="1">balance</option>
+        <option value="1">barbarians</option>
+        <option value="1">bards</option>
+        <option value="1">barrenness</option>
+        <option value="1">bats</option>
+        <option value="1">battle</option>
+        <option value="1">beasts</option>
+        <option value="1">beauty</option>
+        <option value="1">bees</option>
+        <option value="1">beginnings</option>
+        <option value="1">benevolence</option>
+        <option value="1">berserking</option>
+        <option value="1">betrayal</option>
+        <option value="1">betrayals</option>
+        <option value="1">bigotry</option>
+        <option value="1">bird men</option>
+        <option value="1">birds</option>
+        <option value="1">birth</option>
+        <option value="1">black magic</option>
+        <option value="1">blacksmithing</option>
+        <option value="1">blind beggars</option>
+        <option value="1">blind destruction</option>
+        <option value="1">blizzards</option>
+        <option value="1">blood</option>
+        <option value="1">bloodlust</option>
+        <option value="1">bodachs</option>
+        <option value="1">bodily pleasure</option>
+        <option value="1">bodily strength</option>
+        <option value="1">books</option>
+        <option value="1">bounty</option>
+        <option value="1">bravery</option>
+        <option value="1">brawling</option>
+        <option value="1">brewing</option>
+        <option value="1">brutality</option>
+        <option value="1">brute force</option>
+        <option value="1">brute strength</option>
+        <option value="1">bugbears</option>
+        <option value="1">building</option>
+        <option value="1">bullywugs</option>
+        <option value="1">bureaucracy</option>
+        <option value="1">burials</option>
+        <option value="1">buried wealth</option>
+        <option value="1">business</option>
+        <option value="1">but hates sharks</option>
+        <option value="1">calligraphy</option>
+        <option value="1">camels</option>
+        <option value="1">campfires</option>
+        <option value="1">canines</option>
+        <option value="1">cannibalism</option>
+        <option value="1">caravans</option>
+        <option value="1">carefree celebration</option>
+        <option value="1">carousing</option>
+        <option value="1">cartography</option>
+        <option value="1">cats</option>
+        <option value="1">cattle</option>
+        <option value="1">caverns</option>
+        <option value="1">caves</option>
+        <option value="1">celebrations</option>
+        <option value="1">cemeteries</option>
+        <option value="1">chance</option>
+        <option value="1">change</option>
+        <option value="1">chaos</option>
+        <option value="1">charisma</option>
+        <option value="1">charity</option>
+        <option value="1">charm</option>
+        <option value="1">childbirth</option>
+        <option value="1">children</option>
+        <option value="1">civilization</option>
+        <option value="1">clarity</option>
+        <option value="1">climbing</option>
+        <option value="1">clouds</option>
+        <option value="1">cold</option>
+        <option value="1">combat</option>
+        <option value="1">comfort</option>
+        <option value="1">commerce</option>
+        <option value="1">common sense</option>
+        <option value="1">communication</option>
+        <option value="1">community</option>
+        <option value="1">compassion</option>
+        <option value="1">competition</option>
+        <option value="1">concealment</option>
+        <option value="1">conception</option>
+        <option value="1">conflagration</option>
+        <option value="1">conflict</option>
+        <option value="1">confusion</option>
+        <option value="1">conjurations</option>
+        <option value="1">conquest</option>
+        <option value="1">construction</option>
+        <option value="1">consumption</option>
+        <option value="1">contentment</option>
+        <option value="1">continuity</option>
+        <option value="1">contracts</option>
+        <option value="1">control</option>
+        <option value="1">cooperation</option>
+        <option value="1">corn</option>
+        <option value="1">corruption</option>
+        <option value="1">courage</option>
+        <option value="1">courtship</option>
+        <option value="1">covert activity</option>
+        <option value="1">cowardice</option>
+        <option value="1">crafts</option>
+        <option value="1">creativity</option>
+        <option value="1">creatures of the deep</option>
+        <option value="1">crocodiles</option>
+        <option value="1">crops</option>
+        <option value="1">cruelty</option>
+        <option value="1">crusades</option>
+        <option value="1">cultivated foods</option>
+        <option value="1">cultures</option>
+        <option value="1">cunning</option>
+        <option value="1">curative medicine</option>
+        <option value="1">curiosity</option>
+        <option value="1">currents</option>
+        <option value="1">dance</option>
+        <option value="1">dancing</option>
+        <option value="1">dancing girls</option>
+        <option value="1">darfellans</option>
+        <option value="1">daring</option>
+        <option value="1">dark</option>
+        <option value="1">darkess</option>
+        <option value="1">dark magic</option>
+        <option value="1">darkness</option>
+        <option value="1">dawn</option>
+        <option value="1">day</option>
+        <option value="1">daylight</option>
+        <option value="1">death</option>
+        <option value="1">debauch</option>
+        <option value="1">decay</option>
+        <option value="1">deceit</option>
+        <option value="1">deception</option>
+        <option value="1">decision</option>
+        <option value="1">dedication</option>
+        <option value="1">deep</option>
+        <option value="1">deep caves</option>
+        <option value="1">defense</option>
+        <option value="1">deformity</option>
+        <option value="1">delight</option>
+        <option value="1">derro</option>
+        <option value="1">desert-dwelling vermin</option>
+        <option value="1">desert mountains</option>
+        <option value="1">desert raiders</option>
+        <option value="1">deserts</option>
+        <option value="1">desert storms</option>
+        <option value="1">desert whirlwinds</option>
+        <option value="1">despair</option>
+        <option value="1">destiny</option>
+        <option value="1">destruction</option>
+        <option value="1">determination</option>
+        <option value="1">devils</option>
+        <option value="1">devolution</option>
+        <option value="1">devouring</option>
+        <option value="1">dexterity</option>
+        <option value="1">dharma</option>
+        <option value="1">dignity</option>
+        <option value="1">dinosaurs</option>
+        <option value="1">diplomacy</option>
+        <option value="1">disasters</option>
+        <option value="1">discipline</option>
+        <option value="1">discord</option>
+        <option value="1">discovery</option>
+        <option value="1">disease</option>
+        <option value="1">disguise</option>
+        <option value="1">dissembling</option>
+        <option value="1">distance</option>
+        <option value="1">divination</option>
+        <option value="1">divination magic</option>
+        <option value="1">dogs</option>
+        <option value="1">dominance</option>
+        <option value="1">domination</option>
+        <option value="1">dominion</option>
+        <option value="1">doom</option>
+        <option value="1">doors</option>
+        <option value="1">dragonkind</option>
+        <option value="1">dreams</option>
+        <option value="1">drought</option>
+        <option value="1">drow</option>
+        <option value="1">drow males</option>
+        <option value="1">drow warriors</option>
+        <option value="1">druid groves</option>
+        <option value="1">druids</option>
+        <option value="1">dryads</option>
+        <option value="1">dueling</option>
+        <option value="1">duels</option>
+        <option value="1">dungeons</option>
+        <option value="1">dusk</option>
+        <option value="1">duty</option>
+        <option value="1">dwarves</option>
+        <option value="1">dying</option>
+        <option value="1">eagles</option>
+        <option value="1">earth</option>
+        <option value="1">earthquakes</option>
+        <option value="1">ease</option>
+        <option value="1">east wind</option>
+        <option value="1">eating</option>
+        <option value="1">eccentricity</option>
+        <option value="1">eclipses</option>
+        <option value="1">education of children</option>
+        <option value="1">efreet</option>
+        <option value="1">elements</option>
+        <option value="1">eloquence</option>
+        <option value="1">elves</option>
+        <option value="1">emotional hatreds</option>
+        <option value="1">emotions</option>
+        <option value="1">enchantments</option>
+        <option value="1">enclosures</option>
+        <option value="1">endings</option>
+        <option value="1">endurance</option>
+        <option value="1">energy</option>
+        <option value="1">enfeeblement</option>
+        <option value="1">engineering</option>
+        <option value="1">enjoyment</option>
+        <option value="1">enlightened justice</option>
+        <option value="1">enlightenment</option>
+        <option value="1">entropy</option>
+        <option value="1">envy</option>
+        <option value="1">epidemics</option>
+        <option value="1">eroticism</option>
+        <option value="1">especially porpoises</option>
+        <option value="1">espionage</option>
+        <option value="1">esthetics</option>
+        <option value="1">eternal darkness</option>
+        <option value="1">eternal light</option>
+        <option value="1">eternal youth</option>
+        <option value="1">ethics</option>
+        <option value="1">ettins</option>
+        <option value="1">evening</option>
+        <option value="1">everything</option>
+        <option value="1">evil</option>
+        <option value="1">evil aquatic creatures</option>
+        <option value="1">evil birds</option>
+        <option value="1">evil cloud giants</option>
+        <option value="1">evil/death</option>
+        <option value="1">evil dragons</option>
+        <option value="1">evil dreams</option>
+        <option value="1">evil fate</option>
+        <option value="1">evil fey</option>
+        <option value="1">evil knowledge</option>
+        <option value="1">evil liches</option>
+        <option value="1">evil lycanthropes</option>
+        <option value="1">evil magic</option>
+        <option value="1">evil plans</option>
+        <option value="1">evil reptiles</option>
+        <option value="1">evil secrets</option>
+        <option value="1">evil uldras</option>
+        <option value="1">evolution</option>
+        <option value="1">excellence</option>
+        <option value="1">excess</option>
+        <option value="1">exhaustion</option>
+        <option value="1">exiles</option>
+        <option value="1">expansion</option>
+        <option value="1">expatriates</option>
+        <option value="1">experimentation</option>
+        <option value="1">exploration</option>
+        <option value="1">explorers</option>
+        <option value="1">extraplanar exploration</option>
+        <option value="1">extraplanar heroism</option>
+        <option value="1">faerie folk</option>
+        <option value="1">fair practices</option>
+        <option value="1">fairyland</option>
+        <option value="1">faith</option>
+        <option value="1">faithfulness</option>
+        <option value="1">falcons</option>
+        <option value="1">fallen heroes</option>
+        <option value="1">false promises</option>
+        <option value="1">familial love</option>
+        <option value="1">family</option>
+        <option value="1">famine</option>
+        <option value="1">far journeys</option>
+        <option value="1">farmers</option>
+        <option value="1">farming</option>
+        <option value="1">fatalism</option>
+        <option value="1">fate</option>
+        <option value="1">fates</option>
+        <option value="1">fauna</option>
+        <option value="1">favorable winds</option>
+        <option value="1">fear</option>
+        <option value="1">feasting</option>
+        <option value="1">felines</option>
+        <option value="1">female faeries</option>
+        <option value="1">female giants</option>
+        <option value="1">femininity</option>
+        <option value="1">feral elves</option>
+        <option value="1">fertile womanhood</option>
+        <option value="1">fertility</option>
+        <option value="1">festhalls</option>
+        <option value="1">festivals</option>
+        <option value="1">feuds</option>
+        <option value="1">fidelity</option>
+        <option value="1">fighters</option>
+        <option value="1">fighter-thieves</option>
+        <option value="1">finality</option>
+        <option value="1">final judgement</option>
+        <option value="1">fine arts</option>
+        <option value="1">fine-smithing</option>
+        <option value="1">fire</option>
+        <option value="1">fire giants</option>
+        <option value="1">firenewts</option>
+        <option value="1">fire-using dragons</option>
+        <option value="1">fir trees</option>
+        <option value="1">fish</option>
+        <option value="1">fisherman</option>
+        <option value="1">fishermen</option>
+        <option value="1">fishing</option>
+        <option value="1">fitness</option>
+        <option value="1">flame phenomena</option>
+        <option value="1">flaming mountains</option>
+        <option value="1">flattery</option>
+        <option value="1">flora</option>
+        <option value="1">flowers</option>
+        <option value="1">flowing water</option>
+        <option value="1">flying</option>
+        <option value="1">flying creatures</option>
+        <option value="1">flymen</option>
+        <option value="1">fogs</option>
+        <option value="1">folk music</option>
+        <option value="1">fomorians</option>
+        <option value="1">food</option>
+        <option value="1">fools</option>
+        <option value="1">forbidden knowlege</option>
+        <option value="1">foreknowledge</option>
+        <option value="1">foresight</option>
+        <option value="1">forest creatures</option>
+        <option value="1">forest dwellers</option>
+        <option value="1">forest folk</option>
+        <option value="1">forest gnomes</option>
+        <option value="1">forests</option>
+        <option value="1">forgetfulness</option>
+        <option value="1">forgiveness</option>
+        <option value="1">formality</option>
+        <option value="1">forthrightness</option>
+        <option value="1">fortification</option>
+        <option value="1">fortune</option>
+        <option value="1">fortune telling</option>
+        <option value="1">foul weather</option>
+        <option value="1">fraternity</option>
+        <option value="1">freedom</option>
+        <option value="1">frenzy</option>
+        <option value="1">fresh water</option>
+        <option value="1">friendship</option>
+        <option value="1">frog folk</option>
+        <option value="1">frost giants</option>
+        <option value="1">frostmen</option>
+        <option value="1">frost sprites</option>
+        <option value="1">frozen seas</option>
+        <option value="1">fruitfulness</option>
+        <option value="1">full moons</option>
+        <option value="1">funerals</option>
+        <option value="1">future</option>
+        <option value="1">gamblers</option>
+        <option value="1">gambling</option>
+        <option value="1">games</option>
+        <option value="1">gardeners</option>
+        <option value="1">gardening</option>
+        <option value="1">gardens orchards</option>
+        <option value="1">gases</option>
+        <option value="1">gates</option>
+        <option value="1">gemcutting</option>
+        <option value="1">gems</option>
+        <option value="1">gemstones</option>
+        <option value="1">generality</option>
+        <option value="1">geometric magic</option>
+        <option value="1">ghosts</option>
+        <option value="1">ghouls</option>
+        <option value="1">giant eagles</option>
+        <option value="1">giants</option>
+        <option value="1">glaciers</option>
+        <option value="1">glory</option>
+        <option value="1">glyphs</option>
+        <option value="1">gnolls</option>
+        <option value="1">gnomes</option>
+        <option value="1">goblins</option>
+        <option value="1">gold</option>
+        <option value="1">goliaths</option>
+        <option value="1">good</option>
+        <option value="1">good-aligned magical beasts</option>
+        <option value="1">good beasts</option>
+        <option value="1">good dragons</option>
+        <option value="1">good fortune</option>
+        <option value="1">good giants</option>
+        <option value="1">good luck</option>
+        <option value="1">good magic</option>
+        <option value="1">goodness</option>
+        <option value="1">good order</option>
+        <option value="1">good sky creatures</option>
+        <option value="1">grain</option>
+        <option value="1">gray dwarves</option>
+        <option value="1">greed</option>
+        <option value="1">greenmen</option>
+        <option value="1">grief</option>
+        <option value="1">grimlocks</option>
+        <option value="1">growing things</option>
+        <option value="1">growth</option>
+        <option value="1">guadianship</option>
+        <option value="1">guardians</option>
+        <option value="1">guarding</option>
+        <option value="1">guarding the underworld</option>
+        <option value="1">guidance</option>
+        <option value="1">guides</option>
+        <option value="1">guile</option>
+        <option value="1">guilt</option>
+        <option value="1">hades</option>
+        <option value="1">hags</option>
+        <option value="1">half-elven bards</option>
+        <option value="1">halfling life</option>
+        <option value="1">halfling rogues</option>
+        <option value="1">halflings</option>
+        <option value="1">halfling warriors</option>
+        <option value="1">hamaguans</option>
+        <option value="1">handicrafts</option>
+        <option value="1">happiness</option>
+        <option value="1">harm</option>
+        <option value="1">harmony</option>
+        <option value="1">harvest</option>
+        <option value="1">hate</option>
+        <option value="1">hatred</option>
+        <option value="1">healing</option>
+        <option value="1">health</option>
+        <option value="1">hearing</option>
+        <option value="1">hearth</option>
+        <option value="1">heat</option>
+        <option value="1">heavens</option>
+        <option value="1">hedonism</option>
+        <option value="1">heroism</option>
+        <option value="1">hidden</option>
+        <option value="1">hidden knowledge</option>
+        <option value="1">hidden treasures</option>
+        <option value="1">hiding places</option>
+        <option value="1">hill giants</option>
+        <option value="1">hills</option>
+        <option value="1">historians</option>
+        <option value="1">history</option>
+        <option value="1">hobgoblins</option>
+        <option value="1">home</option>
+        <option value="1">honesty</option>
+        <option value="1">honor</option>
+        <option value="1">honorable combat</option>
+        <option value="1">honor in battle</option>
+        <option value="1">hope</option>
+        <option value="1">horizons</option>
+        <option value="1">horses</option>
+        <option value="1">hospitality</option>
+        <option value="1">humiliation</option>
+        <option value="1">humility</option>
+        <option value="1">humor</option>
+        <option value="1">hunger</option>
+        <option value="1">hunters</option>
+        <option value="1">hunting</option>
+        <option value="1">hurricanes</option>
+        <option value="1">hurt</option>
+        <option value="1">hyenadons</option>
+        <option value="1">hyenas</option>
+        <option value="1">ice</option>
+        <option value="1">ideas</option>
+        <option value="1">ignominy</option>
+        <option value="1">ill council</option>
+        <option value="1">ill luck</option>
+        <option value="1">illness</option>
+        <option value="1">illumians</option>
+        <option value="1">illusions</option>
+        <option value="1">images</option>
+        <option value="1">imaginations</option>
+        <option value="1">immediacy</option>
+        <option value="1">immortality through undeath</option>
+        <option value="1">improvement</option>
+        <option value="1">impudence</option>
+        <option value="1">independence</option>
+        <option value="1">individuality</option>
+        <option value="1">industriousness</option>
+        <option value="1">industry</option>
+        <option value="1">inevitability</option>
+        <option value="1">infinity</option>
+        <option value="1">inflexibility</option>
+        <option value="1">influence</option>
+        <option value="1">injustice</option>
+        <option value="1">inland waters</option>
+        <option value="1">inquiry</option>
+        <option value="1">insanity</option>
+        <option value="1">insects</option>
+        <option value="1">insomnia</option>
+        <option value="1">inspiration</option>
+        <option value="1">intellect</option>
+        <option value="1">intelligence</option>
+        <option value="1">intoxication</option>
+        <option value="1">intrigue</option>
+        <option value="1">invention</option>
+        <option value="1">inventiveness</option>
+        <option value="1">invisible</option>
+        <option value="1">iron</option>
+        <option value="1">irrigation</option>
+        <option value="1">isolation</option>
+        <option value="1">jealousy</option>
+        <option value="1">jellies</option>
+        <option value="1">jewelrymaking</option>
+        <option value="1">jokes</option>
+        <option value="1">joy</option>
+        <option value="1">joy of battle</option>
+        <option value="1">judgement</option>
+        <option value="1">judges</option>
+        <option value="1">judgment</option>
+        <option value="1">jungles</option>
+        <option value="1">jungle survival</option>
+        <option value="1">justice</option>
+        <option value="1">justice/vengeance</option>
+        <option value="1">just rewards</option>
+        <option value="1">keen senses</option>
+        <option value="1">keys</option>
+        <option value="1">killing</option>
+        <option value="1">kings</option>
+        <option value="1">knowledge</option>
+        <option value="1">kobolds</option>
+        <option value="1">korreds</option>
+        <option value="1">kraken</option>
+        <option value="1">kuo-toas</option>
+        <option value="1">labyrinths</option>
+        <option value="1">lakes</option>
+        <option value="1">lammasu</option>
+        <option value="1">languages</option>
+        <option value="1">lankhmar</option>
+        <option value="1">lapidary</option>
+        <option value="1">larvae</option>
+        <option value="1">lava children</option>
+        <option value="1">law</option>
+        <option value="1">lawful theft</option>
+        <option value="1">laws</option>
+        <option value="1">lawyers</option>
+        <option value="1">leadership</option>
+        <option value="1">learning</option>
+        <option value="1">liars</option>
+        <option value="1">liberation</option>
+        <option value="1">liberty</option>
+        <option value="1">lichdom</option>
+        <option value="1">lies</option>
+        <option value="1">life</option>
+        <option value="1">life/fertility</option>
+        <option value="1">light</option>
+        <option value="1">lightning</option>
+        <option value="1">lions</option>
+        <option value="1">literacy</option>
+        <option value="1">literary art</option>
+        <option value="1">literature</option>
+        <option value="1">livestock</option>
+        <option value="1">living things</option>
+        <option value="1">lizardfolk</option>
+        <option value="1">locathahs</option>
+        <option value="1">locks</option>
+        <option value="1">loneliness</option>
+        <option value="1">longevity</option>
+        <option value="1">long life</option>
+        <option value="1">long-range traders</option>
+        <option value="1">long rivers</option>
+        <option value="1">lore</option>
+        <option value="1">loss</option>
+        <option value="1">lost causes</option>
+        <option value="1">love</option>
+        <option value="1">loyalty</option>
+        <option value="1">luck</option>
+        <option value="1">luck in battle</option>
+        <option value="1">lust</option>
+        <option value="1">lycanthropes</option>
+        <option value="1">madness</option>
+        <option value="1">mages</option>
+        <option value="1">magic</option>
+        <option value="1">magical knowledge</option>
+        <option value="1">magic users</option>
+        <option value="1">magisrates</option>
+        <option value="1">malice</option>
+        <option value="1">malign knowledge</option>
+        <option value="1">mantis men</option>
+        <option value="1">marauders</option>
+        <option value="1">marauding beasts</option>
+        <option value="1">marriage</option>
+        <option value="1">marriages</option>
+        <option value="1">marshes</option>
+        <option value="1">martial arts</option>
+        <option value="1">martial defense</option>
+        <option value="1">martial skill</option>
+        <option value="1">martial training</option>
+        <option value="1">martyrdom</option>
+        <option value="1">massacres</option>
+        <option value="1">mass destruction</option>
+        <option value="1">mastery of undead</option>
+        <option value="1">meadows</option>
+        <option value="1">medicine</option>
+        <option value="1">meditation</option>
+        <option value="1">memory</option>
+        <option value="1">mental dominion</option>
+        <option value="1">mental health</option>
+        <option value="1">mental mastery</option>
+        <option value="1">mental power</option>
+        <option value="1">mental powers</option>
+        <option value="1">mental prowess</option>
+        <option value="1">merchants</option>
+        <option value="1">mercy</option>
+        <option value="1">merfolk</option>
+        <option value="1">merrows</option>
+        <option value="1">messages</option>
+        <option value="1">messengers</option>
+        <option value="1">metalcraft</option>
+        <option value="1">metals</option>
+        <option value="1">metalsmiths</option>
+        <option value="1">metalworking</option>
+        <option value="1">might</option>
+        <option value="1">military excellence</option>
+        <option value="1">mind flayers</option>
+        <option value="1">minerals</option>
+        <option value="1">miners</option>
+        <option value="1">mines</option>
+        <option value="1">mining</option>
+        <option value="1">minotaurs</option>
+        <option value="1">mirrors</option>
+        <option value="1">mirth</option>
+        <option value="1">mischief</option>
+        <option value="1">misfortune</option>
+        <option value="1">modrons</option>
+        <option value="1">moisture</option>
+        <option value="1">money</option>
+        <option value="1">monks</option>
+        <option value="1">monsters</option>
+        <option value="1">monstrous humanoid raiders</option>
+        <option value="1">moon</option>
+        <option value="1">mooncalves</option>
+        <option value="1">moon elves</option>
+        <option value="1">moonlight</option>
+        <option value="1">moons</option>
+        <option value="1">morale</option>
+        <option value="1">morning</option>
+        <option value="1">mortality</option>
+        <option value="1">mortal life</option>
+        <option value="1">motherhood</option>
+        <option value="1">mothers</option>
+        <option value="1">mountain dwarves</option>
+        <option value="1">mountain giants</option>
+        <option value="1">mountains</option>
+        <option value="1">mourning</option>
+        <option value="1">movement</option>
+        <option value="1">murder</option>
+        <option value="1">murderers</option>
+        <option value="1">music</option>
+        <option value="1">musicians</option>
+        <option value="1">mutation</option>
+        <option value="1">mysteries</option>
+        <option value="1">mystic insight</option>
+        <option value="1">mysticism</option>
+        <option value="1">mythals</option>
+        <option value="1">napkins</option>
+        <option value="1">narrow escapes</option>
+        <option value="1">nath</option>
+        <option value="1">natural alchemy</option>
+        <option value="1">natural balances</option>
+        <option value="1">natural beauty</option>
+        <option value="1">natural disasters</option>
+        <option value="1">natural growth</option>
+        <option value="1">nature</option>
+        <option value="1">naval combat</option>
+        <option value="1">navigation</option>
+        <option value="1">navigators</option>
+        <option value="1">necromancers</option>
+        <option value="1">necromancy</option>
+        <option value="1">needlework</option>
+        <option value="1">negative energy</option>
+        <option value="1">negotiation</option>
+        <option value="1">netherworld</option>
+        <option value="1">neutral dragons</option>
+        <option value="1">neutrality</option>
+        <option value="1">night</option>
+        <option value="1">night birds</option>
+        <option value="1">nightmares</option>
+        <option value="1">night travelers</option>
+        <option value="1">nixies</option>
+        <option value="1">nobility</option>
+        <option value="1">noble beasts</option>
+        <option value="1">nobles</option>
+        <option value="1">noble war</option>
+        <option value="1">noise</option>
+        <option value="1">nonintervention</option>
+        <option value="1">norkers</option>
+        <option value="1">northern stars</option>
+        <option value="1">north wind</option>
+        <option value="1">not listed</option>
+        <option value="1">nurturing life</option>
+        <option value="1">oases</option>
+        <option value="1">oaths</option>
+        <option value="1">obedience</option>
+        <option value="1">obligations</option>
+        <option value="1">obscurement</option>
+        <option value="1">obsession</option>
+        <option value="1">occult lore</option>
+        <option value="1">ocean creatures</option>
+        <option value="1">ocean depths</option>
+        <option value="1">oceans</option>
+        <option value="1">ocean storms</option>
+        <option value="1">oerdian culture</option>
+        <option value="1">oerth mother</option>
+        <option value="1">ogres</option>
+        <option value="1">old age</option>
+        <option value="1">omens</option>
+        <option value="1">oozes</option>
+        <option value="1">open paths</option>
+        <option value="1">ophidians</option>
+        <option value="1">opportunism</option>
+        <option value="1">oppression</option>
+        <option value="1">orc females</option>
+        <option value="1">orcs</option>
+        <option value="1">order</option>
+        <option value="1">order in death</option>
+        <option value="1">ores</option>
+        <option value="1">outcasts</option>
+        <option value="1">outer space</option>
+        <option value="1">outlawry</option>
+        <option value="1">overwhelming numbers</option>
+        <option value="1">pacifism</option>
+        <option value="1">pain</option>
+        <option value="1">paladins</option>
+        <option value="1">panic</option>
+        <option value="1">paralysis</option>
+        <option value="1">parasites</option>
+        <option value="1">parenthood</option>
+        <option value="1">passion</option>
+        <option value="1">patience</option>
+        <option value="1">paucity</option>
+        <option value="1">peace</option>
+        <option value="1">peaks</option>
+        <option value="1">perfection</option>
+        <option value="1">perseverance</option>
+        <option value="1">pestilence</option>
+        <option value="1">philosophy</option>
+        <option value="1">physical fitness</option>
+        <option value="1">physical love</option>
+        <option value="1">physical prowess</option>
+        <option value="1">physical strength</option>
+        <option value="1">pillage</option>
+        <option value="1">pits</option>
+        <option value="1">pixies</option>
+        <option value="1">plague</option>
+        <option value="1">plagues</option>
+        <option value="1">planets</option>
+        <option value="1">planning</option>
+        <option value="1">planting</option>
+        <option value="1">plant life</option>
+        <option value="1">plants</option>
+        <option value="1">play</option>
+        <option value="1">pleasure</option>
+        <option value="1">plenty</option>
+        <option value="1">plunder</option>
+        <option value="1">poetic justice</option>
+        <option value="1">poetry</option>
+        <option value="1">poets</option>
+        <option value="1">poison</option>
+        <option value="1">poisoners</option>
+        <option value="1">poisoning</option>
+        <option value="1">polar environments</option>
+        <option value="1">police</option>
+        <option value="1">pools</option>
+        <option value="1">portals</option>
+        <option value="1">positive energy</option>
+        <option value="1">pottery</option>
+        <option value="1">power</option>
+        <option value="1">powerbrokers</option>
+        <option value="1">powermongers</option>
+        <option value="1">pranks</option>
+        <option value="1">predators</option>
+        <option value="1">predestination</option>
+        <option value="1">premeditated killing</option>
+        <option value="1">preservation</option>
+        <option value="1">prestige</option>
+        <option value="1">pretty things</option>
+        <option value="1">pride</option>
+        <option value="1">procreation</option>
+        <option value="1">propagation</option>
+        <option value="1">prophecy</option>
+        <option value="1">propriety</option>
+        <option value="1">prose</option>
+        <option value="1">prosperity</option>
+        <option value="1">protection</option>
+        <option value="1">protectors</option>
+        <option value="1">psionics</option>
+        <option value="1">psychotic behavior</option>
+        <option value="1">public combat</option>
+        <option value="1">punishment</option>
+        <option value="1">purification</option>
+        <option value="1">purity</option>
+        <option value="1">puzzles</option>
+        <option value="1">quarrels</option>
+        <option value="1">queen of faeries</option>
+        <option value="1">questers</option>
+        <option value="1">quiet places</option>
+        <option value="1">racing</option>
+        <option value="1">radiance</option>
+        <option value="1">rage</option>
+        <option value="1">rain</option>
+        <option value="1">rainbows</option>
+        <option value="1">rakshasas</option>
+        <option value="1">ram-men</option>
+        <option value="1">random mischief</option>
+        <option value="1">randomness</option>
+        <option value="1">rangers</option>
+        <option value="1">rapine</option>
+        <option value="1">raptorans</option>
+        <option value="1">rats</option>
+        <option value="1">ravaging beasts</option>
+        <option value="1">realms</option>
+        <option value="1">reason</option>
+        <option value="1">reasoning</option>
+        <option value="1">rebellion</option>
+        <option value="1">rebels</option>
+        <option value="1">rebirth</option>
+        <option value="1">reciprocity</option>
+        <option value="1">records</option>
+        <option value="1">red wisdom</option>
+        <option value="1">related diseases</option>
+        <option value="1">relationships</option>
+        <option value="1">release</option>
+        <option value="1">renegade spirit nagas</option>
+        <option value="1">renewal</option>
+        <option value="1">reptiles</option>
+        <option value="1">resolution</option>
+        <option value="1">restful sleep</option>
+        <option value="1">restraint</option>
+        <option value="1">retribution</option>
+        <option value="1">revelry</option>
+        <option value="1">revels</option>
+        <option value="1">revenge</option>
+        <option value="1">reverence</option>
+        <option value="1">rice</option>
+        <option value="1">righteous indignation</option>
+        <option value="1">righteousness</option>
+        <option value="1">rime isle</option>
+        <option value="1">risks</option>
+        <option value="1">river</option>
+        <option value="1">river hazards</option>
+        <option value="1">rivers</option>
+        <option value="1">roads</option>
+        <option value="1">robbers</option>
+        <option value="1">rock gnomes</option>
+        <option value="1">roguery</option>
+        <option value="1">rogues</option>
+        <option value="1">romance</option>
+        <option value="1">romantic love</option>
+        <option value="1">ropers</option>
+        <option value="1">rot</option>
+        <option value="1">rotting death</option>
+        <option value="1">royalty</option>
+        <option value="1">rulership</option>
+        <option value="1">rumor</option>
+        <option value="1">rune magic</option>
+        <option value="1">running</option>
+        <option value="1">running water</option>
+        <option value="1">sacrifice</option>
+        <option value="1">sadism</option>
+        <option value="1">safety</option>
+        <option value="1">sages</option>
+        <option value="1">sahuagin</option>
+        <option value="1">sailing</option>
+        <option value="1">sailors</option>
+        <option value="1">salamanders</option>
+        <option value="1">salt</option>
+        <option value="1">savage lust</option>
+        <option value="1">savants</option>
+        <option value="1">scapegoats</option>
+        <option value="1">scheming</option>
+        <option value="1">scholarship</option>
+        <option value="1">science</option>
+        <option value="1">scrags</option>
+        <option value="1">scribes</option>
+        <option value="1">sculptures</option>
+        <option value="1">sea</option>
+        <option value="1">sea creatures</option>
+        <option value="1">sea elven beauty</option>
+        <option value="1">sea elves</option>
+        <option value="1">sea life</option>
+        <option value="1">seals</option>
+        <option value="1">seas</option>
+        <option value="1">sea voyages</option>
+        <option value="1">sea weather</option>
+        <option value="1">sea winds</option>
+        <option value="1">secrecy</option>
+        <option value="1">secret pursuits</option>
+        <option value="1">secrets</option>
+        <option value="1">security</option>
+        <option value="1">seduction</option>
+        <option value="1">seekers</option>
+        <option value="1">self-deception</option>
+        <option value="1">self-defense</option>
+        <option value="1">self-determination</option>
+        <option value="1">selfishness</option>
+        <option value="1">self-perfection</option>
+        <option value="1">self-sacrifice</option>
+        <option value="1">self-serving advisers</option>
+        <option value="1">self-sufficience</option>
+        <option value="1">selkies</option>
+        <option value="1">senses</option>
+        <option value="1">sensual fulfillment</option>
+        <option value="1">sentries</option>
+        <option value="1">serenity</option>
+        <option value="1">serpents</option>
+        <option value="1">servants</option>
+        <option value="1">service</option>
+        <option value="1">servitude</option>
+        <option value="1">sewers</option>
+        <option value="1">shadow elves</option>
+        <option value="1">shadows</option>
+        <option value="1">shepherds</option>
+        <option value="1">shield dwarves</option>
+        <option value="1">ships</option>
+        <option value="1">shy friendship</option>
+        <option value="1">sickness</option>
+        <option value="1">sight</option>
+        <option value="1">silence</option>
+        <option value="1">silver dragonkind</option>
+        <option value="1">singing</option>
+        <option value="1">sinister ambition</option>
+        <option value="1">skiing</option>
+        <option value="1">skill</option>
+        <option value="1">skill-at-arms</option>
+        <option value="1">skilled artisans</option>
+        <option value="1">skulks</option>
+        <option value="1">sky</option>
+        <option value="1">slaughter</option>
+        <option value="1">slavery</option>
+        <option value="1">sleep</option>
+        <option value="1">slimes</option>
+        <option value="1">sloth</option>
+        <option value="1">slumber</option>
+        <option value="1">sly cleverness</option>
+        <option value="1">small birds</option>
+        <option value="1">smallpox</option>
+        <option value="1">smithing</option>
+        <option value="1">smiths</option>
+        <option value="1">smithwork</option>
+        <option value="1">smoke</option>
+        <option value="1">snakes</option>
+        <option value="1">snow</option>
+        <option value="1">snow elves</option>
+        <option value="1">social behavior</option>
+        <option value="1">social order</option>
+        <option value="1">societies</option>
+        <option value="1">soldiers</option>
+        <option value="1">solidity</option>
+        <option value="1">somnolence</option>
+        <option value="1">son</option>
+        <option value="1">song</option>
+        <option value="1">songwriting</option>
+        <option value="1">sorcerers</option>
+        <option value="1">sorcery</option>
+        <option value="1">sorority</option>
+        <option value="1">sorrow</option>
+        <option value="1">south wind</option>
+        <option value="1">space</option>
+        <option value="1">spawning</option>
+        <option value="1">specific locality</option>
+        <option value="1">speech</option>
+        <option value="1">speed</option>
+        <option value="1">spellcasters</option>
+        <option value="1">spells</option>
+        <option value="1">spider people</option>
+        <option value="1">spiders</option>
+        <option value="1">spinning</option>
+        <option value="1">spirituality</option>
+        <option value="1">spite</option>
+        <option value="1">sports</option>
+        <option value="1">spriggans</option>
+        <option value="1">spring</option>
+        <option value="1">springs</option>
+        <option value="1">stalking</option>
+        <option value="1">starlight</option>
+        <option value="1">stars</option>
+        <option value="1">starvation</option>
+        <option value="1">status</option>
+        <option value="1">steadfastness</option>
+        <option value="1">stealth</option>
+        <option value="1">stench</option>
+        <option value="1">sterility</option>
+        <option value="1">stillness</option>
+        <option value="1">stone</option>
+        <option value="1">stone giants</option>
+        <option value="1">stonework</option>
+        <option value="1">storm giants</option>
+        <option value="1">storms</option>
+        <option value="1">storytelling</option>
+        <option value="1">strategy</option>
+        <option value="1">streams</option>
+        <option value="1">strength</option>
+        <option value="1">strife</option>
+        <option value="1">strong beasts</option>
+        <option value="1">structure</option>
+        <option value="1">study</option>
+        <option value="1">study of magic</option>
+        <option value="1">stupidity</option>
+        <option value="1">subservience to kurtulmak</option>
+        <option value="1">subtlety</option>
+        <option value="1">subversion</option>
+        <option value="1">success</option>
+        <option value="1">suffering</option>
+        <option value="1">summer</option>
+        <option value="1">summer storms</option>
+        <option value="1">sun</option>
+        <option value="1">sunlight</option>
+        <option value="1">sunshine</option>
+        <option value="1">supreme</option>
+        <option value="1">supreme mischief</option>
+        <option value="1">surprise</option>
+        <option value="1">surrounding lands</option>
+        <option value="1">survival</option>
+        <option value="1">suspicion</option>
+        <option value="1">swamps</option>
+        <option value="1">swanmays</option>
+        <option value="1">swords</option>
+        <option value="1">sword skills</option>
+        <option value="1">swordsmanship</option>
+        <option value="1">swordsmiths</option>
+        <option value="1">swordwork</option>
+        <option value="1">sylvan realms</option>
+        <option value="1">tactics</option>
+        <option value="1">taking souls</option>
+        <option value="1">talking beasts</option>
+        <option value="1">teaching</option>
+        <option value="1">technology</option>
+        <option value="1">tedium</option>
+        <option value="1">territory</option>
+        <option value="1">testing</option>
+        <option value="1">the ancestral father</option>
+        <option value="1">the angoraks</option>
+        <option value="1">theater</option>
+        <option value="1">the atmosphere</option>
+        <option value="1">the aventi</option>
+        <option value="1">the babylonian pantheon</option>
+        <option value="1">the beasts</option>
+        <option value="1">the bhukas</option>
+        <option value="1">the bird cherry</option>
+        <option value="1">the changing seasons</option>
+        <option value="1">the chultans</option>
+        <option value="1">the clouds</option>
+        <option value="1">the dawn</option>
+        <option value="1">the dead</option>
+        <option value="1">the dead exhaustion</option>
+        <option value="1">the desert</option>
+        <option value="1">the dwarven family</option>
+        <option value="1">the earth</option>
+        <option value="1">the earth's riches</option>
+        <option value="1">the east</option>
+        <option value="1">the family</option>
+        <option value="1">the first man</option>
+        <option value="1">the five seas</option>
+        <option value="1">the fomor</option>
+        <option value="1">the forest</option>
+        <option value="1">the forests</option>
+        <option value="1">the forge</option>
+        <option value="1">theft</option>
+        <option value="1">the future</option>
+        <option value="1">the gods</option>
+        <option value="1">the hearth</option>
+        <option value="1">the heavens</option>
+        <option value="1">the high forest</option>
+        <option value="1">the home</option>
+        <option value="1">the hottentots</option>
+        <option value="1">the hula</option>
+        <option value="1">the hunt</option>
+        <option value="1">the hyborians</option>
+        <option value="1">the ideal world</option>
+        <option value="1">the jungle</option>
+        <option value="1">the land</option>
+        <option value="1">the midday sun</option>
+        <option value="1">the moon</option>
+        <option value="1">the noon-day heat</option>
+        <option value="1">the north</option>
+        <option value="1">the north star</option>
+        <option value="1">the north wind</option>
+        <option value="1">the oak tree</option>
+        <option value="1">the ocean</option>
+        <option value="1">the ogun river</option>
+        <option value="1">the oppressed</option>
+        <option value="1">the rain</option>
+        <option value="1">the rudder</option>
+        <option value="1">the scro</option>
+        <option value="1">the sea</option>
+        <option value="1">the senses</option>
+        <option value="1">the sky</option>
+        <option value="1">the sky dwellers</option>
+        <option value="1">the south</option>
+        <option value="1">the southern stars</option>
+        <option value="1">the stars</option>
+        <option value="1">the strong</option>
+        <option value="1">the sun</option>
+        <option value="1">the svirfneblin</option>
+        <option value="1">the tabaxi</option>
+        <option value="1">the thief</option>
+        <option value="1">the undead</option>
+        <option value="1">the underdark</option>
+        <option value="1">the underworld</option>
+        <option value="1">the universe</option>
+        <option value="1">the unnatural</option>
+        <option value="1">the waters</option>
+        <option value="1">the weave</option>
+        <option value="1">the welfare</option>
+        <option value="1">the west</option>
+        <option value="1">the winds</option>
+        <option value="1">the world</option>
+        <option value="1">the yikaria</option>
+        <option value="1">the yoruba tribe</option>
+        <option value="1">thievery</option>
+        <option value="1">thieves</option>
+        <option value="1">thought</option>
+        <option value="1">thoughtless acts</option>
+        <option value="1">thunder</option>
+        <option value="1">thunder elephants</option>
+        <option value="1">thunderstorms</option>
+        <option value="1">tides</option>
+        <option value="1">time</option>
+        <option value="1">tolerance</option>
+        <option value="1">tombs</option>
+        <option value="1">torment</option>
+        <option value="1">torture</option>
+        <option value="1">tortured souls</option>
+        <option value="1">torturers</option>
+        <option value="1">total victory</option>
+        <option value="1">tracking</option>
+        <option value="1">trade</option>
+        <option value="1">traders</option>
+        <option value="1">tradesmen</option>
+        <option value="1">tradition</option>
+        <option value="1">transcendence</option>
+        <option value="1">transformation</option>
+        <option value="1">transformation of art</option>
+        <option value="1">trapmaking</option>
+        <option value="1">traps</option>
+        <option value="1">travel</option>
+        <option value="1">travelers</option>
+        <option value="1">treachery</option>
+        <option value="1">treachery over honor</option>
+        <option value="1">treants</option>
+        <option value="1">treasure-finding</option>
+        <option value="1">treasures</option>
+        <option value="1">tree</option>
+        <option value="1">trees</option>
+        <option value="1">trickery</option>
+        <option value="1">tricks</option>
+        <option value="1">tritons</option>
+        <option value="1">troglodytes</option>
+        <option value="1">trolls</option>
+        <option value="1">trust</option>
+        <option value="1">truth</option>
+        <option value="1">truth-speakers</option>
+        <option value="1">twilight</option>
+        <option value="1">tyranny</option>
+        <option value="1">ugliness</option>
+        <option value="1">ugly people</option>
+        <option value="1">uldras</option>
+        <option value="1">undead</option>
+        <option value="1">undead servitors</option>
+        <option value="1">undeath</option>
+        <option value="1">undefiled waters</option>
+        <option value="1">underdark</option>
+        <option value="1">underwater</option>
+        <option value="1">underworld</option>
+        <option value="1">unicorns</option>
+        <option value="1">unknown</option>
+        <option value="1">unknown secrets</option>
+        <option value="1">unpredictability</option>
+        <option value="1">unrevealed secrets</option>
+        <option value="1">unseeing</option>
+        <option value="1">urban dwarves</option>
+        <option value="1">urds</option>
+        <option value="1">valor</option>
+        <option value="1">vampires</option>
+        <option value="1">vampirism</option>
+        <option value="1">vandals</option>
+        <option value="1">vanity</option>
+        <option value="1">varies</option>
+        <option value="1">vegetation</option>
+        <option value="1">vendettas</option>
+        <option value="1">vengance</option>
+        <option value="1">vengeance</option>
+        <option value="1">venomous creatures</option>
+        <option value="1">ventures</option>
+        <option value="1">vermin</option>
+        <option value="1">vice</option>
+        <option value="1">victory</option>
+        <option value="1">vigilance</option>
+        <option value="1">vigor</option>
+        <option value="1">violence</option>
+        <option value="1">virtue</option>
+        <option value="1">visions</option>
+        <option value="1">vitality</option>
+        <option value="1">volcanic fires</option>
+        <option value="1">volcanoes</option>
+        <option value="1">vortices</option>
+        <option value="1">wakefulness</option>
+        <option value="1">wanderers</option>
+        <option value="1">wandering</option>
+        <option value="1">wanton destruction</option>
+        <option value="1">war</option>
+        <option value="1">wards</option>
+        <option value="1">warfare</option>
+        <option value="1">warmth</option>
+        <option value="1">warpriests</option>
+        <option value="1">warriors</option>
+        <option value="1">wasting</option>
+        <option value="1">watchfulness</option>
+        <option value="1">water</option>
+        <option value="1">waterfalls</option>
+        <option value="1">water magic</option>
+        <option value="1">waters</option>
+        <option value="1">water spirits</option>
+        <option value="1">water travel</option>
+        <option value="1">wave motions</option>
+        <option value="1">waves</option>
+        <option value="1">wealth</option>
+        <option value="1">weapon making</option>
+        <option value="1">weapons</option>
+        <option value="1">weaponsmithing</option>
+        <option value="1">weaponsmiths</option>
+        <option value="1">weather</option>
+        <option value="1">weaving</option>
+        <option value="1">wells</option>
+        <option value="1">wemics</option>
+        <option value="1">werebears</option>
+        <option value="1">werecrocodiles</option>
+        <option value="1">werelions</option>
+        <option value="1">wererats</option>
+        <option value="1">west wind</option>
+        <option value="1">wetlands</option>
+        <option value="1">wetness</option>
+        <option value="1">whales</option>
+        <option value="1">whirlpools</option>
+        <option value="1">wickedness</option>
+        <option value="1">wild beasts</option>
+        <option value="1">wilderness</option>
+        <option value="1">wildlands</option>
+        <option value="1">willpower</option>
+        <option value="1">winds</option>
+        <option value="1">wine</option>
+        <option value="1">winter</option>
+        <option value="1">wisdom</option>
+        <option value="1">wit</option>
+        <option value="1">witches</option>
+        <option value="1">wizards</option>
+        <option value="1">women</option>
+        <option value="1">wood</option>
+        <option value="1">wood elves</option>
+        <option value="1">woodlands</option>
+        <option value="1">woodworkers</option>
+        <option value="1">woodworking</option>
+        <option value="1">work</option>
+        <option value="1">worlds</option>
+        <option value="1">worms</option>
+        <option value="1">worship</option>
+        <option value="1">wrath</option>
+        <option value="1">writing</option>
+        <option value="1">xills</option>
+        <option value="1">xvarts</option>
+        <option value="1">youth</option>
+        <option value="1">zeal</option>
+    </portfolio>
+</data>
