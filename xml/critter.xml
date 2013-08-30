@@ -7,8 +7,38 @@ Based on a work at https://github.com/morgajel/CityGenerator.
 <data><!-- The yellow footed is a massive carnivore-->
     <size></size>
     <diet></diet>
+    <age>
+        <option>long ago</option>
+        <option>before mankind</option>
+    <age>
+    <basecritter min="1" max="2">
+        <option>bear
+        <option>bat
+        <option>spider
+        <option>weasel
+        <option>octopus
+        <option>anteater
+        <option>frog
+        <option>dear
+        <option>scorpion
+        <option>cobra
+        <option>eagle
+        <option>owl
+        <option>gecko
+        <option>eel
+        <option>dog
+    </basecritter>
     <covering></covering>
     <coloring></coloring>
+    <legcount/>
+    <feature>
+    </feature>
+<!--    types of creatures   -->
+cross between X and Y
+X with featureY
+    <origin>
+        <option>forged by the gods
+    </origin>
 
 
 </data>
