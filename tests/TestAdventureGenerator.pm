@@ -51,4 +51,5 @@ subtest 'test generate_adventure name' => sub {
     done_testing();
 };
 
+done_testing();
 1;

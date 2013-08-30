@@ -133,5 +133,6 @@ subtest 'test generate_celetial_objects' => sub {
 };
 
 
+done_testing();
 1;
 

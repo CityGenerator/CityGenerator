@@ -69,5 +69,5 @@ subtest 'Test printCelestialList' => sub {
 };
 
 
+done_testing();
 1;
-

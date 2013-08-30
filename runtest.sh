@@ -20,15 +20,14 @@ elif [[ "$1" == "full" || "$1" == "all" ]]  ;then
 
 elif [[ "$1" == "cover" ]] ;then
     echo " checking code coverage"
-
-    perl -MDevel::Cover=+select,^lib/.*\.pm,+ignore,^/,tests/  ./tests/runtests.pl >/dev/null && \
-    cover -summary && \
+    rm -rf cover_db || echo "no old cover to remove"
+    HARNESS_PERL_SWITCHES=-MDevel::Cover=+ignore,^/,tests/  prove tests/*.pm
+    cover -summary 
     chmod -R 755 cover_db
 
 else
     echo "quick test"
-    perl ./tests/runtests.pl 
-
+    prove tests/*.pm --timer --normalize -t -w --norc -s -j9 -l lib/
 
 fi
 

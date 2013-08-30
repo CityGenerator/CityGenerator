@@ -276,9 +276,11 @@ subtest 'test flesh_out_condition' => sub {
     is( $condition->{'air_pop_mod'},          '1.10' );
     is( $condition->{'forecast_description'}, 'clear' );
 
+done_testing();
 
 };
 
 
+done_testing();
 1;
 

@@ -70,4 +70,5 @@ subtest 'test select_reason' => sub {
 
     done_testing();
 };
+done_testing();
 1;

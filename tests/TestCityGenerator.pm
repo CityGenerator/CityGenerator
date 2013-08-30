@@ -683,5 +683,6 @@ subtest 'test generate_postings' => sub {
 };
 
 
+done_testing();
 1;
 
