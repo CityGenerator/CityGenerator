@@ -80,5 +80,6 @@ subtest 'Test CensusData Misc' => sub {
     done_testing();
 };
 
+done_testing();
 
 1;

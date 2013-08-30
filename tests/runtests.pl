@@ -39,6 +39,7 @@ use TestLegendGenerator;
 use TestMagicItemGenerator;
 use TestMagicItemFormatter;
 use TestCurrencyGenerator;
+use TestDeityGenerator;
 
 done_testing();
 

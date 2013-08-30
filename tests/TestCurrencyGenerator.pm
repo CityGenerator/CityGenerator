@@ -26,5 +26,6 @@ subtest 'test create' => sub {
     done_testing();
 };
 
+done_testing();
 
 1;

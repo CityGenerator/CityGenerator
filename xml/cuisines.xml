@@ -1,35 +1,128 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
 <data>
-    <method>
-        <option>candied</option>
-        <option>stewed</option>
-        <option>roasted</option>
-        <option>smothered</option>
-        <option>baked</option>
-        <option>fried</option>
-        <option>boiled</option>
-        <option>raw</option>
-        <option>garlic</option>
-        <option>spiced</option>
-        <option>blackened</option>
-        <option>spicy</option>
-        <option>steamed</option>
-        <option>poached</option>
-        <option>broiled</option>
-        <option>sauteed</option>
-        <option>simmered</option>
-        <option>braised</option>
-        <option>slow-cooked</option>
-        <option>charred</option>
-        <option>minced</option>
-    </method>
-    <dish>
-        <option>eggplant</option>
-        <option>fish</option>
-        <option>chicken</option>
-        <option>dog</option>
-        <option>seal</option>
-        <option>veggies</option>
-    </dish>
+    <feature>
+        <template>
+            <option>[%method%][%flavor%][%dish%][%mealtype%][%sauce%][%served%]</option>
+        </template>
+        <method chance="70">
+            <option>baked </option>
+            <option>barbequed </option>
+            <option>blanched </option>
+            <option>boiled </option>
+            <option>braised </option>
+            <option>broiled </option>
+            <option>candied </option>
+            <option>canned </option>
+            <option>charred </option>
+            <option>cooked </option>
+            <option>creamed </option>
+            <option>deep-fried </option>
+            <option>fermented </option>
+            <option>frozen </option>
+            <option>fricasseed </option>
+            <option>fried </option>
+            <option>grilled </option>
+            <option>minced </option>
+            <option>pickled </option>
+            <option>poached </option>
+            <option>raw </option>
+            <option>roasted </option>
+            <option>salted </option>
+            <option>sauteed </option>
+            <option>scalded </option>
+            <option>simmered </option>
+            <option>slow-cooked </option>
+            <option>smoked </option>
+            <option>spiced </option>
+            <option>steamed </option>
+            <option>stewed </option>
+            <option>stir-fried </option>
+            <option>tempered </option>
+        </method>
+        <flavor chance="30">
+            <option>peppered </option>
+            <option>cashew </option>
+            <option>orange </option>
+            <option>garlic </option>
+            <option>teriyaki </option>
+            <option>hickory </option>
+            <option>curry </option>
+            <option>mint </option>
+            <option>rosemary </option>
+            <option>maple </option>
+            <option>sweet and sour </option>
+            <option>sweet and spicy </option>
+            <option>sour </option>
+            <option>shredded </option>
+            <option>lemon </option>
+        </flavor>
+        <dish>
+            <option>eggplant</option>
+            <option>fish</option>
+            <option>chicken</option>
+            <option>dog</option>
+            <option>seal</option>
+            <option>ham</option>
+            <option>pork</option>
+            <option>veal</option>
+            <option>lamb</option>
+            <option>squid</option>
+            <option>snail</option>
+            <option>apple</option>
+            <option>beef</option>
+            <option>veggie</option>
+            <option>potato</option>
+        </dish>
+        <mealtype chance="40">
+            <option> wrap</option>
+            <option> casserole</option>
+            <option> crumble</option>
+            <option> pudding</option>
+            <option> pie</option>
+            <option> soup</option>
+            <option> sandwich</option>
+            <option> on pasta</option>
+            <option> cake</option>
+            <option> mousse</option>
+            <option> pancakes</option>
+            <option> salad</option>
+            <option> on rice</option>
+            <option> on kale</option>
+        </mealtype>
+        <sauce chance="30">
+            <option>red</option>
+            <option>white</option>
+            <option>duck</option>
+            <option>bean</option>
+            <option>peanut</option>
+            <option>chile</option>
+            <option>tomato</option>
+            <option>oyster</option>
+            <option>lemon</option>
+            <option>cream</option>
+            <option>cheese</option>
+            <option>mushroom</option>
+            <option>tartar</option>
+            <option>soy</option>
+            <option>anchovy</option>
+            <option>chocolate</option>
+            <option>carmel</option>
+            <option>fudge</option>
+            <option>brown</option>
+        </sauce>
+        <saucetype>
+            <option>broth</option>
+            <option>sauce</option>
+            <option>gravy</option>
+        </saucetype>
+        <served chance="20">
+            <option>hot</option>
+            <option>cold</option>
+            <option>chilled</option>
+            <option>luke warm</option>
+            <option>at room temperature</option>
+        </served>
+    </feature>
+<!-- regional, ethnic, racial or religious roots, historical -->
 </data>
