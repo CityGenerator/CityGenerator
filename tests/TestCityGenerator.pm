@@ -677,7 +677,7 @@ subtest 'test generate_businesses' => sub {
     CityGenerator::generate_businesses($city);
     is( $city->{'businesses'}->{'school'}->{'count'},   5 );
 
-    $city = CityGenerator::create( { 'seed' => 1, 'population_total' => '10000', 'specialists'=>{'bog'}   } );
+    $city = CityGenerator::create( { 'seed' => 1, 'population_total' => '10000', 'specialists'=>{'bog'=>1}   } );
     CityGenerator::generate_specialists($city);
     CityGenerator::generate_businesses($city);
     is( $city->{'businesses'}->{'bog'}->{'count'},  undef, "just because we have a bog specialist doesn't mean we have a bog business" );

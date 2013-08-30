@@ -28,6 +28,7 @@ use Carp;
 use CGI;
 use AstronomyGenerator;
 use ContinentGenerator;
+use CurrencyGenerator;
 use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
@@ -242,6 +243,7 @@ sub flesh_out_city {
     generate_legends($city);
     generate_districts($city);
     generate_resources($city);
+    generate_currencies($city);
 
     generate_travelers($city);
     set_dominance($city);
@@ -1082,6 +1084,26 @@ sub generate_establishments {
             }
         }
     }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_currencies
+
+Generate a list of currencies
+
+=cut
+
+###############################################################################
+sub generate_currencies {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'currencies'}->{'low'}=  CurrencyGenerator::create({'stats'=>{'value'=>20}, 'material'=>'copper' });
+    $city->{'currencies'}->{'med'}=  CurrencyGenerator::create({'stats'=>{'value'=>50}, 'material'=>'silver' });
+    $city->{'currencies'}->{'high'}= CurrencyGenerator::create({'stats'=>{'value'=>80}, 'material'=>'gold' });
+    $city->{'currencies'}->{'old'}=  CurrencyGenerator::create();
     return $city;
 }
 
