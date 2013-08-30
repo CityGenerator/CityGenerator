@@ -27,6 +27,7 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
+use JSON;
 use POSIX;
 use version;
 

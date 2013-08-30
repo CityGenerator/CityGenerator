@@ -19,16 +19,23 @@ elif [[ "$1" == "full" || "$1" == "all" ]]  ;then
     nytprofhtml --open
 
 elif [[ "$1" == "cover" ]] ;then
-    echo " checking code coverage"
+    rm -rf cover_db || echo "no old cover to remove"
+    echo -n " checking code coverage"
 
-    perl -MDevel::Cover=+select,^lib/.*\.pm,+ignore,^/,tests/  ./tests/runtests.pl >/dev/null && \
-    cover -summary && \
+    if [[ -e "$2" ]] ; then
+        echo " of $2"
+        HARNESS_PERL_SWITCHES=-MDevel::Cover=+ignore,^/,tests/  prove tests/Test${2##lib/}
+        cover -summary|grep "$2\|---\|^File"
+    else
+        echo
+        HARNESS_PERL_SWITCHES=-MDevel::Cover=+ignore,^/,tests/  prove tests/*.pm
+        cover -summary 
+    fi
     chmod -R 755 cover_db
 
 else
     echo "quick test"
-    perl ./tests/runtests.pl 
-
+    prove tests/*.pm --timer --normalize -t -w --norc -s -j9 -l lib/
 
 fi
 

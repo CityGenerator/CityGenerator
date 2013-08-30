@@ -53,4 +53,5 @@ subtest 'test select_features' => sub {
     done_testing();
 };
 
+done_testing();
 1;

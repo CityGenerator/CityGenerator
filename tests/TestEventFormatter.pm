@@ -36,4 +36,5 @@ subtest 'Test printPostings' => sub {
 
 
 
+done_testing();
 1;

@@ -50,4 +50,5 @@ subtest 'test item stats' => sub {
     done_testing();
 };
 
+done_testing();
 1;

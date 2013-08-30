@@ -33,6 +33,37 @@ subtest 'test create' => sub {
     done_testing();
 };
 
+subtest 'test set_sub_seeds' => sub {
+    my $city;
+    $city = CityGenerator::create( { 'seed' => 1, 'govt'=>{'seed'=>2}, 'military'=>{'seed'=>2, 'population_total'=>100}, 'climate'=>{'seed'=>2}, 'astronomy'=>{'seed'=>2},  } );
+    CityGenerator::flesh_out_city($city);
+    is( $city->{'govt'}->{'seed'} ,2);
+    is( $city->{'military'}->{'seed'} ,2);
+    is( $city->{'climate'}->{'seed'} ,2);
+    is( $city->{'astronomy'}->{'seed'} ,2);
+
+    #Check population total while we're at it.
+    is( $city->{'military'}->{'population_total'} ,100);
+
+    done_testing();
+};
+
+subtest 'test legends' => sub {
+
+    my $city;
+    $city = CityGenerator::create( { 'seed' => 1, 'age_roll'=>100, 'legends'=>['1' ]  } );
+    CityGenerator::flesh_out_city($city);
+    is(scalar( @{ $city->{'legends'}}) ,$city->{'legendcount'} );
+    is( $city->{'legends'}->[0] ,'1' );
+
+    $city = CityGenerator::create( { 'seed' => 1, 'age_roll'=>100, 'legendcount'=>6  } );
+    CityGenerator::flesh_out_city($city);
+    is( $city->{'legendcount'} ,6);
+    is(scalar( @{ $city->{'legends'}}) ,$city->{'legendcount'} );
+
+    done_testing();
+};
+
 subtest 'test flesh_out_city' => sub {
     my $city;
 
@@ -303,9 +334,10 @@ subtest 'test generate_resources' => sub {
     is( $city->{'resourcecount'},  4 );
     is( @{ $city->{'resources'} }, $city->{'resourcecount'} );
 
-    $city = CityGenerator::create( { 'seed' => '1', 'resourcecount' => 4, 'resources' => [] } );
+    $city = CityGenerator::create( { 'seed' => '1', 'resourcecount' => 4, 'resources' => ['1'] } );
     CityGenerator::generate_resources($city);
     is( $city->{'resourcecount'},  4 );
+    is( $city->{'resources'}->[0],  '1' );
     is( @{ $city->{'resources'} }, 4, 'intentional mismatch' );
 
     done_testing();
@@ -451,6 +483,11 @@ subtest 'test generate_area' => sub {
     $city = CityGenerator::create( { 'seed' => 1, 'population_total' => 3000, 'population_density' => 1000, 'area'=>22 } );
     CityGenerator::generate_area($city);
     is( $city->{'area'}, 22);
+
+    $city = CityGenerator::create( { 'seed' => 1, 'population_total' => 3000, 'population_density' => 1000, 'area'=>22, 'diameter'=>6 } );
+    CityGenerator::generate_area($city);
+    is( $city->{'area'}, 22);
+    is( $city->{'diameter'}, 6);
 
     done_testing();
 };
@@ -613,6 +650,17 @@ subtest 'test generate_specialists' => sub {
     CityGenerator::generate_specialists($city);
     is( $city->{'specialists'}->{'porter'}->{'count'}, 10 );
 
+
+    
+    subtest 'force &d( $specialist->{"sv"} ) == 1 ' => sub {
+        # This needs to be seed 2, pop 1 in order to trigger a certain if statement
+        $city = CityGenerator::create( { 'seed' => 2, 'population_total' => '1', } );
+        CityGenerator::generate_specialists($city);
+        is( $city->{'specialists'}->{'jeweler'}->{'count'}, 1, "ensure at least 1 jeweler is found" );
+
+        done_testing();
+    };
+
     done_testing();
 };
 
@@ -628,6 +676,11 @@ subtest 'test generate_businesses' => sub {
     CityGenerator::generate_specialists($city);
     CityGenerator::generate_businesses($city);
     is( $city->{'businesses'}->{'school'}->{'count'},   5 );
+
+    $city = CityGenerator::create( { 'seed' => 1, 'population_total' => '10000', 'specialists'=>{'bog'}   } );
+    CityGenerator::generate_specialists($city);
+    CityGenerator::generate_businesses($city);
+    is( $city->{'businesses'}->{'bog'}->{'count'},  undef, "just because we have a bog specialist doesn't mean we have a bog business" );
 
     #TODO test hardcoded business counts regardless of specialists
     done_testing();
@@ -683,5 +736,6 @@ subtest 'test generate_postings' => sub {
 };
 
 
+done_testing();
 1;
 

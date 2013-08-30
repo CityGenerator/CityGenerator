@@ -24,8 +24,17 @@ subtest 'test create' => sub {
     $deity = DeityGenerator::create( );
     isnt( $deity->{'seed'}, undef, 'ensure seed is set.' );
 
-print Dumper $deity;
+    $deity = DeityGenerator::create( {'seed'=>1, 'holy symbol'=>'spoon', 'worst_stat'=>'strength', 'best_stat'=>'wisdom', 'portfolio_value'=>7});
+    is( $deity->{'seed'}, 1, 'ensure seed is set.' );
+    is( $deity->{'holy symbol'}, 'spoon', 'Make Tick Happy.' );
+    is( $deity->{'best_stat'}, 'wisdom', 'test wisdom.' );
+    is( $deity->{'worst_stat'}, 'strength', 'test strength.' );
+
+    $deity = DeityGenerator::create( {'seed'=>1, 'holy symbol'=>'spoon', 'portfolio_value'=>1, 'portfolio'=>['peanuts'] });
+    is( $deity->{'seed'}, 1, 'ensure seed is set.' );
 
     done_testing();
 };
 
+done_testing();
+1;

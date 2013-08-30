@@ -133,4 +133,5 @@ subtest 'Test World Data Summary' => sub {
 };
 
 
+done_testing();
 1;
