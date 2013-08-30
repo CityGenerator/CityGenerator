@@ -24,6 +24,21 @@
             <option min="91"          >jealous</option>
         </jealousy>
     </stats>
+    <portfoliovalue>
+        <option name="quazi-diety">1</option>       
+        <option name="demi-deity">2</option>
+        <option name="minor deity">4</option>
+        <option name="lesser deity">8</option>
+        <option name="intermediate deity">16</option>
+        <option name="greater deity">32</option>
+        <option name="over deity">64</option>
+    </portfoliovalue>
+
+
+
+
+
+
     <feature>
         <worship> <!--Orsis prefers ____ from his followers -->
             <option>sacrifices</option>
@@ -31,7 +46,7 @@
             <option>tithings</option>
             <option>prayers</option>
             <option>supplication</option>
-        <worship>
+        </worship>
         <primarycolor>
             <option>black</option>
             <option>blue</option>
@@ -162,12 +177,9 @@
         </weapon>
     </feature>
     <holysymbol>
-        <title>red</title>
-        <title>black</title>
-        <title>blue</title>
+        <title>single</title>
         <title>double</title>
         <title>triple</title>
-        <title>single</title>
 
         <root>cross</root>
         <root>star</root>
@@ -195,27 +207,27 @@
         <root>pearl</root>
     </holysymbol>
     <portfolio>
-        <option value="40">war</option>
-        <option value="40">death</option>
-        <option value="40">magic</option>
-        <option value="40">lore</option>
-        <option value="40">mercy</option>
+        <option value="8">war</option>
+        <option value="8">death</option>
+        <option value="8">magic</option>
+        <option value="8">lore</option>
+        <option value="8">mercy</option>
         <option value="1">stray cats</option>
-        <option value="1">abundance</option>
-        <option value="1">accidents</option>
-        <option value="1">accountability</option>
+        <option value="4">abundance</option>
+        <option value="4">accidents</option>
+        <option value="4">accountability</option>
         <option value="1">adventure</option>
         <option value="1">agony</option>
         <option value="1">agriculture</option>
-        <option value="1">air</option>
+        <option value="8">air</option>
         <option value="1">alcohol</option>
         <option value="1">ambition</option>
         <option value="1">ambush</option>
         <option value="1">amphibians</option>
         <option value="1">anger</option>
-        <option value="1">animals</option>
+        <option value="8">animals</option>
         <option value="1">appraisal</option>
-        <option value="1">arcane knowledge</option>
+        <option value="4">arcane knowledge</option>
         <option value="1">archery</option>
         <option value="1">architecture</option>
         <option value="1">arctic beasts</option>
@@ -235,7 +247,7 @@
         <option value="1">bad fortune</option>
         <option value="1">bad luck</option>
         <option value="1">bad weather</option>
-        <option value="1">balance</option>
+        <option value="8">balance</option>
         <option value="1">barbarians</option>
         <option value="1">bards</option>
         <option value="1">barrenness</option>
@@ -478,7 +490,6 @@
         <option value="1">evil plans</option>
         <option value="1">evil reptiles</option>
         <option value="1">evil secrets</option>
-        <option value="1">evil uldras</option>
         <option value="1">evolution</option>
         <option value="1">excellence</option>
         <option value="1">excess</option>
@@ -1026,7 +1037,6 @@
         <option value="1">rage</option>
         <option value="1">rain</option>
         <option value="1">rainbows</option>
-        <option value="1">rakshasas</option>
         <option value="1">ram-men</option>
         <option value="1">random mischief</option>
         <option value="1">randomness</option>
@@ -1047,7 +1057,6 @@
         <option value="1">related diseases</option>
         <option value="1">relationships</option>
         <option value="1">release</option>
-        <option value="1">renegade spirit nagas</option>
         <option value="1">renewal</option>
         <option value="1">reptiles</option>
         <option value="1">resolution</option>
@@ -1061,7 +1070,6 @@
         <option value="1">rice</option>
         <option value="1">righteous indignation</option>
         <option value="1">righteousness</option>
-        <option value="1">rime isle</option>
         <option value="1">risks</option>
         <option value="1">river</option>
         <option value="1">river hazards</option>
@@ -1240,7 +1248,6 @@
         <option value="1">survival</option>
         <option value="1">suspicion</option>
         <option value="1">swamps</option>
-        <option value="1">swanmays</option>
         <option value="1">swords</option>
         <option value="1">sword skills</option>
         <option value="1">swordsmanship</option>
@@ -1300,11 +1307,8 @@
         <option value="1">the moon</option>
         <option value="1">the noon-day heat</option>
         <option value="1">the north</option>
-        <option value="1">the north star</option>
         <option value="1">the north wind</option>
-        <option value="1">the oak tree</option>
         <option value="1">the ocean</option>
-        <option value="1">the ogun river</option>
         <option value="1">the oppressed</option>
         <option value="1">the rain</option>
         <option value="1">the rudder</option>
@@ -1450,10 +1454,6 @@
         <option value="1">weaving</option>
         <option value="1">wells</option>
         <option value="1">wemics</option>
-        <option value="1">werebears</option>
-        <option value="1">werecrocodiles</option>
-        <option value="1">werelions</option>
-        <option value="1">wererats</option>
         <option value="1">west wind</option>
         <option value="1">wetlands</option>
         <option value="1">wetness</option>
@@ -1472,8 +1472,6 @@
         <option value="1">witches</option>
         <option value="1">wizards</option>
         <option value="1">women</option>
-        <option value="1">wood</option>
-        <option value="1">wood elves</option>
         <option value="1">woodlands</option>
         <option value="1">woodworkers</option>
         <option value="1">woodworking</option>
