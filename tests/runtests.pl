@@ -38,7 +38,7 @@ use TestLegendGenerator;
 
 use TestMagicItemGenerator;
 use TestMagicItemFormatter;
-#use TestDeityGenerator;
+use TestDeityGenerator;
 
 
 done_testing();
