@@ -111,6 +111,15 @@ sub create {
     return $deity;
 }
 
+###############################################################################
+
+=head3 set_max_stats()
+
+select the best and worst stats
+
+=cut
+
+###############################################################################
 sub set_max_stats {
     my ($deity)=@_;
     if (!defined $deity->{'best_stat'}){
@@ -131,6 +140,15 @@ sub set_max_stats {
 }
 
 
+###############################################################################
+
+=head3 set_portfolios()
+
+select portfolios from the allowed portfolios
+
+=cut
+
+###############################################################################
 sub set_portfolios {
     my ($deity)=@_;
     $deity->{'allowed_portfolio'}=clone($deity_data->{'portfolio'}->{'option'}) if (!defined $deity->{'allowed_portfolio'} );

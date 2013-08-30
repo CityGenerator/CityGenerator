@@ -48,6 +48,19 @@ subtest 'test create' => sub {
 
     done_testing();
 };
+
+subtest 'test when' => sub {
+    my $bond;
+    $bond = BondGenerator::create( {'seed' => 12, 'when_chance' => 1, 'when' => 'Silly',}  );
+
+    is( $bond->{'when_chance'},   1,                                  'ensure when_chance is set' );
+    is( $bond->{'when'},        'Silly',                              'ensure when is set' );
+    like($bond->{'template'}, '/^Silly,/');
+
+    done_testing();
+};
+
+
 subtest 'test select_reason' => sub {
     my $bond;
     $bond = BondGenerator::create({'seed'=>1, 'reasontype'=>'what',});

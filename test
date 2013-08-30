@@ -1,2 +1,0 @@
-#!/bin/bash
-cover -delete ; HARNESS_PERL_SWITCHES=-MDevel::Cover=+ignore,^/,tests/  prove $@ -f -q ; cover -summary

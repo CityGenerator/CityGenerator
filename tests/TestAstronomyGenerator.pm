@@ -74,6 +74,15 @@ subtest 'test generate_starsystem' => sub {
 };
 subtest 'test generate_moons' => sub {
     my $astronomy;
+
+    subtest 'test moon count and name' => sub {
+        $astronomy = AstronomyGenerator::create( { 'seed' => 765379, 'moons_roll' => "96", 'moons_count'=>0, 'moons_name'=>'derple moon' } );
+        is( $astronomy->{'moons'}[0], undef);
+        is( $astronomy->{'moons_name'}, 'derple moon');
+        done_testing();
+    };
+    
+
     $astronomy = AstronomyGenerator::create( { 'seed' => 765379, 'moons_roll' => "96" } );
     foreach my $fieldname (qw( name size )) {
         foreach my $id (qw( 0 1 2 )) {

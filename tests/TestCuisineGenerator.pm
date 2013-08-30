@@ -27,6 +27,15 @@ subtest 'test create' => sub {
     $cuisine = CuisineGenerator::create( {'seed'=>1, });
     is( $cuisine->{'seed'},    1,    'ensure seed is set.' );
 
+    subtest 'test create' => sub {
+
+        $cuisine = CuisineGenerator::create( {'seed'=>1, 'sauce'=>'true'});
+        is( $cuisine->{'seed'},    1,    'ensure seed is set.' );
+
+        done_testing();
+    };
+
+
 
 
     done_testing();

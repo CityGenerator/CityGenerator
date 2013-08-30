@@ -28,7 +28,16 @@ subtest 'test generate_adventure ' => sub {
 
     done_testing();
 };
+subtest 'test subjects' => sub {
+    my $adventure;
+    GenericGenerator::set_seed(1);
+    my $tokens
+        = 'SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT SUBJECT ';
+    $adventure = AdventureGenerator::generate_name( { 'seed' => 1, 'namepattern' => $tokens } );
+    like( $adventure->{'name'}, "/ a /", "Since we have no way to set a subject chance of an article, just do it a lot." );
 
+    done_testing();
+};
 
 subtest 'test generate_adventure name' => sub {
     my $adventure;

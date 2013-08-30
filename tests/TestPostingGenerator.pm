@@ -34,6 +34,12 @@ subtest 'test contact, person,class' => sub {
 
     done_testing();
 };
+subtest 'test location' => sub {
+    my $posting;
+    $posting = PostingGenerator::create( {'seed' => 12, 'request_roll'=>0, 'hook_roll'=>0, 'requirement_roll'=>0, 'disclaimer_roll'=>0, 'detail_roll'=>0, 'location'=>"fall" });
+    like($posting->{'template'},"/fall/"  );
+    done_testing();
+};
 
 subtest 'test select_feature' => sub {
     my $posting;
