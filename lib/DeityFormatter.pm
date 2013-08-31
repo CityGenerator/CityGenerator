@@ -28,7 +28,7 @@ use Data::Dumper;
 use Exporter;
 use JSON;
 use Lingua::Conjunction;
-use Lingua::EN::Inflect qw(A);
+use Lingua::EN::Inflect qw(A PL_N);
 use Lingua::EN::Numbers qw(num2en);
 use Number::Format;
 use List::Util 'shuffle', 'min', 'max';
@@ -50,10 +50,66 @@ sub printSummary {
     $content.= "$deity->{'name'} is ".A( $deity->{'importance_description'})." who favors ".$deity->{'best_stat'}. ".\n "  ;
     $content.= "$deity->{'firstname'} controls ".conjunction(@{$deity->{'portfolio'}}).".\n ";
     $content.= ucfirst($deity->{'posessivepronoun'})." holy symbol is ".A( $deity->{'primarycolor'})." $deity->{'holy symbol'} and prefers $deity->{'worship'} from $deity->{'posessivepronoun'} followers.\n ";
+    return $content;
+}
+###############################################################################
 
+=head2 printFollowers()
+
+printFollowers provides details about the deity's followers
+
+=cut
+
+###############################################################################
+sub printFollowers {
+    my ($deity) = @_;
+    my $content = "";
+    $content.="This $deity->{'age_description'} god's worshipers are $deity->{'following_description'}.\n";
+    $content.="$deity->{'firstname'} is thought to have $deity->{'devotion_description'} devoted followers in the world.\n ";
+    $content.="$deity->{'firstnames'} followers are said to be $deity->{'secrecy_description'} about their affiliation.\n ";
+    return $content;
+}
+###############################################################################
+
+=head2 printClergy()
+
+printClergy provides details about the deity'sclergy
+
+=cut
+
+###############################################################################
+sub printClergy {
+    my ($deity) = @_;
+    my $content = "";
+    $content.=ucfirst($deity->{'clergytype'})." of $deity->{'firstname'} often follow a Vow of $deity->{'vow_type'} (a vow to $deity->{'vow'}).\n";
     return $content;
 }
 
+
+
+###############################################################################
+
+=head2 printSects()
+
+Print sects if they exist.
+
+=cut
+
+###############################################################################
+sub printSects {
+    my ($deity) = @_;
+    my $content;
+    if (scalar( @{$deity->{'sect'}}) >0 ){
+        $content.="$deity->{'firstname'} is known to have the following ".PL_N("sect", scalar(@{$deity->{'sect'}}))." worshiping $deity->{'objectivepronoun'}:\n";
+        $content.="<ul>\n";
+        foreach my $sect (@{$deity->{'sect'}}) {
+            $content.="<li>The $sect->{'name'} $sect->{'type'} is seen as $sect->{'acceptance'} by other followers.</li>\n";
+        }
+        $content.="</ul>\n";
+    }
+
+    return $content;
+}
 
 ###############################################################################
 

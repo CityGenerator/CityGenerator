@@ -11,4 +11,17 @@ Based on a work at https://github.com/morgajel/CityGenerator.
                 <h2>Description</h2>
                 [% descriptiontext %]
             </section>
-<br><br><br>
+            <section id="clergy">
+                <h2>Clergy</h2>
+                [% clergytext %]
+            </section>
+            <section id="followers">
+                <h2>Followers</h2>
+                [% followertext %]
+            </section>
+            [%IF secttext%]
+            <section id="sects">
+                <h2>Sects</h2>
+                [% secttext %]
+            </section>
+            [%END%]

@@ -107,7 +107,36 @@ sub create {
 
     set_max_stats($deity);
     set_portfolios($deity);
+    set_subsects($deity);
+    return $deity;
+}
 
+###############################################################################
+
+=head3 set_subsects()
+
+select features that have subsects.
+
+=cut
+
+###############################################################################
+sub set_subsects {
+    my ($deity)=@_;
+    $deity->{'sect'} = [] if (!defined $deity->{'sect'} );
+    if(scalar(@{$deity->{'portfolio'}}) > 2 ){
+        $deity->{'sect_count'}=d(scalar @{$deity->{'portfolio'}})-1 if (!defined $deity->{'sect_count'});
+        my $count=$deity->{'sect_count'};
+        for (my $i=0; $i<$count; $i++){
+            if (d(100)< 50){
+               my $type=rand_from_array($deity_data->{'culttype'}->{'option'})->{'content'};
+               my $acceptance=roll_from_array(d(100),$deity_data->{'acceptance'}->{'option'})->{'content'};
+               push @{ $deity->{'sect'} }, { 
+                                            'name'=> $deity->{'portfolio'}->[$i],
+                                            'type'=>$type,
+                                            'acceptance'=>$acceptance };
+            }
+        }
+    }
     return $deity;
 }
 

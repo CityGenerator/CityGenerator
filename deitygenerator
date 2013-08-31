@@ -61,7 +61,7 @@ sub print_page {
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        'title'         => 'Meet '.$deity->{'name'}."! ($deity->{'seed'})",
+        'title'         => 'Tremble Before '.$deity->{'firstname'}."! ($deity->{'seed'})",
         'seed'          => $deity->{'seed'},
         'content'       => print_content($deity),
     };
@@ -79,10 +79,13 @@ sub print_content {
     my $formtmpl;
     my $vars = {
         'deityname'             => $deity->{'name'},
-            'seed'            => $deity->{'seed'},
-            'summarytext'     => DeityFormatter::printSummary($deity),
-            'descriptiontext' => DeityFormatter::printDescription($deity),
+            'seed'              => $deity->{'seed'},
+            'summarytext'       => DeityFormatter::printSummary($deity),
+            'descriptiontext'   => DeityFormatter::printDescription($deity),
             'deitydatatext'     => DeityFormatter::printData($deity),
+            'secttext'          => DeityFormatter::printSects($deity),
+            'clergytext'        => DeityFormatter::printClergy($deity),
+            'followertext'      => DeityFormatter::printFollowers($deity),
     };
     $templates->process('deitygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
