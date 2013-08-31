@@ -50,6 +50,7 @@ sub printSummary {
     $content.= "$deity->{'name'} is ".A( $deity->{'importance_description'})." who favors ".$deity->{'best_stat'}. ".\n "  ;
     $content.= "$deity->{'firstname'} controls ".conjunction(@{$deity->{'portfolio'}}).".\n ";
     $content.= ucfirst($deity->{'posessivepronoun'})." holy symbol is ".A( $deity->{'primarycolor'})." $deity->{'holy symbol'} and prefers $deity->{'worship'} from $deity->{'posessivepronoun'} followers.\n ";
+    $content.=ucfirst($deity->{'weapon'})." are the preferred weapon of $deity->{'firstname'}.\n";
     return $content;
 }
 ###############################################################################

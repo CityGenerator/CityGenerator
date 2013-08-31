@@ -68,14 +68,15 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>nearby planet</option>
             <option>asteroid belt</option>
         </name>
-        <age>
-            <option>only a few years</option>
-            <option>decades</option>
-            <option>centuries</option>
-            <option>generations</option>
-            <option>millenia</option>
-            <option>time immemorial</option>
-            <option>all eternity</option>
+        <age><!-- has been around for _______-->
+            <option>for only a few years</option>
+            <option>for decades</option>
+            <option>for centuries</option>
+            <option>for generations</option>
+            <option>for millenia</option>
+            <option>for as long as anyone can remember</option>
+            <option>for all eternity</option>
+            <option>since time immemorial</option>
         </age>
 
     </celestial>
