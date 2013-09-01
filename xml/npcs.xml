@@ -111,6 +111,53 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </comeliness>
     </stats>
     <feature>
+        <!--Bob's most valued posession is a ____, which _____ -->
+        <possessiondetail>
+            <option>was lost during the war</option>
+            <option>was stolen weeks ago</option>
+            <option>has great personal significance</option>
+            <option>was a gift from someone close</option>
+            <option>is always kept close</option>
+            <option>is kept safe at all times</option>
+            <option>was stolen from someone else</option>
+            <option>was hidden away</option>
+            <option>was a gift </option>
+            <option>was a gift from a parent</option>
+            <option>was a gift from a mentor</option>
+            <option>was a gift from a lover</option>
+            <option>was a gift from a frienbd</option>
+            <option>was found on the ground recently</option>
+            <option>was found on the ground years ago</option>
+            <option>was found in a tavern months ago</option>
+        </possessiondetail>
+        <possession>
+            <option>jackknife</option>
+            <option>small trinket</option>
+            <option>bouncyball</option>
+            <option>lucky coin</option>
+            <option>ancestral weapon</option>
+            <option>family ring</option>
+            <option>ballbearing</option>
+            <option>small gem</option>
+            <option>whistle</option>
+            <option>throwing knife</option>
+            <option>flask</option>
+            <option>small flute</option>
+            <option>necklace</option>
+            <option>locket</option>
+            <option>yoyo</option>
+            <option>scarf</option>
+            <option>arrowhead</option>
+            <option>map</option>
+            <option>deck of cards</option>
+            <option>dagger</option>
+            <option>horn</option>
+            <option>horseshoe</option>
+            <option>kaleidoscope</option>
+            <option>holy symbol</option>
+            <option>broken sword hilt</option>
+            <option>lock of hair</option>
+        </possession>
         <behavior>
             <option>accusatory</option>
             <option>apologetic</option>
