@@ -24,11 +24,35 @@ use base qw(Exporter);
 
 use Carp;
 use CGI;
+use Lingua::Conjunction;
 use Data::Dumper;
 use Exporter;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
+
+###############################################################################
+
+=head2 printReligions()
+
+printPostings displays a list of current job religions
+
+=cut
+
+###############################################################################
+
+sub printReligions {
+    my ($city) = @_;
+    my $content = "In, $city->{'name'}, you can find worsipers of the following deities:";
+    $content .= "<ul class='twocolumn'> \n";
+    foreach my $deity (@{ $city->{'religions'} } ){
+        $content.= "<li><a href='/deitygenerator?seed=$deity->{'seed'}'>$deity->{'firstname'} (".conjunction(@{$deity->{'portfolio'}}).")</a></li>\n";
+    }    
+
+    $content .= "</ul>\n";
+
+    return $content;
+}
 
 ###############################################################################
 

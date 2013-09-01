@@ -35,6 +35,7 @@ use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Math::Complex ':pi';
 use NPCGenerator;
+use DeityGenerator; 
 use PostingGenerator;
 use LegendGenerator;
 use RegionGenerator;
@@ -244,6 +245,7 @@ sub flesh_out_city {
     generate_districts($city);
     generate_resources($city);
     generate_currencies($city);
+    generate_religions($city);
 
     generate_travelers($city);
     set_dominance($city);
@@ -1083,6 +1085,27 @@ sub generate_establishments {
                 $patrons = $patrons - $occupants;
             }
         }
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_religions
+
+Generate a list of religions
+
+=cut
+
+###############################################################################
+sub generate_religions {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+    $city->{'religion_count'}= d(4)+2 if (!defined $city->{'religion_count'});
+    $city->{'religions'}=[] if(!defined $city->{'religions'});
+
+    for (my $i=0; $i<$city->{'religion_count'}; $i++){
+        push @{$city->{'religions'}}, DeityGenerator::create();
     }
     return $city;
 }

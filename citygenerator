@@ -160,7 +160,8 @@ sub print_content {
         'eventstext'        => EventFormatter::printSummary($city),
         'postingstext'      => EventFormatter::printPostings($city),
 
-        'legendstext'      => CultureFormatter::printLegends($city),
+        'religionstext'     => CultureFormatter::printReligions($city),
+        'legendstext'       => CultureFormatter::printLegends($city),
 
         'peopletext'        => PeopleFormatter::printSummary($city),
         'citizenstext'      => PeopleFormatter::printCitizens($city),
