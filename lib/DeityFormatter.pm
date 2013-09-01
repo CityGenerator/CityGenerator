@@ -65,7 +65,7 @@ printFollowers provides details about the deity's followers
 sub printFollowers {
     my ($deity) = @_;
     my $content = "";
-    $content.="This $deity->{'age_description'} god's worshipers are $deity->{'following_description'}.\n";
+    $content.="This $deity->{'age_description'} god's worshipers are $deity->{'followers_description'}.\n";
     $content.="$deity->{'firstname'} is thought to have $deity->{'devotion_description'} devoted followers in the world.\n ";
     $content.="$deity->{'firstnames'} followers are said to be $deity->{'secrecy_description'} about their affiliation.\n ";
     return $content;

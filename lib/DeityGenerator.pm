@@ -127,7 +127,7 @@ sub set_subsects {
         $deity->{'sect_count'}=d(scalar @{$deity->{'portfolio'}})-1 if (!defined $deity->{'sect_count'});
         my $count=$deity->{'sect_count'};
         for (my $i=0; $i<$count; $i++){
-            if (d(100)< 50){
+            if (d(100)< $deity->{'stats'}->{'devotion'}){
                my $type=rand_from_array($deity_data->{'culttype'}->{'option'})->{'content'};
                my $acceptance=roll_from_array(d(100),$deity_data->{'acceptance'}->{'option'})->{'content'};
                push @{ $deity->{'sect'} }, { 
