@@ -111,6 +111,550 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </comeliness>
     </stats>
     <feature>
+        <phobia><!-- Bob has a well-known fear of _______________. -->
+            <option>accidents ( ystychiphobia )</option>
+            <option>airbourne noxious substances ( erophobia )</option>
+            <option>alcohol ( ethyphobia )</option>
+            <option>alcohol ( otophobia )</option>
+            <option>amnesia ( mnesiphobia )</option>
+            <option>amphibians, such as frogs, newts, salamanders, etc ( atrachophobia )</option>
+            <option>an erect penis ( edorthophobia )</option>
+            <option>animals ( oophobia )</option>
+            <option>ants ( yrmecophobia )</option>
+            <option>anything new ( eophobia )</option>
+            <option>anything new, novelty ( Kainophobia )</option>
+            <option>a penis, esp erect ( hallophobia )</option>
+            <option>asymmetrical things ( symmetriphobia )</option>
+            <option>atomic explosions ( tomosophobia )</option>
+            <option>automobiles ( otorphobia )</option>
+            <option>bad men, burglars ( celerophibia )</option>
+            <option>bald people ( eladophobia )</option>
+            <option>bats ( hiroptophobia )</option>
+            <option>beards ( ogonophobia )</option>
+            <option>bearing a deformed child or fear of monsters or deformed people ( eratophobia )</option>
+            <option>beautiful women ( aligynephobia )</option>
+            <option>beautiful women ( enustraphobia )</option>
+            <option>becoming angry ( ngrophobia )</option>
+            <option>becoming bald ( halacrophobia )</option>
+            <option>becoming ill ( Nosemaphobia )</option>
+            <option>bees ( elissophobia )</option>
+            <option>bees ( piphobia )</option>
+            <option>being alone or of oneself ( utophobia )</option>
+            <option>being bound or tied up ( erinthophobia )</option>
+            <option>being buried alive or of cemeteries ( aphephobia Taphophobia )</option>
+            <option>being contagious ( apinophobia )</option>
+            <option>being contaminated with dirt or germs ( isophobia )</option>
+            <option>being dirty ( utomysophobia )</option>
+            <option>being enclosed ( Cleithrophobia )</option>
+            <option>being evaluated negatively in social situations ( ocial Phobia )</option>
+            <option>being forgotton ( thazagoraphobia )</option>
+            <option>being ignored ( thazagoraphobia )</option>
+            <option>being in crowded, public places like markets ( goraphobia )</option>
+            <option>being infested with worms ( elminthophobia )</option>
+            <option>being laughed at ( elotophobia )</option>
+            <option>being locked in an enclosed place ( leithrophobia )</option>
+            <option>being oneself or of lonliness ( remophobia )</option>
+            <option>being ridiculed ( atagelophobia )</option>
+            <option>being robbed ( arpaxophobia )</option>
+            <option>being scratched ( mychophobia )</option>
+            <option>being seen or stared at ( Scoptophobia )</option>
+            <option>being severely punished or beaten by a rod, or of being severely criticized ( habdophobia )</option>
+            <option>being stared at ( phthalmophobia )</option>
+            <option>being tickled by feathers ( teronophobia )</option>
+            <option>being touched ( aphephobia )</option>
+            <option>being touched ( Haphephobia ) </option>
+            <option>being touched ( hiraptophobia )</option>
+            <option>being touched ( phenphosmphobia )</option>
+            <option>belly buttons ( mphalophobia )</option>
+            <option>birds ( rnithophobia )</option>
+            <option>blindness in visual field ( cotomaphobia )</option>
+            <option>blood ( Hematophobia )</option>
+            <option>Blushing ( Erytophobia )</option>
+            <option>blushing ( reuthrophobia )</option>
+            <option>body smells ( Bromidrophobia )</option>
+            <option>books ( ibliophobia )</option>
+            <option>brain disease ( eningitophobia )</option>
+            <option>bulls ( aurophobia )</option>
+            <option>bums or beggars ( obophobia )</option>
+            <option>cancer ( Carcinophobia )</option>
+            <option>cats ( elinophobia )</option>
+            <option>cats ( Gatophobia )</option>
+            <option>cats ( ilurophobia )</option>
+            <option>cats ( lurophobia )</option>
+            <option>cemeteries ( oimetrophobia )</option>
+            <option>certain fabrics ( extophobia )</option>
+            <option>certain places or situations, such as stage fright ( opophobia )</option>
+            <option>challenges to official doctrine or of radical deviation ( Hereiophobia )</option>
+            <option>changes ( etathesiophobia )</option>
+            <option>chemicals ( hemophobia )</option>
+            <option>chickens ( lektorophobia )</option>
+            <option>childbirth ( aieusiophobia )</option>
+            <option>childbirth ( arturiphobia )</option>
+            <option>childbirth ( ockiophobia )</option>
+            <option>children ( edophobia )</option>
+            <option>Chinese, Chinese culture ( inophobia )</option>
+            <option>chins ( eniophobia )</option>
+            <option>choking ( nginophobia )</option>
+            <option>choking of being smothered ( Pnigerophobia )</option>
+            <option>cholera ( holerophobia )</option>
+            <option>chopsticks ( onsecotaleophobia )</option>
+            <option>church ( cclesiophobia )</option>
+            <option>clocks ( hronomentrophobia )</option>
+            <option>clothing ( estiphobia )</option>
+            <option>clouds ( ephophobia )</option>
+            <option>clowns ( oulrophobia )</option>
+            <option>cockroaches ( atsaridaphobia )</option>
+            <option>coitus ( oitophobia )</option>
+            <option>cold( Frigophobia )</option>
+            <option>cold or cold things ( rigophobia )</option>
+            <option>cold ( sychrophobia )</option>
+            <option>colors ( Chromatophobia )</option>
+            <option>comets ( ometophobia )</option>
+            <option>complex scientific terminology ( ellenologophobia )</option>
+            <option>computers ( ogizomechanophobia )</option>
+            <option>confined spaces ( laustrophobia )</option>
+            <option>constipation ( oprastasophobia )</option>
+            <option>contracting poliomyelitis ( oliosophobia )</option>
+            <option>cooking ( ageirocophobia )</option>
+            <option>cosmic phenomenon ( osmikophobia )</option>
+            <option>crosses or the crucifix ( taurophobia )</option>
+            <option>crossing bridges ( Gephysrophobia )</option>
+            <option>crossing streets ( romophobia )</option>
+            <option>crossing the street ( gyrophobia )</option>
+            <option>crowds ( Agoraphobia ) </option>
+            <option>crowds ( nochlophobia )</option>
+            <option>crowds or mobs ( chlophobia )</option>
+            <option>crystals or glass ( rystallophobia )</option>
+            <option>dancing ( horophobia )</option>
+            <option>darkness ( Achluophobia ) ( cotophobia )</option>
+            <option>darkness ( chluophobia )</option>
+            <option>darkness ( yctophobia )</option>
+            <option>darkness ( ygophobia )</option>
+            <option>dark wooded areas or of forests at night ( yctohylophobia )</option>
+            <option>dawn or daylight ( osophobia )</option>
+            <option>daylight or sunshine ( hengophobia )</option>
+            <option>death or dead things ( ecrophobia )</option>
+            <option>death or dying ( Thantophobia )</option>
+            <option>decaying matter ( eplophobia )</option>
+            <option>defecation ( hypophobia )</option>
+            <option>definite disease ( onopathophobia )</option>
+            <option>definite plans ( eleophobia )</option>
+            <option>deformity ( ysmorphophobia )</option>
+            <option>demons ( Daemonophobia )</option>
+            <option>demons ( emonophobia )</option>
+            <option>dentists ( entophobia )</option>
+            <option>dependence on others ( oteriophobia )</option>
+            <option>depth ( athophobia )</option>
+            <option>diabetes ( iabetophobia )</option>
+            <option>dining or dinner conversations ( eipnophobia )</option>
+            <option>dirt or contamination ( Molysomophobia )</option>
+            <option>dirt ( upophobia )</option>
+            <option>disease ( athophobia )</option>
+            <option>disorder or untidiness ( taxophobia )</option>
+            <option>dizziness or whirlpools ( inophobia )</option>
+            <option>dogs or rabies ( ynophobia )</option>
+            <option>dolls ( ediophobia )</option>
+            <option>double vision ( iplophobia )</option>
+            <option>dreams ( neirophobia )</option>
+            <option>drinking ( ipsophobia )</option>
+            <option>drugs ( harmacophobia )</option>
+            <option>dryness ( erophobia )</option>
+            <option>dust ( Amathophobia ) ( oniophobia )</option>
+            <option>dust ( mathophobia )</option>
+            <option>electricity ( lectrophobia )</option>
+            <option>everything ( Pantophobia )</option>
+            <option>extreme cold, ice or frost ( ryophobia )</option>
+            <option>eyes ( mmetaphobia )</option>
+            <option>failure or defeat ( akorrhaphiophobia )</option>
+            <option>failure ( tychiphobia )</option>
+            <option>fainting ( sthenophobia )</option>
+            <option>falling in love or being in love ( hilophobia )</option>
+            <option>fatigue ( opophobia )</option>
+            <option>fecal matter ( catophobia )</option>
+            <option>feces ( oprophobia )</option>
+            <option>feeling pleasure ( edonophobia )</option>
+            <option>female genitalia ( urotophobia )</option>
+            <option>fever ( Fibriophobia )</option>
+            <option>Fever ( yrexiophobia )</option>
+            <option>firearms ( oplophobia )</option>
+            <option>fire ( rsonphobia )</option>
+            <option>fire ( yrophobia )</option>
+            <option>fish ( chthyophobia )</option>
+            <option>floods ( ntlophobia )</option>
+            <option>flowers ( Anthophobia )</option>
+            <option>flutes ( ulophobia )</option>
+            <option>flying ( teromerhanophobia )</option>
+            <option>flying ( Aviatophobia )</option>
+            <option>fog ( Homichlophobia ) ( ebulaphobia )</option>
+            <option>fog ( omichlophobia )</option>
+            <option>food or eating ( Cibophobia )</option>
+            <option>food( Sitophobia, Sitiophobia ) ( ibophobia )</option>
+            <option>foreign languages ( enoglossophobia )</option>
+            <option>forests ( ylophobia )</option>
+            <option>forgetting ( thazagoraphobia )</option>
+            <option>freedom ( leutherophobia )</option>
+            <option>Friday the 13th ( araskavedekatriaphobia )</option>
+            <option>frogs ( anidaphobia )</option>
+            <option>fur or skins of animals ( oraphobia )</option>
+            <option>gaiety ( herophobia )</option>
+            <option>gaining weight ( Obesophobia ) ( ocrescophobia )</option>
+            <option>gaining weight( Pocrescophobia ) ( besophobia )</option>
+            <option>garlic ( lliumphobia )</option>
+            <option>genitals, particularly female ( olpophobia )</option>
+            <option>German or German things ( eutophobia )</option>
+            <option>germs ( erminophobia )</option>
+            <option>germs ( Spermophobia )</option>
+            <option>getting wrinkles ( hytiphobia )</option>
+            <option>ghosts ( hasmophobia )</option>
+            <option>glaring lights ( hotoaugliaphobia )</option>
+            <option>glass ( elophobia )</option>
+            <option>glass ( Hyalophobia )</option>
+            <option>God or gods ( eusophobia )</option>
+            <option>gods or religion ( heophobia )</option>
+            <option>going to bed ( linophobia )</option>
+            <option>going to school ( idaskaleinophobia )</option>
+            <option>going to the doctor or of doctors ( atrophobia )</option>
+            <option>gold ( urophobia )</option>
+            <option>gravity ( arophobia )</option>
+            <option>growing old ( erascophobia )</option>
+            <option>hair ( richopathophobia )</option>
+            <option>hair ( haetophobia )</option>
+            <option>hands ( hirophobia )</option>
+            <option>having committed an unpardonable sin or of criticism ( Enissophobia )</option>
+            <option>hearing a certain word or of names ( nomatophobia )</option>
+            <option>hearing good news ( uphobia )</option>
+            <option>heat ( hermophobia )</option>
+            <option>heaven ( ranophobia )</option>
+            <option>heaven ( uranophobia )</option>
+            <option>heights ( crophobia )</option>
+            <option>heights ( ltophobia )</option>
+            <option>heights or being close to high buildings ( atophobia )</option>
+            <option>height ( ypsiphobia )</option>
+            <option>hell ( adephobia )</option>
+            <option>hell ( tygiophobia )</option>
+            <option>heredity ( atroiophobia )</option>
+            <option>home ( cophobia )</option>
+            <option>home surroundings, house ( ikophobia )</option>
+            <option>home surroundings ( icophobia )</option>
+            <option>horses ( ippophobia )</option>
+            <option>horses ( quinophobia )</option>
+            <option>hospitals ( osocomephobia )</option>
+            <option>houses or being in a house ( omatophobia )</option>
+            <option>ice or frost ( agophobia )</option>
+            <option>ideas ( deophobia )</option>
+            <option>immobility of a joint ( nkylophobia )</option>
+            <option>imperfection ( telophobia )</option>
+            <option>infinity ( peirophobia )</option>
+            <option>injections ( rypanophobia )</option>
+            <option>injury ( raumatophobia )</option>
+            <option>insanity ( aniaphobia )</option>
+            <option>insanity ( ementophobia )</option>
+            <option>insanity ( gateophobia )</option>
+            <option>insects ( nsectophobia )</option>
+            <option>insects ( ntomophobia )</option>
+            <option>itching or of the insects that cause itching ( carophobia )</option>
+            <option>Japanese ( apanophobia )</option>
+            <option>jealousy ( elophobia )</option>
+            <option>Jews ( udeophobia )</option>
+            <option>jumping from high places ( atapedaphobia )</option>
+            <option>jumping from low places ( atapedaphobia )</option>
+            <option>justice ( ikephobia )</option>
+            <option>kidney disease ( lbuminurophobia )</option>
+            <option>kissing ( hilemaphobia )</option>
+            <option>knees ( enuphobia )</option>
+            <option>knowledge ( nosiophobia )</option>
+            <option>knowledge ( pistemophobia )</option>
+            <option>lakes ( imnophobia )</option>
+            <option>large things ( egalophobia )</option>
+            <option>laughter ( eliophobia )</option>
+            <option>lawsuits ( iticaphobia )</option>
+            <option>learning ( ophophobia )</option>
+            <option>leaving a safe place ( goraphobia )</option>
+            <option>leprosy ( eprophobia )</option>
+            <option>lice ( ediculophobia )</option>
+            <option>lice ( Pediculophobia ) ( hthiriophobia )</option>
+            <option>light flashes ( elaphobia )</option>
+            <option>light ( hotophobia )</option>
+            <option>lightning( Keraunophobia ) </option>
+            <option>liquids, dampness, or moisture ( ygrophobia )</option>
+            <option>lockjaw, tetanus ( etanophobia )</option>
+            <option>long waits ( acrophobia )</option>
+            <option>long words ( esquipedalophobia )</option>
+            <option>long words ( ippopotomonstrosesquipedaliophobia )</option>
+            <option>looking up ( nablephobia )</option>
+            <option>losing an erection ( edomalacuphobia )</option>
+            <option>loud noises ( igyrophobia )</option>
+            <option>love play ( armassophobia )</option>
+            <option>love play ( alaxophobia )</option>
+            <option>lues, syphillis ( uiphobia )</option>
+            <option>machines ( echanophobia )</option>
+            <option>making decisions ( ecidophobia )</option>
+            <option>many things ( olyphobia )</option>
+            <option>marriage ( amophobia )</option>
+            <option>materialism or the fear of epilepsy ( ylephobia )</option>
+            <option>meat ( arnophobia )</option>
+            <option>memories ( nemophobia )</option>
+            <option>men ( ominophobia )</option>
+            <option>menstruation ( enophobia )</option>
+            <option>mercurial medicines ( ydrargyophobia )</option>
+            <option>metal ( etallophobia )</option>
+            <option>meteors ( eteorophobia )</option>
+            <option>mice ( uriphobia )</option>
+            <option>mice ( Muriphobia )</option>
+            <option>microbes ( acillophobia )</option>
+            <option>microbes ( Bacillophobia ) ( icrobiophobia )</option>
+            <option>mind ( sychophobia )</option>
+            <option>mirrors ( atoptrophobia )</option>
+            <option>mirrors ( isoptrophobia )</option>
+            <option>missiles ( allistophobia )</option>
+            <option>money ( Chrematophobia )</option>
+            <option>mother-in-law ( entheraphobia )</option>
+            <option>moths ( ottephobia )</option>
+            <option>movement or motion ( Kinesophobia )</option>
+            <option>moving or making changes ( ropophobia )</option>
+            <option>muscular incoordination ( taxiophobia )</option>
+            <option>mushrooms ( ycophobia )</option>
+            <option>myths or stories or false statements ( ythophobia )</option>
+            <option>names ( omatophobia )</option>
+            <option>narrowness ( nginophobia )</option>
+            <option>narrow things or places ( tenophobia )</option>
+            <option>needles ( ichmophobia )</option>
+            <option>neglecting duty or responsibility ( aralipophobia )</option>
+            <option>new drugs ( eopharmaphobia )</option>
+            <option>new ideas ( Centophobia )</option>
+            <option>newness ( Cainotophobia )</option>
+            <option>new things ( enophobia )</option>
+            <option>noise ( cousticophobia )</option>
+            <option>noises or voices or one's own voice; of telephones ( honophobia )</option>
+            <option>Northern lights ( uroraphobia )</option>
+            <option>nosebleeds ( pistaxiophobia )</option>
+            <option>novelty ( ainophobia )</option>
+            <option>nuclear weapons ( ucleomituphobia )</option>
+            <option>nudity ( udophobia )</option>
+            <option>nudity ( ymnophobia )</option>
+            <option>numbers ( rithmophobia )</option>
+            <option>numbers ( umerophobia )</option>
+            <option>objects at the right side of the body ( extrophobia )</option>
+            <option>old people or of growing old ( erontophobia )</option>
+            <option>one that has a vile odor ( utodysomophobia )</option>
+            <option>open high places ( eroacrophobia )</option>
+            <option>opening one's eyes ( ptophobia )</option>
+            <option>open spaces ( goraphobia )</option>
+            <option>operations ( rgasiophobia )</option>
+            <option>otters ( utraphobia )</option>
+            <option>outer space ( pacephobia )</option>
+            <option>overworking or of pain ( onophobia )</option>
+            <option>pain ( Odynephobia )</option>
+            <option>painful bowels movements ( efecaloesiophobia )</option>
+            <option>pain ( gliophobia )</option>
+            <option>pain ( lgophobia )</option>
+            <option>paper ( apyrophobia )</option>
+            <option>parasites ( arasitophobia )</option>
+            <option>parents-in-law ( oceraphobia )</option>
+            <option>peanut butter sticking to the roof of the mouth ( rachibutyrophobia )</option>
+            <option>pellagra ( ellagrophobia )</option>
+            <option>persons with amputations ( potemnophobia )</option>
+            <option>philosophy ( hilosophobia )</option>
+            <option>phobias ( hobophobia )</option>
+            <option>pins and needles ( Aichmophobia )</option>
+            <option>pins ( netophobia )</option>
+            <option>plants ( otanophobia )</option>
+            <option>poison ( ophobia )</option>
+            <option>poison or of being accidently poisoned ( Toxicophobia )</option>
+            <option>poverty ( eniaphobia )</option>
+            <option>precipices ( remnophobia )</option>
+            <option>pregnancy or childbirth ( ocophobia )</option>
+            <option>prescribing needed pain medications for patients ( piophobia )</option>
+            <option>priests or sacred things ( ierophobia )</option>
+            <option>progress ( rosophobia )</option>
+            <option>property ( rthophobia )</option>
+            <option>prostitutes ( Cypriphobia )</option>
+            <option>prostitutes or venereal disease ( Cyprianophobia )</option>
+            <option>prostitutes or venereal disease ( Cyprinophobia )</option>
+            <option>punishment ( astigophobia )</option>
+            <option>punishment ( oinephobia )</option>
+            <option>puppets ( upaphobia )</option>
+            <option>rabies or of becoming mad ( yssophobia )</option>
+            <option>rabies ( ydrophobophobia )</option>
+            <option>rabies ( ynophobia )</option>
+            <option>radiation, x-rays ( adiophobia )</option>
+            <option>rain or of being rained on ( luviophobia )</option>
+            <option>rain or of being rained on ( mbrophobia )</option>
+            <option>rape ( irginitiphobia )</option>
+            <option>razors ( yrophobia ) </option>
+            <option>receiving praise ( oxophobia )</option>
+            <option>rectum or rectal diseases ( ectophobia )</option>
+            <option>rectums ( roctophobia )</option>
+            <option>Red ( Ereuthophobia )</option>
+            <option>relatives ( yngenesophobia )</option>
+            <option>Religious ceremony ( eleophobia )</option>
+            <option>reptiles or creepy, crawly things ( erpetophobia )</option>
+            <option>responsibility ( Hypegiaphobia )</option>
+            <option>returning home ( ostophobia )</option>
+            <option>ridicule ( atagelophobia )</option>
+            <option>riding in a car ( maxophobia )</option>
+            <option>rivers or running water ( otamophobia )</option>
+            <option>road travel ( odophobia )</option>
+            <option>rooms ( oinoniphobia )</option>
+            <option>ruin or ruins ( tephobia )</option>
+            <option>Russians ( ussophobia )</option>
+            <option>saints or holy things ( agiophobia )</option>
+            <option>sameness, monotony or of homosexuality or of becoming homosexual ( omophobia )</option>
+            <option>Satan ( atanophobia )</option>
+            <option>scabies ( cabiophobia )</option>
+            <option>school ( colionophobia )</option>
+            <option>seeing, thinking about or having an erect penis ( thyphallophobia )</option>
+            <option>sermons ( omilophobia )</option>
+            <option>sex ( enophobia )</option>
+            <option>sexual abuse ( graphobia )</option>
+            <option>sexual abuse ( ontreltophobia )</option>
+            <option>sexual love or sexual questions ( rotophobia )</option>
+            <option>sexual perversion ( araphobia )</option>
+            <option>shadows ( ciophobia Sciaphobia )</option>
+            <option>sharks ( elachophobia )</option>
+            <option>shellfish ( straconophobia )</option>
+            <option>shock ( ormephobia )</option>
+            <option>sinning ( amartophobia )</option>
+            <option>sinning or imaginary crimes ( eccatophobia )</option>
+            <option>sitting ( athisophobia )</option>
+            <option>sitting down ( athisophobia )</option>
+            <option>sitting ( haasophobia )</option>
+            <option>skin disease ( Dermatopathophobia )</option>
+            <option>skin disease ( Dermatophobia )</option>
+            <option>skin disease ( ermatosiophobia )</option>
+            <option>skin lesions ( ermatophobia )</option>
+            <option>sleep ( omniphobia )</option>
+            <option>sleep or of being hypnotized ( ypnophobia )</option>
+            <option>slime ( Blennophobia ) ( yxophobia )</option>
+            <option>slime ( lennophobia )</option>
+            <option>small things ( icrophobia )</option>
+            <option>small things ( ycrophobia )</option>
+            <option>smells ( lfactophobia )</option>
+            <option>smells or odors ( Osphresiophobia )</option>
+            <option>snakes ( Ophidiophobia ) ( nakephobia )</option>
+            <option>snakes ( Snakephobia ) ( phidiophobia )</option>
+            <option>snow ( hionophobia )</option>
+            <option>society or people in general ( ociophobia )</option>
+            <option>solitude, being alone ( solophobia )</option>
+            <option>solitude or being alone ( onophobia )</option>
+            <option>sourness ( cerophobia )</option>
+            <option>speaking ( Lalophobia )</option>
+            <option>speaking in public or of trying to speak ( lossophobia )</option>
+            <option>specters or ghosts ( pectrophobia )</option>
+            <option>speed ( achophobia )</option>
+            <option>spiders ( Arachnophobia )</option>
+            <option>spirits ( neumatiphobia )</option>
+            <option>stairs, climbing, or of falling downstairs ( limacophobia )</option>
+            <option>stairs or steep slopes ( athmophobia )</option>
+            <option>standing or walking ( Ambulophobia )</option>
+            <option>stars ( iderophobia )</option>
+            <option>stars or celestial space ( strophobia )</option>
+            <option>staying single ( nuptaphobia )</option>
+            <option>stealing ( leptophobia )</option>
+            <option>stealing ( leptophobia )</option>
+            <option>step-father ( itricophobia )</option>
+            <option>stings ( nidophobia )</option>
+            <option>stooping ( yphophobia )</option>
+            <option>strangers or foreigners ( enophobia )</option>
+            <option>string ( inonophobia )</option>
+            <option>stuttering ( sellismophobia )</option>
+            <option>suffering and disease ( anthophobia )</option>
+            <option>surgical operations ( omophobia )</option>
+            <option>swallowing or of eating or of being eaten ( hagophobia )</option>
+            <option>symbolism ( ymbolophobia )</option>
+            <option>symmetry ( ymmetrophobia )</option>
+            <option>syphilis ( yphilophobia )</option>
+            <option>taking medicine ( harmacophobia )</option>
+            <option>taking tests ( estophobia )</option>
+            <option>tapeworms ( aeniophobia )</option>
+            <option>taste ( Geumophobia )</option>
+            <option>technology ( echnophobia )</option>
+            <option>teenagers ( phebiphobia )</option>
+            <option>teeth or dental surgery ( dontophobia )</option>
+            <option>telephones ( elephonophobia )</option>
+            <option>termites, insects that eat wood ( sopterophobia )</option>
+            <option>theatres ( heatrophobia )</option>
+            <option>the bogeyman ( ogyphobia )</option>
+            <option>the color black ( elanophobia )</option>
+            <option>the color purple ( orphyrophobia )</option>
+            <option>the color white ( eukophobia )</option>
+            <option>the color yellow or the word yellow ( anthophobia )</option>
+            <option>the dark or of night ( yctophobia )</option>
+            <option>the figure 8 ( ctophobia )</option>
+            <option>the great mole rat ( emmiphobia )</option>
+            <option>the heart ( ardiophobia )</option>
+            <option>the moon ( elenophobia )</option>
+            <option>the night ( octiphobia )</option>
+            <option>the number 13 ( riskaidekaphobia )</option>
+            <option>the number 666 ( exakosioihexekontahexaphobia )</option>
+            <option>theology ( heologicophobia )</option>
+            <option>the opposite sex ( Heterophobia ) ( exophobia )</option>
+            <option>the opposite sex ( Sexophobia ) ( eterophobia )</option>
+            <option>the Pope ( apaphobia )</option>
+            <option>the sea ( halassophobia )</option>
+            <option>the sun ( eliophobia )</option>
+            <option>the Walloons ( alloonphobia )</option>
+            <option>things to the left or left-handed ( inistrophobia )</option>
+            <option>things to the left side of the body ( evophobia )</option>
+            <option>thinking ( hronemophobia )</option>
+            <option>throwing stuff out ( isposophobia )</option>
+            <option>thunder and lightning ( eraunophobia )</option>
+            <option>thunder and lightning ( Astrapophobia )</option>
+            <option>thunder and lightning ( rontophobia )</option>
+            <option>thunder ( Ceraunophobia ) </option>
+            <option>thunder ( onitrophobia )</option>
+            <option>time ( hronophobia )</option>
+            <option>toads ( ufonophobia )</option>
+            <option>tombstones ( lacophobia )</option>
+            <option>tornadoes and hurricanes ( ilapsophobia )</option>
+            <option>trains, railroads or train travel ( iderodromophobia )</option>
+            <option>trees ( endrophobia )</option>
+            <option>trembling ( remophobia )</option>
+            <option>trichinosis ( richinophobia )</option>
+            <option>tuberculosis ( hthisiophobia )</option>
+            <option>tuberculosis ( uberculophobia )</option>
+            <option>tyrants ( yrannophobia )</option>
+            <option>ugliness ( acophobia )</option>
+            <option>undressing in front of someone ( ishabiliophobia )</option>
+            <option>urine or urinating ( rophobia )</option>
+            <option>vaccination ( accinophobia )</option>
+            <option>vegetables ( achanophobia )</option>
+            <option>vehicles ( chophobia )</option>
+            <option>venereal disease ( ypridophobia )</option>
+            <option>ventriloquist's dummies, animatronic creatures, wax statues or anything that falsly represents a sentient being ( utomatonophobia )</option>
+            <option>vertigo or feeling dizzy when looking down ( llyngophobia )</option>
+            <option>virgins or young girls ( arthenophobia )</option>
+            <option>voids or empty spaces ( enophobia )</option>
+            <option>vomiting ( eronausiphobia )</option>
+            <option>vomiting ( metophobia )</option>
+            <option>walking ( mbulophobia )</option>
+            <option>walking or falling ( asophobia )</option>
+            <option>washing or bathing ( blutophobia )</option>
+            <option>wasps ( pheksophobia )</option>
+            <option>water or of rabies ( ydrophobia )</option>
+            <option>waves ( Cymophobia ) ( ymophobia )</option>
+            <option>waves or wave like motions ( Kymophobia )</option>
+            <option>weakness ( sthenophobia )</option>
+            <option>wealth ( lutophobia )</option>
+            <option>wet dreams ( neirogmophobia )</option>
+            <option>wild animals ( grizoophobia )</option>
+            <option>wind ( Anemophobia ) ( ncraophobia )</option>
+            <option>wines ( enophobia )</option>
+            <option>witches and witchcraft ( iccaphobia )</option>
+            <option>women ( Gynophobia )</option>
+            <option>wooden objects ( ylophobia )</option>
+            <option>words ( erbophobia )</option>
+            <option>words ( ogophobia )</option>
+            <option>work or functioning ( rgasiophobia )</option>
+            <option>work ( rgophobia )</option>
+            <option>worms ( coleciphobia )</option>
+            <option>writing in public ( criptophobia )</option>
+            <option>writing or handwriting ( raphophobia )</option>
+            <option>your step-mother ( overcaphobia )</option>
+            <option>abnormal dislike of politicians ( oliticophobia )</option>
+            <option>hatred of music ( elophobia )</option>
+            <option>hatred of poetry ( etrophobia )</option>
+        </phobia>
         <!--Bob's most valued posession is a ____, which _____ -->
         <possessiondetail>
             <option>was lost during the war</option>
