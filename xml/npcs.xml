@@ -111,7 +111,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         </comeliness>
     </stats>
     <feature>
-        <phobia chance="10"><!-- Bob has a well-known fear of _______________. -->
+        <phobia chance="20"><!-- Bob has a well-known fear of _______________. -->
             <option>accidents ( Dystychiphobia )</option>
             <option>air drafts or wind (Ancraophobia)  ( Anemophobia )</option>
             <option>alcohol ( Methyphobia )</option>
