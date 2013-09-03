@@ -21,7 +21,7 @@ use base qw(Exporter);
 subtest 'Test Deity' => sub {
     my $deity = DeityGenerator::create( { seed => 1 } );
     my $deitytext = DeityFormatter::printSummary($deity);
-    like($deitytext,"/.+ is .+ .+ who favors .+\.\n .+ controls .+\.\n .+ holy symbol is .+ .+ .+ and prefers .+ from .+ followers.\n .+ are the preferred weapon of .+\.\n/");
+    like($deitytext,"/.+ is .+ .+ who likes to see .+ in his followers\.\n .+ controls .+\.\n .+ holy symbol is .+ .+ .+ and prefers .+ from .+ followers.\n .+ are the preferred weapon of .+\.\n/");
 
     done_testing();
 };
