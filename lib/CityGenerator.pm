@@ -447,8 +447,9 @@ sub generate_citizens {
         my $racelist=[ map {$_->{'race'}} @{$city->{'races'}}];
         $racelist=[ grep {!/other/} @$racelist];
         for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
+            my $race = rand_from_array($racelist);
             push @{ $city->{'citizens'} },
-                NPCGenerator::create( { 'available_races' => $racelist } );
+                NPCGenerator::create( { 'race'=>$race } );
         }
     }
     return $city;
@@ -963,8 +964,9 @@ sub generate_travelers {
     if ( !defined $city->{'travelers'} ) {
         $city->{'travelers'} = [];
         for ( my $i = 0 ; $i < $city->{'traveler_count'} ; $i++ ) {
+            my $race=rand_from_array( $city->{'available_traveler_races'} );
             push @{ $city->{'travelers'} },
-                NPCGenerator::create( { 'available_races' => $city->{'available_traveler_races'} } );
+                NPCGenerator::create( { 'race'=>$race } );
         }
     }
     return $city;

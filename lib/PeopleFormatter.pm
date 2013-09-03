@@ -73,8 +73,9 @@ sub printCitizens {
             if ( defined $citizen->{'name'} ) {
                 $content
                     .= "<b>"
+                    ."<a href='/npcgenerator?seed=$citizen->{'seed'}&race=$citizen->{'race'}'>"
                     . $citizen->{'name'}
-                    . "</b> is "
+                    . "</a></b> is "
                     . A( lc( $citizen->{'sex'} ) . " " . lc( $citizen->{'race'} ) ) . " ";
             } else {
                 $content .= "A nameless " . lc( $citizen->{'sex'} ) . " " . lc( $citizen->{'race'} ) . " ";
@@ -124,8 +125,9 @@ sub printTravelers {
             if ( defined $traveler->{'name'} ) {
                 $content
                     .= "<b>"
+                    ."<a href='/npcgenerator?seed=$traveler->{'seed'}&race=$traveler->{'race'}'>"
                     . $traveler->{'name'}
-                    . "</b>, "
+                    . "</a></b>, "
                     . A( $traveler->{'behavior'} . " " . lc( $traveler->{'sex'} ) . " " . lc( $traveler->{'race'} ) )
                     . ". \n";
             } else {

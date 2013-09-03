@@ -16,13 +16,9 @@ use NPCFormatter;
 our $q = CGI->new;
 
 
-my $seed=GenericGenerator::set_seed();
+    my $npc_presets=parse_presets($q);
 
-if (defined $q->param('seed')){
-    $seed=$q->param('seed');
-}
-
-my $npc=NPCGenerator::create({seed=>$seed});
+my $npc=NPCGenerator::create($npc_presets);
 
 
 
@@ -51,6 +47,23 @@ exit;
 #################################################################################################
 #################################################################################################
 #################################################################################################
+sub parse_presets {
+    my ($q)=@_;
+    my $presets;
+    $presets->{'seed'}          = $1 if ( defined $q->param('seed')         and $q->param('seed')       =~ /^(\d+)$/x );
+    $presets->{'race'}          = $1 if ( defined $q->param('race')         and $q->param('race')       =~ /^([a-z\-]+)$/x );
+    $presets->{'class'}         = $1 if ( defined $q->param('class')        and $q->param('class')      =~ /^([a-z\- ]+)$/x );
+    $presets->{'profession'}    = $1 if ( defined $q->param('profession')   and $q->param('profession') =~ /^([a-z\- ]+)$/x );
+    $presets->{'business'}      = $1 if ( defined $q->param('business')     and $q->param('business')   =~ /^([a-z\- ]+)$/x );
+    $presets->{'title'}         = $1 if ( defined $q->param('title')        and $q->param('title')      =~ /^([a-z\- ]+)$/x );
+
+    foreach my $climatestat ( ('altitude', 'continentality', 'latitude', 'pressure', 'temperature', 'precipitation' ) ){
+        $presets->{'climate'}->{'stats'}->{$climatestat} = $1 if ( defined $q->param($climatestat)     and $q->param("climate_".$climatestat)       =~/^(\d+)$/x );
+    }
+
+    return $presets;
+
+}
 
 sub print_page {
     my ($npc)=@_;

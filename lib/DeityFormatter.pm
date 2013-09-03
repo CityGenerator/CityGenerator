@@ -47,7 +47,7 @@ printSummary strips out important info from a Deity object and returns formatted
 sub printSummary {
     my ($deity) = @_;
     my $content = "";
-    $content.= "$deity->{'name'} is ".A( $deity->{'importance_description'})." who favors ".$deity->{'best_stat'}. ".\n "  ;
+    $content.= "$deity->{'name'} is ".A( $deity->{'importance_description'})." who likes to see $deity->{'best_stat'} in his followers.\n "  ;
     $content.= "$deity->{'firstname'} controls ".conjunction(@{$deity->{'portfolio'}}).".\n ";
     $content.= ucfirst($deity->{'posessivepronoun'})." holy symbol is ".A( $deity->{'primarycolor'})." $deity->{'holy symbol'} and prefers $deity->{'worship'} from $deity->{'posessivepronoun'} followers.\n ";
     $content.=ucfirst($deity->{'weapon'})." are the preferred weapon of $deity->{'firstname'}.\n";

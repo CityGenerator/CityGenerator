@@ -35,6 +35,18 @@ Based on a work at https://github.com/morgajel/CityGenerator.
         <option min="99"          pronoun='it'>androgynous</option>
     </sex>
     <stats>
+        <fear> <!-- Bubbles also has a _________ fear of _______-->
+            <option          max='5'  >minor</option>
+            <option min='6'  max='10' >apprehensive</option>
+            <option min='21' max='30' >uneasy</option>
+            <option min='31' max='40' >alarming</option>
+            <option min='41' max='50' >panicky</option>
+            <option min='51' max='70' >unnerving</option>
+            <option min='71' max='80' >powerful</option>
+            <option min='81' max='90' >dreadful</option>
+            <option min='91' max='98' >quivering</option>
+            <option min='99'          >crippling</option>
+        </fear>
         <skill> <!-- Bubbles is known for being a __________ brewer in __________-->
             <option          max='5'  >incompetent</option>
             <option min='6'  max='10' >ineptly skilled</option>

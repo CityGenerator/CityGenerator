@@ -67,7 +67,11 @@ sub printLeader {
     my $govt    = $city->{'govt'};
     my $leadername;
     if (defined $city->{'govt'}->{'leader'}->{'name'}){
-        $leadername="$city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}";
+        my $leader=$city->{'govt'}->{'leader'};
+        $leadername=
+        "<a href='/npcgenerator?seed=$leader->{'seed'}&title=$leader->{'title'}&profession=$leader->{'title'}'>"
+        ."$city->{'govt'}->{'leader'}->{'title'} $city->{'govt'}->{'leader'}->{'name'}"
+        ."</a>";
     }else{
         $leadername="The $city->{'govt'}->{'leader'}->{'title'}";
     }

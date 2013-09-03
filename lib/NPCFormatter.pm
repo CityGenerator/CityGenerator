@@ -69,7 +69,7 @@ sub printDescription {
     $content.= $npc->{'firstname'}." appears $npc->{'build'} and has $npc->{'eyes'} eyes. \n";
     $content.= $npc->{'firstnames'}." most valued posession is a $npc->{'possession'}, which $npc->{'possessiondetail'}. \n";
     if (defined $npc->{'phobia'}){
-        $content.= $npc->{'firstname'}." also has a fear of $npc->{'phobia'}. \n";
+        $content.= $npc->{'firstname'}." also has ".A($npc->{'fear_description'})." fear of $npc->{'phobia'}. \n";
     }
     return $content;
 }
