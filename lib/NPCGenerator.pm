@@ -90,10 +90,11 @@ sub create {
             $npc->{$key} = $params->{$key};
         }
     }
-    if ( defined $npc->{'seed'} ) {
-        $npc->{'seed'} = GenericGenerator::set_seed( $npc->{'seed'} );
+    if (!defined $npc->{'seed'} ){
+        $npc->{'seed'} = GenericGenerator::set_seed();
     }
-    GenericGenerator::set_seed($npc->{'seed'});
+    $npc->{'seed'} = GenericGenerator::set_seed($npc->{'seed'});
+
     GenericGenerator::generate_stats($npc, $npc_data);
     GenericGenerator::select_features($npc,$npc_data);
     

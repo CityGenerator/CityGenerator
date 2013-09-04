@@ -1,7 +1,7 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 #
-package TestSummaryFormatter;
+package TestMapJSONFormatter;
 
 use strict;
 use warnings;
@@ -9,7 +9,7 @@ use warnings;
 use CityGenerator;
 use Data::Dumper;
 use Exporter;
-use SummaryFormatter;
+use MapJSONFormatter;
 use Test::More;
 use XML::Simple;
 
@@ -18,16 +18,15 @@ use base qw(Exporter);
 @EXPORT_OK = qw( );
 
 
-subtest 'Test Summary' => sub {
+subtest 'Test MapJSON' => sub {
     my $city = CityGenerator::create( { seed => 1 } );
     CityGenerator::flesh_out_city($city);
-    my $summary = SummaryFormatter::printSummary($city);
-    like( $summary, 
-        "/is a.+ in the .+ with a .+ population\./",
-        "summary text" );
-
+    my $json = MapJSONFormatter::printCityMapJSON($city);
+    like($json, '/"seed":1,/');
+    
     done_testing();
 };
+
 
 done_testing();
 1;

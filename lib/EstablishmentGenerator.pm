@@ -181,12 +181,15 @@ generate the manager for the establishment
 sub generate_manager {
     my ($establishment) = @_;
     if ( !defined $establishment->{'manager'} ) {
-
+        my $race;
+        if (defined $establishment->{'available_races'}){
+            $race=rand_from_array($establishment->{'available_races'});
+        }
         $establishment->{'manager'} = NPCGenerator::create(
             {   'profession'=>$establishment->{'manager_title'},
                 'business'=>$establishment->{'type'},
                 'class'=>$establishment->{'manager_class'},
-                'available_races'=>$establishment->{'available_races'},
+                'race'=>$race,
             });
 
         #TODO flesh out npc here, need to add to NPCGenerator.

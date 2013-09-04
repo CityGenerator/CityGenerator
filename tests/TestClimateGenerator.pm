@@ -218,5 +218,6 @@ subtest 'test calculate_cloudcover' => sub {
 };
 
 
+done_testing();
 1;
 

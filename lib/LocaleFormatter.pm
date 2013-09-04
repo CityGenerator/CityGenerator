@@ -112,8 +112,12 @@ sub describe_establishment {
     if ( defined $establishment->{'district'} ) {    
         $content .= " of the $establishment->{'district'} district";
     }
-    $content.=". \n";
-    $content .= " This place is run by ".A($establishment->{'manager'}->{'behavior'})." $establishment->{'manager'}->{'race'} named $establishment->{'manager'}->{'name'}. \n";
+    my $manager=$establishment->{'manager'};
+    $content .=". \n";
+    $content .= " This place is run by ".A($manager->{'behavior'})." $manager->{'race'} named ";
+    $content .= "<a href='/npcgenerator?seed=$manager->{'seed'}&race=$manager->{'race'}&class=$manager->{'class'}&business=$manager->{'business'}&profession=$manager->{'profession'}'>";
+    $content .=  $manager->{'name'};
+    $content .="</a>. \n";
 
     if ( defined $establishment->{'service_type'} ) {    
         $content .= "The $establishment->{'type'} is known for $establishment->{'price_description'} prices for the $establishment->{'service_type'} there, ";

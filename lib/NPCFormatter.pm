@@ -67,6 +67,10 @@ sub printDescription {
     my $content = "";
     $content.= "$npc->{'name'} is ".A($npc->{'height'})." $npc->{'race'} with ".A($npc->{'complexion'})." complexion. \n";
     $content.= $npc->{'firstname'}." appears $npc->{'build'} and has $npc->{'eyes'} eyes. \n";
+    $content.= $npc->{'firstnames'}." most valued posession is a $npc->{'possession'}, which $npc->{'possessiondetail'}. \n";
+    if (defined $npc->{'phobia'}){
+        $content.= $npc->{'firstname'}." also has ".A($npc->{'fear_description'})." fear of $npc->{'phobia'}. \n";
+    }
     return $content;
 }
 

@@ -223,4 +223,5 @@ subtest 'test set_troop_size' => sub {
 };
 
 
+done_testing();
 1;

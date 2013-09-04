@@ -230,5 +230,6 @@ subtest 'test generate_clouds' => sub {
 };
 
 
+done_testing();
 1;
 

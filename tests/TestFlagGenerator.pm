@@ -52,6 +52,7 @@ subtest 'test generate_shape' => sub {
     $flag = FlagGenerator::create( { 'seed' => 41630, 'shape_roll' =>92, 'shape'=>{'tongueshape'=>'sine', } } );
     is( $flag->{'shape'}->{'name'}, 'tongued' );
     is( $flag->{'shape'}->{'tongueshape'}, 'sine' );
+done_testing();
 
 };
 
@@ -64,6 +65,7 @@ subtest 'test generate_ratio' => sub {
     $flag = FlagGenerator::create( { 'seed' => 41630, 'ratio' => 3 } );
     FlagGenerator::generate_ratio($flag);
     is( $flag->{'ratio'}, '3' );
+done_testing();
 };
 
 subtest 'test generate_division' => sub {
@@ -96,6 +98,7 @@ subtest 'test generate_division' => sub {
     $flag = FlagGenerator::create( { 'seed' => 41630, 'division' => { 'name' => 'bunny' } } );
     FlagGenerator::generate_division($flag);
     is( $flag->{'division'}->{'name'}, 'bunny' );
+done_testing();
 };
 
 
@@ -140,6 +143,7 @@ subtest 'test generate_overlay' => sub {
     $flag = FlagGenerator::create( { 'seed' => 41630, 'overlay' => { 'name' => 'bunny' } } );
     FlagGenerator::generate_overlay($flag);
     is( $flag->{'overlay'}->{'name'}, 'bunny' );
+done_testing();
 };
 
 subtest 'test generate_symbol' => sub {
@@ -152,6 +156,7 @@ subtest 'test generate_symbol' => sub {
     FlagGenerator::generate_symbol($flag);
     is( $flag->{'symbol'}->{'name'}, 'circle' );
     isnt( $flag->{'symbol'}->{'radius_direction'}, undef );
+done_testing();
 };
 
 subtest 'test generate_border' => sub {
@@ -164,6 +169,7 @@ subtest 'test generate_border' => sub {
     FlagGenerator::generate_border($flag);
     is( $flag->{'border'}->{'name'}, 'solid' );
     like( $flag->{'border'}->{'size'}, '/\.\\d\\d/' );
+done_testing();
 };
 
 subtest 'test generate_letter' => sub {
@@ -173,8 +179,10 @@ subtest 'test generate_letter' => sub {
 
     $flag = FlagGenerator::create( { 'seed' => 1, 'cityname'=>'Aba' } );
     is( $flag->{'symbol'}->{'letter'}, 'A' );
+done_testing();
 
 };
 
+done_testing();
 1;
 

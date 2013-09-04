@@ -67,4 +67,5 @@ subtest 'Test MagicItem Summary' => sub {
 };
 
 
+done_testing();
 1;

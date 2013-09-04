@@ -28,12 +28,14 @@ use Carp;
 use CGI;
 use AstronomyGenerator;
 use ContinentGenerator;
+use CurrencyGenerator;
 use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Math::Complex ':pi';
 use NPCGenerator;
+use DeityGenerator; 
 use PostingGenerator;
 use LegendGenerator;
 use RegionGenerator;
@@ -242,6 +244,8 @@ sub flesh_out_city {
     generate_legends($city);
     generate_districts($city);
     generate_resources($city);
+    generate_currencies($city);
+    generate_religions($city);
 
     generate_travelers($city);
     set_dominance($city);
@@ -443,8 +447,9 @@ sub generate_citizens {
         my $racelist=[ map {$_->{'race'}} @{$city->{'races'}}];
         $racelist=[ grep {!/other/} @$racelist];
         for ( my $i = 0 ; $i < $city->{'citizen_count'} ; $i++ ) {
+            my $race = rand_from_array($racelist);
             push @{ $city->{'citizens'} },
-                NPCGenerator::create( { 'available_races' => $racelist } );
+                NPCGenerator::create( { 'race'=>$race } );
         }
     }
     return $city;
@@ -959,8 +964,9 @@ sub generate_travelers {
     if ( !defined $city->{'travelers'} ) {
         $city->{'travelers'} = [];
         for ( my $i = 0 ; $i < $city->{'traveler_count'} ; $i++ ) {
+            my $race=rand_from_array( $city->{'available_traveler_races'} );
             push @{ $city->{'travelers'} },
-                NPCGenerator::create( { 'available_races' => $city->{'available_traveler_races'} } );
+                NPCGenerator::create( { 'race'=>$race } );
         }
     }
     return $city;
@@ -1082,6 +1088,47 @@ sub generate_establishments {
             }
         }
     }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_religions
+
+Generate a list of religions
+
+=cut
+
+###############################################################################
+sub generate_religions {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+    $city->{'religion_count'}= d(4)+2 if (!defined $city->{'religion_count'});
+    $city->{'religions'}=[] if(!defined $city->{'religions'});
+
+    for (my $i=0; $i<$city->{'religion_count'}; $i++){
+        push @{$city->{'religions'}}, DeityGenerator::create();
+    }
+    return $city;
+}
+
+###############################################################################
+
+=head2 generate_currencies
+
+Generate a list of currencies
+
+=cut
+
+###############################################################################
+sub generate_currencies {
+    my ($city) = @_;
+    GenericGenerator::set_seed( $city->{'seed'} + 34);
+
+    $city->{'currencies'}->{'low'}=  CurrencyGenerator::create({'stats'=>{'value'=>20}, 'material'=>'copper' });
+    $city->{'currencies'}->{'med'}=  CurrencyGenerator::create({'stats'=>{'value'=>50}, 'material'=>'silver' });
+    $city->{'currencies'}->{'high'}= CurrencyGenerator::create({'stats'=>{'value'=>80}, 'material'=>'gold' });
+    $city->{'currencies'}->{'old'}=  CurrencyGenerator::create();
     return $city;
 }
 

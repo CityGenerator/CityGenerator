@@ -25,4 +25,5 @@ subtest 'Test printLegends' => sub {
     done_testing();
 };
 
+done_testing();
 1;

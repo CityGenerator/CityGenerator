@@ -1,0 +1,27 @@
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+            <section id="summary">
+                <h2>Summary</h2>
+                [% summarytext %]
+            </section>
+            <section id="description">
+                <h2>Description</h2>
+                [% descriptiontext %]
+            </section>
+            <section id="clergy">
+                <h2>Clergy</h2>
+                [% clergytext %]
+            </section>
+            <section id="followers">
+                <h2>Followers</h2>
+                [% followertext %]
+            </section>
+            [%IF secttext%]
+            <section id="sects">
+                <h2>Sects</h2>
+                [% secttext %]
+            </section>
+            [%END%]

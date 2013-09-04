@@ -342,5 +342,6 @@ subtest 'test generate_stats' => sub {
 
 
 
+done_testing();
 1;
 

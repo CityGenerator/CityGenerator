@@ -269,8 +269,7 @@ sub generate_celestial {
 
     $astronomy->{'celestial_description'}[$id]
         = A( $astronomy->{'celestial'}[$id]->{'size'} . " " . $astronomy->{'celestial'}[$id]->{'name'} )
-        . " that has been around for "
-        . $astronomy->{'celestial'}[$id]->{'age'}
+        . " that has been around ". $astronomy->{'celestial'}[$id]->{'age'}
         if ( !defined $astronomy->{'celestial_description'}[$id] );
 
 

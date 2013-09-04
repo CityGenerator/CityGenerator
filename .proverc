@@ -1,0 +1,8 @@
+-l lib/
+-MDevel::Cover=+ignore,^/,tests/ 
+-j9
+-s
+--timer
+--normalize
+-t
+-w 

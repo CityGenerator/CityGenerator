@@ -34,47 +34,48 @@ subtest 'Test World Sky Summary' => sub {
         { seed => 1, 'starsystem_roll' => 1, 'moons_roll' => 1, 'celestial_roll' => 1 } );
     my $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     my $summary = WorldFormatter::printSkySummary($world);
-    is(
+    like(
         $summary,
 
-        "Macurto orbits a single star: Bek, an average orange star.\n"
-            . "Macurto also has no moons.\n"
+            "/.+ orbits a single star: .+, .+ .+ .+ .+.\n"
+            . ".+ also has no moons.\n"
             . "In the night sky, you see nothing unusual.\n"
-            . "During the day, the sky is brown, which is partially due to pollution.\n"
+            . "During the day, the sky is .+, which is partially due to pollution.\n/"
     );
 
     $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 1, 'moons_roll' => 31, 'celestial_roll' => 31 } );
     $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
-    is( $summary,
-              "Macurto orbits a single star: Bek, an average orange star.\n"
-            . "Macurto also has a single moon: Chale, an average pale yellow moon.\n"
-            . "In the night sky, you see a celestial object: a miniscule asteroid belt that has been around for decades.\n"
-            . "During the day, the sky is brown, which is partially due to pollution.\n" );
+    like( $summary,
+            "/.+ orbits a single star: .+, .+ .+ .+ .+.\n"
+            . ".+ also has a single moon: .+, .+ .+ .+ .+ moon.\n"
+            . "In the night sky, you see a celestial object: .+ .+ asteroid belt that has been around .+.\n"
+            . "During the day, the sky is brown, which is partially due to pollution.\n/" );
 
 
     $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 71, 'moons_roll' => 71, 'celestial_roll' => 61 } );
     $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
-    is( $summary,
-              "Macurto orbits a binary star: Bek, an average orange star and Abar, an average white star.\n"
+    like( $summary,
+            "/.+ orbits a binary star: .+, .+ .+ .+ star and .+, .+ .+ .+ star.\n"
             . "Macurto also has a double moon: Chale, an average pale yellow moon and Sinoropso, a small rusty red moon.\n"
-            . "In the night sky, you see two celestial objects: a miniscule asteroid belt that has been around for decades and a miniscule black hole that has been around for all eternity.\n"
-            . "During the day, the sky is brown, which is partially due to pollution.\n" );
+            . "In the night sky, you see two celestial objects: a miniscule asteroid belt that has been around for decades and a miniscule black hole that has been around .+.\n"
+            . "During the day, the sky is brown, which is partially due to pollution.\n/" 
+    );
 
 
     $astro = AstronomyGenerator::create(
         { seed => 1, 'starsystem_roll' => 97, 'moons_roll' => 96, 'celestial_roll' => 93 } );
     $world = WorldGenerator::create( { seed => 1, 'astronomy' => $astro } );
     $summary = WorldFormatter::printSkySummary($world);
-    is(
+    like(
         $summary,
-"Macurto orbits a trinary star: Bek, an average orange star; Abar, an average white star; and Lur, an average yellow star.\n"
+            "/.+ orbits a trinary star: Bek, an average orange star; Abar, an average white star; and Lur, an average yellow star.\n"
             . "Macurto also has a triple moon: Chale, an average pale yellow moon; Sinoropso, a small rusty red moon; and Eladi, a supermassive light blue moon.\n"
-            . "In the night sky, you see three celestial objects: a miniscule asteroid belt that has been around for decades, a miniscule black hole that has been around for all eternity, and a massive supernova that has been around for millenia.\n"
-            . "During the day, the sky is brown, which is partially due to pollution.\n"
+            . "In the night sky, you see three celestial objects: a miniscule asteroid belt that has been around for decades, a miniscule black hole that has been around .+, and a massive supernova that has been around .+.\n"
+            . "During the day, the sky is brown, which is partially due to pollution.\n/"
 
     );
 
@@ -133,4 +134,5 @@ subtest 'Test World Data Summary' => sub {
 };
 
 
+done_testing();
 1;

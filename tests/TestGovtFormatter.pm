@@ -83,7 +83,7 @@ subtest 'Test Govt Leader' => sub {
 
     $city->{'govt'}->{'leader'}->{'name'}="Bob";
     $text = GovtFormatter::printLeader($city);
-    like($text, "/.+ is ruled by .+ Bob\. /", "make sure it says 'Bob'" );
+    like($text, "/.+ is ruled by .+ Bob/", "make sure it says 'Bob'" );
 
     done_testing();
 };
@@ -99,4 +99,5 @@ subtest 'Test Govt laws' => sub {
 
 
 
+done_testing();
 1;

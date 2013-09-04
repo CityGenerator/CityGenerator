@@ -11,35 +11,39 @@ use Template;
 use XML::Simple;
 use lib "lib/";
 use GenericGenerator;
-use NPCGenerator;
-use NPCFormatter;
+use DeityGenerator;
+use DeityFormatter;
 our $q = CGI->new;
 
 
-    my $npc_presets=parse_presets($q);
+my $seed=GenericGenerator::set_seed();
 
-my $npc=NPCGenerator::create($npc_presets);
+if (defined $q->param('seed')){
+    $seed=$q->param('seed');
+}
+
+my $deity=DeityGenerator::create({seed=>$seed});
 
 
 
 if (defined $q->param('type') and $q->param('type') eq 'xml' ){
     print $q->header( 'text/xml' );
     print "<?xml version='1.0'  encoding='utf-8' ?>\n";
-    print XMLout($npc);
+    print XMLout($deity);
 
 } elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
     print $q->header( 'application/json' );
     my $JSON  = JSON->new->utf8;
     $JSON->convert_blessed(1);
-    print $JSON->encode($npc);
+    print $JSON->encode($deity);
 
 } elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
     print $q->header( 'text/plain' );
-    print Dumper $npc;
+    print Dumper $deity;
 
 } else {
     print $q->header( 'text/html; charset=utf-8' );
-    print_page($npc);
+    print_page($deity);
 }
 
 exit;
@@ -47,26 +51,9 @@ exit;
 #################################################################################################
 #################################################################################################
 #################################################################################################
-sub parse_presets {
-    my ($q)=@_;
-    my $presets;
-    $presets->{'seed'}          = $1 if ( defined $q->param('seed')         and $q->param('seed')       =~ /^(\d+)$/x );
-    $presets->{'race'}          = $1 if ( defined $q->param('race')         and $q->param('race')       =~ /^([a-z\-]+)$/x );
-    $presets->{'class'}         = $1 if ( defined $q->param('class')        and $q->param('class')      =~ /^([a-z\- ]+)$/x );
-    $presets->{'profession'}    = $1 if ( defined $q->param('profession')   and $q->param('profession') =~ /^([a-z\- ]+)$/x );
-    $presets->{'business'}      = $1 if ( defined $q->param('business')     and $q->param('business')   =~ /^([a-z\- ]+)$/x );
-    $presets->{'title'}         = $1 if ( defined $q->param('title')        and $q->param('title')      =~ /^([a-z\- ]+)$/x );
-
-    foreach my $climatestat ( ('altitude', 'continentality', 'latitude', 'pressure', 'temperature', 'precipitation' ) ){
-        $presets->{'climate'}->{'stats'}->{$climatestat} = $1 if ( defined $q->param($climatestat)     and $q->param("climate_".$climatestat)       =~/^(\d+)$/x );
-    }
-
-    return $presets;
-
-}
 
 sub print_page {
-    my ($npc)=@_;
+    my ($deity)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
@@ -74,15 +61,15 @@ sub print_page {
     }) || die "$Template::ERROR\n";
 
     my $vars = {
-        'title'         => 'Meet '.$npc->{'name'}."! ($npc->{'seed'})",
-        'seed'          => $npc->{'seed'},
-        'content'       => print_content($npc),
+        'title'         => 'Tremble Before '.$deity->{'firstname'}."! ($deity->{'seed'})",
+        'seed'          => $deity->{'seed'},
+        'content'       => print_content($deity),
     };
     return $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
 }
 
 sub print_content {
-    my ($npc)=@_;
+    my ($deity)=@_;
 
     my $templates = Template->new({
         INCLUDE_PATH => 'Templates/',
@@ -91,13 +78,16 @@ sub print_content {
 
     my $formtmpl;
     my $vars = {
-        'npcname'             => $npc->{'name'},
-            'seed'            => $npc->{'seed'},
-            'summarytext'     => NPCFormatter::printSummary($npc),
-            'descriptiontext' => NPCFormatter::printDescription($npc),
-            'npcdatatext'     => NPCFormatter::printData($npc),
+        'deityname'             => $deity->{'name'},
+            'seed'              => $deity->{'seed'},
+            'summarytext'       => DeityFormatter::printSummary($deity),
+            'descriptiontext'   => DeityFormatter::printDescription($deity),
+            'deitydatatext'     => DeityFormatter::printData($deity),
+            'secttext'          => DeityFormatter::printSects($deity),
+            'clergytext'        => DeityFormatter::printClergy($deity),
+            'followertext'      => DeityFormatter::printFollowers($deity),
     };
-    $templates->process('npcgenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+    $templates->process('deitygenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
 
     return $formtmpl;
 }

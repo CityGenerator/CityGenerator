@@ -290,4 +290,5 @@ subtest 'test NPC motivations' => sub {
 };
 
 
+done_testing();
 1;
