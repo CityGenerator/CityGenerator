@@ -335,7 +335,7 @@ sub generate_npc_name {
     # NPCs will always have a firstname.        
     $npc->{'firstname'} = parse_object( $racenameparts->{'firstname'} )->{'content'};
     $npc->{'name'} = $npc->{'firstname'};
-    if ($npc->{'firstname'} =~/[sxz]$/){
+    if ($npc->{'firstname'} =~/[sxz]$/x){
         $npc->{'firstnames'} =$npc->{'firstname'}."'";
     }else{
         $npc->{'firstnames'} =$npc->{'firstname'}."'s";
