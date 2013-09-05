@@ -50,10 +50,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </stats>
     <feature>
         <nametemplate>
-            <option>[%coveringcolor%][%part%] [%npc.name%] [%basecritter%]</option>
+            <option>[%coveringcolor%][%part%] [%npc.firstname%] [%basecritter%]</option>
+            <option>[%subtype_type%][%npc.firstname%] [%basecritter%]</option>
+            <option>[%subtype_type%][%npc.firstname%]</option>
+            <option>[%coveringcolor%][%part%] [%npc.firstname%]</option>
         </nametemplate>
-        <origin>
-        </origin>
         <ability><!--The mole rat is known for its ____. -->
             <option>mythical abilities</option>
             <option>poison</option>
@@ -64,10 +65,10 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>dangerous breath</option>
             <option>shapeshifting ability</option>
             <option>sightlessness</option>
-            <option>drain the life from its prey</option>
+            <option>ability to drain the life from its prey</option>
             <option>fast healing</option>
             <option>fearsome visage</option>
-            <option>ability to grapple its pret</option>
+            <option>ability to grapple its prey</option>
             <option>ability to burrow</option>
             <option>ability to fly</option>
             <option>ability to swim</option>
@@ -83,54 +84,67 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>use of telepathy</option>
         </ability>
         <subtype chance="10"> <!--The ____ mole rat __________ -->
-            <option type="undead">reeks of death</option>
-            <option type="aquatic">prefers to spend its time in the water</option>
-            <option type="angelic">radiates an aura of holiness</option>
-            <option type="arctic">prefers colder climates</option>
-            <option type="desert">prefers hot, dry locations</option>
-            <option type="incorporeal">drifts between planes of reality</option>
-            <option type="reptilian">is a cold-blooded creature</option>
-            <option type="draconic">shows signs of a draconic bloodline</option>
-            <option type="magical">has been infused with magical energy</option>
-            <option type="fiendish">has some fiendish traits</option>
-            <option type="augmented">has been improved in some way</option>
-            <option type="oozing"> has lost its structural integrity</option>
-            <option type="demonic">has some demonic traits</option>
+            <option type="undead ">appears to be undead</option>
+            <option type="aquatic ">prefers to spend its time in the water</option>
+            <option type="angelic ">radiates an aura of holiness</option>
+            <option type="arctic ">prefers colder climates</option>
+            <option type="desert ">prefers hot, dry locations</option>
+            <option type="incorporeal ">drifts between planes of reality</option>
+            <option type="reptilian ">is a cold-blooded creature</option>
+            <option type="draconic ">shows signs of a draconic bloodline</option>
+            <option type="magical ">has been infused with magical energy</option>
+            <option type="fiendish ">has some fiendish traits</option>
+            <option type="mechanical ">appears to be some type of mechanized life form</option>
+            <option type="augmented ">has been augmented through magical means</option>
+            <option type="oozing "> has lost its structural integrity</option>
+            <option type="demonic ">has some demonic traits</option>
+            <option type="subterranean ">prefers staying underground</option>
+            <option type="chaotic ">has been warped by chaotic energies</option>
+            <option type="vampiric ">drains the blood from its victims</option>
+            <option type="urban ">prefers to live in civilized areas</option>
             
         </subtype>
-        <attack><!-- adventureres should be wary of the mole rat's ______ -->
-            <option>dangerous claws</option>
-            <option>poisonous stinger</option>
-            <option>fearsome horns</option>
-            <option>massive antlers</option>
-            <option>quick tentacles</option>
-            <option>dangerous charge</option>
-            <option>poisoned bite</option>
+        <attacktype><!-- adventureres should be wary of the mole rat's ______ _____ -->
+            <option>dangerous</option>
+            <option>poisonous</option>
+            <option>fearsome</option>
+            <option>massive</option>
+            <option>quick</option>
+        </attacktype>
+        <attack><!-- adventureres should be wary of the mole rat's ______ _____ -->
+            <option>claws</option>
+            <option>pinchers</option>
+            <option>fangs</option>
+            <option>stinger</option>
+            <option>horns</option>
+            <option>antlers</option>
+            <option>tentacles</option>
+            <option>bite</option>
         </attack>
-        <part>
-            <option>-breasted</option>
-            <option>-capped</option>
-            <option>-cheeked</option>
-            <option>-common</option>
-            <option>-crested</option>
-            <option>-eared</option>
-            <option>-eyed</option>
-            <option>-faced</option>
-            <option>-footed</option>
-            <option>-headed</option>
-            <option>-horned</option>
-            <option>-naped</option>
-            <option>-plumed</option>
-            <option>-ringed</option>
-            <option>-rumped</option>
-            <option>-tailed</option>
-            <option>-throated</option>
+        <part><!-- the yellow-_______ fool is named for its yellow ________. -->
+            <option type="chest">-breasted</option>
+            <option type="scalp">-capped</option>
+            <option type="cheeks">-cheeked</option>
+            <option type="crest">-crested</option>
+            <option type="markings">-eared</option>
+            <option type="eyes">-eyed</option>
+            <option type="face">-faced</option>
+            <option type="feet">-footed</option>
+            <option type="head">-headed</option>
+            <option type="horns">-horned</option>
+            <option type="neck">-naped</option>
+            <option type="coloring">-plumed</option>
+            <option type="rings">-ringed</option>
+            <option type="posterior">-rumped</option>
+            <option type="tail">-tailed</option>
+            <option type="belly">-bellied</option>
+            <option type="throat">-throated</option>
         </part>
         <diet><!-- the mole rat _____________ -->
             <option>feasts on humanoid flesh</option>
             <option>feasts on undead flesh</option>
             <option>eats shoots and leaves</option>
-            <option>has never been observed eating.</option>
+            <option>has never been observed eating</option>
             <option>feeds on rotting plant matter</option>
             <option>feeds on shrubs</option>
             <option>eats leaves and other vegetation</option>
@@ -139,7 +153,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>is an opportunistic feeder</option>
             <option>prefers living flesh</option>
             <option>will eat anything- shoes, cows, loose bricks</option>
-            <option>the male after mating</option>
+            <option>eats the male after mating</option>
             <option>has cannibalistic tendencies</option>
             <option>enjoys the flavor fear provides</option>
             <option>prefers cooked foods</option>
@@ -161,8 +175,6 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>gains energy by killing its prey and consuming the soul, leaving the body intact</option>
             <option>feeds off emotional energy</option>
             <option>relatively slowly but relentlessly pursues its prey until it dies from exhaustion</option>
-            <option>Burrows into the skin, gradually replacing its host's muscle tissue until only the creature remains. then, it abandons the host, now a pile of skin, bone and brain</option>
-            <option>never eats... ever</option>
             <option>drinks nectar</option>
             <option>eats bad little children who misbehave</option>
             <option>subsists on energy from another plane</option>
@@ -170,23 +182,89 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>dissolves its prey with strong acid before eating</option>
         </diet>
         <basecritter cross_chance="50">
-            <option>humanoid</option>
-            <option>bear</option>
-            <option>bat</option>
-            <option>spider</option>
-            <option>weasel</option>
-            <option>octopus</option>
+            <option>alligator</option>
             <option>anteater</option>
-            <option>frog</option>
-            <option>dear</option>
-            <option>scorpion</option>
+            <option>badger</option>
+            <option>bat</option>
+            <option>bear</option>
+            <option>beaver</option>
+            <option>boa</option>
+            <option>boar</option>
+            <option>bobcat</option>
+            <option>booby</option>
+            <option>buffalo</option>
+            <option>camel</option>
+            <option>cat</option>
+            <option>cheetah</option>
+            <option>civet</option>
             <option>cobra</option>
-            <option>eagle</option>
-            <option>owl</option>
-            <option>gecko</option>
-            <option>eel</option>
+            <option>cougar</option>
+            <option>cow</option>
+            <option>crab</option>
+            <option>crane</option>
+            <option>crocodile</option>
+            <option>cross</option>
+            <option>crow</option>
+            <option>deer</option>
+            <option>devil</option>
             <option>dog</option>
-            <option>recurring nightmare you've had since childhood</option>
+            <option>dove</option>
+            <option>dragon</option>
+            <option>duck</option>
+            <option>eagle</option>
+            <option>eel</option>
+            <option>egret</option>
+            <option>elephant</option>
+            <option>enchida</option>
+            <option>falcon</option>
+            <option>fox</option>
+            <option>frog</option>
+            <option>gazelle</option>
+            <option>gecko</option>
+            <option>goat</option>
+            <option>goose</option>
+            <option>gull</option>
+            <option>hawk</option>
+            <option>heron</option>
+            <option>horse</option>
+            <option>humanoid</option>
+            <option>hyena</option>
+            <option>iguana</option>
+            <option>jackal</option>
+            <option>lemur</option>
+            <option>lion</option>
+            <option>lizard</option>
+            <option>mongoose</option>
+            <option>monkey</option>
+            <option>moose</option>
+            <option>mule</option>
+            <option>octopus</option>
+            <option>oppossum</option>
+            <option>otter</option>
+            <option>owl</option>
+            <option>ox</option>
+            <option>panther</option>
+            <option>peacock</option>
+            <option>porcupine</option>
+            <option>porcupine</option>
+            <option>quail</option>
+            <option>raccoon</option>
+            <option>rat</option>
+            <option>salamander</option>
+            <option>scorpion</option>
+            <option>sheep</option>
+            <option>skink</option>
+            <option>sloth</option>
+            <option>snake</option>
+            <option>spider</option>
+            <option>stork</option>
+            <option>swan</option>
+            <option>tortoise</option>
+            <option>turkey</option>
+            <option>viper</option>
+            <option>vulture</option>
+            <option>weasel</option>
+            <option>wolf</option>
         </basecritter>
         <maw><!--and has -->
             <option>teeth that are small, dull nubs</option>
@@ -199,6 +277,7 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>a large bill, good for cracking nuts</option>
             <option>low, flat teeth</option>
             <option>a long, slender beak</option>
+            <option>a large set of fierce pincers</option>
         </maw>
         <coveringtype>
             <option>thin</option>
@@ -209,14 +288,12 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>irregular</option>
             <option>disfigured</option>
         </coveringtype>
-        <covering>
+        <covering chance="50">
             <option>hair</option>
             <option>fur</option>
             <option>scales</option>
             <option>bristles</option>
-            <option>shock of hair</option>
-            <option>mane</option>
-            <option>tuft</option>
+            <option>tufts of hair</option>
             <option>whiskers</option>
             <option>tendrils</option>
             <option>feathers</option>
@@ -241,8 +318,8 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>swims through the water with a powerful tail and flippers</option>
             <option>skitters along on countless legs</option>
             <option>oozes and pulsates forward on a trail of slime</option>
-            <option>skitters forward on six narrow legs.</option>
-            <option>creeps foward on 8 legs.</option>
+            <option>skitters forward on six narrow legs</option>
+            <option>creeps foward on 8 legs</option>
         </locomotion>
 
     </feature>
