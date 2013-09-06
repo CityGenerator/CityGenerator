@@ -23,8 +23,14 @@ elif [[ "$1" == "cover" ]] ;then
     chmod -R 755 cover_db
 
 else
-    echo "quick test"
-    prove tests/*.pm --timer --normalize -t -w --norc -s -j9 -l lib/
+    echo -n "quick test"
+    if [[ -e "$1" ]] ; then
+        echo " of $1"
+        prove  --timer --normalize -t -w --norc -s -j9 -l lib/ -v tests/Test${1##lib/}
+    else
+        echo
+        prove tests/*.pm --timer --normalize -t -w --norc -s -j9 -l lib/ -v
+    fi
 
 fi
 

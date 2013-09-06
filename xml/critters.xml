@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+CityGenerator Data and Templates by Jesse Morgan (morgajel) is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License.
+Based on a work at https://github.com/morgajel/CityGenerator.
+-->
+
+<data><!-- The yellow footed is a massive carnivore-->
+    <stats>
+        <size>
+            <option          max="2"  >miniscule</option>
+            <option min="3"  max="10" >tiny</option>
+            <option min="11" max="25" >small</option>
+            <option min="26" max="75" >medium</option>
+            <option min="76" max="90" >large</option>
+            <option min="91" max="95" >huge</option>
+            <option min="96" max="98" >gargantuan</option>
+            <option min="99"          >colossal</option>
+        </size>
+        <terror>
+            <option          max="12" >adorable</option>
+            <option min="13" max="24" >cute</option>
+            <option min="25" max="36" >unpleasant</option>
+            <option min="37" max="48" >pleasant</option>
+            <option min="49" max="60" >unpleasant</option>
+            <option min="61" max="72" >scary</option>
+            <option min="73" max="84" >terrifying</option>
+            <option min="85"          >horrifying</option>
+        </terror>
+        <age>
+            <option          max="2"  >unborn</option>
+            <option min="3"  max="4"  >newborn</option>
+            <option min="5"  max="10" >young</option>
+            <option min="11" max="25" >juvenile</option>
+            <option min="26" max="75" >adult</option>
+            <option min="76" max="90" >mature adult</option>
+            <option min="91" max="95" >elder</option>
+            <option min="96"          >deceased</option>
+        </age>
+        <creation><!-- The molerat ___________. -->
+            <option          max="2"  >is a new species</option>
+            <option min="3"  max="4"  >has only existed a few decades</option>
+            <option min="5"  max="10" >is only a few generations old</option>
+            <option min="11" max="25" >is younger than human kind</option>
+            <option min="26" max="75" >is older than the elves</option>
+            <option min="76" max="90" >was one of the first creatures</option>
+            <option min="91" max="95" >outdates the world</option>
+            <option min="96"          >outdates the gods</option>
+        </creation>
+
+    </stats>
+    <feature>
+        <nametemplate>
+            <option>[%coveringcolor%][%part%] [%npc.firstname%] [%basecritter%]</option>
+            <option>[%subtype_type%][%npc.firstname%] [%basecritter%]</option>
+            <option>[%subtype_type%][%npc.firstname%]</option>
+            <option>[%coveringcolor%][%part%] [%npc.firstname%]</option>
+        </nametemplate>
+        <ability><!--The mole rat is known for its ____. -->
+            <option>mythical abilities</option>
+            <option>poison</option>
+            <option>toxic breath</option>
+            <option>horrifying gaze</option>
+            <option>petrifying gaze</option>
+            <option>unearthly wail</option>
+            <option>dangerous breath</option>
+            <option>shapeshifting ability</option>
+            <option>sightlessness</option>
+            <option>ability to drain the life from its prey</option>
+            <option>fast healing</option>
+            <option>fearsome visage</option>
+            <option>ability to grapple its prey</option>
+            <option>ability to burrow</option>
+            <option>ability to fly</option>
+            <option>ability to swim</option>
+            <option>ability to set an ambush</option>
+            <option>mindless drive to attack</option>
+            <option>immunity to mental attacks</option>
+            <option>powerful charge</option>
+            <option>overwhelming stink</option>
+            <option>piercing screech</option>
+            <option>magical resistance</option>
+            <option>magical skill</option>
+            <option>ability to swallow its victim whole</option>
+            <option>use of telepathy</option>
+        </ability>
+        <subtype chance="10"> <!--The ____ mole rat __________ -->
+            <option type="undead ">appears to be undead</option>
+            <option type="aquatic ">prefers to spend its time in the water</option>
+            <option type="angelic ">radiates an aura of holiness</option>
+            <option type="arctic ">prefers colder climates</option>
+            <option type="desert ">prefers hot, dry locations</option>
+            <option type="incorporeal ">drifts between planes of reality</option>
+            <option type="reptilian ">is a cold-blooded creature</option>
+            <option type="draconic ">shows signs of a draconic bloodline</option>
+            <option type="magical ">has been infused with magical energy</option>
+            <option type="fiendish ">has some fiendish traits</option>
+            <option type="mechanical ">appears to be some type of mechanized life form</option>
+            <option type="augmented ">has been augmented through magical means</option>
+            <option type="oozing "> has lost its structural integrity</option>
+            <option type="demonic ">has some demonic traits</option>
+            <option type="subterranean ">prefers staying underground</option>
+            <option type="chaotic ">has been warped by chaotic energies</option>
+            <option type="vampiric ">drains the blood from its victims</option>
+            <option type="urban ">prefers to live in civilized areas</option>
+            
+        </subtype>
+        <confrontation><!-- When confronted, it _______.-->
+            <option>will flee</option>
+            <option>releases a cloud of noxious gas</option>
+            <option>fights to the death</option>
+            <option>kills all intruders</option>
+            <option>plays dead</option>
+            <option>explodes violently, sacrificing itself to protect the nest</option>
+            <option>will turn invisible in order to escape</option>
+            <option>shoots spines</option>
+            <option>hisses threateningly</option>
+            <option>puts on a dominance display</option>
+            <option>will charge any threats</option>
+            <option>reacts with obvious friendship</option>
+            <option>reacts submissively</option>
+            <option>challenges you to a battle of wits</option>
+            <option>defensively guards its lair</option>
+            <option>howls to alert the pack</option>
+            <option>magically shields itself</option>
+            <option>summons help</option>
+            <option>approaches curiously</option>
+            <option>demands food telepathically</option>
+        </confrontation>
+        <attacktype><!-- adventureres should be wary of the mole rat's ______ _____ -->
+            <option>dangerous</option>
+            <option>poisonous</option>
+            <option>fearsome</option>
+            <option>massive</option>
+            <option>quick</option>
+        </attacktype>
+        <attack><!-- adventureres should be wary of the mole rat's ______ _____ -->
+            <option>claws</option>
+            <option>pinchers</option>
+            <option>fangs</option>
+            <option>stinger</option>
+            <option>horns</option>
+            <option>antlers</option>
+            <option>tentacles</option>
+            <option>bite</option>
+            <option>chittering</option>
+            <option>tongue</option>
+            <option>wit</option>
+        </attack>
+        <part><!-- the yellow-_______ fool is named for its yellow ________. -->
+            <option type="chest">-breasted</option>
+            <option type="scalp">-capped</option>
+            <option type="cheeks">-cheeked</option>
+            <option type="crest">-crested</option>
+            <option type="markings">-eared</option>
+            <option type="eyes">-eyed</option>
+            <option type="face">-faced</option>
+            <option type="feet">-footed</option>
+            <option type="head">-headed</option>
+            <option type="horns">-horned</option>
+            <option type="neck">-naped</option>
+            <option type="coloring">-plumed</option>
+            <option type="rings">-ringed</option>
+            <option type="posterior">-rumped</option>
+            <option type="tail">-tailed</option>
+            <option type="belly">-bellied</option>
+            <option type="throat">-throated</option>
+        </part>
+        <diet><!-- the mole rat _____________ -->
+            <option>feasts on humanoid flesh</option>
+            <option>feasts on undead flesh</option>
+            <option>eats shoots and leaves</option>
+            <option>has never been observed eating</option>
+            <option>feeds on rotting plant matter</option>
+            <option>feeds on shrubs</option>
+            <option>eats leaves and other vegetation</option>
+            <option>is a herbavore</option>
+            <option>is an omnivore</option>
+            <option>is an opportunistic feeder</option>
+            <option>prefers living flesh</option>
+            <option>will eat anything- shoes, cows, loose bricks</option>
+            <option>eats the male after mating</option>
+            <option>has cannibalistic tendencies</option>
+            <option>enjoys the flavor fear provides</option>
+            <option>prefers cooked foods</option>
+            <option>prefers small mammals and lizards</option>
+            <option>prefers to feed on insects</option>
+            <option>prefers fish</option>
+            <option>feels solely on shellfish</option>
+            <option>swallows its prey whole</option>
+            <option>coccoons its food for up to six weeks before eating</option>
+            <option>paralyses its prey and eats it alive</option>
+            <option>likes to eat eyeballs</option>
+            <option>eats brains</option>
+            <option>will eat its own limbs when short of food</option>
+            <option>extracts nutrients from the air</option>
+            <option>eats soil and rock</option>
+            <option>photosynthesises</option>
+            <option>eats the bones of its prey, leaving the flesh behind</option>
+            <option>eats once a year</option>
+            <option>gains energy by killing its prey and consuming the soul, leaving the body intact</option>
+            <option>feeds off emotional energy</option>
+            <option>relatively slowly but relentlessly pursues its prey until it dies from exhaustion</option>
+            <option>drinks nectar</option>
+            <option>eats bad little children who misbehave</option>
+            <option>subsists on energy from another plane</option>
+            <option>can eat any organic material</option>
+            <option>dissolves its prey with strong acid before eating</option>
+        </diet>
+        <basecritter cross_chance="50">
+            <option>alligator</option>
+            <option>anteater</option>
+            <option>badger</option>
+            <option>bat</option>
+            <option>bear</option>
+            <option>beaver</option>
+            <option>boa</option>
+            <option>boar</option>
+            <option>bobcat</option>
+            <option>booby</option>
+            <option>buffalo</option>
+            <option>camel</option>
+            <option>cat</option>
+            <option>cheetah</option>
+            <option>civet</option>
+            <option>cobra</option>
+            <option>cougar</option>
+            <option>cow</option>
+            <option>crab</option>
+            <option>crane</option>
+            <option>crocodile</option>
+            <option>cross</option>
+            <option>crow</option>
+            <option>deer</option>
+            <option>devil</option>
+            <option>dog</option>
+            <option>dove</option>
+            <option>dragon</option>
+            <option>duck</option>
+            <option>eagle</option>
+            <option>eel</option>
+            <option>egret</option>
+            <option>elephant</option>
+            <option>enchida</option>
+            <option>falcon</option>
+            <option>fox</option>
+            <option>frog</option>
+            <option>gazelle</option>
+            <option>gecko</option>
+            <option>goat</option>
+            <option>goose</option>
+            <option>gull</option>
+            <option>hawk</option>
+            <option>heron</option>
+            <option>horse</option>
+            <option>humanoid</option>
+            <option>hyena</option>
+            <option>iguana</option>
+            <option>jackal</option>
+            <option>lemur</option>
+            <option>lion</option>
+            <option>lizard</option>
+            <option>mongoose</option>
+            <option>monkey</option>
+            <option>moose</option>
+            <option>mule</option>
+            <option>octopus</option>
+            <option>oppossum</option>
+            <option>otter</option>
+            <option>owl</option>
+            <option>ox</option>
+            <option>panther</option>
+            <option>peacock</option>
+            <option>porcupine</option>
+            <option>porcupine</option>
+            <option>quail</option>
+            <option>raccoon</option>
+            <option>rat</option>
+            <option>salamander</option>
+            <option>scorpion</option>
+            <option>sheep</option>
+            <option>skink</option>
+            <option>sloth</option>
+            <option>snake</option>
+            <option>spider</option>
+            <option>stork</option>
+            <option>swan</option>
+            <option>tortoise</option>
+            <option>turkey</option>
+            <option>viper</option>
+            <option>vulture</option>
+            <option>weasel</option>
+            <option>wolf</option>
+        </basecritter>
+        <maw><!--and has -->
+            <option>teeth that are small, dull nubs</option>
+            <option>thousands of tiny, razor sharp teeth</option>
+            <option>large, saber like fangs</option>
+            <option>numerous rows of fangs</option>
+            <option>sharp, feral incisors</option>
+            <option>large, grinding teeth</option>
+            <option>a razor sharp beak</option>
+            <option>a large bill, good for cracking nuts</option>
+            <option>low, flat teeth</option>
+            <option>a long, slender beak</option>
+            <option>a large set of fierce pincers</option>
+        </maw>
+        <coveringtype>
+            <option>thin</option>
+            <option>thick</option>
+            <option>patchy</option>
+            <option>consistent</option>
+            <option>uneven</option>
+            <option>irregular</option>
+            <option>disfigured</option>
+        </coveringtype>
+        <covering chance="50">
+            <option>hair</option>
+            <option>fur</option>
+            <option>scales</option>
+            <option>bristles</option>
+            <option>tufts of hair</option>
+            <option>whiskers</option>
+            <option>tendrils</option>
+            <option>feathers</option>
+            <option>spines</option>
+            <option>tentacles</option>
+        </covering>
+        <coveringcolor>
+            <option>brown</option>
+            <option>gray</option>
+            <option>green</option>
+            <option>red</option>
+            <option>black</option>
+            <option>dark</option>
+            <option>iridesent</option>
+            <option>silver</option>
+            <option>white</option>
+        </coveringcolor>
+        <locomotion><!-- the naked mole rat ______________.-->
+            <option>walks on two legs</option>
+            <option>walks on four legs</option>
+            <option>slithers on its belly</option>
+            <option>swims through the water with a powerful tail and flippers</option>
+            <option>skitters along on countless legs</option>
+            <option>oozes and pulsates forward on a trail of slime</option>
+            <option>skitters forward on six narrow legs</option>
+            <option>creeps foward on 8 legs</option>
+        </locomotion>
+
+    </feature>
+
+
+</data>

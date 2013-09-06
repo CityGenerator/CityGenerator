@@ -470,7 +470,8 @@ sub generate_children {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 10 );
 
-    my $origvalue= $city->{'children'}->{'percent'} if (defined $city->{'children'}->{'percent'});
+    my $origvalue;
+    $origvalue= $city->{'children'}->{'percent'} if (defined $city->{'children'}->{'percent'});
 
     #calculate the pop based on 10 +age stat; should give us a rage between
     # 10% and 45%, which follows the reported international rates of the US census bureau, so STFU.
@@ -503,7 +504,8 @@ sub generate_elderly {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 11 );
 
-    my $origvalue= $city->{'elderly'}->{'percent'} if (defined $city->{'elderly'}->{'percent'});
+    my $origvalue;
+    $origvalue = $city->{'elderly'}->{'percent'} if (defined $city->{'elderly'}->{'percent'});
 
     #calculate the pop based on 10 +random factor - city age modifier; should give us a rage between
     # 1.5% and 26%, which follows the reported international rates of the US census bureau, so STFU.
@@ -702,16 +704,16 @@ If a city has a wall, calcualte how much is protected.
 sub generate_protected_area {
     #TODO this should take into account population density
     my ($city) = @_;
-        $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
-            if ( !defined $city->{'protected_percent'} );
+    $city->{'protected_percent'} = min( 100, 70 + d(30) + $city->{'stats'}->{'military'} )
+        if ( !defined $city->{'protected_percent'} );
 
-        $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
-            if ( !defined $city->{'protected_area'} );
+    $city->{'protected_area'} = sprintf( "%4.2f", ( $city->{'area'} * $city->{'protected_percent'} / 100 ) )
+        if ( !defined $city->{'protected_area'} );
 
-        my $radius = sqrt( $city->{'protected_area'} / pi );
-        $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
+    my $radius = sqrt( $city->{'protected_area'} / pi );
+    $city->{'walls'}->{'length'} = sprintf "%4.2f", 2 * pi * $radius * ( 100 + d(40) ) / 100;
 
-
+    return $city;
 }
 
 
