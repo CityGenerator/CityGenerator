@@ -27,8 +27,9 @@ subtest 'test create' => sub {
     $critter = CritterGenerator::create( {'seed'=>1,});
     is( $critter->{'seed'}, 1, 'ensure seed is set.' );
 
-    print STDERR Dumper $critter;
-
+    $critter = CritterGenerator::create( {'seed'=>1, 'npc'=>{'firstname'=>'Joe'}});
+    is( $critter->{'seed'}, 1, 'ensure seed is set.' );
+    is($critter->{'npc'}->{'firstname'}, 'Joe');
     done_testing();
 };
 

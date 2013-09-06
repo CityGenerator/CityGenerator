@@ -94,7 +94,7 @@ sub print_page {
     my $json=$JSON->encode($city->{'flag'});
 
     my $vars = {
-        'title'         => 'Welcome to '.$city->{'name'}."!",
+        'title'         => 'Welcome to '.$city->{'name'}." ($city->{'seed'})!",
         'logo'          => "<canvas id='flag' style='' width='180' height='90'  onclick='embiggen(this);'  > </canvas>",
         'seed'          => "$city->{'seed'}",
         'onload'        => "create_flag( $json,  \"flag\");",

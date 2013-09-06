@@ -66,36 +66,15 @@ sub printDescription {
     my ($critter) = @_;
     my $content = "";
     $content.="The $critter->{'name'} appears to be ".A($critter->{'size_description'})." $critter->{'basecritter'} that $critter->{'locomotion'}.\n ";
-    $content.="It $critter->{'diet'} with its $critter->{'maw'}.\n " ;
-
     if (defined $critter->{'covering'}){
         $content.="Its $critter->{'size_description'} body is covered with $critter->{'coveringtype'}, $critter->{'coveringcolor'} $critter->{'covering'}.\n ";
     }
     if (defined $critter->{'subtype'}){
         $content.="It $critter->{'subtype'}.\n ";
     }
+    $content.="It $critter->{'diet'} with its $critter->{'maw'}.\n " ;
+    $content.="When confronted, it $critter->{'confrontation'}.\n ";
     
-#          'subtype_roll' => 53,
-#          'seed' => 476217,
-#          'age_description' => 'adult',
-#          'basecritter' => 'bat',
-#          'template' => undef,
-#          'nametemplate' => 'black-cheeked Yerzin bat',
-#          'stats' => {
-#                       'terror' => 4,
-#                       'age' => 43,
-#                       'creation' => 71,
-#                       'size' => 80
-#                     },
-#          'part' => '-cheeked',
-#          'npc' => {
-#                     'firstname' => 'Yerzin'
-#                   },
-#          'creation_description' => 'is older than the elves',
-#          'part_type' => 'cheeks',
-
-
-
     return $content;
 }
 

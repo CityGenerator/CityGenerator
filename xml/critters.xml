@@ -104,6 +104,28 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option type="urban ">prefers to live in civilized areas</option>
             
         </subtype>
+        <confrontation><!-- When confronted, it _______.-->
+            <option>will flee</option>
+            <option>releases a cloud of noxious gas</option>
+            <option>fights to the death</option>
+            <option>kills all intruders</option>
+            <option>plays dead</option>
+            <option>explodes violently, sacrificing itself to protect the nest</option>
+            <option>will turn invisible in order to escape</option>
+            <option>shoots spines</option>
+            <option>hisses threateningly</option>
+            <option>puts on a dominance display</option>
+            <option>will charge any threats</option>
+            <option>reacts with obvious friendship</option>
+            <option>reacts submissively</option>
+            <option>challenges you to a battle of wits</option>
+            <option>defensively guards its lair</option>
+            <option>howls to alert the pack</option>
+            <option>magically shields itself</option>
+            <option>summons help</option>
+            <option>approaches curiously</option>
+            <option>demands food telepathically</option>
+        </confrontation>
         <attacktype><!-- adventureres should be wary of the mole rat's ______ _____ -->
             <option>dangerous</option>
             <option>poisonous</option>
@@ -120,6 +142,9 @@ Based on a work at https://github.com/morgajel/CityGenerator.
             <option>antlers</option>
             <option>tentacles</option>
             <option>bite</option>
+            <option>chittering</option>
+            <option>tongue</option>
+            <option>wit</option>
         </attack>
         <part><!-- the yellow-_______ fool is named for its yellow ________. -->
             <option type="chest">-breasted</option>
