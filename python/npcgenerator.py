@@ -4,7 +4,7 @@
 from genericgenerator import GenericGenerator
 
 
-class Cat(GenericGenerator):
+class NPCGenerator(GenericGenerator):
     def say_something(self):
         return "Miauuu!"
 
