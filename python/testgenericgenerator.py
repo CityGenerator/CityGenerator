@@ -13,6 +13,17 @@ class TestGenericGenerator(unittest.TestCase):
                 {'min': 31, 'max':66, 'content':"bar"},
                 {'min': 67,           'content':"baz"},
                      ]
+        self.namedetails={#title pre root post trailer
+                        'title_chance':20,
+                        'title':[ 'Saint', 'Elder', 'Chief'  ],
+                        'pre_chance':20,
+                        'pre':[ 'Jo', 'Don', 'Bo'  ],
+                        'root':[ 'Bob', 'Dan', 'May'  ],
+                        'post_chance':20,
+                        'post':[ 'fina', 'ney', 'ette'  ],
+                        'trailer_chance':20,
+                        'trailer':[ 'Senior', 'Junior', 'Esquire'  ],
+                        }
 
     def test_random_seed(self):
         gen =GenericGenerator()
@@ -83,6 +94,9 @@ class TestGenericGenerator(unittest.TestCase):
         result=self.gen.d(100)
         self.assertEqual(result, 85, "roll of d(100) gives us {0}".format(result))
 
+    def test_parse_name(self):
+        print self.gen.parse_name(self.namedetails);
+        print self.gen.parse_name(self.namedetails);
 
 
 if __name__ == '__main__':

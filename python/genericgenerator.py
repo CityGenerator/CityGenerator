@@ -41,4 +41,24 @@ class GenericGenerator:
         return random.randint(1,dice);
 
 
+    def parse_name(self,data):
+        newname={'pre':'','root':'','post':''}
+        for part in ('title', 'pre', 'root', 'post', 'trailer'):
+            if part in data:
+                if part+"_chance" in data and data[part+"_chance"] > self.d(100):
+                    newname[part]=self.rand_from_array(data[part])
+                elif part+"_chance" not in data:
+                    newname[part]=self.rand_from_array(data[part])
+        newname['content']= "{0}{1}{2}".format(newname['pre'], newname['root'], newname['post'])
+        if 'title' in newname:
+            newname['content']= newname['title']+ " "+newname['content']
+        return newname
+
+
+
+
+
+
+
+
 
