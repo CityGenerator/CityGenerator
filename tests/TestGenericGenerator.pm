@@ -340,6 +340,27 @@ subtest 'test generate_stats' => sub {
     done_testing();
 };
 
+subtest 'test bound' => sub {
+    my $results;
+    $results=GenericGenerator::bound(5,1,100);
+    is($results,5, "acceptable value");
+    $results=GenericGenerator::bound(-5,1,100);
+    is($results,1, "too low");
+    $results=GenericGenerator::bound(500,1,100);
+    is($results,100, "too high");
+};
+
+subtest 'test rand_between' => sub {
+    GenericGenerator::set_seed(1);
+    my $results;
+    $results=GenericGenerator::rand_between(400,500);
+    ok($results>=400 && $results<=500, "acceptable value $results");
+    $results=GenericGenerator::rand_between(-5,5);
+    ok($results>=-5 && $results<=5, "acceptable value $results");
+};
+
+
+
 
 
 done_testing();

@@ -351,6 +351,42 @@ sub parse_template{
     return $ds;
 }
 
+
+###############################################################################
+
+=head2 bound()
+
+ensure a value is between two other values.
+
+=cut
+
+###############################################################################
+sub bound {
+    my ($value,$min,$max) = @_;
+    if ($value <$min){
+        $value=$min;
+    }elsif ($value>$max){
+        $value=$max;
+    }
+    return $value;
+}
+
+
+###############################################################################
+
+=head2 rand_between()
+
+generates a value between two values, inclusive
+
+=cut
+
+###############################################################################
+sub rand_between {
+    my ($min,$max) = @_;
+    my $delta=$max-$min;
+    return int(rand($delta)) + $min;
+}
+
 1;
 
 __END__
