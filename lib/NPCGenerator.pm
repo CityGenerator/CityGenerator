@@ -31,7 +31,7 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
 use Lingua::EN::Gender;
-use List::Util 'shuffle', 'min', 'max';
+use List::Util 'shuffle';
 use POSIX;
 use version;
 use XML::Simple;

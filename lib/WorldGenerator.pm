@@ -30,10 +30,9 @@ use CGI;
 use ContinentGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object);
+use GenericGenerator qw(set_seed rand_from_array roll_from_array d parse_object rand_between);
 use AstronomyGenerator;
 use Lingua::EN::Inflect qw(A);
-use List::Util 'shuffle', 'min', 'max';
 use Math::Trig ':pi';
 use POSIX;
 use version;
@@ -253,7 +252,7 @@ sub generate_year {
     $world->{'year_roll'} = d(100) if ( !defined $world->{'year_roll'} );
 
     my $year = roll_from_array( $world->{'year_roll'}, $world_data->{'year'}->{'option'} );
-    $world->{'year'} = int( rand( $year->{'maxday'} - $year->{'minday'} ) + $year->{'minday'} )
+    $world->{'year'} = rand_between( $year->{'minday'}, $year->{'maxday'}) 
         if ( !defined $world->{'year'} );
 
     return $world;
@@ -276,7 +275,7 @@ sub generate_day {
     $world->{'day_roll'} = d(100) if ( !defined $world->{'day_roll'} );
 
     my $day = roll_from_array( $world->{'day_roll'}, $world_data->{'day'}->{'option'} );
-    $world->{'day'} = int( rand( $day->{'maxhour'} - $day->{'minhour'} ) + $day->{'minhour'} )
+    $world->{'day'} = rand_between($day->{'minhour'}, $day->{'maxhour'} )
         if ( !defined $world->{'day'} );
 
     return $world;
@@ -299,7 +298,7 @@ sub generate_plates {
     $world->{'plates_roll'} = d(100) if ( !defined $world->{'plates_roll'} );
 
     my $plates = roll_from_array( $world->{'plates_roll'}, $world_data->{'plates'}->{'option'} );
-    $world->{'plates'} = int( rand( $plates->{'maxplate'} - $plates->{'minplate'} ) + $plates->{'minplate'} )
+    $world->{'plates'} = rand_between($plates->{'minplate'}, $plates->{'maxplate'} )
         if ( !defined $world->{'plates'} );
     $world->{'continent_count'} = int( $world->{'plates'} / 3 );
     return $world;
@@ -322,7 +321,7 @@ sub generate_surface {
     $world->{'surface_roll'} = d(100) if ( !defined $world->{'surface_roll'} );
 
     my $surface = roll_from_array( $world->{'surface_roll'}, $world_data->{'surface'}->{'option'} );
-    $world->{'surface'} = int( rand( $surface->{'maxkm'} - $surface->{'minkm'} ) + $surface->{'minkm'} )
+    $world->{'surface'} = rand_between(  $surface->{'minkm'} , $surface->{'maxkm'})
         if ( !defined $world->{'surface'} );
     $world->{'size'} = $surface->{'size'} if ( !defined $world->{'size'} );
 

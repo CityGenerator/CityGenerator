@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features generate_stats);
+@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features generate_stats bound rand_between );
 ###############################################################################
 
 =head1 NAME

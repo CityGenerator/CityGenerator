@@ -28,7 +28,6 @@ use CGI;
 use Data::Dumper;
 use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
-use List::Util 'shuffle', 'min', 'max';
 use CityGenerator;
 use NPCGenerator;
 use POSIX;
@@ -102,6 +101,7 @@ sub create {
     GenericGenerator::select_features($legend,$legend_data);
 
     $legend->{'npc'}=NPCGenerator::create() if (!defined $legend->{'npc'});
+    # Yes, this is racist.
     $legend->{'villain'}=NPCGenerator::create({ 'available_races'=>['mindflayer','minotaur','kobold', 'goblin','lizardfolk','troglodyte', 'ogre', 'orc']  }) if (!defined $legend->{'villain'});
     $legend->{'location'}=CityGenerator::generate_city_name({ 'seed'=>$legend->{'seed'}} ) if (!defined $legend->{'location'});
 
