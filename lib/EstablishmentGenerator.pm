@@ -27,7 +27,7 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw( rand_from_array roll_from_array d parse_object);
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object rand_between);
 use NPCGenerator;
 use Lingua::EN::Titlecase;
 use POSIX;
@@ -126,6 +126,8 @@ sub select_establishment_type {
     my $type=$establishment_data->{'establishment'}->{'option'}->{$establishment->{'type'}};
 
     $establishment->{'manager_title'}= rand_from_array($type->{'manager'}->{'option'})->{'content'} if (!defined $establishment->{'manager_title'});
+
+    $establishment->{'floors'}= d($type->{'maxfloors'}) if (!defined $establishment->{'floors'});
 
     $establishment->{'trailer'}= rand_from_array($type->{'trailer'}->{'option'})->{'content'} if (!defined $establishment->{'trailer'});
 

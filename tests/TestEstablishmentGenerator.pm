@@ -38,6 +38,7 @@ subtest 'test create' => sub {
     is( $establishment->{'name'}, 'Sleepy Beaver' );
     is( $establishment->{'type'}, 'barbershop' );
     is( $establishment->{'manager_title'}, 'briggadoon' );
+    like( $establishment->{'floors'}, '/\d/' );
     foreach my $stat (qw/ price popularity size reputation /) {
         is( $establishment->{'stats'}->{$stat}, 50, "$stat is set" );
     }
@@ -52,14 +53,14 @@ subtest 'test create' => sub {
         is ($establishment->{$stat."_description"}, "foo", "$stat description set to foo" );
     }
 
-
-    $establishment = EstablishmentGenerator::create( {'seed'=>1, 'trailer'=>'Foo', 'manager_class'=>'Derp', 'graft'=>'foo', 'enforcer'=>'bob', 'condition'=>'shiny', 'direction'=>'west', 'service_type'=>'foo'});
+    $establishment = EstablishmentGenerator::create( {'seed'=>1, 'trailer'=>'Foo', 'floors'=>9,'manager_class'=>'Derp', 'graft'=>'foo', 'enforcer'=>'bob', 'condition'=>'shiny', 'direction'=>'west', 'service_type'=>'foo'});
     is( $establishment->{'trailer'}, 'Foo' );
     is( $establishment->{'service_type'}, 'foo' );
     is( $establishment->{'graft'}, 'foo' );
     is( $establishment->{'direction'}, 'west');
     is( $establishment->{'condition'}, 'shiny' );
     is( $establishment->{'enforcer'}, 'bob' );
+    is( $establishment->{'floors'}, '9' );
     like( $establishment->{'name'}, '/Foo$/' );
     is( $establishment->{'manager_class'}, 'Derp' );
 

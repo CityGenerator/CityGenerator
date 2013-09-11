@@ -28,6 +28,7 @@ use Data::Dumper;
 use Exporter;
 use Lingua::Conjunction;
 use List::Util 'shuffle', 'min', 'max';
+use Lingua::EN::Numbers qw(num2en);
 use Lingua::EN::Inflect qw( A PL_N NO);
 use POSIX;
 use version;
@@ -89,7 +90,7 @@ sub describe_establishment {
     $content .= "<b>The $establishment->{'name'}</b>\n";
     $content .= "<span onclick='hideMe(this);' id='establishment".$establishment->{'seed'}."_control' class='collapser' >[+]</span>\n";
     $content .= '<span style="display:none" class="establishment" id="establishment'.$establishment->{'seed'}.'">';
-    $content .= "The $establishment->{'name'} is ".A($establishment->{'size_description'}).", $establishment->{'condition'}-looking  $establishment->{'type'}. \n";
+    $content .= "The $establishment->{'name'} is ".A($establishment->{'size_description'}).", $establishment->{'condition'}-looking ".num2en($establishment->{'floors'})." floor $establishment->{'type'}. \n";
     $content .= "The building ";
     
     if ( defined $establishment->{'direction'} ) {    
