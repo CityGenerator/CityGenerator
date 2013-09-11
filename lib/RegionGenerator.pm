@@ -27,7 +27,7 @@ use base qw(Exporter);
 use CGI;
 use Data::Dumper;
 use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
-use NPCGenerator;
+use CityGenerator;
 use POSIX;
 use XML::Simple;
 
@@ -59,9 +59,8 @@ The following datafiles are used by CityGenerator.pm:
 ###############################################################################
 # FIXME This needs to stop using our
 my $xml_data            = $xml->XMLin( "xml/data.xml",           ForceContent => 1, ForceArray => ['option'] );
-my $names_data          = $xml->XMLin( "xml/npcnames.xml",       ForceContent => 1, ForceArray => ['option'] );
-my $citynames_data      = $xml->XMLin( "xml/citynames.xml",      ForceContent => 1, ForceArray => ['option'] );
 my $regionnames_data    = $xml->XMLin( "xml/regionnames.xml",    ForceContent => 1, ForceArray => ['option'] );
+my $region_data         = $xml->XMLin( "xml/regions.xml",        ForceContent => 1, ForceArray => ['option'] );
 my $continentnames_data = $xml->XMLin( "xml/continentnames.xml", ForceContent => 1, ForceArray => ['option'] );
 
 ###############################################################################
@@ -96,15 +95,36 @@ sub create {
         $region->{'seed'} = GenericGenerator::set_seed();
     }
     GenericGenerator::set_seed( $region->{'seed'} );
-
-    # This knocks off the city IDs
-    $region->{'seed'} = $region->{'seed'} - $region->{'seed'} % 10;
-
+    GenericGenerator::generate_stats($region,$region_data);
+    GenericGenerator::select_features($region,$region_data);
     generate_region_name($region);
+    generate_cities($region);
+
+
+
 
     return $region;
 }
 
+
+###############################################################################
+
+=head2 generate_cities()
+
+    generate cities for the region.
+
+=cut
+
+###############################################################################
+sub generate_cities{
+    my ($region) = @_;
+    $region->{'cities'}=[] if (!defined $region->{'cities'});
+    GenericGenerator::set_seed( $region->{'seed'} );
+    for (my $i = 0; $i < $region->{'size_mod'}; $i++){
+        push @{$region->{'cities'}}, CityGenerator::create();
+    }
+    return $region;
+}
 
 ###############################################################################
 

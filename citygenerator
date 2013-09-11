@@ -62,6 +62,7 @@ sub parse_presets {
     my ($q)=@_;
     my $presets;
     $presets->{'seed'}                  = $1 if ( defined $q->param('seed')            and $q->param('seed')              =~/^(\d+)$/x ); 
+    $presets->{'region'}->{'seed'}      = $1 if ( defined $q->param('regionseed')      and $q->param('regionseed')        =~/^(\d+)$/x ); 
     $presets->{'govt'}->{'seed'}        = $1 if ( defined $q->param('govtseed')        and $q->param('govtseed')          =~/^(\d+)$/x ); 
     $presets->{'military'}->{'seed'}    = $1 if ( defined $q->param('militaryseed')    and $q->param('militaryseed')      =~/^(\d+)$/x ); 
     $presets->{'climate'}->{'seed'}     = $1 if ( defined $q->param('climateseed')     and $q->param('climateseed')       =~/^(\d+)$/x ); 

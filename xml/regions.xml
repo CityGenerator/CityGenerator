@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<data>
+    <stats>
+        <size>
+            <option          max="2"  mod="1" >miniscule</option>
+            <option min="3"  max="10" mod="2" >tiny</option>
+            <option min="11" max="25" mod="4" >small</option>
+            <option min="26" max="75" mod="8" >medium</option>
+            <option min="76" max="90" mod="16" >large</option>
+            <option min="91" max="95" mod="32" >huge</option>
+            <option min="96"          mod="64" >gargantuan</option>
+        </size>
+    </stats>
+</data>

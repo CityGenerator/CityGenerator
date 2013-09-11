@@ -1,0 +1,119 @@
+#!/usr/bin/perl -wT
+
+use strict;
+use warnings;
+use CGI;
+use Data::Dumper;
+use JSON;
+use List::Util 'shuffle', 'min', 'max' ;
+use POSIX;
+use Template;
+use XML::Simple;
+use lib "lib/";
+use GenericGenerator;
+use RegionGenerator;
+use RegionFormatter;
+our $q = CGI->new;
+
+
+my $regionid=GenericGenerator::set_seed();
+
+if (defined $q->param('seed')){
+    $regionid=$q->param('seed');
+}
+
+my $region=RegionGenerator::create({seed=>$regionid});
+
+
+
+if (defined $q->param('type') and $q->param('type') eq 'xml' ){
+    print $q->header( 'text/xml' );
+    print "<?xml version='1.0'  encoding='utf-8' ?>\n";
+    print XMLout($region);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'json' ){
+    print $q->header( 'application/json' );
+    my $JSON  = JSON->new->utf8;
+    $JSON->convert_blessed(1);
+    print $JSON->encode($region);
+
+} elsif (defined $q->param('type') and $q->param('type') eq 'dump' ){
+    print $q->header( 'text/plain' );
+    print Dumper $region;
+
+} else {
+    print $q->header( 'text/html; charset=utf-8' );
+    print_page($region);
+}
+
+exit;
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+sub print_page {
+    my ($region)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $vars = {
+        'title'         => 'Welcome to '.$region->{'name'}."! ($region->{'seed'})",
+        'seed'          => $region->{'seed'},
+
+        'content'       => print_content($region),
+    };
+    return $templates->process('base.tmpl', $vars) || die $templates->error(), "\n";
+}
+
+
+sub print_content {
+    my ($region)=@_;
+
+    my $templates = Template->new({
+        INCLUDE_PATH => 'Templates/',
+        INTERPOLATE  => 1,
+    }) || die "$Template::ERROR\n";
+
+    my $formtmpl;
+    my $vars = {
+        'regionname'     => $region->{'name'},
+        'seed'           => $region->{'seed'},
+        'summarytext'    => RegionFormatter::printSummary($region),
+    };
+    $templates->process('regiongenerator_content.tmpl', $vars, \$formtmpl) || die $templates->error(), "\n";
+
+    return $formtmpl;
+}
+
+__END__
+
+
+=head1 AUTHOR
+
+Jesse Morgan (morgajel)  C<< <morgajel@gmail.com> >>
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Jesse Morgan (morgajel) C<< <morgajel@gmail.com> >>. All rights reserved.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation version 2
+of the License.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+=head1 DISCLAIMER OF WARRANTY
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+=cut

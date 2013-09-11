@@ -1,23 +1,22 @@
 #!/usr/bin/perl -wT
 ###############################################################################
 
-package SummaryFormatter;
+package RegionFormatter;
 
 use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-use Number::Format 'format_number';
 
 ###############################################################################
 
 =head1 NAME
 
-    SummaryFormatter - used to format the summary.
+    RegionFormatter - used to format the summary.
 
 =head1 DESCRIPTION
 
- This take a city, strips the important info, and generates a Sumamry.
+ This take a region, strips the important info, and generates a Sumamry.
 
 =cut
 
@@ -27,25 +26,36 @@ use Carp;
 use CGI;
 use Data::Dumper;
 use Exporter;
+use JSON;
+use Lingua::Conjunction;
+use Lingua::EN::Inflect qw(A);
+use Lingua::EN::Numbers qw(num2en);
+use Number::Format;
 use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use version;
 
+###############################################################################
+
 =head2 printSummary()
 
-printSummary strips out important info from a City object and returns formatted text.
+printSummary strips out important info from a Region object and returns formatted text.
 
 =cut
 
 ###############################################################################
 sub printSummary {
-    my ($city) = @_;
+    my ($region) = @_;
     my $content = "";
-    $content
-        .= "$city->{'name'} is a $city->{'size'} in the <a href='/regiongenerator?seed=$city->{'region'}->{'seed'}'>$city->{'region'}->{'name'}</a> with a $city->{'poptype'} population.";
-
+    $content.= "The $region->{'name'} is ". A($region->{'size_description'})."-size region that has the following cities:\n<ul>";
+    foreach my $city (@{ $region->{'cities'}}){
+        $content.="<li><a href='/citygenerator?seed=$city->{'seed'}&regionseed=$region->{'seed'}'>$city->{'name'}</a></li>\n";
+    }
+    $content.="</li>";
     return $content;
 }
+
+
 
 1;
 

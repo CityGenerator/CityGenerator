@@ -274,6 +274,7 @@ sub generate_stats {
         $ds->{'stats'}->{$statname}=d(100) if (!defined $ds->{'stats'}->{$statname} );
         my $statoption= roll_from_array($ds->{'stats'}->{$statname}, $stat->{'option'});
         $ds->{$statname."_description"}= $statoption->{'content'} if (!defined $ds->{$statname."_description"});
+        $ds->{$statname."_mod"}= $statoption->{'mod'} if (!defined $ds->{$statname."_mod"} and defined $statoption->{'mod'});
     }
     return $ds;
 }

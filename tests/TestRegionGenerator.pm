@@ -24,7 +24,7 @@ subtest 'test create' => sub {
     is( $region->{'name'}, 'Conacania Province', 'ensure name is generated' );
 
     $region = RegionGenerator::create( { 'seed' => 12345, 'name' => 'test' } );
-    is( $region->{'seed'}, 12340,  'ensure seed is trimmed' );
+    is( $region->{'seed'}, 12345,  'ensure seed is trimmed' );
     is( $region->{'name'}, 'test', 'ensure name is set' );
 
     done_testing();

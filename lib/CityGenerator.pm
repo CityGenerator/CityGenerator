@@ -69,8 +69,6 @@ The following datafiles are used by CityGenerator.pm:
 
 =item * F<xml/citynames.xml>
 
-=item * F<xml/regionnames.xml>
-
 =item * F<xml/resources.xml>
 
 =item * F<xml/continentnames.xml>
@@ -213,7 +211,9 @@ Add the other features beyond the core city.
 sub flesh_out_city {
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 3 );
-    $city->{'region'}    = RegionGenerator::create( $city->{'seed'} )  if (!defined $city->{'region'});
+    $city->{'region'}->{'seed'} = $city->{'seed'} if ( !defined $city->{'region'}->{'seed'}  );
+
+    $city->{'region'}    = RegionGenerator::create( $city->{'region'} );
     $city->{'continent'} = ContinentGenerator::create( $city->{'seed'} ) if(!defined $city->{'continent'});
 
     # calculate population and race information

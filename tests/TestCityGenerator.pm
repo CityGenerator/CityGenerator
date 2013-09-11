@@ -72,10 +72,10 @@ subtest 'test flesh_out_city' => sub {
     isnt($city->{'region'}, undef, 'ensure a region is created');
     isnt($city->{'continent'}, undef, 'ensure a continent is created');
 
-    $city = CityGenerator::create( { 'seed' => 1, 'continent'=>'bar', 'region'=>'baz' } );
+    $city = CityGenerator::create( { 'seed' => 1, 'continent'=>'bar', 'region'=>{'seed'=>1} } );
     CityGenerator::flesh_out_city($city);
-    is($city->{'region'},    'baz', 'ensure a region is created');
-    is($city->{'continent'}, 'bar', 'ensure a continent is created');
+    isnt($city->{'region'}->{'name'},    undef, 'ensure a region is created');
+    isnt($city->{'continent'}, undef, 'ensure a continent is created');
 
     done_testing();
 };
