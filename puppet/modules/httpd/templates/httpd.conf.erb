@@ -89,7 +89,7 @@ DocumentRoot "/vagrant"
 
 <Directory "/vagrant">
     Options Indexes FollowSymLinks
-
+    Options +ExecCGI
 
 </Directory>
 
@@ -97,7 +97,10 @@ DirectoryIndex citygenerator
 
 <Files ~ "^.*generator">
     Order allow,deny
-    Deny from all
+    Options +ExecCGI
+    Allow from all
+    SetHandler cgi-script
+
     Satisfy All
 </Files>
 
@@ -123,16 +126,6 @@ LogFormat "%{User-agent}i" agent
 CustomLog logs/access_log combined
 
 ServerSignature On
-
-
-#ScriptAlias / "/vagrant"
-
-<Directory "/vagrant">
-    AllowOverride None
-    Options None
-    Order allow,deny
-    Allow from all
-</Directory>
 
 IndexOptions FancyIndexing VersionSort NameWidth=* HTMLTable Charset=UTF-8
 AddIconByEncoding (CMP,/icons/compressed.gif) x-compress x-gzip
