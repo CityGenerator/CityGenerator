@@ -11,13 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
 
-  config.vm.network :forwarded_port, guest: 80, host: 8080,
-    # Port collision auto-correction must be manually enabled for each forwarded port,
-    # since it is often surprising when it occurs and can lead the Vagrant user to
-    # think that the port wasn't properly forwarded. During a vagrant up or vagrant reload,
-    # Vagrant will output information about any collisions detections and auto corrections made,
-    # so you can take notice and act accordingly.
-    auto_correct: true
+  config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+
 
 
   # Share an additional folder to the guest VM. The first argument is

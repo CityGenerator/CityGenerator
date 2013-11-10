@@ -1,6 +1,6 @@
 class nginx::install {
 
-    package{ "nginx":
+    package{ ["nginx", "fcgi-perl"]:
         ensure =>present,
     }
 }
