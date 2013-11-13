@@ -1,6 +1,6 @@
 class httpd::install {
 
-    package{ ["httpd", "perl-XML-Simple", 'perl-JSON', 'perl-Clone', 'perl-Template-Toolkit']:
+    package{ ["httpd", "perl-XML-Simple", 'perl-JSON', 'perl-Clone', 'perl-Template-Toolkit', 'perl-Module-Build', 'perl-YAML']:
         ensure =>present,
     }
 
@@ -19,18 +19,22 @@ class httpd::install {
 #      }
 
 
-    define cpanmod {
+    define cpanMod {
       exec { "install $name":
         command => "cpan -if $name ",
         unless  => "perl -e 'require  $name; '",
         timeout => 300, 
-        path =>['/usr/bin'],
-        require => Package['perl-CPAN', 'perl-XML-Simple', 'perl-JSON', 'perl-Clone', 'perl-Template-Toolkit'],
+        cwd =>'/root',
+        logoutput =>true,
+        returns =>[0],
+        user    =>'root',
+        path =>[ '/sbin','/bin','/usr/sbin','/usr/bin' ],
+        require => Package['perl-CPAN', 'perl-XML-Simple', 'perl-JSON', 'perl-Clone', 'perl-Template-Toolkit','perl-Module-Build', 'perl-YAML'],
       }
     }
 
 
     $my_modules= [ 'Date::Parse', 'Number::Format', 'List::MoreUtils','Test::More', 'Lingua::Conjunction', 'Lingua::EN::Conjugate', 'Lingua::EN::Gender', 'Lingua::EN::Numbers', 'Lingua::EN::Titlecase', 'Template::Plugin::Lingua::EN::Inflect', 'Test::Exception', 'Lingua::EN::Inflect::Number', 'Lingua::EN::Inflect', 'Test::Harness', 'Email::Date::Format', ]
-    cpanmod{ $my_modules : }
+    cpanMod{ $my_modules : }
 
 }
