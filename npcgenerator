@@ -52,6 +52,7 @@ sub parse_presets {
     my $presets;
     $presets->{'seed'}          = $1 if ( defined $q->param('seed')         and $q->param('seed')       =~ /^(\d+)$/x );
     $presets->{'race'}          = $1 if ( defined $q->param('race')         and $q->param('race')       =~ /^([a-z\-]+)$/x );
+    $presets->{'sex'}           = $1 if ( defined $q->param('sex')          and $q->param('sex')       =~ /^([a-z\-]+)$/x );
     $presets->{'class'}         = $1 if ( defined $q->param('class')        and $q->param('class')      =~ /^([a-z\- ]+)$/x );
     $presets->{'profession'}    = $1 if ( defined $q->param('profession')   and $q->param('profession') =~ /^([a-z\- ]+)$/x );
     $presets->{'business'}      = $1 if ( defined $q->param('business')     and $q->param('business')   =~ /^([a-z\- ]+)$/x );
@@ -72,9 +73,8 @@ sub print_page {
         INCLUDE_PATH => 'Templates/',
         INTERPOLATE  => 1,
     }) || die "$Template::ERROR\n";
-
     my $vars = {
-        'title'         => 'Meet '.$npc->{'name'}."! ($npc->{'seed'})",
+        'title'         => 'Meet '.$npc->{'name'}."! (<a href='/npcgenerator?seed=$npc->{'seed'}' >$npc->{'seed'}</a>)",
         'seed'          => $npc->{'seed'},
         'content'       => print_content($npc),
     };
