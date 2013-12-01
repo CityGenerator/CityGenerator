@@ -78,7 +78,11 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     <trailer>County</trailer>
     <trailer>District</trailer>
     <trailer>Domain</trailer>
+    <trailer>Dominion</trailer>
+    <trailer>Land</trailer>
+    <trailer>Nation</trailer>
     <trailer>Province</trailer>
+    <trailer>Realm</trailer>
     <trailer>Region</trailer>
     <trailer>Territory</trailer>
 
