@@ -39,12 +39,16 @@ Based on a work at https://github.com/morgajel/CityGenerator.
     </mooncolor>
 
     <starcolor>
-        <option          max="10" >blue</option>
-        <option min="11" max="30" >white</option>
-        <option min="31" max="70" >yellow</option>
-        <option min="71" max="85" >orange</option>
-        <option min="86" max="95" >red</option>
-        <option min="96"          >brown</option>
+        <option          max="5"  >type O blue</option>
+        <option min="6" max="10"  >type B blue-white </option>
+        <option min="11" max="20" >type A white</option>
+        <option min="21" max="30" >type F yellow-white</option>
+        <option min="31" max="60" >type G yellow</option>
+        <option min="61" max="70" >type K orange</option>
+        <option min="71" max="80" >type M red</option>
+        <option min="81" max="90" >type L red-brown</option>
+        <option min="91" max="95" >type T brown</option>
+        <option min="96"          >type Y dark-brown</option>
     </starcolor>
 <!-- TODO give a color range in hex so we can mockup the sky in canvas -->
     <atmosphere reason_chance='50' > <!-- The sky is _________[, partially due to ______ high in the atmosphere].-->
