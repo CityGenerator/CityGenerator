@@ -5,3 +5,4 @@ nytprof*
 cover_db/
 *.swp
 .vagrant/
+credentials.json

@@ -1,8 +1,20 @@
 #!/usr/bin/python
 
+import json
 import redis
-#redis://redistogo:f1db4c46048e62e42446dd35a77ece4e@grideye.redistogo.com:9644/
-r = redis.Redis(host='localhost', port=9644, db=0)
-r.set('foo', 'bar')   # or r['foo'] = 'bar'
-r.get('foo')   # or r['foo']
+
+
+# read credentials into dictionary
+json_data=open('../credentials.json')
+credentials = json.load(json_data)
+json_data.close()
+
+
+#connect to redis
+r = redis.Redis(host=credentials["host"], port=credentials["port"], password=credentials["password"], charset=credentials["charset"], errors=credentials["errors"]) 
+
+
+
+#r.set('foo', 'bar')   # or r['foo'] = 'bar'
+#r.get('foo')   # or r['foo']
 
