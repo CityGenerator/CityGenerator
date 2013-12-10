@@ -1,0 +1,75 @@
+{
+   "title_chance" : "10",
+   "post" : [
+      {
+         "content" : "ica"
+      },
+      {
+         "content" : "iv"
+      },
+      {
+         "content" : "ek"
+      },
+      {
+         "content" : "ar"
+      }
+   ],
+   "pre" : [
+      {
+         "content" : "As"
+      },
+      {
+         "content" : "Eur"
+      },
+      {
+         "content" : "An"
+      },
+      {
+         "content" : "Del"
+      },
+      {
+         "content" : "Mon"
+      },
+      {
+         "content" : "Na"
+      },
+      {
+         "content" : "Ko"
+      }
+   ],
+   "post_chance" : "30",
+   "root" : [
+      {
+         "content" : "sar"
+      },
+      {
+         "content" : "gar"
+      },
+      {
+         "content" : "bel"
+      },
+      {
+         "content" : "por"
+      },
+      {
+         "content" : "ama"
+      },
+      {
+         "content" : "lax"
+      }
+   ],
+   "title" : [
+      {
+         "content" : "North"
+      },
+      {
+         "content" : "South"
+      },
+      {
+         "content" : "East"
+      },
+      {
+         "content" : "West"
+      }
+   ]
+}

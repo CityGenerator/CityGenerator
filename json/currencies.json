@@ -1,0 +1,458 @@
+{
+   "feature" : {
+      "template" : {
+         "option" : [
+            {
+               "content" : "[% USE infl = Lingua.EN.Inflect; -%][%infl.A(name) FILTER ucfirst %] is [%infl.A(weight_description)%], [%value_description%] coin that is common in the [%scope_description%]. It is [%size_description%], [%shape%], and made of [%material%]. The coins are covered with [%detail_description%] designs."
+            },
+            {
+               "content" : "[% USE infl = Lingua.EN.Inflect; -%][%infl.A(name) FILTER ucfirst %] is [%infl.A(value_description)%], [%weight_description%] coin that is minted by the [%scope_description%] authority. It is [%shape%], [%size_description%], and made of [%material%]. The designs on the coin are [%detail_description%]."
+            }
+         ]
+      },
+      "edges" : {
+         "chance" : "10",
+         "option" : [
+            {
+               "content" : "ridged"
+            },
+            {
+               "content" : "cornered"
+            },
+            {
+               "content" : "ringed"
+            }
+         ]
+      },
+      "shape" : {
+         "option" : [
+            {
+               "content" : "triangular"
+            },
+            {
+               "content" : "square"
+            },
+            {
+               "content" : "pentagonal"
+            },
+            {
+               "content" : "hexagonal"
+            },
+            {
+               "content" : "circular"
+            }
+         ]
+      },
+      "material" : {
+         "option" : [
+            {
+               "content" : "wood"
+            },
+            {
+               "content" : "shell"
+            },
+            {
+               "content" : "copper"
+            },
+            {
+               "content" : "silver"
+            },
+            {
+               "content" : "electrum"
+            },
+            {
+               "content" : "gold"
+            },
+            {
+               "content" : "platinum"
+            },
+            {
+               "content" : "steel"
+            }
+         ]
+      }
+   },
+   "name" : {
+      "pre_chance" : "30",
+      "post" : [
+         {
+            "content" : "rak"
+         },
+         {
+            "content" : "nik"
+         },
+         {
+            "content" : "dar"
+         },
+         {
+            "content" : "bit"
+         },
+         {
+            "content" : "inum"
+         },
+         {
+            "content" : "oni"
+         },
+         {
+            "content" : "olo"
+         },
+         {
+            "content" : "abbi"
+         },
+         {
+            "content" : "ish"
+         },
+         {
+            "content" : "lar"
+         },
+         {
+            "content" : "er"
+         },
+         {
+            "content" : "un"
+         },
+         {
+            "content" : "ny"
+         },
+         {
+            "content" : "nie"
+         },
+         {
+            "content" : "ett"
+         },
+         {
+            "content" : "ull"
+         },
+         {
+            "content" : "ack"
+         },
+         {
+            "content" : "ik"
+         },
+         {
+            "content" : "ing"
+         },
+         {
+            "content" : "ar"
+         },
+         {
+            "content" : "ma"
+         },
+         {
+            "content" : "na"
+         },
+         {
+            "content" : "re"
+         },
+         {
+            "content" : "ra"
+         },
+         {
+            "content" : "so"
+         },
+         {
+            "content" : "tre"
+         },
+         {
+            "content" : "pee"
+         },
+         {
+            "content" : "kel"
+         },
+         {
+            "content" : "it"
+         }
+      ],
+      "pre" : [
+         {
+            "content" : "bo"
+         },
+         {
+            "content" : "de"
+         },
+         {
+            "content" : "no"
+         },
+         {
+            "content" : "quala"
+         },
+         {
+            "content" : "di"
+         },
+         {
+            "content" : "nomo"
+         },
+         {
+            "content" : "ban"
+         },
+         {
+            "content" : "hol"
+         },
+         {
+            "content" : "zin"
+         },
+         {
+            "content" : "sul"
+         },
+         {
+            "content" : "soo"
+         },
+         {
+            "content" : "su"
+         },
+         {
+            "content" : "nib"
+         },
+         {
+            "content" : "yua"
+         }
+      ],
+      "post_chance" : "30",
+      "root" : [
+         {
+            "content" : "plat"
+         },
+         {
+            "content" : "lat"
+         },
+         {
+            "content" : "cred"
+         },
+         {
+            "content" : "bol"
+         },
+         {
+            "content" : "hun"
+         },
+         {
+            "content" : "alb"
+         },
+         {
+            "content" : "pol"
+         },
+         {
+            "content" : "lud"
+         },
+         {
+            "content" : "din"
+         },
+         {
+            "content" : "dom"
+         },
+         {
+            "content" : "zom"
+         },
+         {
+            "content" : "zib"
+         },
+         {
+            "content" : "fen"
+         },
+         {
+            "content" : "fep"
+         },
+         {
+            "content" : "fel"
+         },
+         {
+            "content" : "chet"
+         },
+         {
+            "content" : "nar"
+         },
+         {
+            "content" : "bon"
+         },
+         {
+            "content" : "kol"
+         },
+         {
+            "content" : "dol"
+         },
+         {
+            "content" : "mul"
+         },
+         {
+            "content" : "pon"
+         },
+         {
+            "content" : "quat"
+         },
+         {
+            "content" : "wan"
+         },
+         {
+            "content" : "lod"
+         },
+         {
+            "content" : "juk"
+         },
+         {
+            "content" : "zin"
+         },
+         {
+            "content" : "pen"
+         },
+         {
+            "content" : "shil"
+         }
+      ]
+   },
+   "stats" : {
+      "detail" : {
+         "option" : [
+            {
+               "content" : "crude",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "rough",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "careless",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "lax",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "uncomplicated",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "precise",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "refined",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "exact",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "sophisticated",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "intricate",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "elaborate",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "meticulous",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "unmistakable"
+            }
+         ]
+      },
+      "value" : {
+         "option" : [
+            {
+               "content" : "worthless",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "low-value",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "moderate-value",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "high-value",
+               "max" : "98"
+            },
+            {
+               "min" : "99",
+               "content" : "priceless"
+            }
+         ]
+      },
+      "weight" : {
+         "option" : [
+            {
+               "content" : "lightweight",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "ideally weighted",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "hefty"
+            }
+         ]
+      },
+      "scope" : {
+         "option" : [
+            {
+               "content" : "city",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "region",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "continent"
+            }
+         ]
+      },
+      "size" : {
+         "option" : [
+            {
+               "content" : "tiny ( 18mm )",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "small ( 20mm )",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "medium ( 24mm )",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "large ( 30mm )",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "giant (40mm )"
+            }
+         ]
+      }
+   }
+}

@@ -1,0 +1,5311 @@
+{
+   "portfolio" : {
+      "option" : [
+         {
+            "value" : "8",
+            "content" : "war"
+         },
+         {
+            "value" : "8",
+            "content" : "death"
+         },
+         {
+            "value" : "8",
+            "content" : "magic"
+         },
+         {
+            "value" : "8",
+            "content" : "lore"
+         },
+         {
+            "value" : "8",
+            "content" : "mercy"
+         },
+         {
+            "value" : "1",
+            "content" : "stray cats"
+         },
+         {
+            "value" : "4",
+            "content" : "abundance"
+         },
+         {
+            "value" : "4",
+            "content" : "accidents"
+         },
+         {
+            "value" : "4",
+            "content" : "accountability"
+         },
+         {
+            "value" : "1",
+            "content" : "adventure"
+         },
+         {
+            "value" : "1",
+            "content" : "agony"
+         },
+         {
+            "value" : "1",
+            "content" : "agriculture"
+         },
+         {
+            "value" : "8",
+            "content" : "air"
+         },
+         {
+            "value" : "1",
+            "content" : "alcohol"
+         },
+         {
+            "value" : "1",
+            "content" : "ambition"
+         },
+         {
+            "value" : "1",
+            "content" : "ambush"
+         },
+         {
+            "value" : "1",
+            "content" : "amphibians"
+         },
+         {
+            "value" : "1",
+            "content" : "anger"
+         },
+         {
+            "value" : "8",
+            "content" : "animals"
+         },
+         {
+            "value" : "1",
+            "content" : "appraisal"
+         },
+         {
+            "value" : "4",
+            "content" : "arcane knowledge"
+         },
+         {
+            "value" : "1",
+            "content" : "archery"
+         },
+         {
+            "value" : "1",
+            "content" : "architecture"
+         },
+         {
+            "value" : "1",
+            "content" : "arctic beasts"
+         },
+         {
+            "value" : "4",
+            "content" : "armies"
+         },
+         {
+            "value" : "2",
+            "content" : "armor"
+         },
+         {
+            "value" : "8",
+            "content" : "art"
+         },
+         {
+            "value" : "1",
+            "content" : "artifice"
+         },
+         {
+            "value" : "2",
+            "content" : "artisans"
+         },
+         {
+            "value" : "1",
+            "content" : "assassination"
+         },
+         {
+            "value" : "4",
+            "content" : "astrology"
+         },
+         {
+            "value" : "4",
+            "content" : "astronomy"
+         },
+         {
+            "value" : "2",
+            "content" : "athletes"
+         },
+         {
+            "value" : "4",
+            "content" : "atmosphere"
+         },
+         {
+            "value" : "8",
+            "content" : "authority"
+         },
+         {
+            "value" : "1",
+            "content" : "autumn"
+         },
+         {
+            "value" : "1",
+            "content" : "avariels"
+         },
+         {
+            "value" : "1",
+            "content" : "bad fortune"
+         },
+         {
+            "value" : "1",
+            "content" : "bad luck"
+         },
+         {
+            "value" : "1",
+            "content" : "bad weather"
+         },
+         {
+            "value" : "8",
+            "content" : "balance"
+         },
+         {
+            "value" : "4",
+            "content" : "barbarians"
+         },
+         {
+            "value" : "4",
+            "content" : "bards"
+         },
+         {
+            "value" : "1",
+            "content" : "barrenness"
+         },
+         {
+            "value" : "1",
+            "content" : "bats"
+         },
+         {
+            "value" : "8",
+            "content" : "battle"
+         },
+         {
+            "value" : "4",
+            "content" : "beasts"
+         },
+         {
+            "value" : "8",
+            "content" : "beauty"
+         },
+         {
+            "value" : "1",
+            "content" : "bees"
+         },
+         {
+            "value" : "4",
+            "content" : "beginnings"
+         },
+         {
+            "value" : "2",
+            "content" : "benevolence"
+         },
+         {
+            "value" : "4",
+            "content" : "berserking"
+         },
+         {
+            "value" : "8",
+            "content" : "betrayal"
+         },
+         {
+            "value" : "1",
+            "content" : "bigotry"
+         },
+         {
+            "value" : "1",
+            "content" : "birds"
+         },
+         {
+            "value" : "4",
+            "content" : "birth"
+         },
+         {
+            "value" : "1",
+            "content" : "black magic"
+         },
+         {
+            "value" : "4",
+            "content" : "blacksmithing"
+         },
+         {
+            "value" : "1",
+            "content" : "blind beggars"
+         },
+         {
+            "value" : "1",
+            "content" : "blind destruction"
+         },
+         {
+            "value" : "2",
+            "content" : "blizzards"
+         },
+         {
+            "value" : "6",
+            "content" : "blood"
+         },
+         {
+            "value" : "1",
+            "content" : "bloodlust"
+         },
+         {
+            "value" : "4",
+            "content" : "books"
+         },
+         {
+            "value" : "2",
+            "content" : "bounty"
+         },
+         {
+            "value" : "4",
+            "content" : "bravery"
+         },
+         {
+            "value" : "1",
+            "content" : "brawling"
+         },
+         {
+            "value" : "1",
+            "content" : "brewing"
+         },
+         {
+            "value" : "1",
+            "content" : "brutality"
+         },
+         {
+            "value" : "2",
+            "content" : "bugbears"
+         },
+         {
+            "value" : "4",
+            "content" : "building"
+         },
+         {
+            "value" : "4",
+            "content" : "bureaucracy"
+         },
+         {
+            "value" : "1",
+            "content" : "burials"
+         },
+         {
+            "value" : "1",
+            "content" : "buried wealth"
+         },
+         {
+            "value" : "4",
+            "content" : "business"
+         },
+         {
+            "value" : "1",
+            "content" : "calligraphy"
+         },
+         {
+            "value" : "1",
+            "content" : "camels"
+         },
+         {
+            "value" : "1",
+            "content" : "campfires"
+         },
+         {
+            "value" : "2",
+            "content" : "canines"
+         },
+         {
+            "value" : "1",
+            "content" : "cannibalism"
+         },
+         {
+            "value" : "1",
+            "content" : "caravans"
+         },
+         {
+            "value" : "1",
+            "content" : "carefree celebration"
+         },
+         {
+            "value" : "1",
+            "content" : "carousing"
+         },
+         {
+            "value" : "4",
+            "content" : "cartography"
+         },
+         {
+            "value" : "1",
+            "content" : "cats"
+         },
+         {
+            "value" : "1",
+            "content" : "cattle"
+         },
+         {
+            "value" : "4",
+            "content" : "caverns"
+         },
+         {
+            "value" : "2",
+            "content" : "caves"
+         },
+         {
+            "value" : "6",
+            "content" : "celebrations"
+         },
+         {
+            "value" : "3",
+            "content" : "cemeteries"
+         },
+         {
+            "value" : "8",
+            "content" : "chance"
+         },
+         {
+            "value" : "4",
+            "content" : "change"
+         },
+         {
+            "value" : "8",
+            "content" : "chaos"
+         },
+         {
+            "value" : "4",
+            "content" : "charisma"
+         },
+         {
+            "value" : "2",
+            "content" : "charity"
+         },
+         {
+            "value" : "2",
+            "content" : "charm"
+         },
+         {
+            "value" : "2",
+            "content" : "children"
+         },
+         {
+            "value" : "1",
+            "content" : "civilization"
+         },
+         {
+            "value" : "2",
+            "content" : "clarity"
+         },
+         {
+            "value" : "2",
+            "content" : "climbing"
+         },
+         {
+            "value" : "3",
+            "content" : "clouds"
+         },
+         {
+            "value" : "4",
+            "content" : "cold"
+         },
+         {
+            "value" : "6",
+            "content" : "combat"
+         },
+         {
+            "value" : "6",
+            "content" : "comfort"
+         },
+         {
+            "value" : "8",
+            "content" : "commerce"
+         },
+         {
+            "value" : "4",
+            "content" : "common sense"
+         },
+         {
+            "value" : "6",
+            "content" : "communication"
+         },
+         {
+            "value" : "4",
+            "content" : "community"
+         },
+         {
+            "value" : "8",
+            "content" : "compassion"
+         },
+         {
+            "value" : "4",
+            "content" : "competition"
+         },
+         {
+            "value" : "2",
+            "content" : "concealment"
+         },
+         {
+            "value" : "1",
+            "content" : "conception"
+         },
+         {
+            "value" : "8",
+            "content" : "conflict"
+         },
+         {
+            "value" : "4",
+            "content" : "confusion"
+         },
+         {
+            "value" : "4",
+            "content" : "conquest"
+         },
+         {
+            "value" : "2",
+            "content" : "construction"
+         },
+         {
+            "value" : "1",
+            "content" : "consumption"
+         },
+         {
+            "value" : "1",
+            "content" : "contentment"
+         },
+         {
+            "value" : "1",
+            "content" : "continuity"
+         },
+         {
+            "value" : "2",
+            "content" : "contracts"
+         },
+         {
+            "value" : "4",
+            "content" : "control"
+         },
+         {
+            "value" : "4",
+            "content" : "cooperation"
+         },
+         {
+            "value" : "1",
+            "content" : "corn"
+         },
+         {
+            "value" : "8",
+            "content" : "corruption"
+         },
+         {
+            "value" : "4",
+            "content" : "courage"
+         },
+         {
+            "value" : "2",
+            "content" : "courtship"
+         },
+         {
+            "value" : "2",
+            "content" : "covert activity"
+         },
+         {
+            "value" : "2",
+            "content" : "cowardice"
+         },
+         {
+            "value" : "4",
+            "content" : "crafts"
+         },
+         {
+            "value" : "1",
+            "content" : "creativity"
+         },
+         {
+            "value" : "2",
+            "content" : "creatures of the deep"
+         },
+         {
+            "value" : "1",
+            "content" : "crocodiles"
+         },
+         {
+            "value" : "2",
+            "content" : "crops"
+         },
+         {
+            "value" : "4",
+            "content" : "cruelty"
+         },
+         {
+            "value" : "1",
+            "content" : "crusades"
+         },
+         {
+            "value" : "1",
+            "content" : "cultivated foods"
+         },
+         {
+            "value" : "4",
+            "content" : "cultures"
+         },
+         {
+            "value" : "4",
+            "content" : "cunning"
+         },
+         {
+            "value" : "3",
+            "content" : "curative medicine"
+         },
+         {
+            "value" : "4",
+            "content" : "curiosity"
+         },
+         {
+            "value" : "3",
+            "content" : "currents"
+         },
+         {
+            "value" : "3",
+            "content" : "dance"
+         },
+         {
+            "value" : "3",
+            "content" : "dancing"
+         },
+         {
+            "value" : "1",
+            "content" : "dancing girls"
+         },
+         {
+            "value" : "4",
+            "content" : "daring"
+         },
+         {
+            "value" : "4",
+            "content" : "darkness"
+         },
+         {
+            "value" : "4",
+            "content" : "dawn"
+         },
+         {
+            "value" : "4",
+            "content" : "day"
+         },
+         {
+            "value" : "1",
+            "content" : "daylight"
+         },
+         {
+            "value" : "8",
+            "content" : "death"
+         },
+         {
+            "value" : "2",
+            "content" : "debauch"
+         },
+         {
+            "value" : "4",
+            "content" : "decay"
+         },
+         {
+            "value" : "4",
+            "content" : "deceit"
+         },
+         {
+            "value" : "4",
+            "content" : "deception"
+         },
+         {
+            "value" : "2",
+            "content" : "decision"
+         },
+         {
+            "value" : "4",
+            "content" : "dedication"
+         },
+         {
+            "value" : "6",
+            "content" : "defense"
+         },
+         {
+            "value" : "1",
+            "content" : "deformity"
+         },
+         {
+            "value" : "4",
+            "content" : "delight"
+         },
+         {
+            "value" : "1",
+            "content" : "desert-dwelling vermin"
+         },
+         {
+            "value" : "2",
+            "content" : "desert mountains"
+         },
+         {
+            "value" : "1",
+            "content" : "desert raiders"
+         },
+         {
+            "value" : "2",
+            "content" : "deserts"
+         },
+         {
+            "value" : "1",
+            "content" : "desert storms"
+         },
+         {
+            "value" : "1",
+            "content" : "desert whirlwinds"
+         },
+         {
+            "value" : "6",
+            "content" : "despair"
+         },
+         {
+            "value" : "8",
+            "content" : "destiny"
+         },
+         {
+            "value" : "8",
+            "content" : "destruction"
+         },
+         {
+            "value" : "2",
+            "content" : "determination"
+         },
+         {
+            "value" : "3",
+            "content" : "devouring"
+         },
+         {
+            "value" : "4",
+            "content" : "dexterity"
+         },
+         {
+            "value" : "4",
+            "content" : "dignity"
+         },
+         {
+            "value" : "1",
+            "content" : "dinosaurs"
+         },
+         {
+            "value" : "6",
+            "content" : "diplomacy"
+         },
+         {
+            "value" : "4",
+            "content" : "disasters"
+         },
+         {
+            "value" : "8",
+            "content" : "discipline"
+         },
+         {
+            "value" : "4",
+            "content" : "discord"
+         },
+         {
+            "value" : "4",
+            "content" : "discovery"
+         },
+         {
+            "value" : "8",
+            "content" : "disease"
+         },
+         {
+            "value" : "8",
+            "content" : "disguise"
+         },
+         {
+            "value" : "2",
+            "content" : "distance"
+         },
+         {
+            "value" : "4",
+            "content" : "divination"
+         },
+         {
+            "value" : "1",
+            "content" : "dogs"
+         },
+         {
+            "value" : "2",
+            "content" : "domination"
+         },
+         {
+            "value" : "1",
+            "content" : "doom"
+         },
+         {
+            "value" : "3",
+            "content" : "doors"
+         },
+         {
+            "value" : "6",
+            "content" : "dragonkind"
+         },
+         {
+            "value" : "4",
+            "content" : "dreams"
+         },
+         {
+            "value" : "2",
+            "content" : "drought"
+         },
+         {
+            "value" : "6",
+            "content" : "drow"
+         },
+         {
+            "value" : "4",
+            "content" : "druids"
+         },
+         {
+            "value" : "1",
+            "content" : "dryads"
+         },
+         {
+            "value" : "2",
+            "content" : "duels"
+         },
+         {
+            "value" : "4",
+            "content" : "dungeons"
+         },
+         {
+            "value" : "4",
+            "content" : "dusk"
+         },
+         {
+            "value" : "8",
+            "content" : "duty"
+         },
+         {
+            "value" : "4",
+            "content" : "dwarves"
+         },
+         {
+            "value" : "2",
+            "content" : "dying"
+         },
+         {
+            "value" : "1",
+            "content" : "eagles"
+         },
+         {
+            "value" : "4",
+            "content" : "earth"
+         },
+         {
+            "value" : "2",
+            "content" : "earthquakes"
+         },
+         {
+            "value" : "1",
+            "content" : "ease"
+         },
+         {
+            "value" : "2",
+            "content" : "east wind"
+         },
+         {
+            "value" : "2",
+            "content" : "eating"
+         },
+         {
+            "value" : "1",
+            "content" : "eclipses"
+         },
+         {
+            "value" : "4",
+            "content" : "elements"
+         },
+         {
+            "value" : "2",
+            "content" : "eloquence"
+         },
+         {
+            "value" : "4",
+            "content" : "elves"
+         },
+         {
+            "value" : "1",
+            "content" : "emotional hatreds"
+         },
+         {
+            "value" : "6",
+            "content" : "emotions"
+         },
+         {
+            "value" : "2",
+            "content" : "enchantments"
+         },
+         {
+            "value" : "1",
+            "content" : "endings"
+         },
+         {
+            "value" : "4",
+            "content" : "endurance"
+         },
+         {
+            "value" : "2",
+            "content" : "energy"
+         },
+         {
+            "value" : "2",
+            "content" : "enfeeblement"
+         },
+         {
+            "value" : "4",
+            "content" : "engineering"
+         },
+         {
+            "value" : "4",
+            "content" : "enjoyment"
+         },
+         {
+            "value" : "1",
+            "content" : "enlightened justice"
+         },
+         {
+            "value" : "4",
+            "content" : "enlightenment"
+         },
+         {
+            "value" : "4",
+            "content" : "entropy"
+         },
+         {
+            "value" : "8",
+            "content" : "envy"
+         },
+         {
+            "value" : "2",
+            "content" : "epidemics"
+         },
+         {
+            "value" : "4",
+            "content" : "eroticism"
+         },
+         {
+            "value" : "6",
+            "content" : "espionage"
+         },
+         {
+            "value" : "2",
+            "content" : "esthetics"
+         },
+         {
+            "value" : "1",
+            "content" : "eternal darkness"
+         },
+         {
+            "value" : "1",
+            "content" : "eternal light"
+         },
+         {
+            "value" : "1",
+            "content" : "eternal youth"
+         },
+         {
+            "value" : "4",
+            "content" : "ethics"
+         },
+         {
+            "value" : "2",
+            "content" : "evening"
+         },
+         {
+            "value" : "16",
+            "content" : "evil"
+         },
+         {
+            "value" : "1",
+            "content" : "evil aquatic creatures"
+         },
+         {
+            "value" : "1",
+            "content" : "evil birds"
+         },
+         {
+            "value" : "4",
+            "content" : "evil cloud giants"
+         },
+         {
+            "value" : "4",
+            "content" : "evil dragons"
+         },
+         {
+            "value" : "2",
+            "content" : "evil dreams"
+         },
+         {
+            "value" : "2",
+            "content" : "evil fate"
+         },
+         {
+            "value" : "4",
+            "content" : "evil fey"
+         },
+         {
+            "value" : "6",
+            "content" : "evil knowledge"
+         },
+         {
+            "value" : "4",
+            "content" : "evil liches"
+         },
+         {
+            "value" : "4",
+            "content" : "evil lycanthropes"
+         },
+         {
+            "value" : "6",
+            "content" : "evil magic"
+         },
+         {
+            "value" : "4",
+            "content" : "evil plans"
+         },
+         {
+            "value" : "2",
+            "content" : "evil reptiles"
+         },
+         {
+            "value" : "4",
+            "content" : "evil secrets"
+         },
+         {
+            "value" : "4",
+            "content" : "excellence"
+         },
+         {
+            "value" : "4",
+            "content" : "excess"
+         },
+         {
+            "value" : "2",
+            "content" : "exhaustion"
+         },
+         {
+            "value" : "4",
+            "content" : "exiles"
+         },
+         {
+            "value" : "2",
+            "content" : "expansion"
+         },
+         {
+            "value" : "1",
+            "content" : "experimentation"
+         },
+         {
+            "value" : "4",
+            "content" : "exploration"
+         },
+         {
+            "value" : "4",
+            "content" : "faerie folk"
+         },
+         {
+            "value" : "2",
+            "content" : "fair practices"
+         },
+         {
+            "value" : "2",
+            "content" : "faith"
+         },
+         {
+            "value" : "4",
+            "content" : "faithfulness"
+         },
+         {
+            "value" : "1",
+            "content" : "falcons"
+         },
+         {
+            "value" : "4",
+            "content" : "fallen heroes"
+         },
+         {
+            "value" : "2",
+            "content" : "false promises"
+         },
+         {
+            "value" : "4",
+            "content" : "family"
+         },
+         {
+            "value" : "6",
+            "content" : "famine"
+         },
+         {
+            "value" : "2",
+            "content" : "far journeys"
+         },
+         {
+            "value" : "6",
+            "content" : "farming"
+         },
+         {
+            "value" : "1",
+            "content" : "fatalism"
+         },
+         {
+            "value" : "6",
+            "content" : "fates"
+         },
+         {
+            "value" : "2",
+            "content" : "fauna"
+         },
+         {
+            "value" : "1",
+            "content" : "favorable winds"
+         },
+         {
+            "value" : "6",
+            "content" : "fear"
+         },
+         {
+            "value" : "4",
+            "content" : "feasting"
+         },
+         {
+            "value" : "1",
+            "content" : "felines"
+         },
+         {
+            "value" : "3",
+            "content" : "femininity"
+         },
+         {
+            "value" : "8",
+            "content" : "fertility"
+         },
+         {
+            "value" : "2",
+            "content" : "festivals"
+         },
+         {
+            "value" : "2",
+            "content" : "feuds"
+         },
+         {
+            "value" : "4",
+            "content" : "fidelity"
+         },
+         {
+            "value" : "4",
+            "content" : "fighters"
+         },
+         {
+            "value" : "4",
+            "content" : "fine arts"
+         },
+         {
+            "value" : "1",
+            "content" : "fine-smithing"
+         },
+         {
+            "value" : "6",
+            "content" : "fire"
+         },
+         {
+            "value" : "2",
+            "content" : "fire giants"
+         },
+         {
+            "value" : "4",
+            "content" : "fire-using dragons"
+         },
+         {
+            "value" : "1",
+            "content" : "fir trees"
+         },
+         {
+            "value" : "2",
+            "content" : "fish"
+         },
+         {
+            "value" : "1",
+            "content" : "fishermen"
+         },
+         {
+            "value" : "4",
+            "content" : "fitness"
+         },
+         {
+            "value" : "2",
+            "content" : "flattery"
+         },
+         {
+            "value" : "6",
+            "content" : "flora"
+         },
+         {
+            "value" : "2",
+            "content" : "flowers"
+         },
+         {
+            "value" : "3",
+            "content" : "flowing water"
+         },
+         {
+            "value" : "4",
+            "content" : "flying"
+         },
+         {
+            "value" : "1",
+            "content" : "fogs"
+         },
+         {
+            "value" : "1",
+            "content" : "folk music"
+         },
+         {
+            "value" : "6",
+            "content" : "food"
+         },
+         {
+            "value" : "4",
+            "content" : "fools"
+         },
+         {
+            "value" : "4",
+            "content" : "forbidden knowlege"
+         },
+         {
+            "value" : "2",
+            "content" : "foreknowledge"
+         },
+         {
+            "value" : "4",
+            "content" : "foresight"
+         },
+         {
+            "value" : "1",
+            "content" : "forest creatures"
+         },
+         {
+            "value" : "1",
+            "content" : "forest dwellers"
+         },
+         {
+            "value" : "1",
+            "content" : "forest folk"
+         },
+         {
+            "value" : "1",
+            "content" : "forest gnomes"
+         },
+         {
+            "value" : "2",
+            "content" : "forests"
+         },
+         {
+            "value" : "2",
+            "content" : "forges"
+         },
+         {
+            "value" : "2",
+            "content" : "forgetfulness"
+         },
+         {
+            "value" : "2",
+            "content" : "forgiveness"
+         },
+         {
+            "value" : "4",
+            "content" : "formality"
+         },
+         {
+            "value" : "3",
+            "content" : "fortification"
+         },
+         {
+            "value" : "8",
+            "content" : "fortune"
+         },
+         {
+            "value" : "1",
+            "content" : "fortune telling"
+         },
+         {
+            "value" : "2",
+            "content" : "foul weather"
+         },
+         {
+            "value" : "8",
+            "content" : "freedom"
+         },
+         {
+            "value" : "2",
+            "content" : "frenzy"
+         },
+         {
+            "value" : "2",
+            "content" : "fresh water"
+         },
+         {
+            "value" : "2",
+            "content" : "friendship"
+         },
+         {
+            "value" : "1",
+            "content" : "frog folk"
+         },
+         {
+            "value" : "1",
+            "content" : "frost giants"
+         },
+         {
+            "value" : "1",
+            "content" : "frost sprites"
+         },
+         {
+            "value" : "2",
+            "content" : "frozen seas"
+         },
+         {
+            "value" : "2",
+            "content" : "fruitfulness"
+         },
+         {
+            "value" : "4",
+            "content" : "full moons"
+         },
+         {
+            "value" : "2",
+            "content" : "funerals"
+         },
+         {
+            "value" : "4",
+            "content" : "future"
+         },
+         {
+            "value" : "1",
+            "content" : "gambling"
+         },
+         {
+            "value" : "2",
+            "content" : "games"
+         },
+         {
+            "value" : "4",
+            "content" : "gardening"
+         },
+         {
+            "value" : "2",
+            "content" : "gates"
+         },
+         {
+            "value" : "1",
+            "content" : "gemcutting"
+         },
+         {
+            "value" : "2",
+            "content" : "gems"
+         },
+         {
+            "value" : "1",
+            "content" : "gemstones"
+         },
+         {
+            "value" : "1",
+            "content" : "ghosts"
+         },
+         {
+            "value" : "1",
+            "content" : "ghouls"
+         },
+         {
+            "value" : "1",
+            "content" : "giant eagles"
+         },
+         {
+            "value" : "4",
+            "content" : "giants"
+         },
+         {
+            "value" : "1",
+            "content" : "glaciers"
+         },
+         {
+            "value" : "6",
+            "content" : "glory"
+         },
+         {
+            "value" : "2",
+            "content" : "glyphs"
+         },
+         {
+            "value" : "4",
+            "content" : "gnolls"
+         },
+         {
+            "value" : "4",
+            "content" : "gnomes"
+         },
+         {
+            "value" : "4",
+            "content" : "goblins"
+         },
+         {
+            "value" : "2",
+            "content" : "gold"
+         },
+         {
+            "value" : "2",
+            "content" : "goliaths"
+         },
+         {
+            "value" : "8",
+            "content" : "good"
+         },
+         {
+            "value" : "4",
+            "content" : "good-aligned magical beasts"
+         },
+         {
+            "value" : "4",
+            "content" : "good beasts"
+         },
+         {
+            "value" : "4",
+            "content" : "good dragons"
+         },
+         {
+            "value" : "4",
+            "content" : "good fortune"
+         },
+         {
+            "value" : "4",
+            "content" : "good giants"
+         },
+         {
+            "value" : "4",
+            "content" : "good luck"
+         },
+         {
+            "value" : "4",
+            "content" : "good magic"
+         },
+         {
+            "value" : "2",
+            "content" : "goodness"
+         },
+         {
+            "value" : "4",
+            "content" : "grain"
+         },
+         {
+            "value" : "4",
+            "content" : "gray dwarves"
+         },
+         {
+            "value" : "8",
+            "content" : "greed"
+         },
+         {
+            "value" : "2",
+            "content" : "grief"
+         },
+         {
+            "value" : "1",
+            "content" : "grimlocks"
+         },
+         {
+            "value" : "8",
+            "content" : "growing things"
+         },
+         {
+            "value" : "2",
+            "content" : "growth"
+         },
+         {
+            "value" : "2",
+            "content" : "guadianship"
+         },
+         {
+            "value" : "8",
+            "content" : "guardians"
+         },
+         {
+            "value" : "2",
+            "content" : "guarding"
+         },
+         {
+            "value" : "2",
+            "content" : "guarding the underworld"
+         },
+         {
+            "value" : "3",
+            "content" : "guidance"
+         },
+         {
+            "value" : "3",
+            "content" : "guides"
+         },
+         {
+            "value" : "4",
+            "content" : "guile"
+         },
+         {
+            "value" : "2",
+            "content" : "guilt"
+         },
+         {
+            "value" : "1",
+            "content" : "hags"
+         },
+         {
+            "value" : "4",
+            "content" : "halflings"
+         },
+         {
+            "value" : "1",
+            "content" : "handicrafts"
+         },
+         {
+            "value" : "2",
+            "content" : "happiness"
+         },
+         {
+            "value" : "2",
+            "content" : "harm"
+         },
+         {
+            "value" : "4",
+            "content" : "harmony"
+         },
+         {
+            "value" : "8",
+            "content" : "harvest"
+         },
+         {
+            "value" : "4",
+            "content" : "hate"
+         },
+         {
+            "value" : "4",
+            "content" : "hatred"
+         },
+         {
+            "value" : "6",
+            "content" : "healing"
+         },
+         {
+            "value" : "2",
+            "content" : "health"
+         },
+         {
+            "value" : "2",
+            "content" : "hearing"
+         },
+         {
+            "value" : "4",
+            "content" : "hearth"
+         },
+         {
+            "value" : "2",
+            "content" : "heat"
+         },
+         {
+            "value" : "1",
+            "content" : "hedonism"
+         },
+         {
+            "value" : "3",
+            "content" : "heroism"
+         },
+         {
+            "value" : "4",
+            "content" : "hidden things"
+         },
+         {
+            "value" : "2",
+            "content" : "hidden knowledge"
+         },
+         {
+            "value" : "4",
+            "content" : "hidden treasures"
+         },
+         {
+            "value" : "2",
+            "content" : "hiding places"
+         },
+         {
+            "value" : "1",
+            "content" : "hill giants"
+         },
+         {
+            "value" : "1",
+            "content" : "hills"
+         },
+         {
+            "value" : "1",
+            "content" : "historians"
+         },
+         {
+            "value" : "2",
+            "content" : "history"
+         },
+         {
+            "value" : "4",
+            "content" : "hobgoblins"
+         },
+         {
+            "value" : "2",
+            "content" : "home"
+         },
+         {
+            "value" : "2",
+            "content" : "honesty"
+         },
+         {
+            "value" : "4",
+            "content" : "honor"
+         },
+         {
+            "value" : "1",
+            "content" : "honorable combat"
+         },
+         {
+            "value" : "1",
+            "content" : "honor in battle"
+         },
+         {
+            "value" : "6",
+            "content" : "hope"
+         },
+         {
+            "value" : "1",
+            "content" : "horizons"
+         },
+         {
+            "value" : "2",
+            "content" : "horses"
+         },
+         {
+            "value" : "2",
+            "content" : "hospitality"
+         },
+         {
+            "value" : "1",
+            "content" : "humiliation"
+         },
+         {
+            "value" : "4",
+            "content" : "humility"
+         },
+         {
+            "value" : "4",
+            "content" : "humor"
+         },
+         {
+            "value" : "2",
+            "content" : "hunger"
+         },
+         {
+            "value" : "6",
+            "content" : "hunters"
+         },
+         {
+            "value" : "6",
+            "content" : "hunting"
+         },
+         {
+            "value" : "1",
+            "content" : "hurricanes"
+         },
+         {
+            "value" : "2",
+            "content" : "hyenas"
+         },
+         {
+            "value" : "2",
+            "content" : "ice"
+         },
+         {
+            "value" : "4",
+            "content" : "ideas"
+         },
+         {
+            "value" : "1",
+            "content" : "ill council"
+         },
+         {
+            "value" : "1",
+            "content" : "ill luck"
+         },
+         {
+            "value" : "4",
+            "content" : "illness"
+         },
+         {
+            "value" : "1",
+            "content" : "illumians"
+         },
+         {
+            "value" : "4",
+            "content" : "illusions"
+         },
+         {
+            "value" : "2",
+            "content" : "images"
+         },
+         {
+            "value" : "3",
+            "content" : "imaginations"
+         },
+         {
+            "value" : "1",
+            "content" : "immediacy"
+         },
+         {
+            "value" : "2",
+            "content" : "immortality through undeath"
+         },
+         {
+            "value" : "2",
+            "content" : "improvement"
+         },
+         {
+            "value" : "1",
+            "content" : "impudence"
+         },
+         {
+            "value" : "4",
+            "content" : "independence"
+         },
+         {
+            "value" : "4",
+            "content" : "individuality"
+         },
+         {
+            "value" : "4",
+            "content" : "industriousness"
+         },
+         {
+            "value" : "2",
+            "content" : "industry"
+         },
+         {
+            "value" : "2",
+            "content" : "inevitability"
+         },
+         {
+            "value" : "4",
+            "content" : "infinity"
+         },
+         {
+            "value" : "2",
+            "content" : "inflexibility"
+         },
+         {
+            "value" : "4",
+            "content" : "influence"
+         },
+         {
+            "value" : "4",
+            "content" : "injustice"
+         },
+         {
+            "value" : "1",
+            "content" : "inland waters"
+         },
+         {
+            "value" : "2",
+            "content" : "inquiry"
+         },
+         {
+            "value" : "6",
+            "content" : "insanity"
+         },
+         {
+            "value" : "2",
+            "content" : "insects"
+         },
+         {
+            "value" : "1",
+            "content" : "insomnia"
+         },
+         {
+            "value" : "1",
+            "content" : "inspiration"
+         },
+         {
+            "value" : "6",
+            "content" : "intellect"
+         },
+         {
+            "value" : "6",
+            "content" : "intelligence"
+         },
+         {
+            "value" : "2",
+            "content" : "intoxication"
+         },
+         {
+            "value" : "4",
+            "content" : "intrigue"
+         },
+         {
+            "value" : "2",
+            "content" : "invention"
+         },
+         {
+            "value" : "1",
+            "content" : "inventiveness"
+         },
+         {
+            "value" : "2",
+            "content" : "invisiblity"
+         },
+         {
+            "value" : "4",
+            "content" : "iron"
+         },
+         {
+            "value" : "4",
+            "content" : "irrigation"
+         },
+         {
+            "value" : "1",
+            "content" : "isolation"
+         },
+         {
+            "value" : "3",
+            "content" : "jealousy"
+         },
+         {
+            "value" : "1",
+            "content" : "jellies"
+         },
+         {
+            "value" : "1",
+            "content" : "jewelrymaking"
+         },
+         {
+            "value" : "2",
+            "content" : "jokes"
+         },
+         {
+            "value" : "4",
+            "content" : "joy"
+         },
+         {
+            "value" : "2",
+            "content" : "joy of battle"
+         },
+         {
+            "value" : "8",
+            "content" : "judgement"
+         },
+         {
+            "value" : "2",
+            "content" : "jungles"
+         },
+         {
+            "value" : "1",
+            "content" : "jungle survival"
+         },
+         {
+            "value" : "8",
+            "content" : "justice"
+         },
+         {
+            "value" : "1",
+            "content" : "just rewards"
+         },
+         {
+            "value" : "2",
+            "content" : "keen senses"
+         },
+         {
+            "value" : "3",
+            "content" : "keys"
+         },
+         {
+            "value" : "4",
+            "content" : "killing"
+         },
+         {
+            "value" : "2",
+            "content" : "kings"
+         },
+         {
+            "value" : "8",
+            "content" : "knowledge"
+         },
+         {
+            "value" : "4",
+            "content" : "kobolds"
+         },
+         {
+            "value" : "1",
+            "content" : "krakens"
+         },
+         {
+            "value" : "2",
+            "content" : "kuo-toas"
+         },
+         {
+            "value" : "4",
+            "content" : "labyrinths"
+         },
+         {
+            "value" : "4",
+            "content" : "lakes"
+         },
+         {
+            "value" : "2",
+            "content" : "languages"
+         },
+         {
+            "value" : "4",
+            "content" : "law"
+         },
+         {
+            "value" : "1",
+            "content" : "lawful theft"
+         },
+         {
+            "value" : "6",
+            "content" : "laws"
+         },
+         {
+            "value" : "1",
+            "content" : "lawyers"
+         },
+         {
+            "value" : "3",
+            "content" : "leadership"
+         },
+         {
+            "value" : "2",
+            "content" : "learning"
+         },
+         {
+            "value" : "2",
+            "content" : "liars"
+         },
+         {
+            "value" : "3",
+            "content" : "liberation"
+         },
+         {
+            "value" : "6",
+            "content" : "liberty"
+         },
+         {
+            "value" : "1",
+            "content" : "lichdom"
+         },
+         {
+            "value" : "4",
+            "content" : "lies"
+         },
+         {
+            "value" : "8",
+            "content" : "life"
+         },
+         {
+            "value" : "4",
+            "content" : "life/fertility"
+         },
+         {
+            "value" : "4",
+            "content" : "light"
+         },
+         {
+            "value" : "2",
+            "content" : "lightning"
+         },
+         {
+            "value" : "1",
+            "content" : "lions"
+         },
+         {
+            "value" : "4",
+            "content" : "literacy"
+         },
+         {
+            "value" : "1",
+            "content" : "literary art"
+         },
+         {
+            "value" : "2",
+            "content" : "literature"
+         },
+         {
+            "value" : "4",
+            "content" : "livestock"
+         },
+         {
+            "value" : "2",
+            "content" : "living things"
+         },
+         {
+            "value" : "1",
+            "content" : "lizardfolk"
+         },
+         {
+            "value" : "3",
+            "content" : "locks"
+         },
+         {
+            "value" : "1",
+            "content" : "loneliness"
+         },
+         {
+            "value" : "2",
+            "content" : "longevity"
+         },
+         {
+            "value" : "2",
+            "content" : "long life"
+         },
+         {
+            "value" : "1",
+            "content" : "long-range traders"
+         },
+         {
+            "value" : "1",
+            "content" : "long rivers"
+         },
+         {
+            "value" : "6",
+            "content" : "lore"
+         },
+         {
+            "value" : "2",
+            "content" : "loss"
+         },
+         {
+            "value" : "1",
+            "content" : "lost causes"
+         },
+         {
+            "value" : "6",
+            "content" : "love"
+         },
+         {
+            "value" : "4",
+            "content" : "loyalty"
+         },
+         {
+            "value" : "8",
+            "content" : "luck"
+         },
+         {
+            "value" : "2",
+            "content" : "luck in battle"
+         },
+         {
+            "value" : "4",
+            "content" : "lust"
+         },
+         {
+            "value" : "1",
+            "content" : "lycanthropes"
+         },
+         {
+            "value" : "2",
+            "content" : "madness"
+         },
+         {
+            "value" : "3",
+            "content" : "mages"
+         },
+         {
+            "value" : "8",
+            "content" : "magic"
+         },
+         {
+            "value" : "2",
+            "content" : "magical knowledge"
+         },
+         {
+            "value" : "1",
+            "content" : "magic users"
+         },
+         {
+            "value" : "1",
+            "content" : "magisrates"
+         },
+         {
+            "value" : "2",
+            "content" : "malice"
+         },
+         {
+            "value" : "2",
+            "content" : "malign knowledge"
+         },
+         {
+            "value" : "2",
+            "content" : "marauders"
+         },
+         {
+            "value" : "1",
+            "content" : "marauding beasts"
+         },
+         {
+            "value" : "6",
+            "content" : "marriage"
+         },
+         {
+            "value" : "2",
+            "content" : "marshes"
+         },
+         {
+            "value" : "1",
+            "content" : "martial arts"
+         },
+         {
+            "value" : "1",
+            "content" : "martial defense"
+         },
+         {
+            "value" : "1",
+            "content" : "martial skill"
+         },
+         {
+            "value" : "1",
+            "content" : "martial training"
+         },
+         {
+            "value" : "2",
+            "content" : "martyrdom"
+         },
+         {
+            "value" : "2",
+            "content" : "massacres"
+         },
+         {
+            "value" : "4",
+            "content" : "mass destruction"
+         },
+         {
+            "value" : "1",
+            "content" : "mastery of undead"
+         },
+         {
+            "value" : "2",
+            "content" : "meadows"
+         },
+         {
+            "value" : "2",
+            "content" : "medicine"
+         },
+         {
+            "value" : "2",
+            "content" : "meditation"
+         },
+         {
+            "value" : "4",
+            "content" : "memory"
+         },
+         {
+            "value" : "1",
+            "content" : "mental dominion"
+         },
+         {
+            "value" : "1",
+            "content" : "mental health"
+         },
+         {
+            "value" : "1",
+            "content" : "mental mastery"
+         },
+         {
+            "value" : "2",
+            "content" : "mental powers"
+         },
+         {
+            "value" : "1",
+            "content" : "mental prowess"
+         },
+         {
+            "value" : "6",
+            "content" : "merchants"
+         },
+         {
+            "value" : "8",
+            "content" : "mercy"
+         },
+         {
+            "value" : "1",
+            "content" : "merfolk"
+         },
+         {
+            "value" : "4",
+            "content" : "messages"
+         },
+         {
+            "value" : "2",
+            "content" : "messengers"
+         },
+         {
+            "value" : "2",
+            "content" : "metalcraft"
+         },
+         {
+            "value" : "4",
+            "content" : "metals"
+         },
+         {
+            "value" : "2",
+            "content" : "metalsmiths"
+         },
+         {
+            "value" : "1",
+            "content" : "metalworking"
+         },
+         {
+            "value" : "6",
+            "content" : "might"
+         },
+         {
+            "value" : "2",
+            "content" : "military excellence"
+         },
+         {
+            "value" : "3",
+            "content" : "mind flayers"
+         },
+         {
+            "value" : "2",
+            "content" : "minerals"
+         },
+         {
+            "value" : "2",
+            "content" : "miners"
+         },
+         {
+            "value" : "2",
+            "content" : "mines"
+         },
+         {
+            "value" : "2",
+            "content" : "mining"
+         },
+         {
+            "value" : "4",
+            "content" : "minotaurs"
+         },
+         {
+            "value" : "1",
+            "content" : "mirrors"
+         },
+         {
+            "value" : "1",
+            "content" : "mirth"
+         },
+         {
+            "value" : "2",
+            "content" : "mischief"
+         },
+         {
+            "value" : "3",
+            "content" : "misfortune"
+         },
+         {
+            "value" : "1",
+            "content" : "moisture"
+         },
+         {
+            "value" : "4",
+            "content" : "money"
+         },
+         {
+            "value" : "2",
+            "content" : "monks"
+         },
+         {
+            "value" : "1",
+            "content" : "moonlight"
+         },
+         {
+            "value" : "6",
+            "content" : "moons"
+         },
+         {
+            "value" : "2",
+            "content" : "morale"
+         },
+         {
+            "value" : "4",
+            "content" : "morning"
+         },
+         {
+            "value" : "4",
+            "content" : "mortality"
+         },
+         {
+            "value" : "1",
+            "content" : "mortal life"
+         },
+         {
+            "value" : "4",
+            "content" : "motherhood"
+         },
+         {
+            "value" : "4",
+            "content" : "mothers"
+         },
+         {
+            "value" : "4",
+            "content" : "mountain dwarves"
+         },
+         {
+            "value" : "4",
+            "content" : "mountain giants"
+         },
+         {
+            "value" : "4",
+            "content" : "mountains"
+         },
+         {
+            "value" : "2",
+            "content" : "mourning"
+         },
+         {
+            "value" : "3",
+            "content" : "movement"
+         },
+         {
+            "value" : "6",
+            "content" : "murder"
+         },
+         {
+            "value" : "1",
+            "content" : "murderers"
+         },
+         {
+            "value" : "2",
+            "content" : "music"
+         },
+         {
+            "value" : "2",
+            "content" : "musicians"
+         },
+         {
+            "value" : "6",
+            "content" : "mysteries"
+         },
+         {
+            "value" : "1",
+            "content" : "mystic insight"
+         },
+         {
+            "value" : "1",
+            "content" : "mysticism"
+         },
+         {
+            "value" : "1",
+            "content" : "napkins"
+         },
+         {
+            "value" : "1",
+            "content" : "narrow escapes"
+         },
+         {
+            "value" : "1",
+            "content" : "natural alchemy"
+         },
+         {
+            "value" : "1",
+            "content" : "natural balances"
+         },
+         {
+            "value" : "1",
+            "content" : "natural beauty"
+         },
+         {
+            "value" : "1",
+            "content" : "natural disasters"
+         },
+         {
+            "value" : "1",
+            "content" : "natural growth"
+         },
+         {
+            "value" : "8",
+            "content" : "nature"
+         },
+         {
+            "value" : "3",
+            "content" : "naval combat"
+         },
+         {
+            "value" : "8",
+            "content" : "navigation"
+         },
+         {
+            "value" : "1",
+            "content" : "navigators"
+         },
+         {
+            "value" : "1",
+            "content" : "necromancers"
+         },
+         {
+            "value" : "8",
+            "content" : "necromancy"
+         },
+         {
+            "value" : "1",
+            "content" : "needlework"
+         },
+         {
+            "value" : "2",
+            "content" : "negative energy"
+         },
+         {
+            "value" : "4",
+            "content" : "negotiation"
+         },
+         {
+            "value" : "1",
+            "content" : "netherworld"
+         },
+         {
+            "value" : "4",
+            "content" : "neutral dragons"
+         },
+         {
+            "value" : "8",
+            "content" : "neutrality"
+         },
+         {
+            "value" : "4",
+            "content" : "night"
+         },
+         {
+            "value" : "1",
+            "content" : "night birds"
+         },
+         {
+            "value" : "4",
+            "content" : "nightmares"
+         },
+         {
+            "value" : "1",
+            "content" : "night travelers"
+         },
+         {
+            "value" : "1",
+            "content" : "nobility"
+         },
+         {
+            "value" : "1",
+            "content" : "noble beasts"
+         },
+         {
+            "value" : "2",
+            "content" : "noise"
+         },
+         {
+            "value" : "1",
+            "content" : "nonintervention"
+         },
+         {
+            "value" : "1",
+            "content" : "northern stars"
+         },
+         {
+            "value" : "1",
+            "content" : "northern wind"
+         },
+         {
+            "value" : "1",
+            "content" : "oases"
+         },
+         {
+            "value" : "6",
+            "content" : "oaths"
+         },
+         {
+            "value" : "4",
+            "content" : "obedience"
+         },
+         {
+            "value" : "2",
+            "content" : "obligations"
+         },
+         {
+            "value" : "2",
+            "content" : "obscurement"
+         },
+         {
+            "value" : "3",
+            "content" : "obsession"
+         },
+         {
+            "value" : "1",
+            "content" : "occult lore"
+         },
+         {
+            "value" : "1",
+            "content" : "ocean creatures"
+         },
+         {
+            "value" : "4",
+            "content" : "oceans"
+         },
+         {
+            "value" : "2",
+            "content" : "ocean storms"
+         },
+         {
+            "value" : "4",
+            "content" : "ogres"
+         },
+         {
+            "value" : "2",
+            "content" : "old age"
+         },
+         {
+            "value" : "4",
+            "content" : "omens"
+         },
+         {
+            "value" : "1",
+            "content" : "oozes"
+         },
+         {
+            "value" : "4",
+            "content" : "open paths"
+         },
+         {
+            "value" : "1",
+            "content" : "opportunism"
+         },
+         {
+            "value" : "2",
+            "content" : "oppression"
+         },
+         {
+            "value" : "4",
+            "content" : "orcs"
+         },
+         {
+            "value" : "8",
+            "content" : "order"
+         },
+         {
+            "value" : "2",
+            "content" : "ores"
+         },
+         {
+            "value" : "2",
+            "content" : "outcasts"
+         },
+         {
+            "value" : "1",
+            "content" : "outer space"
+         },
+         {
+            "value" : "1",
+            "content" : "outlaws"
+         },
+         {
+            "value" : "1",
+            "content" : "overwhelming numbers"
+         },
+         {
+            "value" : "1",
+            "content" : "pacifism"
+         },
+         {
+            "value" : "4",
+            "content" : "pain"
+         },
+         {
+            "value" : "3",
+            "content" : "paladins"
+         },
+         {
+            "value" : "2",
+            "content" : "panic"
+         },
+         {
+            "value" : "2",
+            "content" : "paralysis"
+         },
+         {
+            "value" : "1",
+            "content" : "parasites"
+         },
+         {
+            "value" : "2",
+            "content" : "parenthood"
+         },
+         {
+            "value" : "4",
+            "content" : "passion"
+         },
+         {
+            "value" : "2",
+            "content" : "patience"
+         },
+         {
+            "value" : "6",
+            "content" : "peace"
+         },
+         {
+            "value" : "1",
+            "content" : "peaks"
+         },
+         {
+            "value" : "2",
+            "content" : "perfection"
+         },
+         {
+            "value" : "2",
+            "content" : "perseverance"
+         },
+         {
+            "value" : "4",
+            "content" : "pestilence"
+         },
+         {
+            "value" : "4",
+            "content" : "philosophy"
+         },
+         {
+            "value" : "1",
+            "content" : "physical fitness"
+         },
+         {
+            "value" : "1",
+            "content" : "physical love"
+         },
+         {
+            "value" : "1",
+            "content" : "physical prowess"
+         },
+         {
+            "value" : "1",
+            "content" : "physical strength"
+         },
+         {
+            "value" : "2",
+            "content" : "pillaging"
+         },
+         {
+            "value" : "1",
+            "content" : "plagues"
+         },
+         {
+            "value" : "3",
+            "content" : "planning"
+         },
+         {
+            "value" : "2",
+            "content" : "planting"
+         },
+         {
+            "value" : "6",
+            "content" : "plant life"
+         },
+         {
+            "value" : "1",
+            "content" : "play"
+         },
+         {
+            "value" : "6",
+            "content" : "pleasure"
+         },
+         {
+            "value" : "6",
+            "content" : "plenty"
+         },
+         {
+            "value" : "2",
+            "content" : "plunder"
+         },
+         {
+            "value" : "1",
+            "content" : "poetic justice"
+         },
+         {
+            "value" : "1",
+            "content" : "poetry"
+         },
+         {
+            "value" : "1",
+            "content" : "poets"
+         },
+         {
+            "value" : "4",
+            "content" : "poison"
+         },
+         {
+            "value" : "1",
+            "content" : "poisoners"
+         },
+         {
+            "value" : "4",
+            "content" : "poisoning"
+         },
+         {
+            "value" : "1",
+            "content" : "polar environments"
+         },
+         {
+            "value" : "2",
+            "content" : "police"
+         },
+         {
+            "value" : "2",
+            "content" : "pools"
+         },
+         {
+            "value" : "5",
+            "content" : "portals"
+         },
+         {
+            "value" : "4",
+            "content" : "positive energy"
+         },
+         {
+            "value" : "2",
+            "content" : "pottery"
+         },
+         {
+            "value" : "4",
+            "content" : "power"
+         },
+         {
+            "value" : "1",
+            "content" : "powerbrokers"
+         },
+         {
+            "value" : "1",
+            "content" : "powermongers"
+         },
+         {
+            "value" : "6",
+            "content" : "pranks"
+         },
+         {
+            "value" : "3",
+            "content" : "predators"
+         },
+         {
+            "value" : "2",
+            "content" : "predestination"
+         },
+         {
+            "value" : "1",
+            "content" : "premeditated killing"
+         },
+         {
+            "value" : "2",
+            "content" : "preservation"
+         },
+         {
+            "value" : "2",
+            "content" : "prestige"
+         },
+         {
+            "value" : "1",
+            "content" : "pretty things"
+         },
+         {
+            "value" : "5",
+            "content" : "pride"
+         },
+         {
+            "value" : "4",
+            "content" : "procreation"
+         },
+         {
+            "value" : "3",
+            "content" : "propagation"
+         },
+         {
+            "value" : "4",
+            "content" : "prophecy"
+         },
+         {
+            "value" : "1",
+            "content" : "propriety"
+         },
+         {
+            "value" : "1",
+            "content" : "prose"
+         },
+         {
+            "value" : "4",
+            "content" : "prosperity"
+         },
+         {
+            "value" : "6",
+            "content" : "protection"
+         },
+         {
+            "value" : "4",
+            "content" : "protectors"
+         },
+         {
+            "value" : "3",
+            "content" : "psionics"
+         },
+         {
+            "value" : "1",
+            "content" : "psychotic behavior"
+         },
+         {
+            "value" : "2",
+            "content" : "public combat"
+         },
+         {
+            "value" : "6",
+            "content" : "punishment"
+         },
+         {
+            "value" : "2",
+            "content" : "purification"
+         },
+         {
+            "value" : "6",
+            "content" : "purity"
+         },
+         {
+            "value" : "2",
+            "content" : "puzzles"
+         },
+         {
+            "value" : "2",
+            "content" : "quarrels"
+         },
+         {
+            "value" : "2",
+            "content" : "questers"
+         },
+         {
+            "value" : "1",
+            "content" : "quiet places"
+         },
+         {
+            "value" : "1",
+            "content" : "racing"
+         },
+         {
+            "value" : "1",
+            "content" : "radiance"
+         },
+         {
+            "value" : "4",
+            "content" : "rage"
+         },
+         {
+            "value" : "6",
+            "content" : "rain"
+         },
+         {
+            "value" : "1",
+            "content" : "rainbows"
+         },
+         {
+            "value" : "1",
+            "content" : "random mischief"
+         },
+         {
+            "value" : "2",
+            "content" : "randomness"
+         },
+         {
+            "value" : "3",
+            "content" : "rangers"
+         },
+         {
+            "value" : "1",
+            "content" : "rats"
+         },
+         {
+            "value" : "1",
+            "content" : "ravaging beasts"
+         },
+         {
+            "value" : "6",
+            "content" : "reason"
+         },
+         {
+            "value" : "6",
+            "content" : "reasoning"
+         },
+         {
+            "value" : "2",
+            "content" : "rebellion"
+         },
+         {
+            "value" : "4",
+            "content" : "rebels"
+         },
+         {
+            "value" : "4",
+            "content" : "rebirth"
+         },
+         {
+            "value" : "2",
+            "content" : "reciprocity"
+         },
+         {
+            "value" : "3",
+            "content" : "records"
+         },
+         {
+            "value" : "2",
+            "content" : "relationships"
+         },
+         {
+            "value" : "4",
+            "content" : "renewal"
+         },
+         {
+            "value" : "2",
+            "content" : "reptiles"
+         },
+         {
+            "value" : "1",
+            "content" : "restful sleep"
+         },
+         {
+            "value" : "2",
+            "content" : "restraint"
+         },
+         {
+            "value" : "4",
+            "content" : "retribution"
+         },
+         {
+            "value" : "1",
+            "content" : "revelry"
+         },
+         {
+            "value" : "6",
+            "content" : "revenge"
+         },
+         {
+            "value" : "2",
+            "content" : "reverence"
+         },
+         {
+            "value" : "3",
+            "content" : "rice"
+         },
+         {
+            "value" : "1",
+            "content" : "righteous indignation"
+         },
+         {
+            "value" : "6",
+            "content" : "righteousness"
+         },
+         {
+            "value" : "2",
+            "content" : "risks"
+         },
+         {
+            "value" : "1",
+            "content" : "river hazards"
+         },
+         {
+            "value" : "5",
+            "content" : "rivers"
+         },
+         {
+            "value" : "6",
+            "content" : "roads"
+         },
+         {
+            "value" : "1",
+            "content" : "robbers"
+         },
+         {
+            "value" : "3",
+            "content" : "rock gnomes"
+         },
+         {
+            "value" : "4",
+            "content" : "rogues"
+         },
+         {
+            "value" : "2",
+            "content" : "romance"
+         },
+         {
+            "value" : "1",
+            "content" : "romantic love"
+         },
+         {
+            "value" : "1",
+            "content" : "ropers"
+         },
+         {
+            "value" : "2",
+            "content" : "rot"
+         },
+         {
+            "value" : "2",
+            "content" : "rotting death"
+         },
+         {
+            "value" : "1",
+            "content" : "royalty"
+         },
+         {
+            "value" : "2",
+            "content" : "rulership"
+         },
+         {
+            "value" : "4",
+            "content" : "rumor"
+         },
+         {
+            "value" : "1",
+            "content" : "rune magic"
+         },
+         {
+            "value" : "1",
+            "content" : "running"
+         },
+         {
+            "value" : "2",
+            "content" : "running water"
+         },
+         {
+            "value" : "3",
+            "content" : "sacrifice"
+         },
+         {
+            "value" : "5",
+            "content" : "sadism"
+         },
+         {
+            "value" : "4",
+            "content" : "safety"
+         },
+         {
+            "value" : "2",
+            "content" : "sages"
+         },
+         {
+            "value" : "4",
+            "content" : "sailing"
+         },
+         {
+            "value" : "1",
+            "content" : "sailors"
+         },
+         {
+            "value" : "1",
+            "content" : "salamanders"
+         },
+         {
+            "value" : "3",
+            "content" : "salt"
+         },
+         {
+            "value" : "1",
+            "content" : "savage lust"
+         },
+         {
+            "value" : "2",
+            "content" : "savants"
+         },
+         {
+            "value" : "3",
+            "content" : "scapegoats"
+         },
+         {
+            "value" : "3",
+            "content" : "scheming"
+         },
+         {
+            "value" : "2",
+            "content" : "scholarship"
+         },
+         {
+            "value" : "6",
+            "content" : "science"
+         },
+         {
+            "value" : "2",
+            "content" : "scribes"
+         },
+         {
+            "value" : "2",
+            "content" : "sculptures"
+         },
+         {
+            "value" : "6",
+            "content" : "sea"
+         },
+         {
+            "value" : "1",
+            "content" : "sea creatures"
+         },
+         {
+            "value" : "1",
+            "content" : "sea elves"
+         },
+         {
+            "value" : "1",
+            "content" : "sea life"
+         },
+         {
+            "value" : "1",
+            "content" : "seals"
+         },
+         {
+            "value" : "4",
+            "content" : "seas"
+         },
+         {
+            "value" : "2",
+            "content" : "sea voyages"
+         },
+         {
+            "value" : "1",
+            "content" : "sea weather"
+         },
+         {
+            "value" : "1",
+            "content" : "sea winds"
+         },
+         {
+            "value" : "4",
+            "content" : "secrecy"
+         },
+         {
+            "value" : "1",
+            "content" : "secret pursuits"
+         },
+         {
+            "value" : "8",
+            "content" : "secrets"
+         },
+         {
+            "value" : "4",
+            "content" : "security"
+         },
+         {
+            "value" : "4",
+            "content" : "seduction"
+         },
+         {
+            "value" : "2",
+            "content" : "seekers"
+         },
+         {
+            "value" : "1",
+            "content" : "self-deception"
+         },
+         {
+            "value" : "2",
+            "content" : "self-defense"
+         },
+         {
+            "value" : "1",
+            "content" : "self-determination"
+         },
+         {
+            "value" : "3",
+            "content" : "selfishness"
+         },
+         {
+            "value" : "2",
+            "content" : "self-perfection"
+         },
+         {
+            "value" : "2",
+            "content" : "self-sacrifice"
+         },
+         {
+            "value" : "1",
+            "content" : "senses"
+         },
+         {
+            "value" : "1",
+            "content" : "sensual fulfillment"
+         },
+         {
+            "value" : "2",
+            "content" : "sentries"
+         },
+         {
+            "value" : "4",
+            "content" : "serenity"
+         },
+         {
+            "value" : "1",
+            "content" : "serpents"
+         },
+         {
+            "value" : "1",
+            "content" : "servants"
+         },
+         {
+            "value" : "1",
+            "content" : "service"
+         },
+         {
+            "value" : "1",
+            "content" : "servitude"
+         },
+         {
+            "value" : "1",
+            "content" : "sewers"
+         },
+         {
+            "value" : "1",
+            "content" : "shadow elves"
+         },
+         {
+            "value" : "6",
+            "content" : "shadows"
+         },
+         {
+            "value" : "2",
+            "content" : "shepherds"
+         },
+         {
+            "value" : "1",
+            "content" : "shield dwarves"
+         },
+         {
+            "value" : "3",
+            "content" : "ships"
+         },
+         {
+            "value" : "2",
+            "content" : "sickness"
+         },
+         {
+            "value" : "2",
+            "content" : "sight"
+         },
+         {
+            "value" : "1",
+            "content" : "silence"
+         },
+         {
+            "value" : "1",
+            "content" : "silver dragonkind"
+         },
+         {
+            "value" : "2",
+            "content" : "singing"
+         },
+         {
+            "value" : "1",
+            "content" : "sinister ambition"
+         },
+         {
+            "value" : "1",
+            "content" : "skiing"
+         },
+         {
+            "value" : "4",
+            "content" : "skill"
+         },
+         {
+            "value" : "1",
+            "content" : "skill-at-arms"
+         },
+         {
+            "value" : "1",
+            "content" : "skilled artisans"
+         },
+         {
+            "value" : "5",
+            "content" : "sky"
+         },
+         {
+            "value" : "2",
+            "content" : "slaughter"
+         },
+         {
+            "value" : "3",
+            "content" : "slavery"
+         },
+         {
+            "value" : "8",
+            "content" : "sleep"
+         },
+         {
+            "value" : "1",
+            "content" : "slimes"
+         },
+         {
+            "value" : "2",
+            "content" : "sloth"
+         },
+         {
+            "value" : "2",
+            "content" : "slumber"
+         },
+         {
+            "value" : "1",
+            "content" : "sly cleverness"
+         },
+         {
+            "value" : "1",
+            "content" : "small birds"
+         },
+         {
+            "value" : "1",
+            "content" : "smallpox"
+         },
+         {
+            "value" : "1",
+            "content" : "smithing"
+         },
+         {
+            "value" : "4",
+            "content" : "smiths"
+         },
+         {
+            "value" : "1",
+            "content" : "smithwork"
+         },
+         {
+            "value" : "2",
+            "content" : "smoke"
+         },
+         {
+            "value" : "1",
+            "content" : "snakes"
+         },
+         {
+            "value" : "4",
+            "content" : "snow"
+         },
+         {
+            "value" : "1",
+            "content" : "snow elves"
+         },
+         {
+            "value" : "1",
+            "content" : "social behavior"
+         },
+         {
+            "value" : "1",
+            "content" : "social order"
+         },
+         {
+            "value" : "2",
+            "content" : "societies"
+         },
+         {
+            "value" : "4",
+            "content" : "soldiers"
+         },
+         {
+            "value" : "1",
+            "content" : "solidity"
+         },
+         {
+            "value" : "2",
+            "content" : "song"
+         },
+         {
+            "value" : "1",
+            "content" : "songwriting"
+         },
+         {
+            "value" : "1",
+            "content" : "sorcerers"
+         },
+         {
+            "value" : "6",
+            "content" : "sorcery"
+         },
+         {
+            "value" : "4",
+            "content" : "sorrow"
+         },
+         {
+            "value" : "2",
+            "content" : "south wind"
+         },
+         {
+            "value" : "1",
+            "content" : "space"
+         },
+         {
+            "value" : "1",
+            "content" : "spawning"
+         },
+         {
+            "value" : "1",
+            "content" : "specific locality"
+         },
+         {
+            "value" : "2",
+            "content" : "speech"
+         },
+         {
+            "value" : "2",
+            "content" : "speed"
+         },
+         {
+            "value" : "4",
+            "content" : "spellcasters"
+         },
+         {
+            "value" : "6",
+            "content" : "spells"
+         },
+         {
+            "value" : "4",
+            "content" : "spiders"
+         },
+         {
+            "value" : "1",
+            "content" : "spinning"
+         },
+         {
+            "value" : "2",
+            "content" : "spite"
+         },
+         {
+            "value" : "1",
+            "content" : "sports"
+         },
+         {
+            "value" : "1",
+            "content" : "spriggans"
+         },
+         {
+            "value" : "6",
+            "content" : "spring"
+         },
+         {
+            "value" : "1",
+            "content" : "springs"
+         },
+         {
+            "value" : "1",
+            "content" : "stalking"
+         },
+         {
+            "value" : "3",
+            "content" : "starlight"
+         },
+         {
+            "value" : "4",
+            "content" : "stars"
+         },
+         {
+            "value" : "2",
+            "content" : "starvation"
+         },
+         {
+            "value" : "1",
+            "content" : "steadfastness"
+         },
+         {
+            "value" : "6",
+            "content" : "stealth"
+         },
+         {
+            "value" : "2",
+            "content" : "stench"
+         },
+         {
+            "value" : "2",
+            "content" : "sterility"
+         },
+         {
+            "value" : "1",
+            "content" : "stillness"
+         },
+         {
+            "value" : "5",
+            "content" : "stone"
+         },
+         {
+            "value" : "1",
+            "content" : "stone giants"
+         },
+         {
+            "value" : "2",
+            "content" : "stonework"
+         },
+         {
+            "value" : "1",
+            "content" : "storm giants"
+         },
+         {
+            "value" : "4",
+            "content" : "storms"
+         },
+         {
+            "value" : "2",
+            "content" : "storytelling"
+         },
+         {
+            "value" : "6",
+            "content" : "strategy"
+         },
+         {
+            "value" : "2",
+            "content" : "streams"
+         },
+         {
+            "value" : "6",
+            "content" : "strength"
+         },
+         {
+            "value" : "8",
+            "content" : "strife"
+         },
+         {
+            "value" : "2",
+            "content" : "strong beasts"
+         },
+         {
+            "value" : "4",
+            "content" : "structure"
+         },
+         {
+            "value" : "4",
+            "content" : "study"
+         },
+         {
+            "value" : "1",
+            "content" : "study of magic"
+         },
+         {
+            "value" : "8",
+            "content" : "stupidity"
+         },
+         {
+            "value" : "2",
+            "content" : "subtlety"
+         },
+         {
+            "value" : "2",
+            "content" : "subversion"
+         },
+         {
+            "value" : "2",
+            "content" : "success"
+         },
+         {
+            "value" : "2",
+            "content" : "suffering"
+         },
+         {
+            "value" : "6",
+            "content" : "summer"
+         },
+         {
+            "value" : "1",
+            "content" : "summer storms"
+         },
+         {
+            "value" : "8",
+            "content" : "sun"
+         },
+         {
+            "value" : "2",
+            "content" : "sunlight"
+         },
+         {
+            "value" : "2",
+            "content" : "sunshine"
+         },
+         {
+            "value" : "2",
+            "content" : "surprise"
+         },
+         {
+            "value" : "1",
+            "content" : "surrounding lands"
+         },
+         {
+            "value" : "4",
+            "content" : "survival"
+         },
+         {
+            "value" : "4",
+            "content" : "suspicion"
+         },
+         {
+            "value" : "2",
+            "content" : "swamps"
+         },
+         {
+            "value" : "3",
+            "content" : "swords"
+         },
+         {
+            "value" : "1",
+            "content" : "sword skills"
+         },
+         {
+            "value" : "1",
+            "content" : "swordsmanship"
+         },
+         {
+            "value" : "1",
+            "content" : "swordsmiths"
+         },
+         {
+            "value" : "1",
+            "content" : "swordwork"
+         },
+         {
+            "value" : "2",
+            "content" : "tactics"
+         },
+         {
+            "value" : "1",
+            "content" : "talking beasts"
+         },
+         {
+            "value" : "4",
+            "content" : "teaching"
+         },
+         {
+            "value" : "2",
+            "content" : "technology"
+         },
+         {
+            "value" : "4",
+            "content" : "tedium"
+         },
+         {
+            "value" : "2",
+            "content" : "territory"
+         },
+         {
+            "value" : "1",
+            "content" : "testing"
+         },
+         {
+            "value" : "1",
+            "content" : "theater"
+         },
+         {
+            "value" : "1",
+            "content" : "eastern light"
+         },
+         {
+            "value" : "1",
+            "content" : "oppressed"
+         },
+         {
+            "value" : "1",
+            "content" : "southern stars"
+         },
+         {
+            "value" : "3",
+            "content" : "thievery"
+         },
+         {
+            "value" : "3",
+            "content" : "thieves"
+         },
+         {
+            "value" : "2",
+            "content" : "thought"
+         },
+         {
+            "value" : "1",
+            "content" : "thoughtless acts"
+         },
+         {
+            "value" : "4",
+            "content" : "thunder"
+         },
+         {
+            "value" : "1",
+            "content" : "thunderstorms"
+         },
+         {
+            "value" : "3",
+            "content" : "tides"
+         },
+         {
+            "value" : "8",
+            "content" : "time"
+         },
+         {
+            "value" : "2",
+            "content" : "tolerance"
+         },
+         {
+            "value" : "1",
+            "content" : "tombs"
+         },
+         {
+            "value" : "5",
+            "content" : "torment"
+         },
+         {
+            "value" : "5",
+            "content" : "torture"
+         },
+         {
+            "value" : "1",
+            "content" : "tortured souls"
+         },
+         {
+            "value" : "1",
+            "content" : "torturers"
+         },
+         {
+            "value" : "2",
+            "content" : "tracking"
+         },
+         {
+            "value" : "8",
+            "content" : "trade"
+         },
+         {
+            "value" : "1",
+            "content" : "traders"
+         },
+         {
+            "value" : "1",
+            "content" : "tradesmen"
+         },
+         {
+            "value" : "2",
+            "content" : "tradition"
+         },
+         {
+            "value" : "1",
+            "content" : "transcendence"
+         },
+         {
+            "value" : "4",
+            "content" : "transformation"
+         },
+         {
+            "value" : "1",
+            "content" : "transformation of art"
+         },
+         {
+            "value" : "2",
+            "content" : "trapmaking"
+         },
+         {
+            "value" : "6",
+            "content" : "traps"
+         },
+         {
+            "value" : "8",
+            "content" : "travel"
+         },
+         {
+            "value" : "1",
+            "content" : "travelers"
+         },
+         {
+            "value" : "2",
+            "content" : "treachery"
+         },
+         {
+            "value" : "1",
+            "content" : "treachery over honor"
+         },
+         {
+            "value" : "1",
+            "content" : "treasure-finding"
+         },
+         {
+            "value" : "2",
+            "content" : "treasures"
+         },
+         {
+            "value" : "4",
+            "content" : "trees"
+         },
+         {
+            "value" : "8",
+            "content" : "trickery"
+         },
+         {
+            "value" : "1",
+            "content" : "tricks"
+         },
+         {
+            "value" : "2",
+            "content" : "troglodytes"
+         },
+         {
+            "value" : "2",
+            "content" : "trolls"
+         },
+         {
+            "value" : "3",
+            "content" : "trust"
+         },
+         {
+            "value" : "6",
+            "content" : "truth"
+         },
+         {
+            "value" : "1",
+            "content" : "truth-speakers"
+         },
+         {
+            "value" : "1",
+            "content" : "twilight"
+         },
+         {
+            "value" : "8",
+            "content" : "tyranny"
+         },
+         {
+            "value" : "1",
+            "content" : "ugliness"
+         },
+         {
+            "value" : "1",
+            "content" : "ugly people"
+         },
+         {
+            "value" : "2",
+            "content" : "undead"
+         },
+         {
+            "value" : "3",
+            "content" : "undeath"
+         },
+         {
+            "value" : "1",
+            "content" : "undefiled waters"
+         },
+         {
+            "value" : "4",
+            "content" : "underdark"
+         },
+         {
+            "value" : "5",
+            "content" : "underwater"
+         },
+         {
+            "value" : "5",
+            "content" : "underworld"
+         },
+         {
+            "value" : "1",
+            "content" : "unicorns"
+         },
+         {
+            "value" : "2",
+            "content" : "unknown"
+         },
+         {
+            "value" : "2",
+            "content" : "unknown secrets"
+         },
+         {
+            "value" : "4",
+            "content" : "unpredictability"
+         },
+         {
+            "value" : "1",
+            "content" : "unrevealed secrets"
+         },
+         {
+            "value" : "6",
+            "content" : "valor"
+         },
+         {
+            "value" : "1",
+            "content" : "vampires"
+         },
+         {
+            "value" : "1",
+            "content" : "vampirism"
+         },
+         {
+            "value" : "2",
+            "content" : "vandals"
+         },
+         {
+            "value" : "5",
+            "content" : "vanity"
+         },
+         {
+            "value" : "1",
+            "content" : "vegetation"
+         },
+         {
+            "value" : "1",
+            "content" : "vendettas"
+         },
+         {
+            "value" : "2",
+            "content" : "vengeance"
+         },
+         {
+            "value" : "1",
+            "content" : "venomous creatures"
+         },
+         {
+            "value" : "2",
+            "content" : "vermin"
+         },
+         {
+            "value" : "1",
+            "content" : "vice"
+         },
+         {
+            "value" : "3",
+            "content" : "victory"
+         },
+         {
+            "value" : "5",
+            "content" : "vigilance"
+         },
+         {
+            "value" : "3",
+            "content" : "vigor"
+         },
+         {
+            "value" : "6",
+            "content" : "violence"
+         },
+         {
+            "value" : "8",
+            "content" : "virtue"
+         },
+         {
+            "value" : "2",
+            "content" : "visions"
+         },
+         {
+            "value" : "2",
+            "content" : "vitality"
+         },
+         {
+            "value" : "2",
+            "content" : "volcanoes"
+         },
+         {
+            "value" : "1",
+            "content" : "vortices"
+         },
+         {
+            "value" : "1",
+            "content" : "wakefulness"
+         },
+         {
+            "value" : "6",
+            "content" : "wanderers"
+         },
+         {
+            "value" : "1",
+            "content" : "wandering"
+         },
+         {
+            "value" : "2",
+            "content" : "wanton destruction"
+         },
+         {
+            "value" : "1",
+            "content" : "wards"
+         },
+         {
+            "value" : "3",
+            "content" : "warfare"
+         },
+         {
+            "value" : "4",
+            "content" : "warmth"
+         },
+         {
+            "value" : "1",
+            "content" : "warpriests"
+         },
+         {
+            "value" : "4",
+            "content" : "warriors"
+         },
+         {
+            "value" : "2",
+            "content" : "wasting"
+         },
+         {
+            "value" : "1",
+            "content" : "watchfulness"
+         },
+         {
+            "value" : "6",
+            "content" : "water"
+         },
+         {
+            "value" : "1",
+            "content" : "waterfalls"
+         },
+         {
+            "value" : "1",
+            "content" : "water spirits"
+         },
+         {
+            "value" : "1",
+            "content" : "water travel"
+         },
+         {
+            "value" : "1",
+            "content" : "wave motions"
+         },
+         {
+            "value" : "2",
+            "content" : "waves"
+         },
+         {
+            "value" : "6",
+            "content" : "wealth"
+         },
+         {
+            "value" : "1",
+            "content" : "weapon making"
+         },
+         {
+            "value" : "6",
+            "content" : "weapons"
+         },
+         {
+            "value" : "1",
+            "content" : "weaponsmithing"
+         },
+         {
+            "value" : "2",
+            "content" : "weaponsmiths"
+         },
+         {
+            "value" : "3",
+            "content" : "weather"
+         },
+         {
+            "value" : "1",
+            "content" : "weaving"
+         },
+         {
+            "value" : "1",
+            "content" : "wells"
+         },
+         {
+            "value" : "4",
+            "content" : "west wind"
+         },
+         {
+            "value" : "2",
+            "content" : "wetlands"
+         },
+         {
+            "value" : "2",
+            "content" : "wetness"
+         },
+         {
+            "value" : "1",
+            "content" : "whales"
+         },
+         {
+            "value" : "1",
+            "content" : "whirlpools"
+         },
+         {
+            "value" : "3",
+            "content" : "wickedness"
+         },
+         {
+            "value" : "2",
+            "content" : "wild beasts"
+         },
+         {
+            "value" : "1",
+            "content" : "wilderness"
+         },
+         {
+            "value" : "1",
+            "content" : "wildlands"
+         },
+         {
+            "value" : "4",
+            "content" : "willpower"
+         },
+         {
+            "value" : "4",
+            "content" : "winds"
+         },
+         {
+            "value" : "2",
+            "content" : "wine"
+         },
+         {
+            "value" : "3",
+            "content" : "winter"
+         },
+         {
+            "value" : "8",
+            "content" : "wisdom"
+         },
+         {
+            "value" : "3",
+            "content" : "wit"
+         },
+         {
+            "value" : "3",
+            "content" : "witches"
+         },
+         {
+            "value" : "3",
+            "content" : "wizards"
+         },
+         {
+            "value" : "5",
+            "content" : "women"
+         },
+         {
+            "value" : "6",
+            "content" : "woodlands"
+         },
+         {
+            "value" : "1",
+            "content" : "woodworkers"
+         },
+         {
+            "value" : "1",
+            "content" : "woodworking"
+         },
+         {
+            "value" : "2",
+            "content" : "work"
+         },
+         {
+            "value" : "1",
+            "content" : "worms"
+         },
+         {
+            "value" : "4",
+            "content" : "wrath"
+         },
+         {
+            "value" : "3",
+            "content" : "writing"
+         },
+         {
+            "value" : "2",
+            "content" : "youth"
+         },
+         {
+            "value" : "2",
+            "content" : "zeal"
+         }
+      ]
+   },
+   "feature" : {
+      "weapon" : {
+         "option" : [
+            {
+               "content" : "axes"
+            },
+            {
+               "content" : "bastard swords"
+            },
+            {
+               "content" : "battle axes"
+            },
+            {
+               "content" : "picks"
+            },
+            {
+               "content" : "bladed gauntlets"
+            },
+            {
+               "content" : "bows"
+            },
+            {
+               "content" : "butterfly swords"
+            },
+            {
+               "content" : "claw bracers"
+            },
+            {
+               "content" : "composite bows"
+            },
+            {
+               "content" : "crossbows"
+            },
+            {
+               "content" : "curved swords"
+            },
+            {
+               "content" : "daggers"
+            },
+            {
+               "content" : "falchionn"
+            },
+            {
+               "content" : "flails, maces and clubs"
+            },
+            {
+               "content" : "glaives"
+            },
+            {
+               "content" : "greataxes"
+            },
+            {
+               "content" : "great clubs"
+            },
+            {
+               "content" : "great crossbows"
+            },
+            {
+               "content" : "greatswords"
+            },
+            {
+               "content" : "guisarmes"
+            },
+            {
+               "content" : "halberds"
+            },
+            {
+               "content" : "hand axes"
+            },
+            {
+               "content" : "hand crossbows"
+            },
+            {
+               "content" : "harpoons"
+            },
+            {
+               "content" : "heavy crossbows"
+            },
+            {
+               "content" : "heavy flail"
+            },
+            {
+               "content" : "heavy mace"
+            },
+            {
+               "content" : "javelins"
+            },
+            {
+               "content" : "light crossbows"
+            },
+            {
+               "content" : "light flail"
+            },
+            {
+               "content" : "light mace"
+            },
+            {
+               "content" : "longbows"
+            },
+            {
+               "content" : "long spears"
+            },
+            {
+               "content" : "longswords"
+            },
+            {
+               "content" : "martial arts"
+            },
+            {
+               "content" : "morningstars"
+            },
+            {
+               "content" : "polearms"
+            },
+            {
+               "content" : "ranseurs"
+            },
+            {
+               "content" : "rapiers"
+            },
+            {
+               "content" : "repeating crossbows"
+            },
+            {
+               "content" : "scimitars"
+            },
+            {
+               "content" : "shortbows"
+            },
+            {
+               "content" : "short spears"
+            },
+            {
+               "content" : "shortswords"
+            },
+            {
+               "content" : "simple clubs"
+            },
+            {
+               "content" : "slings"
+            },
+            {
+               "content" : "spears"
+            },
+            {
+               "content" : "spiked clubs"
+            },
+            {
+               "content" : "stump knives"
+            },
+            {
+               "content" : "swords"
+            },
+            {
+               "content" : "throwing axes"
+            },
+            {
+               "content" : "throwing daggers"
+            },
+            {
+               "content" : "throwing hammers"
+            },
+            {
+               "content" : "thrown weapons"
+            },
+            {
+               "content" : "tonfas"
+            },
+            {
+               "content" : "tridents"
+            },
+            {
+               "content" : "unarmed combat"
+            },
+            {
+               "content" : "unique axes"
+            }
+         ]
+      },
+      "vow" : {
+         "option" : [
+            {
+               "content" : "refrain from marriage and sex",
+               "type" : "Celibacy"
+            },
+            {
+               "content" : "refrain from marriage and sex",
+               "type" : "Chastity"
+            },
+            {
+               "content" : "abstain from alcoholic beverages, drugs, and intoxication",
+               "type" : "Abstinence"
+            },
+            {
+               "content" : "avoid violence against other sentient creatures",
+               "type" : "Nonviolence"
+            },
+            {
+               "content" : "live according to the dictates of a superior in the religious order or similar organization",
+               "type" : "Obedience"
+            },
+            {
+               "content" : "submit to those who ask of it",
+               "type" : "Submission"
+            },
+            {
+               "content" : "abstain from harming any living creature",
+               "type" : "Peace"
+            },
+            {
+               "content" : "forswear material possessions",
+               "type" : "Poverty"
+            },
+            {
+               "content" : "avoid contact with dead flesh",
+               "type" : "Purity"
+            },
+            {
+               "content" : " seek glory, honor, and victory in tribute",
+               "type" : "Propriety"
+            },
+            {
+               "content" : "constantly move from place to place, never settling",
+               "type" : "Itinerancy"
+            },
+            {
+               "content" : "refrain from accepting compensation for any services rendered",
+               "type" : "Charity"
+            },
+            {
+               "content" : "abstain from extholing your own virtues",
+               "type" : "Humility"
+            },
+            {
+               "content" : "defend a group or groups with your very life",
+               "type" : "Surety"
+            },
+            {
+               "content" : "not speak under any circumstances",
+               "type" : "Silence"
+            },
+            {
+               "content" : "reunite factions after a long and bitter feud",
+               "type" : "Reconstruction"
+            },
+            {
+               "content" : "never affiliate with or take orders from any organization, including the church",
+               "type" : "Independence"
+            }
+         ]
+      },
+      "worship" : {
+         "option" : [
+            {
+               "content" : "sacrifices"
+            },
+            {
+               "content" : "offerings"
+            },
+            {
+               "content" : "tithings"
+            },
+            {
+               "content" : "prayers"
+            },
+            {
+               "content" : "supplication"
+            }
+         ]
+      },
+      "secondarycolor" : {
+         "option" : [
+            {
+               "content" : "black"
+            },
+            {
+               "content" : "blue"
+            },
+            {
+               "content" : "brown"
+            },
+            {
+               "content" : "dark blue"
+            },
+            {
+               "content" : "dark brown"
+            },
+            {
+               "content" : "dark green"
+            },
+            {
+               "content" : "dark grey"
+            },
+            {
+               "content" : "dark red"
+            },
+            {
+               "content" : "dark yellow"
+            },
+            {
+               "content" : "gold"
+            },
+            {
+               "content" : "green"
+            },
+            {
+               "content" : "grey"
+            },
+            {
+               "content" : "light blue"
+            },
+            {
+               "content" : "light brown"
+            },
+            {
+               "content" : "light green"
+            },
+            {
+               "content" : "light grey"
+            },
+            {
+               "content" : "light orange"
+            },
+            {
+               "content" : "light red"
+            },
+            {
+               "content" : "light yellow"
+            },
+            {
+               "content" : "orange"
+            },
+            {
+               "content" : "purple"
+            },
+            {
+               "content" : "red"
+            },
+            {
+               "content" : "very dark blue"
+            },
+            {
+               "content" : "very dark green"
+            },
+            {
+               "content" : "very dark grey"
+            },
+            {
+               "content" : "very dark red"
+            },
+            {
+               "content" : "very light blue"
+            },
+            {
+               "content" : "very light green"
+            },
+            {
+               "content" : "very light red"
+            },
+            {
+               "content" : "very light yellow"
+            },
+            {
+               "content" : "white"
+            },
+            {
+               "content" : "yellow"
+            }
+         ]
+      },
+      "primarycolor" : {
+         "option" : [
+            {
+               "content" : "black"
+            },
+            {
+               "content" : "blue"
+            },
+            {
+               "content" : "brown"
+            },
+            {
+               "content" : "dark blue"
+            },
+            {
+               "content" : "dark brown"
+            },
+            {
+               "content" : "dark green"
+            },
+            {
+               "content" : "dark grey"
+            },
+            {
+               "content" : "dark red"
+            },
+            {
+               "content" : "dark yellow"
+            },
+            {
+               "content" : "gold"
+            },
+            {
+               "content" : "green"
+            },
+            {
+               "content" : "grey"
+            },
+            {
+               "content" : "light blue"
+            },
+            {
+               "content" : "light brown"
+            },
+            {
+               "content" : "light green"
+            },
+            {
+               "content" : "light grey"
+            },
+            {
+               "content" : "light orange"
+            },
+            {
+               "content" : "light red"
+            },
+            {
+               "content" : "light yellow"
+            },
+            {
+               "content" : "orange"
+            },
+            {
+               "content" : "purple"
+            },
+            {
+               "content" : "red"
+            },
+            {
+               "content" : "very dark blue"
+            },
+            {
+               "content" : "very dark green"
+            },
+            {
+               "content" : "very dark grey"
+            },
+            {
+               "content" : "very dark red"
+            },
+            {
+               "content" : "very light blue"
+            },
+            {
+               "content" : "very light green"
+            },
+            {
+               "content" : "very light red"
+            },
+            {
+               "content" : "very light yellow"
+            },
+            {
+               "content" : "white"
+            },
+            {
+               "content" : "yellow"
+            }
+         ]
+      },
+      "clergytype" : {
+         "option" : [
+            {
+               "content" : "priests"
+            },
+            {
+               "content" : "clergy"
+            },
+            {
+               "content" : "clerics"
+            },
+            {
+               "content" : "friars"
+            },
+            {
+               "content" : "preachers"
+            },
+            {
+               "content" : "rectors"
+            },
+            {
+               "content" : "ministers"
+            },
+            {
+               "content" : "monks"
+            },
+            {
+               "content" : "chaplains"
+            },
+            {
+               "content" : "pastors"
+            },
+            {
+               "content" : "rabbis"
+            },
+            {
+               "content" : "abbots"
+            },
+            {
+               "content" : "evangelists"
+            },
+            {
+               "content" : "shepherds"
+            }
+         ]
+      }
+   },
+   "acceptance" : {
+      "option" : [
+         {
+            "content" : "heretical",
+            "max" : "5"
+         },
+         {
+            "min" : "6",
+            "content" : "blasphemous",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "sectarian",
+            "max" : "15"
+         },
+         {
+            "min" : "16",
+            "content" : "rebelious",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "defecting",
+            "max" : "25"
+         },
+         {
+            "min" : "26",
+            "content" : "dissenting",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "agitating",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "deviant",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "mislead",
+            "max" : "45"
+         },
+         {
+            "min" : "46",
+            "content" : "non-confirming",
+            "max" : "50"
+         },
+         {
+            "min" : "51",
+            "content" : "faithful",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "honorable",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "noble",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "loyal",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "dutiful",
+            "max" : "75"
+         },
+         {
+            "min" : "76",
+            "content" : "reverant",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "devout",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "virtuous",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "righteous",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "saintly"
+         }
+      ]
+   },
+   "portfoliovalue" : {
+      "option" : {
+         "quazi-diety" : {
+            "content" : "1"
+         },
+         "lesser deity" : {
+            "content" : "4"
+         },
+         "demi-deity" : {
+            "content" : "2"
+         },
+         "greater deity" : {
+            "content" : "12"
+         },
+         "minor deity" : {
+            "content" : "3"
+         },
+         "intermediate deity" : {
+            "content" : "10"
+         },
+         "over deity" : {
+            "content" : "20"
+         }
+      }
+   },
+   "stats" : {
+      "secrecy" : {
+         "option" : [
+            {
+               "content" : "secretive",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "silent",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "tight lipped",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "hidden",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "reserved",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "cryptic",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "careful",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "clear",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "forthright",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "honest",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "open"
+            }
+         ]
+      },
+      "importance" : {
+         "option" : [
+            {
+               "content" : "quazi-diety",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "demi-deity",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "minor deity",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "lesser deity",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "intermediate deity",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "greater deity",
+               "max" : "99"
+            },
+            {
+               "min" : "100",
+               "content" : "over deity"
+            }
+         ]
+      },
+      "jealousy" : {
+         "option" : [
+            {
+               "content" : "trusting",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "unresentful",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "unquestioning",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "unsuspecting",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "content",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "covetous",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "demanding",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "suspicious",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "selfish",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "jealous"
+            }
+         ]
+      },
+      "devotion" : {
+         "option" : [
+            {
+               "content" : "no",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "only a few",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "several",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "a dozen",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "several dozen",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "over a hundred",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "an unknown number of",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "hundreds of",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "near a thousand",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "several thousand",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "tens of thouands of",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "hundreds of thousands of",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "countless"
+            }
+         ]
+      },
+      "age" : {
+         "option" : [
+            {
+               "content" : "new",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "young",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "recent",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "latter",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "modern",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "contemporary",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "fledgling",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "primitive",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "old",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "antiquated",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "aboriginal",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "primeval",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "primal",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "primordial",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "archaic",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "eternal",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "ancient",
+               "max" : "99"
+            },
+            {
+               "min" : "100",
+               "content" : "original"
+            }
+         ]
+      },
+      "followers" : {
+         "option" : [
+            {
+               "content" : "thought to be extinct",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "long gone",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "rare",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "scarce",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "uncommon",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "common",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "prevalent",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "wide spread",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "everywhere",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "legion",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "ubiquitous"
+            }
+         ]
+      }
+   },
+   "culttype" : {
+      "option" : [
+         {
+            "content" : "cult"
+         },
+         {
+            "content" : "sect"
+         },
+         {
+            "content" : "clan"
+         },
+         {
+            "content" : "faction"
+         },
+         {
+            "content" : "following"
+         },
+         {
+            "content" : "chapter"
+         },
+         {
+            "content" : "order"
+         },
+         {
+            "content" : "society"
+         }
+      ]
+   },
+   "holysymbol" : {
+      "title_chance" : "10",
+      "root" : [
+         {
+            "content" : "ankh"
+         },
+         {
+            "content" : "bone"
+         },
+         {
+            "content" : "book"
+         },
+         {
+            "content" : "candle"
+         },
+         {
+            "content" : "coin"
+         },
+         {
+            "content" : "crescent"
+         },
+         {
+            "content" : "cross"
+         },
+         {
+            "content" : "dragon"
+         },
+         {
+            "content" : "duck"
+         },
+         {
+            "content" : "ear"
+         },
+         {
+            "content" : "eye"
+         },
+         {
+            "content" : "feather"
+         },
+         {
+            "content" : "fist"
+         },
+         {
+            "content" : "flame"
+         },
+         {
+            "content" : "flask"
+         },
+         {
+            "content" : "flower"
+         },
+         {
+            "content" : "gate"
+         },
+         {
+            "content" : "gauntlet"
+         },
+         {
+            "content" : "hand"
+         },
+         {
+            "content" : "heart"
+         },
+         {
+            "content" : "helmet"
+         },
+         {
+            "content" : "insect"
+         },
+         {
+            "content" : "key"
+         },
+         {
+            "content" : "mask"
+         },
+         {
+            "content" : "moon"
+         },
+         {
+            "content" : "pearl"
+         },
+         {
+            "content" : "potato"
+         },
+         {
+            "content" : "scroll"
+         },
+         {
+            "content" : "shield"
+         },
+         {
+            "content" : "snowflake"
+         },
+         {
+            "content" : "spiral"
+         },
+         {
+            "content" : "star"
+         },
+         {
+            "content" : "statue"
+         },
+         {
+            "content" : "sun"
+         },
+         {
+            "content" : "totem"
+         },
+         {
+            "content" : "tree"
+         },
+         {
+            "content" : "weapon"
+         },
+         {
+            "content" : "bell"
+         },
+         {
+            "content" : "circle"
+         },
+         {
+            "content" : "square"
+         },
+         {
+            "content" : "triangle"
+         },
+         {
+            "content" : "pentagon"
+         },
+         {
+            "content" : "hexagon"
+         },
+         {
+            "content" : "pyramid"
+         }
+      ],
+      "title" : [
+         {
+            "content" : "single"
+         },
+         {
+            "content" : "double"
+         },
+         {
+            "content" : "triple"
+         },
+         {
+            "content" : "stylized"
+         },
+         {
+            "content" : "broken"
+         },
+         {
+            "content" : "shining"
+         }
+      ]
+   }
+}

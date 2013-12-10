@@ -1,0 +1,604 @@
+{
+   "critter" : {
+      "option" : [
+         {
+            "content" : "squirrels"
+         },
+         {
+            "content" : "rats"
+         },
+         {
+            "content" : "stirge"
+         },
+         {
+            "content" : "carniverous butterflies"
+         },
+         {
+            "content" : "rabbits"
+         },
+         {
+            "content" : "gremlins"
+         },
+         {
+            "content" : "giant spiders"
+         },
+         {
+            "content" : "imps"
+         },
+         {
+            "content" : "bats"
+         },
+         {
+            "content" : "toads"
+         },
+         {
+            "content" : "brain moles"
+         },
+         {
+            "content" : "feral cats"
+         },
+         {
+            "content" : "grigs"
+         },
+         {
+            "content" : "homuncului"
+         },
+         {
+            "content" : "lizards"
+         },
+         {
+            "content" : "quazits"
+         },
+         {
+            "content" : "mephits"
+         },
+         {
+            "content" : "cockatrices"
+         },
+         {
+            "content" : "darkmantles"
+         },
+         {
+            "content" : "derros"
+         },
+         {
+            "content" : "beaky brain monsters"
+         },
+         {
+            "content" : "rust rats"
+         }
+      ]
+   },
+   "request" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "Help Needed:"
+         },
+         {
+            "content" : "Needed:"
+         },
+         {
+            "content" : "Help Wanted:"
+         },
+         {
+            "content" : "Wanted:"
+         },
+         {
+            "content" : "Help!"
+         },
+         {
+            "content" : "Required:"
+         }
+      ]
+   },
+   "disclaimer" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "May include some hazards."
+         },
+         {
+            "content" : "Mild danger may be involved."
+         },
+         {
+            "content" : "No pay until task is completed successfully."
+         },
+         {
+            "content" : "A little danger is involved, so expect hazardous duty pay."
+         },
+         {
+            "content" : "Length of job expected to be short."
+         },
+         {
+            "content" : "Safety not guaranteed."
+         }
+      ]
+   },
+   "template" : {
+      "option" : [
+         {
+            "content" : "Bounty for [%critter%], dead or alive."
+         },
+         {
+            "content" : "[%skill%] contest this weekend. Special prize for first place finish."
+         },
+         {
+            "content" : "[%person%] has been kidnapped! Generous payment for safe return."
+         },
+         {
+            "content" : "Adventurers willing to explore recently discovered ruins and return any valuable artifacts."
+         },
+         {
+            "content" : "Hearty souls needed to recover stolen [%item%]."
+         },
+         {
+            "content" : "Someone stole my [%item%]. Find the louse, dead or alive."
+         },
+         {
+            "content" : "Missing [%item%]. We suspect [%critter%] are the culprit."
+         },
+         {
+            "content" : "I'm looking for rare [%critter%], both live and dead. I have a list of the ones I need."
+         },
+         {
+            "content" : "Scholar seeks rare supplies: Scholar unable to gather [%supplies%] due to age, seeks trustworthy agents to gather materials for research."
+         },
+         {
+            "content" : "[%critter%]-catcher needed to keep the beasties away from the sheep and cattle."
+         },
+         {
+            "content" : "Lockpick needed for totally legitimate reasons."
+         },
+         {
+            "content" : "A passing [%class%] is needed for a small security job on the 3rd of the month."
+         },
+         {
+            "content" : "Seeking inter-planar messenger."
+         },
+         {
+            "content" : "[%class%] seeks apprentice."
+         },
+         {
+            "content" : "Seasonal farm hands requested to help local farms bring in their harvest."
+         },
+         {
+            "content" : "I'm looking for a Negotiator. Prior experience with troublesome [%critter%] required."
+         },
+         {
+            "content" : "I'm looking for a Transcriber. Need expert to translate runes."
+         },
+         {
+            "content" : "Require an instructor learned in [%subject%] to tutor my child."
+         },
+         {
+            "content" : "I'm looking for investigator to look into someone's references."
+         },
+         {
+            "content" : "Laborer required to bring stones to the castle. Wagon provided."
+         },
+         {
+            "content" : "Merchant seeks caravan master, cartographer, navigator, and experienced mercenaries for trade expedition."
+         },
+         {
+            "content" : "[%testitem%] tester wanted."
+         },
+         {
+            "content" : "Mercenaries wanted for caravan protection."
+         },
+         {
+            "content" : "I have [%critter%] in my basement, plz halp!"
+         }
+      ]
+   },
+   "payment" : {
+      "change" : "30",
+      "option" : [
+         {
+            "content" : "Reward available."
+         },
+         {
+            "content" : "Reward is a priceless heirloom."
+         },
+         {
+            "content" : "Will pay in gold."
+         },
+         {
+            "content" : "Reward is a secret."
+         },
+         {
+            "content" : "Will reward you with valuable information."
+         },
+         {
+            "content" : "Will reward you with a land deed."
+         },
+         {
+            "content" : "Opportunity to earn a title."
+         },
+         {
+            "content" : "Will owe you a huge favor."
+         }
+      ]
+   },
+   "subject" : {
+      "option" : [
+         {
+            "content" : "math"
+         },
+         {
+            "content" : "local lore"
+         },
+         {
+            "content" : "herbalism"
+         },
+         {
+            "content" : "alchemy"
+         },
+         {
+            "content" : "astrology"
+         },
+         {
+            "content" : "morbid obesity research"
+         },
+         {
+            "content" : "self defense"
+         },
+         {
+            "content" : "sorcery"
+         },
+         {
+            "content" : "horseback riding"
+         },
+         {
+            "content" : "juggling"
+         }
+      ]
+   },
+   "item" : {
+      "option" : [
+         {
+            "content" : "shoe"
+         },
+         {
+            "content" : "statue"
+         },
+         {
+            "content" : "artifact"
+         },
+         {
+            "content" : "painting"
+         },
+         {
+            "content" : "shovel"
+         },
+         {
+            "content" : "key"
+         },
+         {
+            "content" : "lucky stone"
+         },
+         {
+            "content" : "potato"
+         },
+         {
+            "content" : "bottle of wine"
+         },
+         {
+            "content" : "valuables"
+         },
+         {
+            "content" : "goat"
+         },
+         {
+            "content" : "peg leg"
+         },
+         {
+            "content" : "keg"
+         },
+         {
+            "content" : "jewel"
+         },
+         {
+            "content" : "ring of wishes"
+         },
+         {
+            "content" : "cerimonial knife"
+         },
+         {
+            "content" : "tomatoes"
+         },
+         {
+            "content" : "puppy"
+         },
+         {
+            "content" : "family heirloom"
+         },
+         {
+            "content" : "holy symbol"
+         },
+         {
+            "content" : "magic candle"
+         },
+         {
+            "content" : "relic"
+         },
+         {
+            "content" : "chalice"
+         },
+         {
+            "content" : "wagon wheel"
+         },
+         {
+            "content" : "golden skill"
+         },
+         {
+            "content" : "gemstone"
+         },
+         {
+            "content" : "bracelet"
+         },
+         {
+            "content" : "tiara"
+         },
+         {
+            "content" : "ring of Cerobleh"
+         }
+      ]
+   },
+   "supplies" : {
+      "option" : [
+         {
+            "content" : "certain supplies"
+         },
+         {
+            "content" : "medical supplies"
+         },
+         {
+            "content" : "rare lichen"
+         },
+         {
+            "content" : "certain herbs"
+         },
+         {
+            "content" : "eye of newt"
+         },
+         {
+            "content" : "owlbear beak"
+         },
+         {
+            "content" : "fresh paper"
+         },
+         {
+            "content" : "hydra blood"
+         },
+         {
+            "content" : "a rat tail"
+         }
+      ]
+   },
+   "testitem" : {
+      "option" : [
+         {
+            "content" : "saddle"
+         },
+         {
+            "content" : "cheese"
+         },
+         {
+            "content" : "dungeon goop"
+         },
+         {
+            "content" : "unknown potion"
+         },
+         {
+            "content" : "whiskey"
+         },
+         {
+            "content" : "wine"
+         },
+         {
+            "content" : "grog"
+         },
+         {
+            "content" : "artifact"
+         },
+         {
+            "content" : "non-lethal poison"
+         },
+         {
+            "content" : "armor"
+         },
+         {
+            "content" : "tincure"
+         },
+         {
+            "content" : "taste"
+         }
+      ]
+   },
+   "duration" : {
+      "option" : [
+         {
+            "content" : "few hours"
+         },
+         {
+            "content" : "day"
+         },
+         {
+            "content" : "few days"
+         },
+         {
+            "content" : "week"
+         },
+         {
+            "content" : "few weeks"
+         }
+      ]
+   },
+   "requirement" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "Prior experience required."
+         },
+         {
+            "content" : "No previous experience required."
+         },
+         {
+            "content" : "Must provide your own transportation."
+         },
+         {
+            "content" : "Serious inquiries only."
+         },
+         {
+            "content" : "Experienced professionals only."
+         },
+         {
+            "content" : "References required."
+         },
+         {
+            "content" : "Must submit to magical scrutiny."
+         },
+         {
+            "content" : "Must submit to background check."
+         },
+         {
+            "content" : "Guild membership required."
+         },
+         {
+            "content" : "Accidental Death insurance required."
+         },
+         {
+            "content" : "Discretion required."
+         },
+         {
+            "content" : "Must be a quick learner."
+         },
+         {
+            "content" : "Must be quick on your feet."
+         },
+         {
+            "content" : "Must be clean."
+         },
+         {
+            "content" : "Must not smell."
+         },
+         {
+            "content" : "Special attire required."
+         }
+      ]
+   },
+   "hook" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "Looking for work?"
+         },
+         {
+            "content" : "Looking for something new?"
+         },
+         {
+            "content" : "Bored?"
+         },
+         {
+            "content" : "Need a change of pace?"
+         },
+         {
+            "content" : "Want to earn some quick coin?"
+         }
+      ]
+   },
+   "detail" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "for more details"
+         },
+         {
+            "content" : "for more information"
+         },
+         {
+            "content" : "to learn more"
+         },
+         {
+            "content" : "if interested"
+         },
+         {
+            "content" : "if intrigued"
+         },
+         {
+            "content" : "for further details"
+         }
+      ]
+   },
+   "skill" : {
+      "option" : [
+         {
+            "content" : "drinking"
+         },
+         {
+            "content" : "sewing"
+         },
+         {
+            "content" : "boxing"
+         },
+         {
+            "content" : "archery"
+         },
+         {
+            "content" : "hotdog eating"
+         },
+         {
+            "content" : "onion eating"
+         },
+         {
+            "content" : "cooking"
+         },
+         {
+            "content" : "brawling"
+         },
+         {
+            "content" : "lock picking"
+         },
+         {
+            "content" : "arm wrestling"
+         },
+         {
+            "content" : "co-ed mud-wrestling"
+         },
+         {
+            "content" : "caber-tossing"
+         },
+         {
+            "content" : "carriage racing"
+         },
+         {
+            "content" : "gnomish battle dancing"
+         },
+         {
+            "content" : "ultimate fighting"
+         },
+         {
+            "content" : "seed spitting"
+         },
+         {
+            "content" : "pig wrestling"
+         },
+         {
+            "content" : "sharpshooting"
+         },
+         {
+            "content" : "woodcutting"
+         },
+         {
+            "content" : "gator wrasslin'"
+         },
+         {
+            "content" : "wood carving"
+         },
+         {
+            "content" : "goblin wranglin'"
+         }
+      ]
+   }
+}

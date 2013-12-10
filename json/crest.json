@@ -1,0 +1,113 @@
+{
+   "linetype" : [
+      {
+         "content" : "Nebuly Line"
+      },
+      {
+         "content" : "Wavy Line"
+      },
+      {
+         "content" : "Embattled Line"
+      },
+      {
+         "content" : "Engrailed Line"
+      },
+      {
+         "content" : "Invecked Line"
+      },
+      {
+         "content" : "Indented Line"
+      }
+   ],
+   "shield" : [
+      {
+         "content" : "Chief"
+      },
+      {
+         "content" : "Pale"
+      },
+      {
+         "content" : "Bend"
+      },
+      {
+         "content" : "Fess"
+      },
+      {
+         "content" : "Chevron"
+      },
+      {
+         "content" : "Cross"
+      },
+      {
+         "content" : "Saltire"
+      },
+      {
+         "content" : "Pile"
+      },
+      {
+         "content" : "Canton"
+      },
+      {
+         "content" : "Bordure"
+      }
+   ],
+   "animal" : [
+      {
+         "content" : "Lion"
+      },
+      {
+         "content" : "Tiger"
+      },
+      {
+         "content" : "Fish"
+      },
+      {
+         "content" : "Bear"
+      },
+      {
+         "content" : "Wolf"
+      },
+      {
+         "content" : "Leopard"
+      },
+      {
+         "content" : "Horse"
+      },
+      {
+         "content" : "Bull"
+      },
+      {
+         "content" : "Boar"
+      },
+      {
+         "content" : "Boars"
+      },
+      {
+         "content" : "Conies"
+      },
+      {
+         "content" : "Fox"
+      },
+      {
+         "content" : "Dog"
+      },
+      {
+         "content" : "Dolphin"
+      },
+      {
+         "content" : "Tortoise"
+      },
+      {
+         "content" : "Griffin"
+      },
+      {
+         "content" : "Dragon"
+      },
+      {
+         "content" : "Stag"
+      },
+      {
+         "content" : "Snake"
+      }
+   ]
+}

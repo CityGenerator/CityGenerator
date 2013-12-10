@@ -1,0 +1,97 @@
+{
+   "title_chance" : "10",
+   "post" : [
+      {
+         "content" : "ay"
+      },
+      {
+         "content" : "us"
+      },
+      {
+         "content" : "or"
+      },
+      {
+         "content" : "an"
+      },
+      {
+         "content" : "el"
+      },
+      {
+         "content" : "ub"
+      },
+      {
+         "content" : "uri"
+      },
+      {
+         "content" : "un"
+      },
+      {
+         "content" : "ol"
+      },
+      {
+         "content" : "on"
+      },
+      {
+         "content" : "ek"
+      }
+   ],
+   "pre" : [
+      {
+         "content" : "To"
+      },
+      {
+         "content" : "Na"
+      },
+      {
+         "content" : "Wo"
+      },
+      {
+         "content" : "Me"
+      },
+      {
+         "content" : "Si"
+      },
+      {
+         "content" : "Lu"
+      },
+      {
+         "content" : "Uu"
+      },
+      {
+         "content" : "Aba"
+      },
+      {
+         "content" : "Be"
+      },
+      {
+         "content" : "Ce"
+      },
+      {
+         "content" : "Kro"
+      }
+   ],
+   "post_chance" : "30",
+   "root" : [
+      {
+         "content" : "r"
+      },
+      {
+         "content" : "k"
+      },
+      {
+         "content" : "l"
+      },
+      {
+         "content" : "j"
+      },
+      {
+         "content" : "c"
+      },
+      {
+         "content" : "x"
+      },
+      {
+         "content" : "n"
+      }
+   ]
+}

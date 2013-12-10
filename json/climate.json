@@ -1,0 +1,384 @@
+{
+   "variation" : {
+      "option" : [
+         {
+            "content" : "little",
+            "max" : "20",
+            "modifier" : ""
+         },
+         {
+            "min" : "21",
+            "content" : "minor",
+            "max" : "40",
+            "modifier" : ""
+         },
+         {
+            "min" : "41",
+            "content" : "moderate",
+            "max" : "60",
+            "modifier" : ""
+         },
+         {
+            "min" : "61",
+            "content" : "strong",
+            "max" : "80",
+            "modifier" : ""
+         },
+         {
+            "min" : "81",
+            "content" : "high",
+            "modifier" : ""
+         }
+      ]
+   },
+   "cloudcover" : {
+      "option" : [
+         {
+            "content" : "continually overcast",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "cloudy",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "mostly cloudy",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "partly cloudy",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "clear"
+         }
+      ]
+   },
+   "seasons" : {
+      "option" : {
+         "6" : {
+            "biomes" : "CS,CW,CF,DW,DF",
+            "content" : "prevernal, spring, summer, monsoon, autumn and winter seasons"
+         },
+         "4" : {
+            "biomes" : "CS,CW,CF,DW,DF,ET",
+            "content" : "spring, summer, fall and winter seasons"
+         },
+         "1" : {
+            "biomes" : "AF,EF,BW",
+            "content" : "negligible seasons"
+         },
+         "3" : {
+            "biomes" : "AM,BS",
+            "content" : "hot, rainy and cool seasons"
+         },
+         "2" : {
+            "biomes" : "AM,AW,BS",
+            "content" : "rainy and dry seasons"
+         }
+      }
+   },
+   "stats" : {
+      "pressure" : {
+         "option" : [
+            {
+               "content" : "low pressure",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "ambient pressure",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "high pressure"
+            }
+         ]
+      },
+      "latitude" : {
+         "option" : [
+            {
+               "content" : "equitorial",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "mid-latitude",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "polar"
+            }
+         ]
+      },
+      "continentality" : {
+         "option" : [
+            {
+               "content" : "coastal",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "river access",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "landlocked"
+            }
+         ]
+      },
+      "altitude" : {
+         "option" : [
+            {
+               "content" : "sea level",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "mid altitude",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "high altitude"
+            }
+         ]
+      }
+   },
+   "precip" : {
+      "option" : [
+         {
+            "content" : "non-existant",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "negligible",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "trivial",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "minor",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "moderate",
+            "max" : "50"
+         },
+         {
+            "min" : "51",
+            "content" : "strong",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "heavy",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "massive",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "excessive",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "continual"
+         }
+      ]
+   },
+   "winds" : {
+      "option" : [
+         {
+            "content" : "non-existent",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "soft",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "mild",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "breezy",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "strong",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "wild",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "continual"
+         }
+      ]
+   },
+   "temp" : {
+      "option" : [
+         {
+            "content" : "unbearably cold",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "freezing",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "cold",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "chilly",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "cool",
+            "max" : "50"
+         },
+         {
+            "min" : "51",
+            "content" : "mild",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "pleasant",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "warm",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "hot",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "unbearably hot"
+         }
+      ]
+   },
+   "biomes" : {
+      "option" : {
+         "ET" : {
+            "variation" : "-40",
+            "seasons" : "4",
+            "content" : "year-round cold temperatures with permanently frozen ground",
+            "type" : "Tundra",
+            "hex" : "#ddddbb"
+         },
+         "DF" : {
+            "variation" : "10",
+            "seasons" : "4,6",
+            "content" : "warm to cool summers and cold winters with severe snow storms",
+            "type" : "Moist Continental",
+            "hex" : "#a4c4a8"
+         },
+         "BS" : {
+            "variation" : "-40",
+            "seasons" : "2,3",
+            "content" : "a severe lack of precpitation most of the year over a variety of temperatures",
+            "type" : "Semi-Arid Steppe",
+            "hex" : "#c4d4aa"
+         },
+         "AF" : {
+            "variation" : "-40",
+            "seasons" : "1",
+            "content" : "constant high temperatures, continual rain year-round, and has minimal natural seasons",
+            "type" : "Tropical Rainforest",
+            "hex" : "#9cbba9"
+         },
+         "AW" : {
+            "variation" : "20",
+            "seasons" : "2",
+            "content" : "constant high temperatures and a pronounced dry season",
+            "type" : "Tropical Savanna",
+            "hex" : "#c4ccbb"
+         },
+         "CS" : {
+            "variation" : "20",
+            "seasons" : "4,6",
+            "content" : "warm and dry summers with mild and wet winters",
+            "type" : "Dry-Summer Subtropical",
+            "hex" : "#c4d4aa"
+         },
+         "CF" : {
+            "variation" : "40",
+            "seasons" : "4,6",
+            "content" : "warm and wet summers with mild and wet winters",
+            "type" : "Moist Subtropical",
+            "hex" : "#a4c4a8"
+         },
+         "BW" : {
+            "variation" : "-40",
+            "seasons" : "1",
+            "content" : "a severe lack of precipitation over mostly warm temperatures",
+            "type" : "Arid Desert",
+            "hex" : "#e9ddc7"
+         },
+         "EF" : {
+            "variation" : "-60",
+            "seasons" : "1",
+            "content" : "year-round cold temperatures with permanent ice and snow cover",
+            "type" : "Ice Cap",
+            "hex" : "#f8f8f8"
+         },
+         "DW" : {
+            "variation" : "20",
+            "seasons" : "4,6",
+            "content" : "warm to cool summers and cold winters, dry winters",
+            "type" : "Dry-Winter Continental",
+            "hex" : "#a4c4a8"
+         },
+         "CW" : {
+            "variation" : "40",
+            "seasons" : "4,6",
+            "content" : "warm and wet summers with mild and dry winters",
+            "type" : "Temperate Deciduous Forest",
+            "hex" : "#b4c9a9"
+         },
+         "AM" : {
+            "variation" : "-20",
+            "seasons" : "2,3",
+            "content" : "constant high temperatures and seasonal torrential rains",
+            "type" : "Tropical Seasonal Forest",
+            "hex" : "#a9cca4"
+         }
+      }
+   }
+}

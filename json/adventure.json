@@ -1,0 +1,49 @@
+{
+   "reason" : {
+      "option" : [
+         {
+            "content" : "For a reward"
+         }
+      ]
+   },
+   "type" : {
+      "option" : [
+         {
+            "content" : " investigate "
+         },
+         {
+            "content" : " negotiate "
+         },
+         {
+            "content" : " attack "
+         },
+         {
+            "content" : " kill "
+         },
+         {
+            "content" : " defeat "
+         },
+         {
+            "content" : " find "
+         },
+         {
+            "content" : " defend "
+         },
+         {
+            "content" : " create "
+         },
+         {
+            "content" : " decide "
+         },
+         {
+            "content" : " change "
+         },
+         {
+            "content" : " challenge "
+         },
+         {
+            "content" : " perform "
+         }
+      ]
+   }
+}

@@ -1,0 +1,734 @@
+{
+   "feelings" : {
+      "option" : [
+         {
+            "content" : "frequented"
+         },
+         {
+            "content" : "avoided"
+         },
+         {
+            "content" : "hunted"
+         },
+         {
+            "content" : "feared"
+         },
+         {
+            "content" : "visited frequently"
+         }
+      ]
+   },
+   "precious" : {
+      "post" : [
+         {
+            "content" : "buried near there"
+         },
+         {
+            "content" : "hidden around somewhere"
+         },
+         {
+            "content" : "in a tomb nearby"
+         },
+         {
+            "content" : "in a nearby pit"
+         },
+         {
+            "content" : "in a well"
+         },
+         {
+            "content" : "in a dungeon"
+         }
+      ],
+      "option" : [
+         {
+            "content" : "iron maidens"
+         },
+         {
+            "content" : "kitten mittens"
+         },
+         {
+            "content" : "monkey wrenches"
+         },
+         {
+            "content" : "small lyres"
+         },
+         {
+            "content" : "penis sheathes"
+         },
+         {
+            "content" : "copper"
+         },
+         {
+            "content" : "gold"
+         },
+         {
+            "content" : "silver"
+         },
+         {
+            "content" : "platinum"
+         },
+         {
+            "content" : "diamonds"
+         },
+         {
+            "content" : "emeralds"
+         },
+         {
+            "content" : "rubies"
+         },
+         {
+            "content" : "saphires"
+         }
+      ],
+      "type" : [
+         {
+            "content" : "a stash of"
+         },
+         {
+            "content" : "piles of"
+         },
+         {
+            "content" : "a chest containing"
+         },
+         {
+            "content" : "bags of"
+         }
+      ],
+      "find" : [
+         {
+            "content" : "one might find"
+         },
+         {
+            "content" : "the locals speak of"
+         },
+         {
+            "content" : "one might dig up"
+         },
+         {
+            "content" : "rumors tell of"
+         },
+         {
+            "content" : "somoeone said someone found"
+         }
+      ]
+   },
+   "ravished" : {
+      "option" : [
+         {
+            "content" : "a curse"
+         },
+         {
+            "content" : "a spell"
+         },
+         {
+            "content" : "a strange fungus"
+         },
+         {
+            "content" : "draught"
+         },
+         {
+            "content" : "fire"
+         },
+         {
+            "content" : "nasty insects"
+         },
+         {
+            "content" : "forces of nature"
+         },
+         {
+            "content" : "high wind"
+         },
+         {
+            "content" : "nomadic dragons"
+         },
+         {
+            "content" : "roving bands of brigands"
+         },
+         {
+            "content" : "strange weather"
+         },
+         {
+            "content" : "the effects of battle"
+         },
+         {
+            "content" : "the effects of magic"
+         },
+         {
+            "content" : "the effects of time"
+         },
+         {
+            "content" : "the undead"
+         },
+         {
+            "content" : "vipers"
+         }
+      ],
+      "type" : [
+         {
+            "content" : "guarded by"
+         },
+         {
+            "content" : "protected by"
+         },
+         {
+            "content" : "ravished by"
+         },
+         {
+            "content" : "wrecked by"
+         },
+         {
+            "content" : "surrounded by"
+         }
+      ]
+   },
+   "groups" : {
+      "option" : [
+         {
+            "content" : "townspeople"
+         },
+         {
+            "content" : "travelers"
+         },
+         {
+            "content" : "zombies"
+         },
+         {
+            "content" : "gru"
+         },
+         {
+            "content" : "children"
+         },
+         {
+            "content" : "kittens"
+         },
+         {
+            "content" : "vampires"
+         },
+         {
+            "content" : "wenches"
+         },
+         {
+            "content" : "locals"
+         },
+         {
+            "content" : "unicorns"
+         },
+         {
+            "content" : "magic users"
+         },
+         {
+            "content" : "locals"
+         },
+         {
+            "content" : "witches"
+         }
+      ]
+   },
+   "scarcity" : {
+      "option" : [
+         {
+            "content" : "rare",
+            "max" : "3"
+         },
+         {
+            "min" : "4",
+            "content" : "endangered",
+            "max" : "6"
+         },
+         {
+            "min" : "7",
+            "content" : "paltry",
+            "max" : "14"
+         },
+         {
+            "min" : "15",
+            "content" : "scarce",
+            "max" : "18"
+         },
+         {
+            "min" : "19",
+            "content" : "scant",
+            "max" : "22"
+         },
+         {
+            "min" : "23",
+            "content" : "abundant",
+            "max" : "34"
+         },
+         {
+            "min" : "35",
+            "content" : "substantial",
+            "max" : "46"
+         },
+         {
+            "min" : "47",
+            "content" : "magical",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "many",
+            "max" : "67"
+         },
+         {
+            "min" : "68",
+            "content" : "plentiful",
+            "max" : "79"
+         },
+         {
+            "min" : "80",
+            "content" : "rich",
+            "max" : "83"
+         },
+         {
+            "min" : "84",
+            "content" : "bountiful",
+            "max" : "87"
+         },
+         {
+            "min" : "88",
+            "content" : "vast",
+            "max" : "93"
+         },
+         {
+            "min" : "94",
+            "content" : "huge",
+            "max" : "96"
+         },
+         {
+            "min" : "97",
+            "content" : "unlimited"
+         }
+      ]
+   },
+   "natural" : {
+      "type" : [
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "deposits"
+                  },
+                  {
+                     "content" : "mines"
+                  }
+               ]
+            },
+            "content" : "amber"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "stands"
+                  },
+                  {
+                     "content" : "patches"
+                  }
+               ]
+            },
+            "content" : "bamboo"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "fields"
+                  },
+                  {
+                     "content" : "patches"
+                  }
+               ]
+            },
+            "content" : "berry"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "deposits"
+                  },
+                  {
+                     "content" : "banks"
+                  }
+               ]
+            },
+            "content" : "clay"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "fields"
+                  },
+                  {
+                     "content" : "plantations"
+                  }
+               ]
+            },
+            "content" : "cocoa bean"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "plantations"
+                  },
+                  {
+                     "content" : "harvests"
+                  }
+               ]
+            },
+            "content" : "coconut"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "fields"
+                  },
+                  {
+                     "content" : "patches"
+                  }
+               ]
+            },
+            "content" : "coffee"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "trees"
+                  },
+                  {
+                     "content" : "bushes"
+                  }
+               ]
+            },
+            "content" : "cork"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "plantations"
+                  },
+                  {
+                     "content" : "fields"
+                  }
+               ]
+            },
+            "content" : "fruit"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "deposits"
+                  },
+                  {
+                     "content" : "banks"
+                  }
+               ]
+            },
+            "content" : "guano"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "bales"
+                  },
+                  {
+                     "content" : "fields"
+                  }
+               ]
+            },
+            "content" : "hemp"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "trees"
+                  },
+                  {
+                     "content" : "harvests"
+                  }
+               ]
+            },
+            "content" : "palm oil"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "bogs"
+                  },
+                  {
+                     "content" : "swamps"
+                  }
+               ]
+            },
+            "content" : "peat"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "trees"
+                  },
+                  {
+                     "content" : "plantations"
+                  }
+               ]
+            },
+            "content" : "rubber"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "deposits"
+                  },
+                  {
+                     "content" : "banks"
+                  }
+               ]
+            },
+            "content" : "pigment"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "deposits"
+                  },
+                  {
+                     "content" : "fields"
+                  }
+               ]
+            },
+            "content" : "rock salt"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "forests"
+                  },
+                  {
+                     "content" : "plantations"
+                  }
+               ]
+            },
+            "content" : "timber"
+         },
+         {
+            "suffix" : {
+               "option" : [
+                  {
+                     "content" : "patches"
+                  },
+                  {
+                     "content" : "fields"
+                  }
+               ]
+            },
+            "content" : "vegetable"
+         }
+      ],
+      "age" : {
+         "option" : [
+            {
+               "content" : "ancient"
+            },
+            {
+               "content" : "creepy"
+            },
+            {
+               "content" : "primal"
+            },
+            {
+               "content" : "old"
+            },
+            {
+               "content" : "new"
+            },
+            {
+               "content" : "fresh"
+            },
+            {
+               "content" : "magic"
+            }
+         ]
+      }
+   },
+   "wildlife" : {
+      "content" : "tended\n        ",
+      "animal" : [
+         {
+            "group" : "beds",
+            "content" : "clam"
+         },
+         {
+            "group" : "beds",
+            "content" : "scorpion"
+         },
+         {
+            "group" : "bevies",
+            "content" : "quail"
+         },
+         {
+            "group" : "wiers",
+            "content" : "dragon"
+         },
+         {
+            "group" : "clouds",
+            "content" : "bat"
+         },
+         {
+            "group" : "flights",
+            "content" : "cormorant"
+         },
+         {
+            "group" : "colonies",
+            "content" : "chinchilla"
+         },
+         {
+            "group" : "clusters",
+            "content" : "spider"
+         },
+         {
+            "group" : "quivers",
+            "content" : "cobra"
+         },
+         {
+            "group" : "companies",
+            "content" : "parrot"
+         },
+         {
+            "group" : "hives",
+            "content" : "bee"
+         },
+         {
+            "group" : "descents",
+            "content" : "woodpecker"
+         },
+         {
+            "group" : "mobs",
+            "content" : "kangaroo"
+         },
+         {
+            "group" : "glarings",
+            "content" : "kitten"
+         },
+         {
+            "group" : "murders",
+            "content" : "crow"
+         },
+         {
+            "group" : "musters",
+            "content" : "peacock"
+         },
+         {
+            "group" : "nests",
+            "content" : "caterpillar"
+         },
+         {
+            "group" : "parades",
+            "content" : "elephant"
+         },
+         {
+            "group" : "colonies",
+            "content" : "beaver"
+         },
+         {
+            "group" : "troops",
+            "content" : "ape"
+         }
+      ],
+      "type" : [
+         {
+            "content" : "vampire"
+         },
+         {
+            "content" : "carnivorous"
+         },
+         {
+            "content" : "dangerous"
+         },
+         {
+            "content" : "defenseless"
+         },
+         {
+            "content" : "poisonous"
+         },
+         {
+            "content" : "tame"
+         },
+         {
+            "content" : "wild"
+         }
+      ]
+   },
+   "structures" : {
+      "option" : [
+         {
+            "content" : "battle field"
+         },
+         {
+            "content" : "cave"
+         },
+         {
+            "content" : "mine"
+         },
+         {
+            "content" : "shrine"
+         },
+         {
+            "content" : "castle"
+         },
+         {
+            "content" : "gazebo"
+         },
+         {
+            "content" : "fort"
+         },
+         {
+            "content" : "tower"
+         },
+         {
+            "content" : "grave yard"
+         }
+      ],
+      "age" : {
+         "option" : [
+            {
+               "content" : "an ancient"
+            },
+            {
+               "content" : "an old"
+            },
+            {
+               "content" : "a new"
+            },
+            {
+               "content" : "a magical"
+            },
+            {
+               "content" : "a haunted"
+            },
+            {
+               "content" : "a creepy"
+            },
+            {
+               "content" : "a cursed"
+            },
+            {
+               "content" : "a blessed"
+            }
+         ]
+      }
+   }
+}

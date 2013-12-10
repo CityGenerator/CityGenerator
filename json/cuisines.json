@@ -1,0 +1,356 @@
+{
+   "feature" : {
+      "mealtype" : {
+         "chance" : "40",
+         "option" : [
+            {
+               "content" : " wrap"
+            },
+            {
+               "content" : " casserole"
+            },
+            {
+               "content" : " crumble"
+            },
+            {
+               "content" : " pudding"
+            },
+            {
+               "content" : " pie"
+            },
+            {
+               "content" : " soup"
+            },
+            {
+               "content" : " sandwich"
+            },
+            {
+               "content" : " on pasta"
+            },
+            {
+               "content" : " cake"
+            },
+            {
+               "content" : " mousse"
+            },
+            {
+               "content" : " pancakes"
+            },
+            {
+               "content" : " salad"
+            },
+            {
+               "content" : " on rice"
+            },
+            {
+               "content" : " on kale"
+            }
+         ]
+      },
+      "dish" : {
+         "option" : [
+            {
+               "content" : "eggplant"
+            },
+            {
+               "content" : "fish"
+            },
+            {
+               "content" : "chicken"
+            },
+            {
+               "content" : "dog"
+            },
+            {
+               "content" : "seal"
+            },
+            {
+               "content" : "ham"
+            },
+            {
+               "content" : "pork"
+            },
+            {
+               "content" : "veal"
+            },
+            {
+               "content" : "lamb"
+            },
+            {
+               "content" : "squid"
+            },
+            {
+               "content" : "snail"
+            },
+            {
+               "content" : "apple"
+            },
+            {
+               "content" : "beef"
+            },
+            {
+               "content" : "veggie"
+            },
+            {
+               "content" : "potato"
+            }
+         ]
+      },
+      "template" : {
+         "option" : [
+            {
+               "content" : "[%method%][%flavor%][%dish%][%mealtype%][%sauce%][%served%]"
+            }
+         ]
+      },
+      "saucetype" : {
+         "option" : [
+            {
+               "content" : "broth"
+            },
+            {
+               "content" : "sauce"
+            },
+            {
+               "content" : "gravy"
+            }
+         ]
+      },
+      "served" : {
+         "chance" : "20",
+         "option" : [
+            {
+               "content" : "hot"
+            },
+            {
+               "content" : "cold"
+            },
+            {
+               "content" : "chilled"
+            },
+            {
+               "content" : "luke warm"
+            },
+            {
+               "content" : "at room temperature"
+            }
+         ]
+      },
+      "sauce" : {
+         "chance" : "30",
+         "option" : [
+            {
+               "content" : "red"
+            },
+            {
+               "content" : "white"
+            },
+            {
+               "content" : "duck"
+            },
+            {
+               "content" : "bean"
+            },
+            {
+               "content" : "peanut"
+            },
+            {
+               "content" : "chile"
+            },
+            {
+               "content" : "tomato"
+            },
+            {
+               "content" : "oyster"
+            },
+            {
+               "content" : "lemon"
+            },
+            {
+               "content" : "cream"
+            },
+            {
+               "content" : "cheese"
+            },
+            {
+               "content" : "mushroom"
+            },
+            {
+               "content" : "tartar"
+            },
+            {
+               "content" : "soy"
+            },
+            {
+               "content" : "anchovy"
+            },
+            {
+               "content" : "chocolate"
+            },
+            {
+               "content" : "carmel"
+            },
+            {
+               "content" : "fudge"
+            },
+            {
+               "content" : "brown"
+            }
+         ]
+      },
+      "method" : {
+         "chance" : "70",
+         "option" : [
+            {
+               "content" : "baked "
+            },
+            {
+               "content" : "barbequed "
+            },
+            {
+               "content" : "blanched "
+            },
+            {
+               "content" : "boiled "
+            },
+            {
+               "content" : "braised "
+            },
+            {
+               "content" : "broiled "
+            },
+            {
+               "content" : "candied "
+            },
+            {
+               "content" : "canned "
+            },
+            {
+               "content" : "charred "
+            },
+            {
+               "content" : "cooked "
+            },
+            {
+               "content" : "creamed "
+            },
+            {
+               "content" : "deep-fried "
+            },
+            {
+               "content" : "fermented "
+            },
+            {
+               "content" : "frozen "
+            },
+            {
+               "content" : "fricasseed "
+            },
+            {
+               "content" : "fried "
+            },
+            {
+               "content" : "grilled "
+            },
+            {
+               "content" : "minced "
+            },
+            {
+               "content" : "pickled "
+            },
+            {
+               "content" : "poached "
+            },
+            {
+               "content" : "raw "
+            },
+            {
+               "content" : "roasted "
+            },
+            {
+               "content" : "salted "
+            },
+            {
+               "content" : "sauteed "
+            },
+            {
+               "content" : "scalded "
+            },
+            {
+               "content" : "simmered "
+            },
+            {
+               "content" : "slow-cooked "
+            },
+            {
+               "content" : "smoked "
+            },
+            {
+               "content" : "spiced "
+            },
+            {
+               "content" : "steamed "
+            },
+            {
+               "content" : "stewed "
+            },
+            {
+               "content" : "stir-fried "
+            },
+            {
+               "content" : "tempered "
+            }
+         ]
+      },
+      "flavor" : {
+         "chance" : "30",
+         "option" : [
+            {
+               "content" : "peppered "
+            },
+            {
+               "content" : "cashew "
+            },
+            {
+               "content" : "orange "
+            },
+            {
+               "content" : "garlic "
+            },
+            {
+               "content" : "teriyaki "
+            },
+            {
+               "content" : "hickory "
+            },
+            {
+               "content" : "curry "
+            },
+            {
+               "content" : "mint "
+            },
+            {
+               "content" : "rosemary "
+            },
+            {
+               "content" : "maple "
+            },
+            {
+               "content" : "sweet and sour "
+            },
+            {
+               "content" : "sweet and spicy "
+            },
+            {
+               "content" : "sour "
+            },
+            {
+               "content" : "shredded "
+            },
+            {
+               "content" : "lemon "
+            }
+         ]
+      }
+   }
+}

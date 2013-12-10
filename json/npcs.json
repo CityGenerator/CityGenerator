@@ -1,0 +1,3996 @@
+{
+   "feature" : {
+      "regret" : {
+         "option" : [
+            {
+               "content" : "was unable to save a loved one"
+            },
+            {
+               "content" : "didn't lie to protect a close friend"
+            },
+            {
+               "content" : "accidentally killed an innocent person"
+            },
+            {
+               "content" : "seriously injured a friend goofing around"
+            },
+            {
+               "content" : "ran away from home long ago"
+            },
+            {
+               "content" : "scared a child"
+            }
+         ]
+      },
+      "marklocation" : {
+         "option" : [
+            {
+               "content" : "face"
+            },
+            {
+               "content" : "head"
+            },
+            {
+               "content" : "leg"
+            },
+            {
+               "content" : "arm"
+            },
+            {
+               "content" : "hand"
+            },
+            {
+               "content" : "shoulder"
+            },
+            {
+               "content" : "chest"
+            },
+            {
+               "content" : "throat"
+            }
+         ]
+      },
+      "possession" : {
+         "option" : [
+            {
+               "content" : "jackknife"
+            },
+            {
+               "content" : "small trinket"
+            },
+            {
+               "content" : "bouncyball"
+            },
+            {
+               "content" : "lucky coin"
+            },
+            {
+               "content" : "ancestral weapon"
+            },
+            {
+               "content" : "family ring"
+            },
+            {
+               "content" : "ballbearing"
+            },
+            {
+               "content" : "small gem"
+            },
+            {
+               "content" : "whistle"
+            },
+            {
+               "content" : "throwing knife"
+            },
+            {
+               "content" : "flask"
+            },
+            {
+               "content" : "small flute"
+            },
+            {
+               "content" : "necklace"
+            },
+            {
+               "content" : "locket"
+            },
+            {
+               "content" : "yoyo"
+            },
+            {
+               "content" : "scarf"
+            },
+            {
+               "content" : "arrowhead"
+            },
+            {
+               "content" : "map"
+            },
+            {
+               "content" : "deck of cards"
+            },
+            {
+               "content" : "dagger"
+            },
+            {
+               "content" : "horn"
+            },
+            {
+               "content" : "horseshoe"
+            },
+            {
+               "content" : "kaleidoscope"
+            },
+            {
+               "content" : "holy symbol"
+            },
+            {
+               "content" : "broken sword hilt"
+            },
+            {
+               "content" : "lock of hair"
+            }
+         ]
+      },
+      "build" : {
+         "option" : [
+            {
+               "content" : "frail"
+            },
+            {
+               "content" : "thin"
+            },
+            {
+               "content" : "skinny"
+            },
+            {
+               "content" : "average build"
+            },
+            {
+               "content" : "chubby"
+            },
+            {
+               "content" : "stocky"
+            },
+            {
+               "content" : "obese"
+            }
+         ]
+      },
+      "height" : {
+         "option" : [
+            {
+               "content" : "short"
+            },
+            {
+               "content" : "average height"
+            },
+            {
+               "content" : "tall"
+            }
+         ]
+      },
+      "behavior" : {
+         "option" : [
+            {
+               "content" : "accusatory"
+            },
+            {
+               "content" : "apologetic"
+            },
+            {
+               "content" : "attentive"
+            },
+            {
+               "content" : "authoritarian"
+            },
+            {
+               "content" : "battle-ready"
+            },
+            {
+               "content" : "beligerent"
+            },
+            {
+               "content" : "boastful"
+            },
+            {
+               "content" : "cautious"
+            },
+            {
+               "content" : "chatty"
+            },
+            {
+               "content" : "clumsy"
+            },
+            {
+               "content" : "conspirational"
+            },
+            {
+               "content" : "contrarian"
+            },
+            {
+               "content" : "cowed"
+            },
+            {
+               "content" : "deluded"
+            },
+            {
+               "content" : "drunken"
+            },
+            {
+               "content" : "easily offended"
+            },
+            {
+               "content" : "efficient"
+            },
+            {
+               "content" : "egotistical"
+            },
+            {
+               "content" : "embittered"
+            },
+            {
+               "content" : "exhausted"
+            },
+            {
+               "content" : "fashion concious"
+            },
+            {
+               "content" : "fatalistic"
+            },
+            {
+               "content" : "flirtatious"
+            },
+            {
+               "content" : "forbidding"
+            },
+            {
+               "content" : "forgetful"
+            },
+            {
+               "content" : "giddy"
+            },
+            {
+               "content" : "gluttonous"
+            },
+            {
+               "content" : "gosipy"
+            },
+            {
+               "content" : "greedy"
+            },
+            {
+               "content" : "grieving"
+            },
+            {
+               "content" : "guarded"
+            },
+            {
+               "content" : "guilty"
+            },
+            {
+               "content" : "healthy"
+            },
+            {
+               "content" : "helpful"
+            },
+            {
+               "content" : "homesick"
+            },
+            {
+               "content" : "idealistic"
+            },
+            {
+               "content" : "impatient"
+            },
+            {
+               "content" : "insecure"
+            },
+            {
+               "content" : "intimidating"
+            },
+            {
+               "content" : "intimidated"
+            },
+            {
+               "content" : "jaded"
+            },
+            {
+               "content" : "jesterly"
+            },
+            {
+               "content" : "jolly"
+            },
+            {
+               "content" : "lonely"
+            },
+            {
+               "content" : "loud"
+            },
+            {
+               "content" : "lovelorn"
+            },
+            {
+               "content" : "melancholy"
+            },
+            {
+               "content" : "mocking"
+            },
+            {
+               "content" : "mopey"
+            },
+            {
+               "content" : "nervous"
+            },
+            {
+               "content" : "nihilistic"
+            },
+            {
+               "content" : "nosy"
+            },
+            {
+               "content" : "outlandish"
+            },
+            {
+               "content" : "pacifistic"
+            },
+            {
+               "content" : "patriotic"
+            },
+            {
+               "content" : "patronizing"
+            },
+            {
+               "content" : "pious"
+            },
+            {
+               "content" : "prejudiced"
+            },
+            {
+               "content" : "quiet"
+            },
+            {
+               "content" : "resentful"
+            },
+            {
+               "content" : "scattered"
+            },
+            {
+               "content" : "self-obsessed"
+            },
+            {
+               "content" : "shifty"
+            },
+            {
+               "content" : "sick"
+            },
+            {
+               "content" : "skeptical"
+            },
+            {
+               "content" : "smitten"
+            },
+            {
+               "content" : "smug"
+            },
+            {
+               "content" : "solemn"
+            },
+            {
+               "content" : "spiteful"
+            },
+            {
+               "content" : "territorial"
+            },
+            {
+               "content" : "thick"
+            },
+            {
+               "content" : "treasure-obsessed"
+            },
+            {
+               "content" : "trusting"
+            },
+            {
+               "content" : "unreliable"
+            },
+            {
+               "content" : "vengeful"
+            },
+            {
+               "content" : "violent"
+            },
+            {
+               "content" : "gambling"
+            },
+            {
+               "content" : "worrying"
+            },
+            {
+               "content" : "xenophobic"
+            }
+         ]
+      },
+      "phobia" : {
+         "chance" : "20",
+         "option" : [
+            {
+               "content" : "accidents ( Dystychiphobia )"
+            },
+            {
+               "content" : "air drafts or wind (Ancraophobia)  ( Anemophobia )"
+            },
+            {
+               "content" : "alcohol ( Methyphobia )"
+            },
+            {
+               "content" : "alcohol or acoholic beverages ( Potophobia )"
+            },
+            {
+               "content" : "alcohol ( Potophobia )"
+            },
+            {
+               "content" : "amnesia ( Amnesiphobia )"
+            },
+            {
+               "content" : "amphibians, such as frogs, newts, salamanders, etc ( Batrachophobia )"
+            },
+            {
+               "content" : "anger or of becoming angry ( Angrophobia  )"
+            },
+            {
+               "content" : "anger or the fear of cholera ( Cholerophobia )"
+            },
+            {
+               "content" : "angina, choking or narrowness ( Anginophobia )"
+            },
+            {
+               "content" : "animals ( Zoophobia )"
+            },
+            {
+               "content" : "ants ( Myrmecophobia )"
+            },
+            {
+               "content" : "anything new ( Neophobia )"
+            },
+            {
+               "content" : "anything new, novelty ( Kainophobia )"
+            },
+            {
+               "content" : "asymmetrical things ( Asymmetriphobia )"
+            },
+            {
+               "content" : "ataxia (muscular incoordination) ( Ataxiophobia )"
+            },
+            {
+               "content" : "atomic explosions ( Atomosophobia )"
+            },
+            {
+               "content" : "automobiles ( Motorphobia )"
+            },
+            {
+               "content" : "a wasting sickness ( Tabophobia )"
+            },
+            {
+               "content" : "bacteria ( Bacteriophobia )"
+            },
+            {
+               "content" : "bad men, burglars ( Scelerophibia )"
+            },
+            {
+               "content" : "baldness ( Peladophobia )"
+            },
+            {
+               "content" : "bald people ( Peladophobia )"
+            },
+            {
+               "content" : "bathing ( Abluthophobia )"
+            },
+            {
+               "content" : "bats ( Chiroptophobia )"
+            },
+            {
+               "content" : "beards ( Pogonophobia )"
+            },
+            {
+               "content" : "bearing a deformed child or fear of monsters or deformed people ( Teratophobia )"
+            },
+            {
+               "content" : "bearing a deformed child ( Teratophobia )"
+            },
+            {
+               "content" : "beautiful women ( Caligynephobia )"
+            },
+            {
+               "content" : "beautiful women ( Venustraphobia )"
+            },
+            {
+               "content" : "becoming bald ( Phalacrophobia )"
+            },
+            {
+               "content" : "becoming ill ( Nosemaphobia )"
+            },
+            {
+               "content" : "becoming ill ( Nosophobia )"
+            },
+            {
+               "content" : "becoming ill ( Nosophobia or Nosemaphobia )"
+            },
+            {
+               "content" : "becoming insane ( Lyssophobia )"
+            },
+            {
+               "content" : "beds ( Clinophobia )"
+            },
+            {
+               "content" : "bees ( Apiphobia )"
+            },
+            {
+               "content" : "bees ( Melissophobia )"
+            },
+            {
+               "content" : "being alone ( Autophobia )"
+            },
+            {
+               "content" : "being alone ( Eremophobia )"
+            },
+            {
+               "content" : "being alone or of oneself ( Autophobia )"
+            },
+            {
+               "content" : "being bound ( Merinthophobia )"
+            },
+            {
+               "content" : "being bound or tied up ( Merinthophobia )"
+            },
+            {
+               "content" : "being buried alive or of cemeteries ( Taphephobia )"
+            },
+            {
+               "content" : "being buried alive or of cemeteries ( Taphephobia Taphophobia )"
+            },
+            {
+               "content" : "being contagious ( Tapinophobia )"
+            },
+            {
+               "content" : "being contaminated with dirt or germs ( Misophobia or Mysophobia )"
+            },
+            {
+               "content" : "being dirty ( Automysophobia )"
+            },
+            {
+               "content" : "being eaten ( Rhabdophobia )"
+            },
+            {
+               "content" : "being enclosed ( Cleithrophobia )"
+            },
+            {
+               "content" : "being enclosed ( Clithrophobia or Cleithrophobia )"
+            },
+            {
+               "content" : "being evaluated negatively in social situations ( Social Phobia )"
+            },
+            {
+               "content" : "being forgotton or ignored or forgetting ( Athazagoraphobia )"
+            },
+            {
+               "content" : "being idle ( Thaasophobia )"
+            },
+            {
+               "content" : "being in a house ( Domatophobia )"
+            },
+            {
+               "content" : "being in crowded, public places like markets ( Agoraphobia )"
+            },
+            {
+               "content" : "being infested with worms ( Helminthophobia )"
+            },
+            {
+               "content" : "being in or riding in vehicles ( Amaxophobia )"
+            },
+            {
+               "content" : "being laughed at ( Gelotophobia )"
+            },
+            {
+               "content" : "being locked in an enclosed place ( Cleithrophobia or Cleisiophobia )"
+            },
+            {
+               "content" : "being oneself or of lonliness ( Eremophobia )"
+            },
+            {
+               "content" : "being ridiculed ( Catagelophobia )"
+            },
+            {
+               "content" : "being robbed ( Harpaxophobia )"
+            },
+            {
+               "content" : "being seen or looked at ( Scopophobia )"
+            },
+            {
+               "content" : "being seen or stared at ( Scopophobia or Scoptophobia )"
+            },
+            {
+               "content" : "being seen or stared at ( Scoptophobia )"
+            },
+            {
+               "content" : "being severely punished or beaten by a rod, or of being severely criticized ( Rhabdophobia )"
+            },
+            {
+               "content" : "being stared at ( Ophthalmophobia )"
+            },
+            {
+               "content" : "being tickled by feathers ( Pteronophobia )"
+            },
+            {
+               "content" : "being touched ( Chiraptophobia )"
+            },
+            {
+               "content" : "being touched (Haphephobia) ( Aphenphosmphobia )"
+            },
+            {
+               "content" : "being touched ( Haphephobia ) "
+            },
+            {
+               "content" : "being touched ( Haphephobia or Haptephobia )"
+            },
+            {
+               "content" : "belly buttons ( Omphalophobia )"
+            },
+            {
+               "content" : "bicycles ( Cyclophobia )"
+            },
+            {
+               "content" : "birds ( Ornithophobia )"
+            },
+            {
+               "content" : "blindness in visual field ( Scotomaphobia )"
+            },
+            {
+               "content" : "blood ( Haemaphobia )"
+            },
+            {
+               "content" : "blood ( Haematophobia )"
+            },
+            {
+               "content" : "blood ( Hemaphobia )"
+            },
+            {
+               "content" : "blood ( Hematophobia )"
+            },
+            {
+               "content" : "blood ( Hemophobia )"
+            },
+            {
+               "content" : "blood ( Hemophobia or Hemaphobia or Hematophobia )"
+            },
+            {
+               "content" : "Blushing 3) Red. ( Erytophobia  )"
+            },
+            {
+               "content" : "blushing ( Ereuthrophobia )"
+            },
+            {
+               "content" : "Blushing ( Erytophobia )"
+            },
+            {
+               "content" : "bodily odors ( Bromidrosiphobia )"
+            },
+            {
+               "content" : "body smells ( Bromidrophobia )"
+            },
+            {
+               "content" : "body smells ( Bromidrosiphobia or Bromidrophobia )"
+            },
+            {
+               "content" : "bogeys or the bogeyman ( Bogyphobia )"
+            },
+            {
+               "content" : "Bolsheviks ( Bolshephobia )"
+            },
+            {
+               "content" : "books ( Bibliophobia )"
+            },
+            {
+               "content" : "brain disease ( Meningitophobia )"
+            },
+            {
+               "content" : "bulls ( Taurophobia )"
+            },
+            {
+               "content" : "bums or beggars ( Hobophobia )"
+            },
+            {
+               "content" : "cancer ( Cancerophobia )"
+            },
+            {
+               "content" : "cancer ( Cancerophobia or Carcinophobia )"
+            },
+            {
+               "content" : "cancer ( Cancerphobia )"
+            },
+            {
+               "content" : "cancer ( Carcinomatophobia )"
+            },
+            {
+               "content" : "cancer ( Carcinomophobia )"
+            },
+            {
+               "content" : "cancer ( Carcinophobia )"
+            },
+            {
+               "content" : "cats ( Aelurophobia )"
+            },
+            {
+               "content" : "cats (Ailurophobia) ( Elurophobia )"
+            },
+            {
+               "content" : "cats ( Ailurophobia )"
+            },
+            {
+               "content" : "cats ( Elurophobia )"
+            },
+            {
+               "content" : "cats ( Felinophobia )"
+            },
+            {
+               "content" : "cats ( Galeophobia or Gatophobia )"
+            },
+            {
+               "content" : "cats ( Gatophobia )"
+            },
+            {
+               "content" : "Celts ( Celtophobia )"
+            },
+            {
+               "content" : "cemeteries ( Coimetrophobia )"
+            },
+            {
+               "content" : "certain fabrics ( Textophobia )"
+            },
+            {
+               "content" : "certain places or situations, such as stage fright ( Topophobia )"
+            },
+            {
+               "content" : "challenges to official doctrine or of radical deviation ( Hereiophobia )"
+            },
+            {
+               "content" : "challenges to official doctrine or of radical deviation ( Heresyphobia or Hereiophobia )"
+            },
+            {
+               "content" : "changes ( Metathesiophobia )"
+            },
+            {
+               "content" : "chemicals or working with chemicals ( Chemophobia )"
+            },
+            {
+               "content" : "chickens ( Alektorophobia )"
+            },
+            {
+               "content" : "childbirth ( Lockiophobia )"
+            },
+            {
+               "content" : "childbirth ( Maieusiophobia )"
+            },
+            {
+               "content" : "childbirth ( Parturiphobia )"
+            },
+            {
+               "content" : "children ( Pedophobia )"
+            },
+            {
+               "content" : "Chinese, Chinese culture ( Sinophobia )"
+            },
+            {
+               "content" : "chins ( Geniophobia )"
+            },
+            {
+               "content" : "choking of being smothered ( Pnigerophobia )"
+            },
+            {
+               "content" : "choking or smothering ( Pnigerophobia )"
+            },
+            {
+               "content" : "choking ( Pnigophobia )"
+            },
+            {
+               "content" : "cholera ( Cholerophobia )"
+            },
+            {
+               "content" : "chopsticks ( Consecotaleophobia )"
+            },
+            {
+               "content" : "church ( Ecclesiophobia )"
+            },
+            {
+               "content" : "clocks ( Chronomentrophobia )"
+            },
+            {
+               "content" : "clothing ( Vestiphobia )"
+            },
+            {
+               "content" : "clouds ( Nephophobia )"
+            },
+            {
+               "content" : "clowns ( Coulrophobia )"
+            },
+            {
+               "content" : "cockroaches ( Katsaridaphobia )"
+            },
+            {
+               "content" : "coitus ( Coitophobia )"
+            },
+            {
+               "content" : "cold ( Cheimaphobia )"
+            },
+            {
+               "content" : "cold ( Cheimatophobia )"
+            },
+            {
+               "content" : "cold ( Frigophobia )"
+            },
+            {
+               "content" : "cold (Frigophobia, Psychophobia) ( Cheimaphobia or Cheimatophobia )"
+            },
+            {
+               "content" : "cold or cold things ( Frigophobia )"
+            },
+            {
+               "content" : "cold ( Psychrophobia )"
+            },
+            {
+               "content" : "colors ( Chromatophobia )"
+            },
+            {
+               "content" : "colors ( Chromophobia )"
+            },
+            {
+               "content" : "colors ( Chromophobia or Chromatophobia )"
+            },
+            {
+               "content" : "comets ( Cometophobia )"
+            },
+            {
+               "content" : "confined spaces ( Claustrophobia )"
+            },
+            {
+               "content" : "constipation ( Coprastasophobia )"
+            },
+            {
+               "content" : "contact with animal fur or skin ( Doraphobia )"
+            },
+            {
+               "content" : "contracting poliomyelitis ( Poliosophobia )"
+            },
+            {
+               "content" : "cooking ( Mageirocophobia )"
+            },
+            {
+               "content" : "cosmic phenomenon ( Kosmikophobia )"
+            },
+            {
+               "content" : "crosses or the crucifix ( Staurophobia )"
+            },
+            {
+               "content" : "crossing bridges ( Gephyrophobia )"
+            },
+            {
+               "content" : "crossing streets ( Agyrophobia )"
+            },
+            {
+               "content" : "crossing streets ( Dromophobia )"
+            },
+            {
+               "content" : "crowds ( Agoraphobia ) "
+            },
+            {
+               "content" : "crowds ( Demophobia )"
+            },
+            {
+               "content" : "crowds ( Enochlophobia )"
+            },
+            {
+               "content" : "crowds or mobs ( Ochlophobia )"
+            },
+            {
+               "content" : "crystals or glass ( Crystallophobia )"
+            },
+            {
+               "content" : "dancing ( Chorophobia )"
+            },
+            {
+               "content" : "darkness ( Achluophobia )"
+            },
+            {
+               "content" : "darkness ( Lygophobia )"
+            },
+            {
+               "content" : "darkness ( Myctophobia )"
+            },
+            {
+               "content" : "darkness ( Scotophobia )"
+            },
+            {
+               "content" : "dark wooded areas or of forests at night ( Nyctohylophobia )"
+            },
+            {
+               "content" : "dawn ( Eosophobia )"
+            },
+            {
+               "content" : "dawn or daylight ( Eosophobia )"
+            },
+            {
+               "content" : "daylight or sunshine ( Phengophobia )"
+            },
+            {
+               "content" : "daylight ( Phenogophobia )"
+            },
+            {
+               "content" : "death or dead things ( Necrophobia )"
+            },
+            {
+               "content" : "death or dying ( Thanatophobia )"
+            },
+            {
+               "content" : "death or dying ( Thanatophobia or Thantophobia )"
+            },
+            {
+               "content" : "death or dying ( Thantophobia )"
+            },
+            {
+               "content" : "decaying matter ( Seplophobia )"
+            },
+            {
+               "content" : "decaying matter ( Septophobia )"
+            },
+            {
+               "content" : "defecation ( Rhypophobia )"
+            },
+            {
+               "content" : "definite disease ( Monopathophobia )"
+            },
+            {
+               "content" : "definite plans ( Teleophobia )"
+            },
+            {
+               "content" : "deformity ( Dysmorphophobia )"
+            },
+            {
+               "content" : "deformity, usually in others ( Dysmorphophobia )"
+            },
+            {
+               "content" : "demons and goblins ( Bogyphobia )"
+            },
+            {
+               "content" : "demons ( Daemonophobia )"
+            },
+            {
+               "content" : "demons ( Demonophobia or Daemonophobia )"
+            },
+            {
+               "content" : "dentists ( Dentophobia )"
+            },
+            {
+               "content" : "dependence on others ( Soteriophobia  )"
+            },
+            {
+               "content" : "depth ( Bathophobia )"
+            },
+            {
+               "content" : "diabetes ( Diabetophobia )"
+            },
+            {
+               "content" : "dining and dinner conversations ( Deipnophobia )"
+            },
+            {
+               "content" : "dining or dinner conversations ( Deipnophobia )"
+            },
+            {
+               "content" : "dirt, especially of being contaminated by dirt ( Misophobia )"
+            },
+            {
+               "content" : "dirt or contamination ( Molysmophobia or Molysomophobia )"
+            },
+            {
+               "content" : "dirt or contamination ( Molysomophobia )"
+            },
+            {
+               "content" : "dirt or contamination ( Mysophobia )"
+            },
+            {
+               "content" : "dirt ( Rupophobia )"
+            },
+            {
+               "content" : "disease ( Pathophobia )"
+            },
+            {
+               "content" : "disorder ( Ataxophobia )"
+            },
+            {
+               "content" : "disorder or untidiness ( Ataxophobia )"
+            },
+            {
+               "content" : "dizziness or whirlpools ( Dinophobia )"
+            },
+            {
+               "content" : "dogs ( Cynophobia )"
+            },
+            {
+               "content" : "dogs ( Kynophobia )"
+            },
+            {
+               "content" : "dogs or rabies ( Cynophobia )"
+            },
+            {
+               "content" : "dolls ( Pediophobia )"
+            },
+            {
+               "content" : "double vision ( Diplophobia )"
+            },
+            {
+               "content" : "double vision ( Diplopiaphobia )"
+            },
+            {
+               "content" : "drafts, air swallowing, or airbourne noxious substances ( Aerophobia )"
+            },
+            {
+               "content" : "dreams ( Oneirophobia )"
+            },
+            {
+               "content" : "drinking ( Dipsophobia )"
+            },
+            {
+               "content" : "drugs ( Pharmacophobia )"
+            },
+            {
+               "content" : "drugs ( Pharmcophobia )"
+            },
+            {
+               "content" : "dryness and dry places, esp deserts ( Xerophobia )"
+            },
+            {
+               "content" : "dryness ( Xerophobia )"
+            },
+            {
+               "content" : "dust ( Amathophobia )"
+            },
+            {
+               "content" : "dust ( Koniophobia )"
+            },
+            {
+               "content" : " (earth, not intestinal) worms ( Vermiphobia )"
+            },
+            {
+               "content" : "electricity ( Electrophobia )"
+            },
+            {
+               "content" : "empty spaces ( Cenophobia )"
+            },
+            {
+               "content" : "empty spaces ( Kenophobia )"
+            },
+            {
+               "content" : "England or English culture, etc ( Anglophobia )"
+            },
+            {
+               "content" : "everything A nonspecific fear; A state of general anxiety ( Panphobia )"
+            },
+            {
+               "content" : "everything A nonspecific fear; A state of general anxiety ( Pantophobia )"
+            },
+            {
+               "content" : "everything ( Panophobia or Pantophobia )"
+            },
+            {
+               "content" : "everything ( Pantophobia )"
+            },
+            {
+               "content" : "expressing opinions or of receiving praise ( Doxophobia )"
+            },
+            {
+               "content" : "extreme cold, ice or frost ( Cryophobia )"
+            },
+            {
+               "content" : "eyes ( Ommetaphobia )"
+            },
+            {
+               "content" : "eyes ( Ommetaphobia or Ommatophobia )"
+            },
+            {
+               "content" : "failure ( Atychiphobia )"
+            },
+            {
+               "content" : "failure or defeat ( Kakorrhaphiophobia )"
+            },
+            {
+               "content" : "fainting or weakness ( Asthenophobia )"
+            },
+            {
+               "content" : "falling downstairs ( Climacophobia )"
+            },
+            {
+               "content" : "falling in love or being in love ( Philophobia )"
+            },
+            {
+               "content" : "fatigue ( Kopophobia )"
+            },
+            {
+               "content" : "fat people ( Cacomorphobia )"
+            },
+            {
+               "content" : "Fear France or French culture (Francophobia)  ( Gallophobia or Galiophobia )"
+            },
+            {
+               "content" : "Fear medical doctors experience of prescribing needed pain medications for patients ( Opiophobia )"
+            },
+            {
+               "content" : "Fear or abnormal dislike of politicians ( Politicophobia )"
+            },
+            {
+               "content" : "Fear or aversion to mushrooms ( Mycophobia )"
+            },
+            {
+               "content" : "Fear or hatred of music ( Melophobia )"
+            },
+            {
+               "content" : "Fear or hatred of poetry ( Metrophobia )"
+            },
+            {
+               "content" : "feathers ( Pteronophobia )"
+            },
+            {
+               "content" : "fecal matter ( Scatophobia )"
+            },
+            {
+               "content" : "feces ( Coprophobia )"
+            },
+            {
+               "content" : "feeling pleasure ( Hedonophobia )"
+            },
+            {
+               "content" : "female genitalia ( Eurotophobia )"
+            },
+            {
+               "content" : "fever ( Febriphobia )"
+            },
+            {
+               "content" : "fever ( Fibriophobia )"
+            },
+            {
+               "content" : "fever ( Pyrexiophobia )"
+            },
+            {
+               "content" : "filth ( Rhypophobia )"
+            },
+            {
+               "content" : "firearms ( Hoplophobia )"
+            },
+            {
+               "content" : "fire ( Arsonphobia )"
+            },
+            {
+               "content" : "fire ( Pyrophobia )"
+            },
+            {
+               "content" : "fish ( Ichthyophobia )"
+            },
+            {
+               "content" : "flogging ( Mastigophobia )"
+            },
+            {
+               "content" : "floods ( Antlophobia )"
+            },
+            {
+               "content" : "flowers ( Anthrophobia )"
+            },
+            {
+               "content" : "flowers ( Anthrophobia or Anthophobia )"
+            },
+            {
+               "content" : "flutes ( Aulophobia )"
+            },
+            {
+               "content" : "flying ( Aviatophobia )"
+            },
+            {
+               "content" : "flying ( Aviophobia )"
+            },
+            {
+               "content" : "flying ( Pteromerhanophobia )"
+            },
+            {
+               "content" : "fog ( Homichlophobia )"
+            },
+            {
+               "content" : "fog ( Nebulaphobia )"
+            },
+            {
+               "content" : "food ( Cibophobia )"
+            },
+            {
+               "content" : "food or eating ( Cibophobia )"
+            },
+            {
+               "content" : "food or eating (Cibophobia) ( Sitophobia or Sitiophobia )"
+            },
+            {
+               "content" : "food ( Sitiophobia )"
+            },
+            {
+               "content" : "food ( Sitophobia )"
+            },
+            {
+               "content" : "food (Sitophobia, Sitiophobia) ( Cibophobia )"
+            },
+            {
+               "content" : "foreign languages ( Xenoglossophobia )"
+            },
+            {
+               "content" : "forests ( Hylophobia )"
+            },
+            {
+               "content" : "Forests ( Xylophobia )"
+            },
+            {
+               "content" : "France or French culture (Gallophobia, Galiophobia) ( Francophobia )"
+            },
+            {
+               "content" : "freedom ( Eleutherophobia )"
+            },
+            {
+               "content" : "Friday the 13th ( Paraskavedekatriaphobia )"
+            },
+            {
+               "content" : "frogs ( Ranidaphobia )"
+            },
+            {
+               "content" : "fur or skins of animals ( Doraphobia )"
+            },
+            {
+               "content" : "gaiety ( Cherophobia )"
+            },
+            {
+               "content" : "gaining weight (Obesophobia) ( Pocrescophobia )"
+            },
+            {
+               "content" : "gaining weight (Pocrescophobia) ( Obesophobia )"
+            },
+            {
+               "content" : "garlic ( Alliumphobia )"
+            },
+            {
+               "content" : "genitals, particularly female ( Kolpophobia )"
+            },
+            {
+               "content" : "German or German things ( Teutophobia )"
+            },
+            {
+               "content" : "Germany or German culture ( Germanophobia )"
+            },
+            {
+               "content" : "germs ( Spermatophobia or Spermophobia )"
+            },
+            {
+               "content" : "germs ( Spermophobia )"
+            },
+            {
+               "content" : "germs ( Verminophobia )"
+            },
+            {
+               "content" : "getting wrinkles ( Rhytiphobia )"
+            },
+            {
+               "content" : "ghosts ( Phasmophobia )"
+            },
+            {
+               "content" : "glaring lights ( Photoaugliaphobia )"
+            },
+            {
+               "content" : "glass ( Hyalophobia )"
+            },
+            {
+               "content" : "glass ( Hyelophobia or Hyalophobia )"
+            },
+            {
+               "content" : "glass ( Nelophobia )"
+            },
+            {
+               "content" : "God or gods ( Zeusophobia )"
+            },
+            {
+               "content" : "gods or religion ( Theophobia )"
+            },
+            {
+               "content" : "going to bed ( Clinophobia )"
+            },
+            {
+               "content" : "going to school ( Didaskaleinophobia )"
+            },
+            {
+               "content" : "going to the doctor ( Iatrophobia )"
+            },
+            {
+               "content" : "going to the doctor or of doctors ( Iatrophobia )"
+            },
+            {
+               "content" : "gold ( Aurophobia )"
+            },
+            {
+               "content" : "graves or being buried alive ( Taphophobia )"
+            },
+            {
+               "content" : "gravity ( Barophobia )"
+            },
+            {
+               "content" : "Greek terms or complex scientific terminology ( Hellenologophobia )"
+            },
+            {
+               "content" : "growing old ( Gerascophobia )"
+            },
+            {
+               "content" : "hair (Chaetophobia, Hypertrichophobia) ( Trichopathophobia or Trichophobia )"
+            },
+            {
+               "content" : "hair ( Chaetophobia )"
+            },
+            {
+               "content" : "hair ( Trichophobia )"
+            },
+            {
+               "content" : "hands ( Chirophobia )"
+            },
+            {
+               "content" : "having committed an unpardonable sin ( Enosiophobia )"
+            },
+            {
+               "content" : "having committed an unpardonable sin or of criticism ( Enissophobia )"
+            },
+            {
+               "content" : "hearing a certain word or of names ( Onomatophobia )"
+            },
+            {
+               "content" : "hearing a certain word or words, or name or names ( Onomatophobia )"
+            },
+            {
+               "content" : "hearing good news ( Euphobia )"
+            },
+            {
+               "content" : "heart disease ( Cardiophobia )"
+            },
+            {
+               "content" : "heat ( Thermophobia )"
+            },
+            {
+               "content" : "heaven ( Ouranophobia or Uranophobia )"
+            },
+            {
+               "content" : "heaven ( Uranophobia )"
+            },
+            {
+               "content" : "heaven ( Uranophobia or Ouranophobia )"
+            },
+            {
+               "content" : "height ( Hypsiphobia )"
+            },
+            {
+               "content" : "heights ( Acrophobia )"
+            },
+            {
+               "content" : "heights ( Altophobia )"
+            },
+            {
+               "content" : "heights or being close to high buildings ( Batophobia )"
+            },
+            {
+               "content" : "hell ( Hadeophobia )"
+            },
+            {
+               "content" : "hell ( Hadephobia )"
+            },
+            {
+               "content" : "hell ( Stygiophobia )"
+            },
+            {
+               "content" : "hell ( Stygiophobia or Stigiophobia )"
+            },
+            {
+               "content" : "heredity ( Patroiophobia )"
+            },
+            {
+               "content" : "high places ( Hypsiphobia )"
+            },
+            {
+               "content" : "high places ( Hypsophobia )"
+            },
+            {
+               "content" : "home ( Ecophobia )"
+            },
+            {
+               "content" : "home ( Oecophobia )"
+            },
+            {
+               "content" : "home ( Oikophobia )"
+            },
+            {
+               "content" : "home surroundings (Domatophobia, Oikophobia) ( Eicophobia )"
+            },
+            {
+               "content" : "home surroundings, house (Domatophobia, Eicophobia) ( Oikophobia )"
+            },
+            {
+               "content" : "horses ( Equinophobia )"
+            },
+            {
+               "content" : "horses ( Hippophobia )"
+            },
+            {
+               "content" : "hospitals ( Nosocomephobia )"
+            },
+            {
+               "content" : "houses or being in a house (Eicophobia, Oikophobia) ( Domatophobia )"
+            },
+            {
+               "content" : "ice or frost ( Cryophobia )"
+            },
+            {
+               "content" : "ice or frost ( Pagophobia )"
+            },
+            {
+               "content" : "ideas ( Ideophobia )"
+            },
+            {
+               "content" : "immobility of a joint ( Ankylophobia )"
+            },
+            {
+               "content" : "imperfection ( Atelophobia )"
+            },
+            {
+               "content" : "Inability to stand walking or falling. ( Basophobia or Basiphobia )"
+            },
+            {
+               "content" : "infection ( Molysomophobia )"
+            },
+            {
+               "content" : "infinity ( Apeirophobia )"
+            },
+            {
+               "content" : "injections ( Trypanophobia )"
+            },
+            {
+               "content" : "injury ( Traumatophobia )"
+            },
+            {
+               "content" : "insanity ( Agateophobia )"
+            },
+            {
+               "content" : "insanity ( Dementophobia )"
+            },
+            {
+               "content" : "insanity ( Maniaphobia )"
+            },
+            {
+               "content" : "insects ( Entomophobia )"
+            },
+            {
+               "content" : "insects ( Insectophobia  )"
+            },
+            {
+               "content" : "insect stings ( Cnidophobia )"
+            },
+            {
+               "content" : "itching or of the insects that cause itching ( Acarophobia )"
+            },
+            {
+               "content" : "jealousy ( Zelophobia )"
+            },
+            {
+               "content" : "jumping from high and low places ( Catapedaphobia )"
+            },
+            {
+               "content" : "justice ( Dikephobia )"
+            },
+            {
+               "content" : "kidney disease ( Albuminurophobia )"
+            },
+            {
+               "content" : "kissing ( Philemaphobia or Philematophobia )"
+            },
+            {
+               "content" : "knees ( Genuphobia )"
+            },
+            {
+               "content" : "knowledge ( Epistemophobia )"
+            },
+            {
+               "content" : "knowledge ( Gnosiophobia )"
+            },
+            {
+               "content" : "lakes ( Limnophobia )"
+            },
+            {
+               "content" : "large things ( Megalophobia )"
+            },
+            {
+               "content" : "laughter ( Geliophobia )"
+            },
+            {
+               "content" : "lawsuits ( Liticaphobia )"
+            },
+            {
+               "content" : "learning ( Sophophobia )"
+            },
+            {
+               "content" : "leprosy ( Leprophobia )"
+            },
+            {
+               "content" : "leprosy ( Leprophobia or Lepraphobia )"
+            },
+            {
+               "content" : "lice ( Pediculophobia )"
+            },
+            {
+               "content" : "lice (Pediculophobia) ( Phthiriophobia )"
+            },
+            {
+               "content" : "lice ( Phthiriophobia )"
+            },
+            {
+               "content" : "light flashes ( Selaphobia )"
+            },
+            {
+               "content" : "lightning ( Astraphobia )"
+            },
+            {
+               "content" : "lightning ( Astrapophobia )"
+            },
+            {
+               "content" : "lightning ( Keraunophobia ) "
+            },
+            {
+               "content" : "light ( Photophobia )"
+            },
+            {
+               "content" : "liquids, dampness, or moisture ( Hygrophobia )"
+            },
+            {
+               "content" : "liquids, esp wine and water. ( Hygrophobia )"
+            },
+            {
+               "content" : "lockjaw, tetanus ( Tetanophobia )"
+            },
+            {
+               "content" : "long waits ( Macrophobia )"
+            },
+            {
+               "content" : "long words ( Hippopotomonstrosesquipedaliophobia )"
+            },
+            {
+               "content" : "long words ( Sesquipedalophobia )"
+            },
+            {
+               "content" : "looking in a mirror ( Spectrophobia )"
+            },
+            {
+               "content" : "looking into mirrors ( Eisoptrophobia )"
+            },
+            {
+               "content" : "looking up ( Anablephobia )"
+            },
+            {
+               "content" : "losing an erection ( Medomalacuphobia )"
+            },
+            {
+               "content" : "loud noises ( Ligyrophobia )"
+            },
+            {
+               "content" : "love play (Malaxophobia) ( Sarmassophobia )"
+            },
+            {
+               "content" : "love play (Sarmassophobia) ( Malaxophobia )"
+            },
+            {
+               "content" : "lues, syphillis ( Luiphobia )"
+            },
+            {
+               "content" : "machines ( Mechanophobia )"
+            },
+            {
+               "content" : "machines or machinery ( Mechanophobia )"
+            },
+            {
+               "content" : "making changes ( Tropophobia )"
+            },
+            {
+               "content" : "making decisions ( Decidophobia  )"
+            },
+            {
+               "content" : "making decisions ( Decidophobia )"
+            },
+            {
+               "content" : "making false statements ( Mythophobia )"
+            },
+            {
+               "content" : "many things ( Polyphobia )"
+            },
+            {
+               "content" : "marriage ( Gametophobia )"
+            },
+            {
+               "content" : "marriage ( Gamophobia )"
+            },
+            {
+               "content" : "materialism or the fear of epilepsy ( Hylephobia )"
+            },
+            {
+               "content" : "meat ( Carnophobia )"
+            },
+            {
+               "content" : "meeting people or society ( Anthropophobia )"
+            },
+            {
+               "content" : "memories ( Mnemophobia )"
+            },
+            {
+               "content" : "men ( Androphobia )"
+            },
+            {
+               "content" : "men ( Arrhenphobia )"
+            },
+            {
+               "content" : "men ( Hominophobia )"
+            },
+            {
+               "content" : "menstruation ( Menophobia )"
+            },
+            {
+               "content" : "mental or physical examination ( Kopophobia )"
+            },
+            {
+               "content" : "mercurial medicines ( Hydrargyophobia )"
+            },
+            {
+               "content" : "metal ( Metallophobia )"
+            },
+            {
+               "content" : "meteors ( Meteorophobia )"
+            },
+            {
+               "content" : "meteors or meteorites ( Meteorophobia )"
+            },
+            {
+               "content" : "mice ( Muriphobia )"
+            },
+            {
+               "content" : "mice ( Musophobia )"
+            },
+            {
+               "content" : "mice ( Musophobia or Muriphobia )"
+            },
+            {
+               "content" : "mice ( Suriphobia )"
+            },
+            {
+               "content" : "microbes (Bacillophobia) ( Microbiophobia )"
+            },
+            {
+               "content" : "microbes ( Bacillophobia )"
+            },
+            {
+               "content" : "microbes ( Microbiophobia )"
+            },
+            {
+               "content" : "microbes ( Microphobia )"
+            },
+            {
+               "content" : "mind ( Psychophobia )"
+            },
+            {
+               "content" : "mirrors ( Catoptrophobia )"
+            },
+            {
+               "content" : "mirrors or of seeing oneself in a mirror ( Eisoptrophobia )"
+            },
+            {
+               "content" : "missiles or bullets ( Ballistophobia )"
+            },
+            {
+               "content" : "missles or bullets ( Ballistophobia )"
+            },
+            {
+               "content" : "money ( Chrematophobia )"
+            },
+            {
+               "content" : "money ( Chrometophobia )"
+            },
+            {
+               "content" : "money ( Chrometophobia or Chrematophobia )"
+            },
+            {
+               "content" : "mother-in-law (Novercaphobia) ( Pentheraphobia )"
+            },
+            {
+               "content" : "mother-in-law ( Pentheraphobia )"
+            },
+            {
+               "content" : "moths ( Mottephobia )"
+            },
+            {
+               "content" : "movement or motion ( Kinetophobia )"
+            },
+            {
+               "content" : "movement or motion ( Kinetophobia or Kinesophobia )"
+            },
+            {
+               "content" : "moving or making changes ( Tropophobia )"
+            },
+            {
+               "content" : "music ( Melophobia )"
+            },
+            {
+               "content" : "music ( Musicophobia )"
+            },
+            {
+               "content" : "myths or stories or false statements ( Mythophobia )"
+            },
+            {
+               "content" : "names ( Nomatophobia )"
+            },
+            {
+               "content" : "narrow things or places ( Stenophobia )"
+            },
+            {
+               "content" : "needles ( Belomophobia )"
+            },
+            {
+               "content" : "needles or pins ( Enetophobia )"
+            },
+            {
+               "content" : "needles or pointed objects ( Aichmophobia )"
+            },
+            {
+               "content" : "neglecting duty or responsibility ( Paralipophobia )"
+            },
+            {
+               "content" : "neglect of responsibility ( Paralipophobia )"
+            },
+            {
+               "content" : "new drugs ( Neopharmaphobia )"
+            },
+            {
+               "content" : "new ideas ( Centophobia )"
+            },
+            {
+               "content" : "newness ( Cainotophobia )"
+            },
+            {
+               "content" : "newness, novelty ( Cainophobia or Cainotophobia )"
+            },
+            {
+               "content" : "new things or ideas ( Cenophobia or Centophobia )"
+            },
+            {
+               "content" : "noise ( Acousticophobia )"
+            },
+            {
+               "content" : "noises or voices or one's own voice; of telephones ( Phonophobia )"
+            },
+            {
+               "content" : "noises or voices ( Phonophobia )"
+            },
+            {
+               "content" : "Northern lights ( Auroraphobia )"
+            },
+            {
+               "content" : "nosebleeds ( Epistaxiophobia )"
+            },
+            {
+               "content" : "novelty ( Cainophobia )"
+            },
+            {
+               "content" : "nuclear weapons ( Nucleomituphobia )"
+            },
+            {
+               "content" : "nudity ( Gymnophobia )"
+            },
+            {
+               "content" : "nudity ( Nudophobia )"
+            },
+            {
+               "content" : "numbers ( Arithmophobia )"
+            },
+            {
+               "content" : "numbers ( Numerophobia )"
+            },
+            {
+               "content" : "objects on the left side of the body ( Levophobia )"
+            },
+            {
+               "content" : "objects on the right side of the body ( Dextrophobia )"
+            },
+            {
+               "content" : "old people or of growing old ( Gerontophobia )"
+            },
+            {
+               "content" : "one's step-father ( Vitricophobia )"
+            },
+            {
+               "content" : "one that has a vile odor ( Autodysomophobia )"
+            },
+            {
+               "content" : "one thing ( Monophobia )"
+            },
+            {
+               "content" : "open high places ( Aeroacrophobia )"
+            },
+            {
+               "content" : "opening one's eyes ( Optophobia )"
+            },
+            {
+               "content" : "open, public (sometimes crowded) places like markets ( Agoraphobia )"
+            },
+            {
+               "content" : "open spaces or of being in crowded, public places like markets ( Agoraphobia )"
+            },
+            {
+               "content" : "opinions ( Allodoxaphobia )"
+            },
+            {
+               "content" : "otters ( Lutraphobia )"
+            },
+            {
+               "content" : "outer space ( Spacephobia )"
+            },
+            {
+               "content" : "overworking or of pain ( Ponophobia )"
+            },
+            {
+               "content" : "pain ( Agliophobia )"
+            },
+            {
+               "content" : "pain (Algophobia) ( Odynophobia or Odynephobia )"
+            },
+            {
+               "content" : "pain ( Algophobia )"
+            },
+            {
+               "content" : "painful bowels movements ( Defecaloesiophobia )"
+            },
+            {
+               "content" : "pain ( Odynephobia )"
+            },
+            {
+               "content" : "pain ( Odynophobia )"
+            },
+            {
+               "content" : "palindromes (from Best tag lines) ( Aibohphobia )"
+            },
+            {
+               "content" : "paper ( Papyrophobia )"
+            },
+            {
+               "content" : "parasites ( Parasitophobia )"
+            },
+            {
+               "content" : "parents-in-law ( Soceraphobia )"
+            },
+            {
+               "content" : "peanut butter sticking to the roof of the mouth ( Arachibutyrophobia )"
+            },
+            {
+               "content" : "pellagra ( Pellagrophobia )"
+            },
+            {
+               "content" : "people or society ( Anthropophobia )"
+            },
+            {
+               "content" : "performing ( Topophobia )"
+            },
+            {
+               "content" : "persons with amputations ( Apotemnophobia )"
+            },
+            {
+               "content" : "philosophy ( Philosophobia )"
+            },
+            {
+               "content" : "phobias ( Phobophobia )"
+            },
+            {
+               "content" : "photalgin, pain in the eyes caused by light ( Photalgiophobia )"
+            },
+            {
+               "content" : "pins and needles (Aichmophobia) ( Belonephobia )"
+            },
+            {
+               "content" : "pins and needles ( Aichmophobia )"
+            },
+            {
+               "content" : "pins and needles ( Belonephobia )"
+            },
+            {
+               "content" : "pins ( Enetophobia )"
+            },
+            {
+               "content" : "plants ( Botanophobia )"
+            },
+            {
+               "content" : "pleasure ( Hedonophobia )"
+            },
+            {
+               "content" : "poetry ( Metrophobia )"
+            },
+            {
+               "content" : "poison ( Iophobia )"
+            },
+            {
+               "content" : "poison or of being accidently poisoned ( Toxicophobia )"
+            },
+            {
+               "content" : "poison or of being accidently poisoned ( Toxiphobia or Toxophobia or Toxicophobia )"
+            },
+            {
+               "content" : "poisons ( Iophobia )"
+            },
+            {
+               "content" : "poison ( Toxicophobia )"
+            },
+            {
+               "content" : "poison ( Toxiphobia )"
+            },
+            {
+               "content" : "poison ( Toxophobia )"
+            },
+            {
+               "content" : "politicians ( Politicophobia )"
+            },
+            {
+               "content" : "poverty ( Peniaphobia )"
+            },
+            {
+               "content" : "precipices ( Cremnophobia )"
+            },
+            {
+               "content" : "pregnancy or childbirth ( Tokophobia )"
+            },
+            {
+               "content" : "priests or sacred things ( Hierophobia )"
+            },
+            {
+               "content" : "progress ( Prosophobia )"
+            },
+            {
+               "content" : "property ( Orthophobia )"
+            },
+            {
+               "content" : "prostitutes ( Cypriphobia )"
+            },
+            {
+               "content" : "prostitutes or venereal disease ( Cyprianophobia )"
+            },
+            {
+               "content" : "prostitutes or venereal disease ( Cypridophobia or Cypriphobia or Cyprianophobia or Cyprinophobia  )"
+            },
+            {
+               "content" : "punishment ( Mastigophobia )"
+            },
+            {
+               "content" : "punishment ( Poinephobia )"
+            },
+            {
+               "content" : "puppets ( Pupaphobia  )"
+            },
+            {
+               "content" : "quinsy or other forms of sore throat ( Anginophobia )"
+            },
+            {
+               "content" : "rabies ( Hydrophobophobia )"
+            },
+            {
+               "content" : "rabies ( Hynophobia )"
+            },
+            {
+               "content" : "rabies ( Kynophobia )"
+            },
+            {
+               "content" : "rabies or of becoming mad ( Lyssophobia )"
+            },
+            {
+               "content" : "radiation, x-rays ( Radiophobia )"
+            },
+            {
+               "content" : "rain or of being rained on ( Ombrophobia )"
+            },
+            {
+               "content" : "rain or of being rained on ( Pluviophobia )"
+            },
+            {
+               "content" : "rape ( Virginitiphobia )"
+            },
+            {
+               "content" : "razors ( Xyrophobia )"
+            },
+            {
+               "content" : "rectum or rectal diseases ( Rectophobia )"
+            },
+            {
+               "content" : "rectum ( Rectophobia )"
+            },
+            {
+               "content" : "rectums ( Proctophobia )"
+            },
+            {
+               "content" : "Red ( Ereuthophobia )"
+            },
+            {
+               "content" : "redlights ( Erythrophobia )"
+            },
+            {
+               "content" : "relatives ( Syngenesophobia )"
+            },
+            {
+               "content" : "religious ceremony ( Teleophobia )"
+            },
+            {
+               "content" : "reptiles ( Batrachophobia )"
+            },
+            {
+               "content" : "reptiles ( Herpetophobia )"
+            },
+            {
+               "content" : "reptiles or creepy, crawly things ( Herpetophobia )"
+            },
+            {
+               "content" : "responsibility ( Hypegiaphobia )"
+            },
+            {
+               "content" : "responsibility ( Hypengyophobia )"
+            },
+            {
+               "content" : "responsibility ( Hypengyophobia or Hypegiaphobia )"
+            },
+            {
+               "content" : "returning home ( Nostophobia )"
+            },
+            {
+               "content" : "ridicule ( Katagelophobia )"
+            },
+            {
+               "content" : "riding in a car ( Amaxophobia )"
+            },
+            {
+               "content" : "rivers or running water ( Potamophobia )"
+            },
+            {
+               "content" : "rivers ( Potamophobia )"
+            },
+            {
+               "content" : "road travel ( Hodophobia )"
+            },
+            {
+               "content" : "rooms ( Koinoniphobia )"
+            },
+            {
+               "content" : "ruin ( Atephobia )"
+            },
+            {
+               "content" : "ruin or ruins ( Atephobia )"
+            },
+            {
+               "content" : "Russians ( Russophobia )"
+            },
+            {
+               "content" : "sacred objects ( Hierophobia )"
+            },
+            {
+               "content" : "saints ( Hagiophobia )"
+            },
+            {
+               "content" : "saints or holy things ( Hagiophobia )"
+            },
+            {
+               "content" : "sameness, monotony or of homosexuality or of becoming homosexual ( Homophobia )"
+            },
+            {
+               "content" : "Satan ( Satanophobia )"
+            },
+            {
+               "content" : "scabies ( Scabiophobia )"
+            },
+            {
+               "content" : "school ( Scholionophobia )"
+            },
+            {
+               "content" : "school ( Scolionophobia )"
+            },
+            {
+               "content" : "scratches or being scratched ( Amychophobia )"
+            },
+            {
+               "content" : "seeing, thinking about or having an erect penis ( Ithyphallophobia )"
+            },
+            {
+               "content" : "sermons ( Homilophobia )"
+            },
+            {
+               "content" : "sex ( Genophobia )"
+            },
+            {
+               "content" : "sexual abuse ( Agraphobia )"
+            },
+            {
+               "content" : "sexual abuse ( Contreltophobia )"
+            },
+            {
+               "content" : "sexual intercourse ( Coitophobia )"
+            },
+            {
+               "content" : "sexual love ( Erotophobia )"
+            },
+            {
+               "content" : "sexual love or sexual questions ( Erotophobia )"
+            },
+            {
+               "content" : "sexual perversion ( Paraphobia )"
+            },
+            {
+               "content" : "shadows ( Sciophobia )"
+            },
+            {
+               "content" : "shadows ( Sciophobia Sciaphobia )"
+            },
+            {
+               "content" : "sharks ( Galeophobia )"
+            },
+            {
+               "content" : "sharks ( Selachophobia )"
+            },
+            {
+               "content" : "shellfish ( Ostraconophobia )"
+            },
+            {
+               "content" : "shock ( Hormephobia )"
+            },
+            {
+               "content" : "sickness in a specific part of the body ( Monopathophobia )"
+            },
+            {
+               "content" : "sinning ( Hamartophobia )"
+            },
+            {
+               "content" : "sinning or imaginary crimes ( Peccatophobia )"
+            },
+            {
+               "content" : "sinning ( Peccatophobia )"
+            },
+            {
+               "content" : "sitting ( Cathisophobia )"
+            },
+            {
+               "content" : "sitting down ( Kathisophobia )"
+            },
+            {
+               "content" : "sitting ( Thaasophobia )"
+            },
+            {
+               "content" : "skin ( Dermatosiophobia )"
+            },
+            {
+               "content" : "skin disease ( Dermatopathophobia )"
+            },
+            {
+               "content" : "skin disease ( Dermatophobia )"
+            },
+            {
+               "content" : "skin disease ( Dermatosiophobia or Dermatophobia or Dermatopathophobia )"
+            },
+            {
+               "content" : "skin infestation by mites or ticks ( Acarophobia )"
+            },
+            {
+               "content" : "skin lesions ( Dermatophobia )"
+            },
+            {
+               "content" : "sleep ( Hypnophobia )"
+            },
+            {
+               "content" : "sleep or of being hypnotized ( Hypnophobia )"
+            },
+            {
+               "content" : "sleep ( Somniphobia )"
+            },
+            {
+               "content" : "slime (Blennophobia) ( Myxophobia )"
+            },
+            {
+               "content" : "slime ( Blennophobia )"
+            },
+            {
+               "content" : "slime ( Myxophobia )"
+            },
+            {
+               "content" : "small things ( Microphobia )"
+            },
+            {
+               "content" : "small things ( Tapinophobia )"
+            },
+            {
+               "content" : "smells ( Olfactophobia )"
+            },
+            {
+               "content" : "smells or odors ( Osmophobia or Osphresiophobia )"
+            },
+            {
+               "content" : "smells ( Osmophobia )"
+            },
+            {
+               "content" : "snakes ( Ophidiophobia )"
+            },
+            {
+               "content" : "snakes (Ophidiophobia) ( Snakephobia )"
+            },
+            {
+               "content" : "snakes (Snakephobia) ( Ophidiophobia )"
+            },
+            {
+               "content" : "snow ( Chinophobia )"
+            },
+            {
+               "content" : "snow ( Chionophobia )"
+            },
+            {
+               "content" : "society or people in general ( Sociophobia )"
+            },
+            {
+               "content" : "solitude, being alone ( Isolophobia )"
+            },
+            {
+               "content" : "solitude or being alone ( Monophobia )"
+            },
+            {
+               "content" : "sourness ( Acerophobia )"
+            },
+            {
+               "content" : "speaking in public or of trying to speak ( Glossophobia )"
+            },
+            {
+               "content" : "speaking ( Laliophobia )"
+            },
+            {
+               "content" : "speaking ( Laliophobia or Lalophobia )"
+            },
+            {
+               "content" : "speaking ( Lalophobia )"
+            },
+            {
+               "content" : "specters or ghosts ( Spectrophobia )"
+            },
+            {
+               "content" : "specters or phantoms ( Specrophobia )"
+            },
+            {
+               "content" : "speed ( Tachophobia )"
+            },
+            {
+               "content" : "spiders ( Arachnephobia or Arachnophobia )"
+            },
+            {
+               "content" : "spiders ( Arachnophobia )"
+            },
+            {
+               "content" : "spirits or demons ( Demonophobia )"
+            },
+            {
+               "content" : "spirits or noncorporeal beings ( Pneumatophobia )"
+            },
+            {
+               "content" : "spirits ( Pneumatiphobia )"
+            },
+            {
+               "content" : "stairs, climbing, or of falling downstairs ( Climacophobia )"
+            },
+            {
+               "content" : "stairs or steep slopes ( Bathmophobia )"
+            },
+            {
+               "content" : "standing or walking ( Ambulophobia )"
+            },
+            {
+               "content" : "standing or walking (Ambulophobia) ( Stasibasiphobia or Stasiphobia )"
+            },
+            {
+               "content" : "stars or celestial space ( Astrophobia )"
+            },
+            {
+               "content" : "stars ( Siderophobia )"
+            },
+            {
+               "content" : "staying single ( Anuptaphobia )"
+            },
+            {
+               "content" : "stealing ( Cleptophobia )"
+            },
+            {
+               "content" : "stealing ( Kleptophobia )"
+            },
+            {
+               "content" : "step-father ( Vitricophobia )"
+            },
+            {
+               "content" : "stiff or immobile joints ( Ankylophobia )"
+            },
+            {
+               "content" : "stings ( Cnidophobia )"
+            },
+            {
+               "content" : "stooping ( Kyphophobia )"
+            },
+            {
+               "content" : "strangers or foreigners, or anything foreign ( Xenophobia )"
+            },
+            {
+               "content" : "strangers or foreigners ( Xenophobia )"
+            },
+            {
+               "content" : "streets or crossing the street ( Agyrophobia )"
+            },
+            {
+               "content" : "string ( Linonophobia )"
+            },
+            {
+               "content" : "strong light ( Photophobia )"
+            },
+            {
+               "content" : "stuttering ( Psellismophobia )"
+            },
+            {
+               "content" : "suffering and disease ( Panthophobia )"
+            },
+            {
+               "content" : "surgical operations ( Tomophobia )"
+            },
+            {
+               "content" : "swallowing or of eating or of being eaten ( Phagophobia )"
+            },
+            {
+               "content" : "symbolism ( Symbolophobia )"
+            },
+            {
+               "content" : "symmetry ( Symmetrophobia )"
+            },
+            {
+               "content" : "syphilis ( Syphilophobia )"
+            },
+            {
+               "content" : "taking medicine ( Pharmacophobia )"
+            },
+            {
+               "content" : "taking tests ( Testophobia )"
+            },
+            {
+               "content" : "tapeworms ( Taeniophobia or Teniophobia )"
+            },
+            {
+               "content" : "taste ( Geumaphobia or Geumophobia )"
+            },
+            {
+               "content" : "taste ( Geumophobia )"
+            },
+            {
+               "content" : "tastes or flavors ( Geumophobia )"
+            },
+            {
+               "content" : "technology ( Technophobia )"
+            },
+            {
+               "content" : "teenagers ( Ephebiphobia )"
+            },
+            {
+               "content" : "teeth ( Odontophobia )"
+            },
+            {
+               "content" : "teeth or dental surgery ( Odontophobia )"
+            },
+            {
+               "content" : "telephones ( Telephonophobia )"
+            },
+            {
+               "content" : "termites, insects that eat wood ( Isopterophobia )"
+            },
+            {
+               "content" : "termites ( Isopterophobia )"
+            },
+            {
+               "content" : "theatres ( Theatrophobia )"
+            },
+            {
+               "content" : "the bogeyman ( Bogyphobia )"
+            },
+            {
+               "content" : "the cold ( Psychophobia )"
+            },
+            {
+               "content" : "the color black ( Melanophobia )"
+            },
+            {
+               "content" : "the color purple ( Porphyrophobia )"
+            },
+            {
+               "content" : "the color white ( Leukophobia )"
+            },
+            {
+               "content" : "the color yellow or the word yellow ( Xanthophobia )"
+            },
+            {
+               "content" : "the dark or of night ( Achluophobia )"
+            },
+            {
+               "content" : "the dark or of night ( Nyctophobia )"
+            },
+            {
+               "content" : "the dark or of night ( Scotophobia )"
+            },
+            {
+               "content" : "the Dutch ( Dutchphobia )"
+            },
+            {
+               "content" : "the figure 8 ( Octophobia )"
+            },
+            {
+               "content" : "the figure 8 ( Octophobia  )"
+            },
+            {
+               "content" : "the great mole rat ( Zemmiphobia )"
+            },
+            {
+               "content" : "the heart ( Cardiophobia )"
+            },
+            {
+               "content" : "the mind ( Psychophobia )"
+            },
+            {
+               "content" : "the moon ( Lunaphobia )"
+            },
+            {
+               "content" : "the moon ( Selenophobia )"
+            },
+            {
+               "content" : "the night ( Noctiphobia )"
+            },
+            {
+               "content" : "the number 13 ( Triskaidekaphobia )"
+            },
+            {
+               "content" : "the number 1 ( Terdekaphobia )"
+            },
+            {
+               "content" : "the number 666 ( Hexakosioihexekontahexaphobia )"
+            },
+            {
+               "content" : "the number 666 ( Sexakosioihexekontahexaphobia )"
+            },
+            {
+               "content" : "theology ( Theologicophobia )"
+            },
+            {
+               "content" : "the opposite sex ( Heterophobia )"
+            },
+            {
+               "content" : "the opposite sex (Heterophobia) ( Sexophobia )"
+            },
+            {
+               "content" : "the opposite sex (Sexophobia) ( Heterophobia )"
+            },
+            {
+               "content" : "the opposite sex ( Sexophobia )"
+            },
+            {
+               "content" : "the Pope ( Papaphobia )"
+            },
+            {
+               "content" : "The preference by a phobic for fearful situations ( Counterphobia )"
+            },
+            {
+               "content" : "the sea ( Thalassophobia )"
+            },
+            {
+               "content" : "the sun ( Heliophobia )"
+            },
+            {
+               "content" : "the Walloons ( Walloonphobia )"
+            },
+            {
+               "content" : "thieves or loss through thievery ( Cleptophobia )"
+            },
+            {
+               "content" : "thieves or loss through thievery ( Kleptophobia )"
+            },
+            {
+               "content" : "things to the left or left-handed ( Sinistrophobia )"
+            },
+            {
+               "content" : "things to the left side of the body ( Levophobia )"
+            },
+            {
+               "content" : "thinking ( Phonemophobia )"
+            },
+            {
+               "content" : "thinking ( Phronemophobia )"
+            },
+            {
+               "content" : "throwing stuff out Hoarding. ( Disposophobia )"
+            },
+            {
+               "content" : "thunder and lightning (Astraphobia, Astrapophobia) ( Ceraunophobia or Keraunophobia )"
+            },
+            {
+               "content" : "thunder and lightning (Astraphobia, Astrapophobia) ( Keraunophobia or Ceraunophobia )"
+            },
+            {
+               "content" : "thunder and lightning ( Astrapophobia )"
+            },
+            {
+               "content" : "thunder and lightning ( Brontophobia )"
+            },
+            {
+               "content" : "thunder and lightning (Ceraunophobia, Keraunophobia) ( Astraphobia or Astrapophobia )"
+            },
+            {
+               "content" : "thunder ( Ceraunophobia ) "
+            },
+            {
+               "content" : "thunder storms ( Brontophobia )"
+            },
+            {
+               "content" : "thunder ( Tonitrophobia )"
+            },
+            {
+               "content" : "time ( Chronophobia )"
+            },
+            {
+               "content" : "toads ( Bufonophobia )"
+            },
+            {
+               "content" : "tombstones ( Placophobia )"
+            },
+            {
+               "content" : "tornadoes and hurricanes ( Lilapsophobia )"
+            },
+            {
+               "content" : "tornadoes ( Lilapsophobia )"
+            },
+            {
+               "content" : "touch ( Haphophobia )"
+            },
+            {
+               "content" : "touch ( Haptophobia )"
+            },
+            {
+               "content" : "touching or being touched ( Aphephobia )"
+            },
+            {
+               "content" : "touching ( Thixophobia )"
+            },
+            {
+               "content" : "touch ( Thixophobia )"
+            },
+            {
+               "content" : "trains, railroads or train travel ( Siderodromophobia )"
+            },
+            {
+               "content" : "train travel ( Siderodromophobia )"
+            },
+            {
+               "content" : "trees ( Dendrophobia )"
+            },
+            {
+               "content" : "trembling ( Tremophobia )"
+            },
+            {
+               "content" : "trichinosis ( Trichinophobia )"
+            },
+            {
+               "content" : "tuberculosis ( Phthisiophobia )"
+            },
+            {
+               "content" : "tuberculosis ( Tuberculophobia )"
+            },
+            {
+               "content" : "tyrants ( Tyrannophobia )"
+            },
+            {
+               "content" : "ugliness ( Cacophobia )"
+            },
+            {
+               "content" : "undressing in front of someone ( Dishabiliophobia )"
+            },
+            {
+               "content" : "urine or urinating ( Urophobia )"
+            },
+            {
+               "content" : "urine ( Urophobia )"
+            },
+            {
+               "content" : "vaccination ( Vaccinophobia )"
+            },
+            {
+               "content" : "vaccines and vaccination ( Vaccinophobia )"
+            },
+            {
+               "content" : "vegetables ( Lachanophobia )"
+            },
+            {
+               "content" : "vehicles ( Ochophobia )"
+            },
+            {
+               "content" : "veneral disease ( Cypridophobia )"
+            },
+            {
+               "content" : "venereal disease ( Venereophobia )"
+            },
+            {
+               "content" : "ventriloquist's dummies, animatronic creatures, wax statues - anything that falsly represents a sentient being ( Automatonophobia )"
+            },
+            {
+               "content" : "vertigo or feeling dizzy when looking down ( Illyngophobia )"
+            },
+            {
+               "content" : "virgins or young girls ( Parthenophobia )"
+            },
+            {
+               "content" : "voids ( Kenophobia )"
+            },
+            {
+               "content" : "voids or empty spaces ( Kenophobia )"
+            },
+            {
+               "content" : "voids or empty spaces ( Xenophobia )"
+            },
+            {
+               "content" : "vomiting due to airsickness ( Aeronausiphobia )"
+            },
+            {
+               "content" : "vomiting ( Emetophobia )"
+            },
+            {
+               "content" : "vomiting secondary to airsickness ( Aeronausiphobia )"
+            },
+            {
+               "content" : "walking ( Ambulophobia )"
+            },
+            {
+               "content" : "walking ( Bathmophobia )"
+            },
+            {
+               "content" : "washing or bathing ( Ablutophobia )"
+            },
+            {
+               "content" : "wasps ( Spheksophobia  )"
+            },
+            {
+               "content" : "wasps ( Spheksophobia )"
+            },
+            {
+               "content" : "water ( Aquaphobia )"
+            },
+            {
+               "content" : "water ( Hydrophobia )"
+            },
+            {
+               "content" : "water or of rabies ( Hydrophobia )"
+            },
+            {
+               "content" : "waves (Cymophobia) ( Kymophobia )"
+            },
+            {
+               "content" : "waves ( Cymophobia )"
+            },
+            {
+               "content" : "waves or wave like motions ( Cymophobia or Kymophobia )"
+            },
+            {
+               "content" : "waves or wave like motions ( Kymophobia )"
+            },
+            {
+               "content" : "weakness ( Asthenophobia )"
+            },
+            {
+               "content" : "wealth ( Chrematophobia )"
+            },
+            {
+               "content" : "wealth ( Plutophobia )"
+            },
+            {
+               "content" : "wet dreams ( Oneirogmophobia )"
+            },
+            {
+               "content" : "whirlpools ( Dinophobia )"
+            },
+            {
+               "content" : "wild animals ( Agrizoophobia )"
+            },
+            {
+               "content" : "wind ( Ancraophobia )"
+            },
+            {
+               "content" : "wind (Anemophobia) ( Ancraophobia )"
+            },
+            {
+               "content" : "wine ( Oenophobia )"
+            },
+            {
+               "content" : "wine ( Oinophobia )"
+            },
+            {
+               "content" : "wines ( Oenophobia )"
+            },
+            {
+               "content" : "witches and witchcraft ( Wiccaphobia)"
+            },
+            {
+               "content" : "women ( Gynophobia )"
+            },
+            {
+               "content" : "wooden objects or forests ( Xylophobia )"
+            },
+            {
+               "content" : "wooden objects ( Xylophobia )"
+            },
+            {
+               "content" : "wood or woods ( Hylephobia )"
+            },
+            {
+               "content" : "words ( Logophobia )"
+            },
+            {
+               "content" : "words ( Verbophobia )"
+            },
+            {
+               "content" : "work ( Ergophobia )"
+            },
+            {
+               "content" : "work or functioning ( Ergasiophobia )"
+            },
+            {
+               "content" : "worms ( Scoleciphobia )"
+            },
+            {
+               "content" : "writing ( Graphophobia )"
+            },
+            {
+               "content" : "writing in public ( Scriptophobia )"
+            },
+            {
+               "content" : "writing or handwriting ( Graphophobia )"
+            },
+            {
+               "content" : "your mother-in-law ( Novercaphobia )"
+            },
+            {
+               "content" : "your step-mother ( Novercaphobia )"
+            }
+         ]
+      },
+      "mark" : {
+         "chance" : "20",
+         "option" : [
+            {
+               "content" : "mole"
+            },
+            {
+               "content" : "small scar"
+            },
+            {
+               "content" : "large scar"
+            },
+            {
+               "content" : "birth mark"
+            },
+            {
+               "content" : "tattoo"
+            },
+            {
+               "content" : "deformity"
+            }
+         ]
+      },
+      "complexion" : {
+         "option" : [
+            {
+               "content" : "fair"
+            },
+            {
+               "content" : "light"
+            },
+            {
+               "content" : "dark"
+            },
+            {
+               "content" : "muddled"
+            }
+         ]
+      },
+      "eyes" : {
+         "option" : [
+            {
+               "content" : "beady"
+            },
+            {
+               "content" : "light"
+            },
+            {
+               "content" : "dark"
+            },
+            {
+               "content" : "clear"
+            },
+            {
+               "content" : "bloodshot"
+            },
+            {
+               "content" : "cross-eyed"
+            },
+            {
+               "content" : "deep-set"
+            },
+            {
+               "content" : "close-set"
+            },
+            {
+               "content" : "heavy"
+            },
+            {
+               "content" : "hollow"
+            },
+            {
+               "content" : "piggish"
+            },
+            {
+               "content" : "sunken"
+            },
+            {
+               "content" : "brooding"
+            },
+            {
+               "content" : "glazed"
+            },
+            {
+               "content" : "haunted"
+            }
+         ]
+      },
+      "possessiondetail" : {
+         "option" : [
+            {
+               "content" : "was lost during the war"
+            },
+            {
+               "content" : "was stolen weeks ago"
+            },
+            {
+               "content" : "has great personal significance"
+            },
+            {
+               "content" : "was a gift from someone close"
+            },
+            {
+               "content" : "is always kept close"
+            },
+            {
+               "content" : "is kept safe at all times"
+            },
+            {
+               "content" : "was stolen from someone else"
+            },
+            {
+               "content" : "was hidden away"
+            },
+            {
+               "content" : "was a gift "
+            },
+            {
+               "content" : "was a gift from a parent"
+            },
+            {
+               "content" : "was a gift from a mentor"
+            },
+            {
+               "content" : "was a gift from a lover"
+            },
+            {
+               "content" : "was a gift from a frienbd"
+            },
+            {
+               "content" : "was found on the ground recently"
+            },
+            {
+               "content" : "was found on the ground years ago"
+            },
+            {
+               "content" : "was found in a tavern months ago"
+            }
+         ]
+      }
+   },
+   "stats" : {
+      "intelligence" : {
+         "option" : [
+            {
+               "content" : "dumb",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "dimwited",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "brilliant"
+            }
+         ]
+      },
+      "fear" : {
+         "option" : [
+            {
+               "content" : "minor",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "apprehensive",
+               "max" : "10"
+            },
+            {
+               "min" : "21",
+               "content" : "uneasy",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "alarming",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "panicky",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "unnerving",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "powerful",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "dreadful",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "quivering",
+               "max" : "98"
+            },
+            {
+               "min" : "99",
+               "content" : "crippling"
+            }
+         ]
+      },
+      "wisdom" : {
+         "content" : "-\n            ",
+         "option" : [
+            {
+               "content" : "foolish",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "wise"
+            }
+         ]
+      },
+      "charisma" : {
+         "option" : [
+            {
+               "content" : "obnoxious",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "inspiring"
+            }
+         ]
+      },
+      "comeliness" : {
+         "option" : [
+            {
+               "content" : "ugly",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "attractive"
+            }
+         ]
+      },
+      "experience" : {
+         "option" : [
+            {
+               "content" : "new",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "naive",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "green",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "amatuer",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "fledgling",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "inexperienced",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "rookie",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "trained",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "capable",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "qualified",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "proficient",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "effective",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "accomplished",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "gifted",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "adept",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "worldly",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "expert",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "vetran",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "grizzled"
+            }
+         ]
+      },
+      "dexterity" : {
+         "option" : [
+            {
+               "content" : "clumsy",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "agile"
+            }
+         ]
+      },
+      "strength" : {
+         "option" : [
+            {
+               "content" : "weak",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "strong",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "herculean"
+            }
+         ]
+      },
+      "skill" : {
+         "option" : [
+            {
+               "content" : "incompetent",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "ineptly skilled",
+               "max" : "10"
+            },
+            {
+               "min" : "21",
+               "content" : "poorly skilled",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "mediocrely skilled",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "reasonably skilled",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "decently skilled",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "skilled",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "gifted",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "impressively skilled",
+               "max" : "98"
+            },
+            {
+               "min" : "99",
+               "content" : "legendarily skilled"
+            }
+         ]
+      },
+      "constitution" : {
+         "option" : [
+            {
+               "content" : "frail",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "sickly",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "robust"
+            }
+         ]
+      }
+   },
+   "race" : {
+      "option" : [
+         {
+            "content" : "half-elf",
+            "type" : "normal"
+         },
+         {
+            "content" : "half-orc",
+            "type" : "normal"
+         },
+         {
+            "content" : "half-dwarf",
+            "type" : "normal"
+         },
+         {
+            "content" : "gnome",
+            "type" : "normal"
+         },
+         {
+            "content" : "halfling",
+            "type" : "normal"
+         },
+         {
+            "content" : "dwarf",
+            "type" : "normal"
+         },
+         {
+            "content" : "elf",
+            "type" : "normal"
+         },
+         {
+            "content" : "human",
+            "type" : "normal"
+         },
+         {
+            "content" : "deep dwarf",
+            "type" : "monster"
+         },
+         {
+            "content" : "drow",
+            "type" : "monster"
+         },
+         {
+            "content" : "lycanthrope",
+            "type" : "monster"
+         },
+         {
+            "content" : "mindflayer",
+            "type" : "monster"
+         },
+         {
+            "content" : "minotaur",
+            "type" : "monster"
+         },
+         {
+            "content" : "kobold",
+            "type" : "monster"
+         },
+         {
+            "content" : "goblin",
+            "type" : "monster"
+         },
+         {
+            "content" : "bugbear",
+            "type" : "monster"
+         },
+         {
+            "content" : "hobgoblin",
+            "type" : "monster"
+         },
+         {
+            "content" : "lizardfolk",
+            "type" : "monster"
+         },
+         {
+            "content" : "troglodyte",
+            "type" : "monster"
+         },
+         {
+            "content" : "ogre",
+            "type" : "monster"
+         },
+         {
+            "content" : "orc",
+            "type" : "monster"
+         }
+      ]
+   },
+   "attitude" : {
+      "option" : {
+         "Fear" : {
+            "option" : {
+               "Nervousness" : {
+                  "option" : {
+                     "Anxiety" : {},
+                     "Worry" : {},
+                     "Suspense" : {},
+                     "Dread" : {},
+                     "Distress" : {},
+                     "Uneasiness" : {},
+                     "Apprehension" : {}
+                  }
+               },
+               "Horror" : {
+                  "option" : {
+                     "Mortification" : {},
+                     "Alarm" : {},
+                     "Shock" : {},
+                     "Horror" : {},
+                     "Fright" : {},
+                     "Hysteria" : {},
+                     "Fear" : {},
+                     "Terror" : {},
+                     "Panic" : {}
+                  }
+               }
+            }
+         },
+         "Surprise" : {
+            "option" : {
+               "Surprise" : {
+                  "option" : {
+                     "Astonishment" : {},
+                     "Amazement" : {}
+                  }
+               }
+            }
+         },
+         "Joy" : {
+            "option" : {
+               "Zest" : {
+                  "option" : {
+                     "Excitement" : {},
+                     "Enthusiasm" : {},
+                     "Thrill" : {},
+                     "Exhilaration" : {},
+                     "Zeal" : {}
+                  }
+               },
+               "Pride" : {
+                  "option" : {
+                     "Triumph" : {}
+                  }
+               },
+               "Contentment" : {
+                  "option" : {
+                     "Pleasure" : {}
+                  }
+               },
+               "Optimism" : {
+                  "option" : {
+                     "Hope" : {},
+                     "Eagerness" : {}
+                  }
+               },
+               "Relief" : {
+                  "option" : {
+                     "Relief" : {}
+                  }
+               },
+               "Enthrallment" : {
+                  "option" : {
+                     "Rapture" : {},
+                     "Enthrallment" : {}
+                  }
+               },
+               "Cheerfulness" : {
+                  "option" : {
+                     "Elation" : {},
+                     "Happiness" : {},
+                     "Joy" : {},
+                     "Gaiety" : {},
+                     "Delight" : {},
+                     "Jolliness" : {},
+                     "Jubilation" : {},
+                     "Joviality" : {},
+                     "Gladness" : {},
+                     "Enjoyment" : {},
+                     "Euphoria" : {},
+                     "Ecstasy" : {},
+                     "Amusement" : {},
+                     "Bliss" : {},
+                     "Glee" : {},
+                     "Satisfaction" : {}
+                  }
+               }
+            }
+         },
+         "Sadness" : {
+            "option" : {
+               "Neglect" : {
+                  "option" : {
+                     "Isolation" : {},
+                     "Alienation" : {},
+                     "Dejection" : {},
+                     "Humiliation" : {},
+                     "Homesickness" : {},
+                     "Embarrassment" : {},
+                     "Loneliness" : {},
+                     "Insult" : {},
+                     "Defeatism" : {},
+                     "Insecurity" : {},
+                     "Rejection" : {}
+                  }
+               },
+               "Disappointment" : {
+                  "option" : {
+                     "Dismay" : {},
+                     "Displeasure" : {}
+                  }
+               },
+               "Shame" : {
+                  "option" : {
+                     "Remorse" : {},
+                     "Guilt" : {},
+                     "Regret" : {}
+                  }
+               },
+               "Sympathy" : {
+                  "option" : {
+                     "Pity" : {},
+                     "Sympathy" : {}
+                  }
+               },
+               "Sadness" : {
+                  "option" : {
+                     "Melancholy'" : {},
+                     "Sorrow" : {},
+                     "Gloom" : {},
+                     "Despair" : {},
+                     "Grief" : {},
+                     "Unhappy" : {},
+                     "Woe" : {},
+                     "Misery" : {},
+                     "Depression" : {},
+                     "Glumness" : {}
+                  }
+               },
+               "Suffering" : {
+                  "option" : {
+                     "Hurt" : {},
+                     "Anguish" : {},
+                     "Agony" : {}
+                  }
+               }
+            }
+         },
+         "Anger" : {
+            "option" : {
+               "Disgust" : {
+                  "option" : {
+                     "Contempt" : {},
+                     "Revulsion" : {},
+                     "Loathing" : {}
+                  }
+               },
+               "Rage" : {
+                  "option" : {
+                     "Spite" : {},
+                     "Wrath" : {},
+                     "Ferocity" : {},
+                     "Resentment" : {},
+                     "Outrage" : {},
+                     "Hatred" : {},
+                     "Vengefulness" : {},
+                     "Fury" : {},
+                     "Scorn" : {},
+                     "Dislike" : {},
+                     "Bitter" : {},
+                     "Anger" : {},
+                     "Hostility" : {}
+                  }
+               },
+               "Exasperation" : {
+                  "option" : {
+                     "Frustration" : {}
+                  }
+               },
+               "Torment" : {
+                  "option" : {
+                     "Torment" : {}
+                  }
+               },
+               "Irritability" : {
+                  "option" : {
+                     "Agitation" : {},
+                     "Crosspatch" : {},
+                     "Annoyance" : {},
+                     "Grumpy" : {},
+                     "Grouchy" : {},
+                     "Aggravation" : {}
+                  }
+               },
+               "Envy" : {
+                  "option" : {
+                     "Jealousy" : {}
+                  }
+               }
+            }
+         },
+         "Love" : {
+            "option" : {
+               "Longing" : {
+                  "option" : {
+                     "Longing" : {}
+                  }
+               },
+               "Affection" : {
+                  "option" : {
+                     "Attractiveness" : {},
+                     "Caring" : {},
+                     "Adoration" : {},
+                     "Liking" : {},
+                     "Tenderness" : {},
+                     "Compassion" : {},
+                     "Fondness" : {},
+                     "Sentimentality" : {}
+                  }
+               },
+               "Lust/Sexual desire" : {
+                  "option" : {
+                     "Infatuation" : {},
+                     "Passion" : {},
+                     "Desire" : {}
+                  }
+               }
+            }
+         }
+      }
+   },
+   "motivation" : {
+      "motive" : {
+         "seeing the" : {
+            "option" : [
+               {
+                  "content" : "world"
+               },
+               {
+                  "content" : "city"
+               }
+            ]
+         },
+         "here to secretly assassinate" : {
+            "option" : [
+               {
+                  "content" : "a ruler"
+               },
+               {
+                  "content" : "a merchant"
+               },
+               {
+                  "content" : "a peasant"
+               },
+               {
+                  "content" : "a scholar"
+               },
+               {
+                  "content" : "a thug"
+               }
+            ]
+         },
+         "traveling with" : {
+            "option" : [
+               {
+                  "content" : "a diplomat"
+               },
+               {
+                  "content" : "a circus"
+               },
+               {
+                  "content" : "an expidition"
+               },
+               {
+                  "content" : "an important person"
+               },
+               {
+                  "content" : "an acting troupe"
+               }
+            ]
+         },
+         "traveling the world as" : {
+            "option" : [
+               {
+                  "content" : "a trader"
+               },
+               {
+                  "content" : "a pilgrim"
+               },
+               {
+                  "content" : "a missionary"
+               },
+               {
+                  "content" : "a beggar"
+               },
+               {
+                  "content" : "an unemployed specialist"
+               }
+            ]
+         },
+         "here to destroy" : {
+            "option" : [
+               {
+                  "content" : "an artifact"
+               },
+               {
+                  "content" : "a misconception"
+               },
+               {
+                  "content" : "a rumor"
+               }
+            ]
+         },
+         "delivering a message to" : {
+            "option" : [
+               {
+                  "content" : "a ruler"
+               },
+               {
+                  "content" : "a merchant"
+               },
+               {
+                  "content" : "a peasant"
+               },
+               {
+                  "content" : "a scholar"
+               },
+               {
+                  "content" : "a thug"
+               }
+            ]
+         },
+         "finding work as" : {
+            "option" : [
+               {
+                  "content" : "a skilled laborer"
+               },
+               {
+                  "content" : "a merchant"
+               },
+               {
+                  "content" : "a mercenary"
+               },
+               {
+                  "content" : "a healer"
+               },
+               {
+                  "content" : "a spy"
+               }
+            ]
+         },
+         "following" : {
+            "option" : [
+               {
+                  "content" : "rumors of riches"
+               },
+               {
+                  "content" : "rediscovered ancient lore"
+               },
+               {
+                  "content" : "the voices"
+               },
+               {
+                  "content" : "a message from an angel"
+               }
+            ]
+         },
+         "here to buy" : {
+            "option" : [
+               {
+                  "content" : "supplies"
+               },
+               {
+                  "content" : "spices"
+               },
+               {
+                  "content" : "slaves"
+               }
+            ]
+         },
+         "cleaning out" : {
+            "option" : [
+               {
+                  "content" : "a monster infestation"
+               },
+               {
+                  "content" : "a wealthy person"
+               },
+               {
+                  "content" : "a bug infestation"
+               },
+               {
+                  "content" : "a slum"
+               }
+            ]
+         },
+         "on a mission" : {
+            "option" : [
+               {
+                  "content" : "from the gods"
+               },
+               {
+                  "content" : "for diplomacy"
+               },
+               {
+                  "content" : "to collect a debt"
+               },
+               {
+                  "content" : "to capture someone"
+               }
+            ]
+         },
+         "doing something" : {
+            "option" : [
+               {
+                  "content" : "nefarious"
+               },
+               {
+                  "content" : "amazing"
+               },
+               {
+                  "content" : "impossible"
+               },
+               {
+                  "content" : "secret"
+               },
+               {
+                  "content" : "questionable"
+               }
+            ]
+         },
+         "seeking" : {
+            "option" : [
+               {
+                  "content" : "thrills and adventure"
+               },
+               {
+                  "content" : "honest work"
+               },
+               {
+                  "content" : "dishonest work"
+               },
+               {
+                  "content" : "revenge"
+               },
+               {
+                  "content" : "healing for a crippling injury"
+               }
+            ]
+         },
+         "fleeing" : {
+            "option" : [
+               {
+                  "content" : "the law"
+               },
+               {
+                  "content" : "an assassin"
+               },
+               {
+                  "content" : "debtors"
+               },
+               {
+                  "content" : "an abusive lover"
+               },
+               {
+                  "content" : "a natural disaster"
+               },
+               {
+                  "content" : "overdue taxes"
+               },
+               {
+                  "content" : "a bad family situation"
+               },
+               {
+                  "content" : "from forced labor"
+               }
+            ]
+         },
+         "brokering a truce" : {
+            "option" : [
+               {
+                  "content" : "over a trade war"
+               },
+               {
+                  "content" : "over escalating tension"
+               }
+            ]
+         },
+         "finding a long-lost" : {
+            "option" : [
+               {
+                  "content" : "parent"
+               },
+               {
+                  "content" : "sibling"
+               },
+               {
+                  "content" : "friend"
+               },
+               {
+                  "content" : "distant relative"
+               }
+            ]
+         },
+         "finding a missing" : {
+            "option" : [
+               {
+                  "content" : "parent"
+               },
+               {
+                  "content" : "sibling"
+               },
+               {
+                  "content" : "friend"
+               },
+               {
+                  "content" : "nemesis"
+               },
+               {
+                  "content" : "criminal"
+               },
+               {
+                  "content" : "artifact"
+               },
+               {
+                  "content" : "treasure"
+               },
+               {
+                  "content" : "map"
+               },
+               {
+                  "content" : "heir"
+               },
+               {
+                  "content" : "artifact"
+               }
+            ]
+         }
+      }
+   },
+   "class" : {
+      "option" : [
+         {
+            "content" : "Commoner",
+            "max" : "23"
+         },
+         {
+            "min" : "24",
+            "content" : "Expert",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "Warrior",
+            "max" : "43"
+         },
+         {
+            "min" : "44",
+            "content" : "Rogue",
+            "max" : "49"
+         },
+         {
+            "min" : "50",
+            "content" : "Barbarian",
+            "max" : "52"
+         },
+         {
+            "min" : "53",
+            "content" : "Monk",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "Bard",
+            "max" : "59"
+         },
+         {
+            "min" : "60",
+            "content" : "Cleric",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "Druid",
+            "max" : "69"
+         },
+         {
+            "min" : "70",
+            "content" : "Fighter",
+            "max" : "77"
+         },
+         {
+            "min" : "78",
+            "content" : "Adept",
+            "max" : "83"
+         },
+         {
+            "min" : "84",
+            "content" : "Sorcerer",
+            "max" : "87"
+         },
+         {
+            "min" : "88",
+            "content" : "Wizard",
+            "max" : "91"
+         },
+         {
+            "min" : "92",
+            "content" : "Aristocrat",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "Paladin",
+            "max" : "97"
+         },
+         {
+            "min" : "99",
+            "content" : "Ranger"
+         }
+      ]
+   },
+   "sex" : {
+      "option" : [
+         {
+            "pronoun" : "he",
+            "content" : "male",
+            "max" : "49"
+         },
+         {
+            "pronoun" : "she",
+            "min" : "50",
+            "content" : "female",
+            "max" : "98"
+         },
+         {
+            "pronoun" : "it",
+            "min" : "99",
+            "content" : "androgynous"
+         }
+      ]
+   }
+}

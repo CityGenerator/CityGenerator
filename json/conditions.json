@@ -1,0 +1,304 @@
+{
+   "forecast" : {
+      "option" : [
+         {
+            "content" : "clear"
+         },
+         {
+            "content" : "overcast"
+         },
+         {
+            "content" : "stormy"
+         }
+      ]
+   },
+   "wind" : {
+      "option" : [
+         {
+            "content" : "breezy",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "dead",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "soft",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "heavy",
+            "pop_mod" : "0.95"
+         },
+         {
+            "content" : "strong",
+            "pop_mod" : "0.90"
+         },
+         {
+            "content" : "incredibly strong",
+            "pop_mod" : "0.85"
+         }
+      ]
+   },
+   "storm" : {
+      "chance" : "20",
+      "lightning" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "terrifying"
+            },
+            {
+               "content" : "explosive"
+            },
+            {
+               "content" : "blinding"
+            }
+         ]
+      },
+      "option" : [
+         {
+            "content" : "in the distance"
+         },
+         {
+            "content" : "nearby"
+         },
+         {
+            "content" : "overhead"
+         }
+      ],
+      "thunder" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "barely audible"
+            },
+            {
+               "content" : "roaring"
+            },
+            {
+               "content" : "rumbling"
+            }
+         ]
+      }
+   },
+   "temp" : {
+      "option" : [
+         {
+            "content" : "unbearably cold",
+            "pop_mod" : "0.10"
+         },
+         {
+            "content" : "freezing",
+            "pop_mod" : "0.20"
+         },
+         {
+            "content" : "cold",
+            "pop_mod" : "0.30"
+         },
+         {
+            "content" : "chilly",
+            "pop_mod" : "0.50"
+         },
+         {
+            "content" : "cool",
+            "pop_mod" : "0.90"
+         },
+         {
+            "content" : "mild",
+            "pop_mod" : "0.95"
+         },
+         {
+            "content" : "pleasant",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "warm",
+            "pop_mod" : "1.10"
+         },
+         {
+            "content" : "hot",
+            "pop_mod" : "0.90"
+         },
+         {
+            "content" : "unbearably hot",
+            "pop_mod" : "0.50"
+         }
+      ]
+   },
+   "time" : {
+      "option" : [
+         {
+            "bar_mod" : "0",
+            "time" : "06:00",
+            "content" : "at daybreak",
+            "pop_mod" : "1.0"
+         },
+         {
+            "bar_mod" : "2",
+            "time" : "10:00",
+            "content" : "mid-morning",
+            "pop_mod" : "1.5"
+         },
+         {
+            "bar_mod" : "4",
+            "time" : "12:00",
+            "content" : "around noon",
+            "pop_mod" : "3.0"
+         },
+         {
+            "bar_mod" : "2",
+            "time" : "02:00",
+            "content" : "in the afternoon",
+            "pop_mod" : "3.0"
+         },
+         {
+            "bar_mod" : "4",
+            "time" : "04:00",
+            "content" : "mid-day",
+            "pop_mod" : "2.0"
+         },
+         {
+            "bar_mod" : "6",
+            "time" : "06:00",
+            "content" : "in the early evening",
+            "pop_mod" : "1.5"
+         },
+         {
+            "bar_mod" : "8",
+            "time" : "08:00",
+            "content" : "before nightfall",
+            "pop_mod" : "1.0"
+         },
+         {
+            "bar_mod" : "10",
+            "time" : "10:00",
+            "content" : "after nightfall",
+            "pop_mod" : "0.75"
+         },
+         {
+            "bar_mod" : "8",
+            "time" : "00:00",
+            "content" : "at midnight",
+            "pop_mod" : "0.5"
+         },
+         {
+            "bar_mod" : "4",
+            "time" : "02:00",
+            "content" : "in the dead of night",
+            "pop_mod" : "0.25"
+         },
+         {
+            "bar_mod" : "0",
+            "time" : "04:00",
+            "content" : "before dawn",
+            "pop_mod" : "0.5"
+         }
+      ]
+   },
+   "clouds" : {
+      "content" : " There are ______ clouds.\n        ",
+      "option" : [
+         {
+            "content" : "whispy"
+         },
+         {
+            "content" : "light"
+         },
+         {
+            "content" : "thick"
+         },
+         {
+            "content" : "dark"
+         },
+         {
+            "content" : "brooding"
+         }
+      ]
+   },
+   "precip" : {
+      "chance" : "65",
+      "option" : [
+         {
+            "type" : "sprinkling"
+         },
+         {
+            "type" : "misty"
+         },
+         {
+            "option" : [
+               {
+                  "type" : ""
+               },
+               {
+                  "type" : "lightly"
+               },
+               {
+                  "type" : "moderately"
+               },
+               {
+                  "type" : "heavily"
+               }
+            ],
+            "type" : "foggy"
+         },
+         {
+            "option" : [
+               {
+                  "type" : ""
+               },
+               {
+                  "type" : "lightly"
+               },
+               {
+                  "type" : "moderately"
+               },
+               {
+                  "type" : "heavily"
+               }
+            ],
+            "type" : "raining"
+         },
+         {
+            "type" : "downpouring"
+         },
+         {
+            "type" : "sleeting"
+         },
+         {
+            "option" : [
+               {
+                  "type" : "raining small (pea size)"
+               },
+               {
+                  "type" : "raining medium (walnut size)"
+               },
+               {
+                  "type" : "raining large (orange size)"
+               }
+            ],
+            "type" : "hail"
+         }
+      ]
+   },
+   "air" : {
+      "option" : [
+         {
+            "content" : "fresh",
+            "pop_mod" : "1.10"
+         },
+         {
+            "content" : "thin",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "thick",
+            "pop_mod" : "1.0"
+         },
+         {
+            "content" : "humid",
+            "pop_mod" : "0.90"
+         }
+      ]
+   }
+}

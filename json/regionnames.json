@@ -1,0 +1,230 @@
+{
+   "trailer" : [
+      {
+         "content" : "District"
+      },
+      {
+         "content" : "Domain"
+      },
+      {
+         "content" : "Province"
+      },
+      {
+         "content" : "Region"
+      },
+      {
+         "content" : "Territory"
+      }
+   ],
+   "title_chance" : "22",
+   "post" : [
+      {
+         "content" : "ak"
+      },
+      {
+         "content" : "an"
+      },
+      {
+         "content" : "andy"
+      },
+      {
+         "content" : "anti"
+      },
+      {
+         "content" : "at"
+      },
+      {
+         "content" : "dia"
+      },
+      {
+         "content" : "eese"
+      },
+      {
+         "content" : "ep"
+      },
+      {
+         "content" : "ia"
+      },
+      {
+         "content" : "ica"
+      },
+      {
+         "content" : "ique"
+      },
+      {
+         "content" : "ish"
+      },
+      {
+         "content" : "mou"
+      },
+      {
+         "content" : "or"
+      },
+      {
+         "content" : "oupe"
+      },
+      {
+         "content" : "ubia"
+      }
+   ],
+   "pre" : [
+      {
+         "content" : "Aqui"
+      },
+      {
+         "content" : "Ash"
+      },
+      {
+         "content" : "Ber"
+      },
+      {
+         "content" : "Brit"
+      },
+      {
+         "content" : "Bur"
+      },
+      {
+         "content" : "Cap"
+      },
+      {
+         "content" : "Cala"
+      },
+      {
+         "content" : "Cen"
+      },
+      {
+         "content" : "Cham"
+      },
+      {
+         "content" : "Cona"
+      },
+      {
+         "content" : "Don"
+      },
+      {
+         "content" : "Ful"
+      },
+      {
+         "content" : "Kin"
+      },
+      {
+         "content" : "Kon"
+      },
+      {
+         "content" : "Lor"
+      },
+      {
+         "content" : "Mar"
+      },
+      {
+         "content" : "Mool"
+      },
+      {
+         "content" : "Nill"
+      },
+      {
+         "content" : "Pica"
+      },
+      {
+         "content" : "Sar"
+      },
+      {
+         "content" : "Tre"
+      },
+      {
+         "content" : "Umb"
+      },
+      {
+         "content" : "Ven"
+      },
+      {
+         "content" : "Wal"
+      }
+   ],
+   "post_chance" : "30",
+   "root" : [
+      {
+         "content" : "ark"
+      },
+      {
+         "content" : "be"
+      },
+      {
+         "content" : "bor"
+      },
+      {
+         "content" : "can"
+      },
+      {
+         "content" : "din"
+      },
+      {
+         "content" : "em"
+      },
+      {
+         "content" : "gan"
+      },
+      {
+         "content" : "kan"
+      },
+      {
+         "content" : "kil"
+      },
+      {
+         "content" : "kry"
+      },
+      {
+         "content" : "lak"
+      },
+      {
+         "content" : "loon"
+      },
+      {
+         "content" : "man"
+      },
+      {
+         "content" : "mou"
+      },
+      {
+         "content" : "nah"
+      },
+      {
+         "content" : "sak"
+      },
+      {
+         "content" : "ran"
+      }
+   ],
+   "title" : [
+      {
+         "content" : "Eastern"
+      },
+      {
+         "content" : "Central"
+      },
+      {
+         "content" : "Greater"
+      },
+      {
+         "content" : "Inner"
+      },
+      {
+         "content" : "Lesser"
+      },
+      {
+         "content" : "Lower"
+      },
+      {
+         "content" : "Middle"
+      },
+      {
+         "content" : "Outer"
+      },
+      {
+         "content" : "Upper"
+      },
+      {
+         "content" : "Western"
+      }
+   ]
+}

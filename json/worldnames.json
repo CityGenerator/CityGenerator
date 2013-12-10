@@ -1,0 +1,97 @@
+{
+   "title_chance" : "10",
+   "root_chance" : "30",
+   "post" : [
+      {
+         "content" : "ry"
+      },
+      {
+         "content" : "nus"
+      },
+      {
+         "content" : "rth"
+      },
+      {
+         "content" : "rs"
+      },
+      {
+         "content" : "rn"
+      },
+      {
+         "content" : "ter"
+      },
+      {
+         "content" : "us"
+      },
+      {
+         "content" : "une"
+      },
+      {
+         "content" : "to"
+      },
+      {
+         "content" : "on"
+      },
+      {
+         "content" : "can"
+      }
+   ],
+   "pre" : [
+      {
+         "content" : "Mer"
+      },
+      {
+         "content" : "Ven"
+      },
+      {
+         "content" : "Ea"
+      },
+      {
+         "content" : "Ma"
+      },
+      {
+         "content" : "Sat"
+      },
+      {
+         "content" : "Jup"
+      },
+      {
+         "content" : "Urn"
+      },
+      {
+         "content" : "Nep"
+      },
+      {
+         "content" : "Plu"
+      },
+      {
+         "content" : "Vul"
+      },
+      {
+         "content" : "Kli"
+      }
+   ],
+   "root" : [
+      {
+         "content" : "bah"
+      },
+      {
+         "content" : "ket"
+      },
+      {
+         "content" : "a"
+      },
+      {
+         "content" : "i"
+      },
+      {
+         "content" : "cur"
+      },
+      {
+         "content" : "lax"
+      },
+      {
+         "content" : "ng"
+      }
+   ]
+}

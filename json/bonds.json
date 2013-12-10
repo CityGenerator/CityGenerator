@@ -1,0 +1,625 @@
+{
+   "feature" : {
+      "when" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "recently"
+            },
+            {
+               "content" : "Yesterday"
+            },
+            {
+               "content" : "long long ago"
+            },
+            {
+               "content" : "in the past"
+            },
+            {
+               "content" : "years ago"
+            },
+            {
+               "content" : "when it was most needed"
+            },
+            {
+               "content" : "at one time"
+            },
+            {
+               "content" : "on one occasion"
+            }
+         ]
+      },
+      "template" : {
+         "option" : [
+            {
+               "content" : "[%person.0%] accepted [%person.1%] despite obvious failings. Which failing was the hardest?"
+            },
+            {
+               "content" : "[%person.0%] admired [%person.1%] secretly. Any idea why?"
+            },
+            {
+               "content" : "[%person.0%] advised [%person.1%] incorrectly. What were the consequences?"
+            },
+            {
+               "content" : "[%person.0%] advised [%person.1%] correctly. What were the consequences?"
+            },
+            {
+               "content" : "[%person.0%] agreed with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] alerted [%person.1%] to impending danger."
+            },
+            {
+               "content" : "[%person.0%] amused [%person.1%] in an unusual way."
+            },
+            {
+               "content" : "[%person.0%] annoyed [%person.1%] in an unusual way."
+            },
+            {
+               "content" : "[%person.0%] argued with [%person.1%] at the worst possible moment."
+            },
+            {
+               "content" : "[%person.0%] accidentally lead to the arrest of [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] attacked [%person.1%] over an unpaid bill long ago. Some think [%person.3%] still harbors a grudge."
+            },
+            {
+               "content" : "You and [%other%] battled on opposite sides of a conflict."
+            },
+            {
+               "content" : "You and [%other%] belonged to the same group."
+            },
+            {
+               "content" : "You and [%other%] burned an enemy's house down."
+            },
+            {
+               "content" : "[%person.0%] bet against [%person.1%] and lost."
+            },
+            {
+               "content" : "[%person.0%] bet against [%person.1%] and won."
+            },
+            {
+               "content" : "[%person.0%] bet against [%person.1%] and cheated to win."
+            },
+            {
+               "content" : "[%person.0%] camped together recently."
+            },
+            {
+               "content" : "[%person.0%] challenged each other to a duel to the death and both lost."
+            },
+            {
+               "content" : "[%person.0%] tampered with a jury for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] charged a bear with a chicken wing to defend [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] chased a wild boar for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] cheated [%person.1%] at poker."
+            },
+            {
+               "content" : "[%person.0%] choked [%person.1%] in a brawl."
+            },
+            {
+               "content" : "[%person.0%] claim to have given [%person.1%] something of value."
+            },
+            {
+               "content" : "[%person.0%] cleaned [%person.1%] armor acter losing a bet."
+            },
+            {
+               "content" : "[%person.0%] collected a bounty on [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] commanded [%person.1%] in battle."
+            },
+            {
+               "content" : "[%person.0%] competed for a prize with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] confessed to a crime [%person.1%] committed."
+            },
+            {
+               "content" : "[%person.0%] confused [%person.1%] with a bizarre story."
+            },
+            {
+               "content" : "[%person.0%] corrected [%person.1%] in front of royalty."
+            },
+            {
+               "content" : "[%person.0%] coughed blood on [%person.1%] after a battle."
+            },
+            {
+               "content" : "[%person.0%] counted on [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] covered for [%person.1%] to prevent an execution."
+            },
+            {
+               "content" : "[%person.0%] literally crawled over broken glass for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] crossed a raging river to help [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] cried openly in front of [%person.1%] about a dark secret."
+            },
+            {
+               "content" : "[%person.0%] found a cure for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] danced with the devil to save [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] dared [%person.1%] to do something stupid- ending in arrest, fines and community service."
+            },
+            {
+               "content" : "[%person.0%] deceived [%person.1%] in an appalling way."
+            },
+            {
+               "content" : "[%person.0%] delayed [%person.1%], resulting in the death of a loved one."
+            },
+            {
+               "content" : "[%person.0%] delivered crushing news to [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] depended on [%person.1%] to come through. [%person.1%] did."
+            },
+            {
+               "content" : "[%person.0%] depended on [%person.1%] to come through. [%person.1%] didn't."
+            },
+            {
+               "content" : "[%person.0%] deserted [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] destroyed a cursed item to save [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] disarmed [%person.1%] in an embarassing sparring session."
+            },
+            {
+               "content" : "[%person.0%] discovered that [%person.1%] has a deep, dark secret."
+            },
+            {
+               "content" : "[%person.0%] discovered that [%person.1%] lied about something critical."
+            },
+            {
+               "content" : "[%person.0%] divided the loot improperly with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] doubted [%person.1%] and was proven wrong."
+            },
+            {
+               "content" : "[%person.0%] dragged [%person.1%] somewhere dangerous."
+            },
+            {
+               "content" : "[%person.0%] had a prophetic dream about [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] dressed up in drag to save [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] dropped [%person.1%] down a well on accident."
+            },
+            {
+               "content" : "[%person.0%] nearly drown trying to save [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] earned [%person.1%] an undeserved reputation."
+            },
+            {
+               "content" : "[%person.0%] educated [%person.1%] on the birds and the bees."
+            },
+            {
+               "content" : "[%person.0%] embarrassed [%person.1%] in front of royalty."
+            },
+            {
+               "content" : "[%person.0%] employed [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] emptied a bottle that belonged to [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] encouraged [%person.1%] to do something brave, despite the paralysing fear."
+            },
+            {
+               "content" : "[%person.0%] enjoyed traveling with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] entered into an agreement with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] entertained [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] escaped with [%person.1%] from certain death."
+            },
+            {
+               "content" : "[%person.0%] examined an injury [%person.1%] would rather forget."
+            },
+            {
+               "content" : "[%person.0%] thinks of excuses for [%person.1%] when they're needed."
+            },
+            {
+               "content" : "[%person.0%] expected better of [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] explained things in small words for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] faced [%person.1%] in single combat.  [%ucfirst(person.3)%] lost."
+            },
+            {
+               "content" : "[%person.0%] failed in a way that [%person.1%] will never forget."
+            },
+            {
+               "content" : "[%person.0%] fenced an item for [%person.1%] once."
+            },
+            {
+               "content" : "[%person.0%] fetched help when [%person.1%] got stuck."
+            },
+            {
+               "content" : "[%person.0%] fired [%person.1%] on a previous job."
+            },
+            {
+               "content" : "[%person.0%] fixed a bet with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] followed [%person.1%] into the wrong brothel."
+            },
+            {
+               "content" : "[%person.0%] unknowingly fooled [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] forced [%person.1%] into a bad situation."
+            },
+            {
+               "content" : "[%person.0%] formed an incorrect option of [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] found [%person.1%] on the verge of death."
+            },
+            {
+               "content" : "[%person.0%] accidentally framed [%person.1%] for murder."
+            },
+            {
+               "content" : "[%person.0%] accidentally framed [%person.1%] for theft."
+            },
+            {
+               "content" : "[%person.0%] frightened small children and blamed [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] glued a fork to [%person.1%] in a prank gone horribly wrong."
+            },
+            {
+               "content" : "[%person.0%] guaranteed good behavior from [%person.1%] in return for lienency."
+            },
+            {
+               "content" : "[%person.0%] guarded treasure that [%person.1%] unsuccessfully tried to steal."
+            },
+            {
+               "content" : "[%person.0%] guarded treasure that [%person.1%] successfully to stole."
+            },
+            {
+               "content" : "[%person.0%] guided [%person.1%] into danger."
+            },
+            {
+               "content" : "[%person.0%] harassed [%person.1%] for amusement."
+            },
+            {
+               "content" : "[%person.0%] inadvertently harmed someone and [%person.1%] took the blame."
+            },
+            {
+               "content" : "[%person.0%] hated [%person.1%] at first sight."
+            },
+            {
+               "content" : "[%person.0%] swore to haunt [%person.1%] if [%person.0%] died."
+            },
+            {
+               "content" : "[%person.0%] healed [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] helped [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] hooked [%person.1%] with a fish hook on accident."
+            },
+            {
+               "content" : "[%person.0%] hoped to never see [%person.1%] again."
+            },
+            {
+               "content" : "[%person.0%] hovered over every decision [%person.1%] made."
+            },
+            {
+               "content" : "[%person.0%] hugged [%person.1%] inappropriately."
+            },
+            {
+               "content" : "[%person.0%] hums to drive [%person.1%] crazy."
+            },
+            {
+               "content" : "[%person.0%] likes to hunt with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] often felt hurried by [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] identified [%person.1%] as the person responsible for an unsolved crime."
+            },
+            {
+               "content" : "[%person.0%] ignored [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] imagined [%person.1%] without clothing on accident."
+            },
+            {
+               "content" : "[%person.0%] impressed [%person.1%] with a quick wit."
+            },
+            {
+               "content" : "[%person.0%] included [%person.1%] so [%person.1%] wouldn't feel bad."
+            },
+            {
+               "content" : "[%person.0%] influenced [%person.1%] in a good way."
+            },
+            {
+               "content" : "[%person.0%] influenced [%person.1%] in a bad way."
+            },
+            {
+               "content" : "[%person.0%] informed [%person.1%] of an approaching assassin."
+            },
+            {
+               "content" : "[%person.0%] drugged [%person.1%] for kicks."
+            },
+            {
+               "content" : "[%person.0%] injured [%person.1%] intentionally."
+            },
+            {
+               "content" : "[%person.0%] injured [%person.1%] unintentionally."
+            },
+            {
+               "content" : "[%person.0%] instructed [%person.1%] on how to play the spoons."
+            },
+            {
+               "content" : "[%person.0%] intended to turn [%person.1%] into the authorities."
+            },
+            {
+               "content" : "[%person.0%] interrupted [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] introduced [%person.1%] to a bad influence."
+            },
+            {
+               "content" : "[%person.0%] invented a wonderous item which [%person.1%] destroyed."
+            },
+            {
+               "content" : "[%person.0%] invited [%person.1%] to the wrong party."
+            },
+            {
+               "content" : "[%person.0%] irritated [%person.1%] less than [%person.1%] would like to admit."
+            },
+            {
+               "content" : "[%person.0%] judged [%person.1%] too quickly."
+            },
+            {
+               "content" : "[%person.0%] kicked [%person.1%] in the groin."
+            },
+            {
+               "content" : "[%person.0%] nearly killed [%person.1%], and [%person.1%] knows it."
+            },
+            {
+               "content" : "[%person.0%] knocked [%person.1%] out."
+            },
+            {
+               "content" : "[%person.0%] learned not to trust [%person.1%] so easily."
+            },
+            {
+               "content" : "[%person.0%] lied to [%person.1%] about something and got caught."
+            },
+            {
+               "content" : "[%person.0%] liked [%person.1%] a lot more before \"the incident\"."
+            },
+            {
+               "content" : "[%person.0%] lock [%person.1%] in the bottom of a privvy."
+            },
+            {
+               "content" : "[%person.0%] managed to irritate [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] murdered someone to protect [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] murdered someone to frame [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] nailed [%person.1%] to a tree."
+            },
+            {
+               "content" : "[%person.0%] took notes for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] obtained treasure for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] offended [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] often offers his help to [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] opened doors for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] ordered all his tools from [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] owed [%person.1%] his life."
+            },
+            {
+               "content" : "[%person.0%] owned [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] painted [%person.1%] in a bad light."
+            },
+            {
+               "content" : "[%person.0%] parked carriages for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] parted ways with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] paused to chat with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pecked [%person.1%] on the cheek."
+            },
+            {
+               "content" : "[%person.0%] peeped when [%person.1%] is changing."
+            },
+            {
+               "content" : "[%person.0%] performed heroic deeds for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] permited [%person.1%] to live on his property."
+            },
+            {
+               "content" : "[%person.0%] picked on [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pined for the fjords with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] placed [%person.1%] on a pedestal."
+            },
+            {
+               "content" : "[%person.0%] planted evidence to frame [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] played mindgames with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] poked fun at [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] polished the knobs for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] popped pills with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] poured wine for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] practiced the magic arts with [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] preached to [%person.1%] about his religion."
+            },
+            {
+               "content" : "[%person.0%] preceded [%person.1%] in the family tree."
+            },
+            {
+               "content" : "[%person.0%] presented his poetry to [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pressed [%person.1%] to take action."
+            },
+            {
+               "content" : "[%person.0%] printed libelous pamphlets about [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] produced [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] promised the world to [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] provided [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pulled practical jokes on [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pumped water for [%person.1%]."
+            },
+            {
+               "content" : "[%person.0%] pushed [%person.1%] over a cliff."
+            }
+         ]
+      }
+   },
+   "reason" : {
+      "when" : {
+         "option" : [
+            {},
+            {}
+         ]
+      },
+      "what" : {
+         "option" : [
+            {
+               "content" : "What were the details?"
+            },
+            {
+               "content" : "What lead to this?"
+            },
+            {
+               "content" : "What happened?"
+            },
+            {
+               "content" : "What is missing?"
+            },
+            {
+               "content" : "What was the reason?"
+            },
+            {
+               "content" : "What will they do?"
+            }
+         ]
+      },
+      "how" : {
+         "option" : [
+            {
+               "content" : "How?"
+            },
+            {
+               "content" : "How come?"
+            },
+            {
+               "content" : "How did you stop them?"
+            }
+         ]
+      },
+      "application" : {
+         "option" : [
+            {},
+            {}
+         ]
+      },
+      "analysis" : {
+         "option" : [
+            {},
+            {}
+         ]
+      },
+      "where" : {
+         "option" : [
+            {
+               "content" : "Where did this happen?"
+            },
+            {}
+         ]
+      },
+      "synthesis" : {
+         "option" : [
+            {},
+            {}
+         ]
+      },
+      "evaluation" : {
+         "option" : [
+            {},
+            {}
+         ]
+      }
+   }
+}

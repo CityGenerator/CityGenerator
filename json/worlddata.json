@@ -1,0 +1,880 @@
+{
+   "surface" : {
+      "option" : [
+         {
+            "maxkm" : "85000000",
+            "max" : "10",
+            "minkm" : "65000000",
+            "size" : "tiny"
+         },
+         {
+            "maxkm" : "500000000",
+            "min" : "11",
+            "max" : "20",
+            "minkm" : "85000000",
+            "size" : "small"
+         },
+         {
+            "maxkm" : "760000000",
+            "min" : "21",
+            "max" : "80",
+            "minkm" : "500000000",
+            "size" : "average"
+         },
+         {
+            "maxkm" : "1048000000",
+            "min" : "81",
+            "minkm" : "760000000",
+            "size" : "large"
+         },
+         {
+            "maxkm" : "1448000000",
+            "min" : "81",
+            "minkm" : "1048000000",
+            "size" : "massive"
+         }
+      ]
+   },
+   "precipitation" : {
+      "option" : [
+         {
+            "content" : "scarce",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "rare",
+            "max" : "31"
+         },
+         {
+            "min" : "30",
+            "content" : "common",
+            "max" : "55"
+         },
+         {
+            "min" : "65",
+            "content" : "plentiful",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "abundant",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "excessive"
+         }
+      ]
+   },
+   "size" : {
+      "option" : [
+         {
+            "content" : "small",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "average",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "large",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "massive",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "supermassive"
+         }
+      ]
+   },
+   "wind" : {
+      "option" : [
+         {
+            "content" : "breezy"
+         },
+         {
+            "content" : "dead"
+         },
+         {
+            "content" : "soft"
+         },
+         {
+            "content" : "heavy"
+         },
+         {
+            "content" : "strong"
+         },
+         {
+            "content" : "incredibly strong"
+         }
+      ]
+   },
+   "day" : {
+      "option" : [
+         {
+            "max" : "5",
+            "minhour" : "10",
+            "maxhour" : "15"
+         },
+         {
+            "min" : "6",
+            "max" : "10",
+            "minhour" : "16",
+            "maxhour" : "20"
+         },
+         {
+            "min" : "11",
+            "max" : "90",
+            "minhour" : "21",
+            "maxhour" : "40"
+         },
+         {
+            "min" : "91",
+            "max" : "98",
+            "minhour" : "40",
+            "maxhour" : "50"
+         },
+         {
+            "min" : "99",
+            "minhour" : "51",
+            "maxhour" : "100"
+         }
+      ]
+   },
+   "atmosphere" : {
+      "option" : [
+         {
+            "color" : "blue",
+            "reason" : {
+               "content" : "water vapor"
+            },
+            "max" : "40"
+         },
+         {
+            "color" : "white",
+            "min" : "41",
+            "reason" : [
+               {
+                  "content" : "clouds"
+               },
+               {
+                  "content" : "pollution"
+               }
+            ],
+            "max" : "45"
+         },
+         {
+            "color" : "gray",
+            "min" : "46",
+            "reason" : [
+               {
+                  "content" : "clouds"
+               },
+               {
+                  "content" : "pollution"
+               }
+            ],
+            "max" : "50"
+         },
+         {
+            "color" : "brown",
+            "min" : "51",
+            "reason" : [
+               {
+                  "content" : "pollution"
+               },
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "55"
+         },
+         {
+            "color" : "red",
+            "min" : "56",
+            "reason" : [
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "60"
+         },
+         {
+            "color" : "pink",
+            "min" : "61",
+            "reason" : [
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "65"
+         },
+         {
+            "color" : "green",
+            "min" : "66",
+            "reason" : [
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "airborn plankton"
+               }
+            ],
+            "max" : "70"
+         },
+         {
+            "color" : "yellow",
+            "min" : "71",
+            "reason" : [
+               {
+                  "content" : "pollution"
+               },
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "75"
+         },
+         {
+            "color" : "beige",
+            "min" : "76",
+            "reason" : [
+               {
+                  "content" : "pollution"
+               },
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "80"
+         },
+         {
+            "color" : "orange",
+            "min" : "81",
+            "reason" : [
+               {
+                  "content" : "pollution"
+               },
+               {
+                  "content" : "dust"
+               }
+            ],
+            "max" : "85"
+         },
+         {
+            "color" : "purple",
+            "min" : "86",
+            "max" : "90"
+         },
+         {
+            "color" : "murky",
+            "min" : "91",
+            "reason" : [
+               {
+                  "content" : "clouds"
+               },
+               {
+                  "content" : "pollution"
+               },
+               {
+                  "content" : "noxious fumes"
+               },
+               {
+                  "content" : "dust"
+               }
+            ]
+         }
+      ],
+      "reason_chance" : "50"
+   },
+   "celestial" : {
+      "number" : {
+         "option" : [
+            {
+               "count" : "0",
+               "max" : "30",
+               "type" : "nothing unusual"
+            },
+            {
+               "count" : "1",
+               "min" : "31",
+               "max" : "60",
+               "type" : "a celestial object"
+            },
+            {
+               "count" : "2",
+               "min" : "61",
+               "max" : "90",
+               "type" : "two celestial objects"
+            },
+            {
+               "count" : "3",
+               "min" : "91",
+               "type" : "three celestial objects"
+            }
+         ]
+      },
+      "name" : {
+         "option" : [
+            {
+               "content" : "nebula"
+            },
+            {
+               "content" : "galaxy"
+            },
+            {
+               "content" : "supernova"
+            },
+            {
+               "content" : "pulsar"
+            },
+            {
+               "content" : "black hole"
+            },
+            {
+               "content" : "nearby planet"
+            },
+            {
+               "content" : "asteroid belt"
+            }
+         ]
+      },
+      "age" : {
+         "option" : [
+            {
+               "content" : "only a few years"
+            },
+            {
+               "content" : "decades"
+            },
+            {
+               "content" : "centuries"
+            },
+            {
+               "content" : "generations"
+            },
+            {
+               "content" : "millenia"
+            },
+            {
+               "content" : "time immemorial"
+            },
+            {
+               "content" : "all eternity"
+            }
+         ]
+      },
+      "size" : {
+         "option" : [
+            {
+               "content" : "miniscule"
+            },
+            {
+               "content" : "tiny"
+            },
+            {
+               "content" : "imposing"
+            },
+            {
+               "content" : "massive"
+            }
+         ]
+      }
+   },
+   "starcolor" : {
+      "option" : [
+         {
+            "content" : "blue",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "white",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "yellow",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "orange",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "red",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "brown"
+         }
+      ]
+   },
+   "basetemp" : {
+      "option" : [
+         {
+            "content" : "unbearably cold",
+            "pop_mod" : "0.80"
+         },
+         {
+            "content" : "freezing",
+            "pop_mod" : "0.90"
+         },
+         {
+            "content" : "cold",
+            "pop_mod" : "0.95"
+         },
+         {
+            "content" : "chilly",
+            "pop_mod" : "1.00"
+         },
+         {
+            "content" : "cool",
+            "pop_mod" : "1.00"
+         },
+         {
+            "content" : "mild",
+            "pop_mod" : "1.10"
+         },
+         {
+            "content" : "ideal",
+            "pop_mod" : "1.12"
+         },
+         {
+            "content" : "pleasant",
+            "pop_mod" : "1.10"
+         },
+         {
+            "content" : "warm",
+            "pop_mod" : "1.00"
+         },
+         {
+            "content" : "hot",
+            "pop_mod" : "0.95"
+         },
+         {
+            "content" : "unbearably hot",
+            "pop_mod" : "0.90"
+         }
+      ]
+   },
+   "moons" : {
+      "option" : [
+         {
+            "count" : "0",
+            "content" : "no moons",
+            "max" : "30"
+         },
+         {
+            "count" : "1",
+            "min" : "31",
+            "content" : "single moon",
+            "max" : "70"
+         },
+         {
+            "count" : "2",
+            "min" : "71",
+            "content" : "double moon",
+            "max" : "95"
+         },
+         {
+            "count" : "3",
+            "min" : "96",
+            "content" : "triple moon",
+            "max" : "97"
+         },
+         {
+            "count" : "4",
+            "min" : "98",
+            "content" : "quadruple moon"
+         }
+      ]
+   },
+   "civilization" : {
+      "option" : [
+         {
+            "content" : "crude",
+            "max" : "10",
+            "modifier" : "-5"
+         },
+         {
+            "min" : "11",
+            "content" : "scattered",
+            "max" : "20",
+            "modifier" : "-3"
+         },
+         {
+            "min" : "21",
+            "content" : "moderate",
+            "max" : "80",
+            "modifier" : "0"
+         },
+         {
+            "min" : "81",
+            "content" : "prosperous",
+            "max" : "90",
+            "modifier" : "3"
+         },
+         {
+            "min" : "91",
+            "content" : "thriving",
+            "modifier" : "5"
+         }
+      ]
+   },
+   "surfacewater" : {
+      "option" : [
+         {
+            "content" : "scarce",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "rare",
+            "max" : "31"
+         },
+         {
+            "min" : "30",
+            "content" : "common",
+            "max" : "55"
+         },
+         {
+            "min" : "65",
+            "content" : "plentiful",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "abundant",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "excessive"
+         }
+      ]
+   },
+   "stars" : {
+      "option" : [
+         {
+            "count" : "1",
+            "content" : "single star",
+            "max" : "70"
+         },
+         {
+            "count" : "2",
+            "min" : "71",
+            "content" : "binary star",
+            "max" : "95"
+         },
+         {
+            "count" : "3",
+            "min" : "96",
+            "content" : "trinary star"
+         }
+      ]
+   },
+   "plates" : {
+      "option" : [
+         {
+            "maxplate" : "10",
+            "max" : "10",
+            "minplate" : "8"
+         },
+         {
+            "maxplate" : "13",
+            "min" : "11",
+            "max" : "20",
+            "minplate" : "11"
+         },
+         {
+            "maxplate" : "16",
+            "min" : "21",
+            "max" : "60",
+            "minplate" : "14"
+         },
+         {
+            "maxplate" : "20",
+            "min" : "61",
+            "max" : "90",
+            "minplate" : "17"
+         },
+         {
+            "maxplate" : "24",
+            "min" : "91",
+            "minplate" : "21"
+         }
+      ]
+   },
+   "freshwater" : {
+      "option" : [
+         {
+            "content" : "scarce",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "rare",
+            "max" : "31"
+         },
+         {
+            "min" : "30",
+            "content" : "common",
+            "max" : "55"
+         },
+         {
+            "min" : "65",
+            "content" : "plentiful",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "abundant",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "excessive"
+         }
+      ]
+   },
+   "mooncolor" : {
+      "option" : [
+         {
+            "content" : "light blue",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "briliant silver",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "bone white",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "pale yellow",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "rusty red",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "dull brown"
+         }
+      ]
+   },
+   "clouds" : {
+      "option" : [
+         {
+            "content" : "scarce",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "rare",
+            "max" : "31"
+         },
+         {
+            "min" : "30",
+            "content" : "common",
+            "max" : "55"
+         },
+         {
+            "min" : "65",
+            "content" : "plentiful",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "abundant",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "excessive"
+         }
+      ]
+   },
+   "air" : {
+      "option" : [
+         {
+            "content" : "thin"
+         },
+         {
+            "content" : "dense"
+         },
+         {
+            "content" : "heavy"
+         },
+         {
+            "content" : "thick"
+         },
+         {
+            "content" : "fragile"
+         },
+         {
+            "content" : "slight"
+         },
+         {
+            "content" : "poor"
+         },
+         {
+            "content" : "meager"
+         },
+         {
+            "content" : "sparse"
+         },
+         {
+            "content" : "light"
+         },
+         {
+            "content" : "whispy"
+         }
+      ]
+   },
+   "smallstorms" : {
+      "option" : [
+         {
+            "content" : "scarce",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "rare",
+            "max" : "31"
+         },
+         {
+            "min" : "30",
+            "content" : "common",
+            "max" : "55"
+         },
+         {
+            "min" : "65",
+            "content" : "plentiful",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "abundant",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "excessive"
+         }
+      ]
+   },
+   "year" : {
+      "option" : [
+         {
+            "maxday" : "10",
+            "max" : "10",
+            "minday" : "5"
+         },
+         {
+            "min" : "11",
+            "maxday" : "100",
+            "max" : "20",
+            "minday" : "11"
+         },
+         {
+            "min" : "21",
+            "maxday" : "200",
+            "max" : "30",
+            "minday" : "101"
+         },
+         {
+            "min" : "31",
+            "maxday" : "400",
+            "max" : "60",
+            "minday" : "201"
+         },
+         {
+            "min" : "61",
+            "maxday" : "600",
+            "max" : "82",
+            "minday" : "401"
+         },
+         {
+            "min" : "81",
+            "maxday" : "800",
+            "max" : "92",
+            "minday" : "601"
+         },
+         {
+            "min" : "93",
+            "maxday" : "1000",
+            "max" : "93",
+            "minday" : "801"
+         },
+         {
+            "min" : "94",
+            "maxday" : "2000",
+            "max" : "94",
+            "minday" : "1001"
+         },
+         {
+            "min" : "95",
+            "maxday" : "10000",
+            "max" : "95",
+            "minday" : "2001"
+         },
+         {
+            "min" : "96",
+            "maxday" : "50000",
+            "max" : "96",
+            "minday" : "10001"
+         },
+         {
+            "min" : "97",
+            "maxday" : "100000",
+            "max" : "97",
+            "minday" : "50001"
+         },
+         {
+            "min" : "98",
+            "maxday" : "300000",
+            "max" : "98",
+            "minday" : "100001"
+         },
+         {
+            "min" : "99",
+            "maxday" : "700000",
+            "max" : "99",
+            "minday" : "300001"
+         }
+      ]
+   }
+}

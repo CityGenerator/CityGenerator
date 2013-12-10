@@ -1,0 +1,1341 @@
+{
+   "ratio" : {
+      "option" : [
+         {
+            "content" : "1"
+         },
+         {
+            "content" : "1.15"
+         },
+         {
+            "content" : "1.25"
+         },
+         {
+            "content" : "1.33"
+         },
+         {
+            "content" : "1.32"
+         },
+         {
+            "content" : "1.38"
+         },
+         {
+            "content" : "1.39"
+         },
+         {
+            "content" : "1.50"
+         },
+         {
+            "content" : "1.6"
+         },
+         {
+            "content" : "1.67"
+         },
+         {
+            "content" : "1.9"
+         },
+         {
+            "content" : "2.0"
+         },
+         {
+            "content" : "2.55"
+         }
+      ]
+   },
+   "symbol" : {
+      "option" : {
+         "none" : {},
+         "star" : {
+            "feature" : {
+               "xlocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               },
+               "points" : {
+                  "option" : [
+                     {
+                        "content" : "4"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "6"
+                     },
+                     {
+                        "content" : "8"
+                     },
+                     {
+                        "content" : "12"
+                     },
+                     {
+                        "content" : "20"
+                     }
+                  ]
+               },
+               "ylocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               },
+               "inset" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".33"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               }
+            }
+         },
+         "circle" : {
+            "feature" : {
+               "radius_direction" : {
+                  "option" : [
+                     {
+                        "content" : "horizontal"
+                     },
+                     {
+                        "content" : "vertical"
+                     }
+                  ]
+               },
+               "radius" : {
+                  "option" : [
+                     {
+                        "content" : ".10"
+                     },
+                     {
+                        "content" : ".15"
+                     },
+                     {
+                        "content" : ".20"
+                     },
+                     {
+                        "content" : ".25"
+                     }
+                  ]
+               },
+               "xlocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               },
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               },
+               "ylocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               }
+            }
+         },
+         "letter" : {
+            "feature" : {
+               "xlocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               },
+               "fontfamily" : {
+                  "option" : [
+                     {
+                        "content" : "Arial Black"
+                     },
+                     {
+                        "content" : "Comic Sans MS Bold"
+                     },
+                     {
+                        "content" : "Courier New Bold"
+                     },
+                     {
+                        "content" : "Courier New Bold Italic"
+                     },
+                     {
+                        "content" : "Impact"
+                     },
+                     {
+                        "content" : "Lucida Console"
+                     },
+                     {
+                        "content" : "Trebuchet MS"
+                     },
+                     {
+                        "content" : "Trebuchet MS Bold"
+                     },
+                     {
+                        "content" : "Trebuchet MS Italic"
+                     },
+                     {
+                        "content" : "Trebuchet MS Bold Italic"
+                     },
+                     {
+                        "content" : "Verdana"
+                     },
+                     {
+                        "content" : "Verdana Bold"
+                     },
+                     {
+                        "content" : "Verdana Bold Italic"
+                     },
+                     {
+                        "content" : "sans serif"
+                     }
+                  ]
+               },
+               "ylocation" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     }
+                  ]
+               },
+               "size" : {
+                  "option" : [
+                     {
+                        "content" : ".40"
+                     },
+                     {
+                        "content" : ".30"
+                     },
+                     {
+                        "content" : ".25"
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   },
+   "division" : {
+      "option" : {
+         "quads" : {},
+         "none" : {},
+         "stripes" : {
+            "feature" : {
+               "count" : {
+                  "option" : [
+                     {
+                        "content" : "2"
+                     },
+                     {
+                        "content" : "3"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "9"
+                     },
+                     {
+                        "content" : "13"
+                     }
+                  ]
+               },
+               "side" : {
+                  "option" : [
+                     {
+                        "content" : "vertical"
+                     },
+                     {
+                        "content" : "horizontal"
+                     }
+                  ]
+               },
+               "color_count" : {
+                  "option" : [
+                     {
+                        "content" : "2"
+                     },
+                     {
+                        "content" : "3"
+                     }
+                  ]
+               }
+            }
+         },
+         "diagonal" : {
+            "feature" : {
+               "direction" : {
+                  "option" : [
+                     {
+                        "content" : "right-to-left"
+                     },
+                     {
+                        "content" : "left-to-right"
+                     }
+                  ]
+               }
+            }
+         },
+         "diagquads" : {}
+      }
+   },
+   "shape" : {
+      "option" : [
+         {
+            "max" : "50",
+            "type" : "square"
+         },
+         {
+            "min" : "51",
+            "max" : "60",
+            "type" : "para"
+         },
+         {
+            "min" : "61",
+            "max" : "70",
+            "type" : "tri"
+         },
+         {
+            "min" : "71",
+            "max" : "80",
+            "type" : "pennant"
+         },
+         {
+            "feature" : {
+               "depth" : {
+                  "option" : [
+                     {
+                        "content" : "10"
+                     },
+                     {
+                        "content" : "20"
+                     },
+                     {
+                        "content" : "30"
+                     }
+                  ]
+               }
+            },
+            "min" : "81",
+            "max" : "90",
+            "type" : "swallow"
+         },
+         {
+            "feature" : {
+               "count" : {
+                  "option" : [
+                     {
+                        "content" : "3"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "7"
+                     },
+                     {
+                        "content" : "9"
+                     },
+                     {
+                        "content" : "11"
+                     }
+                  ]
+               },
+               "tongueshape" : {
+                  "option" : [
+                     {
+                        "content" : "square"
+                     },
+                     {
+                        "content" : "triangle"
+                     },
+                     {
+                        "content" : "sine"
+                     },
+                     {
+                        "content" : "scallop"
+                     }
+                  ]
+               },
+               "depth" : {
+                  "option" : [
+                     {
+                        "content" : ".3"
+                     },
+                     {
+                        "content" : ".1"
+                     },
+                     {
+                        "content" : ".2"
+                     }
+                  ]
+               }
+            },
+            "min" : "91",
+            "type" : "tongued"
+         }
+      ]
+   },
+   "overlay" : {
+      "option" : {
+         "jack" : {
+            "feature" : {
+               "width" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.1"
+                     },
+                     {
+                        "content" : "0.05"
+                     }
+                  ]
+               },
+               "horpos" : {
+                  "option" : [
+                     {
+                        "content" : "0.5"
+                     }
+                  ]
+               },
+               "vertwidth" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.1"
+                     },
+                     {
+                        "content" : "0.075"
+                     },
+                     {
+                        "content" : "0.05"
+                     }
+                  ]
+               },
+               "horwidth" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.10"
+                     }
+                  ]
+               },
+               "vertlength" : {
+                  "option" : [
+                     {
+                        "content" : "1"
+                     }
+                  ]
+               },
+               "horlength" : {
+                  "option" : [
+                     {
+                        "content" : "1"
+                     }
+                  ]
+               },
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               }
+            }
+         },
+         "cross" : {
+            "feature" : {
+               "horpos" : {
+                  "option" : [
+                     {
+                        "content" : "0.33"
+                     },
+                     {
+                        "content" : "0.5"
+                     }
+                  ]
+               },
+               "horwidth" : {
+                  "option" : [
+                     {
+                        "content" : "0.3"
+                     },
+                     {
+                        "content" : "0.2"
+                     }
+                  ]
+               },
+               "vertwidth" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.1"
+                     },
+                     {
+                        "content" : "0.075"
+                     },
+                     {
+                        "content" : "0.05"
+                     }
+                  ]
+               },
+               "vertlength" : {
+                  "option" : [
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "0.8"
+                     }
+                  ]
+               },
+               "horlength" : {
+                  "option" : [
+                     {
+                        "content" : "0.3"
+                     },
+                     {
+                        "content" : "0.5"
+                     },
+                     {
+                        "content" : "0.8"
+                     },
+                     {
+                        "content" : "0.9"
+                     },
+                     {
+                        "content" : "1"
+                     }
+                  ]
+               }
+            }
+         },
+         "circle" : {
+            "feature" : {
+               "radius_direction" : {
+                  "option" : [
+                     {
+                        "content" : "horizontal"
+                     },
+                     {
+                        "content" : "vertical"
+                     }
+                  ]
+               },
+               "radius" : {
+                  "option" : [
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".333"
+                     },
+                     {
+                        "content" : ".5"
+                     },
+                     {
+                        "content" : ".666"
+                     },
+                     {
+                        "content" : ".75"
+                     },
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "1.5"
+                     },
+                     {
+                        "content" : "2"
+                     }
+                  ]
+               },
+               "xlocation" : {
+                  "option" : [
+                     {
+                        "content" : "-1"
+                     },
+                     {
+                        "content" : "-.5"
+                     },
+                     {
+                        "content" : "0"
+                     },
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".333"
+                     },
+                     {
+                        "content" : ".5"
+                     },
+                     {
+                        "content" : ".666"
+                     },
+                     {
+                        "content" : ".75"
+                     },
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "1.5"
+                     },
+                     {
+                        "content" : "2"
+                     }
+                  ]
+               },
+               "outline_width" : {
+                  "option" : [
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "2"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "10"
+                     },
+                     {
+                        "content" : "20"
+                     },
+                     {
+                        "content" : "30"
+                     }
+                  ]
+               },
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               },
+               "ylocation" : {
+                  "option" : [
+                     {
+                        "content" : "-1"
+                     },
+                     {
+                        "content" : "0"
+                     },
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     },
+                     {
+                        "content" : ".75"
+                     },
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "2"
+                     }
+                  ]
+               }
+            }
+         },
+         "stripe" : {
+            "feature" : {
+               "count" : {
+                  "option" : [
+                     {
+                        "content" : "2"
+                     },
+                     {
+                        "content" : "3"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "9"
+                     },
+                     {
+                        "content" : "13"
+                     }
+                  ]
+               },
+               "side" : {
+                  "option" : [
+                     {
+                        "content" : "vertical"
+                     },
+                     {
+                        "content" : "horizontal"
+                     }
+                  ]
+               }
+            }
+         },
+         "quaddiag" : {
+            "feature" : {
+               "side" : {
+                  "option" : [
+                     {
+                        "content" : "north"
+                     },
+                     {
+                        "content" : "south"
+                     },
+                     {
+                        "content" : "east"
+                     },
+                     {
+                        "content" : "west"
+                     }
+                  ]
+               }
+            }
+         },
+         "slash" : {
+            "feature" : {
+               "width" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.1"
+                     },
+                     {
+                        "content" : "0.05"
+                     }
+                  ]
+               },
+               "direction" : {
+                  "option" : [
+                     {
+                        "content" : "right-to-left"
+                     },
+                     {
+                        "content" : "left-to-right"
+                     }
+                  ]
+               }
+            }
+         },
+         "x" : {
+            "feature" : {
+               "width" : {
+                  "option" : [
+                     {
+                        "content" : "0.2"
+                     },
+                     {
+                        "content" : "0.15"
+                     },
+                     {
+                        "content" : "0.1"
+                     },
+                     {
+                        "content" : "0.05"
+                     }
+                  ]
+               },
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               }
+            }
+         },
+         "quad" : {
+            "feature" : {
+               "side" : {
+                  "option" : [
+                     {
+                        "content" : "ne"
+                     },
+                     {
+                        "content" : "nw"
+                     },
+                     {
+                        "content" : "se"
+                     },
+                     {
+                        "content" : "sw"
+                     }
+                  ]
+               }
+            }
+         },
+         "asterisk" : {
+            "feature" : {
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               }
+            }
+         },
+         "rays" : {
+            "feature" : {
+               "count" : {
+                  "option" : [
+                     {
+                        "content" : "3"
+                     },
+                     {
+                        "content" : "4"
+                     },
+                     {
+                        "content" : "5"
+                     },
+                     {
+                        "content" : "6"
+                     },
+                     {
+                        "content" : "7"
+                     },
+                     {
+                        "content" : "8"
+                     },
+                     {
+                        "content" : "9"
+                     },
+                     {
+                        "content" : "10"
+                     },
+                     {
+                        "content" : "12"
+                     },
+                     {
+                        "content" : "15"
+                     },
+                     {
+                        "content" : "20"
+                     }
+                  ]
+               },
+               "xlocation" : {
+                  "option" : [
+                     {
+                        "content" : "-1"
+                     },
+                     {
+                        "content" : "-.5"
+                     },
+                     {
+                        "content" : "0"
+                     },
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".333"
+                     },
+                     {
+                        "content" : ".5"
+                     },
+                     {
+                        "content" : ".666"
+                     },
+                     {
+                        "content" : ".75"
+                     },
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "1.5"
+                     },
+                     {
+                        "content" : "2"
+                     }
+                  ]
+               },
+               "ylocation" : {
+                  "option" : [
+                     {
+                        "content" : "-1"
+                     },
+                     {
+                        "content" : "0"
+                     },
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".5"
+                     },
+                     {
+                        "content" : ".75"
+                     },
+                     {
+                        "content" : "1"
+                     },
+                     {
+                        "content" : "2"
+                     }
+                  ]
+               },
+               "offset" : {
+                  "option" : [
+                     {
+                        "content" : "0"
+                     },
+                     {
+                        "content" : ".05"
+                     },
+                     {
+                        "content" : ".15"
+                     },
+                     {
+                        "content" : ".25"
+                     },
+                     {
+                        "content" : ".33"
+                     }
+                  ]
+               }
+            }
+         },
+         "diamond" : {
+            "feature" : {
+               "outline" : {
+                  "option" : [
+                     {
+                        "content" : "true"
+                     },
+                     {
+                        "content" : "false"
+                     }
+                  ]
+               }
+            }
+         }
+      }
+   },
+   "border" : {
+      "option" : {
+         "solid" : {
+            "feature" : {
+               "size" : {
+                  "option" : [
+                     {
+                        "content" : ".08"
+                     },
+                     {
+                        "content" : ".05"
+                     },
+                     {
+                        "content" : ".01"
+                     }
+                  ]
+               }
+            }
+         },
+         "none" : {}
+      }
+   },
+   "colors" : {
+      "color" : {
+         "purple" : {
+            "option" : [
+               {
+                  "green" : "0",
+                  "symbol" : "P",
+                  "blue" : "153",
+                  "verb" : "rule",
+                  "adverb" : "majestically",
+                  "red" : "102",
+                  "type" : "Purple"
+               }
+            ]
+         },
+         "orange" : {
+            "option" : [
+               {
+                  "green" : "153",
+                  "symbol" : "O-",
+                  "blue" : "0",
+                  "verb" : "distrust",
+                  "adverb" : "enthusiastically",
+                  "red" : "255",
+                  "type" : "Light orange"
+               },
+               {
+                  "green" : "102",
+                  "symbol" : "O",
+                  "blue" : "0",
+                  "verb" : "desire",
+                  "adverb" : "ambitiously",
+                  "red" : "255",
+                  "type" : "Orange"
+               }
+            ]
+         },
+         "green" : {
+            "option" : [
+               {
+                  "green" : "255",
+                  "symbol" : "V--",
+                  "blue" : "51",
+                  "verb" : "accelerate",
+                  "adverb" : "tomorrow",
+                  "red" : "0",
+                  "type" : "Very light green"
+               },
+               {
+                  "green" : "204",
+                  "symbol" : "V-",
+                  "blue" : "0",
+                  "verb" : "grow",
+                  "adverb" : "quickly",
+                  "red" : "0",
+                  "type" : "Light green"
+               },
+               {
+                  "green" : "153",
+                  "symbol" : "V",
+                  "blue" : "0",
+                  "verb" : "prosper",
+                  "adverb" : "always",
+                  "red" : "0",
+                  "type" : "Green"
+               },
+               {
+                  "green" : "102",
+                  "symbol" : "V+",
+                  "blue" : "0",
+                  "verb" : "hope",
+                  "adverb" : "appropriately",
+                  "red" : "0",
+                  "type" : "Dark green"
+               },
+               {
+                  "green" : "51",
+                  "symbol" : "V++",
+                  "blue" : "0",
+                  "verb" : "cultivate",
+                  "adverb" : "brightly",
+                  "red" : "0",
+                  "type" : "Very dark green"
+               }
+            ]
+         },
+         "white" : {
+            "option" : [
+               {
+                  "green" : "255",
+                  "symbol" : "W",
+                  "blue" : "255",
+                  "verb" : "perfect",
+                  "adverb" : "peacefully",
+                  "red" : "255",
+                  "type" : "White"
+               }
+            ]
+         },
+         "gold" : {
+            "option" : [
+               {
+                  "green" : "204",
+                  "symbol" : "Au",
+                  "blue" : "51",
+                  "verb" : "purchase",
+                  "adverb" : "wisely",
+                  "red" : "255",
+                  "type" : "Gold"
+               }
+            ]
+         },
+         "black" : {
+            "option" : [
+               {
+                  "green" : "0",
+                  "symbol" : "N",
+                  "blue" : "0",
+                  "verb" : "control",
+                  "adverb" : "purposefully",
+                  "red" : "0",
+                  "type" : "Black"
+               }
+            ]
+         },
+         "blue" : {
+            "option" : [
+               {
+                  "green" : "204",
+                  "symbol" : "B--",
+                  "blue" : "255",
+                  "verb" : "protect",
+                  "adverb" : "faithfully",
+                  "red" : "51",
+                  "type" : "Very light blue"
+               },
+               {
+                  "green" : "153",
+                  "symbol" : "B-",
+                  "blue" : "255",
+                  "verb" : "inspire",
+                  "adverb" : "freely",
+                  "red" : "51",
+                  "type" : "Light blue"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "B",
+                  "blue" : "255",
+                  "verb" : "enjoy",
+                  "adverb" : "openly",
+                  "red" : "0",
+                  "type" : "Blue"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "B+",
+                  "blue" : "204",
+                  "verb" : "devote",
+                  "adverb" : "fully",
+                  "red" : "0",
+                  "type" : "Dark blue"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "B++",
+                  "blue" : "153",
+                  "verb" : "honor",
+                  "adverb" : "justly",
+                  "red" : "0",
+                  "type" : "Very dark blue"
+               }
+            ]
+         },
+         "red" : {
+            "option" : [
+               {
+                  "green" : "102",
+                  "symbol" : "R--",
+                  "blue" : "102",
+                  "verb" : "love",
+                  "adverb" : "lovingly",
+                  "red" : "255",
+                  "type" : "Very light red"
+               },
+               {
+                  "green" : "51",
+                  "symbol" : "R-",
+                  "blue" : "51",
+                  "verb" : "cherish",
+                  "adverb" : "peacefully",
+                  "red" : "255",
+                  "type" : "Light red"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "R",
+                  "blue" : "0",
+                  "verb" : "expand",
+                  "adverb" : "gracefully",
+                  "red" : "255",
+                  "type" : "Red"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "R+",
+                  "blue" : "0",
+                  "verb" : "enforce",
+                  "adverb" : "defiantly",
+                  "red" : "204",
+                  "type" : "Dark red"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "R++",
+                  "blue" : "0",
+                  "verb" : "march",
+                  "adverb" : "passionately",
+                  "red" : "153",
+                  "type" : "Very dark red"
+               }
+            ]
+         },
+         "brown" : {
+            "option" : [
+               {
+                  "green" : "102",
+                  "symbol" : "M-",
+                  "blue" : "0",
+                  "verb" : "endure",
+                  "adverb" : "safely",
+                  "red" : "153",
+                  "type" : "Light brown"
+               },
+               {
+                  "green" : "51",
+                  "symbol" : "M",
+                  "blue" : "0",
+                  "verb" : "withstand",
+                  "adverb" : "soldily",
+                  "red" : "102",
+                  "type" : "Brown"
+               },
+               {
+                  "green" : "0",
+                  "symbol" : "M+",
+                  "blue" : "0",
+                  "verb" : "balance",
+                  "adverb" : "naturally",
+                  "red" : "51",
+                  "type" : "Dark brown"
+               }
+            ]
+         },
+         "yellow" : {
+            "option" : [
+               {
+                  "green" : "255",
+                  "symbol" : "Y--",
+                  "blue" : "204",
+                  "verb" : "strengthen",
+                  "adverb" : "joyfully",
+                  "red" : "255",
+                  "type" : "Very light yellow"
+               },
+               {
+                  "green" : "255",
+                  "symbol" : "Y-",
+                  "blue" : "153",
+                  "verb" : "surpass",
+                  "adverb" : "happily",
+                  "red" : "255",
+                  "type" : "Light yellow"
+               },
+               {
+                  "green" : "255",
+                  "symbol" : "Y",
+                  "blue" : "0",
+                  "verb" : "entertain",
+                  "adverb" : "cheerfully",
+                  "red" : "255",
+                  "type" : "Yellow"
+               },
+               {
+                  "green" : "204",
+                  "symbol" : "Y+",
+                  "blue" : "0",
+                  "verb" : "relish",
+                  "adverb" : "gracefully",
+                  "red" : "255",
+                  "type" : "Dark yellow"
+               }
+            ]
+         },
+         "grey" : {
+            "option" : [
+               {
+                  "green" : "204",
+                  "symbol" : "G-",
+                  "blue" : "204",
+                  "red" : "204",
+                  "type" : "Light grey"
+               },
+               {
+                  "green" : "153",
+                  "symbol" : "G",
+                  "blue" : "153",
+                  "red" : "153",
+                  "type" : "Grey"
+               },
+               {
+                  "green" : "102",
+                  "symbol" : "G+",
+                  "blue" : "102",
+                  "red" : "102",
+                  "type" : "Dark grey"
+               },
+               {
+                  "green" : "51",
+                  "symbol" : "G++",
+                  "blue" : "51",
+                  "red" : "51",
+                  "type" : "Very dark grey"
+               }
+            ]
+         }
+      }
+   }
+}

@@ -1,0 +1,1094 @@
+{
+   "weapon" : {
+      "feature" : {
+         "visualeffect" : {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "a faint sparkle in low light",
+                  "type" : "sparkles"
+               },
+               {
+                  "content" : "a faint glow in darkness",
+                  "type" : "glow"
+               }
+            ]
+         },
+         "decoration" : {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "streaks of red and yellow",
+                  "type" : "flames"
+               },
+               {
+                  "content" : "beautiful gold and silver inlays",
+                  "type" : "inlay"
+               },
+               {
+                  "content" : "decorative carvings",
+                  "type" : "carvings"
+               }
+            ]
+         },
+         "template" : {
+            "option" : [
+               {
+                  "content" : "[%effect_type%] [%category_type%][%IF ability_type%] [%ability_type%][%END%]"
+               },
+               {
+                  "content" : "[%creator.firstnames%] [%category_type%]"
+               },
+               {
+                  "content" : "[%creator.firstnames%] [%effect_type%] [%category_type%]"
+               },
+               {
+                  "content" : "[%creator.firstname%] [%category_type%]"
+               }
+            ]
+         },
+         "effect" : {
+            "option" : [
+               {
+                  "content" : "will occasionally slice through anything",
+                  "type" : "keen"
+               },
+               {
+                  "content" : "causes a traumatic jolt of unexpected pain",
+                  "type" : "painful"
+               },
+               {
+                  "content" : "causes an unexpected jolt of magical energy",
+                  "type" : "magical"
+               },
+               {
+                  "content" : "causes a small flare of fire that burns the target",
+                  "type" : "flaming"
+               },
+               {
+                  "content" : "causes a small surge of electricity that stuns the target",
+                  "type" : "electric"
+               },
+               {
+                  "content" : "causes a mind numbing cold that chills the target",
+                  "type" : "icy"
+               },
+               {
+                  "content" : "causes a wound that is drenched in acid",
+                  "type" : "acidic"
+               },
+               {
+                  "content" : "causes a deafening roar that only affects the target",
+                  "type" : "sonic"
+               },
+               {
+                  "content" : "causes a concussive blast against the target",
+                  "type" : "exploding"
+               }
+            ]
+         },
+         "category" : {
+            "option" : [
+               {
+                  "type" : "sword"
+               },
+               {
+                  "type" : "dagger"
+               },
+               {
+                  "type" : "axe"
+               },
+               {
+                  "type" : "mace"
+               },
+               {
+                  "type" : "bow"
+               },
+               {
+                  "type" : "crossbow"
+               },
+               {
+                  "type" : "quarterstaff"
+               }
+            ]
+         },
+         "ability" : {
+            "chance" : "20",
+            "option" : [
+               {
+                  "content" : "grants the user unnatural strength",
+                  "type" : "of the bull"
+               },
+               {
+                  "content" : "grants the user an unnatural grace",
+                  "type" : "of grace"
+               },
+               {
+                  "content" : "grants the user unnatural constitution",
+                  "type" : "of toughness"
+               },
+               {
+                  "content" : "grants the user unnatural insight",
+                  "type" : "of the owl"
+               },
+               {
+                  "content" : "grants the user unnatural intelligence",
+                  "type" : "of genius"
+               },
+               {
+                  "content" : "grants the user unnatural charisma",
+                  "type" : "of charm"
+               },
+               {
+                  "content" : "may cause fear in the undead",
+                  "type" : "of the holy"
+               },
+               {
+                  "content" : "may protect the user from some attacks",
+                  "type" : "of defense"
+               },
+               {
+                  "content" : "will return to the user if thrown",
+                  "type" : "of returning"
+               }
+            ]
+         },
+         "flaw" : {
+            "chance" : "30",
+            "option" : [
+               {
+                  "type" : "a small chip"
+               },
+               {
+                  "type" : "a missing decoration"
+               },
+               {
+                  "type" : "a crack"
+               },
+               {
+                  "type" : "a discolored spot"
+               },
+               {
+                  "type" : "blackened"
+               },
+               {
+                  "type" : "bloodstained"
+               },
+               {
+                  "type" : "tarnished"
+               }
+            ]
+         }
+      }
+   },
+   "scroll" : {
+      "feature" : {
+         "template" : {
+            "option" : [
+               {
+                  "content" : "[%strength_description%] [%category_type%] [%content%]"
+               },
+               {
+                  "content" : "[%strength_description%] [%content%] of [%category_type%]"
+               }
+            ]
+         },
+         "decorations" : {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "cryptic writing"
+               },
+               {
+                  "content" : "strange symbols"
+               },
+               {
+                  "content" : "arcane symbols"
+               },
+               {
+                  "content" : "divine symbols"
+               }
+            ]
+         },
+         "content" : {
+            "option" : [
+               {
+                  "content" : "scroll"
+               }
+            ]
+         },
+         "container" : {
+            "option" : [
+               {
+                  "content" : "scroll case"
+               },
+               {
+                  "content" : "folder"
+               },
+               {
+                  "content" : "book"
+               },
+               {
+                  "content" : "clay cannister"
+               }
+            ]
+         },
+         "label" : {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "illegible"
+               },
+               {
+                  "content" : "clearly labeled"
+               },
+               {
+                  "content" : "written in an uncommon language"
+               },
+               {
+                  "content" : "ideogram"
+               }
+            ]
+         },
+         "category" : {
+            "option" : [
+               {
+                  "content" : "can daze an opponent for a few seconds",
+                  "type" : "daze"
+               },
+               {
+                  "content" : "can identify other magical items",
+                  "type" : "identification"
+               },
+               {
+                  "content" : "projects the user through a magical shield",
+                  "type" : "shield"
+               },
+               {
+                  "content" : "can unlock or unbolt any lock",
+                  "type" : "knocking"
+               },
+               {
+                  "content" : "summons a region of magical darkness",
+                  "type" : "darkness"
+               }
+            ]
+         },
+         "material" : {
+            "option" : [
+               {
+                  "content" : "papyrus"
+               },
+               {
+                  "content" : "sheepskin"
+               },
+               {
+                  "content" : "paper"
+               },
+               {
+                  "content" : "parchment"
+               },
+               {
+                  "content" : "vellum"
+               }
+            ]
+         }
+      },
+      "stats" : {
+         "strength" : {
+            "option" : [
+               {
+                  "content" : "weak",
+                  "max" : "20"
+               },
+               {
+                  "min" : "21",
+                  "content" : "mediocre",
+                  "max" : "40"
+               },
+               {
+                  "min" : "41",
+                  "content" : "moderate",
+                  "max" : "60"
+               },
+               {
+                  "min" : "61",
+                  "content" : "strong",
+                  "max" : "80"
+               },
+               {
+                  "min" : "81",
+                  "content" : "powerful"
+               }
+            ]
+         }
+      }
+   },
+   "feature" : {
+      "location" : {
+         "option" : [
+            {
+               "content" : "on a corpse"
+            },
+            {
+               "content" : "in a chest"
+            },
+            {
+               "content" : "in a crack in the wall"
+            },
+            {
+               "content" : "forgotten on a shelf"
+            },
+            {
+               "content" : "in a pile of refuse"
+            },
+            {
+               "content" : "in a tomb"
+            },
+            {
+               "content" : "in a nest"
+            },
+            {
+               "content" : "as a prize"
+            },
+            {
+               "content" : "as a reward"
+            },
+            {
+               "content" : "in the possession of a sage"
+            }
+         ]
+      },
+      "item" : {
+         "option" : [
+            {
+               "content" : "armor"
+            },
+            {
+               "content" : "weapon"
+            },
+            {
+               "content" : "potion"
+            },
+            {
+               "content" : "scroll"
+            }
+         ]
+      },
+      "curse" : {
+         "change" : "10",
+         "option" : [
+            {
+               "content" : "has a small chance of causing an uncontrolled rage",
+               "type" : "bezerker"
+            },
+            {
+               "content" : "has a small chance of causing the user to drop unconscious when used",
+               "type" : "narcolepsy"
+            },
+            {
+               "content" : "causes overzealous feelings towards a person, action or thing",
+               "type" : "fanatic"
+            },
+            {
+               "content" : "causes the user to take unnecessary risks for treasure",
+               "type" : "greed"
+            },
+            {
+               "content" : "causes the user to overvalue their ability",
+               "type" : "hubris"
+            },
+            {
+               "content" : "causes the user to use it at any opportunity",
+               "type" : "addiction"
+            },
+            {
+               "content" : "causes user to perform poorly",
+               "type" : "penalty"
+            },
+            {
+               "content" : "causes the user to become noticably stupider to everyone but themselves",
+               "type" : "derp"
+            },
+            {
+               "content" : "causes uncontrollable, loud yawning",
+               "type" : "yawning"
+            },
+            {
+               "content" : "will randomly submit to an enemy",
+               "type" : "submission"
+            },
+            {
+               "content" : "has a small chance of causing the user to deny participating in any physical action",
+               "type" : "lethargy"
+            },
+            {
+               "content" : "causes user to overcompensate when making purchases",
+               "type" : "big spender"
+            },
+            {
+               "content" : "cannot lie or bend the rules while in your possession",
+               "type" : "truthteller"
+            },
+            {
+               "content" : "causes paranoia relating to theft of the item",
+               "type" : "precious"
+            },
+            {
+               "content" : "preoccupation with juvenile jokes, which causes giggles",
+               "type" : "braddoro"
+            },
+            {
+               "content" : "causes an obnoxious preoccupation with random topics that no one cares about",
+               "type" : "karrius"
+            },
+            {
+               "content" : "causes user to randomly berate and threaten friends and colleagues",
+               "type" : "quint"
+            },
+            {
+               "content" : "cannot comprehend being wrong, even if it leads to death",
+               "type" : "ibiwan"
+            },
+            {
+               "content" : "causes user to suddenly believe their are unqualified for whatever task is at hand",
+               "type" : "greenimposter"
+            },
+            {
+               "content" : "causes random shortness of breath",
+               "type" : "mabdelnour"
+            },
+            {
+               "content" : "causes fits of rage when fingerprints are left on a glossy surface",
+               "type" : "trammelle"
+            },
+            {
+               "content" : "causes user to feel compelled to one-up others",
+               "type" : "jamangai"
+            },
+            {
+               "content" : "causes irrational fear of something",
+               "type" : "phobic"
+            },
+            {
+               "content" : "causes incessant, uncontrollable talking that becomes worse with stressful situations",
+               "type" : "babbler"
+            }
+         ]
+      }
+   },
+   "armor" : {
+      "feature" : {
+         "visualeffect" : {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "a faint sparkle in low light",
+                  "type" : "sparkles"
+               },
+               {
+                  "content" : "a faint glow in darkness",
+                  "type" : "glow"
+               }
+            ]
+         },
+         "decoration" : {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "streaks of red and yellow",
+                  "type" : "flames"
+               },
+               {
+                  "content" : "beautiful gold and silver inlays",
+                  "type" : "inlay"
+               },
+               {
+                  "content" : "decorative carvings",
+                  "type" : "carvings"
+               }
+            ]
+         },
+         "template" : {
+            "option" : [
+               {
+                  "content" : "[%effect_type%] [%category_type%][%IF ability_type%] [%ability_type%][%END%]"
+               },
+               {
+                  "content" : "[%effect_type%] [%category_type%] of [%creator.firstname%]"
+               }
+            ]
+         },
+         "effect" : {
+            "option" : [
+               {
+                  "content" : "allows the wearer to move more quietly than otherwise possible",
+                  "type" : "muffled"
+               },
+               {
+                  "content" : "cause the wearer to be difficult to grasp",
+                  "type" : "slick"
+               },
+               {
+                  "content" : "deflects some projectiles that would otherwise hit",
+                  "type" : "deflecting"
+               }
+            ]
+         },
+         "category" : {
+            "option" : [
+               {
+                  "type" : "leather armor"
+               },
+               {
+                  "type" : "breastplate"
+               },
+               {
+                  "type" : "chainmail"
+               },
+               {
+                  "type" : "hide armor"
+               },
+               {
+                  "type" : "plate armor"
+               },
+               {
+                  "type" : "shield"
+               }
+            ]
+         },
+         "ability" : {
+            "chance" : "20",
+            "option" : [
+               {
+                  "content" : "has a chance of stunning an attacker",
+                  "type" : "of shock"
+               },
+               {
+                  "content" : "emboldens comrades in battle",
+                  "type" : "of glory"
+               },
+               {
+                  "content" : "makes the wearer virtually undetectable in shadows",
+                  "type" : "of the shadows"
+               }
+            ]
+         },
+         "flaw" : {
+            "chance" : "30",
+            "option" : [
+               {
+                  "type" : "a small chip"
+               },
+               {
+                  "type" : "a missing decoration"
+               },
+               {
+                  "type" : "a crack"
+               },
+               {
+                  "type" : "a discolored spot"
+               },
+               {
+                  "type" : "blackened"
+               },
+               {
+                  "type" : "bloodstained"
+               },
+               {
+                  "type" : "tarnished"
+               },
+               {
+                  "type" : "a dent"
+               },
+               {
+                  "type" : "a ding"
+               }
+            ]
+         }
+      }
+   },
+   "potion" : {
+      "feature" : {
+         "template" : {
+            "option" : [
+               {
+                  "content" : "[%strength_description%] [%category_type%] [%content%]"
+               },
+               {
+                  "content" : "[%strength_description%] [%content%] of [%category_type%]"
+               }
+            ]
+         },
+         "decorations" : {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "cryptic writing"
+               },
+               {
+                  "content" : "worthless jewels"
+               },
+               {
+                  "content" : "feathers"
+               },
+               {
+                  "content" : "beaded strings"
+               }
+            ]
+         },
+         "sideeffect" : {
+            "chance" : "5",
+            "option" : [
+               {
+                  "content" : "seizures"
+               },
+               {
+                  "content" : "blindness"
+               },
+               {
+                  "content" : "death"
+               },
+               {
+                  "content" : "melting flesh"
+               },
+               {
+                  "content" : "spontaneous combustion"
+               },
+               {
+                  "content" : "muteness"
+               },
+               {
+                  "content" : "mouth glued shut"
+               },
+               {
+                  "content" : "skin to turn an unnatural color"
+               },
+               {
+                  "content" : "vomiting"
+               },
+               {
+                  "content" : "nausea "
+               },
+               {
+                  "content" : "irritability"
+               },
+               {
+                  "content" : "dizziness"
+               },
+               {
+                  "content" : "fatigue"
+               },
+               {
+                  "content" : "allergic reactions"
+               },
+               {
+                  "content" : "fever"
+               },
+               {
+                  "content" : "apathy"
+               },
+               {
+                  "content" : "lethargy"
+               },
+               {
+                  "content" : "paranoia"
+               },
+               {
+                  "content" : "irrational behavior"
+               },
+               {
+                  "content" : "hallucinations"
+               },
+               {
+                  "content" : "levitation"
+               },
+               {
+                  "content" : "colour blindness"
+               },
+               {
+                  "content" : "sprouting feathers"
+               },
+               {
+                  "content" : "sprouting hairs"
+               },
+               {
+                  "content" : "vertigo"
+               },
+               {
+                  "content" : "uncontrolled bowel movements"
+               },
+               {
+                  "content" : "uncontrolled urination"
+               },
+               {
+                  "content" : "severe muscle cramps"
+               },
+               {}
+            ]
+         },
+         "content" : {
+            "option" : [
+               {
+                  "content" : "potion"
+               },
+               {
+                  "content" : "brew"
+               },
+               {
+                  "content" : "elixer"
+               },
+               {
+                  "content" : "nip"
+               },
+               {
+                  "content" : "philer"
+               },
+               {
+                  "content" : "tonic"
+               },
+               {
+                  "content" : "balm"
+               },
+               {
+                  "content" : "dram"
+               },
+               {
+                  "content" : "formula"
+               },
+               {
+                  "content" : "lotion"
+               }
+            ]
+         },
+         "container" : {
+            "option" : [
+               {
+                  "content" : "small vial"
+               },
+               {
+                  "content" : "flask"
+               },
+               {
+                  "content" : "figurine"
+               },
+               {
+                  "content" : "ovoid container"
+               },
+               {
+                  "content" : "Square container"
+               },
+               {
+                  "content" : "conical container"
+               }
+            ]
+         },
+         "smell" : {
+            "option" : [
+               {
+                  "content" : "bubblegum"
+               },
+               {
+                  "content" : "sewage"
+               },
+               {
+                  "content" : "cornflour"
+               },
+               {
+                  "content" : "vinegar"
+               },
+               {
+                  "content" : "alcohol"
+               },
+               {
+                  "content" : "straberries"
+               },
+               {
+                  "content" : "sweat"
+               },
+               {
+                  "content" : "lilac"
+               },
+               {
+                  "content" : "fruit"
+               },
+               {
+                  "content" : "fresh-cut grass"
+               },
+               {
+                  "content" : "mint"
+               },
+               {
+                  "content" : "harsh chemicals"
+               },
+               {
+                  "content" : "stinkbugs"
+               }
+            ]
+         },
+         "color" : {
+            "option" : [
+               {
+                  "content" : "yellow"
+               },
+               {
+                  "content" : "red"
+               },
+               {
+                  "content" : "green"
+               },
+               {
+                  "content" : "purple"
+               },
+               {
+                  "content" : "pink"
+               },
+               {
+                  "content" : "blue"
+               },
+               {
+                  "content" : "black"
+               }
+            ]
+         },
+         "category" : {
+            "option" : [
+               {
+                  "content" : "can heal various wounds and ailments",
+                  "type" : "healing"
+               },
+               {
+                  "content" : "can neutralize various poisons",
+                  "type" : "neutralize poison"
+               },
+               {
+                  "content" : "increases resistance to the elements",
+                  "type" : "endure elements"
+               },
+               {
+                  "content" : "allows user to jump to amazing heights and distances",
+                  "type" : "jumping"
+               },
+               {
+                  "content" : "fortifies the user against the most terrifying foes",
+                  "type" : "remove fear"
+               },
+               {
+                  "content" : "causes user to blur with movement",
+                  "type" : "blur"
+               },
+               {
+                  "content" : "allows unassisted flight for a limited duration",
+                  "type" : "flight"
+               },
+               {
+                  "content" : "allows unassisted levitation for a limited duration",
+                  "type" : "levitation"
+               },
+               {
+                  "content" : "allows user to move with extreme speed",
+                  "type" : "haste"
+               },
+               {
+                  "content" : "allows user breathe in otherwise dangerous environments",
+                  "type" : "respiration"
+               }
+            ]
+         },
+         "sideeffectduration" : {
+            "option" : [
+               {
+                  "content" : "is temporary"
+               },
+               {
+                  "content" : "lasts a few seconds"
+               },
+               {
+                  "content" : "lasts a minute"
+               },
+               {
+                  "content" : "lasts a few minutes"
+               },
+               {
+                  "content" : "lasts several minutes"
+               },
+               {
+                  "content" : "lasts an hour"
+               },
+               {
+                  "content" : "lasts a few hours"
+               },
+               {
+                  "content" : "lasts several hours"
+               },
+               {
+                  "content" : "lasts a day"
+               },
+               {
+                  "content" : "lasts a few days"
+               },
+               {
+                  "content" : "lasts a week"
+               },
+               {
+                  "content" : "lasts weeks"
+               },
+               {
+                  "content" : "is permanent"
+               }
+            ]
+         },
+         "label" : {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "illegible"
+               },
+               {
+                  "content" : "clearly labeled"
+               },
+               {
+                  "content" : "written in an uncommon language"
+               },
+               {
+                  "content" : "ideogram"
+               }
+            ]
+         },
+         "material" : {
+            "option" : [
+               {
+                  "content" : "glass"
+               },
+               {
+                  "content" : "copper"
+               },
+               {
+                  "content" : "tin"
+               },
+               {
+                  "content" : "iron"
+               },
+               {
+                  "content" : "ceramic"
+               },
+               {
+                  "content" : "leather"
+               }
+            ]
+         }
+      },
+      "stats" : {
+         "strength" : {
+            "option" : [
+               {
+                  "content" : "weak",
+                  "max" : "20"
+               },
+               {
+                  "min" : "21",
+                  "content" : "mediocre",
+                  "max" : "40"
+               },
+               {
+                  "min" : "41",
+                  "content" : "moderate",
+                  "max" : "60"
+               },
+               {
+                  "min" : "61",
+                  "content" : "strong",
+                  "max" : "80"
+               },
+               {
+                  "min" : "81",
+                  "content" : "powerful"
+               }
+            ]
+         }
+      }
+   },
+   "stats" : {
+      "value" : {
+         "option" : [
+            {
+               "content" : "trivial magical item",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "minor magical item",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "medium magical item",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "major magical item",
+               "max" : "97"
+            },
+            {
+               "min" : "98",
+               "content" : "artifact"
+            }
+         ]
+      },
+      "quality" : {
+         "option" : [
+            {
+               "content" : "shoddy",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "poor",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "average",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "good",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "excellent"
+            }
+         ]
+      },
+      "repair" : {
+         "option" : [
+            {
+               "content" : "broken",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "in disrepair",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "functional",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "well maintained",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "in pristine condition"
+            }
+         ]
+      }
+   }
+}

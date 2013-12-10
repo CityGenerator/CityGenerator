@@ -1,0 +1,1586 @@
+{
+   "feature" : {
+      "influencereason" : {
+         "option" : [
+            {
+               "content" : "riots in the region"
+            },
+            {
+               "content" : "food shortages in the region"
+            },
+            {
+               "content" : "racial tensions"
+            },
+            {
+               "content" : "a thwarted assassination attempt"
+            }
+         ]
+      },
+      "length" : {
+         "option" : [
+            {
+               "content" : "for mere hours"
+            },
+            {
+               "content" : "for mere days"
+            },
+            {
+               "content" : "for a few months"
+            },
+            {
+               "content" : "for years"
+            },
+            {
+               "content" : "for several years"
+            },
+            {
+               "content" : "for many years"
+            },
+            {
+               "content" : "for decades"
+            },
+            {
+               "content" : "for several decades"
+            },
+            {
+               "content" : "far longer than should be allowed"
+            }
+         ]
+      },
+      "right" : {
+         "option" : [
+            {
+               "content" : "by forgery"
+            },
+            {
+               "content" : "by divine will"
+            },
+            {
+               "content" : "by consensus"
+            },
+            {
+               "content" : "by constitution"
+            },
+            {
+               "content" : "by hereditary succession"
+            },
+            {
+               "content" : "by election"
+            },
+            {
+               "content" : "by appointment"
+            },
+            {
+               "content" : "by force"
+            },
+            {
+               "content" : "by revolution"
+            },
+            {
+               "content" : "by foreign imposition"
+            }
+         ]
+      },
+      "maintained" : {
+         "option" : [
+            {
+               "content" : "through the tip of a sword"
+            },
+            {
+               "content" : "through random violence"
+            },
+            {
+               "content" : "through the ignorance of the plebeian society"
+            },
+            {
+               "content" : "through vague threats and a constant state of fear"
+            },
+            {
+               "content" : "through financial oppression"
+            },
+            {
+               "content" : "by secret police raiding homes in the dead of night"
+            },
+            {
+               "content" : "by strict laws and corrupt guards"
+            },
+            {
+               "content" : "by strict laws and incorruptible guards"
+            },
+            {
+               "content" : "by draconian laws and underpaid guards"
+            },
+            {
+               "content" : "through spying and assassination"
+            },
+            {
+               "content" : "through a fair and just legal system"
+            },
+            {
+               "content" : "through the writ of law"
+            },
+            {
+               "content" : "through a knowledgeable and just populace"
+            },
+            {
+               "content" : "through vague promises and a constant state of hope"
+            },
+            {
+               "content" : "through sheer willpower"
+            },
+            {
+               "content" : "through the acclaim of the nobles"
+            },
+            {
+               "content" : "by unwavering supporters"
+            },
+            {
+               "content" : "through the support of merchant groups"
+            }
+         ]
+      }
+   },
+   "stats" : {
+      "unity" : {
+         "option" : [
+            {
+               "content" : "turns against itself",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "is eager to point fingers",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "gives up their freedom in exchange for security",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "flees for the hills",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "cowers in fear",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "squabbles amongst themselves",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "stages ineffective protests",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "overcomes their differences",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "comes together and fights as one",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "rallies behind its leaders"
+            }
+         ]
+      },
+      "corruption" : {
+         "option" : [
+            {
+               "content" : "the epitome corruption",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "corrupt and nefarious",
+               "max" : "10"
+            },
+            {
+               "min" : "10",
+               "content" : "willing to look the other way for the right price",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "crooked",
+               "max" : "20"
+            },
+            {
+               "min" : "20",
+               "content" : "on the take",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "underhanded",
+               "max" : "30"
+            },
+            {
+               "min" : "30",
+               "content" : "unethical",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "disreputable",
+               "max" : "40"
+            },
+            {
+               "min" : "40",
+               "content" : "equitable",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "reasonable",
+               "max" : "50"
+            },
+            {
+               "min" : "50",
+               "content" : "fair",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "honest",
+               "max" : "60"
+            },
+            {
+               "min" : "60",
+               "content" : "principled",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "decent",
+               "max" : "70"
+            },
+            {
+               "min" : "70",
+               "content" : "resolute",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "honorable",
+               "max" : "80"
+            },
+            {
+               "min" : "80",
+               "content" : "trustworthy",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "upright",
+               "max" : "90"
+            },
+            {
+               "min" : "90",
+               "content" : "virtuous",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "incorruptible"
+            }
+         ]
+      },
+      "efficiency" : {
+         "option" : [
+            {
+               "content" : "the pinnacle of inefficiency",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "incapable of even simple tasks",
+               "max" : "10"
+            },
+            {
+               "min" : "10",
+               "content" : "clearly incompetent",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "horribly inefficient",
+               "max" : "20"
+            },
+            {
+               "min" : "20",
+               "content" : "sloppy and disorganized",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "inept and inadequate",
+               "max" : "30"
+            },
+            {
+               "min" : "30",
+               "content" : "slipshod",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "minimally competent",
+               "max" : "40"
+            },
+            {
+               "min" : "40",
+               "content" : "somwhat capable",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "adequate",
+               "max" : "50"
+            },
+            {
+               "min" : "50",
+               "content" : "satisfactory",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "mostly sufficient",
+               "max" : "60"
+            },
+            {
+               "min" : "60",
+               "content" : "surprisingly decent",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "effective overall",
+               "max" : "70"
+            },
+            {
+               "min" : "70",
+               "content" : "on the ball",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "efficient",
+               "max" : "80"
+            },
+            {
+               "min" : "80",
+               "content" : "shrewd",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "surprisingly skillful",
+               "max" : "90"
+            },
+            {
+               "min" : "90",
+               "content" : "magnificently organized",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "ruthlessly effective"
+            }
+         ]
+      },
+      "approval" : {
+         "option" : [
+            {
+               "content" : "despised",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "hated",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "feared",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "ridiculed",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "mocked",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "praised",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "loved",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "respected",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "honored",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "revered"
+            }
+         ]
+      },
+      "opposition" : {
+         "option" : [
+            {
+               "content" : "no visible",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "secret",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "minor",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "peaceful",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "open",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "public",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "strong",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "hostile",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "forceful",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "violent"
+            }
+         ]
+      },
+      "reputation" : {
+         "option" : [
+            {
+               "content" : "despised",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "hated",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "feared",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "ridiculed",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "mocked",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "praised",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "loved",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "respected",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "honored",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "revered"
+            }
+         ]
+      },
+      "theology" : {
+         "option" : [
+            {
+               "content" : "is strictly forbidden on pain of death",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "is forbidden",
+               "max" : "10"
+            },
+            {
+               "min" : "10",
+               "content" : "will get you in trouble",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "is unwelcome",
+               "max" : "20"
+            },
+            {
+               "min" : "20",
+               "content" : "is unregulated",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "is taxed heavily",
+               "max" : "30"
+            },
+            {
+               "min" : "30",
+               "content" : "is tightly regulated by the government",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "is viewed as a nusiance",
+               "max" : "40"
+            },
+            {
+               "min" : "40",
+               "content" : "is practiced behind closed doors",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "is left to the people",
+               "max" : "50"
+            },
+            {
+               "min" : "50",
+               "content" : "is common place",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "is unregulated and diverse, making it a melting pot of many faiths",
+               "max" : "60"
+            },
+            {
+               "min" : "60",
+               "content" : "enjoys many legal benefits",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "is widespread",
+               "max" : "70"
+            },
+            {
+               "min" : "70",
+               "content" : "is sanctioned by the government",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "is limited to a single deity",
+               "max" : "80"
+            },
+            {
+               "min" : "80",
+               "content" : "plays a central role in the lawmaking process",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "controlled by the government",
+               "max" : "90"
+            },
+            {
+               "min" : "90",
+               "content" : "is sacred, and the words of the gods are law",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "is used to control the populace"
+            }
+         ]
+      },
+      "influence" : {
+         "option" : [
+            {
+               "content" : "negligible",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "dwindling rapidly",
+               "max" : "10"
+            },
+            {
+               "min" : "10",
+               "content" : "wilting",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "wasting away",
+               "max" : "20"
+            },
+            {
+               "min" : "20",
+               "content" : "shrinking",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "declining",
+               "max" : "30"
+            },
+            {
+               "min" : "30",
+               "content" : "receding",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "consistent",
+               "max" : "40"
+            },
+            {
+               "min" : "40",
+               "content" : "steady",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "lasting",
+               "max" : "50"
+            },
+            {
+               "min" : "50",
+               "content" : "enduring",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "steadfast",
+               "max" : "60"
+            },
+            {
+               "min" : "60",
+               "content" : "unwavering",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "broadening",
+               "max" : "70"
+            },
+            {
+               "min" : "70",
+               "content" : "improving",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "spreading",
+               "max" : "80"
+            },
+            {
+               "min" : "80",
+               "content" : "growing",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "maturing",
+               "max" : "90"
+            },
+            {
+               "min" : "90",
+               "content" : "flourishing",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "thriving"
+            }
+         ]
+      }
+   },
+   "secondarypower" : {
+      "power" : [
+         {
+            "subplot" : [
+               {
+                  "content" : "wishing to enslave the city"
+               },
+               {
+                  "content" : "watching out for the common man"
+               },
+               {
+                  "content" : "despising the current leader"
+               },
+               {
+                  "content" : "agreeing with the current leader"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a dragon"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "attempting to attain immortality"
+               },
+               {
+                  "content" : "watching out for the common man"
+               },
+               {
+                  "content" : "despising the current leader"
+               },
+               {
+                  "content" : "agreeing with the current leader"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a wizard"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "attempting to buy influence"
+               },
+               {
+                  "content" : "attempting to sell influence"
+               },
+               {
+                  "content" : "pushing for war with trade adversary"
+               },
+               {
+                  "content" : "pushing to open trade with adversary"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a merchant guild"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "using position for personal gain"
+               },
+               {
+                  "content" : "amassing power"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "an elected representative"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "pulling strings for personal gain"
+               },
+               {
+                  "content" : "blackmailing the government"
+               },
+               {
+                  "content" : "working for enemies"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "an advisor"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "attempting to lead religious revolution"
+               },
+               {
+                  "content" : "denying legitimacy of leading power"
+               },
+               {
+                  "content" : "calling for genocide of a minority"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a prophet"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "moving to assert black market dominance"
+               },
+               {
+                  "content" : "backing leading power for leniency"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a thieves guild"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "looking to bring justice"
+               },
+               {
+                  "content" : "looking to overthrow the government"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "traveler"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "plotting to overthrow the corrupt leadership for personal gain"
+               },
+               {
+                  "content" : "being blackmailed by a guild"
+               },
+               {
+                  "content" : "pulling strings with a trade adversary"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "an ex-blacksmith"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "plotting to start war with another nation"
+               },
+               {
+                  "content" : "being manipulated by the denizens of the city whore house"
+               },
+               {
+                  "content" : "wishing to rule with a violent, iron fist"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a barbarian"
+         },
+         {
+            "subplot" : [
+               {
+                  "content" : "pulling strings for personal gain"
+               },
+               {
+                  "content" : "a fiend in disguise"
+               },
+               {
+                  "content" : "an angel in disguise"
+               },
+               {
+                  "content" : "a dragon in disguise"
+               },
+               {
+                  "content" : "a god in disguise"
+               },
+               {
+                  "content" : "a fiend that secretly looks out for the good of the common man"
+               },
+               {
+                  "content" : "an angel that seeks to enslave the common man"
+               }
+            ],
+            "subplot_chance" : "50",
+            "type" : "a recluse"
+         }
+      ],
+      "plot" : [
+         {
+            "content" : "openly assists"
+         },
+         {
+            "content" : "openly denounces"
+         },
+         {
+            "content" : "quietly denounces"
+         },
+         {
+            "content" : "quietly assists"
+         }
+      ]
+   },
+   "govtypes" : {
+      "option" : [
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "female" : "Queen",
+                     "male" : "King"
+                  },
+                  {
+                     "female" : "Empress",
+                     "male" : "Emperor"
+                  },
+                  {
+                     "female" : "Rani",
+                     "male" : "Raja"
+                  },
+                  {
+                     "female" : "Sultana",
+                     "male" : "Sultan"
+                  },
+                  {
+                     "female" : "Shahbanu",
+                     "male" : "Shah"
+                  },
+                  {
+                     "female" : "Princess",
+                     "male" : "Prince"
+                  }
+               ]
+            },
+            "type" : "absolute monarchy",
+            "description" : "the monarch rules unhindered"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Boss"
+                  },
+                  {
+                     "male" : "Captain"
+                  },
+                  {
+                     "male" : "Chairman"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "Czar"
+                  },
+                  {
+                     "male" : "Despot"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Inquisitor"
+                  },
+                  {
+                     "male" : "Leader"
+                  },
+                  {
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Master"
+                  },
+                  {
+                     "male" : "Overlord"
+                  },
+                  {
+                     "male" : "Overseer"
+                  },
+                  {
+                     "male" : "Premier"
+                  },
+                  {
+                     "male" : "Sovereign"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "Supervisor"
+                  },
+                  {
+                     "male" : "Tyrant"
+                  },
+                  {
+                     "male" : "Vizier"
+                  },
+                  {
+                     "male" : "Warlord"
+                  }
+               ]
+            },
+            "type" : "authoritarian government",
+            "description" : "state authority is imposed onto many aspects of citizens' lives"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Chancellor"
+                  },
+                  {
+                     "male" : "Steward"
+                  }
+               ]
+            },
+            "type" : "commonwealth",
+            "description" : "state authority is founded on law and united by a compact of the people for the common good"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "President"
+                  },
+                  {
+                     "male" : "Chancellor"
+                  }
+               ]
+            },
+            "type" : "communist government",
+            "description" : "the state plans and controls the economy and a single party holds power"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "President"
+                  }
+               ]
+            },
+            "type" : "constitutional government",
+            "description" : "an authoritative document sets forth the system of fundamental laws and limits of that government"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "President"
+                  }
+               ]
+            },
+            "type" : "democracy",
+            "description" : "the supreme power is retained by the people, but is exercised through a system of representation"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Boss"
+                  },
+                  {
+                     "male" : "Captain"
+                  },
+                  {
+                     "male" : "Chairman"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "Czar"
+                  },
+                  {
+                     "male" : "Despot"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Inquisitor"
+                  },
+                  {
+                     "male" : "Leader"
+                  },
+                  {
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Master"
+                  },
+                  {
+                     "male" : "Overlord"
+                  },
+                  {
+                     "male" : "Overseer"
+                  },
+                  {
+                     "male" : "Premier"
+                  },
+                  {
+                     "male" : "Sovereign"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "Supervisor"
+                  },
+                  {
+                     "male" : "Tyrant"
+                  },
+                  {
+                     "male" : "Warlord"
+                  }
+               ]
+            },
+            "type" : "dictatorship",
+            "description" : "the ruler or small clique wield absolute power (not restricted by a constitution or laws)"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Pontifex"
+                  },
+                  {
+                     "male" : "Saint"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "female" : "Mother",
+                     "male" : "Father"
+                  },
+                  {
+                     "male" : "Bishop"
+                  },
+                  {
+                     "male" : "Archbishop"
+                  },
+                  {
+                     "male" : "Elder"
+                  },
+                  {
+                     "male" : "President"
+                  },
+                  {
+                     "female" : "Sister",
+                     "male" : "Brother"
+                  },
+                  {
+                     "male" : "Guru"
+                  },
+                  {
+                     "male" : "Lord Chancellor"
+                  },
+                  {
+                     "female" : "Lady",
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Chancellor"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "Cardinal"
+                  },
+                  {
+                     "male" : "Caliph"
+                  }
+               ]
+            },
+            "type" : "ecclesiastical government",
+            "description" : "the government administrated by a church."
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Saint"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "female" : "Mother",
+                     "male" : "Father"
+                  },
+                  {
+                     "male" : "Bishop"
+                  },
+                  {
+                     "male" : "Archbishop"
+                  },
+                  {
+                     "male" : "Elder"
+                  },
+                  {
+                     "male" : "President"
+                  },
+                  {
+                     "female" : "Sister",
+                     "male" : "Brother"
+                  },
+                  {
+                     "male" : "Guru"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "Lord Chancellor"
+                  },
+                  {
+                     "female" : "Lady",
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Chancellor"
+                  },
+                  {
+                     "male" : "Cardinal"
+                  },
+                  {
+                     "male" : "Caliph"
+                  }
+               ]
+            },
+            "type" : "emirate",
+            "description" : "the supreme power is in the hands of an emir, who may be an absolute overlord with constitutionally limited authority"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "President"
+                  },
+                  {
+                     "male" : "Steward"
+                  }
+               ]
+            },
+            "type" : "federation",
+            "description" : " sovereign power is formally divided between a central authority and a number of constituent regions"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "female" : "Queen",
+                     "male" : "King"
+                  },
+                  {
+                     "female" : "Empress",
+                     "male" : "Emperor"
+                  },
+                  {
+                     "female" : "Rani",
+                     "male" : "Raja"
+                  },
+                  {
+                     "female" : "Sultana",
+                     "male" : "Sultan"
+                  },
+                  {
+                     "female" : "Shahbanu",
+                     "male" : "Shah"
+                  },
+                  {
+                     "female" : "Princess",
+                     "male" : "Prince"
+                  }
+               ]
+            },
+            "type" : "monarchy",
+            "description" : "the supreme power is lodged in the hands of a monarch who reigns with constitutionally limited authority"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "President"
+                  }
+               ]
+            },
+            "type" : "oligarchy",
+            "description" : "control is exercised by a small group of individuals whose authority generally is based on wealth or power"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "President"
+                  }
+               ]
+            },
+            "type" : "parliamentary government",
+            "description" : "members are nominated to their positions by a parliament and can be dissolved by the parliament if it can no longer function"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Prime Minister"
+                  },
+                  {
+                     "male" : "President"
+                  }
+               ]
+            },
+            "type" : "republic",
+            "description" : "the people's elected representatives, not the people themselves, vote on legislation."
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Prime minister"
+                  },
+                  {
+                     "male" : "Saint"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "female" : "Mother",
+                     "male" : "Father"
+                  },
+                  {
+                     "male" : "Bishop"
+                  },
+                  {
+                     "male" : "Archbishop"
+                  },
+                  {
+                     "male" : "Elder"
+                  },
+                  {
+                     "male" : "President"
+                  },
+                  {
+                     "female" : "Sister",
+                     "male" : "Brother"
+                  },
+                  {
+                     "male" : "Guru"
+                  },
+                  {
+                     "male" : "Lord Chancellor"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "female" : "Lady",
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Chancellor"
+                  },
+                  {
+                     "male" : "Cardinal"
+                  },
+                  {
+                     "male" : "Caliph"
+                  }
+               ]
+            },
+            "type" : "theocracy",
+            "description" : "a deity is recognized as the supreme civil ruler, but the deity's laws are interpreted by ecclesiastical authorities"
+         },
+         {
+            "titles" : {
+               "option" : [
+                  {
+                     "male" : "Boss"
+                  },
+                  {
+                     "male" : "Captain"
+                  },
+                  {
+                     "male" : "Chairman"
+                  },
+                  {
+                     "male" : "Chief"
+                  },
+                  {
+                     "male" : "Commander"
+                  },
+                  {
+                     "male" : "Czar"
+                  },
+                  {
+                     "male" : "Despot"
+                  },
+                  {
+                     "male" : "General"
+                  },
+                  {
+                     "male" : "Governor"
+                  },
+                  {
+                     "male" : "Inquisitor"
+                  },
+                  {
+                     "male" : "Leader"
+                  },
+                  {
+                     "male" : "Lord"
+                  },
+                  {
+                     "male" : "Master"
+                  },
+                  {
+                     "male" : "Overlord"
+                  },
+                  {
+                     "male" : "Overseer"
+                  },
+                  {
+                     "male" : "Premier"
+                  },
+                  {
+                     "male" : "Sovereign"
+                  },
+                  {
+                     "male" : "Steward"
+                  },
+                  {
+                     "male" : "Supervisor"
+                  },
+                  {
+                     "male" : "Tyrant"
+                  },
+                  {
+                     "male" : "Warlord"
+                  }
+               ]
+            },
+            "type" : "totalitarian government",
+            "description" : "the government subordinates individuals by controlling all political and economic matters, as well as the attitudes, values, and beliefs"
+         }
+      ]
+   }
+}

@@ -1,0 +1,1072 @@
+{
+   "feature" : {
+      "covering" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "hair"
+            },
+            {
+               "content" : "fur"
+            },
+            {
+               "content" : "scales"
+            },
+            {
+               "content" : "bristles"
+            },
+            {
+               "content" : "tufts of hair"
+            },
+            {
+               "content" : "whiskers"
+            },
+            {
+               "content" : "tendrils"
+            },
+            {
+               "content" : "feathers"
+            },
+            {
+               "content" : "spines"
+            },
+            {
+               "content" : "tentacles"
+            }
+         ]
+      },
+      "attack" : {
+         "option" : [
+            {
+               "content" : "claws"
+            },
+            {
+               "content" : "pinchers"
+            },
+            {
+               "content" : "fangs"
+            },
+            {
+               "content" : "stinger"
+            },
+            {
+               "content" : "horns"
+            },
+            {
+               "content" : "antlers"
+            },
+            {
+               "content" : "tentacles"
+            },
+            {
+               "content" : "bite"
+            },
+            {
+               "content" : "chittering"
+            },
+            {
+               "content" : "tongue"
+            },
+            {
+               "content" : "wit"
+            }
+         ]
+      },
+      "nametemplate" : {
+         "option" : [
+            {
+               "content" : "[%coveringcolor%][%part%] [%npc.firstname%] [%basecritter%]"
+            },
+            {
+               "content" : "[%subtype_type%][%npc.firstname%] [%basecritter%]"
+            },
+            {
+               "content" : "[%subtype_type%][%npc.firstname%]"
+            },
+            {
+               "content" : "[%coveringcolor%][%part%] [%npc.firstname%]"
+            }
+         ]
+      },
+      "part" : {
+         "option" : [
+            {
+               "content" : "-breasted",
+               "type" : "chest"
+            },
+            {
+               "content" : "-capped",
+               "type" : "scalp"
+            },
+            {
+               "content" : "-cheeked",
+               "type" : "cheeks"
+            },
+            {
+               "content" : "-crested",
+               "type" : "crest"
+            },
+            {
+               "content" : "-eared",
+               "type" : "markings"
+            },
+            {
+               "content" : "-eyed",
+               "type" : "eyes"
+            },
+            {
+               "content" : "-faced",
+               "type" : "face"
+            },
+            {
+               "content" : "-footed",
+               "type" : "feet"
+            },
+            {
+               "content" : "-headed",
+               "type" : "head"
+            },
+            {
+               "content" : "-horned",
+               "type" : "horns"
+            },
+            {
+               "content" : "-naped",
+               "type" : "neck"
+            },
+            {
+               "content" : "-plumed",
+               "type" : "coloring"
+            },
+            {
+               "content" : "-ringed",
+               "type" : "rings"
+            },
+            {
+               "content" : "-rumped",
+               "type" : "posterior"
+            },
+            {
+               "content" : "-tailed",
+               "type" : "tail"
+            },
+            {
+               "content" : "-bellied",
+               "type" : "belly"
+            },
+            {
+               "content" : "-throated",
+               "type" : "throat"
+            }
+         ]
+      },
+      "attacktype" : {
+         "option" : [
+            {
+               "content" : "dangerous"
+            },
+            {
+               "content" : "poisonous"
+            },
+            {
+               "content" : "fearsome"
+            },
+            {
+               "content" : "massive"
+            },
+            {
+               "content" : "quick"
+            }
+         ]
+      },
+      "subtype" : {
+         "chance" : "10",
+         "option" : [
+            {
+               "content" : "appears to be undead",
+               "type" : "undead "
+            },
+            {
+               "content" : "prefers to spend its time in the water",
+               "type" : "aquatic "
+            },
+            {
+               "content" : "radiates an aura of holiness",
+               "type" : "angelic "
+            },
+            {
+               "content" : "prefers colder climates",
+               "type" : "arctic "
+            },
+            {
+               "content" : "prefers hot, dry locations",
+               "type" : "desert "
+            },
+            {
+               "content" : "drifts between planes of reality",
+               "type" : "incorporeal "
+            },
+            {
+               "content" : "is a cold-blooded creature",
+               "type" : "reptilian "
+            },
+            {
+               "content" : "shows signs of a draconic bloodline",
+               "type" : "draconic "
+            },
+            {
+               "content" : "has been infused with magical energy",
+               "type" : "magical "
+            },
+            {
+               "content" : "has some fiendish traits",
+               "type" : "fiendish "
+            },
+            {
+               "content" : "appears to be some type of mechanized life form",
+               "type" : "mechanical "
+            },
+            {
+               "content" : "has been augmented through magical means",
+               "type" : "augmented "
+            },
+            {
+               "content" : " has lost its structural integrity",
+               "type" : "oozing "
+            },
+            {
+               "content" : "has some demonic traits",
+               "type" : "demonic "
+            },
+            {
+               "content" : "prefers staying underground",
+               "type" : "subterranean "
+            },
+            {
+               "content" : "has been warped by chaotic energies",
+               "type" : "chaotic "
+            },
+            {
+               "content" : "drains the blood from its victims",
+               "type" : "vampiric "
+            },
+            {
+               "content" : "prefers to live in civilized areas",
+               "type" : "urban "
+            }
+         ]
+      },
+      "coveringcolor" : {
+         "option" : [
+            {
+               "content" : "brown"
+            },
+            {
+               "content" : "gray"
+            },
+            {
+               "content" : "green"
+            },
+            {
+               "content" : "red"
+            },
+            {
+               "content" : "black"
+            },
+            {
+               "content" : "dark"
+            },
+            {
+               "content" : "iridesent"
+            },
+            {
+               "content" : "silver"
+            },
+            {
+               "content" : "white"
+            }
+         ]
+      },
+      "coveringtype" : {
+         "option" : [
+            {
+               "content" : "thin"
+            },
+            {
+               "content" : "thick"
+            },
+            {
+               "content" : "patchy"
+            },
+            {
+               "content" : "consistent"
+            },
+            {
+               "content" : "uneven"
+            },
+            {
+               "content" : "irregular"
+            },
+            {
+               "content" : "disfigured"
+            }
+         ]
+      },
+      "confrontation" : {
+         "option" : [
+            {
+               "content" : "will flee"
+            },
+            {
+               "content" : "releases a cloud of noxious gas"
+            },
+            {
+               "content" : "fights to the death"
+            },
+            {
+               "content" : "kills all intruders"
+            },
+            {
+               "content" : "plays dead"
+            },
+            {
+               "content" : "explodes violently, sacrificing itself to protect the nest"
+            },
+            {
+               "content" : "will turn invisible in order to escape"
+            },
+            {
+               "content" : "shoots spines"
+            },
+            {
+               "content" : "hisses threateningly"
+            },
+            {
+               "content" : "puts on a dominance display"
+            },
+            {
+               "content" : "will charge any threats"
+            },
+            {
+               "content" : "reacts with obvious friendship"
+            },
+            {
+               "content" : "reacts submissively"
+            },
+            {
+               "content" : "challenges you to a battle of wits"
+            },
+            {
+               "content" : "defensively guards its lair"
+            },
+            {
+               "content" : "howls to alert the pack"
+            },
+            {
+               "content" : "magically shields itself"
+            },
+            {
+               "content" : "summons help"
+            },
+            {
+               "content" : "approaches curiously"
+            },
+            {
+               "content" : "demands food telepathically"
+            }
+         ]
+      },
+      "diet" : {
+         "option" : [
+            {
+               "content" : "feasts on humanoid flesh"
+            },
+            {
+               "content" : "feasts on undead flesh"
+            },
+            {
+               "content" : "eats shoots and leaves"
+            },
+            {
+               "content" : "has never been observed eating"
+            },
+            {
+               "content" : "feeds on rotting plant matter"
+            },
+            {
+               "content" : "feeds on shrubs"
+            },
+            {
+               "content" : "eats leaves and other vegetation"
+            },
+            {
+               "content" : "is a herbavore"
+            },
+            {
+               "content" : "is an omnivore"
+            },
+            {
+               "content" : "is an opportunistic feeder"
+            },
+            {
+               "content" : "prefers living flesh"
+            },
+            {
+               "content" : "will eat anything- shoes, cows, loose bricks"
+            },
+            {
+               "content" : "eats the male after mating"
+            },
+            {
+               "content" : "has cannibalistic tendencies"
+            },
+            {
+               "content" : "enjoys the flavor fear provides"
+            },
+            {
+               "content" : "prefers cooked foods"
+            },
+            {
+               "content" : "prefers small mammals and lizards"
+            },
+            {
+               "content" : "prefers to feed on insects"
+            },
+            {
+               "content" : "prefers fish"
+            },
+            {
+               "content" : "feels solely on shellfish"
+            },
+            {
+               "content" : "swallows its prey whole"
+            },
+            {
+               "content" : "coccoons its food for up to six weeks before eating"
+            },
+            {
+               "content" : "paralyses its prey and eats it alive"
+            },
+            {
+               "content" : "likes to eat eyeballs"
+            },
+            {
+               "content" : "eats brains"
+            },
+            {
+               "content" : "will eat its own limbs when short of food"
+            },
+            {
+               "content" : "extracts nutrients from the air"
+            },
+            {
+               "content" : "eats soil and rock"
+            },
+            {
+               "content" : "photosynthesises"
+            },
+            {
+               "content" : "eats the bones of its prey, leaving the flesh behind"
+            },
+            {
+               "content" : "eats once a year"
+            },
+            {
+               "content" : "gains energy by killing its prey and consuming the soul, leaving the body intact"
+            },
+            {
+               "content" : "feeds off emotional energy"
+            },
+            {
+               "content" : "relatively slowly but relentlessly pursues its prey until it dies from exhaustion"
+            },
+            {
+               "content" : "drinks nectar"
+            },
+            {
+               "content" : "eats bad little children who misbehave"
+            },
+            {
+               "content" : "subsists on energy from another plane"
+            },
+            {
+               "content" : "can eat any organic material"
+            },
+            {
+               "content" : "dissolves its prey with strong acid before eating"
+            }
+         ]
+      },
+      "locomotion" : {
+         "option" : [
+            {
+               "content" : "walks on two legs"
+            },
+            {
+               "content" : "walks on four legs"
+            },
+            {
+               "content" : "slithers on its belly"
+            },
+            {
+               "content" : "swims through the water with a powerful tail and flippers"
+            },
+            {
+               "content" : "skitters along on countless legs"
+            },
+            {
+               "content" : "oozes and pulsates forward on a trail of slime"
+            },
+            {
+               "content" : "skitters forward on six narrow legs"
+            },
+            {
+               "content" : "creeps foward on 8 legs"
+            }
+         ]
+      },
+      "maw" : {
+         "option" : [
+            {
+               "content" : "teeth that are small, dull nubs"
+            },
+            {
+               "content" : "thousands of tiny, razor sharp teeth"
+            },
+            {
+               "content" : "large, saber like fangs"
+            },
+            {
+               "content" : "numerous rows of fangs"
+            },
+            {
+               "content" : "sharp, feral incisors"
+            },
+            {
+               "content" : "large, grinding teeth"
+            },
+            {
+               "content" : "a razor sharp beak"
+            },
+            {
+               "content" : "a large bill, good for cracking nuts"
+            },
+            {
+               "content" : "low, flat teeth"
+            },
+            {
+               "content" : "a long, slender beak"
+            },
+            {
+               "content" : "a large set of fierce pincers"
+            }
+         ]
+      },
+      "basecritter" : {
+         "cross_chance" : "50",
+         "option" : [
+            {
+               "content" : "alligator"
+            },
+            {
+               "content" : "anteater"
+            },
+            {
+               "content" : "badger"
+            },
+            {
+               "content" : "bat"
+            },
+            {
+               "content" : "bear"
+            },
+            {
+               "content" : "beaver"
+            },
+            {
+               "content" : "boa"
+            },
+            {
+               "content" : "boar"
+            },
+            {
+               "content" : "bobcat"
+            },
+            {
+               "content" : "booby"
+            },
+            {
+               "content" : "buffalo"
+            },
+            {
+               "content" : "camel"
+            },
+            {
+               "content" : "cat"
+            },
+            {
+               "content" : "cheetah"
+            },
+            {
+               "content" : "civet"
+            },
+            {
+               "content" : "cobra"
+            },
+            {
+               "content" : "cougar"
+            },
+            {
+               "content" : "cow"
+            },
+            {
+               "content" : "crab"
+            },
+            {
+               "content" : "crane"
+            },
+            {
+               "content" : "crocodile"
+            },
+            {
+               "content" : "cross"
+            },
+            {
+               "content" : "crow"
+            },
+            {
+               "content" : "deer"
+            },
+            {
+               "content" : "devil"
+            },
+            {
+               "content" : "dog"
+            },
+            {
+               "content" : "dove"
+            },
+            {
+               "content" : "dragon"
+            },
+            {
+               "content" : "duck"
+            },
+            {
+               "content" : "eagle"
+            },
+            {
+               "content" : "eel"
+            },
+            {
+               "content" : "egret"
+            },
+            {
+               "content" : "elephant"
+            },
+            {
+               "content" : "enchida"
+            },
+            {
+               "content" : "falcon"
+            },
+            {
+               "content" : "fox"
+            },
+            {
+               "content" : "frog"
+            },
+            {
+               "content" : "gazelle"
+            },
+            {
+               "content" : "gecko"
+            },
+            {
+               "content" : "goat"
+            },
+            {
+               "content" : "goose"
+            },
+            {
+               "content" : "gull"
+            },
+            {
+               "content" : "hawk"
+            },
+            {
+               "content" : "heron"
+            },
+            {
+               "content" : "horse"
+            },
+            {
+               "content" : "humanoid"
+            },
+            {
+               "content" : "hyena"
+            },
+            {
+               "content" : "iguana"
+            },
+            {
+               "content" : "jackal"
+            },
+            {
+               "content" : "lemur"
+            },
+            {
+               "content" : "lion"
+            },
+            {
+               "content" : "lizard"
+            },
+            {
+               "content" : "mongoose"
+            },
+            {
+               "content" : "monkey"
+            },
+            {
+               "content" : "moose"
+            },
+            {
+               "content" : "mule"
+            },
+            {
+               "content" : "octopus"
+            },
+            {
+               "content" : "oppossum"
+            },
+            {
+               "content" : "otter"
+            },
+            {
+               "content" : "owl"
+            },
+            {
+               "content" : "ox"
+            },
+            {
+               "content" : "panther"
+            },
+            {
+               "content" : "peacock"
+            },
+            {
+               "content" : "porcupine"
+            },
+            {
+               "content" : "porcupine"
+            },
+            {
+               "content" : "quail"
+            },
+            {
+               "content" : "raccoon"
+            },
+            {
+               "content" : "rat"
+            },
+            {
+               "content" : "salamander"
+            },
+            {
+               "content" : "scorpion"
+            },
+            {
+               "content" : "sheep"
+            },
+            {
+               "content" : "skink"
+            },
+            {
+               "content" : "sloth"
+            },
+            {
+               "content" : "snake"
+            },
+            {
+               "content" : "spider"
+            },
+            {
+               "content" : "stork"
+            },
+            {
+               "content" : "swan"
+            },
+            {
+               "content" : "tortoise"
+            },
+            {
+               "content" : "turkey"
+            },
+            {
+               "content" : "viper"
+            },
+            {
+               "content" : "vulture"
+            },
+            {
+               "content" : "weasel"
+            },
+            {
+               "content" : "wolf"
+            }
+         ]
+      },
+      "ability" : {
+         "option" : [
+            {
+               "content" : "mythical abilities"
+            },
+            {
+               "content" : "poison"
+            },
+            {
+               "content" : "toxic breath"
+            },
+            {
+               "content" : "horrifying gaze"
+            },
+            {
+               "content" : "petrifying gaze"
+            },
+            {
+               "content" : "unearthly wail"
+            },
+            {
+               "content" : "dangerous breath"
+            },
+            {
+               "content" : "shapeshifting ability"
+            },
+            {
+               "content" : "sightlessness"
+            },
+            {
+               "content" : "ability to drain the life from its prey"
+            },
+            {
+               "content" : "fast healing"
+            },
+            {
+               "content" : "fearsome visage"
+            },
+            {
+               "content" : "ability to grapple its prey"
+            },
+            {
+               "content" : "ability to burrow"
+            },
+            {
+               "content" : "ability to fly"
+            },
+            {
+               "content" : "ability to swim"
+            },
+            {
+               "content" : "ability to set an ambush"
+            },
+            {
+               "content" : "mindless drive to attack"
+            },
+            {
+               "content" : "immunity to mental attacks"
+            },
+            {
+               "content" : "powerful charge"
+            },
+            {
+               "content" : "overwhelming stink"
+            },
+            {
+               "content" : "piercing screech"
+            },
+            {
+               "content" : "magical resistance"
+            },
+            {
+               "content" : "magical skill"
+            },
+            {
+               "content" : "ability to swallow its victim whole"
+            },
+            {
+               "content" : "use of telepathy"
+            }
+         ]
+      }
+   },
+   "stats" : {
+      "terror" : {
+         "option" : [
+            {
+               "content" : "adorable",
+               "max" : "12"
+            },
+            {
+               "min" : "13",
+               "content" : "cute",
+               "max" : "24"
+            },
+            {
+               "min" : "25",
+               "content" : "unpleasant",
+               "max" : "36"
+            },
+            {
+               "min" : "37",
+               "content" : "pleasant",
+               "max" : "48"
+            },
+            {
+               "min" : "49",
+               "content" : "unpleasant",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "scary",
+               "max" : "72"
+            },
+            {
+               "min" : "73",
+               "content" : "terrifying",
+               "max" : "84"
+            },
+            {
+               "min" : "85",
+               "content" : "horrifying"
+            }
+         ]
+      },
+      "creation" : {
+         "option" : [
+            {
+               "content" : "is a new species",
+               "max" : "2"
+            },
+            {
+               "min" : "3",
+               "content" : "has only existed a few decades",
+               "max" : "4"
+            },
+            {
+               "min" : "5",
+               "content" : "is only a few generations old",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "is younger than human kind",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "is older than the elves",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "was one of the first creatures",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "outdates the world",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "outdates the gods"
+            }
+         ]
+      },
+      "age" : {
+         "option" : [
+            {
+               "content" : "unborn",
+               "max" : "2"
+            },
+            {
+               "min" : "3",
+               "content" : "newborn",
+               "max" : "4"
+            },
+            {
+               "min" : "5",
+               "content" : "young",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "juvenile",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "adult",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "mature adult",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "elder",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "deceased"
+            }
+         ]
+      },
+      "size" : {
+         "option" : [
+            {
+               "content" : "miniscule",
+               "max" : "2"
+            },
+            {
+               "min" : "3",
+               "content" : "tiny",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "small",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "medium",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "large",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "huge",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "gargantuan",
+               "max" : "98"
+            },
+            {
+               "min" : "99",
+               "content" : "colossal"
+            }
+         ]
+      }
+   }
+}

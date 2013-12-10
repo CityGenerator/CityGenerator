@@ -1,0 +1,929 @@
+{
+   "descriptor" : {
+      "signs" : {
+         "option" : [
+            {
+               "type" : "recent"
+            },
+            {
+               "type" : "ancient"
+            },
+            {
+               "type" : "no"
+            },
+            {
+               "type" : "minimal"
+            },
+            {
+               "type" : "obvious"
+            },
+            {
+               "type" : "hidden"
+            }
+         ]
+      },
+      "cloudcolor" : {
+         "option" : [
+            {
+               "type" : "white"
+            },
+            {
+               "type" : "gray"
+            },
+            {
+               "type" : "multi-colored"
+            },
+            {
+               "type" : "black"
+            },
+            {
+               "type" : "red"
+            },
+            {
+               "type" : "purple"
+            }
+         ]
+      },
+      "cloudtype" : {
+         "option" : [
+            {
+               "type" : "whispy"
+            },
+            {
+               "type" : "thick"
+            },
+            {
+               "type" : "thin"
+            },
+            {
+               "type" : "soupy"
+            },
+            {
+               "type" : "nebulous"
+            },
+            {
+               "type" : "nimbus"
+            },
+            {
+               "type" : "gentle"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "warcause" : {
+         "option" : [
+            {
+               "type" : "taxes"
+            },
+            {
+               "type" : "politics"
+            },
+            {
+               "type" : "an assassination"
+            },
+            {
+               "type" : "soverignty"
+            },
+            {
+               "type" : "territory"
+            },
+            {
+               "type" : "resources"
+            },
+            {
+               "type" : "land"
+            },
+            {
+               "type" : "a bride"
+            }
+         ]
+      },
+      "bigquantity" : {
+         "option" : [
+            {
+               "type" : "thousands of"
+            },
+            {
+               "type" : "hundreds of"
+            },
+            {
+               "type" : "dozens of"
+            },
+            {
+               "type" : "several"
+            }
+         ]
+      },
+      "size" : {
+         "option" : [
+            {
+               "type" : "tiny"
+            },
+            {
+               "type" : "small"
+            },
+            {
+               "type" : "mediume"
+            },
+            {
+               "type" : "large"
+            },
+            {
+               "type" : "huge"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "appearance" : {
+         "option" : [
+            {
+               "type" : "beautiful"
+            },
+            {
+               "type" : "hideous"
+            },
+            {
+               "type" : "unique"
+            },
+            {
+               "type" : "healthy"
+            },
+            {
+               "type" : "sickly"
+            },
+            {
+               "type" : "alive"
+            },
+            {
+               "type" : "near death"
+            },
+            {
+               "type" : "deathly"
+            },
+            {
+               "type" : "faltering"
+            },
+            {
+               "type" : "strong"
+            },
+            {
+               "type" : "peculiar"
+            },
+            {
+               "type" : "ruined"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "wind" : {
+         "option" : [
+            {
+               "type" : "breezy"
+            },
+            {
+               "type" : "dead"
+            },
+            {
+               "type" : "soft"
+            },
+            {
+               "type" : "heavy"
+            },
+            {
+               "type" : "strong"
+            },
+            {
+               "type" : "incredibly strong"
+            }
+         ]
+      },
+      "trait" : {
+         "option" : [
+            {
+               "type" : "brave"
+            },
+            {
+               "type" : "coward"
+            },
+            {
+               "type" : "slime"
+            },
+            {
+               "type" : "old"
+            },
+            {
+               "type" : "simple"
+            },
+            {
+               "type" : "strong"
+            },
+            {
+               "type" : "clever"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "rumorsource" : {
+         "option" : [
+            {
+               "type" : "local rumors"
+            },
+            {
+               "type" : "bard tales"
+            },
+            {
+               "type" : "legends"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "unity" : {
+         "option" : [
+            {
+               "type" : "devisive"
+            },
+            {
+               "type" : "uniting"
+            },
+            {
+               "type" : "fragmenting"
+            },
+            {
+               "type" : "unifying"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "sky" : {
+         "option" : [
+            {
+               "clouds" : "true",
+               "type" : "overcast"
+            },
+            {
+               "clouds" : "true",
+               "type" : "cloudy"
+            },
+            {
+               "clouds" : "true",
+               "type" : "dark"
+            },
+            {
+               "clouds" : "true",
+               "type" : "brooding"
+            },
+            {
+               "type" : "clear"
+            },
+            {
+               "clouds" : "true",
+               "type" : "bright"
+            },
+            {
+               "clouds" : "true",
+               "type" : "foreboding"
+            },
+            {
+               "clouds" : "true",
+               "type" : "ominous"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "win" : {
+         "option" : [
+            {
+               "type" : "slim"
+            },
+            {
+               "type" : "narrow"
+            },
+            {
+               "type" : "grueling"
+            },
+            {
+               "type" : "decisive"
+            },
+            {
+               "type" : "miniscule"
+            },
+            {
+               "type" : "massive"
+            },
+            {
+               "type" : "overwhelming"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "attitude" : {
+         "option" : [
+            {
+               "type" : "aggressive"
+            },
+            {
+               "type" : "angry"
+            },
+            {
+               "type" : "cautious"
+            },
+            {
+               "type" : "confrontational"
+            },
+            {
+               "type" : "friendly"
+            },
+            {
+               "type" : "hostile"
+            },
+            {
+               "type" : "indifferent"
+            },
+            {
+               "type" : "intersted"
+            },
+            {
+               "type" : "leery"
+            },
+            {
+               "type" : "menacing"
+            },
+            {
+               "type" : "mistrustful"
+            },
+            {
+               "type" : "neutral"
+            },
+            {
+               "type" : "suspicious"
+            },
+            {
+               "type" : "unfriendly"
+            },
+            {
+               "type" : "uninterested"
+            },
+            {
+               "type" : "untrusting"
+            },
+            {
+               "type" : "wary"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "skydistance" : {
+         "option" : [
+            {
+               "type" : "overhead"
+            },
+            {
+               "type" : "above"
+            },
+            {
+               "type" : "nearby"
+            },
+            {
+               "type" : "in the distance"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "wear" : {
+         "option" : [
+            {
+               "type" : "like new"
+            },
+            {
+               "type" : "pristine"
+            },
+            {
+               "type" : "aged"
+            },
+            {
+               "type" : "worn"
+            },
+            {
+               "type" : "battle-scarred"
+            },
+            {
+               "type" : "well maintained"
+            },
+            {
+               "type" : "immaculate"
+            },
+            {
+               "type" : "on the verge of ruin"
+            },
+            {
+               "type" : "heavily battered"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "rarity" : {
+         "option" : [
+            {
+               "type" : "rare"
+            },
+            {
+               "type" : "plentiful"
+            },
+            {
+               "type" : "common"
+            },
+            {
+               "type" : "commonplace"
+            },
+            {
+               "type" : "unique"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "used" : {
+         "option" : [
+            {
+               "type" : "recently used"
+            },
+            {
+               "type" : "never used"
+            },
+            {
+               "type" : "occasionally used"
+            },
+            {
+               "type" : "often used"
+            },
+            {
+               "type" : "rarely used"
+            },
+            {
+               "type" : "long abandoned"
+            }
+         ]
+      },
+      "smalltime" : {
+         "option" : [
+            {
+               "type" : "seconds"
+            },
+            {
+               "type" : "minutes"
+            },
+            {
+               "type" : "hours"
+            },
+            {
+               "type" : "days"
+            }
+         ]
+      },
+      "smallquantity" : {
+         "option" : [
+            {
+               "type" : "a couple"
+            },
+            {
+               "type" : "several"
+            },
+            {
+               "type" : "two"
+            },
+            {
+               "singlular" : "true",
+               "type" : "one"
+            }
+         ]
+      },
+      "air" : {
+         "option" : [
+            {
+               "type" : "fresh"
+            },
+            {
+               "type" : "thin"
+            },
+            {
+               "type" : "thick"
+            },
+            {
+               "type" : "heavy"
+            },
+            {
+               "type" : "humid"
+            },
+            {
+               "type" : "sticky"
+            },
+            {
+               "type" : ""
+            }
+         ]
+      },
+      "bigtime" : {
+         "option" : [
+            {
+               "type" : "weeks"
+            },
+            {
+               "type" : "months"
+            },
+            {
+               "type" : "years"
+            },
+            {
+               "type" : "decades"
+            },
+            {
+               "type" : "centuries"
+            },
+            {
+               "type" : "millennia"
+            }
+         ]
+      }
+   },
+   "location_type" : {
+      "location" : [
+         {
+            "desc" : "some ruins",
+            "option" : [
+               {
+                  "type" : "castle"
+               },
+               {
+                  "type" : "village"
+               },
+               {
+                  "type" : "keep"
+               },
+               {
+                  "type" : "tower"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "ruins"
+         },
+         {
+            "desc" : "a battleground",
+            "option" : [
+               {
+                  "type" : "recent battle"
+               },
+               {
+                  "type" : "ancient"
+               },
+               {
+                  "type" : "bloody"
+               }
+            ],
+            "type" : "battleground"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "bust"
+               },
+               {
+                  "type" : "statue"
+               },
+               {
+                  "type" : "well"
+               },
+               {
+                  "type" : "relief"
+               },
+               {
+                  "type" : "monument"
+               },
+               {
+                  "type" : "monolith"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "sculpture"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "dead zone"
+               },
+               {
+                  "type" : "overgrowth"
+               },
+               {
+                  "type" : "strange patterns"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "vegetation"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "slightly visible trail"
+               },
+               {
+                  "type" : "signs of a large animal"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "trail"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "windmill"
+               },
+               {
+                  "type" : "tower"
+               },
+               {
+                  "type" : "tavern"
+               },
+               {
+                  "type" : "inn"
+               },
+               {
+                  "type" : "brothel"
+               },
+               {
+                  "type" : "farmhouse"
+               },
+               {
+                  "type" : "bridge"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "building"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "toy"
+               },
+               {
+                  "type" : "broken cart"
+               },
+               {
+                  "type" : "weapon"
+               },
+               {
+                  "type" : "blue police box"
+               },
+               {
+                  "type" : "sack"
+               },
+               {
+                  "type" : "farm equipment"
+               },
+               {
+                  "type" : "dreamcatcher"
+               },
+               {
+                  "type" : "book"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "object"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "cattle"
+               },
+               {
+                  "type" : "horses"
+               },
+               {
+                  "type" : "buffalo"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "herd"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "caravan"
+               },
+               {
+                  "type" : "gypsies"
+               },
+               {
+                  "type" : "single traveler"
+               },
+               {
+                  "type" : "merchant"
+               },
+               {
+                  "type" : ""
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "traveler"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "random portal"
+               },
+               {
+                  "type" : "unnatural mist"
+               },
+               {
+                  "type" : "unnatural shadows"
+               },
+               {
+                  "type" : "unnatural noises"
+               },
+               {
+                  "type" : "odd smell"
+               }
+            ],
+            "type" : "magical"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "magical"
+               },
+               {
+                  "type" : "natural"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "disaster"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "unit"
+               },
+               {
+                  "type" : "deserters"
+               },
+               {
+                  "type" : "guard tower"
+               },
+               {
+                  "type" : "outpost"
+               },
+               {
+                  "type" : "horde"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "military"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "temple"
+               },
+               {
+                  "type" : "graveyard"
+               },
+               {
+                  "type" : "crypt"
+               },
+               {
+                  "type" : "shrine"
+               },
+               {
+                  "type" : "monastery"
+               },
+               {
+                  "type" : "holy site"
+               },
+               {
+                  "type" : "cairn"
+               },
+               {
+                  "type" : "barrow"
+               },
+               {
+                  "type" : "altar"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "holy"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "mile marker"
+               },
+               {
+                  "type" : "quarantine marker"
+               },
+               {
+                  "type" : "warning"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "sign"
+         },
+         {
+            "desc" : "",
+            "option" : [
+               {
+                  "type" : "cavern"
+               },
+               {
+                  "type" : "cliff"
+               },
+               {
+                  "type" : "watering hole"
+               },
+               {
+                  "type" : "pond"
+               },
+               {
+                  "type" : "brook"
+               },
+               {
+                  "type" : "stream"
+               },
+               {
+                  "type" : "quicksand"
+               },
+               {
+                  "type" : "bog"
+               },
+               {
+                  "type" : "swamp"
+               },
+               {
+                  "type" : "spring"
+               },
+               {
+                  "type" : ""
+               }
+            ],
+            "type" : "landform"
+         }
+      ]
+   }
+}

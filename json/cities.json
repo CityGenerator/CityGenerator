@@ -1,0 +1,1140 @@
+{
+   "streets" : {
+      "trailer" : [
+         {
+            "content" : "in a grid pattern"
+         },
+         {
+            "content" : "in a ray pattern"
+         },
+         {
+            "content" : "in a contour-forming pattern"
+         },
+         {
+            "content" : "in an irregular pattern"
+         },
+         {
+            "content" : "in a random mesh pattern"
+         },
+         {
+            "content" : "in an organic pattern"
+         },
+         {
+            "content" : "in a fragmented parallel pattern"
+         },
+         {
+            "content" : "in a looped pattern"
+         },
+         {
+            "content" : "in a warped parallel pattern"
+         },
+         {
+            "content" : "in a linear pattern"
+         },
+         {
+            "content" : "in a wheel and spoke pattern"
+         }
+      ],
+      "root" : [
+         {
+            "content" : "dirt roads"
+         },
+         {
+            "content" : "dirt tracks"
+         },
+         {
+            "content" : "cobblestone streets"
+         },
+         {
+            "content" : "cobblestone paths"
+         }
+      ],
+      "title" : [
+         {
+            "content" : "rough"
+         },
+         {
+            "content" : "broken"
+         },
+         {
+            "content" : "pristine"
+         },
+         {
+            "content" : "irregular"
+         },
+         {
+            "content" : "smooth"
+         },
+         {
+            "content" : "bumpy"
+         },
+         {
+            "content" : "crude"
+         },
+         {
+            "content" : "even"
+         },
+         {
+            "content" : "well-maintained"
+         },
+         {
+            "content" : "filthy"
+         },
+         {
+            "content" : "muddy"
+         }
+      ]
+   },
+   "arable" : {
+      "option" : [
+         {
+            "min" : "1",
+            "content" : "desolate",
+            "max" : "33",
+            "type" : "poor"
+         },
+         {
+            "min" : "34",
+            "content" : "modest",
+            "max" : "66",
+            "type" : "neutral"
+         },
+         {
+            "min" : "67",
+            "content" : "fertile",
+            "type" : "rich"
+         }
+      ]
+   },
+   "stats" : {
+      "magic" : {
+         "option" : [
+            {
+               "content" : "unwelcome",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "rarely used",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "rare",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "rare but accepted",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "instutionalized",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "allowed",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "accepted",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "plentiful",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "flourishing",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "growing"
+            }
+         ]
+      },
+      "education" : {
+         "option" : [
+            {
+               "content" : "mocked",
+               "max" : "8"
+            },
+            {
+               "min" : "9",
+               "content" : "poor",
+               "max" : "16"
+            },
+            {
+               "min" : "17",
+               "content" : "low",
+               "max" : "24"
+            },
+            {
+               "min" : "25",
+               "content" : "rare",
+               "max" : "32"
+            },
+            {
+               "min" : "33",
+               "content" : "middling",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "mediocre",
+               "max" : "48"
+            },
+            {
+               "min" : "49",
+               "content" : "allowed, but not enforced",
+               "max" : "56"
+            },
+            {
+               "min" : "57",
+               "content" : "instutionalized",
+               "max" : "64"
+            },
+            {
+               "min" : "65",
+               "content" : "enforced",
+               "max" : "72"
+            },
+            {
+               "min" : "73",
+               "content" : "high",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "expected",
+               "max" : "88"
+            },
+            {
+               "min" : "89",
+               "content" : "growing",
+               "max" : "96"
+            },
+            {
+               "min" : "97",
+               "content" : "wonderful"
+            }
+         ]
+      },
+      "moral" : {
+         "option" : [
+            {
+               "content" : "untrustworthy",
+               "max" : "4"
+            },
+            {
+               "min" : "5",
+               "content" : "mean",
+               "max" : "8"
+            },
+            {
+               "min" : "9",
+               "content" : "venomous",
+               "max" : "12"
+            },
+            {
+               "min" : "13",
+               "content" : "corrupt",
+               "max" : "16"
+            },
+            {
+               "min" : "17",
+               "content" : "repungent",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "unpleasant",
+               "max" : "24"
+            },
+            {
+               "min" : "25",
+               "content" : "opportunistic",
+               "max" : "28"
+            },
+            {
+               "min" : "29",
+               "content" : "villianous",
+               "max" : "32"
+            },
+            {
+               "min" : "33",
+               "content" : "nefarious",
+               "max" : "36"
+            },
+            {
+               "min" : "37",
+               "content" : "cold",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "unconcerned",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "undecided",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "uncomitted",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "indifferent",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "indifferent",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "well meaning",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "trustworty",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "nice",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "ethical",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "honest",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "praise-worthy",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "virtuous"
+            }
+         ]
+      },
+      "military" : {
+         "option" : [
+            {
+               "content" : "negative",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "disinterested",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "neutral",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "laid back",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "positive",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "reverent"
+            }
+         ]
+      },
+      "crime" : {
+         "option" : [
+            {
+               "content" : "rampant",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "common",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "occasional",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "unusual",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "rare",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "unheard of"
+            }
+         ]
+      },
+      "economy" : {
+         "option" : [
+            {
+               "content" : "crumbling",
+               "max" : "6"
+            },
+            {
+               "min" : "7",
+               "content" : "failing",
+               "max" : "12"
+            },
+            {
+               "min" : "13",
+               "content" : "uncertain",
+               "max" : "18"
+            },
+            {
+               "min" : "19",
+               "content" : "shaky",
+               "max" : "24"
+            },
+            {
+               "min" : "25",
+               "content" : "weak",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "calm",
+               "max" : "36"
+            },
+            {
+               "min" : "37",
+               "content" : "stable",
+               "max" : "42"
+            },
+            {
+               "min" : "43",
+               "content" : "insulated",
+               "max" : "48"
+            },
+            {
+               "min" : "49",
+               "content" : "unwavering",
+               "max" : "54"
+            },
+            {
+               "min" : "55",
+               "content" : "steady",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "steadfast",
+               "max" : "66"
+            },
+            {
+               "min" : "67",
+               "content" : "good",
+               "max" : "72"
+            },
+            {
+               "min" : "73",
+               "content" : "healthy",
+               "max" : "78"
+            },
+            {
+               "min" : "79",
+               "content" : "flourishing",
+               "max" : "84"
+            },
+            {
+               "min" : "85",
+               "content" : "growing",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "vibrant",
+               "max" : "96"
+            },
+            {
+               "min" : "97",
+               "content" : "lively"
+            }
+         ]
+      },
+      "age" : {
+         "option" : [
+            {
+               "content" : "young",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "youthful",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "new",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "established",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "modern",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "mature",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "old",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "elderly",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "ancient"
+            }
+         ]
+      },
+      "health" : {
+         "option" : [
+            {
+               "content" : "diseased",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "sickly",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "ailing",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "feeble",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "able-bodied",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "healthy",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "hardy",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "sturdy",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "vigorous"
+            }
+         ]
+      },
+      "order" : {
+         "option" : [
+            {
+               "content" : "unreliable",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "irresponsible",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "questionable",
+               "max" : "15"
+            },
+            {
+               "min" : "16",
+               "content" : "unpredictable",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "deranged",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "incoherent",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "vague",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "bystanding",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "detached",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "non-participating",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "non-conformist",
+               "max" : "55"
+            },
+            {
+               "min" : "56",
+               "content" : "unflappable",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "reliable",
+               "max" : "65"
+            },
+            {
+               "min" : "66",
+               "content" : "dependable",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "sure",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "legitimized",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "organized",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "dutiful",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "honorable"
+            }
+         ]
+      },
+      "terrain" : {
+         "option" : [
+            {
+               "content" : "flat",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "even",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "rolling",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "hilly",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "uneven",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "rough",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "rugged",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "broken",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "jagged"
+            }
+         ]
+      },
+      "pollution" : {
+         "option" : [
+            {
+               "content" : "pristine",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "sterile",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "clean",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "tidy",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "disheveled",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "grungy",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "poluted",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "filthy",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "squalid"
+            }
+         ]
+      },
+      "tolerance" : {
+         "option" : [
+            {
+               "content" : "despise",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "hate",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "are critical of",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "ignore",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "are neutral towards",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "are accepting of",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "accept",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "love"
+            }
+         ]
+      },
+      "authority" : {
+         "option" : [
+            {
+               "content" : "ignores",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "is neutral towards",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "is chaotic",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "is a mess",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "is very strict",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "is very authoritarian"
+            }
+         ]
+      },
+      "happiness" : {
+         "option" : [
+            {
+               "content" : "despair",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "miserable",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "disappointed",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "bored",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "content",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "good",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "happy",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "overjoyed",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "estatic"
+            }
+         ]
+      }
+   },
+   "poptype" : {
+      "option" : [
+         {
+            "content" : "normal",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "mixed",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "monster"
+         }
+      ]
+   },
+   "size" : {
+      "option" : [
+         {
+            "size_modifier" : "-5",
+            "min_density" : "10",
+            "max" : "10",
+            "gplimit" : "100",
+            "max_density" : "400",
+            "maxpop" : "100",
+            "minpop" : "25",
+            "size" : "settlement"
+         },
+         {
+            "min" : "11",
+            "min_density" : "20",
+            "max" : "30",
+            "max_density" : "2000",
+            "minpop" : "101",
+            "size" : "hamlet",
+            "size_modifier" : "-4",
+            "gplimit" : "500",
+            "maxpop" : "500"
+         },
+         {
+            "min" : "31",
+            "min_density" : "30",
+            "max" : "35",
+            "max_density" : "2400",
+            "minpop" : "501",
+            "size" : "small village",
+            "size_modifier" : "-3",
+            "gplimit" : "600",
+            "maxpop" : "600"
+         },
+         {
+            "min" : "36",
+            "min_density" : "60",
+            "max" : "40",
+            "max_density" : "3000",
+            "minpop" : "601",
+            "size" : "village",
+            "size_modifier" : "-2",
+            "gplimit" : "750",
+            "maxpop" : "750"
+         },
+         {
+            "min" : "41",
+            "min_density" : "75",
+            "max" : "45",
+            "max_density" : "4000",
+            "minpop" : "751",
+            "size" : "large village",
+            "size_modifier" : "-1",
+            "gplimit" : "1000",
+            "maxpop" : "1000"
+         },
+         {
+            "min" : "46",
+            "min_density" : "90",
+            "max" : "60",
+            "max_density" : "6000",
+            "minpop" : "1001",
+            "size" : "small town",
+            "size_modifier" : "0",
+            "gplimit" : "1500",
+            "maxpop" : "1500"
+         },
+         {
+            "min" : "61",
+            "min_density" : "100",
+            "max" : "70",
+            "max_density" : "9000",
+            "minpop" : "1501",
+            "size" : "town",
+            "size_modifier" : "1",
+            "gplimit" : "3500",
+            "maxpop" : "3500"
+         },
+         {
+            "min" : "71",
+            "min_density" : "110",
+            "max" : "80",
+            "max_density" : "10000",
+            "minpop" : "3501",
+            "size" : "large town",
+            "size_modifier" : "2",
+            "gplimit" : "5000",
+            "maxpop" : "5000"
+         },
+         {
+            "min" : "81",
+            "min_density" : "150",
+            "max" : "85",
+            "max_density" : "15000",
+            "minpop" : "5001",
+            "size" : "small city",
+            "size_modifier" : "4",
+            "gplimit" : "8000",
+            "maxpop" : "8000"
+         },
+         {
+            "min" : "86",
+            "min_density" : "180",
+            "max" : "90",
+            "max_density" : "22000",
+            "minpop" : "8001",
+            "size" : "city",
+            "size_modifier" : "6",
+            "gplimit" : "15000",
+            "maxpop" : "15000"
+         },
+         {
+            "min" : "91",
+            "min_density" : "200",
+            "max" : "94",
+            "max_density" : "28000",
+            "minpop" : "15001",
+            "size" : "large city",
+            "size_modifier" : "8",
+            "gplimit" : "22000",
+            "maxpop" : "22000"
+         },
+         {
+            "min" : "95",
+            "min_density" : "220",
+            "max" : "99",
+            "max_density" : "30000",
+            "minpop" : "22001",
+            "size" : "metropolis",
+            "size_modifier" : "10",
+            "gplimit" : "30000",
+            "maxpop" : "30000"
+         },
+         {
+            "size_modifier" : "12",
+            "min" : "100",
+            "min_density" : "240",
+            "gplimit" : "50000",
+            "max_density" : "40000",
+            "maxpop" : "80000",
+            "minpop" : "30001",
+            "size" : "capitol"
+         }
+      ]
+   },
+   "feature" : {
+      "cityshape" : {
+         "option" : [
+            {
+               "content" : "circular"
+            },
+            {
+               "content" : "oval"
+            },
+            {
+               "content" : "square"
+            },
+            {
+               "content" : "rectangular"
+            },
+            {
+               "content" : "hexagonal"
+            },
+            {
+               "content" : "octagonal"
+            }
+         ]
+      }
+   },
+   "dominance" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "snobbish",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "mean",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "cruel",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "very oppressive",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "brutally oppressive"
+         }
+      ]
+   },
+   "popdensity" : {
+      "option" : [
+         {
+            "max" : "20",
+            "type" : "sparsely"
+         },
+         {
+            "min" : "21",
+            "max" : "40",
+            "type" : "lightly"
+         },
+         {
+            "min" : "41",
+            "max" : "60",
+            "type" : "nominally"
+         },
+         {
+            "min" : "61",
+            "max" : "80",
+            "type" : "moderately"
+         },
+         {
+            "min" : "81",
+            "type" : "densely"
+         }
+      ]
+   }
+}

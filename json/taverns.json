@@ -1,0 +1,1643 @@
+{
+   "cost" : {
+      "option" : [
+         {
+            "content" : "suspiciously low",
+            "max" : "5"
+         },
+         {
+            "min" : "6",
+            "content" : "next to nothing",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "a real steal",
+            "max" : "15"
+         },
+         {
+            "min" : "16",
+            "content" : "dirt cheap",
+            "max" : "20"
+         },
+         {
+            "min" : "20",
+            "content" : "inexpensive",
+            "max" : "25"
+         },
+         {
+            "min" : "30",
+            "content" : "economical",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "fair",
+            "max" : "40"
+         },
+         {
+            "min" : "40",
+            "content" : "a bit high",
+            "max" : "45"
+         },
+         {
+            "min" : "46",
+            "content" : "justifiable",
+            "max" : "50"
+         },
+         {
+            "min" : "50",
+            "content" : "moderate",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "sensible",
+            "max" : "60"
+         },
+         {
+            "min" : "60",
+            "content" : "reasonable",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "extravagant",
+            "max" : "70"
+         },
+         {
+            "min" : "70",
+            "content" : "steep",
+            "max" : "75"
+         },
+         {
+            "min" : "76",
+            "content" : "highway robbery",
+            "max" : "80"
+         },
+         {
+            "min" : "80",
+            "content" : "unconscionable",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "exorbitant",
+            "max" : "90"
+         },
+         {
+            "min" : "90",
+            "content" : "lavish",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "unreasonable"
+         }
+      ]
+   },
+   "law" : {
+      "option" : [
+         {
+            "type" : "harasses"
+         },
+         {
+            "type" : "ignores"
+         },
+         {
+            "type" : "accepts bribes from"
+         },
+         {
+            "type" : "protects"
+         }
+      ]
+   },
+   "reputation" : {
+      "option" : [
+         {
+            "content" : "deplorable clientele",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "being a hive of scum and villiany",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "unpaid tabs being bad for your health",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "poor sanitation",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "food poisoning",
+            "max" : "50"
+         },
+         {
+            "min" : "51",
+            "content" : "being dull",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "being open all hours",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "having good booze",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "being a good place to find rumors",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "being a pillar of the community"
+         }
+      ]
+   },
+   "name" : {
+      "trailer" : [
+         {
+            "content" : "Alehouse"
+         },
+         {
+            "content" : "Barroom"
+         },
+         {
+            "content" : "Bar"
+         },
+         {
+            "content" : "Beer Garden"
+         },
+         {
+            "content" : "Bistro"
+         },
+         {
+            "content" : "Cabaret"
+         },
+         {
+            "content" : "Canteen"
+         },
+         {
+            "content" : "Cocktail Lounge"
+         },
+         {
+            "content" : "Dive"
+         },
+         {
+            "content" : "Drinkery"
+         },
+         {
+            "content" : "Flophouse"
+         },
+         {
+            "content" : "Gin Mill"
+         },
+         {
+            "content" : "Grog Shop"
+         },
+         {
+            "content" : "Honky Tonk"
+         },
+         {
+            "content" : "Hostelry"
+         },
+         {
+            "content" : "Inn"
+         },
+         {
+            "content" : "Lodge"
+         },
+         {
+            "content" : "Lounge"
+         },
+         {
+            "content" : "Neighborhood Bar"
+         },
+         {
+            "content" : "Neighborhood Pub"
+         },
+         {
+            "content" : "Pub"
+         },
+         {
+            "content" : "Rathskeller"
+         },
+         {
+            "content" : "Roadhouse"
+         },
+         {
+            "content" : "Saloon"
+         },
+         {
+            "content" : "Speakeasy"
+         },
+         {
+            "content" : "Suds"
+         },
+         {
+            "content" : "Taphouse"
+         },
+         {
+            "content" : "Taproom"
+         },
+         {
+            "content" : "Tap"
+         },
+         {
+            "content" : "Tavern"
+         },
+         {
+            "content" : "Watering Hole"
+         }
+      ],
+      "trailer_chance" : "30",
+      "root" : [
+         {
+            "content" : "Alicorn"
+         },
+         {
+            "content" : "Axehandle"
+         },
+         {
+            "content" : "Axe"
+         },
+         {
+            "content" : "Badger"
+         },
+         {
+            "content" : "Bag"
+         },
+         {
+            "content" : "Baiter"
+         },
+         {
+            "content" : "Beauty"
+         },
+         {
+            "content" : "Beer"
+         },
+         {
+            "content" : "Bill"
+         },
+         {
+            "content" : "Boar"
+         },
+         {
+            "content" : "Bucket"
+         },
+         {
+            "content" : "Bull"
+         },
+         {
+            "content" : "Bunch"
+         },
+         {
+            "content" : "Bunk"
+         },
+         {
+            "content" : "Cat"
+         },
+         {
+            "content" : "Cavern"
+         },
+         {
+            "content" : "Cesspit"
+         },
+         {
+            "content" : "Cloak"
+         },
+         {
+            "content" : "Clowns"
+         },
+         {
+            "content" : "Cock"
+         },
+         {
+            "content" : "Crate"
+         },
+         {
+            "content" : "Crow"
+         },
+         {
+            "content" : "Cup"
+         },
+         {
+            "content" : "Darkroot"
+         },
+         {
+            "content" : "Days"
+         },
+         {
+            "content" : "Dead"
+         },
+         {
+            "content" : "Demon"
+         },
+         {
+            "content" : "Devil"
+         },
+         {
+            "content" : "Dog"
+         },
+         {
+            "content" : "Dragon"
+         },
+         {
+            "content" : "Dungeon"
+         },
+         {
+            "content" : "Dwarf"
+         },
+         {
+            "content" : "Dwarves"
+         },
+         {
+            "content" : "Eagle"
+         },
+         {
+            "content" : "Elf"
+         },
+         {
+            "content" : "Elves"
+         },
+         {
+            "content" : "Ent"
+         },
+         {
+            "content" : "Fig"
+         },
+         {
+            "content" : "Fireplace"
+         },
+         {
+            "content" : "Flame"
+         },
+         {
+            "content" : "Flask"
+         },
+         {
+            "content" : "Fox"
+         },
+         {
+            "content" : "Friends"
+         },
+         {
+            "content" : "Frog"
+         },
+         {
+            "content" : "Frog"
+         },
+         {
+            "content" : "Frogs"
+         },
+         {
+            "content" : "Giant"
+         },
+         {
+            "content" : "Goblins"
+         },
+         {
+            "content" : "Greyhound"
+         },
+         {
+            "content" : "Grog"
+         },
+         {
+            "content" : "Halflings"
+         },
+         {
+            "content" : "Halfling"
+         },
+         {
+            "content" : "Hall"
+         },
+         {
+            "content" : "Hammer"
+         },
+         {
+            "content" : "Harpoon"
+         },
+         {
+            "content" : "Hatchet"
+         },
+         {
+            "content" : "Hearthstone"
+         },
+         {
+            "content" : "Heart"
+         },
+         {
+            "content" : "Helix"
+         },
+         {
+            "content" : "Hen"
+         },
+         {
+            "content" : "Hole"
+         },
+         {
+            "content" : "Hops"
+         },
+         {
+            "content" : "Horse"
+         },
+         {
+            "content" : "House"
+         },
+         {
+            "content" : "Imps"
+         },
+         {
+            "content" : "Iron"
+         },
+         {
+            "content" : "Ivy"
+         },
+         {
+            "content" : "Jade"
+         },
+         {
+            "content" : "Jane"
+         },
+         {
+            "content" : "Kettles"
+         },
+         {
+            "content" : "Knife"
+         },
+         {
+            "content" : "Kraken"
+         },
+         {
+            "content" : "Lion"
+         },
+         {
+            "content" : "Lotus"
+         },
+         {
+            "content" : "Maiden"
+         },
+         {
+            "content" : "Mead"
+         },
+         {
+            "content" : "Monkey"
+         },
+         {
+            "content" : "Monk"
+         },
+         {
+            "content" : "Mug"
+         },
+         {
+            "content" : "Nomad"
+         },
+         {
+            "content" : "Oarhouse"
+         },
+         {
+            "content" : "Octopus"
+         },
+         {
+            "content" : "Paladin"
+         },
+         {
+            "content" : "Peacock"
+         },
+         {
+            "content" : "Peddler"
+         },
+         {
+            "content" : "Pig"
+         },
+         {
+            "content" : "Pipe"
+         },
+         {
+            "content" : "Pony"
+         },
+         {
+            "content" : "Pot"
+         },
+         {
+            "content" : "Priest"
+         },
+         {
+            "content" : "Princess"
+         },
+         {
+            "content" : "Riverside"
+         },
+         {
+            "content" : "Road"
+         },
+         {
+            "content" : "Rock"
+         },
+         {
+            "content" : "Rooster"
+         },
+         {
+            "content" : "Rose"
+         },
+         {
+            "content" : "Rouge"
+         },
+         {
+            "content" : "Silver"
+         },
+         {
+            "content" : "Skull"
+         },
+         {
+            "content" : "Snake"
+         },
+         {
+            "content" : "Song"
+         },
+         {
+            "content" : "Stump"
+         },
+         {
+            "content" : "Swagger"
+         },
+         {
+            "content" : "Three"
+         },
+         {
+            "content" : "Thug"
+         },
+         {
+            "content" : "Thunderbird"
+         },
+         {
+            "content" : "Toad"
+         },
+         {
+            "content" : "Tower"
+         },
+         {
+            "content" : "Tree"
+         },
+         {
+            "content" : "Troll"
+         },
+         {
+            "content" : "Turkey"
+         },
+         {
+            "content" : "Twins"
+         },
+         {
+            "content" : "Ulcer"
+         },
+         {
+            "content" : "Urchin"
+         },
+         {
+            "content" : "Virgin"
+         },
+         {
+            "content" : "Wagonhouse"
+         },
+         {
+            "content" : "Wagon"
+         },
+         {
+            "content" : "Wand"
+         },
+         {
+            "content" : "Weasels"
+         },
+         {
+            "content" : "Well"
+         },
+         {
+            "content" : "Wench"
+         },
+         {
+            "content" : "Whisper"
+         },
+         {
+            "content" : "Widowers"
+         },
+         {
+            "content" : "Wig"
+         },
+         {
+            "content" : "Willow"
+         },
+         {
+            "content" : "Wine"
+         },
+         {
+            "content" : "Wolfhound"
+         },
+         {
+            "content" : "Yawning"
+         }
+      ],
+      "title" : [
+         {
+            "content" : "Angry"
+         },
+         {
+            "content" : "Beefy"
+         },
+         {
+            "content" : "Belching"
+         },
+         {
+            "content" : "Blabbering"
+         },
+         {
+            "content" : "Black"
+         },
+         {
+            "content" : "Blind"
+         },
+         {
+            "content" : "Blue"
+         },
+         {
+            "content" : "Boiling"
+         },
+         {
+            "content" : "Bottomless"
+         },
+         {
+            "content" : "Broken"
+         },
+         {
+            "content" : "Burly"
+         },
+         {
+            "content" : "Burning"
+         },
+         {
+            "content" : "Cardinal"
+         },
+         {
+            "content" : "Chicken"
+         },
+         {
+            "content" : "Chipped"
+         },
+         {
+            "content" : "Cloven"
+         },
+         {
+            "content" : "Colored"
+         },
+         {
+            "content" : "Crazy"
+         },
+         {
+            "content" : "Crimson"
+         },
+         {
+            "content" : "Crippled"
+         },
+         {
+            "content" : "Crooked"
+         },
+         {
+            "content" : "Crossed"
+         },
+         {
+            "content" : "Dancing"
+         },
+         {
+            "content" : "Deadly"
+         },
+         {
+            "content" : "Deepwater"
+         },
+         {
+            "content" : "Desert"
+         },
+         {
+            "content" : "Dew"
+         },
+         {
+            "content" : "Dirty"
+         },
+         {
+            "content" : "Divine"
+         },
+         {
+            "content" : "Dreaming"
+         },
+         {
+            "content" : "Drifting"
+         },
+         {
+            "content" : "Drinking"
+         },
+         {
+            "content" : "Dripping"
+         },
+         {
+            "content" : "Drowned"
+         },
+         {
+            "content" : "Drunken"
+         },
+         {
+            "content" : "Dry"
+         },
+         {
+            "content" : "Dwarven"
+         },
+         {
+            "content" : "Eastern"
+         },
+         {
+            "content" : "Elegant"
+         },
+         {
+            "content" : "Elven"
+         },
+         {
+            "content" : "Empty"
+         },
+         {
+            "content" : "Ever-full"
+         },
+         {
+            "content" : "Fallen"
+         },
+         {
+            "content" : "Fat"
+         },
+         {
+            "content" : "Fawning"
+         },
+         {
+            "content" : "Fermented"
+         },
+         {
+            "content" : "Fiery"
+         },
+         {
+            "content" : "Fired"
+         },
+         {
+            "content" : "Flabby"
+         },
+         {
+            "content" : "Flaming"
+         },
+         {
+            "content" : "Flying"
+         },
+         {
+            "content" : "Forsaken"
+         },
+         {
+            "content" : "Frosted"
+         },
+         {
+            "content" : "Frosty"
+         },
+         {
+            "content" : "Frozen"
+         },
+         {
+            "content" : "Fumbling"
+         },
+         {
+            "content" : "Furious"
+         },
+         {
+            "content" : "Gelded"
+         },
+         {
+            "content" : "Glaring"
+         },
+         {
+            "content" : "Golden"
+         },
+         {
+            "content" : "Gray"
+         },
+         {
+            "content" : "Greasy"
+         },
+         {
+            "content" : "Great"
+         },
+         {
+            "content" : "Green"
+         },
+         {
+            "content" : "Grimy"
+         },
+         {
+            "content" : "Gritty"
+         },
+         {
+            "content" : "Grizzly"
+         },
+         {
+            "content" : "Grumbling"
+         },
+         {
+            "content" : "Guinea"
+         },
+         {
+            "content" : "Gutted"
+         },
+         {
+            "content" : "Hanging"
+         },
+         {
+            "content" : "Happy"
+         },
+         {
+            "content" : "Highlighted"
+         },
+         {
+            "content" : "Hilltop"
+         },
+         {
+            "content" : "Honest"
+         },
+         {
+            "content" : "Horny"
+         },
+         {
+            "content" : "Hungry"
+         },
+         {
+            "content" : "Knotted"
+         },
+         {
+            "content" : "Lascivious"
+         },
+         {
+            "content" : "Last"
+         },
+         {
+            "content" : "Laughing"
+         },
+         {
+            "content" : "Lazy"
+         },
+         {
+            "content" : "Leaping"
+         },
+         {
+            "content" : "Lecherous"
+         },
+         {
+            "content" : "Lonely"
+         },
+         {
+            "content" : "Lost"
+         },
+         {
+            "content" : "Mad"
+         },
+         {
+            "content" : "Mangy"
+         },
+         {
+            "content" : "Marbled"
+         },
+         {
+            "content" : "Master"
+         },
+         {
+            "content" : "Mended"
+         },
+         {
+            "content" : "Merry"
+         },
+         {
+            "content" : "Mulled"
+         },
+         {
+            "content" : "Murdered"
+         },
+         {
+            "content" : "Musty"
+         },
+         {
+            "content" : "Naughty"
+         },
+         {
+            "content" : "New"
+         },
+         {
+            "content" : "Noisy"
+         },
+         {
+            "content" : "Nomadic"
+         },
+         {
+            "content" : "Northern"
+         },
+         {
+            "content" : "Oiled"
+         },
+         {
+            "content" : "Olde"
+         },
+         {
+            "content" : "Old"
+         },
+         {
+            "content" : "Open"
+         },
+         {
+            "content" : "Orange"
+         },
+         {
+            "content" : "Perfumed"
+         },
+         {
+            "content" : "Pink"
+         },
+         {
+            "content" : "Plaid"
+         },
+         {
+            "content" : "Playful"
+         },
+         {
+            "content" : "Prancing"
+         },
+         {
+            "content" : "Puking"
+         },
+         {
+            "content" : "Punchin'"
+         },
+         {
+            "content" : "Purple"
+         },
+         {
+            "content" : "Raging"
+         },
+         {
+            "content" : "Rampaging"
+         },
+         {
+            "content" : "Randy"
+         },
+         {
+            "content" : "Red"
+         },
+         {
+            "content" : "Refuge"
+         },
+         {
+            "content" : "Ripped"
+         },
+         {
+            "content" : "Robber"
+         },
+         {
+            "content" : "Rolling"
+         },
+         {
+            "content" : "Royal"
+         },
+         {
+            "content" : "Ruby"
+         },
+         {
+            "content" : "Rusty"
+         },
+         {
+            "content" : "Salty"
+         },
+         {
+            "content" : "Screaming"
+         },
+         {
+            "content" : "Seven"
+         },
+         {
+            "content" : "Severed"
+         },
+         {
+            "content" : "Shallow"
+         },
+         {
+            "content" : "Shining"
+         },
+         {
+            "content" : "Short"
+         },
+         {
+            "content" : "Singing"
+         },
+         {
+            "content" : "Six"
+         },
+         {
+            "content" : "Slade"
+         },
+         {
+            "content" : "Slaughtered"
+         },
+         {
+            "content" : "Sleeping"
+         },
+         {
+            "content" : "Sleepy"
+         },
+         {
+            "content" : "Slippery"
+         },
+         {
+            "content" : "Sloppy"
+         },
+         {
+            "content" : "Slumbering"
+         },
+         {
+            "content" : "Smiling"
+         },
+         {
+            "content" : "Smithy"
+         },
+         {
+            "content" : "Snoring"
+         },
+         {
+            "content" : "Splintered"
+         },
+         {
+            "content" : "Squalid"
+         },
+         {
+            "content" : "Sterling"
+         },
+         {
+            "content" : "Stinking"
+         },
+         {
+            "content" : "Stinky"
+         },
+         {
+            "content" : "Stowaway"
+         },
+         {
+            "content" : "Strangled"
+         },
+         {
+            "content" : "Stumpy"
+         },
+         {
+            "content" : "Surly"
+         },
+         {
+            "content" : "Tattered"
+         },
+         {
+            "content" : "Thirsty"
+         },
+         {
+            "content" : "Tipsy"
+         },
+         {
+            "content" : "Tired"
+         },
+         {
+            "content" : "Twin"
+         },
+         {
+            "content" : "Twisted"
+         },
+         {
+            "content" : "Ugly"
+         },
+         {
+            "content" : "Victorious"
+         },
+         {
+            "content" : "Violent"
+         },
+         {
+            "content" : "Violet"
+         },
+         {
+            "content" : "Voluptuous"
+         },
+         {
+            "content" : "Vulgar"
+         },
+         {
+            "content" : "Wandering"
+         },
+         {
+            "content" : "Wanton"
+         },
+         {
+            "content" : "Warm"
+         },
+         {
+            "content" : "Weary"
+         },
+         {
+            "content" : "Wet"
+         },
+         {
+            "content" : "Whirling"
+         },
+         {
+            "content" : "Whistling"
+         },
+         {
+            "content" : "White"
+         },
+         {
+            "content" : "Wild"
+         },
+         {
+            "content" : "Wiley"
+         },
+         {
+            "content" : "Wistful"
+         },
+         {
+            "content" : "Wobbling"
+         },
+         {
+            "content" : "Wobblin'"
+         },
+         {
+            "content" : "Wobbly"
+         },
+         {
+            "content" : "Wooden"
+         },
+         {
+            "content" : "Worn"
+         },
+         {
+            "content" : "Wrong"
+         },
+         {
+            "content" : "Yellow"
+         }
+      ]
+   },
+   "size" : {
+      "option" : [
+         {
+            "content" : "tiny",
+            "max" : "5"
+         },
+         {
+            "min" : "6",
+            "content" : "insignificant",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "squat little",
+            "max" : "15"
+         },
+         {
+            "min" : "16",
+            "content" : "small hole in the wall",
+            "max" : "20"
+         },
+         {
+            "min" : "20",
+            "content" : "minor",
+            "max" : "25"
+         },
+         {
+            "min" : "26",
+            "content" : "insubstantial",
+            "max" : "30"
+         },
+         {
+            "min" : "30",
+            "content" : "paltry",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "normal",
+            "max" : "40"
+         },
+         {
+            "min" : "40",
+            "content" : "typical",
+            "max" : "45"
+         },
+         {
+            "min" : "46",
+            "content" : "humdrum",
+            "max" : "50"
+         },
+         {
+            "min" : "50",
+            "content" : "garden-variety",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "average",
+            "max" : "60"
+         },
+         {
+            "min" : "60",
+            "content" : "familiar",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "large",
+            "max" : "70"
+         },
+         {
+            "min" : "70",
+            "content" : "sizeable",
+            "max" : "75"
+         },
+         {
+            "min" : "76",
+            "content" : "epic",
+            "max" : "80"
+         },
+         {
+            "min" : "80",
+            "content" : "monumental",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "massive",
+            "max" : "90"
+         },
+         {
+            "min" : "90",
+            "content" : "enormous",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "vast"
+         }
+      ]
+   },
+   "violence" : {
+      "option" : [
+         {
+            "type" : "ignoring it"
+         },
+         {
+            "type" : "throwing the loser out"
+         },
+         {
+            "type" : "swift justice"
+         },
+         {
+            "type" : "calling the city watch"
+         }
+      ]
+   },
+   "popularity" : {
+      "option" : [
+         {
+            "content" : "is avoided by the locals for reasons unknown",
+            "max" : "5"
+         },
+         {
+            "min" : "6",
+            "content" : "is unappreciated by the locals",
+            "max" : "10"
+         },
+         {
+            "min" : "10",
+            "content" : "is usually empty",
+            "max" : "15"
+         },
+         {
+            "min" : "16",
+            "content" : "is usually busy but is strangely quiet as of late",
+            "max" : "20"
+         },
+         {
+            "min" : "20",
+            "content" : "holds the record for worst brew in the region",
+            "max" : "25"
+         },
+         {
+            "min" : "26",
+            "content" : "has strange opening hours",
+            "max" : "30"
+         },
+         {
+            "min" : "30",
+            "content" : "only attracts people from out of town",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "is popular on market days",
+            "max" : "40"
+         },
+         {
+            "min" : "40",
+            "content" : "is eerily empty, but everybody remembers having a great time there",
+            "max" : "45"
+         },
+         {
+            "min" : "46",
+            "content" : "is completely abandoned, except for one random night in the year",
+            "max" : "50"
+         },
+         {
+            "min" : "50",
+            "content" : "usually has a few empty tables",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "is empty during the day but lively at night",
+            "max" : "60"
+         },
+         {
+            "min" : "60",
+            "content" : "is on the verge of closing",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "is busy most days",
+            "max" : "70"
+         },
+         {
+            "min" : "70",
+            "content" : "is crowded every night",
+            "max" : "75"
+         },
+         {
+            "min" : "76",
+            "content" : "rarely has a table empty",
+            "max" : "80"
+         },
+         {
+            "min" : "80",
+            "content" : "has people queing out in the street",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "is one of the busiest places in town",
+            "max" : "90"
+         },
+         {
+            "min" : "90",
+            "content" : "is always busy, regardless of the time",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "is constantly crowded"
+         }
+      ]
+   },
+   "trailer_chance" : "30",
+   "atmosphere" : {
+      "option" : [
+         {
+            "type" : "angry"
+         },
+         {
+            "type" : "anxious"
+         },
+         {
+            "type" : "calm"
+         },
+         {
+            "type" : "cheerful"
+         },
+         {
+            "type" : "comfortable"
+         },
+         {
+            "type" : "crazy"
+         },
+         {
+            "type" : "dirty"
+         },
+         {
+            "type" : "drunk"
+         },
+         {
+            "type" : "frantic"
+         },
+         {
+            "type" : "friendly"
+         },
+         {
+            "type" : "gay"
+         },
+         {
+            "type" : "happy"
+         },
+         {
+            "type" : "hostile"
+         },
+         {
+            "type" : "hushed"
+         },
+         {
+            "type" : "incensed"
+         },
+         {
+            "type" : "kind"
+         },
+         {
+            "type" : "laid back"
+         },
+         {
+            "type" : "relaxed"
+         },
+         {
+            "type" : "seedy"
+         },
+         {
+            "type" : "shady"
+         },
+         {
+            "type" : "sleepy"
+         },
+         {
+            "type" : "tense"
+         },
+         {
+            "type" : "to be arguing"
+         },
+         {
+            "type" : "to be gambling"
+         },
+         {
+            "type" : "to be playing games"
+         },
+         {
+            "type" : "to be singing"
+         },
+         {
+            "type" : "to be telling jokes"
+         },
+         {
+            "type" : "to be waiting for news"
+         },
+         {
+            "type" : "to be waiting for someone"
+         },
+         {
+            "type" : "to be waiting for you"
+         },
+         {
+            "type" : "to dislike change"
+         },
+         {
+            "type" : "to dislike magic"
+         },
+         {
+            "type" : "to dislike strangers"
+         },
+         {
+            "type" : "to keep to themselves"
+         },
+         {
+            "type" : "to like it that way"
+         },
+         {
+            "type" : "to smell"
+         },
+         {
+            "type" : "uneasy"
+         },
+         {
+            "type" : "upbeat"
+         },
+         {
+            "type" : "vengeful"
+         },
+         {
+            "type" : "worried"
+         }
+      ]
+   },
+   "amenities" : {
+      "min" : "0",
+      "max" : "3",
+      "option" : [
+         {
+            "content" : "an elderly storyteller"
+         },
+         {
+            "content" : "A secure vault for valuables"
+         },
+         {
+            "content" : "beds"
+         },
+         {
+            "content" : "blackjack"
+         },
+         {
+            "content" : "craps"
+         },
+         {
+            "content" : "cellar"
+         },
+         {
+            "content" : "darts"
+         },
+         {
+            "content" : "dice"
+         },
+         {
+            "content" : "drinks"
+         },
+         {
+            "content" : "exotic spiced wines"
+         },
+         {
+            "content" : "fireplace"
+         },
+         {
+            "content" : "food"
+         },
+         {
+            "content" : "foreign beers"
+         },
+         {
+            "content" : "gambling"
+         },
+         {
+            "content" : "hookahs"
+         },
+         {
+            "content" : "indoor privies"
+         },
+         {
+            "content" : "Lost and Found Prize box"
+         },
+         {
+            "content" : "music"
+         },
+         {
+            "content" : "opium den"
+         },
+         {
+            "content" : "pit fights"
+         },
+         {
+            "content" : "pixie-skull snooker"
+         },
+         {
+            "content" : "poker"
+         },
+         {
+            "content" : "private booths"
+         },
+         {
+            "content" : "private bouncers"
+         },
+         {
+            "content" : "prostitutes"
+         },
+         {
+            "content" : "pub dog"
+         },
+         {
+            "content" : "public bath"
+         },
+         {
+            "content" : "secret escape passage"
+         },
+         {
+            "content" : "stable"
+         },
+         {
+            "content" : "wheel of surprise"
+         },
+         {
+            "content" : "whores"
+         }
+      ]
+   }
+}

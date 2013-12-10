@@ -1,0 +1,24 @@
+{
+   "sample2" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "simple data"
+         },
+         {
+            "content" : "more data"
+         }
+      ]
+   },
+   "sample1" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "simple data"
+         },
+         {
+            "content" : "more data"
+         }
+      ]
+   }
+}

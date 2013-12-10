@@ -1,0 +1,242 @@
+{
+   "mooncolor" : {
+      "option" : [
+         {
+            "content" : "light blue",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "briliant silver",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "bone white",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "pale yellow",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "rusty red",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "dull brown"
+         }
+      ]
+   },
+   "stars" : {
+      "option" : [
+         {
+            "count" : "1",
+            "content" : "single star",
+            "max" : "70"
+         },
+         {
+            "count" : "2",
+            "min" : "71",
+            "content" : "binary star",
+            "max" : "95"
+         },
+         {
+            "count" : "3",
+            "min" : "96",
+            "content" : "trinary star"
+         }
+      ]
+   },
+   "celestial" : {
+      "number" : {
+         "option" : [
+            {
+               "count" : "0",
+               "max" : "30",
+               "type" : "nothing unusual"
+            },
+            {
+               "count" : "1",
+               "min" : "31",
+               "max" : "60",
+               "type" : "a celestial object"
+            },
+            {
+               "count" : "2",
+               "min" : "61",
+               "max" : "90",
+               "type" : "two celestial objects"
+            },
+            {
+               "count" : "3",
+               "min" : "91",
+               "type" : "three celestial objects"
+            }
+         ]
+      },
+      "name" : {
+         "option" : [
+            {
+               "content" : "nebula"
+            },
+            {
+               "content" : "galaxy"
+            },
+            {
+               "content" : "supernova"
+            },
+            {
+               "content" : "pulsar"
+            },
+            {
+               "content" : "black hole"
+            },
+            {
+               "content" : "nearby planet"
+            },
+            {
+               "content" : "asteroid belt"
+            }
+         ]
+      },
+      "age" : {
+         "option" : [
+            {
+               "content" : "for only a few years"
+            },
+            {
+               "content" : "for decades"
+            },
+            {
+               "content" : "for centuries"
+            },
+            {
+               "content" : "for generations"
+            },
+            {
+               "content" : "for millenia"
+            },
+            {
+               "content" : "for as long as anyone can remember"
+            },
+            {
+               "content" : "for all eternity"
+            },
+            {
+               "content" : "since time immemorial"
+            }
+         ]
+      },
+      "size" : {
+         "option" : [
+            {
+               "content" : "miniscule"
+            },
+            {
+               "content" : "tiny"
+            },
+            {
+               "content" : "imposing"
+            },
+            {
+               "content" : "massive"
+            }
+         ]
+      }
+   },
+   "starcolor" : {
+      "option" : [
+         {
+            "content" : "blue",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "white",
+            "max" : "30"
+         },
+         {
+            "min" : "31",
+            "content" : "yellow",
+            "max" : "70"
+         },
+         {
+            "min" : "71",
+            "content" : "orange",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "red",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "brown"
+         }
+      ]
+   },
+   "moons" : {
+      "option" : [
+         {
+            "count" : "0",
+            "content" : "no moons",
+            "max" : "30"
+         },
+         {
+            "count" : "1",
+            "min" : "31",
+            "content" : "single moon",
+            "max" : "70"
+         },
+         {
+            "count" : "2",
+            "min" : "71",
+            "content" : "double moon",
+            "max" : "95"
+         },
+         {
+            "count" : "3",
+            "min" : "96",
+            "content" : "triple moon",
+            "max" : "97"
+         },
+         {
+            "count" : "4",
+            "min" : "98",
+            "content" : "quadruple moon"
+         }
+      ]
+   },
+   "size" : {
+      "option" : [
+         {
+            "content" : "small",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "average",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "large",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "massive",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "supermassive"
+         }
+      ]
+   }
+}

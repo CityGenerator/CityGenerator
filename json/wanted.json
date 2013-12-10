@@ -1,0 +1,434 @@
+{
+   "feature" : {
+      "reward" : {
+         "option" : [
+            {
+               "content" : "1 gold"
+            },
+            {
+               "content" : "10 silver"
+            },
+            {
+               "content" : "30 silver"
+            },
+            {
+               "content" : "5 gold"
+            },
+            {
+               "content" : "50 silver"
+            },
+            {
+               "content" : "80 silver"
+            },
+            {
+               "content" : "100 silver"
+            },
+            {
+               "content" : "10 gold"
+            },
+            {
+               "content" : "200 silver"
+            },
+            {
+               "content" : "20 gold"
+            },
+            {
+               "content" : "300 silver"
+            },
+            {
+               "content" : "30 gold"
+            },
+            {
+               "content" : "500 silver"
+            },
+            {
+               "content" : "50 gold"
+            },
+            {
+               "content" : "800 silver"
+            },
+            {
+               "content" : "80 gold"
+            },
+            {
+               "content" : "1000 silver"
+            },
+            {
+               "content" : "100 gold"
+            },
+            {
+               "content" : "200 gold"
+            },
+            {
+               "content" : "300 gold"
+            },
+            {
+               "content" : "400 gold"
+            },
+            {
+               "content" : "500 gold"
+            },
+            {
+               "content" : "600 gold"
+            },
+            {
+               "content" : "700 gold"
+            },
+            {
+               "content" : "800 gold"
+            },
+            {
+               "content" : "1000 gold"
+            }
+         ]
+      },
+      "warning" : {
+         "chance" : "30",
+         "option" : [
+            {
+               "content" : "armed and dangerous"
+            },
+            {
+               "content" : "has killed before"
+            },
+            {
+               "content" : "will attack if approached"
+            }
+         ]
+      },
+      "crime" : {
+         "option" : [
+            {
+               "content" : "Abuse of the Disabled"
+            },
+            {
+               "content" : "Aggravated Assault"
+            },
+            {
+               "content" : "Animal Abuse"
+            },
+            {
+               "content" : "Arson"
+            },
+            {
+               "content" : "Assassination"
+            },
+            {
+               "content" : "Assault"
+            },
+            {
+               "content" : "Battery"
+            },
+            {
+               "content" : "Burglary"
+            },
+            {
+               "content" : "Conspiracy"
+            },
+            {
+               "content" : "Counterfeiting"
+            },
+            {
+               "content" : "Crimes Against Nature"
+            },
+            {
+               "content" : "Desecration"
+            },
+            {
+               "content" : "Disturbing the Peace"
+            },
+            {
+               "content" : "Domestic Violence"
+            },
+            {
+               "content" : "Drunk Driving"
+            },
+            {
+               "content" : "Elder Abuse"
+            },
+            {
+               "content" : "Embezzlement"
+            },
+            {
+               "content" : "Environmental Crime"
+            },
+            {
+               "content" : "Extortion"
+            },
+            {
+               "content" : "False Imprisonment"
+            },
+            {
+               "content" : "False Pretenses"
+            },
+            {
+               "content" : "Forbidden Magic"
+            },
+            {
+               "content" : "Forgery"
+            },
+            {
+               "content" : "Fraud"
+            },
+            {
+               "content" : "Genocide"
+            },
+            {
+               "content" : "Graffiti"
+            },
+            {
+               "content" : "Grand Theft"
+            },
+            {
+               "content" : "Happy Slapping"
+            },
+            {
+               "content" : "Hate Crimes"
+            },
+            {
+               "content" : "Heresy"
+            },
+            {
+               "content" : "High Treason"
+            },
+            {
+               "content" : "Homicide "
+            },
+            {
+               "content" : "Illegal Drug Use"
+            },
+            {
+               "content" : "Illegal Gambling"
+            },
+            {
+               "content" : "Illegal Slavery"
+            },
+            {
+               "content" : "Jaywalking"
+            },
+            {
+               "content" : "Kidnapping"
+            },
+            {
+               "content" : "Larceny"
+            },
+            {
+               "content" : "Manslaughter"
+            },
+            {
+               "content" : "Money Laundering"
+            },
+            {
+               "content" : "Murder"
+            },
+            {
+               "content" : "Necromancy"
+            },
+            {
+               "content" : "Perjury"
+            },
+            {
+               "content" : "Petty Theft"
+            },
+            {
+               "content" : "Prostitution"
+            },
+            {
+               "content" : "Public Urination"
+            },
+            {
+               "content" : "Public Indecency"
+            },
+            {
+               "content" : "Reason"
+            },
+            {
+               "content" : "Receipt of Stolen Goods"
+            },
+            {
+               "content" : "Robbery"
+            },
+            {
+               "content" : "Sex Crimes"
+            },
+            {
+               "content" : "Slander"
+            },
+            {
+               "content" : "Slavery"
+            },
+            {
+               "content" : "Squatting"
+            },
+            {
+               "content" : "Stalking "
+            },
+            {
+               "content" : "Terrorism "
+            },
+            {
+               "content" : "Theft"
+            },
+            {
+               "content" : "Torture"
+            },
+            {
+               "content" : "Treason"
+            },
+            {
+               "content" : "Vagrancy"
+            },
+            {
+               "content" : "Vehicular Homicide"
+            },
+            {
+               "content" : "War Crimes"
+            }
+         ]
+      },
+      "title" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "\"Creepy\""
+            },
+            {
+               "content" : "\"Wild\""
+            },
+            {
+               "content" : "Ol'"
+            },
+            {
+               "content" : "Mean Old"
+            },
+            {
+               "content" : "\"Boisterous'"
+            },
+            {
+               "content" : "\"Eager\""
+            },
+            {
+               "content" : "\"Foolish\""
+            },
+            {
+               "content" : "\"Giddy\""
+            },
+            {
+               "content" : "\"Mad\""
+            },
+            {
+               "content" : "\"Reckless\""
+            },
+            {
+               "content" : "\"Violent\""
+            },
+            {
+               "content" : "\"Awful\""
+            },
+            {
+               "content" : "\"Itchy\""
+            },
+            {
+               "content" : "\"Weird\""
+            },
+            {
+               "content" : "\"Grody\""
+            },
+            {
+               "content" : "\"Loathsome\""
+            },
+            {
+               "content" : "\"Nasty\""
+            },
+            {
+               "content" : "\"Odious\""
+            },
+            {
+               "content" : "\"Rotten\""
+            },
+            {
+               "content" : "\"Scuzzy\""
+            }
+         ]
+      },
+      "condition" : {
+         "option" : [
+            {
+               "content" : "information leading to their capture"
+            },
+            {
+               "content" : "proof of death"
+            },
+            {
+               "content" : "their capture"
+            }
+         ]
+      },
+      "headline" : {
+         "option" : [
+            {
+               "content" : "Wanted!"
+            },
+            {
+               "content" : "-- Wanted --"
+            },
+            {
+               "content" : "Wanted for [%crime%]"
+            },
+            {
+               "content" : "Reward!"
+            },
+            {
+               "content" : "$$ Reward $$"
+            },
+            {
+               "content" : "Notice"
+            },
+            {
+               "content" : "Notice:"
+            },
+            {
+               "content" : "Proclamation"
+            },
+            {
+               "content" : "Proclamation!"
+            },
+            {
+               "content" : "Dead or Alive"
+            }
+         ]
+      },
+      "by" : {
+         "option" : [
+            {
+               "content" : "Sheriff"
+            },
+            {
+               "content" : "City Watch"
+            },
+            {
+               "content" : "Authorities"
+            }
+         ]
+      }
+   },
+   "lastseen" : {
+      "option" : [
+         {
+            "content" : "in town"
+         },
+         {
+            "content" : "outside town"
+         },
+         {
+            "content" : "in the country"
+         },
+         {
+            "content" : "in a cave"
+         },
+         {
+            "content" : "underground"
+         }
+      ]
+   }
+}

@@ -1,0 +1,2371 @@
+{
+   "neighbor" : {
+      "relation" : [
+         {
+            "content" : "has a neutral relationship with"
+         },
+         {
+            "content" : "has strained relations with"
+         },
+         {
+            "content" : "is wary of "
+         },
+         {
+            "content" : "is cautious of"
+         },
+         {
+            "content" : "is in a trade war with"
+         },
+         {
+            "content" : "is watchful of"
+         },
+         {
+            "content" : "is distrustful of"
+         },
+         {
+            "content" : "is cordial towards "
+         },
+         {
+            "content" : "is friendly with"
+         },
+         {
+            "content" : "is at war with"
+         },
+         {
+            "content" : "is on the verge of war with"
+         },
+         {
+            "content" : "is embargoing"
+         },
+         {
+            "content" : "is allied with"
+         },
+         {
+            "content" : "is ready for war with"
+         },
+         {
+            "content" : "is oblivious of"
+         }
+      ]
+   },
+   "markets" : {
+      "option" : [
+         {
+            "chance" : "62",
+            "option" : [
+               {
+                  "content" : "good"
+               },
+               {
+                  "content" : "neutral"
+               },
+               {
+                  "content" : "evil"
+               }
+            ],
+            "secret" : "100",
+            "type" : "guild",
+            "marketname" : "Thieves"
+         },
+         {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "powerhungry"
+               },
+               {
+                  "content" : "good"
+               },
+               {
+                  "content" : "neutral"
+               },
+               {
+                  "content" : "evil"
+               },
+               {
+                  "content" : "chaotic"
+               }
+            ],
+            "secret" : "10",
+            "type" : "guild",
+            "marketname" : "Mages"
+         },
+         {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "neutral"
+               },
+               {
+                  "content" : "evil"
+               }
+            ],
+            "secret" : "100",
+            "type" : "guild",
+            "marketname" : "Assassins"
+         },
+         {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "good"
+               },
+               {
+                  "content" : "neutral"
+               },
+               {
+                  "content" : "evil"
+               }
+            ],
+            "secret" : "50",
+            "type" : "guild",
+            "marketname" : "Adventurers"
+         },
+         {
+            "chance" : "20",
+            "option" : [
+               {
+                  "content" : "Death worshiping"
+               },
+               {
+                  "content" : "Dragon worshiping"
+               },
+               {
+                  "content" : "Undead worshiping"
+               },
+               {
+                  "content" : "God worshiping"
+               },
+               {
+                  "content" : "Beast worshiping"
+               }
+            ],
+            "secret" : "80",
+            "type" : "cult",
+            "marketname" : "evil"
+         },
+         {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "Violence worshiping"
+               },
+               {
+                  "content" : "Chaos worshiping"
+               },
+               {
+                  "content" : "God worshiping"
+               }
+            ],
+            "secret" : "90",
+            "type" : "cult",
+            "marketname" : "chaotic"
+         },
+         {
+            "chance" : "10",
+            "option" : [
+               {
+                  "content" : "god worshiping"
+               },
+               {
+                  "content" : "dragon worshiping"
+               }
+            ],
+            "secret" : "80",
+            "type" : "cult",
+            "marketname" : "good"
+         },
+         {
+            "chance" : "30",
+            "option" : [
+               {
+                  "content" : "powerful"
+               },
+               {
+                  "content" : "dangerous"
+               },
+               {
+                  "content" : "evil"
+               },
+               {
+                  "content" : "intelligent"
+               },
+               {
+                  "content" : "expensive"
+               },
+               {
+                  "content" : "trinkets"
+               }
+            ],
+            "secret" : "60",
+            "type" : "trade",
+            "marketname" : "magic items"
+         },
+         {
+            "chance" : "20",
+            "option" : [
+               {
+                  "content" : "sex"
+               },
+               {
+                  "content" : "labor"
+               },
+               {
+                  "content" : "gladiator"
+               }
+            ],
+            "secret" : "70",
+            "type" : "trade",
+            "marketname" : "slaves"
+         },
+         {
+            "chance" : "40",
+            "option" : [
+               {
+                  "content" : "rare"
+               },
+               {
+                  "content" : "spices"
+               }
+            ],
+            "secret" : "10",
+            "type" : "trade",
+            "marketname" : "food"
+         },
+         {
+            "chance" : "40",
+            "option" : [
+               {
+                  "content" : "money laundering"
+               },
+               {
+                  "content" : "stolen goods"
+               },
+               {
+                  "content" : "magical components"
+               }
+            ],
+            "secret" : "20",
+            "type" : "trade",
+            "marketname" : "gem"
+         },
+         {
+            "chance" : "40",
+            "option" : [
+               {
+                  "content" : "stolen"
+               },
+               {
+                  "content" : "rare"
+               }
+            ],
+            "secret" : "100",
+            "type" : "trade",
+            "marketname" : "art"
+         }
+      ]
+   },
+   "specialties" : {
+      "specialty" : [
+         {
+            "content" : "farming"
+         },
+         {
+            "content" : "military"
+         },
+         {
+            "content" : "mining"
+         },
+         {
+            "content" : "logging"
+         }
+      ]
+   },
+   "reputation" : {
+      "option" : [
+         {
+            "approval_mod" : "-5",
+            "content" : "hated"
+         },
+         {
+            "approval_mod" : "-4",
+            "content" : "despised"
+         },
+         {
+            "approval_mod" : "-3",
+            "content" : "much maligned"
+         },
+         {
+            "approval_mod" : "-2",
+            "content" : "ridiculed"
+         },
+         {
+            "approval_mod" : "-1",
+            "content" : "mocked"
+         },
+         {
+            "approval_mod" : "2",
+            "content" : "much loved"
+         },
+         {
+            "approval_mod" : "3",
+            "content" : "praised"
+         },
+         {
+            "approval_mod" : "4",
+            "content" : "respected"
+         },
+         {
+            "approval_mod" : "5",
+            "content" : "revered"
+         }
+      ]
+   },
+   "housing" : {
+      "house_type" : [
+         {
+            "value" : "5gp",
+            "max" : "5",
+            "type" : "small hut"
+         },
+         {
+            "value" : "9gp",
+            "max" : "10",
+            "type" : "medium hut"
+         },
+         {
+            "value" : "12gp",
+            "max" : "15",
+            "type" : "large hut"
+         },
+         {
+            "value" : "20gp",
+            "max" : "6",
+            "type" : "small house"
+         },
+         {
+            "value" : "40gp",
+            "max" : "8",
+            "type" : "medium house"
+         },
+         {
+            "value" : "60gp",
+            "max" : "12",
+            "type" : "large house"
+         }
+      ],
+      "quality" : {
+         "average" : {
+            "percent" : "68",
+            "density" : "7"
+         },
+         "poor" : {
+            "percent" : "30",
+            "density" : "15"
+         },
+         "wealthy" : {
+            "percent" : "2",
+            "density" : "5"
+         }
+      }
+   },
+   "preparation" : {
+      "option" : [
+         {
+            "content" : "abysmally",
+            "max" : "5"
+         },
+         {
+            "min" : "6",
+            "content" : "terribly",
+            "max" : "10"
+         },
+         {
+            "min" : "11",
+            "content" : "badly",
+            "max" : "15"
+         },
+         {
+            "min" : "16",
+            "content" : "poorly",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "inadequately",
+            "max" : "25"
+         },
+         {
+            "min" : "26",
+            "content" : "tolerably",
+            "max" : "35"
+         },
+         {
+            "min" : "36",
+            "content" : "suitably",
+            "max" : "45"
+         },
+         {
+            "min" : "46",
+            "content" : "moderately",
+            "max" : "55"
+         },
+         {
+            "min" : "56",
+            "content" : "reasonably well",
+            "max" : "65"
+         },
+         {
+            "min" : "66",
+            "content" : "properly",
+            "max" : "75"
+         },
+         {
+            "min" : "76",
+            "content" : "admirably",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "greatly",
+            "max" : "85"
+         },
+         {
+            "min" : "86",
+            "content" : "excellently",
+            "max" : "90"
+         },
+         {
+            "min" : "91",
+            "content" : "spectacularly",
+            "max" : "95"
+         },
+         {
+            "min" : "96",
+            "content" : "perfectly"
+         }
+      ]
+   },
+   "direction" : {
+      "option" : [
+         {
+            "content" : "northwest"
+         },
+         {
+            "content" : "north"
+         },
+         {
+            "content" : "northeast"
+         },
+         {
+            "content" : "east"
+         },
+         {
+            "content" : "southeast"
+         },
+         {
+            "content" : "south"
+         },
+         {
+            "content" : "southwest"
+         },
+         {
+            "content" : "south"
+         }
+      ]
+   },
+   "arable_description" : {
+      "option" : [
+         {
+            "min" : "1",
+            "max" : "33",
+            "option" : [
+               {
+                  "content" : "desolate"
+               }
+            ],
+            "type" : "poor"
+         },
+         {
+            "min" : "34",
+            "max" : "66",
+            "option" : [
+               {
+                  "content" : "modest"
+               }
+            ],
+            "type" : "neutral"
+         },
+         {
+            "min" : "67",
+            "option" : [
+               {
+                  "content" : "fertile"
+               }
+            ],
+            "type" : "rich"
+         }
+      ]
+   },
+   "trivia" : {
+      "fact" : [
+         {
+            "root" : [
+               {
+                  "content" : "pine"
+               },
+               {
+                  "content" : "maple"
+               },
+               {
+                  "content" : "oak"
+               },
+               {
+                  "content" : "cypress"
+               }
+            ],
+            "title" : [
+               {
+                  "content" : "red"
+               },
+               {
+                  "content" : "blue"
+               },
+               {
+                  "content" : "yellow"
+               },
+               {
+                  "content" : "white"
+               }
+            ],
+            "type" : "tree"
+         },
+         {
+            "title_chance" : "30",
+            "root" : [
+               {
+                  "content" : "bear"
+               },
+               {
+                  "content" : "boar"
+               },
+               {
+                  "content" : "lion"
+               },
+               {
+                  "content" : "ferret"
+               }
+            ],
+            "title" : [
+               {
+                  "content" : "wild"
+               },
+               {
+                  "content" : "dire"
+               }
+            ],
+            "type" : "animal"
+         },
+         {
+            "title_chance" : "10",
+            "root" : [
+               {
+                  "content" : "marble"
+               },
+               {
+                  "content" : "bauxite"
+               },
+               {
+                  "content" : "geode"
+               },
+               {
+                  "content" : "limestone"
+               },
+               {
+                  "content" : "agate"
+               },
+               {
+                  "content" : "granite"
+               },
+               {
+                  "content" : "slate"
+               }
+            ],
+            "title" : [
+               {
+                  "content" : "red"
+               },
+               {
+                  "content" : "white"
+               },
+               {
+                  "content" : "black"
+               },
+               {
+                  "content" : "blue"
+               }
+            ],
+            "type" : "stone"
+         },
+         {
+            "root" : [
+               {
+                  "content" : "beer"
+               },
+               {
+                  "content" : "tea"
+               },
+               {
+                  "content" : "coffee"
+               },
+               {
+                  "content" : "wine"
+               },
+               {
+                  "content" : "ale"
+               }
+            ],
+            "type" : "beverage"
+         },
+         {
+            "root" : [
+               {
+                  "content" : "bird"
+               },
+               {
+                  "content" : "dragon"
+               },
+               {
+                  "content" : "ram"
+               },
+               {
+                  "content" : "horse"
+               },
+               {
+                  "content" : "tree"
+               },
+               {
+                  "content" : "flower"
+               }
+            ],
+            "type" : "symbol"
+         },
+         {
+            "root" : [
+               {
+                  "content" : "daisy"
+               },
+               {
+                  "content" : "rose"
+               },
+               {
+                  "content" : "tulip"
+               }
+            ],
+            "type" : "flower"
+         },
+         {
+            "root" : {},
+            "type" : "bird"
+         },
+         {
+            "root" : {},
+            "type" : "fish"
+         },
+         {
+            "root" : {},
+            "type" : "insect"
+         }
+      ],
+      "content" : "their official _______ is the ________\n    "
+   },
+   "walls" : {
+      "chance" : "40",
+      "style" : {
+         "option" : [
+            {
+               "content" : "embankment",
+               "max" : "5"
+            },
+            {
+               "min" : "6",
+               "content" : "fence",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "wall",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "enclosure",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "barrier",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "barricade",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "fortification",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "palisade",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "partition",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "rampart",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "stockade"
+            }
+         ]
+      },
+      "material" : {
+         "option" : [
+            {
+               "minheight" : "1",
+               "maxheight" : "3",
+               "content" : "rubble",
+               "max" : "10"
+            },
+            {
+               "minheight" : "2",
+               "maxheight" : "4",
+               "min" : "11",
+               "content" : "mud brick",
+               "max" : "20"
+            },
+            {
+               "minheight" : "2",
+               "maxheight" : "6",
+               "min" : "21",
+               "content" : "wood",
+               "max" : "25"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "6",
+               "min" : "26",
+               "content" : "oak",
+               "max" : "30"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "10",
+               "min" : "31",
+               "content" : "brick",
+               "max" : "35"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "15",
+               "min" : "36",
+               "content" : "sandstone",
+               "max" : "40"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "15",
+               "min" : "41",
+               "content" : "limestone",
+               "max" : "45"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "15",
+               "min" : "46",
+               "content" : "conglomerate stone",
+               "max" : "50"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "20",
+               "min" : "51",
+               "content" : "stone",
+               "max" : "60"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "20",
+               "min" : "61",
+               "content" : "marble",
+               "max" : "70"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "20",
+               "min" : "71",
+               "content" : "slate",
+               "max" : "75"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "20",
+               "min" : "76",
+               "content" : "basalt",
+               "max" : "80"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "20",
+               "min" : "81",
+               "content" : "granite",
+               "max" : "95"
+            },
+            {
+               "minheight" : "3",
+               "maxheight" : "22",
+               "min" : "96",
+               "content" : "Iron"
+            }
+         ]
+      },
+      "condition" : {
+         "option" : [
+            {
+               "content" : "destroyed",
+               "max" : "10"
+            },
+            {
+               "min" : "11",
+               "content" : "crumbling",
+               "max" : "20"
+            },
+            {
+               "min" : "21",
+               "content" : "poorly maintained",
+               "max" : "25"
+            },
+            {
+               "min" : "26",
+               "content" : "cracking",
+               "max" : "30"
+            },
+            {
+               "min" : "31",
+               "content" : "battered",
+               "max" : "35"
+            },
+            {
+               "min" : "36",
+               "content" : "scarred",
+               "max" : "40"
+            },
+            {
+               "min" : "41",
+               "content" : "weather-beaten",
+               "max" : "45"
+            },
+            {
+               "min" : "46",
+               "content" : "flimsy",
+               "max" : "50"
+            },
+            {
+               "min" : "51",
+               "content" : "solid",
+               "max" : "60"
+            },
+            {
+               "min" : "61",
+               "content" : "sturdy",
+               "max" : "70"
+            },
+            {
+               "min" : "71",
+               "content" : "recently repaired",
+               "max" : "75"
+            },
+            {
+               "min" : "76",
+               "content" : "reinforced",
+               "max" : "80"
+            },
+            {
+               "min" : "81",
+               "content" : "fortified",
+               "max" : "85"
+            },
+            {
+               "min" : "86",
+               "content" : "polished",
+               "max" : "90"
+            },
+            {
+               "min" : "91",
+               "content" : "newly finished",
+               "max" : "95"
+            },
+            {
+               "min" : "96",
+               "content" : "pristine",
+               "max" : "98"
+            },
+            {
+               "min" : "99",
+               "content" : "magically reinforced"
+            }
+         ]
+      }
+   },
+   "tactictypes" : {
+      "option" : [
+         {
+            "content" : "rigid formations"
+         },
+         {
+            "content" : "frenzied fighting"
+         },
+         {
+            "content" : "phlanyx formations"
+         },
+         {
+            "content" : "guerrilla warfare"
+         },
+         {
+            "content" : "hoarde tactics"
+         }
+      ]
+   },
+   "scope" : {
+      "option" : [
+         {
+            "content" : "the neighborhood"
+         },
+         {
+            "content" : "that part of town"
+         },
+         {
+            "content" : "the city"
+         },
+         {
+            "content" : "the region"
+         },
+         {
+            "content" : "the world"
+         }
+      ]
+   },
+   "classes" : {
+      "class" : {
+         "Cleric" : {
+            "min" : "60",
+            "max" : "65",
+            "max_level" : "1d6"
+         },
+         "Sorcerer" : {
+            "min" : "84",
+            "max" : "87",
+            "max_level" : "1d4"
+         },
+         "Ranger" : {
+            "min" : "99",
+            "max" : "99",
+            "max_level" : "1d3"
+         },
+         "Adept" : {
+            "min" : "78",
+            "max" : "83",
+            "max_level" : "1d6"
+         },
+         "Commoner" : {
+            "min" : "0",
+            "max" : "23",
+            "max_level" : "4d4"
+         },
+         "Aristocrat" : {
+            "min" : "92",
+            "max" : "95",
+            "max_level" : "1d4"
+         },
+         "Druid" : {
+            "min" : "66",
+            "max" : "69",
+            "max_level" : "1d6"
+         },
+         "Monk" : {
+            "min" : "53",
+            "max" : "55",
+            "max_level" : "1d4"
+         },
+         "Bard" : {
+            "min" : "56",
+            "max" : "59",
+            "max_level" : "1d6"
+         },
+         "Rogue" : {
+            "min" : "44",
+            "max" : "49",
+            "max_level" : "1d8"
+         },
+         "Warrior" : {
+            "min" : "36",
+            "max" : "43",
+            "max_level" : "2d4"
+         },
+         "Paladin" : {
+            "min" : "96",
+            "max" : "97",
+            "max_level" : "1d3"
+         },
+         "Wizard" : {
+            "min" : "88",
+            "max" : "91",
+            "max_level" : "1d4"
+         },
+         "Fighter" : {
+            "min" : "70",
+            "max" : "77",
+            "max_level" : "1d8"
+         },
+         "Barbarian" : {
+            "min" : "50",
+            "max" : "52",
+            "max_level" : "1d4"
+         },
+         "Expert" : {
+            "min" : "24",
+            "max" : "35",
+            "max_level" : "3d4"
+         }
+      }
+   },
+   "locations" : {
+      "location" : [
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "cliff"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "lighthouse"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "rivermouth"
+               },
+               {
+                  "chance" : "20",
+                  "content" : "beach"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "jagged outcropping of rock"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "coral reef"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "barrier island"
+               }
+            ],
+            "port_chance" : "100",
+            "description" : "on the coast"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "bluff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "creek"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "rapids"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tar pit"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "valley"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "swamp"
+               }
+            ],
+            "port_chance" : "90",
+            "description" : "near a canal"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "beach"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "bluff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "canal"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "fjord"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cliffs"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cave"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "volcanic island"
+               }
+            ],
+            "port_chance" : "90",
+            "description" : "on a cape"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "canal"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cavern"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "creek"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "foothills"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud volcaino"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "ravine"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "waterfall"
+               }
+            ],
+            "port_chance" : "60",
+            "description" : "near a reservoir"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "bayou"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "coastline"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "continental shelf"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "salt marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sandbar"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud flat"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "submarine volcano"
+               }
+            ],
+            "port_chance" : "900",
+            "description" : "on a delta"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "barrier island"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "coastline"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cave"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tidal basin"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "wetland"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cove"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "reef"
+               }
+            ],
+            "port_chance" : "90",
+            "description" : "peninsula"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "dry lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sand dunes"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "foothills"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sand hill"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "ravine"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "escarpment"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "dry riverbed"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "rift valley"
+               }
+            ],
+            "port_chance" : "0",
+            "description" : "in an oasis"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "bluff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tidal basin"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "flood plain"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "salt marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "shallows"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "surge channel"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "shoreline"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "estuary"
+               }
+            ],
+            "port_chance" : "70",
+            "description" : "near a strait"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "cave"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "crag"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "falls"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud flat"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tar pit"
+               }
+            ],
+            "port_chance" : "10",
+            "description" : "in a valley"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "box canyon"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "creek"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud flat"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "swamp"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "spring"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tar pit"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "prairie"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "marsh"
+               }
+            ],
+            "port_chance" : "10",
+            "description" : "near a wetland"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "caldera"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "atoll"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "beach"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "oceanic trench"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cave"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "sea cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "submarine volcano"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "volcanic island"
+               }
+            ],
+            "port_chance" : "100",
+            "description" : "on an archipelago"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "marsh"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "stream"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "rapids"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "waterfall"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "spring"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "river delta"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cliffs"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "foothills"
+               }
+            ],
+            "port_chance" : "50",
+            "description" : "near a river"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "22",
+                  "content" : "rocky outcropping"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "stand of trees"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "river"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "pond"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "pass"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "overhang"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "crossroad"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "mountain range"
+               }
+            ],
+            "port_chance" : "25",
+            "description" : "on a hill"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "stream"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "river"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "puddle"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "lake"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "cliff"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "boulder"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "mud flat"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "swamp"
+               }
+            ],
+            "port_chance" : "5",
+            "description" : "in a basin"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "cliff"
+               },
+               {
+                  "chance" : "20",
+                  "content" : "jagged cliff"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "butte"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "dead volcano"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "scree"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "rocks"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "overhang"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "natural arch"
+               }
+            ],
+            "port_chance" : "0",
+            "description" : "on a plateau"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "cataract"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "summit"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "lava dome"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "crevasse"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "chasm"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cave"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mountain pass"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "slope"
+               }
+            ],
+            "port_chance" : "0",
+            "description" : "in the mountains"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "underground lake"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "waterfall"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "stream"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "lava pit"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "cavern"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "gysers"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "faultline"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "lava tube"
+               }
+            ],
+            "port_chance" : "0",
+            "description" : "underground"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "badlands"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "box canyon"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "butte"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "forest"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud volcaino"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "bog"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "swamp"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "geyser"
+               }
+            ],
+            "port_chance" : "10",
+            "description" : "in the plains"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "wonderful oasis"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "sea of sand dunes"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "gysers"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "stone formation"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "ridge"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "natural arch"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "foothills"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "fissure"
+               }
+            ],
+            "port_chance" : "0",
+            "description" : "in the desert"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "10",
+                  "content" : "lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "cavern"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "gully"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "sequoia grove"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "rocky outcropping"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "caves"
+               },
+               {
+                  "chance" : "10",
+                  "content" : "clearing"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "moraine"
+               }
+            ],
+            "port_chance" : "5",
+            "description" : "in the forest"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "box canyon"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "lava flow"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mud flat"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "volcano"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "swamp"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "escarpment"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "tar pit"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "mesa"
+               }
+            ],
+            "port_chance" : "5",
+            "description" : "in the badlands"
+         },
+         {
+            "landmarks" : [
+               {
+                  "chance" : "12",
+                  "content" : "mountain range"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "crater lake"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "crevasse"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "geyser"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "moraine"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "gully"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "rivulet"
+               },
+               {
+                  "chance" : "12",
+                  "content" : "fissure"
+               }
+            ],
+            "port_chance" : "5",
+            "description" : "in the tundra"
+         }
+      ],
+      "landmarkdesc" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : "nondescript"
+            },
+            {
+               "content" : "curious"
+            },
+            {
+               "content" : "tiny"
+            },
+            {
+               "content" : "small"
+            },
+            {
+               "content" : "large"
+            },
+            {
+               "content" : "huge"
+            },
+            {
+               "content" : "massive"
+            },
+            {
+               "content" : "gigantic"
+            }
+         ]
+      }
+   },
+   "laws" : {
+      "punishment" : {
+         "option" : [
+            {
+               "content" : "fines"
+            },
+            {
+               "content" : "community service"
+            },
+            {
+               "content" : "an eye for an eye"
+            },
+            {
+               "content" : "hard labor"
+            },
+            {
+               "content" : "stoning"
+            },
+            {
+               "content" : "torture"
+            },
+            {
+               "content" : "execution"
+            },
+            {
+               "content" : "maiming"
+            },
+            {
+               "content" : "indentured servitude"
+            }
+         ]
+      },
+      "trial" : {
+         "option" : [
+            {
+               "content" : "without trial"
+            },
+            {
+               "content" : "by a kangaroo court"
+            },
+            {
+               "content" : "by a magistrate"
+            },
+            {
+               "content" : "by a council"
+            },
+            {
+               "content" : "by jurors"
+            },
+            {
+               "content" : "by mob rule"
+            }
+         ]
+      },
+      "enforcement" : {
+         "option" : [
+            {
+               "content" : "but are loosely enforced"
+            },
+            {
+               "content" : "and are strictly enforced"
+            },
+            {
+               "content" : "but are rarely enforced"
+            },
+            {
+               "content" : "who can be bribed"
+            }
+         ]
+      },
+      "graft" : {
+         "option" : [
+            {
+               "content" : "shakes down"
+            },
+            {
+               "content" : "gives protection to"
+            },
+            {
+               "content" : "hit up"
+            },
+            {
+               "content" : "steals from"
+            },
+            {
+               "content" : "taxes"
+            },
+            {
+               "content" : "harass"
+            }
+         ]
+      },
+      "enforcer" : {
+         "option" : [
+            {
+               "content" : "grifters"
+            },
+            {
+               "content" : "city guard"
+            },
+            {
+               "content" : "city watch"
+            },
+            {
+               "content" : "neighborhood watch"
+            },
+            {
+               "content" : "crime mobs"
+            },
+            {
+               "content" : "police"
+            },
+            {
+               "content" : "local thugs"
+            },
+            {
+               "content" : "organized crime bosses"
+            },
+            {
+               "content" : "local gangs"
+            },
+            {
+               "content" : "roving thieves"
+            },
+            {
+               "content" : "racketeers"
+            },
+            {
+               "content" : "mobsters"
+            },
+            {
+               "content" : "trade guild"
+            }
+         ]
+      },
+      "commoncrime" : {
+         "option" : [
+            {
+               "content" : "petty theft"
+            },
+            {
+               "content" : "fraud"
+            },
+            {
+               "content" : "murder"
+            },
+            {
+               "content" : "domestic disturbance"
+            },
+            {
+               "content" : "treason"
+            }
+         ]
+      }
+   },
+   "dominance" : {
+      "chance" : "30",
+      "option" : [
+         {
+            "content" : "snobbish",
+            "max" : "20"
+         },
+         {
+            "min" : "21",
+            "content" : "mean",
+            "max" : "40"
+         },
+         {
+            "min" : "41",
+            "content" : "cruel",
+            "max" : "60"
+         },
+         {
+            "min" : "61",
+            "content" : "very oppressive",
+            "max" : "80"
+         },
+         {
+            "min" : "81",
+            "content" : "brutally oppressive"
+         }
+      ]
+   },
+   "weapontypes" : {
+      "weapon" : [
+         {
+            "option" : [
+               {
+                  "content" : "battle axes"
+               },
+               {
+                  "content" : "hand axes"
+               },
+               {
+                  "content" : "greataxes"
+               },
+               {
+                  "content" : "axes"
+               },
+               {
+                  "content" : "unique axes"
+               }
+            ],
+            "type" : "axes"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "shortbows"
+               },
+               {
+                  "content" : "longbows"
+               },
+               {
+                  "content" : "composite bows"
+               },
+               {
+                  "content" : "bows"
+               }
+            ],
+            "type" : "bows"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "heavy crossbows"
+               },
+               {
+                  "content" : "light crossbows"
+               },
+               {
+                  "content" : "repeating crossbows"
+               },
+               {
+                  "content" : "hand crossbows"
+               },
+               {
+                  "content" : "great crossbows"
+               },
+               {
+                  "content" : "crossbows"
+               }
+            ],
+            "type" : "crossbows"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "light flail"
+               },
+               {
+                  "content" : "heavy flail"
+               },
+               {
+                  "content" : "light mace"
+               },
+               {
+                  "content" : "heavy mace"
+               },
+               {
+                  "content" : "simple clubs"
+               },
+               {
+                  "content" : "great clubs"
+               },
+               {
+                  "content" : "spiked clubs"
+               },
+               {
+                  "content" : "morningstars"
+               },
+               {
+                  "content" : "flails, maces and clubs"
+               }
+            ],
+            "type" : "flails, maces and clubs"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "longswords"
+               },
+               {
+                  "content" : "curved swords"
+               },
+               {
+                  "content" : "shortswords"
+               },
+               {
+                  "content" : "greatswords"
+               },
+               {
+                  "content" : "bastard swords"
+               },
+               {
+                  "content" : "falchionn"
+               },
+               {
+                  "content" : "scimitars"
+               },
+               {
+                  "content" : "swords"
+               },
+               {
+                  "content" : "rapiers"
+               },
+               {
+                  "content" : "butterfly swords"
+               }
+            ],
+            "type" : "swords"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "daggers"
+               },
+               {
+                  "content" : "bladed gauntlets"
+               },
+               {
+                  "content" : "claw bracers"
+               },
+               {
+                  "content" : "stump knives"
+               },
+               {
+                  "content" : "tonfas"
+               }
+            ],
+            "type" : ""
+         },
+         {
+            "option" : [
+               {
+                  "content" : "throwing daggers"
+               },
+               {
+                  "content" : "throwing axes"
+               },
+               {
+                  "content" : "throwing hammers"
+               },
+               {
+                  "content" : "thrown weapons"
+               },
+               {
+                  "content" : "slings"
+               },
+               {
+                  "content" : "Javelins"
+               }
+            ],
+            "type" : "throwing"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "glaives"
+               },
+               {
+                  "content" : "guisarmes"
+               },
+               {
+                  "content" : "halberds"
+               },
+               {
+                  "content" : "ranseurs"
+               }
+            ],
+            "type" : "polearms"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "short spears"
+               },
+               {
+                  "content" : "long spears"
+               },
+               {
+                  "content" : "tridents"
+               },
+               {
+                  "content" : "harpoons"
+               },
+               {
+                  "content" : "javelins"
+               }
+            ],
+            "type" : "spears"
+         },
+         {
+            "option" : [
+               {
+                  "content" : "unarmed combat"
+               },
+               {
+                  "content" : "martial arts"
+               }
+            ],
+            "type" : "unarmed combat"
+         }
+      ]
+   },
+   "condition" : {
+      "option" : [
+         {
+            "content" : "neat"
+         },
+         {
+            "content" : "tidy"
+         },
+         {
+            "content" : "messy"
+         },
+         {
+            "content" : "crowded"
+         },
+         {
+            "content" : "dirty"
+         },
+         {
+            "content" : "clean"
+         },
+         {
+            "content" : "packed"
+         },
+         {
+            "content" : "orderly"
+         },
+         {
+            "content" : "dusty"
+         },
+         {
+            "content" : "cluttered"
+         },
+         {
+            "content" : "damp"
+         },
+         {
+            "content" : "smelly"
+         },
+         {
+            "content" : "disgusting"
+         },
+         {
+            "content" : "filthy"
+         }
+      ]
+   }
+}

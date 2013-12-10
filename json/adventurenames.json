@@ -1,0 +1,2556 @@
+{
+   "pattern" : {
+      "adjective_chance" : "30",
+      "article_chance" : "30",
+      "adverb_chance" : "30",
+      "option" : [
+         {
+            "content" : "VERB SUBJECT"
+         },
+         {
+            "content" : "NEGATE VERB SUBJECT"
+         },
+         {
+            "content" : "ADJECTIVE SUBJECT"
+         },
+         {
+            "content" : "SUBJECT VERB.participle"
+         },
+         {
+            "content" : "SUBJECT VERB.thirdperson"
+         },
+         {
+            "content" : "SUBJECT of SUBJECT"
+         },
+         {
+            "content" : "SUBJECT"
+         },
+         {
+            "content" : "SUBJECT's SUBJECT"
+         },
+         {
+            "content" : "SUBJECT VERB.thirdperson SUBJECT"
+         },
+         {
+            "content" : "VERB.gerund SUBJECT"
+         }
+      ]
+   },
+   "adjective" : {
+      "option" : [
+         {
+            "base" : "black"
+         },
+         {
+            "base" : "red"
+         },
+         {
+            "base" : "yellow"
+         },
+         {
+            "base" : "green"
+         },
+         {
+            "base" : "blue"
+         },
+         {
+            "base" : "orange"
+         },
+         {
+            "base" : "abolished"
+         },
+         {
+            "base" : "abominable"
+         },
+         {
+            "base" : "amazing"
+         },
+         {
+            "base" : "ancient"
+         },
+         {
+            "base" : "annihilated"
+         },
+         {
+            "base" : "antique"
+         },
+         {
+            "base" : "apocryphal"
+         },
+         {
+            "base" : "atrocious"
+         },
+         {
+            "base" : "baleful"
+         },
+         {
+            "base" : "baneful"
+         },
+         {
+            "base" : "bizzare"
+         },
+         {
+            "base" : "blessed"
+         },
+         {
+            "base" : "blighted"
+         },
+         {
+            "base" : "bloody"
+         },
+         {
+            "base" : "bloody"
+         },
+         {
+            "base" : "broken"
+         },
+         {
+            "base" : "bygone"
+         },
+         {
+            "base" : "closed"
+         },
+         {
+            "base" : "consecrated"
+         },
+         {
+            "base" : "cruel"
+         },
+         {
+            "base" : "cryptic"
+         },
+         {
+            "base" : "cryptic"
+         },
+         {
+            "base" : "cursed"
+         },
+         {
+            "base" : "dark"
+         },
+         {
+            "base" : "dead"
+         },
+         {
+            "base" : "deadly"
+         },
+         {
+            "base" : "decayed"
+         },
+         {
+            "base" : "deep"
+         },
+         {
+            "base" : "degenerate"
+         },
+         {
+            "base" : "detestable"
+         },
+         {
+            "base" : "devastated"
+         },
+         {
+            "base" : "dim"
+         },
+         {
+            "base" : "disgusting"
+         },
+         {
+            "base" : "disorienting"
+         },
+         {
+            "base" : "divine"
+         },
+         {
+            "base" : "drab"
+         },
+         {
+            "base" : "effulgent"
+         },
+         {
+            "base" : "elder"
+         },
+         {
+            "base" : "enigmatic"
+         },
+         {
+            "base" : "excellent"
+         },
+         {
+            "base" : "extravagant"
+         },
+         {
+            "base" : "fabled"
+         },
+         {
+            "base" : "fabulous"
+         },
+         {
+            "base" : "fascinating"
+         },
+         {
+            "base" : "fatal"
+         },
+         {
+            "base" : "fiendish"
+         },
+         {
+            "base" : "foggy"
+         },
+         {
+            "base" : "forbidden"
+         },
+         {
+            "base" : "foredoomed"
+         },
+         {
+            "base" : "forgotten"
+         },
+         {
+            "base" : "forlorn"
+         },
+         {
+            "base" : "frozen"
+         },
+         {
+            "base" : "glacial"
+         },
+         {
+            "base" : "gloomy"
+         },
+         {
+            "base" : "golden"
+         },
+         {
+            "base" : "hallowed"
+         },
+         {
+            "base" : "haunted"
+         },
+         {
+            "base" : "hidden"
+         },
+         {
+            "base" : "hidden"
+         },
+         {
+            "base" : "hideous"
+         },
+         {
+            "base" : "hoary"
+         },
+         {
+            "base" : "holy"
+         },
+         {
+            "base" : "icy"
+         },
+         {
+            "base" : "ignored"
+         },
+         {
+            "base" : "incandescent"
+         },
+         {
+            "base" : "incredible"
+         },
+         {
+            "base" : "infernal"
+         },
+         {
+            "base" : "inscrutable"
+         },
+         {
+            "base" : "lethal"
+         },
+         {
+            "base" : "loathsome"
+         },
+         {
+            "base" : "lost"
+         },
+         {
+            "base" : "malignant"
+         },
+         {
+            "base" : "moldy"
+         },
+         {
+            "base" : "mysterious"
+         },
+         {
+            "base" : "mystical"
+         },
+         {
+            "base" : "noxious"
+         },
+         {
+            "base" : "obscure"
+         },
+         {
+            "base" : "odious"
+         },
+         {
+            "base" : "overlooked"
+         },
+         {
+            "base" : "peaceful"
+         },
+         {
+            "base" : "petrified"
+         },
+         {
+            "base" : "primal"
+         },
+         {
+            "base" : "putrid"
+         },
+         {
+            "base" : "ruthless"
+         },
+         {
+            "base" : "sanctified"
+         },
+         {
+            "base" : "savage"
+         },
+         {
+            "base" : "screaming"
+         },
+         {
+            "base" : "somber"
+         },
+         {
+            "base" : "stygian"
+         },
+         {
+            "base" : "sublime"
+         },
+         {
+            "base" : "unholy"
+         },
+         {
+            "base" : "venerable"
+         },
+         {
+            "base" : "verdant"
+         },
+         {
+            "base" : "vile"
+         },
+         {
+            "base" : "violent"
+         },
+         {
+            "base" : "virtuous"
+         },
+         {
+            "base" : "volcanic"
+         },
+         {
+            "base" : "weird"
+         },
+         {
+            "base" : "wondrous"
+         }
+      ]
+   },
+   "verb" : {
+      "adverb_chance" : "30",
+      "option" : [
+         {
+            "base" : "abide"
+         },
+         {
+            "base" : "abolish"
+         },
+         {
+            "base" : "accuse"
+         },
+         {
+            "base" : "advise"
+         },
+         {
+            "base" : "arise"
+         },
+         {
+            "base" : "arrest"
+         },
+         {
+            "base" : "assault"
+         },
+         {
+            "base" : "awake"
+         },
+         {
+            "base" : "babysit"
+         },
+         {
+            "base" : "become"
+         },
+         {
+            "base" : "begin"
+         },
+         {
+            "base" : "behold"
+         },
+         {
+            "base" : "bet"
+         },
+         {
+            "base" : "bind"
+         },
+         {
+            "base" : "bite"
+         },
+         {
+            "base" : "blast"
+         },
+         {
+            "base" : "bleed"
+         },
+         {
+            "base" : "block"
+         },
+         {
+            "base" : "break"
+         },
+         {
+            "base" : "bring"
+         },
+         {
+            "base" : "build"
+         },
+         {
+            "base" : "burn"
+         },
+         {
+            "base" : "buy"
+         },
+         {
+            "base" : "catch"
+         },
+         {
+            "base" : "chase"
+         },
+         {
+            "base" : "choke"
+         },
+         {
+            "base" : "choose"
+         },
+         {
+            "base" : "climb"
+         },
+         {
+            "base" : "clothe"
+         },
+         {
+            "base" : "collapse"
+         },
+         {
+            "base" : "collar"
+         },
+         {
+            "base" : "collect"
+         },
+         {
+            "base" : "collide"
+         },
+         {
+            "base" : "come"
+         },
+         {
+            "base" : "command"
+         },
+         {
+            "base" : "commandeer"
+         },
+         {
+            "base" : "complete"
+         },
+         {
+            "base" : "construct"
+         },
+         {
+            "base" : "consult"
+         },
+         {
+            "base" : "control"
+         },
+         {
+            "base" : "counsel"
+         },
+         {
+            "base" : "count"
+         },
+         {
+            "base" : "crawl"
+         },
+         {
+            "base" : "create"
+         },
+         {
+            "base" : "creep"
+         },
+         {
+            "base" : "cripple"
+         },
+         {
+            "base" : "cut"
+         },
+         {
+            "base" : "dare"
+         },
+         {
+            "base" : "deal"
+         },
+         {
+            "base" : "decide"
+         },
+         {
+            "base" : "deduct"
+         },
+         {
+            "base" : "defeat"
+         },
+         {
+            "base" : "deliver"
+         },
+         {
+            "base" : "descend"
+         },
+         {
+            "base" : "describe"
+         },
+         {
+            "base" : "diagnose"
+         },
+         {
+            "base" : "dig"
+         },
+         {
+            "base" : "direct"
+         },
+         {
+            "base" : "discard"
+         },
+         {
+            "base" : "discover"
+         },
+         {
+            "base" : "display"
+         },
+         {
+            "base" : "dissect"
+         },
+         {
+            "base" : "ditch"
+         },
+         {
+            "base" : "dive"
+         },
+         {
+            "base" : "dodge"
+         },
+         {
+            "base" : "dominate"
+         },
+         {
+            "base" : "douse"
+         },
+         {
+            "base" : "drag"
+         },
+         {
+            "base" : "drain"
+         },
+         {
+            "base" : "dress"
+         },
+         {
+            "base" : "drink"
+         },
+         {
+            "base" : "drive"
+         },
+         {
+            "base" : "drop"
+         },
+         {
+            "base" : "drown"
+         },
+         {
+            "base" : "drug"
+         },
+         {
+            "base" : "dry"
+         },
+         {
+            "base" : "duel"
+         },
+         {
+            "base" : "dunk"
+         },
+         {
+            "base" : "eat"
+         },
+         {
+            "base" : "eject"
+         },
+         {
+            "base" : "elevate"
+         },
+         {
+            "base" : "elude"
+         },
+         {
+            "base" : "endure"
+         },
+         {
+            "base" : "ensnare"
+         },
+         {
+            "base" : "enter"
+         },
+         {
+            "base" : "escape"
+         },
+         {
+            "base" : "evacuate"
+         },
+         {
+            "base" : "evade"
+         },
+         {
+            "base" : "examine"
+         },
+         {
+            "base" : "exit"
+         },
+         {
+            "base" : "expel"
+         },
+         {
+            "base" : "expose"
+         },
+         {
+            "base" : "extract"
+         },
+         {
+            "base" : "fail"
+         },
+         {
+            "base" : "fear"
+         },
+         {
+            "base" : "feed"
+         },
+         {
+            "base" : "feel"
+         },
+         {
+            "base" : "fight"
+         },
+         {
+            "base" : "find"
+         },
+         {
+            "base" : "fix"
+         },
+         {
+            "base" : "flee"
+         },
+         {
+            "base" : "fling"
+         },
+         {
+            "base" : "fly"
+         },
+         {
+            "base" : "forbid"
+         },
+         {
+            "base" : "forecast"
+         },
+         {
+            "base" : "foresee"
+         },
+         {
+            "base" : "foretell"
+         },
+         {
+            "base" : "forget"
+         },
+         {
+            "base" : "forgive"
+         },
+         {
+            "base" : "forsake"
+         },
+         {
+            "base" : "freeze"
+         },
+         {
+            "base" : "furnish"
+         },
+         {
+            "base" : "gather"
+         },
+         {
+            "base" : "get"
+         },
+         {
+            "base" : "go"
+         },
+         {
+            "base" : "grab"
+         },
+         {
+            "base" : "grapple"
+         },
+         {
+            "base" : "greet"
+         },
+         {
+            "base" : "grind"
+         },
+         {
+            "base" : "grow"
+         },
+         {
+            "base" : "guide"
+         },
+         {
+            "base" : "hail"
+         },
+         {
+            "base" : "handle"
+         },
+         {
+            "base" : "hang"
+         },
+         {
+            "base" : "harass"
+         },
+         {
+            "base" : "haul"
+         },
+         {
+            "base" : "head"
+         },
+         {
+            "base" : "hear"
+         },
+         {
+            "base" : "help"
+         },
+         {
+            "base" : "hide"
+         },
+         {
+            "base" : "hijack"
+         },
+         {
+            "base" : "hit"
+         },
+         {
+            "base" : "hold"
+         },
+         {
+            "base" : "hurt"
+         },
+         {
+            "base" : "identify"
+         },
+         {
+            "base" : "ignore"
+         },
+         {
+            "base" : "imitate"
+         },
+         {
+            "base" : "implement"
+         },
+         {
+            "base" : "improve"
+         },
+         {
+            "base" : "indict"
+         },
+         {
+            "base" : "induce"
+         },
+         {
+            "base" : "inflict"
+         },
+         {
+            "base" : "influence"
+         },
+         {
+            "base" : "inform"
+         },
+         {
+            "base" : "injure"
+         },
+         {
+            "base" : "inspect"
+         },
+         {
+            "base" : "inspire"
+         },
+         {
+            "base" : "instigate"
+         },
+         {
+            "base" : "interpret"
+         },
+         {
+            "base" : "interview"
+         },
+         {
+            "base" : "invade"
+         },
+         {
+            "base" : "investigate"
+         },
+         {
+            "base" : "isolate"
+         },
+         {
+            "base" : "judge"
+         },
+         {
+            "base" : "kidnap"
+         },
+         {
+            "base" : "kill"
+         },
+         {
+            "base" : "kneel"
+         },
+         {
+            "base" : "know"
+         },
+         {
+            "base" : "launch"
+         },
+         {
+            "base" : "lead"
+         },
+         {
+            "base" : "lean"
+         },
+         {
+            "base" : "leap"
+         },
+         {
+            "base" : "learn"
+         },
+         {
+            "base" : "leave"
+         },
+         {
+            "base" : "lend"
+         },
+         {
+            "base" : "lie"
+         },
+         {
+            "base" : "light"
+         },
+         {
+            "base" : "lose"
+         },
+         {
+            "base" : "maim"
+         },
+         {
+            "base" : "make"
+         },
+         {
+            "base" : "manage"
+         },
+         {
+            "base" : "mangle"
+         },
+         {
+            "base" : "manipulate"
+         },
+         {
+            "base" : "march"
+         },
+         {
+            "base" : "mark"
+         },
+         {
+            "base" : "measure"
+         },
+         {
+            "base" : "mediate"
+         },
+         {
+            "base" : "meet"
+         },
+         {
+            "base" : "melt"
+         },
+         {
+            "base" : "mislead"
+         },
+         {
+            "base" : "mistake"
+         },
+         {
+            "base" : "misunderstand"
+         },
+         {
+            "base" : "mobilize"
+         },
+         {
+            "base" : "monitor"
+         },
+         {
+            "base" : "motivate"
+         },
+         {
+            "base" : "move"
+         },
+         {
+            "base" : "murder"
+         },
+         {
+            "base" : "negotiate"
+         },
+         {
+            "base" : "observe"
+         },
+         {
+            "base" : "obtain"
+         },
+         {
+            "base" : "occupy"
+         },
+         {
+            "base" : "organize"
+         },
+         {
+            "base" : "overhear"
+         },
+         {
+            "base" : "oversee"
+         },
+         {
+            "base" : "overtake"
+         },
+         {
+            "base" : "pander"
+         },
+         {
+            "base" : "patrol"
+         },
+         {
+            "base" : "pay"
+         },
+         {
+            "base" : "persuade"
+         },
+         {
+            "base" : "pick"
+         },
+         {
+            "base" : "placate"
+         },
+         {
+            "base" : "plan"
+         },
+         {
+            "base" : "play"
+         },
+         {
+            "base" : "pocket"
+         },
+         {
+            "base" : "poke"
+         },
+         {
+            "base" : "polish"
+         },
+         {
+            "base" : "predict"
+         },
+         {
+            "base" : "preen"
+         },
+         {
+            "base" : "prepare"
+         },
+         {
+            "base" : "present"
+         },
+         {
+            "base" : "process"
+         },
+         {
+            "base" : "produce"
+         },
+         {
+            "base" : "promote"
+         },
+         {
+            "base" : "protect"
+         },
+         {
+            "base" : "prove"
+         },
+         {
+            "base" : "provide"
+         },
+         {
+            "base" : "provoke"
+         },
+         {
+            "base" : "publicize"
+         },
+         {
+            "base" : "pummel"
+         },
+         {
+            "base" : "pursue"
+         },
+         {
+            "base" : "push"
+         },
+         {
+            "base" : "question"
+         },
+         {
+            "base" : "quit"
+         },
+         {
+            "base" : "race"
+         },
+         {
+            "base" : "raid"
+         },
+         {
+            "base" : "raise"
+         },
+         {
+            "base" : "rally"
+         },
+         {
+            "base" : "ransack"
+         },
+         {
+            "base" : "rattle"
+         },
+         {
+            "base" : "ravage"
+         },
+         {
+            "base" : "read"
+         },
+         {
+            "base" : "receive"
+         },
+         {
+            "base" : "recommend"
+         },
+         {
+            "base" : "reconcile"
+         },
+         {
+            "base" : "recruit"
+         },
+         {
+            "base" : "redeem"
+         },
+         {
+            "base" : "repair"
+         },
+         {
+            "base" : "repel"
+         },
+         {
+            "base" : "report"
+         },
+         {
+            "base" : "represent"
+         },
+         {
+            "base" : "repulse"
+         },
+         {
+            "base" : "research"
+         },
+         {
+            "base" : "resist"
+         },
+         {
+            "base" : "resolve"
+         },
+         {
+            "base" : "respond"
+         },
+         {
+            "base" : "restore"
+         },
+         {
+            "base" : "retreat"
+         },
+         {
+            "base" : "retrieve"
+         },
+         {
+            "base" : "return"
+         },
+         {
+            "base" : "reveal"
+         },
+         {
+            "base" : "review"
+         },
+         {
+            "base" : "ride"
+         },
+         {
+            "base" : "rise"
+         },
+         {
+            "base" : "run"
+         },
+         {
+            "base" : "save"
+         },
+         {
+            "base" : "scale"
+         },
+         {
+            "base" : "scare"
+         },
+         {
+            "base" : "scatter"
+         },
+         {
+            "base" : "scavenge"
+         },
+         {
+            "base" : "scold"
+         },
+         {
+            "base" : "scout"
+         },
+         {
+            "base" : "scuttle"
+         },
+         {
+            "base" : "seal"
+         },
+         {
+            "base" : "search"
+         },
+         {
+            "base" : "seduce"
+         },
+         {
+            "base" : "seek"
+         },
+         {
+            "base" : "see"
+         },
+         {
+            "base" : "seize"
+         },
+         {
+            "base" : "select"
+         },
+         {
+            "base" : "sell"
+         },
+         {
+            "base" : "serve"
+         },
+         {
+            "base" : "sever"
+         },
+         {
+            "base" : "shake"
+         },
+         {
+            "base" : "shield"
+         },
+         {
+            "base" : "show"
+         },
+         {
+            "base" : "shun"
+         },
+         {
+            "base" : "shut"
+         },
+         {
+            "base" : "sidestep"
+         },
+         {
+            "base" : "signal"
+         },
+         {
+            "base" : "silence"
+         },
+         {
+            "base" : "sing"
+         },
+         {
+            "base" : "sink"
+         },
+         {
+            "base" : "sit"
+         },
+         {
+            "base" : "size"
+         },
+         {
+            "base" : "skirt"
+         },
+         {
+            "base" : "slay"
+         },
+         {
+            "base" : "slide"
+         },
+         {
+            "base" : "slink"
+         },
+         {
+            "base" : "smell"
+         },
+         {
+            "base" : "smuggle"
+         },
+         {
+            "base" : "snare"
+         },
+         {
+            "base" : "snatch"
+         },
+         {
+            "base" : "sneak"
+         },
+         {
+            "base" : "snoop"
+         },
+         {
+            "base" : "snub"
+         },
+         {
+            "base" : "snuff"
+         },
+         {
+            "base" : "soak"
+         },
+         {
+            "base" : "solve"
+         },
+         {
+            "base" : "speak"
+         },
+         {
+            "base" : "speed"
+         },
+         {
+            "base" : "spell"
+         },
+         {
+            "base" : "spend"
+         },
+         {
+            "base" : "spill"
+         },
+         {
+            "base" : "spin"
+         },
+         {
+            "base" : "spit"
+         },
+         {
+            "base" : "splice"
+         },
+         {
+            "base" : "split"
+         },
+         {
+            "base" : "spoil"
+         },
+         {
+            "base" : "spot"
+         },
+         {
+            "base" : "spray"
+         },
+         {
+            "base" : "spread"
+         },
+         {
+            "base" : "spring"
+         },
+         {
+            "base" : "sprint"
+         },
+         {
+            "base" : "spy"
+         },
+         {
+            "base" : "startle"
+         },
+         {
+            "base" : "steal"
+         },
+         {
+            "base" : "steer"
+         },
+         {
+            "base" : "stick"
+         },
+         {
+            "base" : "stifle"
+         },
+         {
+            "base" : "sting"
+         },
+         {
+            "base" : "stink"
+         },
+         {
+            "base" : "stomp"
+         },
+         {
+            "base" : "stop"
+         },
+         {
+            "base" : "strangle"
+         },
+         {
+            "base" : "stride"
+         },
+         {
+            "base" : "strike"
+         },
+         {
+            "base" : "string"
+         },
+         {
+            "base" : "strip"
+         },
+         {
+            "base" : "strive"
+         },
+         {
+            "base" : "subdue"
+         },
+         {
+            "base" : "submit"
+         },
+         {
+            "base" : "summon"
+         },
+         {
+            "base" : "supply"
+         },
+         {
+            "base" : "support"
+         },
+         {
+            "base" : "surrender"
+         },
+         {
+            "base" : "survey"
+         },
+         {
+            "base" : "suspend"
+         },
+         {
+            "base" : "swap"
+         },
+         {
+            "base" : "sway"
+         },
+         {
+            "base" : "swear"
+         },
+         {
+            "base" : "sweat"
+         },
+         {
+            "base" : "sweep"
+         },
+         {
+            "base" : "swell"
+         },
+         {
+            "base" : "swim"
+         },
+         {
+            "base" : "swing"
+         },
+         {
+            "base" : "swipe"
+         },
+         {
+            "base" : "switch"
+         },
+         {
+            "base" : "tackle"
+         },
+         {
+            "base" : "take"
+         },
+         {
+            "base" : "target"
+         },
+         {
+            "base" : "taunt"
+         },
+         {
+            "base" : "teach"
+         },
+         {
+            "base" : "tear"
+         },
+         {
+            "base" : "tell"
+         },
+         {
+            "base" : "terrorize"
+         },
+         {
+            "base" : "test"
+         },
+         {
+            "base" : "thrash"
+         },
+         {
+            "base" : "threaten"
+         },
+         {
+            "base" : "throw"
+         },
+         {
+            "base" : "track"
+         },
+         {
+            "base" : "train"
+         },
+         {
+            "base" : "transfer"
+         },
+         {
+            "base" : "translate"
+         },
+         {
+            "base" : "trap"
+         },
+         {
+            "base" : "tread"
+         },
+         {
+            "base" : "trip"
+         },
+         {
+            "base" : "trounce"
+         },
+         {
+            "base" : "try"
+         },
+         {
+            "base" : "turn"
+         },
+         {
+            "base" : "understand"
+         },
+         {
+            "base" : "undertake"
+         },
+         {
+            "base" : "undo"
+         },
+         {
+            "base" : "unify"
+         },
+         {
+            "base" : "unite"
+         },
+         {
+            "base" : "update"
+         },
+         {
+            "base" : "upset"
+         },
+         {
+            "base" : "usher"
+         },
+         {
+            "base" : "utilize"
+         },
+         {
+            "base" : "vacate"
+         },
+         {
+            "base" : "vex"
+         },
+         {
+            "base" : "wake"
+         },
+         {
+            "base" : "wander"
+         },
+         {
+            "base" : "ward"
+         },
+         {
+            "base" : "watch"
+         },
+         {
+            "base" : "wed"
+         },
+         {
+            "base" : "whack"
+         },
+         {
+            "base" : "win"
+         },
+         {
+            "base" : "withdraw"
+         },
+         {
+            "base" : "withstand"
+         },
+         {
+            "base" : "work"
+         },
+         {
+            "base" : "wrestle"
+         },
+         {
+            "base" : "write"
+         },
+         {
+            "base" : "yank"
+         },
+         {
+            "base" : "yell"
+         },
+         {
+            "base" : "yield"
+         },
+         {
+            "base" : "zap"
+         },
+         {
+            "base" : "zip"
+         }
+      ]
+   },
+   "noun" : {
+      "option" : [
+         {
+            "base" : "alchemy",
+            "type" : "thing"
+         },
+         {
+            "base" : "anger",
+            "type" : "thing"
+         },
+         {
+            "base" : "armor",
+            "type" : "thing"
+         },
+         {
+            "base" : "adventure",
+            "type" : "thing"
+         },
+         {
+            "base" : "blessing",
+            "type" : "thing"
+         },
+         {
+            "base" : "blood",
+            "type" : "thing"
+         },
+         {
+            "base" : "book",
+            "type" : "thing"
+         },
+         {
+            "base" : "calamity",
+            "type" : "thing"
+         },
+         {
+            "base" : "choice",
+            "type" : "thing"
+         },
+         {
+            "base" : "claw",
+            "type" : "thing"
+         },
+         {
+            "base" : "club",
+            "type" : "thing"
+         },
+         {
+            "base" : "courage",
+            "type" : "thing"
+         },
+         {
+            "base" : "crystal",
+            "type" : "thing"
+         },
+         {
+            "base" : "cup",
+            "type" : "thing"
+         },
+         {
+            "base" : "curse",
+            "type" : "thing"
+         },
+         {
+            "base" : "dagger",
+            "type" : "thing"
+         },
+         {
+            "base" : "danger",
+            "type" : "thing"
+         },
+         {
+            "base" : "death",
+            "type" : "thing"
+         },
+         {
+            "base" : "desire",
+            "type" : "thing"
+         },
+         {
+            "base" : "disaster",
+            "type" : "thing"
+         },
+         {
+            "base" : "doom",
+            "type" : "thing"
+         },
+         {
+            "base" : "door",
+            "type" : "thing"
+         },
+         {
+            "base" : "dread",
+            "type" : "thing"
+         },
+         {
+            "base" : "echo",
+            "type" : "thing"
+         },
+         {
+            "base" : "effigy",
+            "type" : "thing"
+         },
+         {
+            "base" : "emperor",
+            "type" : "person"
+         },
+         {
+            "base" : "eye",
+            "type" : "thing"
+         },
+         {
+            "base" : "face",
+            "type" : "thing"
+         },
+         {
+            "base" : "fang",
+            "type" : "thing"
+         },
+         {
+            "base" : "fate",
+            "type" : "thing"
+         },
+         {
+            "base" : "freedom",
+            "type" : "thing"
+         },
+         {
+            "base" : "fungus",
+            "type" : "thing"
+         },
+         {
+            "base" : "ghost",
+            "type" : "thing"
+         },
+         {
+            "base" : "god",
+            "type" : "thing"
+         },
+         {
+            "base" : "gold",
+            "type" : "thing"
+         },
+         {
+            "base" : "hand",
+            "type" : "thing"
+         },
+         {
+            "base" : "hieroglyph",
+            "type" : "thing"
+         },
+         {
+            "base" : "holiness",
+            "type" : "thing"
+         },
+         {
+            "base" : "horror",
+            "type" : "thing"
+         },
+         {
+            "base" : "ice/fire",
+            "type" : "thing"
+         },
+         {
+            "base" : "illusion",
+            "type" : "thing"
+         },
+         {
+            "base" : "judgment",
+            "type" : "thing"
+         },
+         {
+            "base" : "karma",
+            "type" : "thing"
+         },
+         {
+            "base" : "king",
+            "type" : "person"
+         },
+         {
+            "base" : "knife",
+            "type" : "thing"
+         },
+         {
+            "base" : "knowledge",
+            "type" : "thing"
+         },
+         {
+            "base" : "legend",
+            "type" : "thing"
+         },
+         {
+            "base" : "lie",
+            "type" : "thing"
+         },
+         {
+            "base" : "life",
+            "type" : "thing"
+         },
+         {
+            "base" : "light",
+            "type" : "thing"
+         },
+         {
+            "base" : "luck",
+            "type" : "thing"
+         },
+         {
+            "base" : "machine",
+            "type" : "thing"
+         },
+         {
+            "base" : "magic",
+            "type" : "thing"
+         },
+         {
+            "base" : "mechanism",
+            "type" : "thing"
+         },
+         {
+            "base" : "melancholy",
+            "type" : "thing"
+         },
+         {
+            "base" : "mirror",
+            "type" : "thing"
+         },
+         {
+            "base" : "monarch",
+            "type" : "person"
+         },
+         {
+            "base" : "mouth",
+            "type" : "thing"
+         },
+         {
+            "base" : "night",
+            "type" : "thing"
+         },
+         {
+            "base" : "obscenity",
+            "type" : "thing"
+         },
+         {
+            "base" : "ordeal",
+            "type" : "thing"
+         },
+         {
+            "base" : "passion",
+            "type" : "thing"
+         },
+         {
+            "base" : "path",
+            "type" : "thing"
+         },
+         {
+            "base" : "princess",
+            "type" : "person"
+         },
+         {
+            "base" : "prince",
+            "type" : "person"
+         },
+         {
+            "base" : "queen",
+            "type" : "person"
+         },
+         {
+            "base" : "reason",
+            "type" : "thing"
+         },
+         {
+            "base" : "remorse",
+            "type" : "thing"
+         },
+         {
+            "base" : "rich",
+            "type" : "thing"
+         },
+         {
+            "base" : "rune",
+            "type" : "thing"
+         },
+         {
+            "base" : "sadness",
+            "type" : "thing"
+         },
+         {
+            "base" : "sleep",
+            "type" : "thing"
+         },
+         {
+            "base" : "slime",
+            "type" : "thing"
+         },
+         {
+            "base" : "slime",
+            "type" : "thing"
+         },
+         {
+            "base" : "sorcery",
+            "type" : "thing"
+         },
+         {
+            "base" : "sorrow",
+            "type" : "thing"
+         },
+         {
+            "base" : "soul",
+            "type" : "thing"
+         },
+         {
+            "base" : "sovereign",
+            "type" : "thing"
+         },
+         {
+            "base" : "statue",
+            "type" : "thing"
+         },
+         {
+            "base" : "stone",
+            "type" : "thing"
+         },
+         {
+            "base" : "sword",
+            "type" : "thing"
+         },
+         {
+            "base" : "symbol",
+            "type" : "thing"
+         },
+         {
+            "base" : "tale",
+            "type" : "thing"
+         },
+         {
+            "base" : "talon",
+            "type" : "thing"
+         },
+         {
+            "base" : "tome",
+            "type" : "thing"
+         },
+         {
+            "base" : "tragedy",
+            "type" : "thing"
+         },
+         {
+            "base" : "tree",
+            "type" : "thing"
+         },
+         {
+            "base" : "tyrant",
+            "type" : "person"
+         },
+         {
+            "base" : "vision",
+            "type" : "thing"
+         },
+         {
+            "base" : "wand",
+            "type" : "thing"
+         },
+         {
+            "base" : "wealth",
+            "type" : "thing"
+         },
+         {
+            "base" : "well",
+            "type" : "thing"
+         },
+         {
+            "base" : "wisdom",
+            "type" : "thing"
+         },
+         {
+            "base" : "women",
+            "type" : "thing"
+         },
+         {
+            "base" : "zeal",
+            "type" : "thing"
+         },
+         {
+            "base" : "zombie",
+            "type" : "thing"
+         }
+      ]
+   },
+   "adverb" : {
+      "option" : [
+         {
+            "base" : "abnormally"
+         },
+         {
+            "base" : "almost"
+         },
+         {
+            "base" : "always"
+         },
+         {
+            "base" : "arrogantly"
+         },
+         {
+            "base" : "bitterly"
+         },
+         {
+            "base" : "blindly"
+         },
+         {
+            "base" : "blissfully"
+         },
+         {
+            "base" : "boastfully"
+         },
+         {
+            "base" : "boldly"
+         },
+         {
+            "base" : "briefly"
+         },
+         {
+            "base" : "carefully"
+         },
+         {
+            "base" : "carelessly"
+         },
+         {
+            "base" : "cautiously"
+         },
+         {
+            "base" : "cleverly"
+         },
+         {
+            "base" : "colorfully"
+         },
+         {
+            "base" : "continually"
+         },
+         {
+            "base" : "coolly"
+         },
+         {
+            "base" : "courageously"
+         },
+         {
+            "base" : "crossly"
+         },
+         {
+            "base" : "cruelly"
+         },
+         {
+            "base" : "curiously"
+         },
+         {
+            "base" : "daintily"
+         },
+         {
+            "base" : "dearly"
+         },
+         {
+            "base" : "deceivingly"
+         },
+         {
+            "base" : "defiantly"
+         },
+         {
+            "base" : "deliberately"
+         },
+         {
+            "base" : "easily"
+         },
+         {
+            "base" : "elegantly"
+         },
+         {
+            "base" : "energetically"
+         },
+         {
+            "base" : "enormously"
+         },
+         {
+            "base" : "evenly"
+         },
+         {
+            "base" : "exactly"
+         },
+         {
+            "base" : "excitedly"
+         },
+         {
+            "base" : "fairly"
+         },
+         {
+            "base" : "faithfully"
+         },
+         {
+            "base" : "famously"
+         },
+         {
+            "base" : "fatally"
+         },
+         {
+            "base" : "ferociously"
+         },
+         {
+            "base" : "fervently"
+         },
+         {
+            "base" : "fiercely"
+         },
+         {
+            "base" : "fondly"
+         },
+         {
+            "base" : "foolishly"
+         },
+         {
+            "base" : "frantically"
+         },
+         {
+            "base" : "freely"
+         },
+         {
+            "base" : "frightfully"
+         },
+         {
+            "base" : "furiously"
+         },
+         {
+            "base" : "generously"
+         },
+         {
+            "base" : "gently"
+         },
+         {
+            "base" : "gleefully"
+         },
+         {
+            "base" : "gracefully"
+         },
+         {
+            "base" : "gratefully"
+         },
+         {
+            "base" : "greedily"
+         },
+         {
+            "base" : "hastily"
+         },
+         {
+            "base" : "heavily"
+         },
+         {
+            "base" : "highly"
+         },
+         {
+            "base" : "honestly"
+         },
+         {
+            "base" : "hopelessly"
+         },
+         {
+            "base" : "hungrily"
+         },
+         {
+            "base" : "immediately"
+         },
+         {
+            "base" : "innocently"
+         },
+         {
+            "base" : "inquisitively"
+         },
+         {
+            "base" : "instantly"
+         },
+         {
+            "base" : "intensely"
+         },
+         {
+            "base" : "irritably"
+         },
+         {
+            "base" : "joyfully"
+         },
+         {
+            "base" : "jovially"
+         },
+         {
+            "base" : "jubilantly"
+         },
+         {
+            "base" : "judgementally"
+         },
+         {
+            "base" : "justly"
+         },
+         {
+            "base" : "keenly"
+         },
+         {
+            "base" : "knowingly"
+         },
+         {
+            "base" : "knowledgeably"
+         },
+         {
+            "base" : "kookily"
+         },
+         {
+            "base" : "lazily"
+         },
+         {
+            "base" : "lightly"
+         },
+         {
+            "base" : "lively"
+         },
+         {
+            "base" : "longingly"
+         },
+         {
+            "base" : "loosely"
+         },
+         {
+            "base" : "lovingly"
+         },
+         {
+            "base" : "loudly"
+         },
+         {
+            "base" : "loyally"
+         },
+         {
+            "base" : "madly"
+         },
+         {
+            "base" : "majestically"
+         },
+         {
+            "base" : "meaningfully"
+         },
+         {
+            "base" : "mechanically"
+         },
+         {
+            "base" : "merrily"
+         },
+         {
+            "base" : "miserably"
+         },
+         {
+            "base" : "mockingly"
+         },
+         {
+            "base" : "mortally"
+         },
+         {
+            "base" : "mostly"
+         },
+         {
+            "base" : "mysteriously"
+         },
+         {
+            "base" : "naturally"
+         },
+         {
+            "base" : "nearly"
+         },
+         {
+            "base" : "neatly"
+         },
+         {
+            "base" : "nervously"
+         },
+         {
+            "base" : "noisily"
+         },
+         {
+            "base" : "obediently"
+         },
+         {
+            "base" : "obnoxiously"
+         },
+         {
+            "base" : "oddly"
+         },
+         {
+            "base" : "offensively"
+         },
+         {
+            "base" : "officially"
+         },
+         {
+            "base" : "only"
+         },
+         {
+            "base" : "openly"
+         },
+         {
+            "base" : "optimistically"
+         },
+         {
+            "base" : "overconfidently"
+         },
+         {
+            "base" : "painfully"
+         },
+         {
+            "base" : "partially"
+         },
+         {
+            "base" : "patiently"
+         },
+         {
+            "base" : "perfectly"
+         },
+         {
+            "base" : "playfully"
+         },
+         {
+            "base" : "politely"
+         },
+         {
+            "base" : "poorly"
+         },
+         {
+            "base" : "potentially"
+         },
+         {
+            "base" : "powerfully"
+         },
+         {
+            "base" : "promptly"
+         },
+         {
+            "base" : "properly"
+         },
+         {
+            "base" : "punctually"
+         },
+         {
+            "base" : "queasily"
+         },
+         {
+            "base" : "queerly"
+         },
+         {
+            "base" : "questionably"
+         },
+         {
+            "base" : "quickly"
+         },
+         {
+            "base" : "quietly"
+         },
+         {
+            "base" : "quirkily"
+         },
+         {
+            "base" : "quizzically"
+         },
+         {
+            "base" : "rapidly"
+         },
+         {
+            "base" : "rarely"
+         },
+         {
+            "base" : "readily"
+         },
+         {
+            "base" : "recklessly"
+         },
+         {
+            "base" : "regularly"
+         },
+         {
+            "base" : "reluctantly"
+         },
+         {
+            "base" : "repeatedly"
+         },
+         {
+            "base" : "righteously"
+         },
+         {
+            "base" : "rightfully"
+         },
+         {
+            "base" : "rigidly"
+         },
+         {
+            "base" : "roughly"
+         },
+         {
+            "base" : "rudely"
+         },
+         {
+            "base" : "sadly"
+         },
+         {
+            "base" : "safely"
+         },
+         {
+            "base" : "scarcely"
+         },
+         {
+            "base" : "seemingly"
+         },
+         {
+            "base" : "selfishly"
+         },
+         {
+            "base" : "separately"
+         },
+         {
+            "base" : "seriously"
+         },
+         {
+            "base" : "shakily"
+         },
+         {
+            "base" : "sharply"
+         },
+         {
+            "base" : "sheepishly"
+         },
+         {
+            "base" : "shrilly"
+         },
+         {
+            "base" : "slowly"
+         },
+         {
+            "base" : "smoothly"
+         },
+         {
+            "base" : "softly"
+         },
+         {
+            "base" : "solidly"
+         },
+         {
+            "base" : "stealthily"
+         },
+         {
+            "base" : "sternly"
+         },
+         {
+            "base" : "successfully"
+         },
+         {
+            "base" : "suddenly"
+         },
+         {
+            "base" : "surprisingly"
+         },
+         {
+            "base" : "suspiciously"
+         },
+         {
+            "base" : "sweetly"
+         },
+         {
+            "base" : "swiftly"
+         },
+         {
+            "base" : "sympathetically"
+         },
+         {
+            "base" : "tenderly"
+         },
+         {
+            "base" : "tensely"
+         },
+         {
+            "base" : "terribly"
+         },
+         {
+            "base" : "thankfully"
+         },
+         {
+            "base" : "thoroughly"
+         },
+         {
+            "base" : "thoughtfully"
+         },
+         {
+            "base" : "tightly"
+         },
+         {
+            "base" : "triumphantly"
+         },
+         {
+            "base" : "truthfully"
+         },
+         {
+            "base" : "unabashedly"
+         },
+         {
+            "base" : "unaccountably"
+         },
+         {
+            "base" : "unbearably"
+         },
+         {
+            "base" : "unethically"
+         },
+         {
+            "base" : "unexpectedly"
+         },
+         {
+            "base" : "unfortunately"
+         },
+         {
+            "base" : "unimpressively"
+         },
+         {
+            "base" : "unnaturally"
+         },
+         {
+            "base" : "unnecessarily"
+         },
+         {
+            "base" : "upliftingly"
+         },
+         {
+            "base" : "urgently"
+         },
+         {
+            "base" : "uselessly"
+         },
+         {
+            "base" : "vainly"
+         },
+         {
+            "base" : "valiantly"
+         },
+         {
+            "base" : "viciously"
+         },
+         {
+            "base" : "victoriously"
+         },
+         {
+            "base" : "violently"
+         },
+         {
+            "base" : "vivaciously"
+         },
+         {
+            "base" : "voluntarily"
+         },
+         {
+            "base" : "weakly"
+         },
+         {
+            "base" : "wearily"
+         },
+         {
+            "base" : "wholly"
+         },
+         {
+            "base" : "wildly"
+         },
+         {
+            "base" : "willfully"
+         },
+         {
+            "base" : "wisely"
+         },
+         {
+            "base" : "woefully"
+         },
+         {
+            "base" : "wonderfully"
+         },
+         {
+            "base" : "wrongly"
+         },
+         {
+            "base" : "zealously"
+         },
+         {
+            "base" : "zestfully"
+         },
+         {
+            "base" : "zestily"
+         }
+      ]
+   },
+   "article" : {
+      "option" : [
+         {
+            "content" : "a"
+         },
+         {
+            "content" : "the"
+         }
+      ]
+   }
+}

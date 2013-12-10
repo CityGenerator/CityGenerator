@@ -1,0 +1,128 @@
+{
+   "event" : {
+      "disaster" : {
+         "option" : [
+            {
+               "content" : "tornado"
+            },
+            {
+               "content" : "flood"
+            },
+            {
+               "content" : "earthquake"
+            },
+            {
+               "content" : "massive storm"
+            },
+            {
+               "content" : "tarrasque"
+            },
+            {
+               "content" : "genocide"
+            },
+            {
+               "content" : "riots"
+            },
+            {
+               "content" : "drought"
+            },
+            {
+               "content" : "crop failure"
+            }
+         ]
+      },
+      "raid" : {
+         "option" : [
+            {
+               "content" : "the midst of a"
+            },
+            {
+               "content" : "the aftermath of a"
+            }
+         ]
+      },
+      "hunt" : {
+         "option" : [
+            {
+               "content" : "lost child"
+            },
+            {
+               "content" : "wandering monster"
+            },
+            {
+               "content" : "escaped prisoner"
+            },
+            {
+               "content" : "food"
+            },
+            {
+               "content" : "vermin"
+            }
+         ]
+      },
+      "trial" : {
+         "option" : [
+            {
+               "content" : "a murder"
+            },
+            {
+               "content" : "a witch"
+            },
+            {
+               "content" : "a spy"
+            },
+            {
+               "content" : "a briggand"
+            },
+            {
+               "content" : "a thief"
+            }
+         ]
+      },
+      "festival" : {
+         "option" : [
+            {
+               "content" : "a religious"
+            },
+            {
+               "content" : "a trade"
+            }
+         ]
+      },
+      "celebration" : {
+         "option" : [
+            {
+               "content" : "a birthday"
+            },
+            {
+               "content" : "a wedding"
+            },
+            {
+               "content" : "a new year"
+            },
+            {
+               "content" : "a holiday"
+            },
+            {
+               "content" : "a victory"
+            },
+            {
+               "content" : "a spontaneous"
+            }
+         ]
+      },
+      "war" : {
+         "option" : [
+            {
+               "content" : "preparations for"
+            },
+            {
+               "content" : "on ongoing"
+            },
+            {
+               "content" : "the aftermath of a"
+            }
+         ]
+      }
+   }
+}

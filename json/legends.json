@@ -1,0 +1,827 @@
+{
+   "feature" : {
+      "failedresolution" : {
+         "option" : [
+            {
+               "content" : "stop the [%badtype%]"
+            },
+            {
+               "content" : "kill [%villain.name%]"
+            }
+         ]
+      },
+      "imaginarymonster" : {
+         "option" : [
+            {
+               "content" : "Pooka"
+            },
+            {
+               "content" : "witch"
+            },
+            {
+               "content" : "hag"
+            },
+            {
+               "content" : "Boogyman"
+            },
+            {
+               "content" : "old woman"
+            },
+            {
+               "content" : "old man"
+            }
+         ]
+      },
+      "talent" : {
+         "option" : [
+            {
+               "content" : "a skilled storyteller"
+            },
+            {
+               "content" : "a valiant knight"
+            },
+            {
+               "content" : "an expert bowman"
+            },
+            {
+               "content" : "a sneaky thief"
+            }
+         ]
+      },
+      "storytime" : {
+         "option" : [
+            {
+               "content" : "Long, long ago"
+            },
+            {
+               "content" : "Long, long ago in a city far, far away"
+            },
+            {
+               "content" : "A long time ago"
+            },
+            {
+               "content" : "Many years ago"
+            },
+            {
+               "content" : "Once upon a time"
+            },
+            {
+               "content" : "In the olden days"
+            },
+            {
+               "content" : "In the days of yore"
+            },
+            {
+               "content" : "Some time ago"
+            },
+            {
+               "content" : "In times past"
+            },
+            {
+               "content" : "In times gone by"
+            },
+            {
+               "content" : "Long ago"
+            },
+            {
+               "content" : "In days gone by"
+            },
+            {
+               "content" : "Years ago"
+            },
+            {
+               "content" : "In olden times"
+            },
+            {
+               "content" : "Way back when"
+            }
+         ]
+      },
+      "who" : {
+         "option" : [
+            {
+               "content" : "They"
+            },
+            {
+               "content" : "Some"
+            },
+            {
+               "content" : "Folks"
+            },
+            {
+               "content" : "Villagers"
+            },
+            {
+               "content" : "Commoners"
+            },
+            {
+               "content" : "People"
+            }
+         ]
+      },
+      "hero" : {
+         "option" : [
+            {
+               "content" : "a hero named [%npc.name%]"
+            },
+            {
+               "content" : "a [%npc.race%] named [%npc.name%]"
+            },
+            {
+               "content" : "a [%npc.behavior%] [%npc.race%] named [%npc.name%]"
+            },
+            {
+               "content" : "[%npc.name%] the [%npc.race%]"
+            }
+         ]
+      },
+      "plan" : {
+         "option" : [
+            {
+               "content" : "a plan to trick the [%badtype%]"
+            },
+            {
+               "content" : "an idea to slay the [%badtype%]"
+            },
+            {
+               "content" : "the thought to slay the [%badtype%]"
+            }
+         ]
+      },
+      "lastseen" : {
+         "option" : [
+            {
+               "content" : "was last seen years ago"
+            },
+            {
+               "content" : "disappeared after an attack by bandits"
+            },
+            {
+               "content" : "was stolen from a locked vault"
+            },
+            {
+               "content" : "has been lost for ages"
+            },
+            {
+               "content" : "mysteriously disappeared"
+            },
+            {
+               "content" : "was never recovered"
+            },
+            {
+               "content" : "hasn't reappeared in years"
+            }
+         ]
+      },
+      "abilitytype" : {
+         "option" : [
+            {
+               "content" : "power"
+            },
+            {
+               "content" : "ability"
+            },
+            {
+               "content" : "capability"
+            },
+            {
+               "content" : "knack"
+            }
+         ]
+      },
+      "stopit" : {
+         "chance" : "10",
+         "option" : [
+            {
+               "content" : " unless you flee"
+            },
+            {
+               "content" : " unless you complete a quest"
+            },
+            {
+               "content" : " unless you return a lost possession"
+            },
+            {
+               "content" : " unless you offer a sacrifice"
+            },
+            {
+               "content" : " unless you offer your most valued possession"
+            },
+            {
+               "content" : " unless you pay a tribute"
+            },
+            {
+               "content" : " unless you answer a riddle"
+            }
+         ]
+      },
+      "template" : {
+         "option" : [
+            {
+               "content" : "[% USE infl = Lingua.EN.Inflect; -%]Legends tell of [%npc.firstnames%] [%object FILTER ucfirst%], [%infl.A(reputation)%] [%object%] with the [%abilitytype%] to [%ability%].  It  [%lastseen%]."
+            },
+            {
+               "content" : "[%storytime%], [%chumps%] of [%location.name%] [%goodstart%]. Things were [%goodstatus%], but one day [%badguy %] [%badaction%]. [%chumps FILTER ucfirst%] tried to [%failedresolution%], but [%caughtfailing%]. Along came [%hero%], who was [%talent%]. [%npc.firstname%] had [%plan%] [%planaction%]. When [%npc.name%] faced the [%badtype%], [%npc.name%] [%results%][%victory%]."
+            },
+            {
+               "content" : "[% USE infl = Lingua.EN.Inflect; -%][%storytime%], [% infl.A( badtype) %] named [%villain.firstname%] [%wander%] the [%area%][%when%][%drawn%]. [%who%] say that if you [%detect%] [%villain.objectivepronoun%], you [%horriblefate%][%stopit%]."
+            },
+            {
+               "content" : "[% USE infl = Lingua.EN.Inflect; -%][%storytime%], [%  infl.A( imaginarymonster )%] [%wander%] the [%area%][%when%][%drawn%]. [%who%] say that the [%imaginarymonster%] will [%baityou%], then [%trapyou%]."
+            }
+         ]
+      },
+      "goodstatus" : {
+         "option" : [
+            {
+               "content" : "always nice"
+            },
+            {
+               "content" : "good"
+            },
+            {
+               "content" : "quiet"
+            },
+            {
+               "content" : "peaceful"
+            }
+         ]
+      },
+      "baityou" : {
+         "option" : [
+            {
+               "content" : "sneeze three times"
+            },
+            {
+               "content" : "offer you sweets"
+            },
+            {
+               "content" : "ask for your help"
+            },
+            {
+               "content" : "ask a favor of you"
+            }
+         ]
+      },
+      "object" : {
+         "option" : [
+            {
+               "content" : "harp"
+            },
+            {
+               "content" : "mirror"
+            },
+            {
+               "content" : "ring"
+            },
+            {
+               "content" : "rake"
+            },
+            {
+               "content" : "throne"
+            },
+            {
+               "content" : "crown"
+            },
+            {
+               "content" : "tiara"
+            },
+            {
+               "content" : "amulet"
+            },
+            {
+               "content" : "hat"
+            },
+            {
+               "content" : "bedpan"
+            },
+            {
+               "content" : "sceptre"
+            },
+            {
+               "content" : "trident"
+            },
+            {
+               "content" : "helmet"
+            },
+            {
+               "content" : "brooch"
+            },
+            {
+               "content" : "sandwich"
+            },
+            {
+               "content" : "lasso"
+            },
+            {
+               "content" : "quill"
+            },
+            {
+               "content" : "fiddle"
+            },
+            {
+               "content" : "goose"
+            },
+            {
+               "content" : "cat"
+            },
+            {
+               "content" : "painting"
+            },
+            {
+               "content" : "coin"
+            },
+            {
+               "content" : "key"
+            },
+            {
+               "content" : "cauldron"
+            },
+            {
+               "content" : "apple"
+            },
+            {
+               "content" : "beans"
+            },
+            {
+               "content" : "needle"
+            },
+            {
+               "content" : "shoes"
+            },
+            {
+               "content" : "rose"
+            },
+            {
+               "content" : "jug"
+            },
+            {
+               "content" : "deck of cards"
+            },
+            {
+               "content" : "bag of beans"
+            }
+         ]
+      },
+      "virtue" : {
+         "option" : [
+            {
+               "content" : "a clever idea"
+            },
+            {
+               "content" : "a crazy idea"
+            },
+            {
+               "content" : "one brave person"
+            },
+            {
+               "content" : "gumption"
+            },
+            {
+               "content" : "never giving up"
+            },
+            {
+               "content" : "never losing hope"
+            },
+            {
+               "content" : "never trusting another [%badtype%]"
+            }
+         ]
+      },
+      "reputation" : {
+         "option" : [
+            {
+               "content" : "legendary"
+            },
+            {
+               "content" : "magical"
+            },
+            {
+               "content" : "special"
+            },
+            {
+               "content" : "unique"
+            },
+            {
+               "content" : "cursed"
+            },
+            {
+               "content" : "possessed"
+            }
+         ]
+      },
+      "horriblefate" : {
+         "option" : [
+            {
+               "content" : "will be driven mad"
+            },
+            {
+               "content" : "will be killed"
+            },
+            {
+               "content" : "will be eaten alive"
+            },
+            {
+               "content" : "will die within 24 hours"
+            },
+            {
+               "content" : "will be stricken blind"
+            },
+            {
+               "content" : "will be stricken deaf"
+            },
+            {
+               "content" : "will never be seen again"
+            }
+         ]
+      },
+      "area" : {
+         "option" : [
+            {
+               "content" : "countryside"
+            },
+            {
+               "content" : "town"
+            },
+            {
+               "content" : "world"
+            },
+            {
+               "content" : "woods"
+            },
+            {
+               "content" : "field"
+            },
+            {
+               "content" : "region"
+            },
+            {
+               "content" : "swamps"
+            },
+            {
+               "content" : "fields"
+            },
+            {
+               "content" : "streets"
+            }
+         ]
+      },
+      "badguy" : {
+         "option" : [
+            {
+               "content" : "a [%badtype%] named [%villain.name%]"
+            },
+            {
+               "content" : "an evil [%badtype%] named [%villain.name%]"
+            },
+            {
+               "content" : "[%villain.name%] the [%badtype%]"
+            }
+         ]
+      },
+      "goodstart" : {
+         "option" : [
+            {
+               "content" : "lived happily"
+            },
+            {
+               "content" : "lived in peace"
+            },
+            {
+               "content" : "thrived"
+            },
+            {
+               "content" : "lived in harmony"
+            }
+         ]
+      },
+      "chumps" : {
+         "option" : [
+            {
+               "content" : "the villagers"
+            },
+            {
+               "content" : "the constable"
+            },
+            {
+               "content" : "the townsfolk"
+            },
+            {
+               "content" : "the royals"
+            }
+         ]
+      },
+      "ability" : {
+         "option" : [
+            {
+               "content" : "make people cry"
+            },
+            {
+               "content" : "cause others to fall asleep"
+            },
+            {
+               "content" : "dominate others"
+            },
+            {
+               "content" : "summon angels"
+            },
+            {
+               "content" : "summon demons"
+            },
+            {
+               "content" : "grant wishes"
+            },
+            {
+               "content" : "solve any riddle"
+            },
+            {
+               "content" : "answer any question"
+            },
+            {
+               "content" : "find any item"
+            },
+            {
+               "content" : "disappear on its own"
+            },
+            {
+               "content" : "speak for itself"
+            },
+            {
+               "content" : "make someone speak the truth"
+            },
+            {
+               "content" : "move on its own accord"
+            }
+         ]
+      },
+      "when" : {
+         "chance" : "40",
+         "option" : [
+            {
+               "content" : " at dusk"
+            },
+            {
+               "content" : " on gloomy days"
+            },
+            {
+               "content" : " on rainy days"
+            },
+            {
+               "content" : " before dawn"
+            },
+            {
+               "content" : " once a year"
+            },
+            {
+               "content" : " every six years"
+            },
+            {
+               "content" : " during a full moon"
+            },
+            {
+               "content" : " during a red moon"
+            },
+            {
+               "content" : " when the moon is new"
+            },
+            {
+               "content" : " during the summer solstice"
+            },
+            {
+               "content" : " when the wind blows from the north"
+            },
+            {
+               "content" : " when the wind blows from the south"
+            },
+            {
+               "content" : " when the wind blows from the east"
+            },
+            {
+               "content" : " when the wind blows from the west"
+            }
+         ]
+      },
+      "planaction" : {
+         "option" : [
+            {
+               "content" : "by killing the [%badtype%] while [%villain.pronoun%] slept"
+            },
+            {
+               "content" : "by making a wager with [%villain.name%]"
+            },
+            {
+               "content" : "by causing a distraction while others struck"
+            },
+            {
+               "content" : "by using magic to banish it"
+            }
+         ]
+      },
+      "drawn" : {
+         "chance" : "30",
+         "option" : [
+            {
+               "content" : " and was drawn towards misbehaving children"
+            },
+            {
+               "content" : " and was drawn towards murderers"
+            },
+            {
+               "content" : " and was drawn towards those that have killed innocents"
+            },
+            {
+               "content" : " and was drawn towards thieves"
+            },
+            {
+               "content" : " and was drawn towards acts of greed"
+            },
+            {
+               "content" : " and was drawn towards those that wronged others"
+            }
+         ]
+      },
+      "wander" : {
+         "option" : [
+            {
+               "content" : "roamed"
+            },
+            {
+               "content" : "wandered"
+            },
+            {
+               "content" : "hunted"
+            },
+            {
+               "content" : "haunted"
+            },
+            {
+               "content" : "stalked"
+            },
+            {
+               "content" : "frequented"
+            },
+            {
+               "content" : "lingered in"
+            }
+         ]
+      },
+      "trapyou" : {
+         "option" : [
+            {
+               "content" : "sell you into slavery"
+            },
+            {
+               "content" : "eat you"
+            },
+            {
+               "content" : "carry you away"
+            },
+            {
+               "content" : "imprison you"
+            },
+            {
+               "content" : "turn you into a mouse"
+            },
+            {
+               "content" : "give you a gift if you are nice"
+            },
+            {
+               "content" : "banish you if you are cruel"
+            },
+            {
+               "content" : "steal your soul"
+            }
+         ]
+      },
+      "detect" : {
+         "option" : [
+            {
+               "content" : "hear"
+            },
+            {
+               "content" : "see"
+            },
+            {
+               "content" : "touch"
+            },
+            {
+               "content" : "face"
+            },
+            {
+               "content" : "caught"
+            },
+            {
+               "content" : "confront"
+            }
+         ]
+      },
+      "caughtfailing" : {
+         "option" : [
+            {
+               "content" : "failed miserably"
+            },
+            {
+               "content" : "didn't get close"
+            },
+            {
+               "content" : "were caught"
+            }
+         ]
+      },
+      "victory" : {
+         "chance" : "50",
+         "option" : [
+            {
+               "content" : " and was killed in the process"
+            },
+            {
+               "content" : " and rescued the hostages"
+            },
+            {
+               "content" : " and rescued [%location.name%]"
+            }
+         ]
+      },
+      "badtype" : {
+         "option" : [
+            {
+               "content" : "dragon"
+            },
+            {
+               "content" : "minotaur"
+            },
+            {
+               "content" : "wizard"
+            },
+            {
+               "content" : "monster"
+            },
+            {
+               "content" : "serial killer"
+            },
+            {
+               "content" : "murderer"
+            },
+            {
+               "content" : "demon"
+            },
+            {
+               "content" : "devil"
+            },
+            {
+               "content" : "cyclops"
+            },
+            {
+               "content" : "ghoul"
+            },
+            {
+               "content" : "spirit"
+            },
+            {
+               "content" : "lich"
+            },
+            {
+               "content" : "vampire"
+            }
+         ]
+      },
+      "badaction" : {
+         "option" : [
+            {
+               "content" : "destroyed a nearby village"
+            },
+            {
+               "content" : "took over the town"
+            },
+            {
+               "content" : "kidnapped a princess"
+            },
+            {
+               "content" : "took a hostage and demanded a ransom"
+            },
+            {
+               "content" : "slayed a local hero"
+            },
+            {
+               "content" : "stole a priceless heirloom"
+            }
+         ]
+      },
+      "results" : {
+         "option" : [
+            {
+               "content" : "defeated [%villain.name%]"
+            },
+            {
+               "content" : "killed the [%badtype%]"
+            },
+            {
+               "content" : "tricked [%villain.name%]"
+            },
+            {
+               "content" : "banished [%villain.name%]"
+            }
+         ]
+      }
+   }
+}

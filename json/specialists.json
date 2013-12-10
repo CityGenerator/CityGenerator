@@ -1,0 +1,858 @@
+{
+   "option" : {
+      "copyist" : {
+         "sv" : "2000",
+         "district" : "professional",
+         "perbuilding" : "20",
+         "building" : "copyoffice",
+         "limit" : ""
+      },
+      "forester" : {
+         "sv" : "800",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "woods,sawmill",
+         "limit" : ""
+      },
+      "tinker" : {
+         "sv" : "800",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "junkyard,shop",
+         "limit" : ""
+      },
+      "leatherworker" : {
+         "sv" : "800",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "leathershop",
+         "limit" : ""
+      },
+      "woodcarver" : {
+         "sv" : "2400",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "woodshop",
+         "limit" : ""
+      },
+      "haymerchant" : {
+         "sv" : "2300",
+         "district" : "industry",
+         "perbuilding" : "5",
+         "building" : "haymerchant",
+         "limit" : ""
+      },
+      "plasterer" : {
+         "sv" : "1400",
+         "district" : "trade",
+         "perbuilding" : "30",
+         "building" : "shop",
+         "limit" : ""
+      },
+      "mercenary" : {
+         "sv" : "2000",
+         "district" : "professional",
+         "perbuilding" : "30",
+         "building" : "adventurers guild",
+         "limit" : ""
+      },
+      "adventurer" : {
+         "sv" : "3000",
+         "district" : "professional",
+         "perbuilding" : "30",
+         "building" : "adventurers guild",
+         "limit" : ""
+      },
+      "undertaker" : {
+         "sv" : "1000",
+         "district" : "mercy",
+         "perbuilding" : "10",
+         "building" : "graveyard",
+         "limit" : ""
+      },
+      "armorer" : {
+         "sv" : "1500",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "armorsmithy",
+         "limit" : ""
+      },
+      "teamster" : {
+         "sv" : "1400",
+         "district" : "docks",
+         "perbuilding" : "10",
+         "building" : "warehouse,dock",
+         "limit" : ""
+      },
+      "soldier" : {
+         "sv" : "1000",
+         "district" : "civic",
+         "perbuilding" : "50",
+         "building" : "barrack",
+         "limit" : ""
+      },
+      "jeweler" : {
+         "sv" : "400",
+         "district" : "shops",
+         "perbuilding" : "10",
+         "building" : "jewelery store",
+         "limit" : ""
+      },
+      "miller" : {
+         "sv" : "250",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "mill",
+         "limit" : ""
+      },
+      "woodseller" : {
+         "sv" : "2400",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "lumberyard",
+         "limit" : ""
+      },
+      "glassmaker" : {
+         "sv" : "950",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "glassmaker hut",
+         "limit" : ""
+      },
+      "beer seller" : {
+         "sv" : "1400",
+         "district" : "market",
+         "perbuilding" : "4",
+         "building" : "beer seller",
+         "limit" : ""
+      },
+      "engineer" : {
+         "sv" : "2000",
+         "district" : "professional",
+         "perbuilding" : "20",
+         "building" : "engineering firm",
+         "limit" : ""
+      },
+      "cobbler" : {
+         "sv" : "150",
+         "district" : "market",
+         "perbuilding" : "4",
+         "building" : "cobblershop",
+         "limit" : ""
+      },
+      "barber" : {
+         "sv" : "350",
+         "district" : "trade",
+         "perbuilding" : "4",
+         "building" : "barbershop",
+         "limit" : ""
+      },
+      "shipwright" : {
+         "sv" : "2400",
+         "district" : "port",
+         "perbuilding" : "30",
+         "building" : "shipyard",
+         "limit" : ""
+      },
+      "ropemaker" : {
+         "sv" : "1900",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "ropemaker",
+         "limit" : ""
+      },
+      "tailor" : {
+         "sv" : "250",
+         "district" : "shops",
+         "perbuilding" : "20",
+         "building" : "clothing shop",
+         "limit" : ""
+      },
+      "watercarrier" : {
+         "sv" : "850",
+         "district" : "market",
+         "perbuilding" : "10",
+         "building" : "pond,lake,dock",
+         "limit" : ""
+      },
+      "innkeeper" : {
+         "sv" : "2000",
+         "district" : "shops",
+         "perbuilding" : "3",
+         "building" : "inn",
+         "limit" : ""
+      },
+      "saddler" : {
+         "sv" : "1000",
+         "district" : "trade",
+         "perbuilding" : "5",
+         "building" : "tack shop",
+         "limit" : ""
+      },
+      "interpreter" : {
+         "sv" : "1800",
+         "district" : "embassy",
+         "perbuilding" : "20",
+         "building" : "translator",
+         "limit" : ""
+      },
+      "butcher" : {
+         "sv" : "1100",
+         "district" : "market",
+         "perbuilding" : "10",
+         "building" : "butchershop",
+         "limit" : ""
+      },
+      "warehouse worker" : {
+         "sv" : "250",
+         "district" : "warehouse",
+         "perbuilding" : "10",
+         "building" : "warehouse,docks",
+         "limit" : ""
+      },
+      "seamstress" : {
+         "sv" : "500",
+         "district" : "shops",
+         "perbuilding" : "10",
+         "building" : "shop",
+         "limit" : ""
+      },
+      "tilemaker" : {
+         "sv" : "2000",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "tile shop",
+         "limit" : ""
+      },
+      "carpenter" : {
+         "sv" : "550",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "sawmill",
+         "limit" : ""
+      },
+      "bounty hunter" : {
+         "sv" : "3000",
+         "district" : "professional",
+         "perbuilding" : "10",
+         "building" : "adventurers guild",
+         "limit" : ""
+      },
+      "potter" : {
+         "sv" : "450",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "pottery",
+         "limit" : ""
+      },
+      "bookseller" : {
+         "sv" : "6300",
+         "district" : "fine shops",
+         "perbuilding" : "4",
+         "building" : "bookstore",
+         "limit" : ""
+      },
+      "salter" : {
+         "sv" : "600",
+         "district" : "industry",
+         "perbuilding" : "30",
+         "building" : "smokehouse",
+         "limit" : ""
+      },
+      "priest" : {
+         "sv" : "300",
+         "district" : "mercy",
+         "perbuilding" : "10",
+         "building" : "church,shrine,temple",
+         "limit" : ""
+      },
+      "cooper" : {
+         "sv" : "700",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "cooperage",
+         "limit" : ""
+      },
+      "social worker" : {
+         "sv" : "900",
+         "district" : "civic",
+         "perbuilding" : "10",
+         "building" : "almshouse,orphanage",
+         "limit" : ""
+      },
+      "wine seller" : {
+         "sv" : "900",
+         "district" : "merchant",
+         "perbuilding" : "10",
+         "building" : "winery",
+         "limit" : ""
+      },
+      "painter" : {
+         "sv" : "1500",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "studio",
+         "limit" : ""
+      },
+      "trader" : {
+         "sv" : "800",
+         "district" : "shop",
+         "perbuilding" : "10",
+         "building" : "trading post",
+         "limit" : ""
+      },
+      "actor" : {
+         "sv" : "1200",
+         "district" : "entertainment",
+         "perbuilding" : "10",
+         "building" : "theater",
+         "limit" : ""
+      },
+      "blacksmith" : {
+         "sv" : "1500",
+         "district" : "shop",
+         "perbuilding" : "5",
+         "building" : "smithy",
+         "limit" : ""
+      },
+      "harness maker" : {
+         "sv" : "2000",
+         "district" : "shops",
+         "perbuilding" : "5",
+         "building" : "harness maker",
+         "limit" : ""
+      },
+      "doctor" : {
+         "sv" : "350",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "hospital,clinic",
+         "limit" : ""
+      },
+      "magic dealer" : {
+         "sv" : "2800",
+         "district" : "fine shops",
+         "perbuilding" : "3",
+         "building" : "magic shop",
+         "limit" : ""
+      },
+      "scribe" : {
+         "sv" : "2000",
+         "district" : "fine shops",
+         "perbuilding" : "20",
+         "building" : "library",
+         "limit" : ""
+      },
+      "fishmonger" : {
+         "sv" : "1200",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "fishery",
+         "limit" : ""
+      },
+      "glovemaker" : {
+         "sv" : "2400",
+         "district" : "trade",
+         "perbuilding" : "5",
+         "building" : "glove shop",
+         "limit" : ""
+      },
+      "maidservant" : {
+         "sv" : "250",
+         "district" : "hotel",
+         "perbuilding" : "10",
+         "building" : "townhouse",
+         "limit" : ""
+      },
+      "courtier" : {
+         "sv" : "4000",
+         "district" : "wealthy",
+         "perbuilding" : "4",
+         "building" : "manor",
+         "limit" : ""
+      },
+      "astrologer" : {
+         "sv" : "2000",
+         "district" : "fine shops",
+         "perbuilding" : "1",
+         "building" : "astrologer",
+         "limit" : ""
+      },
+      "shoemaker" : {
+         "sv" : "150",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "shoe shop",
+         "limit" : ""
+      },
+      "jailer" : {
+         "sv" : "2000",
+         "district" : "prison",
+         "perbuilding" : "10",
+         "building" : "jailhouse",
+         "limit" : ""
+      },
+      "apothecary" : {
+         "sv" : "2800",
+         "district" : "fine shops",
+         "perbuilding" : "4",
+         "building" : "apothecary",
+         "limit" : ""
+      },
+      "specialty smith" : {
+         "sv" : "4000",
+         "district" : "shops",
+         "perbuilding" : "20",
+         "building" : "smithy",
+         "limit" : ""
+      },
+      "pastrycook" : {
+         "sv" : "500",
+         "district" : "shops",
+         "perbuilding" : "10",
+         "building" : "bakery",
+         "limit" : ""
+      },
+      "stablehand" : {
+         "sv" : "600",
+         "district" : "professional",
+         "perbuilding" : "10",
+         "building" : "stable",
+         "limit" : ""
+      },
+      "chandler" : {
+         "sv" : "600",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "chandlery shop",
+         "limit" : ""
+      },
+      "cartwright" : {
+         "sv" : "800",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "cartwright",
+         "limit" : ""
+      },
+      "deputy" : {
+         "sv" : "500",
+         "district" : "civic",
+         "perbuilding" : "20",
+         "building" : "law enforcement",
+         "limit" : ""
+      },
+      "brewer" : {
+         "sv" : "900",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "brewery",
+         "limit" : ""
+      },
+      "good samaritan" : {
+         "sv" : "650",
+         "district" : "mercy",
+         "perbuilding" : "10",
+         "building" : "hostel",
+         "limit" : ""
+      },
+      "vintner" : {
+         "sv" : "900",
+         "district" : "professional",
+         "perbuilding" : "10",
+         "building" : "vinyard",
+         "limit" : ""
+      },
+      "lawyer" : {
+         "sv" : "800",
+         "district" : "fine shops",
+         "perbuilding" : "10",
+         "building" : "barrister",
+         "limit" : ""
+      },
+      "coach driver" : {
+         "sv" : "1500",
+         "district" : "professional",
+         "perbuilding" : "3",
+         "building" : "transportation",
+         "limit" : ""
+      },
+      "teacher" : {
+         "sv" : "200",
+         "district" : "education",
+         "perbuilding" : "10",
+         "building" : "school",
+         "limit" : ""
+      },
+      "timberwright" : {
+         "sv" : "700",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "sawmill",
+         "limit" : ""
+      },
+      "tavern" : {
+         "sv" : "400",
+         "district" : "market",
+         "perbuilding" : "5",
+         "building" : "tavern",
+         "limit" : ""
+      },
+      "cheesemaker" : {
+         "sv" : "700",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "cheeseshop",
+         "limit" : ""
+      },
+      "herbalist" : {
+         "sv" : "1200",
+         "district" : "fine shops",
+         "perbuilding" : "5",
+         "building" : "herbalist shop",
+         "limit" : ""
+      },
+      "professor" : {
+         "sv" : "4000",
+         "district" : "education",
+         "perbuilding" : "20",
+         "building" : "university",
+         "limit" : ""
+      },
+      "hatmaker" : {
+         "sv" : "950",
+         "district" : "shops",
+         "perbuilding" : "10",
+         "building" : "hat shop",
+         "limit" : ""
+      },
+      "sage" : {
+         "sv" : "1800",
+         "district" : "fine shops",
+         "perbuilding" : "20",
+         "building" : "library",
+         "limit" : ""
+      },
+      "weaver" : {
+         "sv" : "600",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "weaver",
+         "limit" : ""
+      },
+      "pursemaker" : {
+         "sv" : "1100",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "pursemaker",
+         "limit" : ""
+      },
+      "cutler" : {
+         "sv" : "2300",
+         "district" : "trade",
+         "perbuilding" : "5",
+         "building" : "cutlery shop",
+         "limit" : ""
+      },
+      "bowyer" : {
+         "sv" : "1400",
+         "district" : "trade",
+         "perbuilding" : "5",
+         "building" : "bowyer",
+         "limit" : ""
+      },
+      "lumberjack" : {
+         "sv" : "1100",
+         "district" : "industry",
+         "perbuilding" : "30",
+         "building" : "lumbermill",
+         "limit" : ""
+      },
+      "wagoneer" : {
+         "sv" : "900",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "wagon yard",
+         "limit" : ""
+      },
+      "chickenbutcher" : {
+         "sv" : "1000",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "slaughterhouse",
+         "limit" : ""
+      },
+      "outfitter" : {
+         "sv" : "1500",
+         "district" : "market",
+         "perbuilding" : "4",
+         "building" : "general store",
+         "limit" : ""
+      },
+      "locksmith" : {
+         "sv" : "1900",
+         "district" : "trade",
+         "perbuilding" : "4",
+         "building" : "locksmith",
+         "limit" : ""
+      },
+      "woodworker" : {
+         "sv" : "2400",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "wood shop",
+         "limit" : ""
+      },
+      "bleacher" : {
+         "sv" : "2100",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "bleacher",
+         "limit" : ""
+      },
+      "spicemerchant" : {
+         "sv" : "1400",
+         "district" : "market",
+         "perbuilding" : "10",
+         "building" : "spicemerchant",
+         "limit" : ""
+      },
+      "baker" : {
+         "sv" : "800",
+         "district" : "shops",
+         "perbuilding" : "10",
+         "building" : "bakery",
+         "limit" : ""
+      },
+      "official" : {
+         "sv" : "500",
+         "district" : "civic",
+         "perbuilding" : "30",
+         "building" : "civic center",
+         "limit" : ""
+      },
+      "alchemist" : {
+         "sv" : "1200",
+         "district" : "shops",
+         "perbuilding" : "3",
+         "building" : "alchemy shop",
+         "limit" : ""
+      },
+      "prostitute" : {
+         "sv" : "500",
+         "district" : "poor",
+         "perbuilding" : "20",
+         "building" : "brothel",
+         "limit" : ""
+      },
+      "illuminator" : {
+         "sv" : "3900",
+         "district" : "fine shops",
+         "perbuilding" : "5",
+         "building" : "illuminator",
+         "limit" : ""
+      },
+      "bookbinder" : {
+         "sv" : "3000",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "bookbinder",
+         "limit" : ""
+      },
+      "messenger" : {
+         "sv" : "1200",
+         "district" : "embassy",
+         "perbuilding" : "10",
+         "building" : "post office",
+         "limit" : ""
+      },
+      "mercer" : {
+         "sv" : "700",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "mercer",
+         "limit" : ""
+      },
+      "sculptor" : {
+         "sv" : "2000",
+         "district" : "professional",
+         "perbuilding" : "10",
+         "building" : "sculpting house",
+         "limit" : ""
+      },
+      "dyer" : {
+         "sv" : "900",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "dyer",
+         "limit" : ""
+      },
+      "collier" : {
+         "sv" : "400",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "firepit",
+         "limit" : ""
+      },
+      "ship captain" : {
+         "sv" : "2000",
+         "district" : "port",
+         "perbuilding" : "1",
+         "building" : "boat for hire",
+         "limit" : ""
+      },
+      "smith" : {
+         "sv" : "300",
+         "district" : "shop",
+         "perbuilding" : "20",
+         "building" : "smithy",
+         "limit" : ""
+      },
+      "weaponsmith" : {
+         "sv" : "1000",
+         "district" : "merchant",
+         "perbuilding" : "10",
+         "building" : "weaponshop",
+         "limit" : ""
+      },
+      "physician" : {
+         "sv" : "600",
+         "district" : "mercy",
+         "perbuilding" : "10",
+         "building" : "clinic",
+         "limit" : ""
+      },
+      "entertainer" : {
+         "sv" : "1200",
+         "district" : "entertainment",
+         "perbuilding" : "30",
+         "building" : "theater",
+         "limit" : ""
+      },
+      "tanner" : {
+         "sv" : "1200",
+         "district" : "industry",
+         "perbuilding" : "10",
+         "building" : "tannery",
+         "limit" : ""
+      },
+      "navigator" : {
+         "sv" : "3000",
+         "district" : "docks",
+         "perbuilding" : "10",
+         "building" : "dock",
+         "limit" : ""
+      },
+      "porter" : {
+         "sv" : "2000",
+         "district" : "hotel",
+         "perbuilding" : "10",
+         "building" : "inn",
+         "limit" : ""
+      },
+      "handyman" : {
+         "sv" : "900",
+         "district" : "shop",
+         "perbuilding" : "10",
+         "building" : "workshop",
+         "limit" : ""
+      },
+      "rugmaker" : {
+         "sv" : "2000",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "rugmaker",
+         "limit" : ""
+      },
+      "scabbardmaker" : {
+         "sv" : "850",
+         "district" : "trade",
+         "perbuilding" : "10",
+         "building" : "scabbard maker",
+         "limit" : ""
+      },
+      "bather" : {
+         "sv" : "1900",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "bath house",
+         "limit" : ""
+      },
+      "grocer" : {
+         "sv" : "1000",
+         "district" : "market",
+         "perbuilding" : "10",
+         "building" : "grocery store",
+         "limit" : ""
+      },
+      "librarian" : {
+         "sv" : "1300",
+         "district" : "fine shops",
+         "perbuilding" : "10",
+         "building" : "library",
+         "limit" : ""
+      },
+      "mason" : {
+         "sv" : "500",
+         "district" : "industry",
+         "perbuilding" : "20",
+         "building" : "masonry shop",
+         "limit" : ""
+      },
+      "artist" : {
+         "sv" : "2000",
+         "district" : "professional",
+         "perbuilding" : "10",
+         "building" : "studio",
+         "limit" : ""
+      },
+      "ostler" : {
+         "sv" : "600",
+         "district" : "professional",
+         "perbuilding" : "5",
+         "building" : "stable",
+         "limit" : ""
+      },
+      "roofer" : {
+         "sv" : "1800",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "roofer",
+         "limit" : ""
+      },
+      "banker" : {
+         "sv" : "1000",
+         "district" : "wealthy",
+         "perbuilding" : "30",
+         "building" : "bank",
+         "limit" : ""
+      },
+      "bucklemaker" : {
+         "sv" : "1400",
+         "district" : "shop",
+         "perbuilding" : "5",
+         "building" : "bucklery",
+         "limit" : ""
+      },
+      "sheriff" : {
+         "sv" : "1000",
+         "district" : "civic",
+         "perbuilding" : "20",
+         "building" : "law enforcement",
+         "limit" : "1"
+      },
+      "laborer" : {
+         "sv" : "600",
+         "district" : "trade",
+         "perbuilding" : "4",
+         "building" : "warehouse",
+         "limit" : ""
+      },
+      "furrier" : {
+         "sv" : "250",
+         "district" : "trade",
+         "perbuilding" : "20",
+         "building" : "furtrade",
+         "limit" : ""
+      }
+   }
+}

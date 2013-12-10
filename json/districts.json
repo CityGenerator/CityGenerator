@@ -1,0 +1,88 @@
+{
+   "option" : {
+      "market" : {
+         "chance" : "70",
+         "stat" : "economy"
+      },
+      "embassy" : {
+         "chance" : "5",
+         "stat" : "travel"
+      },
+      "mercy" : {
+         "chance" : "20",
+         "stat" : "tolerance"
+      },
+      "wealthy" : {
+         "chance" : "34",
+         "stat" : "economy"
+      },
+      "entertainment" : {
+         "chance" : "5",
+         "stat" : "education"
+      },
+      "warehouse" : {
+         "chance" : "5",
+         "stat" : "economy"
+      },
+      "racial" : {
+         "chance" : "10",
+         "stat" : "tolerance"
+      },
+      "fine shops" : {
+         "chance" : "5",
+         "stat" : "economy"
+      },
+      "arena" : {
+         "chance" : "5",
+         "stat" : "education"
+      },
+      "shops" : {
+         "chance" : "20",
+         "stat" : "economy"
+      },
+      "middleclass" : {
+         "chance" : "30",
+         "stat" : "economy"
+      },
+      "professional" : {
+         "chance" : "30",
+         "stat" : "economy"
+      },
+      "education" : {
+         "chance" : "5",
+         "stat" : "education"
+      },
+      "military" : {
+         "chance" : "7",
+         "stat" : "authority"
+      },
+      "prison" : {
+         "chance" : "7",
+         "stat" : "authority"
+      },
+      "trade" : {
+         "chance" : "32",
+         "stat" : "economy"
+      },
+      "port" : {
+         "chance" : "0",
+         "stat" : "travel"
+      },
+      "civic" : {
+         "chance" : "12",
+         "stat" : "authority"
+      },
+      "slums" : {
+         "chance" : "10",
+         "stat" : "economy"
+      },
+      "industry" : {
+         "chance" : "5",
+         "stat" : "economy"
+      },
+      "poor" : {
+         "chance" : "30",
+         "stat" : "economy"
+      }
+   }
+}

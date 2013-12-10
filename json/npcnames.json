@@ -1,0 +1,5257 @@
+{
+   "race" : {
+      "human" : {
+         "firstname" : {
+            "pre_chance" : "1",
+            "title_chance" : "5",
+            "post" : [
+               {
+                  "content" : "ton"
+               },
+               {
+                  "content" : "son"
+               },
+               {
+                  "content" : "lyn"
+               },
+               {
+                  "content" : "ette"
+               },
+               {
+                  "content" : "rill"
+               },
+               {
+                  "content" : "me"
+               },
+               {
+                  "content" : "ey"
+               },
+               {
+                  "content" : "iam"
+               },
+               {
+                  "content" : "ora"
+               },
+               {
+                  "content" : "my"
+               },
+               {
+                  "content" : "don"
+               },
+               {
+                  "content" : "mon"
+               },
+               {
+                  "content" : "meta"
+               },
+               {
+                  "content" : "sie"
+               },
+               {
+                  "content" : "lis"
+               },
+               {
+                  "content" : "da"
+               },
+               {
+                  "content" : "tin"
+               },
+               {
+                  "content" : "e"
+               },
+               {
+                  "content" : "jo"
+               },
+               {
+                  "content" : "es"
+               },
+               {
+                  "content" : "ry"
+               },
+               {
+                  "content" : "ic"
+               },
+               {
+                  "content" : "lin"
+               },
+               {
+                  "content" : "ann"
+               },
+               {
+                  "content" : "dra"
+               },
+               {
+                  "content" : "ana"
+               },
+               {
+                  "content" : "lie"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Le"
+               },
+               {
+                  "content" : "La"
+               },
+               {
+                  "content" : "De"
+               },
+               {
+                  "content" : "Da"
+               }
+            ],
+            "post_chance" : "70",
+            "root" : [
+               {
+                  "content" : "Ali"
+               },
+               {
+                  "content" : "Bob"
+               },
+               {
+                  "content" : "Bil"
+               },
+               {
+                  "content" : "Col"
+               },
+               {
+                  "content" : "Cris"
+               },
+               {
+                  "content" : "Dan"
+               },
+               {
+                  "content" : "Dav"
+               },
+               {
+                  "content" : "Don"
+               },
+               {
+                  "content" : "Eas"
+               },
+               {
+                  "content" : "Fran"
+               },
+               {
+                  "content" : "Georg"
+               },
+               {
+                  "content" : "Her"
+               },
+               {
+                  "content" : "Ian"
+               },
+               {
+                  "content" : "Jam"
+               },
+               {
+                  "content" : "Jo"
+               },
+               {
+                  "content" : "Kath"
+               },
+               {
+                  "content" : "Keen"
+               },
+               {
+                  "content" : "Lyn"
+               },
+               {
+                  "content" : "May"
+               },
+               {
+                  "content" : "Mick"
+               },
+               {
+                  "content" : "Mo"
+               },
+               {
+                  "content" : "Nel"
+               },
+               {
+                  "content" : "New"
+               },
+               {
+                  "content" : "Nil"
+               },
+               {
+                  "content" : "Ob"
+               },
+               {
+                  "content" : "Phil"
+               },
+               {
+                  "content" : "Ros"
+               },
+               {
+                  "content" : "Solo"
+               },
+               {
+                  "content" : "Teren"
+               },
+               {
+                  "content" : "Urs"
+               },
+               {
+                  "content" : "Val"
+               },
+               {
+                  "content" : "Will"
+               },
+               {
+                  "content" : "Yan"
+               },
+               {
+                  "content" : "Zan"
+               }
+            ]
+         },
+         "lastname" : {
+            "pre_chance" : "5",
+            "post" : [
+               {
+                  "content" : "hews"
+               },
+               {
+                  "content" : "mell"
+               },
+               {
+                  "content" : "ore"
+               },
+               {
+                  "content" : "sone"
+               },
+               {
+                  "content" : "gan"
+               },
+               {
+                  "content" : "man"
+               },
+               {
+                  "content" : "rell"
+               },
+               {
+                  "content" : "leton"
+               },
+               {
+                  "content" : "sford"
+               },
+               {
+                  "content" : "ville"
+               },
+               {
+                  "content" : "erley"
+               },
+               {
+                  "content" : "liffe"
+               },
+               {
+                  "content" : "rough"
+               },
+               {
+                  "content" : "croft"
+               },
+               {
+                  "content" : "ewicz"
+               },
+               {
+                  "content" : "house"
+               },
+               {
+                  "content" : "brook"
+               },
+               {
+                  "content" : "inson"
+               },
+               {
+                  "content" : "combe"
+               },
+               {
+                  "content" : "ngham"
+               },
+               {
+                  "content" : "erson"
+               },
+               {
+                  "content" : "erton"
+               },
+               {
+                  "content" : "stone"
+               },
+               {
+                  "content" : "worth"
+               },
+               {
+                  "content" : "ridge"
+               },
+               {
+                  "content" : "ngton"
+               },
+               {
+                  "content" : "field"
+               },
+               {
+                  "content" : "tone"
+               },
+               {
+                  "content" : "nson"
+               },
+               {
+                  "content" : "ster"
+               },
+               {
+                  "content" : "wood"
+               },
+               {
+                  "content" : "orth"
+               },
+               {
+                  "content" : "ling"
+               },
+               {
+                  "content" : "gton"
+               },
+               {
+                  "content" : "ston"
+               },
+               {
+                  "content" : "ield"
+               },
+               {
+                  "content" : "idge"
+               },
+               {
+                  "content" : "land"
+               },
+               {
+                  "content" : "well"
+               },
+               {
+                  "content" : "ford"
+               },
+               {
+                  "content" : "ick"
+               },
+               {
+                  "content" : "and"
+               },
+               {
+                  "content" : "ord"
+               },
+               {
+                  "content" : "den"
+               },
+               {
+                  "content" : "ill"
+               },
+               {
+                  "content" : "ham"
+               },
+               {
+                  "content" : "ter"
+               },
+               {
+                  "content" : "ard"
+               },
+               {
+                  "content" : "all"
+               },
+               {
+                  "content" : "ett"
+               },
+               {
+                  "content" : "ing"
+               },
+               {
+                  "content" : "man"
+               },
+               {
+                  "content" : "son"
+               },
+               {
+                  "content" : "ley"
+               },
+               {
+                  "content" : "ell"
+               },
+               {
+                  "content" : "ton"
+               },
+               {
+                  "content" : "ne"
+               },
+               {
+                  "content" : "es"
+               },
+               {
+                  "content" : "tt"
+               },
+               {
+                  "content" : "en"
+               },
+               {
+                  "content" : "in"
+               },
+               {
+                  "content" : "an"
+               },
+               {
+                  "content" : "ll"
+               },
+               {
+                  "content" : "ey"
+               },
+               {
+                  "content" : "on"
+               },
+               {
+                  "content" : "er"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Mac"
+               },
+               {
+                  "content" : "Van"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Andr"
+               },
+               {
+                  "content" : "Andre"
+               },
+               {
+                  "content" : "Anton"
+               },
+               {
+                  "content" : "Bar"
+               },
+               {
+                  "content" : "Barto"
+               },
+               {
+                  "content" : "Ben"
+               },
+               {
+                  "content" : "Ber"
+               },
+               {
+                  "content" : "Berna"
+               },
+               {
+                  "content" : "Black"
+               },
+               {
+                  "content" : "Bra"
+               },
+               {
+                  "content" : "Bri"
+               },
+               {
+                  "content" : "Bro"
+               },
+               {
+                  "content" : "Brown"
+               },
+               {
+                  "content" : "Bur"
+               },
+               {
+                  "content" : "Car"
+               },
+               {
+                  "content" : "Cas"
+               },
+               {
+                  "content" : "Cast"
+               },
+               {
+                  "content" : "Cha"
+               },
+               {
+                  "content" : "Chris"
+               },
+               {
+                  "content" : "Col"
+               },
+               {
+                  "content" : "Cor"
+               },
+               {
+                  "content" : "David"
+               },
+               {
+                  "content" : "Fer"
+               },
+               {
+                  "content" : "Fran"
+               },
+               {
+                  "content" : "Franc"
+               },
+               {
+                  "content" : "Giaco"
+               },
+               {
+                  "content" : "Gil"
+               },
+               {
+                  "content" : "Good"
+               },
+               {
+                  "content" : "Green"
+               },
+               {
+                  "content" : "Har"
+               },
+               {
+                  "content" : "Klein"
+               },
+               {
+                  "content" : "Mar"
+               },
+               {
+                  "content" : "Marti"
+               },
+               {
+                  "content" : "Mat"
+               },
+               {
+                  "content" : "Petr"
+               },
+               {
+                  "content" : "Rose"
+               },
+               {
+                  "content" : "Rosen"
+               },
+               {
+                  "content" : "She"
+               },
+               {
+                  "content" : "Simon"
+               },
+               {
+                  "content" : "South"
+               },
+               {
+                  "content" : "Sta"
+               },
+               {
+                  "content" : "Stan"
+               },
+               {
+                  "content" : "Sto"
+               },
+               {
+                  "content" : "Whit"
+               },
+               {
+                  "content" : "White"
+               },
+               {
+                  "content" : "Wil"
+               },
+               {
+                  "content" : "Mor"
+               },
+               {
+                  "content" : "Clay"
+               },
+               {
+                  "content" : "Tram"
+               },
+               {
+                  "content" : "Dav"
+               },
+               {
+                  "content" : "Dil"
+               },
+               {
+                  "content" : "Smith"
+               },
+               {
+                  "content" : "Jack"
+               },
+               {
+                  "content" : "Robert"
+               },
+               {
+                  "content" : "Dan"
+               },
+               {
+                  "content" : "Jame"
+               },
+               {
+                  "content" : "Peter"
+               }
+            ]
+         }
+      },
+      "bugbear" : {
+         "allow" : [
+            {
+               "content" : "goblin"
+            },
+            {
+               "content" : "orc"
+            }
+         ]
+      },
+      "mindflayer" : {
+         "firstname" : {
+            "pre" : [
+               {
+                  "content" : "Blo"
+               },
+               {
+                  "content" : "Chtu"
+               },
+               {
+                  "content" : "Dis"
+               },
+               {
+                  "content" : "En"
+               },
+               {
+                  "content" : "Flu"
+               },
+               {
+                  "content" : "Goi"
+               },
+               {
+                  "content" : "Grin"
+               },
+               {
+                  "content" : "Har"
+               },
+               {
+                  "content" : "Hu"
+               },
+               {
+                  "content" : "Ilix"
+               },
+               {
+                  "content" : "Kil"
+               },
+               {
+                  "content" : "Klon"
+               },
+               {
+                  "content" : "Mas"
+               },
+               {
+                  "content" : "Mer"
+               },
+               {
+                  "content" : "Prar"
+               },
+               {
+                  "content" : "Pri"
+               },
+               {
+                  "content" : "Ssz"
+               },
+               {
+                  "content" : "Thzz"
+               },
+               {
+                  "content" : "Trell"
+               },
+               {
+                  "content" : "Vess"
+               },
+               {
+                  "content" : "Wae"
+               },
+               {
+                  "content" : "Wou"
+               },
+               {
+                  "content" : "Wra"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "ide"
+               },
+               {
+                  "content" : "'ith"
+               },
+               {
+                  "content" : "'k'morn"
+               },
+               {
+                  "content" : "m"
+               },
+               {
+                  "content" : "pair"
+               },
+               {
+                  "content" : "pne"
+               },
+               {
+                  "content" : "rall"
+               },
+               {
+                  "content" : "rc"
+               },
+               {
+                  "content" : "re"
+               },
+               {
+                  "content" : "ril"
+               },
+               {
+                  "content" : "rr"
+               },
+               {
+                  "content" : "rrl"
+               },
+               {
+                  "content" : "ter"
+               },
+               {
+                  "content" : "th"
+               },
+               {
+                  "content" : "thul"
+               },
+               {
+                  "content" : "'toor"
+               },
+               {
+                  "content" : "tra"
+               },
+               {
+                  "content" : "vy"
+               }
+            ]
+         }
+      },
+      "lizardfolk" : {
+         "firstname" : {
+            "post" : [
+               {
+                  "content" : "ssen"
+               },
+               {
+                  "content" : "al"
+               },
+               {
+                  "content" : "zin"
+               },
+               {
+                  "content" : "zor"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "S'her"
+               },
+               {
+                  "content" : "Khal"
+               },
+               {
+                  "content" : "Yer"
+               },
+               {
+                  "content" : "S'hoor"
+               },
+               {
+                  "content" : "Ghe"
+               },
+               {
+                  "content" : "Khal"
+               }
+            ]
+         },
+         "lastname" : {
+            "title_chance" : "100",
+            "post" : [
+               {
+                  "content" : "ssen"
+               },
+               {
+                  "content" : "al"
+               },
+               {
+                  "content" : "zin"
+               },
+               {
+                  "content" : "zor"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Ghe"
+               },
+               {
+                  "content" : "S'her"
+               },
+               {
+                  "content" : "Khal"
+               },
+               {
+                  "content" : "Yer"
+               },
+               {
+                  "content" : "S'hoor"
+               },
+               {
+                  "content" : "Ghe"
+               },
+               {
+                  "content" : "Khal"
+               }
+            ],
+            "title" : [
+               {
+                  "content" : "ahn"
+               },
+               {
+                  "content" : "teh"
+               },
+               {
+                  "content" : "se"
+               },
+               {
+                  "content" : "fe"
+               },
+               {
+                  "content" : "heh"
+               },
+               {
+                  "content" : "seh"
+               }
+            ]
+         }
+      },
+      "minotaur" : {
+         "firstname" : {
+            "pre" : [
+               {
+                  "content" : "Ag"
+               },
+               {
+                  "content" : "Ali"
+               },
+               {
+                  "content" : "Ap"
+               },
+               {
+                  "content" : "Ar"
+               },
+               {
+                  "content" : "Ar"
+               },
+               {
+                  "content" : "Aster"
+               },
+               {
+                  "content" : "Aya"
+               },
+               {
+                  "content" : "Az"
+               },
+               {
+                  "content" : "Bai"
+               },
+               {
+                  "content" : "Bas"
+               },
+               {
+                  "content" : "Beau"
+               },
+               {
+                  "content" : "Beli"
+               },
+               {
+                  "content" : "Beru"
+               },
+               {
+                  "content" : "Bes"
+               },
+               {
+                  "content" : "Bjork"
+               },
+               {
+                  "content" : "Bob"
+               },
+               {
+                  "content" : "Boo"
+               },
+               {
+                  "content" : "Bo"
+               },
+               {
+                  "content" : "Bro"
+               },
+               {
+                  "content" : "Bru"
+               },
+               {
+                  "content" : "Burun"
+               },
+               {
+                  "content" : "Byle"
+               },
+               {
+                  "content" : "Cair"
+               },
+               {
+                  "content" : "Cali"
+               },
+               {
+                  "content" : "Cav"
+               },
+               {
+                  "content" : "Ceri"
+               },
+               {
+                  "content" : "Cin"
+               },
+               {
+                  "content" : "Ciri"
+               },
+               {
+                  "content" : "Clap"
+               },
+               {
+                  "content" : "Cod"
+               },
+               {
+                  "content" : "Cyr"
+               },
+               {
+                  "content" : "Dag"
+               },
+               {
+                  "content" : "Dast"
+               },
+               {
+                  "content" : "Del"
+               },
+               {
+                  "content" : "Delom"
+               },
+               {
+                  "content" : "Duu"
+               },
+               {
+                  "content" : "Edd"
+               },
+               {
+                  "content" : "Ela"
+               },
+               {
+                  "content" : "Erin"
+               },
+               {
+                  "content" : "Este"
+               },
+               {
+                  "content" : "Ferdi"
+               },
+               {
+                  "content" : "Flia"
+               },
+               {
+                  "content" : "Foos"
+               },
+               {
+                  "content" : "Fosh"
+               },
+               {
+                  "content" : "Gald"
+               },
+               {
+                  "content" : "Ganthi"
+               },
+               {
+                  "content" : "Gara"
+               },
+               {
+                  "content" : "Ga"
+               },
+               {
+                  "content" : "Genlon"
+               },
+               {
+                  "content" : "Gill"
+               },
+               {
+                  "content" : "Goe"
+               },
+               {
+                  "content" : "Goh"
+               },
+               {
+                  "content" : "Gor"
+               },
+               {
+                  "content" : "Grenda"
+               },
+               {
+                  "content" : "Halfa"
+               },
+               {
+                  "content" : "Ham"
+               },
+               {
+                  "content" : "Hath"
+               },
+               {
+                  "content" : "Hecari"
+               },
+               {
+                  "content" : "Hela"
+               },
+               {
+                  "content" : "Hes"
+               },
+               {
+                  "content" : "Hru"
+               },
+               {
+                  "content" : "Il"
+               },
+               {
+                  "content" : "Jak"
+               },
+               {
+                  "content" : "Jed"
+               },
+               {
+                  "content" : "Jem"
+               },
+               {
+                  "content" : "Kar"
+               },
+               {
+                  "content" : "Keel"
+               },
+               {
+                  "content" : "Klar"
+               },
+               {
+                  "content" : "Kuon"
+               },
+               {
+                  "content" : "Kyr"
+               },
+               {
+                  "content" : "Loa"
+               },
+               {
+                  "content" : "Loo"
+               },
+               {
+                  "content" : "Maga"
+               },
+               {
+                  "content" : "Mar"
+               },
+               {
+                  "content" : "Mer"
+               },
+               {
+                  "content" : "Min"
+               },
+               {
+                  "content" : "Mog"
+               },
+               {
+                  "content" : "Mor"
+               },
+               {
+                  "content" : "Mul"
+               },
+               {
+                  "content" : "Noost"
+               },
+               {
+                  "content" : "Oest"
+               },
+               {
+                  "content" : "Per"
+               },
+               {
+                  "content" : "Pod"
+               },
+               {
+                  "content" : "Raas"
+               },
+               {
+                  "content" : "Rin"
+               },
+               {
+                  "content" : "Sar"
+               },
+               {
+                  "content" : "Sees"
+               },
+               {
+                  "content" : "Sek"
+               },
+               {
+                  "content" : "Ser"
+               },
+               {
+                  "content" : "She"
+               },
+               {
+                  "content" : "Sik"
+               },
+               {
+                  "content" : "Tar"
+               },
+               {
+                  "content" : "Taur"
+               },
+               {
+                  "content" : "Tav"
+               },
+               {
+                  "content" : "Tek"
+               },
+               {
+                  "content" : "Tel"
+               },
+               {
+                  "content" : "Ter"
+               },
+               {
+                  "content" : "Thar"
+               },
+               {
+                  "content" : "The"
+               },
+               {
+                  "content" : "Toh"
+               },
+               {
+                  "content" : "Tosh"
+               },
+               {
+                  "content" : "Tur"
+               },
+               {
+                  "content" : "Uov"
+               },
+               {
+                  "content" : "Weo"
+               },
+               {
+                  "content" : "Xain"
+               },
+               {
+                  "content" : "Zurg"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "a"
+               },
+               {
+                  "content" : "al"
+               },
+               {
+                  "content" : "alia"
+               },
+               {
+                  "content" : "an"
+               },
+               {
+                  "content" : "ana"
+               },
+               {
+                  "content" : "anu"
+               },
+               {
+                  "content" : "ara"
+               },
+               {
+                  "content" : "as"
+               },
+               {
+                  "content" : "ban"
+               },
+               {
+                  "content" : "dar"
+               },
+               {
+                  "content" : "dek"
+               },
+               {
+                  "content" : "der"
+               },
+               {
+                  "content" : "dol"
+               },
+               {
+                  "content" : "don"
+               },
+               {
+                  "content" : "dra"
+               },
+               {
+                  "content" : "du"
+               },
+               {
+                  "content" : "er"
+               },
+               {
+                  "content" : "eras"
+               },
+               {
+                  "content" : "est"
+               },
+               {
+                  "content" : "fort"
+               },
+               {
+                  "content" : "ga"
+               },
+               {
+                  "content" : "gani"
+               },
+               {
+                  "content" : "gas"
+               },
+               {
+                  "content" : "go"
+               },
+               {
+                  "content" : "ia"
+               },
+               {
+                  "content" : "iki"
+               },
+               {
+                  "content" : "ina"
+               },
+               {
+                  "content" : "inand"
+               },
+               {
+                  "content" : "ion"
+               },
+               {
+                  "content" : "ios"
+               },
+               {
+                  "content" : "ith"
+               },
+               {
+                  "content" : "ius"
+               },
+               {
+                  "content" : "killian"
+               },
+               {
+                  "content" : "laca"
+               },
+               {
+                  "content" : "leana"
+               },
+               {
+                  "content" : "li"
+               },
+               {
+                  "content" : "lia"
+               },
+               {
+                  "content" : "Loa"
+               },
+               {
+                  "content" : "ma"
+               },
+               {
+                  "content" : "main"
+               },
+               {
+                  "content" : "max"
+               },
+               {
+                  "content" : "more"
+               },
+               {
+                  "content" : "n"
+               },
+               {
+                  "content" : "nas"
+               },
+               {
+                  "content" : "ne"
+               },
+               {
+                  "content" : "nic"
+               },
+               {
+                  "content" : "norgath"
+               },
+               {
+                  "content" : "nus"
+               },
+               {
+                  "content" : "o"
+               },
+               {
+                  "content" : "ok"
+               },
+               {
+                  "content" : "on"
+               },
+               {
+                  "content" : "oren"
+               },
+               {
+                  "content" : "ose"
+               },
+               {
+                  "content" : "ra"
+               },
+               {
+                  "content" : "rath"
+               },
+               {
+                  "content" : "rell"
+               },
+               {
+                  "content" : "rian"
+               },
+               {
+                  "content" : "ris"
+               },
+               {
+                  "content" : "ron"
+               },
+               {
+                  "content" : "ros"
+               },
+               {
+                  "content" : "ru"
+               },
+               {
+                  "content" : "run"
+               },
+               {
+                  "content" : "rus"
+               },
+               {
+                  "content" : "sey"
+               },
+               {
+                  "content" : "sha"
+               },
+               {
+                  "content" : "sil"
+               },
+               {
+                  "content" : "soe"
+               },
+               {
+                  "content" : "star"
+               },
+               {
+                  "content" : "ta"
+               },
+               {
+                  "content" : "tek"
+               },
+               {
+                  "content" : "tha"
+               },
+               {
+                  "content" : "tmos"
+               },
+               {
+                  "content" : "toron"
+               },
+               {
+                  "content" : "tra"
+               },
+               {
+                  "content" : "trah"
+               },
+               {
+                  "content" : "tred"
+               },
+               {
+                  "content" : "ula"
+               },
+               {
+                  "content" : "ule"
+               },
+               {
+                  "content" : "un"
+               },
+               {
+                  "content" : "una"
+               },
+               {
+                  "content" : "urg"
+               },
+               {
+                  "content" : "uri"
+               },
+               {
+                  "content" : "us"
+               },
+               {
+                  "content" : "uul"
+               },
+               {
+                  "content" : "verani"
+               },
+               {
+                  "content" : "yes"
+               }
+            ]
+         },
+         "lastname" : {
+            "pre" : [
+               {
+                  "content" : "Armi"
+               },
+               {
+                  "content" : "Ath"
+               },
+               {
+                  "content" : "Blood"
+               },
+               {
+                  "content" : "Boro"
+               },
+               {
+                  "content" : "Breg"
+               },
+               {
+                  "content" : "Claw"
+               },
+               {
+                  "content" : "Cloud"
+               },
+               {
+                  "content" : "Dark"
+               },
+               {
+                  "content" : "Dawn"
+               },
+               {
+                  "content" : "Dom"
+               },
+               {
+                  "content" : "Eagle"
+               },
+               {
+                  "content" : "Earth"
+               },
+               {
+                  "content" : "Entra"
+               },
+               {
+                  "content" : "Grim"
+               },
+               {
+                  "content" : "Ice"
+               },
+               {
+                  "content" : "Kazi"
+               },
+               {
+                  "content" : "Lagran"
+               },
+               {
+                  "content" : "Long"
+               },
+               {
+                  "content" : "Mas"
+               },
+               {
+                  "content" : "Mist"
+               },
+               {
+                  "content" : "Oat"
+               },
+               {
+                  "content" : "Or"
+               },
+               {
+                  "content" : "Plain"
+               },
+               {
+                  "content" : "Quill"
+               },
+               {
+                  "content" : "Rage"
+               },
+               {
+                  "content" : "Rain"
+               },
+               {
+                  "content" : "River"
+               },
+               {
+                  "content" : "Rune"
+               },
+               {
+                  "content" : "Sky"
+               },
+               {
+                  "content" : "Spirit"
+               },
+               {
+                  "content" : "Stone"
+               },
+               {
+                  "content" : "Storm"
+               },
+               {
+                  "content" : "Strong"
+               },
+               {
+                  "content" : "Sum"
+               },
+               {
+                  "content" : "Swift"
+               },
+               {
+                  "content" : "Tes"
+               },
+               {
+                  "content" : "Thunder"
+               },
+               {
+                  "content" : "White"
+               },
+               {
+                  "content" : "Wild"
+               },
+               {
+                  "content" : "Wind"
+               },
+               {
+                  "content" : "Winter"
+               },
+               {
+                  "content" : "Young"
+               },
+               {
+                  "content" : "Zha"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "ak"
+               },
+               {
+                  "content" : "bash"
+               },
+               {
+                  "content" : "breaker"
+               },
+               {
+                  "content" : "caller"
+               },
+               {
+                  "content" : "chaser"
+               },
+               {
+                  "content" : "cloud"
+               },
+               {
+                  "content" : "fury"
+               },
+               {
+                  "content" : "gan"
+               },
+               {
+                  "content" : "ganthi"
+               },
+               {
+                  "content" : "gath"
+               },
+               {
+                  "content" : "hoof"
+               },
+               {
+                  "content" : "ilg"
+               },
+               {
+                  "content" : "is"
+               },
+               {
+                  "content" : "kan"
+               },
+               {
+                  "content" : "kos"
+               },
+               {
+                  "content" : "mane"
+               },
+               {
+                  "content" : "marr"
+               },
+               {
+                  "content" : "mist"
+               },
+               {
+                  "content" : "non"
+               },
+               {
+                  "content" : "rangli"
+               },
+               {
+                  "content" : "runner"
+               },
+               {
+                  "content" : "singer"
+               },
+               {
+                  "content" : "soult"
+               },
+               {
+                  "content" : "spire"
+               },
+               {
+                  "content" : "splitter"
+               },
+               {
+                  "content" : "stalker"
+               },
+               {
+                  "content" : "stride"
+               },
+               {
+                  "content" : "strider"
+               },
+               {
+                  "content" : "talon"
+               },
+               {
+                  "content" : "thorn"
+               },
+               {
+                  "content" : "vidol"
+               },
+               {
+                  "content" : "walker"
+               },
+               {
+                  "content" : "wind"
+               }
+            ]
+         }
+      },
+      "half-elf" : {
+         "allow" : [
+            {
+               "content" : "human"
+            },
+            {
+               "content" : "elf"
+            }
+         ]
+      },
+      "hobgoblin" : {
+         "allow" : {
+            "content" : "goblin"
+         }
+      },
+      "elf" : {
+         "firstname" : {
+            "post" : [
+               {
+                  "content" : "tars"
+               },
+               {
+                  "content" : "thil"
+               },
+               {
+                  "content" : "aen"
+               },
+               {
+                  "content" : "ai"
+               },
+               {
+                  "content" : "ava"
+               },
+               {
+                  "content" : "ssa"
+               },
+               {
+                  "content" : "iyn"
+               },
+               {
+                  "content" : "inne"
+               },
+               {
+                  "content" : "anae"
+               },
+               {
+                  "content" : "las"
+               },
+               {
+                  "content" : "lleu"
+               },
+               {
+                  "content" : "tel"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Aba"
+               },
+               {
+                  "content" : "Ada"
+               },
+               {
+                  "content" : "Ala"
+               },
+               {
+                  "content" : "Aes"
+               },
+               {
+                  "content" : "Ale"
+               },
+               {
+                  "content" : "Bel"
+               },
+               {
+                  "content" : "Cha"
+               },
+               {
+                  "content" : "Dar"
+               },
+               {
+                  "content" : "Del"
+               },
+               {
+                  "content" : "El"
+               },
+               {
+                  "content" : "Ela"
+               },
+               {
+                  "content" : "Er"
+               },
+               {
+                  "content" : "Fae"
+               },
+               {
+                  "content" : "Fil"
+               },
+               {
+                  "content" : "Gae"
+               },
+               {
+                  "content" : "Gwa"
+               },
+               {
+                  "content" : "Haa"
+               },
+               {
+                  "content" : "Hal"
+               },
+               {
+                  "content" : "Il"
+               },
+               {
+                  "content" : "Ill"
+               },
+               {
+                  "content" : "Ily"
+               },
+               {
+                  "content" : "Lar"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "rig"
+               },
+               {
+                  "content" : "art"
+               },
+               {
+                  "content" : "t"
+               },
+               {
+                  "content" : "ell"
+               },
+               {
+                  "content" : "var"
+               },
+               {
+                  "content" : "nal"
+               },
+               {
+                  "content" : "hia"
+               },
+               {
+                  "content" : "lan"
+               },
+               {
+                  "content" : "len"
+               }
+            ]
+         },
+         "lastname" : {
+            "post" : [
+               {
+                  "content" : "arrow"
+               },
+               {
+                  "content" : "blade"
+               },
+               {
+                  "content" : "blaze"
+               },
+               {
+                  "content" : "borne"
+               },
+               {
+                  "content" : "bough"
+               },
+               {
+                  "content" : "bow"
+               },
+               {
+                  "content" : "breeze"
+               },
+               {
+                  "content" : "caller"
+               },
+               {
+                  "content" : "chaser"
+               },
+               {
+                  "content" : "cloak"
+               },
+               {
+                  "content" : "dawn"
+               },
+               {
+                  "content" : "dew"
+               },
+               {
+                  "content" : "drake"
+               },
+               {
+                  "content" : "ears"
+               },
+               {
+                  "content" : "eye"
+               },
+               {
+                  "content" : "feather"
+               },
+               {
+                  "content" : "fire"
+               },
+               {
+                  "content" : "form"
+               },
+               {
+                  "content" : "gale"
+               },
+               {
+                  "content" : "gazer"
+               },
+               {
+                  "content" : "gleam"
+               },
+               {
+                  "content" : "glider"
+               },
+               {
+                  "content" : "glow"
+               },
+               {
+                  "content" : "grove"
+               },
+               {
+                  "content" : "hand"
+               },
+               {
+                  "content" : "heart"
+               },
+               {
+                  "content" : "helm"
+               },
+               {
+                  "content" : "hunter"
+               },
+               {
+                  "content" : "leaf"
+               },
+               {
+                  "content" : "light"
+               },
+               {
+                  "content" : "mane"
+               },
+               {
+                  "content" : "might"
+               },
+               {
+                  "content" : "mist"
+               },
+               {
+                  "content" : "moon"
+               },
+               {
+                  "content" : "night"
+               },
+               {
+                  "content" : "oak"
+               },
+               {
+                  "content" : "risen"
+               },
+               {
+                  "content" : "river"
+               },
+               {
+                  "content" : "rose"
+               },
+               {
+                  "content" : "runner"
+               },
+               {
+                  "content" : "run"
+               },
+               {
+                  "content" : "seeker"
+               },
+               {
+                  "content" : "shade"
+               },
+               {
+                  "content" : "shadow"
+               },
+               {
+                  "content" : "shield"
+               },
+               {
+                  "content" : "shine"
+               },
+               {
+                  "content" : "sight"
+               },
+               {
+                  "content" : "singer"
+               },
+               {
+                  "content" : "sing"
+               },
+               {
+                  "content" : "sky"
+               },
+               {
+                  "content" : "song"
+               },
+               {
+                  "content" : "sorrow"
+               },
+               {
+                  "content" : "spear"
+               },
+               {
+                  "content" : "stalker"
+               },
+               {
+                  "content" : "star"
+               },
+               {
+                  "content" : "stride"
+               },
+               {
+                  "content" : "strike"
+               },
+               {
+                  "content" : "stryke"
+               },
+               {
+                  "content" : "sun"
+               },
+               {
+                  "content" : "sworn"
+               },
+               {
+                  "content" : "wake"
+               },
+               {
+                  "content" : "waker"
+               },
+               {
+                  "content" : "walker"
+               },
+               {
+                  "content" : "watch"
+               },
+               {
+                  "content" : "water"
+               },
+               {
+                  "content" : "weave"
+               },
+               {
+                  "content" : "weaver"
+               },
+               {
+                  "content" : "whisper"
+               },
+               {
+                  "content" : "wind"
+               },
+               {
+                  "content" : "wing"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Alean"
+               },
+               {
+                  "content" : "Alea"
+               },
+               {
+                  "content" : "Arkenea"
+               },
+               {
+                  "content" : "Auvrea"
+               },
+               {
+                  "content" : "Baequi"
+               },
+               {
+                  "content" : "Banni"
+               },
+               {
+                  "content" : "Black"
+               },
+               {
+                  "content" : "Blade"
+               },
+               {
+                  "content" : "Blue"
+               },
+               {
+                  "content" : "Bright"
+               },
+               {
+                  "content" : "Broad"
+               },
+               {
+                  "content" : "Cyred"
+               },
+               {
+                  "content" : "Dark"
+               },
+               {
+                  "content" : "Dawn"
+               },
+               {
+                  "content" : "Dew"
+               },
+               {
+                  "content" : "Dirth"
+               },
+               {
+                  "content" : "Dryear"
+               },
+               {
+                  "content" : "Dusking"
+               },
+               {
+                  "content" : "Dusk"
+               },
+               {
+                  "content" : "Earth"
+               },
+               {
+                  "content" : "Even"
+               },
+               {
+                  "content" : "Ever"
+               },
+               {
+                  "content" : "Eyllis"
+               },
+               {
+                  "content" : "Eyther"
+               },
+               {
+                  "content" : "Fair"
+               },
+               {
+                  "content" : "Far"
+               },
+               {
+                  "content" : "Feather"
+               },
+               {
+                  "content" : "Fire"
+               },
+               {
+                  "content" : "Floral"
+               },
+               {
+                  "content" : "Freani"
+               },
+               {
+                  "content" : "Frost"
+               },
+               {
+                  "content" : "Golden"
+               },
+               {
+                  "content" : "Gold"
+               },
+               {
+                  "content" : "Gysse"
+               },
+               {
+                  "content" : "Hawk"
+               },
+               {
+                  "content" : "Heart"
+               },
+               {
+                  "content" : "Hlae"
+               },
+               {
+                  "content" : "Hunith"
+               },
+               {
+                  "content" : "Jade"
+               },
+               {
+                  "content" : "Keen"
+               },
+               {
+                  "content" : "Kennyr"
+               },
+               {
+                  "content" : "Kille"
+               },
+               {
+                  "content" : "Kind"
+               },
+               {
+                  "content" : "Leaf"
+               },
+               {
+                  "content" : "Light"
+               },
+               {
+                  "content" : "Long"
+               },
+               {
+                  "content" : "Maern"
+               },
+               {
+                  "content" : "Meadow"
+               },
+               {
+                  "content" : "Melith"
+               },
+               {
+                  "content" : "Mist"
+               },
+               {
+                  "content" : "Moon"
+               },
+               {
+                  "content" : "Morning"
+               },
+               {
+                  "content" : "Myrth"
+               },
+               {
+                  "content" : "Night"
+               },
+               {
+                  "content" : "Norre"
+               },
+               {
+                  "content" : "Oak"
+               },
+               {
+                  "content" : "Orle"
+               },
+               {
+                  "content" : "Oussea"
+               },
+               {
+                  "content" : "Raven"
+               },
+               {
+                  "content" : "Rift"
+               },
+               {
+                  "content" : "Rilynn"
+               },
+               {
+                  "content" : "River"
+               },
+               {
+                  "content" : "Root"
+               },
+               {
+                  "content" : "Shade"
+               },
+               {
+                  "content" : "Shadow"
+               },
+               {
+                  "content" : "Silent"
+               },
+               {
+                  "content" : "Silver"
+               },
+               {
+                  "content" : "Sky"
+               },
+               {
+                  "content" : "Soft"
+               },
+               {
+                  "content" : "Spirit"
+               },
+               {
+                  "content" : "Star"
+               },
+               {
+                  "content" : "Still"
+               },
+               {
+                  "content" : "Summer"
+               },
+               {
+                  "content" : "Sun"
+               },
+               {
+                  "content" : "Swift"
+               },
+               {
+                  "content" : "Teasen'"
+               },
+               {
+                  "content" : "Tyrnea"
+               },
+               {
+                  "content" : "Tyr"
+               },
+               {
+                  "content" : "Wave"
+               },
+               {
+                  "content" : "White"
+               },
+               {
+                  "content" : "Wind"
+               },
+               {
+                  "content" : "Winter"
+               },
+               {
+                  "content" : "Wish"
+               },
+               {
+                  "content" : "Wolf"
+               }
+            ]
+         }
+      },
+      "troglodyte" : {
+         "firstname" : {
+            "post" : [
+               {
+                  "content" : "ra"
+               },
+               {
+                  "content" : "zer"
+               },
+               {
+                  "content" : "s"
+               },
+               {
+                  "content" : "ka"
+               },
+               {
+                  "content" : "lak"
+               },
+               {
+                  "content" : "raz"
+               },
+               {
+                  "content" : "g"
+               },
+               {
+                  "content" : "karo"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "An"
+               },
+               {
+                  "content" : "Cee"
+               },
+               {
+                  "content" : "Elh"
+               },
+               {
+                  "content" : "Ghri"
+               },
+               {
+                  "content" : "Goz"
+               },
+               {
+                  "content" : "Por"
+               },
+               {
+                  "content" : "Surp"
+               },
+               {
+                  "content" : "Til"
+               },
+               {
+                  "content" : "Voth"
+               }
+            ]
+         }
+      },
+      "drow" : {
+         "allow" : {
+            "content" : "elf"
+         }
+      },
+      "lycanthrope" : {
+         "allow" : {
+            "content" : "human"
+         }
+      },
+      "halfling" : {
+         "firstname" : {
+            "root_chance" : "50",
+            "post" : [
+               {
+                  "content" : "ly"
+               },
+               {
+                  "content" : "ine"
+               },
+               {
+                  "content" : "da"
+               },
+               {
+                  "content" : "do"
+               },
+               {
+                  "content" : "ne"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Ada"
+               },
+               {
+                  "content" : "Ama"
+               },
+               {
+                  "content" : "Be"
+               },
+               {
+                  "content" : "Co"
+               },
+               {
+                  "content" : "El"
+               },
+               {
+                  "content" : "Fal"
+               },
+               {
+                  "content" : "Hil"
+               },
+               {
+                  "content" : "Per"
+               },
+               {
+                  "content" : "Po"
+               },
+               {
+                  "content" : "Ser"
+               },
+               {
+                  "content" : "Tol"
+               },
+               {
+                  "content" : "Mal"
+               }
+            ],
+            "post_chance" : "50",
+            "root" : [
+               {
+                  "content" : "de"
+               },
+               {
+                  "content" : "di"
+               },
+               {
+                  "content" : "mai"
+               },
+               {
+                  "content" : "bard"
+               },
+               {
+                  "content" : "co"
+               },
+               {
+                  "content" : "mira"
+               },
+               {
+                  "content" : "el"
+               },
+               {
+                  "content" : "cob"
+               },
+               {
+                  "content" : "grim"
+               },
+               {
+                  "content" : "gold"
+               },
+               {
+                  "content" : "born"
+               },
+               {
+                  "content" : "grin"
+               },
+               {
+                  "content" : "nell"
+               },
+               {
+                  "content" : "ina"
+               },
+               {
+                  "content" : "il"
+               }
+            ]
+         },
+         "lastname" : {
+            "post" : [
+               {
+                  "content" : "ale"
+               },
+               {
+                  "content" : "arrow"
+               },
+               {
+                  "content" : "barrel"
+               },
+               {
+                  "content" : "bee"
+               },
+               {
+                  "content" : "blower"
+               },
+               {
+                  "content" : "body"
+               },
+               {
+                  "content" : "bones"
+               },
+               {
+                  "content" : "bot"
+               },
+               {
+                  "content" : "bottle"
+               },
+               {
+                  "content" : "bottom"
+               },
+               {
+                  "content" : "bough"
+               },
+               {
+                  "content" : "bread"
+               },
+               {
+                  "content" : "bridge"
+               },
+               {
+                  "content" : "brook"
+               },
+               {
+                  "content" : "brother"
+               },
+               {
+                  "content" : "burrow"
+               },
+               {
+                  "content" : "caller"
+               },
+               {
+                  "content" : "cloak"
+               },
+               {
+                  "content" : "cobble"
+               },
+               {
+                  "content" : "den"
+               },
+               {
+                  "content" : "digger"
+               },
+               {
+                  "content" : "drum"
+               },
+               {
+                  "content" : "eye"
+               },
+               {
+                  "content" : "fellow"
+               },
+               {
+                  "content" : "field"
+               },
+               {
+                  "content" : "fingers"
+               },
+               {
+                  "content" : "flower"
+               },
+               {
+                  "content" : "foot"
+               },
+               {
+                  "content" : "fox"
+               },
+               {
+                  "content" : "fur"
+               },
+               {
+                  "content" : "gage"
+               },
+               {
+                  "content" : "galow"
+               },
+               {
+                  "content" : "gather"
+               },
+               {
+                  "content" : "ghost"
+               },
+               {
+                  "content" : "girdle"
+               },
+               {
+                  "content" : "goat"
+               },
+               {
+                  "content" : "gold"
+               },
+               {
+                  "content" : "grass"
+               },
+               {
+                  "content" : "gulas"
+               },
+               {
+                  "content" : "hand"
+               },
+               {
+                  "content" : "head"
+               },
+               {
+                  "content" : "hearth"
+               },
+               {
+                  "content" : "heart"
+               },
+               {
+                  "content" : "hill"
+               },
+               {
+                  "content" : "iciny"
+               },
+               {
+                  "content" : "jay"
+               },
+               {
+                  "content" : "lady"
+               },
+               {
+                  "content" : "leaf"
+               },
+               {
+                  "content" : "letters"
+               },
+               {
+                  "content" : "ley"
+               },
+               {
+                  "content" : "lock"
+               },
+               {
+                  "content" : "lot"
+               },
+               {
+                  "content" : "maker"
+               },
+               {
+                  "content" : "man"
+               },
+               {
+                  "content" : "map"
+               },
+               {
+                  "content" : "midas"
+               },
+               {
+                  "content" : "midge"
+               },
+               {
+                  "content" : "mind"
+               },
+               {
+                  "content" : "one"
+               },
+               {
+                  "content" : "pipe"
+               },
+               {
+                  "content" : "roarer"
+               },
+               {
+                  "content" : "sall"
+               },
+               {
+                  "content" : "shadow"
+               },
+               {
+                  "content" : "shaker"
+               },
+               {
+                  "content" : "sister"
+               },
+               {
+                  "content" : "skin"
+               },
+               {
+                  "content" : "sleep"
+               },
+               {
+                  "content" : "son"
+               },
+               {
+                  "content" : "span"
+               },
+               {
+                  "content" : "stick"
+               },
+               {
+                  "content" : "stoat"
+               },
+               {
+                  "content" : "swan"
+               },
+               {
+                  "content" : "talker"
+               },
+               {
+                  "content" : "tan"
+               },
+               {
+                  "content" : "taunt"
+               },
+               {
+                  "content" : "tender"
+               },
+               {
+                  "content" : "toe"
+               },
+               {
+                  "content" : "topple"
+               },
+               {
+                  "content" : "tory"
+               },
+               {
+                  "content" : "wanderer"
+               },
+               {
+                  "content" : "ward"
+               },
+               {
+                  "content" : "wart"
+               },
+               {
+                  "content" : "wax"
+               },
+               {
+                  "content" : "wick"
+               },
+               {
+                  "content" : "will"
+               },
+               {
+                  "content" : "wind"
+               },
+               {
+                  "content" : "wit"
+               },
+               {
+                  "content" : "wolf"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Amber"
+               },
+               {
+                  "content" : "Ash"
+               },
+               {
+                  "content" : "Banda"
+               },
+               {
+                  "content" : "Boffin"
+               },
+               {
+                  "content" : "Bolger"
+               },
+               {
+                  "content" : "Brace"
+               },
+               {
+                  "content" : "Brown"
+               },
+               {
+                  "content" : "Brush"
+               },
+               {
+                  "content" : "Bull"
+               },
+               {
+                  "content" : "Bunce"
+               },
+               {
+                  "content" : "Burrows"
+               },
+               {
+                  "content" : "Chubb"
+               },
+               {
+                  "content" : "Cold"
+               },
+               {
+                  "content" : "Cotton"
+               },
+               {
+                  "content" : "Crazy"
+               },
+               {
+                  "content" : "Curly"
+               },
+               {
+                  "content" : "Dale"
+               },
+               {
+                  "content" : "Dud"
+               },
+               {
+                  "content" : "Earth"
+               },
+               {
+                  "content" : "Far"
+               },
+               {
+                  "content" : "Fast"
+               },
+               {
+                  "content" : "Fat"
+               },
+               {
+                  "content" : "Fire"
+               },
+               {
+                  "content" : "Flow"
+               },
+               {
+                  "content" : "Forest"
+               },
+               {
+                  "content" : "Free"
+               },
+               {
+                  "content" : "Gam"
+               },
+               {
+                  "content" : "Gardner"
+               },
+               {
+                  "content" : "Glitter"
+               },
+               {
+                  "content" : "Good"
+               },
+               {
+                  "content" : "Great"
+               },
+               {
+                  "content" : "Green"
+               },
+               {
+                  "content" : "Grub"
+               },
+               {
+                  "content" : "Hairy"
+               },
+               {
+                  "content" : "Ham"
+               },
+               {
+                  "content" : "Healthy"
+               },
+               {
+                  "content" : "Heather"
+               },
+               {
+                  "content" : "High"
+               },
+               {
+                  "content" : "Hill"
+               },
+               {
+                  "content" : "Home"
+               },
+               {
+                  "content" : "Honor"
+               },
+               {
+                  "content" : "Horn"
+               },
+               {
+                  "content" : "Hot"
+               },
+               {
+                  "content" : "Jalli"
+               },
+               {
+                  "content" : "Kaese"
+               },
+               {
+                  "content" : "Kalli"
+               },
+               {
+                  "content" : "Laughing"
+               },
+               {
+                  "content" : "Lea"
+               },
+               {
+                  "content" : "Lightning"
+               },
+               {
+                  "content" : "Lin"
+               },
+               {
+                  "content" : "Little"
+               },
+               {
+                  "content" : "Many"
+               },
+               {
+                  "content" : "Mar"
+               },
+               {
+                  "content" : "Meli"
+               },
+               {
+                  "content" : "Mill"
+               },
+               {
+                  "content" : "Monta"
+               },
+               {
+                  "content" : "Moon"
+               },
+               {
+                  "content" : "New"
+               },
+               {
+                  "content" : "Nimble"
+               },
+               {
+                  "content" : "Old"
+               },
+               {
+                  "content" : "Or"
+               },
+               {
+                  "content" : "Ost"
+               },
+               {
+                  "content" : "Over"
+               },
+               {
+                  "content" : "Plump"
+               },
+               {
+                  "content" : "Pretty"
+               },
+               {
+                  "content" : "Quet"
+               },
+               {
+                  "content" : "Quick"
+               },
+               {
+                  "content" : "Rain"
+               },
+               {
+                  "content" : "Road"
+               },
+               {
+                  "content" : "Running"
+               },
+               {
+                  "content" : "Scatter"
+               },
+               {
+                  "content" : "Shadow"
+               },
+               {
+                  "content" : "Short"
+               },
+               {
+                  "content" : "Silver"
+               },
+               {
+                  "content" : "Simple"
+               },
+               {
+                  "content" : "Sire"
+               },
+               {
+                  "content" : "Sky"
+               },
+               {
+                  "content" : "Slow"
+               },
+               {
+                  "content" : "Sly"
+               },
+               {
+                  "content" : "Smooth"
+               },
+               {
+                  "content" : "Spring"
+               },
+               {
+                  "content" : "Sprout"
+               },
+               {
+                  "content" : "Stout"
+               },
+               {
+                  "content" : "Sun"
+               },
+               {
+                  "content" : "Swift"
+               },
+               {
+                  "content" : "Tall"
+               },
+               {
+                  "content" : "Tal"
+               },
+               {
+                  "content" : "Tea"
+               },
+               {
+                  "content" : "Thorn"
+               },
+               {
+                  "content" : "Tigh"
+               },
+               {
+                  "content" : "Toss"
+               },
+               {
+                  "content" : "Trill"
+               },
+               {
+                  "content" : "Under"
+               },
+               {
+                  "content" : "Warm"
+               },
+               {
+                  "content" : "Water"
+               },
+               {
+                  "content" : "Weather"
+               },
+               {
+                  "content" : "Wet"
+               },
+               {
+                  "content" : "Wild"
+               }
+            ]
+         }
+      },
+      "half-orc" : {
+         "allow" : [
+            {
+               "content" : "human"
+            },
+            {
+               "content" : "orc"
+            }
+         ]
+      },
+      "kobold" : {
+         "firstname" : {
+            "root" : [
+               {
+                  "content" : "Bat"
+               },
+               {
+                  "content" : "Bap"
+               },
+               {
+                  "content" : "Bit"
+               },
+               {
+                  "content" : "Bip"
+               },
+               {
+                  "content" : "Bot"
+               },
+               {
+                  "content" : "Car"
+               },
+               {
+                  "content" : "Cor"
+               },
+               {
+                  "content" : "Cak"
+               },
+               {
+                  "content" : "Dat"
+               },
+               {
+                  "content" : "Dit"
+               },
+               {
+                  "content" : "Dot"
+               },
+               {
+                  "content" : "Fax"
+               },
+               {
+                  "content" : "Fat"
+               },
+               {
+                  "content" : "Fot"
+               },
+               {
+                  "content" : "Gat"
+               },
+               {
+                  "content" : "Git"
+               },
+               {
+                  "content" : "Gip"
+               },
+               {
+                  "content" : "Got"
+               },
+               {
+                  "content" : "Jat"
+               },
+               {
+                  "content" : "Jit"
+               },
+               {
+                  "content" : "Jot"
+               },
+               {
+                  "content" : "Jop"
+               },
+               {
+                  "content" : "Lat"
+               },
+               {
+                  "content" : "Lik"
+               },
+               {
+                  "content" : "Lot"
+               },
+               {
+                  "content" : "Nat"
+               },
+               {
+                  "content" : "Niz"
+               },
+               {
+                  "content" : "Nip"
+               },
+               {
+                  "content" : "Not"
+               },
+               {
+                  "content" : "Nop"
+               },
+               {
+                  "content" : "Pat"
+               },
+               {
+                  "content" : "Paz"
+               },
+               {
+                  "content" : "Pot"
+               },
+               {
+                  "content" : "Rat"
+               },
+               {
+                  "content" : "Rap"
+               },
+               {
+                  "content" : "Rit"
+               },
+               {
+                  "content" : "Rot"
+               },
+               {
+                  "content" : "Rop"
+               },
+               {
+                  "content" : "Taz"
+               },
+               {
+                  "content" : "Teb"
+               },
+               {
+                  "content" : "Tean"
+               },
+               {
+                  "content" : "Vab"
+               },
+               {
+                  "content" : "Vaz"
+               },
+               {
+                  "content" : "Vit"
+               },
+               {
+                  "content" : "Vor"
+               },
+               {
+                  "content" : "Wat"
+               },
+               {
+                  "content" : "Wit"
+               },
+               {
+                  "content" : "Wot"
+               },
+               {
+                  "content" : "Yat"
+               },
+               {
+                  "content" : "Yap"
+               },
+               {
+                  "content" : "Yik"
+               },
+               {
+                  "content" : "Yip"
+               },
+               {
+                  "content" : "Yot"
+               },
+               {
+                  "content" : "Yop"
+               },
+               {
+                  "content" : "Zat"
+               },
+               {
+                  "content" : "Zit"
+               },
+               {
+                  "content" : "Zol"
+               }
+            ]
+         }
+      },
+      "any" : {
+         "allow" : [
+            {
+               "content" : "human"
+            },
+            {
+               "content" : "halfling"
+            },
+            {
+               "content" : "lizardfolk"
+            },
+            {
+               "content" : "ogre"
+            },
+            {
+               "content" : "troglodyte"
+            },
+            {
+               "content" : "elf"
+            },
+            {
+               "content" : "dwarf"
+            },
+            {
+               "content" : "gnome"
+            },
+            {
+               "content" : "kobold"
+            },
+            {
+               "content" : "goblin"
+            }
+         ]
+      },
+      "deep dwarf" : {
+         "allow" : {
+            "content" : "dwarf"
+         }
+      },
+      "half-dwarf" : {
+         "allow" : [
+            {
+               "content" : "human"
+            },
+            {
+               "content" : "dwarf"
+            }
+         ]
+      },
+      "orc" : {
+         "firstname" : {
+            "title_chance" : "5",
+            "post" : [
+               {
+                  "content" : "ab"
+               },
+               {
+                  "content" : "agh"
+               },
+               {
+                  "content" : "ag"
+               },
+               {
+                  "content" : "ah"
+               },
+               {
+                  "content" : "akh"
+               },
+               {
+                  "content" : "ak"
+               },
+               {
+                  "content" : "a"
+               },
+               {
+                  "content" : "arg"
+               },
+               {
+                  "content" : "arz"
+               },
+               {
+                  "content" : "ash"
+               },
+               {
+                  "content" : "ath"
+               },
+               {
+                  "content" : "bub"
+               },
+               {
+                  "content" : "ig"
+               },
+               {
+                  "content" : "ob"
+               },
+               {
+                  "content" : "ogh"
+               },
+               {
+                  "content" : "og"
+               },
+               {
+                  "content" : "ok"
+               },
+               {
+                  "content" : "org"
+               },
+               {
+                  "content" : "or"
+               },
+               {
+                  "content" : "osh"
+               },
+               {
+                  "content" : "oz"
+               },
+               {
+                  "content" : "rog"
+               },
+               {
+                  "content" : "sh"
+               },
+               {
+                  "content" : "ub"
+               },
+               {
+                  "content" : "ud"
+               },
+               {
+                  "content" : "ugh"
+               },
+               {
+                  "content" : "ug"
+               },
+               {
+                  "content" : "uh"
+               },
+               {
+                  "content" : "uk"
+               },
+               {
+                  "content" : "um"
+               },
+               {
+                  "content" : "unk"
+               },
+               {
+                  "content" : "u"
+               },
+               {
+                  "content" : "urg"
+               },
+               {
+                  "content" : "urz"
+               },
+               {
+                  "content" : "ush"
+               },
+               {
+                  "content" : "ut"
+               },
+               {
+                  "content" : "uul"
+               },
+               {
+                  "content" : "uzg"
+               },
+               {
+                  "content" : "zog"
+               },
+               {}
+            ],
+            "pre" : [
+               {
+                  "content" : "A"
+               },
+               {
+                  "content" : "Ba"
+               },
+               {
+                  "content" : "Bi"
+               },
+               {
+                  "content" : "Bla"
+               },
+               {
+                  "content" : "Blo"
+               },
+               {
+                  "content" : "Blu"
+               },
+               {
+                  "content" : "Bla"
+               },
+               {
+                  "content" : "Bli"
+               },
+               {
+                  "content" : "Da"
+               },
+               {
+                  "content" : "Di"
+               },
+               {
+                  "content" : "Do"
+               },
+               {
+                  "content" : "Du"
+               },
+               {
+                  "content" : "Dra"
+               },
+               {
+                  "content" : "Dri"
+               },
+               {
+                  "content" : "Dro"
+               },
+               {
+                  "content" : "Dru"
+               },
+               {
+                  "content" : "Ga"
+               },
+               {
+                  "content" : "Gu"
+               },
+               {
+                  "content" : "Go"
+               },
+               {
+                  "content" : "Gra"
+               },
+               {
+                  "content" : "Gro"
+               },
+               {
+                  "content" : "Ghu"
+               },
+               {
+                  "content" : "Gha"
+               },
+               {
+                  "content" : "Gho"
+               },
+               {
+                  "content" : "Ghu"
+               },
+               {
+                  "content" : "Gla"
+               },
+               {
+                  "content" : "Gli"
+               },
+               {
+                  "content" : "Glo"
+               },
+               {
+                  "content" : "Glu"
+               },
+               {
+                  "content" : "Ha"
+               },
+               {
+                  "content" : "Hu"
+               },
+               {
+                  "content" : "Ho"
+               },
+               {
+                  "content" : "I"
+               },
+               {
+                  "content" : "Ka"
+               },
+               {
+                  "content" : "Ku"
+               },
+               {
+                  "content" : "Ko"
+               },
+               {
+                  "content" : "Kra"
+               },
+               {
+                  "content" : "Kro"
+               },
+               {
+                  "content" : "Khu"
+               },
+               {
+                  "content" : "Kha"
+               },
+               {
+                  "content" : "Kho"
+               },
+               {
+                  "content" : "Khu"
+               },
+               {
+                  "content" : "Kla"
+               },
+               {
+                  "content" : "Kli"
+               },
+               {
+                  "content" : "Klo"
+               },
+               {
+                  "content" : "Klu"
+               },
+               {
+                  "content" : "Ma"
+               },
+               {
+                  "content" : "Mi"
+               },
+               {
+                  "content" : "Mu"
+               },
+               {
+                  "content" : "Mo"
+               },
+               {
+                  "content" : "Mho"
+               },
+               {
+                  "content" : "Mhu"
+               },
+               {
+                  "content" : "Na"
+               },
+               {
+                  "content" : "Nu"
+               },
+               {
+                  "content" : "No"
+               },
+               {
+                  "content" : "Ni"
+               },
+               {
+                  "content" : "Nho"
+               },
+               {
+                  "content" : "Nhu"
+               },
+               {
+                  "content" : "O"
+               },
+               {
+                  "content" : "Ob"
+               },
+               {
+                  "content" : "Od"
+               },
+               {
+                  "content" : "Og"
+               },
+               {
+                  "content" : "Oz"
+               },
+               {
+                  "content" : "U"
+               },
+               {
+                  "content" : "Uh"
+               },
+               {
+                  "content" : "Ra"
+               },
+               {
+                  "content" : "Ru"
+               },
+               {
+                  "content" : "Ro"
+               },
+               {
+                  "content" : "Rra"
+               },
+               {
+                  "content" : "Rro"
+               },
+               {
+                  "content" : "Rhu"
+               },
+               {
+                  "content" : "Rha"
+               },
+               {
+                  "content" : "Rho"
+               },
+               {
+                  "content" : "Rhu"
+               },
+               {
+                  "content" : "Su"
+               },
+               {
+                  "content" : "So"
+               },
+               {
+                  "content" : "Sra"
+               },
+               {
+                  "content" : "Sro"
+               },
+               {
+                  "content" : "Shu"
+               },
+               {
+                  "content" : "Sha"
+               },
+               {
+                  "content" : "Sho"
+               },
+               {
+                  "content" : "Shu"
+               },
+               {
+                  "content" : "Ta"
+               },
+               {
+                  "content" : "Tu"
+               },
+               {
+                  "content" : "To"
+               },
+               {
+                  "content" : "Tra"
+               },
+               {
+                  "content" : "Tro"
+               },
+               {
+                  "content" : "Thu"
+               },
+               {
+                  "content" : "Tha"
+               },
+               {
+                  "content" : "Tho"
+               },
+               {
+                  "content" : "Thu"
+               },
+               {
+                  "content" : "Thra"
+               },
+               {
+                  "content" : "Thro"
+               },
+               {
+                  "content" : "Thru"
+               },
+               {
+                  "content" : "Za"
+               },
+               {
+                  "content" : "Zu"
+               },
+               {
+                  "content" : "Zi"
+               },
+               {
+                  "content" : "Zo"
+               },
+               {
+                  "content" : "Zra"
+               },
+               {
+                  "content" : "Zro"
+               },
+               {
+                  "content" : "Zhu"
+               },
+               {
+                  "content" : "Zha"
+               },
+               {
+                  "content" : "Zho"
+               },
+               {
+                  "content" : "Zhu"
+               }
+            ],
+            "post_chance" : "70",
+            "root" : [
+               {
+                  "content" : "b"
+               },
+               {
+                  "content" : "bb"
+               },
+               {
+                  "content" : "bd"
+               },
+               {
+                  "content" : "bg"
+               },
+               {
+                  "content" : "dd"
+               },
+               {
+                  "content" : "d"
+               },
+               {
+                  "content" : "g"
+               },
+               {
+                  "content" : "gg"
+               },
+               {
+                  "content" : "zg"
+               },
+               {
+                  "content" : "gb"
+               },
+               {
+                  "content" : "gl"
+               },
+               {
+                  "content" : "gt"
+               },
+               {
+                  "content" : "l"
+               },
+               {
+                  "content" : "k"
+               },
+               {
+                  "content" : "m"
+               },
+               {
+                  "content" : "mm"
+               },
+               {
+                  "content" : "n"
+               },
+               {
+                  "content" : "r"
+               },
+               {
+                  "content" : "s"
+               },
+               {
+                  "content" : "sh"
+               },
+               {
+                  "content" : "tg"
+               },
+               {
+                  "content" : "tz"
+               },
+               {
+                  "content" : "z"
+               }
+            ],
+            "title" : [
+               {
+                  "content" : "Chief"
+               },
+               {
+                  "content" : "Shaman"
+               }
+            ]
+         },
+         "lastname" : {
+            "trailer" : [
+               {
+                  "content" : "The Red"
+               },
+               {
+                  "content" : "The Black"
+               },
+               {
+                  "content" : "The Gray"
+               },
+               {
+                  "content" : "The Cruel"
+               },
+               {
+                  "content" : "The Brave"
+               },
+               {
+                  "content" : "The Strong"
+               }
+            ],
+            "trailer_chance" : "10",
+            "post" : [
+               {
+                  "content" : "nor"
+               },
+               {
+                  "content" : "cracker"
+               },
+               {
+                  "content" : "breaker"
+               },
+               {
+                  "content" : "snapper"
+               },
+               {
+                  "content" : "crusher"
+               },
+               {
+                  "content" : "killer"
+               },
+               {
+                  "content" : "ripper"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Mok"
+               },
+               {
+                  "content" : "Skull"
+               },
+               {
+                  "content" : "Bone"
+               },
+               {
+                  "content" : "Head"
+               },
+               {
+                  "content" : "Neck"
+               },
+               {
+                  "content" : "Back"
+               },
+               {
+                  "content" : "Leg"
+               },
+               {
+                  "content" : "Arm"
+               }
+            ]
+         }
+      },
+      "gnome" : {
+         "firstname" : {
+            "post" : [
+               {
+                  "content" : "an"
+               },
+               {
+                  "content" : "va"
+               },
+               {
+                  "content" : "son"
+               },
+               {
+                  "content" : "rette"
+               },
+               {
+                  "content" : "mida"
+               },
+               {
+                  "content" : "gan"
+               },
+               {
+                  "content" : "lita"
+               },
+               {
+                  "content" : "gles"
+               },
+               {
+                  "content" : "nk"
+               },
+               {
+                  "content" : "tsy"
+               },
+               {
+                  "content" : "lin"
+               },
+               {
+                  "content" : "by"
+               },
+               {
+                  "content" : "ley"
+               },
+               {
+                  "content" : "ina"
+               },
+               {
+                  "content" : "xie"
+               },
+               {
+                  "content" : "key"
+               },
+               {
+                  "content" : "ita"
+               },
+               {
+                  "content" : "ton"
+               },
+               {
+                  "content" : "vin"
+               },
+               {
+                  "content" : "eno"
+               },
+               {
+                  "content" : "wan"
+               },
+               {
+                  "content" : "dan"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Ada"
+               },
+               {
+                  "content" : "Ai"
+               },
+               {
+                  "content" : "Alli"
+               },
+               {
+                  "content" : "Arn"
+               },
+               {
+                  "content" : "Bab"
+               },
+               {
+                  "content" : "Bea"
+               },
+               {
+                  "content" : "Bon"
+               },
+               {
+                  "content" : "Cot"
+               },
+               {
+                  "content" : "Car"
+               },
+               {
+                  "content" : "Gav"
+               },
+               {
+                  "content" : "Gab"
+               },
+               {
+                  "content" : "Gil"
+               },
+               {
+                  "content" : "Ham"
+               },
+               {
+                  "content" : "Hew"
+               },
+               {
+                  "content" : "Jen"
+               },
+               {
+                  "content" : "Jun"
+               },
+               {
+                  "content" : "Kia"
+               },
+               {
+                  "content" : "Mal"
+               },
+               {
+                  "content" : "Nin"
+               },
+               {
+                  "content" : "Tul"
+               },
+               {
+                  "content" : "Tor"
+               },
+               {
+                  "content" : "Wiz"
+               },
+               {
+                  "content" : "Tom"
+               },
+               {
+                  "content" : "Tom"
+               }
+            ],
+            "post_chance" : "70"
+         },
+         "lastname" : {
+            "post" : [
+               {
+                  "content" : "fiz"
+               },
+               {
+                  "content" : "gauge"
+               },
+               {
+                  "content" : "sprocket"
+               },
+               {
+                  "content" : "gadget"
+               },
+               {
+                  "content" : "bit"
+               },
+               {
+                  "content" : "scope"
+               },
+               {
+                  "content" : "cog"
+               },
+               {
+                  "content" : "fuel"
+               },
+               {
+                  "content" : "bolt"
+               },
+               {
+                  "content" : "jet"
+               },
+               {
+                  "content" : "wink"
+               },
+               {
+                  "content" : "tonk"
+               },
+               {
+                  "content" : "blast"
+               },
+               {
+                  "content" : "bun"
+               }
+            ],
+            "pre" : [
+               {
+                  "content" : "Coggle"
+               },
+               {
+                  "content" : "Cobble"
+               },
+               {
+                  "content" : "Electro"
+               },
+               {
+                  "content" : "Fuse"
+               },
+               {
+                  "content" : "Gear"
+               },
+               {
+                  "content" : "Grease"
+               },
+               {
+                  "content" : "Gyro"
+               },
+               {
+                  "content" : "Rocket"
+               },
+               {
+                  "content" : "Thermo"
+               },
+               {
+                  "content" : "Tiddly"
+               },
+               {
+                  "content" : "Tinker"
+               },
+               {
+                  "content" : "Trigger"
+               },
+               {
+                  "content" : "Wizz"
+               },
+               {
+                  "content" : "Wobb"
+               }
+            ]
+         }
+      },
+      "other" : {
+         "allow" : [
+            {
+               "content" : "human"
+            },
+            {
+               "content" : "halfling"
+            },
+            {
+               "content" : "lizardfolk"
+            },
+            {
+               "content" : "ogre"
+            },
+            {
+               "content" : "troglodyte"
+            },
+            {
+               "content" : "elf"
+            },
+            {
+               "content" : "dwarf"
+            },
+            {
+               "content" : "gnome"
+            },
+            {
+               "content" : "kobold"
+            },
+            {
+               "content" : "goblin"
+            }
+         ]
+      },
+      "goblin" : {
+         "firstname" : {
+            "pre" : [
+               {
+                  "content" : "Br"
+               },
+               {
+                  "content" : "Dzu"
+               },
+               {
+                  "content" : "Gkut"
+               },
+               {
+                  "content" : "K"
+               },
+               {
+                  "content" : "K"
+               },
+               {
+                  "content" : "Kz"
+               },
+               {
+                  "content" : "M"
+               },
+               {
+                  "content" : "M"
+               },
+               {
+                  "content" : "Nar"
+               },
+               {
+                  "content" : "Nb"
+               },
+               {
+                  "content" : "Rb"
+               },
+               {
+                  "content" : "Rug"
+               },
+               {
+                  "content" : "Rx"
+               },
+               {
+                  "content" : "Tb"
+               },
+               {
+                  "content" : "Tg"
+               },
+               {
+                  "content" : "Tm"
+               },
+               {
+                  "content" : "Tr"
+               },
+               {
+                  "content" : "Tud"
+               },
+               {
+                  "content" : "Xod"
+               },
+               {
+                  "content" : "Xr"
+               },
+               {
+                  "content" : "Xt"
+               },
+               {
+                  "content" : "Xu"
+               },
+               {
+                  "content" : "Z"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "adr"
+               },
+               {
+                  "content" : "bok"
+               },
+               {
+                  "content" : "eb"
+               },
+               {
+                  "content" : "egd"
+               },
+               {
+                  "content" : "emt"
+               },
+               {
+                  "content" : "erm"
+               },
+               {
+                  "content" : "et"
+               },
+               {
+                  "content" : "exn"
+               },
+               {
+                  "content" : "ezn"
+               },
+               {
+                  "content" : "kasr"
+               },
+               {
+                  "content" : "ods"
+               },
+               {
+                  "content" : "og"
+               },
+               {
+                  "content" : "ok"
+               },
+               {
+                  "content" : "omd"
+               },
+               {
+                  "content" : "omn"
+               },
+               {
+                  "content" : "or"
+               },
+               {
+                  "content" : "ot"
+               },
+               {
+                  "content" : "oten"
+               },
+               {
+                  "content" : "ub"
+               },
+               {
+                  "content" : "uk"
+               },
+               {
+                  "content" : "un"
+               },
+               {
+                  "content" : "unk"
+               },
+               {
+                  "content" : "urm"
+               },
+               {
+                  "content" : "us"
+               },
+               {
+                  "content" : "zar"
+               }
+            ]
+         },
+         "lastname" : {
+            "pre" : [
+               {
+                  "content" : "Big"
+               },
+               {
+                  "content" : "Blade"
+               },
+               {
+                  "content" : "Brain"
+               },
+               {
+                  "content" : "Cleaver"
+               },
+               {
+                  "content" : "Damn"
+               },
+               {
+                  "content" : "Dark"
+               },
+               {
+                  "content" : "Dread"
+               },
+               {
+                  "content" : "Evil"
+               },
+               {
+                  "content" : "Foul"
+               },
+               {
+                  "content" : "Ghostt"
+               },
+               {
+                  "content" : "Giant"
+               },
+               {
+                  "content" : "Great"
+               },
+               {
+                  "content" : "Great"
+               },
+               {
+                  "content" : "Iron"
+               },
+               {
+                  "content" : "Laugh"
+               },
+               {
+                  "content" : "Metal"
+               },
+               {
+                  "content" : "Metal"
+               },
+               {
+                  "content" : "Night"
+               },
+               {
+                  "content" : "Ogre"
+               },
+               {
+                  "content" : "Ooze"
+               },
+               {
+                  "content" : "Rant"
+               },
+               {
+                  "content" : "Rock"
+               },
+               {
+                  "content" : "Worm"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "basher"
+               },
+               {
+                  "content" : "beast"
+               },
+               {
+                  "content" : "bone"
+               },
+               {
+                  "content" : "cutter"
+               },
+               {
+                  "content" : "damn"
+               },
+               {
+                  "content" : "death"
+               },
+               {
+                  "content" : "doom"
+               },
+               {
+                  "content" : "fury"
+               },
+               {
+                  "content" : "gloom"
+               },
+               {
+                  "content" : "hand"
+               },
+               {
+                  "content" : "host"
+               },
+               {
+                  "content" : "howl"
+               },
+               {
+                  "content" : "kill"
+               },
+               {
+                  "content" : "maw"
+               },
+               {
+                  "content" : "mouth"
+               },
+               {
+                  "content" : "murder"
+               },
+               {
+                  "content" : "render"
+               },
+               {
+                  "content" : "rot"
+               },
+               {
+                  "content" : "shadow"
+               },
+               {
+                  "content" : "shredder"
+               },
+               {
+                  "content" : "slay"
+               },
+               {
+                  "content" : "stomach"
+               },
+               {
+                  "content" : "wiser"
+               }
+            ]
+         }
+      },
+      "dwarf" : {
+         "firstname" : {
+            "pre" : [
+               {
+                  "content" : "Aba"
+               },
+               {
+                  "content" : "Ada"
+               },
+               {
+                  "content" : "Ar"
+               },
+               {
+                  "content" : "Bal"
+               },
+               {
+                  "content" : "Bar"
+               },
+               {
+                  "content" : "Bor"
+               },
+               {
+                  "content" : "Bal"
+               },
+               {
+                  "content" : "Bro"
+               },
+               {
+                  "content" : "Dro"
+               },
+               {
+                  "content" : "Dur"
+               },
+               {
+                  "content" : "Fal"
+               },
+               {
+                  "content" : "Gar"
+               },
+               {
+                  "content" : "Gor"
+               },
+               {
+                  "content" : "Grim"
+               },
+               {
+                  "content" : "Grum"
+               },
+               {
+                  "content" : "Grun"
+               },
+               {
+                  "content" : "Lo"
+               },
+               {
+                  "content" : "Mor"
+               },
+               {
+                  "content" : "Snor"
+               },
+               {
+                  "content" : "Ska"
+               },
+               {
+                  "content" : "Thro"
+               },
+               {
+                  "content" : "Thor"
+               },
+               {
+                  "content" : "Ul"
+               },
+               {
+                  "content" : "Yor"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "ag"
+               },
+               {
+                  "content" : "bin"
+               },
+               {
+                  "content" : "bor"
+               },
+               {
+                  "content" : "bul"
+               },
+               {
+                  "content" : "dal"
+               },
+               {
+                  "content" : "din"
+               },
+               {
+                  "content" : "dor"
+               },
+               {
+                  "content" : "gan"
+               },
+               {
+                  "content" : "gar"
+               },
+               {
+                  "content" : "gin"
+               },
+               {
+                  "content" : "kon"
+               },
+               {
+                  "content" : "mir"
+               },
+               {
+                  "content" : "nir"
+               },
+               {
+                  "content" : "ond"
+               },
+               {
+                  "content" : "orin"
+               },
+               {
+                  "content" : "ril"
+               },
+               {
+                  "content" : "rim"
+               },
+               {
+                  "content" : "rin"
+               },
+               {
+                  "content" : "run"
+               }
+            ]
+         },
+         "lastname" : {
+            "post" : [
+               {
+                  "content" : "ale"
+               },
+               {
+                  "content" : "altar"
+               },
+               {
+                  "content" : "ankle"
+               },
+               {
+                  "content" : "anvil"
+               },
+               {
+                  "content" : "arm"
+               },
+               {
+                  "content" : "axe"
+               },
+               {
+                  "content" : "back"
+               },
+               {
+                  "content" : "baker"
+               },
+               {
+                  "content" : "barrel"
+               },
+               {
+                  "content" : "battler"
+               },
+               {
+                  "content" : "beard"
+               },
+               {
+                  "content" : "bellows"
+               },
+               {
+                  "content" : "belly"
+               },
+               {
+                  "content" : "blade"
+               },
+               {
+                  "content" : "blood"
+               },
+               {
+                  "content" : "boot"
+               },
+               {
+                  "content" : "bread"
+               },
+               {
+                  "content" : "breaker"
+               },
+               {
+                  "content" : "breeches"
+               },
+               {
+                  "content" : "bridge"
+               },
+               {
+                  "content" : "brooch"
+               },
+               {
+                  "content" : "cairn"
+               },
+               {
+                  "content" : "cask"
+               },
+               {
+                  "content" : "castle"
+               },
+               {
+                  "content" : "cavern"
+               },
+               {
+                  "content" : "chest"
+               },
+               {
+                  "content" : "chisel"
+               },
+               {
+                  "content" : "cloak"
+               },
+               {
+                  "content" : "coin"
+               },
+               {
+                  "content" : "crown"
+               },
+               {
+                  "content" : "cutter"
+               },
+               {
+                  "content" : "door"
+               },
+               {
+                  "content" : "ear"
+               },
+               {
+                  "content" : "eye"
+               },
+               {
+                  "content" : "face"
+               },
+               {
+                  "content" : "fighter"
+               },
+               {
+                  "content" : "finger"
+               },
+               {
+                  "content" : "fist"
+               },
+               {
+                  "content" : "foot"
+               },
+               {
+                  "content" : "forge"
+               },
+               {
+                  "content" : "founder"
+               },
+               {
+                  "content" : "gem"
+               },
+               {
+                  "content" : "goblet"
+               },
+               {
+                  "content" : "grave"
+               },
+               {
+                  "content" : "grieve"
+               },
+               {
+                  "content" : "guard"
+               },
+               {
+                  "content" : "hair"
+               },
+               {
+                  "content" : "hall"
+               },
+               {
+                  "content" : "hammer"
+               },
+               {
+                  "content" : "hand"
+               },
+               {
+                  "content" : "head"
+               },
+               {
+                  "content" : "helm"
+               },
+               {
+                  "content" : "hill"
+               },
+               {
+                  "content" : "hunter"
+               },
+               {
+                  "content" : "keep"
+               },
+               {
+                  "content" : "keg"
+               },
+               {
+                  "content" : "killer"
+               },
+               {
+                  "content" : "knee"
+               },
+               {
+                  "content" : "leg"
+               },
+               {
+                  "content" : "mace"
+               },
+               {
+                  "content" : "mail"
+               },
+               {
+                  "content" : "mansion"
+               },
+               {
+                  "content" : "mead"
+               },
+               {
+                  "content" : "mill"
+               },
+               {
+                  "content" : "mine"
+               },
+               {
+                  "content" : "molder"
+               },
+               {
+                  "content" : "moor"
+               },
+               {
+                  "content" : "mouth"
+               },
+               {
+                  "content" : "mug"
+               },
+               {
+                  "content" : "neck"
+               },
+               {
+                  "content" : "nose"
+               },
+               {
+                  "content" : "plate"
+               },
+               {
+                  "content" : "ring"
+               },
+               {
+                  "content" : "river"
+               },
+               {
+                  "content" : "road"
+               },
+               {
+                  "content" : "robe"
+               },
+               {
+                  "content" : "sapper"
+               },
+               {
+                  "content" : "shield"
+               },
+               {
+                  "content" : "ship"
+               },
+               {
+                  "content" : "shoulder"
+               },
+               {
+                  "content" : "slasher"
+               },
+               {
+                  "content" : "slayer"
+               },
+               {
+                  "content" : "smasher"
+               },
+               {
+                  "content" : "smelter"
+               },
+               {
+                  "content" : "smith"
+               },
+               {
+                  "content" : "staff"
+               },
+               {
+                  "content" : "stomach"
+               },
+               {
+                  "content" : "stone"
+               },
+               {
+                  "content" : "stream"
+               },
+               {
+                  "content" : "sword"
+               },
+               {
+                  "content" : "table"
+               },
+               {
+                  "content" : "throne"
+               },
+               {
+                  "content" : "toe"
+               },
+               {
+                  "content" : "tower"
+               },
+               {
+                  "content" : "tracker"
+               },
+               {
+                  "content" : "tun"
+               },
+               {
+                  "content" : "tunnel"
+               },
+               {
+                  "content" : "vault"
+               },
+               {
+                  "content" : "vein"
+               },
+               {
+                  "content" : "vest"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Amber"
+               },
+               {
+                  "content" : "Armor"
+               },
+               {
+                  "content" : "Ash"
+               },
+               {
+                  "content" : "Barley"
+               },
+               {
+                  "content" : "Bear"
+               },
+               {
+                  "content" : "Bitter"
+               },
+               {
+                  "content" : "Black"
+               },
+               {
+                  "content" : "Blood"
+               },
+               {
+                  "content" : "Blue"
+               },
+               {
+                  "content" : "Brandy"
+               },
+               {
+                  "content" : "Brass"
+               },
+               {
+                  "content" : "Bright"
+               },
+               {
+                  "content" : "Broad"
+               },
+               {
+                  "content" : "Bronze"
+               },
+               {
+                  "content" : "Carbon"
+               },
+               {
+                  "content" : "Clashing"
+               },
+               {
+                  "content" : "Claw"
+               },
+               {
+                  "content" : "Clay"
+               },
+               {
+                  "content" : "Coal"
+               },
+               {
+                  "content" : "Cold"
+               },
+               {
+                  "content" : "Copper"
+               },
+               {
+                  "content" : "Coral"
+               },
+               {
+                  "content" : "Crunch"
+               },
+               {
+                  "content" : "Crystal"
+               },
+               {
+                  "content" : "Dark"
+               },
+               {
+                  "content" : "Deep"
+               },
+               {
+                  "content" : "Dog"
+               },
+               {
+                  "content" : "Dough"
+               },
+               {
+                  "content" : "Dragon"
+               },
+               {
+                  "content" : "Drake"
+               },
+               {
+                  "content" : "Drum"
+               },
+               {
+                  "content" : "Dull"
+               },
+               {
+                  "content" : "Dwarf"
+               },
+               {
+                  "content" : "Earth"
+               },
+               {
+                  "content" : "Feast"
+               },
+               {
+                  "content" : "Fire"
+               },
+               {
+                  "content" : "Foe"
+               },
+               {
+                  "content" : "Forge"
+               },
+               {
+                  "content" : "Gold"
+               },
+               {
+                  "content" : "Good"
+               },
+               {
+                  "content" : "Grand"
+               },
+               {
+                  "content" : "Granite"
+               },
+               {
+                  "content" : "Gravel"
+               },
+               {
+                  "content" : "Gray"
+               },
+               {
+                  "content" : "Greasey"
+               },
+               {
+                  "content" : "Green"
+               },
+               {
+                  "content" : "Hawk"
+               },
+               {
+                  "content" : "Holy"
+               },
+               {
+                  "content" : "Honor"
+               },
+               {
+                  "content" : "Ice"
+               },
+               {
+                  "content" : "Iron"
+               },
+               {
+                  "content" : "Ivory"
+               },
+               {
+                  "content" : "Jade"
+               },
+               {
+                  "content" : "Jet"
+               },
+               {
+                  "content" : "Kind"
+               },
+               {
+                  "content" : "Lead"
+               },
+               {
+                  "content" : "Light"
+               },
+               {
+                  "content" : "Lightning"
+               },
+               {
+                  "content" : "Lion"
+               },
+               {
+                  "content" : "Lumber"
+               },
+               {
+                  "content" : "Marble"
+               },
+               {
+                  "content" : "Mithril"
+               },
+               {
+                  "content" : "Moon"
+               },
+               {
+                  "content" : "Oat"
+               },
+               {
+                  "content" : "Oil"
+               },
+               {
+                  "content" : "Onyx"
+               },
+               {
+                  "content" : "Opal"
+               },
+               {
+                  "content" : "Orange"
+               },
+               {
+                  "content" : "Paper"
+               },
+               {
+                  "content" : "Pearl"
+               },
+               {
+                  "content" : "Platinum"
+               },
+               {
+                  "content" : "Quartz"
+               },
+               {
+                  "content" : "Rat"
+               },
+               {
+                  "content" : "Red"
+               },
+               {
+                  "content" : "Roar"
+               },
+               {
+                  "content" : "Ruby"
+               },
+               {
+                  "content" : "Rust"
+               },
+               {
+                  "content" : "Salt"
+               },
+               {
+                  "content" : "Shiny"
+               },
+               {
+                  "content" : "Silver"
+               },
+               {
+                  "content" : "Slate"
+               },
+               {
+                  "content" : "Smart"
+               },
+               {
+                  "content" : "Smoke"
+               },
+               {
+                  "content" : "Star"
+               },
+               {
+                  "content" : "Steel"
+               },
+               {
+                  "content" : "Stone"
+               },
+               {
+                  "content" : "Storm"
+               },
+               {
+                  "content" : "Strong"
+               },
+               {
+                  "content" : "Sun"
+               },
+               {
+                  "content" : "Talon"
+               },
+               {
+                  "content" : "Thud"
+               },
+               {
+                  "content" : "Tiger"
+               },
+               {
+                  "content" : "Tin"
+               },
+               {
+                  "content" : "Ugly"
+               },
+               {
+                  "content" : "War"
+               },
+               {
+                  "content" : "Wave"
+               },
+               {
+                  "content" : "Wheel"
+               },
+               {
+                  "content" : "White"
+               },
+               {
+                  "content" : "Wise"
+               }
+            ]
+         }
+      },
+      "ogre" : {
+         "firstname" : {
+            "post" : [
+               {
+                  "content" : "sh"
+               },
+               {
+                  "content" : "k"
+               },
+               {
+                  "content" : "ap"
+               },
+               {
+                  "content" : "gan"
+               },
+               {
+                  "content" : "duk"
+               },
+               {
+                  "content" : "bel"
+               },
+               {
+                  "content" : "bal"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Po"
+               },
+               {
+                  "content" : "Do"
+               },
+               {
+                  "content" : "Du"
+               },
+               {
+                  "content" : "Da"
+               },
+               {
+                  "content" : "Gu"
+               },
+               {
+                  "content" : "U"
+               },
+               {
+                  "content" : "Gha"
+               },
+               {
+                  "content" : "Go"
+               },
+               {
+                  "content" : "Gu"
+               },
+               {
+                  "content" : "Ki"
+               }
+            ]
+         },
+         "lastname" : {
+            "post" : [
+               {
+                  "content" : "mane"
+               },
+               {
+                  "content" : "snout"
+               },
+               {
+                  "content" : "fang"
+               },
+               {
+                  "content" : "claw"
+               },
+               {
+                  "content" : "tooth"
+               },
+               {
+                  "content" : "root"
+               },
+               {
+                  "content" : "branch"
+               },
+               {
+                  "content" : "nut"
+               }
+            ],
+            "root" : [
+               {
+                  "content" : "Bear"
+               },
+               {
+                  "content" : "Boar"
+               },
+               {
+                  "content" : "Eagle"
+               },
+               {
+                  "content" : "Rock"
+               },
+               {
+                  "content" : "Oak"
+               },
+               {
+                  "content" : "Ox"
+               }
+            ]
+         }
+      }
+   }
+}
