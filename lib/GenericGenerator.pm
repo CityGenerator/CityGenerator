@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use vars qw(@ISA @EXPORT_OK $VERSION $XS_VERSION $TESTING_PERL_ONLY);
 use base qw(Exporter);
-@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features generate_stats);
+@EXPORT_OK = qw( get_seed set_seed rand_from_array roll_from_array d parse_object parse_template select_features generate_stats bound rand_between );
 ###############################################################################
 
 =head1 NAME
@@ -349,6 +349,42 @@ sub parse_template{
     $ds->{$tmplname}=$content;
 
     return $ds;
+}
+
+
+###############################################################################
+
+=head2 bound()
+
+ensure a value is between two other values.
+
+=cut
+
+###############################################################################
+sub bound {
+    my ($value,$min,$max) = @_;
+    if ($value <$min){
+        $value=$min;
+    }elsif ($value>$max){
+        $value=$max;
+    }
+    return $value;
+}
+
+
+###############################################################################
+
+=head2 rand_between()
+
+generates a value between two values, inclusive
+
+=cut
+
+###############################################################################
+sub rand_between {
+    my ($min,$max) = @_;
+    my $delta=$max-$min;
+    return int(rand($delta)) + $min;
 }
 
 1;

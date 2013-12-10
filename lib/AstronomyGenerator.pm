@@ -30,7 +30,6 @@ use Data::Dumper;
 use Exporter;
 use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
 use Lingua::EN::Inflect qw(A);
-use List::Util 'shuffle', 'min', 'max';
 use Math::Trig ':pi';
 use POSIX;
 use version;

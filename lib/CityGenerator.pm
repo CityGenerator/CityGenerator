@@ -32,7 +32,7 @@ use CurrencyGenerator;
 use ClimateGenerator;
 use Data::Dumper;
 use Exporter;
-use GenericGenerator qw( rand_from_array roll_from_array d parse_object );
+use GenericGenerator qw( rand_from_array roll_from_array d parse_object rand_between bound );
 use Math::Complex ':pi';
 use NPCGenerator;
 use DeityGenerator; 
@@ -186,11 +186,11 @@ sub set_city_size {
 
     my $citysize = roll_from_array( $city->{'size_roll'} , $city_data->{'size'}->{'option'} );
 
-    my $sizedelta = $citysize->{'maxpop'} - $citysize->{'minpop'};
+    my $estimate= rand_between($citysize->{'minpop'},$citysize->{'maxpop'});
 
     $city->{'size'}          = $citysize->{'size'}                    if ( !defined $city->{'size'} );
     $city->{'gplimit'}       = $citysize->{'gplimit'}                 if ( !defined $city->{'gplimit'} );
-    $city->{'pop_estimate'}  = $citysize->{'minpop'} + &d($sizedelta) if ( !defined $city->{'pop_estimate'} );
+    $city->{'pop_estimate'}  = $estimate                              if ( !defined $city->{'pop_estimate'} );
     $city->{'size_modifier'} = $citysize->{'size_modifier'}           if ( !defined $city->{'size_modifier'} );
     $city->{'min_density'}   = $citysize->{'min_density'}             if ( !defined $city->{'min_density'} );
     $city->{'max_density'}   = $citysize->{'max_density'}             if ( !defined $city->{'max_density'} );
@@ -642,9 +642,9 @@ sub generate_popdensity {
     #TODO change how this is calculated and get rid of delta in favor of a percentile range multiplier
     my ($city) = @_;
     GenericGenerator::set_seed( $city->{'seed'} + 25);
+    
     my $range = $city->{'max_density'} - $city->{'min_density'};
-    my $delta = &d($range);
-    $city->{'population_density'} = $city->{'min_density'} + $delta if ( !defined $city->{'population_density'} );
+    $city->{'population_density'} = rand_between( $city->{'min_density'}, $city->{'max_density'})  if ( !defined $city->{'population_density'} );
 
     my $percentile = ( $city->{'population_density'} - $city->{'min_density'} ) / $range * 100;
     $city->{'density_description'} = roll_from_array( $percentile, $city_data->{'popdensity'}->{'option'} )->{'type'}
@@ -682,7 +682,7 @@ sub generate_walls {
  
         my $material                    = roll_from_array(d(100), $xml_data->{'walls'}->{'material'}->{'option'});
         $city->{'walls'}->{'material'}  = $material->{'content'} if (!defined $city->{'walls'}->{'material'});
-        $city->{'walls'}->{'height'}    = int (rand( $material->{'maxheight'} - $material->{'minheight'} ) + $material->{'minheight'}  ) if (!defined  $city->{'walls'}->{'height'});
+        $city->{'walls'}->{'height'}    = rand_between($material->{'minheight'}, $material->{'maxheight'} ) if (!defined  $city->{'walls'}->{'height'});
 
         generate_protected_area($city)
     } else {
@@ -778,7 +778,7 @@ sub generate_area {
 
     my $stat_modifier = (($city->{'stats'}->{'education'} + $city->{'stats'}->{'economy'} + $city->{'stats'}->{'magic'})/3 +50)/100  ;
 
-    $city->{'arable_percentage'} = max( 1, min( 100, d(100)* $stat_modifier  ) )
+    $city->{'arable_percentage'} = bound( d(100)* $stat_modifier,1,100 )
         if ( !defined $city->{'arable_percentage'} );
 
     $city->{'arable_description'}

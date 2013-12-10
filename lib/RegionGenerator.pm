@@ -28,7 +28,6 @@ use CGI;
 use Data::Dumper;
 use GenericGenerator qw(rand_from_array roll_from_array d parse_object);
 use NPCGenerator;
-use List::Util 'shuffle', 'min', 'max';
 use POSIX;
 use XML::Simple;
 
