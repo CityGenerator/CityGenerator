@@ -1,0 +1,1105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<data>
+    <feature>
+        <duration><!-- which will last ___ -->
+            <option>a few minutes</option>
+            <option>a week</option>
+            <option>a year</option>
+            <option>indefinitely</option>
+        <duration>
+        <target> <!-- ___ are covered -->
+            <option>you</option>
+            <option>allies</option>
+            <option>enemies</option>
+            <option>you and your allies</option>
+            <option>you and your enemies</option>
+            <option>you, your enemies, and your allies</option>
+        </target>
+        <growth>
+            <option>head</option>
+            <option>leg</option>
+            <option>finger</option>
+            <option>hand</option>
+            <option>arm</option>
+            <option>foot</option>
+            <option>toe</option>
+        </growth>
+        <animal>
+            <option>horse</option>
+            <option>cat</option>
+            <option>elephant</option>
+            <option>camel</option>
+            <option>cow</option>
+            <option>dire wolf</option>
+            <option>snail</option>
+        </animal>
+        <disposition> <!-- the dog is ___ towards you-->
+            <option>friendly</option>
+            <option>aggressive</option>
+            <option>suspicious</option>
+            <option>fearful</option>
+            <option>protective</option>
+            <option>vicious</option>
+        </disposition>
+        <size>
+            <option>tiny</option>
+            <option>small</option>
+            <option>normal</option>
+            <option>large</option>
+            <option>huge</option>
+            <option>gigantic</option>
+            <option>colossal</option>
+        </size>
+        <distance> <!--the monster appears ____ from you -->
+            <option>several centimeters</option>
+            <option>a meter</option>
+            <option>several meters</option>
+            <option>twenty meters</option>
+            <option>a hundred meters</option>
+            <option>two hundred meters</option>
+            <option>a kilometer</option>
+            <option>several kilometers</option>
+            <option>many kilometers</option>
+        </distance>
+        <direction> <!-- the cloud appears ___ of you -->
+            <option>north</option>
+            <option>south</option>
+            <option>east</option>
+            <option>west</option>
+            <option>underneath</option>
+            <option>overhead</option>
+            <option>atop</option>
+            <option>in front</option>
+            <option>to the right</option>
+            <option>to the left</option>
+        </direction>
+        <damagetype><!--you are hit with a glow ball that does ____ damage-->
+            <option>fire</option>
+            <option>acidic</option>
+            <option>sonic</option>
+            <option>frost</option>
+            <option>electrical</option>
+            <option>elemental</option>
+            <option>necrotic</option>
+            <option>holy</option>
+        </damagetype>
+        <smell> <!-- your nose is filled with the scent of ______ -->
+            <option>smoke</option>
+            <option>skunk</option>
+            <option>mint</option>
+            <option>decomposition</option>
+            <option>decay</option>
+            <option>citrus</option>
+            <option>vomit</option>
+            <option>wet dog</option>
+            <option>blood</option>
+            <option>urine</option>
+        </smell>
+        <template>
+			<option>[%target.posessive FILTER ucfirst %] skin is now [%color%].</option>
+			<option>[%target FILTER ucfirst %] grow an extra [%growth%] which hangs limply and occasionally mimics the movement of other [%growth%]s.</option>
+            <option>[%target FILTER ucfirst %] are covered with a glowing aura that protects you from aggressive magics.</option>
+            <option>Surprise fireballs! [%target%] takes damage from several [%size%] fireballs exploding at once.</option>
+			<option>You summon forth a [%size%] [%color%] [%animal%] that is [%disposition%] towards [%target%].</option>
+			<option>[%target.posessive FILTER ucfirst %] contract uncontrollable, loud hiccups that prevent stealth or concentration.</option>
+			<option>The magic affects everyone within a quarter mile radius except the intended target.</option>
+			<option>A horrible taste overcomes [%target%]. They have a 25% chance of throwing up.</option>
+			<option>An [%size%] [%animal%] suddenly appears in front of you, explains that he’s very sorry he didn’t show up earlier and wanders off humming.</option>
+			<option>In a 200 ft radius centered on [%target%], snow begins to fall, and will follow [%target] indoors and out.</option>
+            <option>The spell hits with reduced intensity.</option>
+            <option>The spell hits with enhanced intensity.</option>
+            <option>[%target%] suddenly suffer from acute, powerful and unique body odor that smells of [%smell%]. While not putrid, it is not pleasant.</option>
+			<option>A [%size%] cloud of thick smoke appears [%distance%] [%direction%] of you.</option>
+			<option>[%target%] start to froth at the mouth uncontrollably and prolifically.</option>
+			<option>[%target%] suffer a [%size%] amount of [%damagetype%] damage.</option>
+			<option>[%target%] grow a pair of small horns (2 in each) on the forehead, which contrasts with skin colour.  A remove curse may remove them.</option>
+<!--
+			<option>A strong taste affects someone randomly within 10 feet of the caster (default to caster if no one else is within range.)  Roll 1d6 for taste: 1=onions, 2=beer, 3=horse manure, 4=garlic, 5=cabbage, 6=vanilla.  The person also smells strongly of whatever substance they taste.  Creatures with scent always know the exact location of the person.  Creatures tracking the person by scent gain a 10% to their tracking rolls.  Lasts 3d10 minutes.
+			<option>A faeries dance affects your closest friend wherever s/he is (save standard, effect, caster’s level.)
+			<option>The target emits the scent of a predator for the next hour.  Domestic animals, including dogs and horses, begin with an initial attitude of hostile.  Creatures tracking the imbiber by scent gain a +5% to their Tracking checks while the effect lasts.
+			<option>Absolutely nothing happens (time stops for 1d4 melees, 100 ft radius.)
+			<option>The caster must succeed at a ME roll or be compelled to sing until her next action.  The singing prevents the person from casting spells, unless they are trained to cast by song. 
+			<option>You find yourself surrounded by 1d100 rats.
+			<option>The caster’s thirst is quenched for 1d4 days.  No ill effects from dehydration.
+			<option>The caster’s ears grow to the size of dinner plates.  S/he gets a +2 Per for the next hour.
+			<option>The earth rumbles for 1d4 minutes (1-2 on the Richter scale) 100 yd radius.
+			<option>The caster emits steam and mist for the next hour.  The steam is harmless and easily dispersed by movement or even a light breeze, but a DM might rule that the steam provides some circumstance penalties to skill checks in social situations.
+			<option>The true name of the person next to you is revealed, but s/he also gets to know yours.
+			<option>A call lightning at twice your level also hits your target, in addition to the spell working normally.
+			<option>Roll for an effect on the rod of wonders table in the DM guide.
+			<option>The caster belches once with the same effect as a thunderstone.
+			<option>Spell is delayed for 1d3 melees and has half effect.
+			<option>The target belches a 30-foot-long cone of fire.  Anything caught within the cone must make a dodge roll of 13 or higher or take 2d6 points of fire damage.
+			<option>A river of lava stretches out from your feet in the direction you were looking when the spell was cast.  Effective level is 6th.
+			<option>The caster grows a 3-foot long beard.  If the caster already has a beard, it falls out instead.  The beard falls out after an hour regardless.
+			<option>You grow a 3rd eye on your forehead.  As a result of this mutation you can see the aura of other people automatically.
+			<option>You are transformed into a Peacock for 1d8 hours.
+			<option>The target’s hair changes colour temporarily.  Roll 1d6 for colour, 1=blonde, 2=red, 3=brown, 4=black, 5=grey, 6=blue
+			<option>The caster’s eyes change colour temporarily.  Roll 1d6 for colour.  1=brown, 2=grey, 3=blue, 4=green, 5=yellow, 6=combination. (Roll twice, ignore any sixes.)
+			<option>A loud bang with the strength of thunder booms from above you and a new roll for initiative has to be made by any person standing within 150 yards from you.
+			<option>The caster becomes slightly translucent.  There is no physical effect (they are still completely corporeal,) and the caster gains no ghost-like abilities.
+			<option>All of your belongings, real estate included, are turned yellow for 1d4 minutes.
+			<option>You instantly know the answer to the next 1d10 questions anybody will ask you, and the answers are all right.
+			<option>You really look twisted now.  Your arms and legs change their position for 1d4 days.
+			<option>Your skin is turned transparent, (horror factor 10) lasts for 1d8 days.
+			<option>Caster is healed of all non-fatal damage incurred thus far.
+			<option>A large squid lands on your head and starts to strangle you.  It deals 2d6 damage/melee.  It has 20 HP and 15 SDC
+			<option>Dinner’s served for all persons within 50 feet.  (A real banquet with servants and all…)
+			<option>The caster’s eyes burn with the spell’s power.  The eyes serve as a light source of the intensity of a torch.  The caster suffers no penalty from having the light in his eyes, but it might be difficult for them to hide.
+			<option>The target is struck by the effect of drinking 10 mugs of ale.  They become intoxicated and suffer the appropriate penalties for 1d4 hours.
+			<option>A random person within 100 yards from you is transformed into a bat and flies off to a better-suited place in order to sleep.  The person is permanently transformed, and only a remove curse can return them to a normal life…. if they can be found.
+			<option>The caster blends into his surroundings almost perfectly.  While the effect is in place they gain the benefit of a 98% hide/camouflage ability while motionless.  Lasts 1d6 weeks.
+			<option>the laws of reality forget the spell's cost and you don’t have to spend any of your spells/day casting it.
+			<option>The caster is infected with blinding sickness. (Pg 175 of the DM’s Guide)
+			<option>You pass out for 1d6 minutes but the spell still has the desired effect.  Although it can’t be cancelled….
+			<option>The caster’s teeth become elongated, sharp, and pointed.  (Think Ferengi.)  The strange teeth do not affect most in-game situations, but a DM might rule that they provide some circumstance penalties in social situations.
+			<option>A levitation spell is mistakenly laid on you, effective level 14.
+			<option>The spell has a minor healing effect.  It restores an additional 1d4 HP in addition to its normal effects.
+			<option>A monster insect appears within 20 ft and attacks the nearest person.
+			<option>Heavy rainfall (5 ft radius) centered on you, lasts for 1d3 days.  The cloud is constantly 30 feet directly above your head.
+			<option>The target’s hands become slimy, and s/he has to make a PP roll each round to maintain their grip on any object s/he is holding.
+			<option>Suddenly you know how to create the mysterious Cyclops lightning shafts!!! Why not try it out…(I hope all GM’s are familiar with what happens if anyone does this…)
+			<option>The caster’s skin becomes sticky, like powerful glue.  The caster must make a PP saving throw to drop an object that they are holding.
+			<option>You grow a beard, 2 ft long, permanent. 
+			<option>A random person within 5 feet of the caster becomes noticeably cool to the touch.  Although they feel a sever chill, the cold is not great enough to damage either the target or any other creature.
+			<option>The target becomes noticeably warm to the touch.  Although they feel severe warmth, the heat is not great enough to damage either the imbiber or any other creature.
+			<option>The caster’s tongue grows to 3 feet in length.  They cannot speak properly and must make an ME check to cast spells.  Lasts 1d6 hours
+			<option>As you feel the ripple of the magic energies swirling through your conscious mind, something goes wrong.  You forget the incantation for 1d4 weeks.  The desired spell works as it should’ve, it has 5x the effect and burns off 3 of your spells for the day.
+			<option>The caster grows scales all over their body.  Roll 1d6 to determine the colour of the scales 1=blue, 2=black, 3=green, 4=red, 5=yellow, 6=brown.  Scales last 1d10 weeks and then the caster is overcome with an unbearable itchiness and is compelled to scratch at them, unless they make a successful PE roll.  PB is temporarily reduced by 1d6 during the molt.
+			<option>In some strange way the spell makes you feel really good…You have an immediate orgasm and you lose your initiative.
+			<option>An energy bolt (4d6 dam) suddenly shoots out from your left ear and hits the nearest object/person, etc.  (Dodge of 18)
+			<option>The target gains the ability to levitate for brief periods.  The ability to levitate lasts for 10 minutes, but the person can only hover 1 foot off the ground at most and can only hover for a number of rounds equal to their PE.
+			<option>Your skin turns red for 1d6 hours.
+			<option>A random something warm to drink is immediately provided to everyone in a 100-foot radius from the caster. 
+			<option>As the spell loses its effect you feel something pulling your very genes and in a moment’s notice you find yourself transformed into a cute little piglet. (1d3 months.)
+			<option>A random something cold to drink is immediately provided to everyone in a 100-foot radius from the caster. 
+			<option>The caster becomes drowsy, and falls asleep for 1d3 hours.  They can be woken normally, as if they were simply taking a nap.
+			<option>You teleport 1d100 miles in random direction, but lucky as you are you appear on the ground.
+			<option>The caster needs no sleep for 1d4 days.
+			<option>A doppelganger of yourself is instantly created 5 feet away from you.  The creature pays its humble respects and wanders off to see the world.  (Lasts 1d3 years, Cannot be dispelled, no control is granted the caster, usual restrictions apply)
+			<option>The caster increases in weight by 20 pounds until the effects wear off.  This extra weight counts against what the caster can carry until the effects wear off.
+			<option>A spark, a crack and BOOOOOM! Explosion centered on you does 7d6 damage and decreases with 1d6 damage for every yard.
+			<option>The caster’s weight decreases by 20 pounds until the effects wear off.
+			<option>A magic ring turns up on your index finger (+1 vs spell magic, perm: anent.)
+			<option>The caster forgets the events of the last 1d10 hours
+			<option>2d20 palm trees grow up around you.
+			<option>Everything the caster touches is stained blue for the next 1d6 days.
+			<option>A prostitute turns up from nowhere and wants to do your bidding.
+			<option>The caster emits the effects of a fear spell on creatures within 30 feet for the next 1d8 hours.
+			<option>You grow 1d10 years older
+			<option>You grow 1d10 years younger
+			<option>The target is overcome by severe stomach cramping.  They suffer a -2 to attack rolls and -5 to skills.
+			<option>The caster's voice becomes high pitched like a pixie for the next hour.
+			<option>You receive superhuman strength (same as the spell) for 1d6 hours
+			<option>The caster is unable to speak in a whisper, and his speaking voice becomes louder than normal.  Both effects last for the next hour.
+			<option>The target speaks with a lisp until the effects wear off. 
+			<option>Wizard is paralyzed for 1d4 hours but makes a full recovery.
+			<option>Tiny sparks arc from the caster.  The sparks do no damage to the caster or to any other creature.
+			<option>A black cat comes up to you and says she's sorry.
+			<option>You repeat the spell 1d4 times in the same melee. (Subtract spells/day for all the spells...although even if you don't have enough, the spell still repeats.)
+			<option>The caster is easily distracted and influenced.  For the next 10 minutes they suffer a -1 penalty to all ME saving throws.
+			<option>A Jinn, a green one, appears and grants you three wishes....
+			<option>You grow roots and cannot move for the next 1d4 hours, unless someone cuts off your feet of course.
+			<option>The caster suffers from a distracting cough.  For the next 10 minutes they must make a ME roll to cast a spell.  While the cough lasts, they suffer a -15% to their prowl ability.
+			<option>You asked for it.  Spell effect x5
+			<option>The caster gains low-light vision.  This effect lasts only 1 minute.
+			<option>Death himself comes to claim you.
+			<option>The caster begins to sweat profusely.  They suffer no in-game effect, but my have a small circumstance penalty to social situations.  Lasts 1d6 hours.
+			<option>You're blessed by Colie and receive one random benefit, plus a random curse (most likely mixed together, as is his usual.)
+			<option>For the next 5 minutes, the caster says everything twice.
+			<option>You catch a very, very bad cold.  Lasts 1d4 weeks.
+			<option>The caster's eyes turn completely black, including pupils, whites, and irises.  The change in eye colour does not affect their vision, but the DM may impose small circumstance penalties in social situations.  (10th level negate magic or a remove curse at ½ will return your eyes to their normal colour.)
+			<option>Heavy storms appear from nowhere and last for 1d3 days, affecting a 1d4 mile radius from where you stood when the spell was cast.
+			<option>The caster, and everyone within 10 feet of them have their fingernails stretch and curl.  Although they do not affect weapon use or unarmed attacks, they look strange.  The growth is permanent, but may be trimmed in the usual fashion.
+			<option>The person on your right grows a pair of frog's legs, permanently, unless they make a save of 14 vs. curse.  Can be removed by a successful remove curse.
+			<option>The caster's hair grows a foot in length.  The growth is permanent, unless cut.
+			<option>The caster becomes incapable of standing still for the next 10 minutes.
+			<option>The caster's upper lip curls into a sneer.  They are incapable of making any other facial expression for the next hour.  While the effect lasts they are at a -4 to Charm/Impress/Trust rolls.
+			<option>Roll twice on this list.
+			<option>You find yourself in a splendid golden chain-mail teleported from the nearest king’s ransom.
+			<option>3d6 skeletons rise from the ground to do your bidding.
+			<option>Was it like that, or? For the moment you can’t remember the spell, try again next melee.
+			<option>The earth around you is turned into mud, same effect level as your own.
+			<option>1d1000 yard radius centered on the nearest person, not you!
+			<option>The magic you performed seems to have defied the laws of reality and bends all light that hits you for the next 1d6 hours; you are invisible even to yourself.
+			<option>For 1 melee a strange oval black disc hangs in the air in front of you and then it disappears (a dimensional gateway to medieval Europe...)
+			<option>You lapse into a coma for 1d8 days, and must roll a save vs. coma/death.
+			<option>You learn a new spell (random, level 1d10), but you also learn how to fear (roll for random Phobia).
+			<option>A stone Golem rises from the ground and is ready to fulfill your wishes the best it can.
+			<option>The spell only draws half its usual cost.
+			<option>Until now it wasn't all that hard, but since you cast that spell...You have constipation for 1d3 weeks.
+			<option>Hi, Ho, Let’s go! Your speed is doubled for 1d3 days.
+			<option>The spell Mute is mistakenly laid on the nearest person to you, subtract cost for it.
+			<option>The attempted spell functions, but at minimum possible effect.  (Smallest range, duration, damage, etc.)
+			<option>You find yourself equipped with an old scythe.
+			<option>You grow an extra thumb.
+			<option>You grow fangs (1d6 bite damage) and have a hard time learning to talk again (speak-15%).  A Remove Curse can remove the fangs. If the caster has fangs already, this surge removes them.
+			<option>One of your permanent damages is mystically healed, if you don’t have any permanent damage; now is a perfect time to roll for one!
+			<option>Spell goes off normally, no extra effects.
+			<option>You accidentally throw a Level 5 fireball at one of your friends (dodge 18).
+			<option>You turn your familiar into a blue rocking chair; if you do not have a familiar, go to 451
+			<option>A magic picture box comes into your possession.  See Terry Pratchett's The Colour of Magic for details.
+			<option>You are permanently blinded in one eye. (High=Right, Low=Left.  If character is already blind in that eye, this will cure it.)
+			<option>You go berserk for 1d4 minutes slashing out at anyone within 13 ft.
+			<option>A community of black ants explains its loyalty to you.
+			<option>You've got yourself so down you got a headache.  Migraine, permanent.  (-1/-5%, 30% chance of occurring when in a stressful situation.)  May be removed with a remove curse.
+			<option>You draw off all the available spell energy within 30 ft into your own pool.  Magic users get a save at 14.
+			<option>A scribe appears and wants to do the story of your life.  He's very hard to get rid of and won't take no for an answer.
+			<option>The target of your spell is instantly and permanently turned into a turtle.  A negate magic may restore him/her.
+			<option>You turn out to be holding a beer glass, filled to the tip rather than whatever it was you had.
+			<option>Your spell is delayed for 1d4 weeks, but you're not quite sure what happened.
+			<option>The target of your spell explodes, and dies instantly.  (PC's get a save vs. magic).  If you're lucky (roll) you may be able to assemble enough pieces to restore and resurrect them.
+			<option>A hippopotamus walks by ignoring you.
+			<option>2d20 bottle of the finest wine appear under your bed.
+			<option>A concubine or eunuch (whichever suits you best) materializes in front of you and insists on giving you PLEASURE!
+			<option>The surrounding area (2d100 yard radius) is turned into a desert.
+			<option>You lose the ability to cast 1 spell/day.
+			<option>You reverse your alignment for 1d6 days...Maybe, just maybe, you'll like it.
+			<option>Gradually you see your left hand wither into nothingness.
+			<option>You pour all of your Spells for the day into this one spell.
+			<option>You realize what's wrong with this spell and from now on it is never unstable.
+			<option>You're deafened for 1d10 days by the sound of this spell, which strangely enough only you seem to have heard.
+			<option>A bone-flute-playing fairy accompanies you for a day or two or three...
+			<option>As you cast the spell you burst into flames (same as the spell) for 1d4 melees.
+			<option>A mad count has you contracted for assassination without apparent reason, but the good thing is that you're aware of it.
+			<option>You find yourself equipped with bat-like wings making it possible for you to glide up to 1 mile under good conditions.  The wings fall off after 1d3 weeks.
+			<option>The person next to you dies instantly.  (PC's get a standard save vs. magic.)
+			<option>An angry minor earth elemental rises from the ground to kill your party.
+			<option>You forget how to read for 3d4 days.
+			<option>One of your insanities is magically cured; if you have none then it's time to roll for one now.  (You get a save vs. insanity.)
+			<option>A maddened tribe of trolls set out in order to make dinner of you, but in some strange way you're aware of their plans and can act accordingly.
+			<option>You set the nearest forest ablaze.
+			<option>You're mistaken for a wanted person in the next town you enter.  You will eventually be able to clear yourself, but it may take some doing.
+			<option>You get the desired spell without any costs.
+			<option>A random person within 30 feet is knocked down, if there's no one around you're down instead.
+			<option>Instead of a spell, a big green toad crawls out of your mouth and hops off.  Spell cost is still the same though.
+			<option>You receive a natural AR of 15 since your skin is turned into bronze scales for 1d6 days.
+			<option>You spill your guts all over the ground and fall into a coma, roll to save vs. coma/death.  (Death if no one gets your insides back where they belong, otherwise coma)
+			<option>Your eyes are turned into a neon pink liquid for 2d4 hours.  They still function normally.
+			<option>The next person you tell your name to will instantly attack you, but you know it.
+			<option>You find yourself sitting on a transparent seesaw facing the target of your spell.
+			<option>Everything you touch for the next 3d3 hours starts to burn.
+			<option>A phantom footman turns up and offers his help.
+			<option>1d6 of your friends get to save vs. magic if they fail they'll fall into a mindless frenzy and go berserk for 1d4 melees slashing out at anyone within 5 feet.
+			<option>A lightning bolt strikes the wizard for 6d6 damage.
+			<option>The earth beneath your feet opens up and you fall 30 yards down a hole taking 9d6 points of damage.  After two minutes the hole closes and if you're still there, only the gods can save you.
+			<option>A well is created beside you.  This may be a wishing well, so lets try it!
+			<option>All of your belongings, except holy and rune weapons are lost.  The items just disappear into thin air.
+			<option>You hallucinate for 1d12 months.  The hallucinations are completely up to the all-powerful GM.
+			<option>1d10 gallons of way too old milk splash down upon your body.
+			<option>The magic energies didn't quite leave when you were finished with them, instead they hung onto you and from now on your hair always stands straight up, your handshake jolts and static electricity sparks appear on your body now and then.  This also makes you only suffer half damage from electrical attacks.  You literally glow in the dark.
+			<option>A famous witch hunter starts taking interest in your affairs...
+			<option>Hits you like a lightning strike from a clear sky.  Lasts for 1d8 hours.
+			<option>All your friends, even distant ones, are mystically teleported to your location.
+			<option>A random person within 30 yards falls in love with you, no matter how strange it may sound.
+			<option>Red roses start growing from your ears.  They fall out after 2d3 weeks
+			<option>Well sort of, your pockets always seem to be filled with golden coins.  Same as fool's gold lasts for 1d4 weeks.
+			<option>You cannot sleep or rest properly for 1d3 weeks and in that time you cannot recover any ISP, or spells/day.
+			<option>Your body becomes infested with all kinds of parasites that can literally be seen crawling all over you.  Roll save vs. insanity every week, minimum 2x.  Lasts 1d6 weeks.
+			<option>From this day on someone or something looks out for you and in some strange way you always seem to have your back covered.  All Luck rolls are automatic.  (If you roll this again, you go back to normal, and rolling it a 3rd time it will reverse.  Then continue in that vein + 0 –  0 + , etc.)
+			<option>Roll for permanent injury.
+			<option>A spriggan disguised as a gnome comes up to you and asks what's wrong with that stone circle a few hundred yards away.
+			<option>You seem to have caught a rather common deadly disease; PLAGUE! (Bubonic that is.)  Unless properly treated you'll die within 3 weeks.  Sorry.
+			<option>A Wall of Force appears in front of the caster
+			<option>You notice a little pink hedgehog sitting on your head and at the same time you loose your initiative.
+			<option>Caster smells like a skunk for spell duration.
+			<option>A moose comes up to you and whispers in your right ear.  "You can't hear this with your left can you?" When he has said this he looks at you for a moment and wanders off mumbling.
+			<option>Caster shoots forth 8 non-poisonous snakes from their fingertips.  Snakes do not attack.
+			<option>1d10 small fireballs (1d6 dam each) erupt from your face and fly in random directions.  30% chance of hitting anyone within 30 feet.
+			<option>Caster's clothes itch unbearably (-2 init.)
+			<option>You grow a permanent exoskeleton, like a beetle.  AR 15, HF 12.  May be removed by remove curse.  Roll vs random insanity every other month.
+			<option>Caster glows as per a light spell.
+			<option>You know the exact location of the nearest Nexus Point.
+			<option>The spell has a 60-foot radius centered on the caster.
+			<option>All plants within 30 feet try to kill you for 1d6 minutes. (Same as Animate Plants.)
+			<option>The next phrase spoken by the caster becomes true, literally for 1 turn.
+			<option>Somehow you cast the spell Metamorphosis: Insect, on yourself and see the world from a snail's point of view for 1d8 melees.
+			<option>All those within 50 feet of caster who have any special vision (night, infra, dark, etc.) lose it, and all who don’t, gain Nightvision for 1d6 turns.
+			<option>Your head is turned backwards for the first time in your life, and pleased as you are to see your own behind, after a while it becomes quite uncomfortable.  Lasts 1d6 weeks.
+			<option>Caster pivots 180 degrees
+			<option>You grow a 10 in long red nose, permanent.  May be removed by a remove curse.
+			<option>Caster's face is blackened by small explosion.
+			<option>A church organ materializes 60 feet above your head and decides to fall on you, if a perception roll is made a dodge may be tried at 18.  Otherwise you suffer the wrath of a god in the shape of 10d6 points of damage.
+			<option>Caster develops allergy to his magical items.  Character cannot control sneezing until all magical items are removed.  Allergy lasts 1d6 turns.
+			<option>A wind rush (same as spell) also hits your target.
+			<option>Caster's head enlarges for 1d3 turns.
+			<option>Your magic has upset the very forces of nature.  1d8 minor elementals turn up to give you and your party a lesson you may not be able to forget.
+			<option>An eternal flame is instantly created where you stand.
+			<option>Caster reduces (reversed enlarge) for 1d3 turns.
+			<option>Caster falls madly in love with target until a remove curse is cast.
+			<option>A pygmy quire steps out from hiding, sings folksongs for 1d6 minutes, bows respectfully and departs chanting.
+			<option>Spell must run full duration; caster cannot cancel the spell at will.
+			<option>One of your legs turns out to be made of pine.  Permanent, although a remove curse or a saw can remove it.
+			<option>Caster polymorphs randomly
+			<option>Colourful bubbles come out of the caster's mouth instead of words.  Words are released when bubbles pop.  Spells that are not stilled cannot be cast for 1 turn.
+			<option>a messenger delivers a full size portrait of you shortly after the spell has been cast.
+			<option>A reversed tongues affects all within 60 feet of the caster.
+			<option>You and all others within 30 feet are instantly teleported to a location totally alien for the party.
+			<option>Wall of Fire encircles caster.
+			<option>A stench of Hades (same as spell) is cast on you by a passing seagull that flies off laughing.
+			<option>Caster's feet enlarge, reducing movement to 1/2 normal and adding -4 to initiative rolls for 1d3 turns.
+			<option>A 200-foot long chain appears on the ground for a few seconds before it blinks out of existence.
+			<option>Caster suffers same spell effect as target.
+			<option>Suddenly you find yourself surrounded by a pack of frenzied hungry northern timber wolves.
+			<option>A random person levitates 20 feet for 1d4 turns.
+			<option>You inherit a large estate from a senile Baron.  This is told to you by a messenger who also asks you to attend the funeral, which will be held soon.
+			<option>The target emits a cause fear on all within a 60-foot radius.  Standard save.
+			<option>An Iron golem steps up to you and explains that he's ready to serve you now.
+			<option>Caster speaks in a squeaky voice for 1d6 days.
+			<option>Your eyes turn snotling green.
+			<option>Caster gains x-ray vision for 1d6 rounds.
+			<option>A random person in your vicinity is reduced to 6 inches tall, permanently.  A negate magic may restore the victim to a normal life.
+			<option>Caster ages 1d20 years.
+			<option>Silence, 15 ft kkradius centers on caster.
+			<option>These small creatures are now a part of your small universe.
+			<option>A 10x10 pit appears immediately in front of caster.  5' deep per level of the caster.
+			<option>From this day and for 1d10 weeks, all of your spells cost only 1/2 of what they should to cast.
+			<option>Gravity beneath the caster's feet is reversed for 1 round.
+			<option>Your hair is turned white as chalk.  Permanent.
+			<option>Coloured streamers pour from caster's fingertips.
+			<option>All people, including you, within 40 feet are turned completely yellow for 1d3 days. (Possessions too.)
+			<option>Caster is exempt from all random determinations, for the next 24 hours.
+			<option>A light brown snake bites you in your left knee.  It is a non-poisonous snake and it only deals 1 point of damage.
+			<option>A random person within 100 yards of you becomes invisible.
+			<option>You instantly double the number of spells/day you can cast.  Lasts 1d3 days.
+			<option>Streams of butterflies pour from the caster's mouth.
+			<option>Colour sprays from the caster's fingertips
+			<option>A Pegasus appears and if you are of good alignment, it offers to be your steed.
+			<option>You scorch yourself on the cold blue magical flames that suddenly engulf you as you burn all of your spells for the day  (1d6 damage for each spell)  If you have more than 2 dice of damage, the scars left on you by this horrible experience will reduce your PB by 1d6 permanently.  (A healer will be able to help.)
+			<option>Caster leaves monster shaped footprints instead of his own until a dispel magic is cast.
+			<option>A hard-core goblin child attacks you from behind with a crude cudgel; he will flee if he suffers any damage.
+			<option>3d10 gems shoot from the caster's fingertips.  Each gem is worth 1d6x10 GP
+			<option>13 common pixies make your and your friends life miserable for 2d20 hours.
+			<option>A light aria fills the air.
+			<option>Lightning strikes the tallest person in your vicinity, it might even strike you.  (Damage 6d6)
+			<option>Create food and water.
+			<option>Amnesia hits you like a hammer and you can't even remember who you are for 4d6 hours.
+			<option>All normal fires within 60' of the caster are extinguished.
+			<option>A Joton makes you his enemy and comes looking for you.  In some strange way you're aware of it.
+			<option>One magical item within 30' of the caster (randomly chosen) is permanently drained.
+			<option>Every stone within a 50 ft radius starts jumping in all directions; if there are boulders present they might even hurt someone unless a dodge vs 14 is made each melee.  (Damage 2d6)  The stones stop jumping after 3d6 melees.
+			<option>One normal item within 30' of the caster (randomly chosen) becomes permanently magical. (DM choice as to type of magic.)
+			<option>An earthquake comes to visit the area surrounding you.  (300-yard radius, 4-5 on the Richter scale.)  Buildings shake and might crumble.
+			<option>All magical weapons within 30 feet of the caster are increased by +2 for 1 turn.
+			<option>Smoke trickles from the ears of all creatures within 60 feet of the caster for 1 turn.
+			<option>Your ears grow three times larger, permanently.  May be removed by a remove curse.
+			<option>As per the spell for 1d10 minutes
+			<option>You're transformed into a cute little Yorkshire terrier for god (DM) knows how long
+			<option>All creatures within 30 ft of the caster begin to hiccup.
+			<option>A black Jinn materializes in front of you and bows.
+			<option>All normal doors, secret doors, portcullises, etc. (including those locked or barred) within 60 feet of the caster swing open.
+			<option>The king of the country you're in decides you're responsible for a plot made against him and sets a reward of 10,000 gold on your head.
+			<option>Caster and Target Exchange places.  Each keeps their own clothing, possessions, etc.
+			<option>Smoke trickles from the ears of the caster for 1d6 days.  Harmless.
+			<option>Spell affects a random target within 60 feet of the caster.
+			<option>You grow claws, horrible black, non-retractable claws. (Dam 2d6+2)  They may be removed by a remove curse, if you find a priest that can be convinced you're a good guy that is.
+			<option>Caster is temporarily blinded for 2d4 days
+			<option>Spell fails
+			<option>You find yourself dressed in the finest silk garments, but you've no idea of where your armour is.  (Or whatever you were wearing.)
+			<option>You are lucky to be instantly teleported 451 yards straight up into the air.  And on your way down you have a splendid view.  Hope you'll live to tell about it. (Dam 20d6)
+			<option>Sudden change in weather (temperature raise/fall, snow, rain, etc) lasting 1d6 turns.
+			<option>Your ears turn permanently light blue.  May be removed by a remove curse.
+			<option>Deafening bang affects everyone within 60 ft.  All those who can hear must save vs spell or be stunned for 1d3 rounds.
+			<option>You notice a necklace around your neck that wasn't there before.  Anyway you can't take it off and as another bonus it gives you a +2 vs possession.
+			<option>Caster and target exchange voices until a Remove Curse is cast.
+			<option>Gate opens to a randomly chosen outer plane; 50% chance for an extra-planar creature to appear.
+			<option>You find a key in your pocket.  What is it for?
+			<option>Spell functions normally, but also shrieks like a shrieker.
+			<option>A raving specter starts terrorizing you and your party.
+			<option>Spell effectiveness (range, duration, etc,) decreases 50%
+			<option>A minor air elemental offers you its help.
+			<option>Spell reversed if reverse is possible.
+			<option>A nearby tree asks...."A game of chess, hmmm?"
+			<option>Spell takes physical form of free-willed elemental and cannot be controlled by caster.  Elemental remains for duration of spell.  Touch of the elemental causes spell effect.
+			<option>You can feel the rhythm, even before you can hear the wonderful music.  A fairies dance affects the entire party (same as your effect level.)
+			<option>All weapons within 60 ft of caster glow for 1d4 rounds.
+			<option>A pack of Orcs selects you to be their next victim.
+			<option>Spell functions normally, any applicable saving throw is not allowed.
+			<option>Target takes 5d10 hit points damage
+			<option>You find a dagger in your boot.
+			<option>Spell has only 1/4 effect and duration
+			<option>All magical items within 60 ft of caster glow for 2d8 days.
+			<option>Caster and target switch personalities for 2d10 rounds.
+			<option>A warrior's arm and sword in another part of the world happens to slash through a hole in space hitting you instead of its intended target.  You get a really good close-up of a dwarven-made broadsword taking 1d8+4 points of damage in the process.  May be dodged if initiative is 16+
+			<option>All magical fires within 40’ of the caster are extinguished.
+			<option>Caster may gamble up to 5 points of her luck stat on a future saving throw. If the save succeeds, the points are not lost. If it fails, she loses the points and must regain them normally.
+			<option>Your target is Deluded.
+			<option>For a moment you seemed to be getting away with it, but your spell backfires and goes off in a random direction.
+			<option>Chain Lightning strikes random targets at your effect level.
+			<option>You grow webbed hands and feet, permanently.  Swim +10%
+			<option>Target Enlarged.
+			<option>A well dressed violinist steps out from a shadow and plays a song for you, when he's finished he bows, turns around and implodes.
+			<option>Target is imprisoned on another plane.
+			<option>Plant Growth centered on target.
+			<option>1,000 lbs of non-living matter within 10' of target vanishes.
+			<option>Fireball centered on target.
+			<option>Target turns to stone.
+			<option>Everyone within 10 ft of the caster receives the benefits of a heal all but 1d4.
+			<option>Target becomes dizzy (-4PP and cannot cast spells) for 2d4 rounds.
+			<option>A wall of fire appears running down the middle of the street.
+			<option>One of the target’s allies turns ethereal for 1d10 rounds.
+			<option>Target suffers blindness
+			<option>Target is charmed as per charm monster
+			<option>Target forgets who he is for 1d6 hours.
+			<option>Target's feet enlarge, reducing movement to 1/2 normal and -4 to all initiative rolls for 1d3 turns.
+			<option>A rust monster appears in front of the target.
+			<option>Target polymorphs randomly.
+			<option>Target changes sex for 1d3 months.
+			<option>Target has a small, black rain cloud form 3 feet over their head.
+			<option>A stinking cloud centers on the target.
+			<option>Heavy object (boulder, anvil, safe, etc.) appears over target and falls for 2d20 points of damage.
+			<option>Target begins sneezing.  No spells can be cast until fit passes. (1d6 rounds)
+			<option>Spell has a 60 ft radius centered on target; everyone within the radius suffers the effect.  Even spells that are normally not an area of effect have the same area.
+			<option>Target's clothes itch (-2 to initiative for 1d10 rounds)
+			<option>Target's race randomly changes until cancelled by dispel magic.  Roll for a new race every day.  Stats remain the same.
+			<option>Caster turns ethereal for 2d4 rounds
+			<option>Target hastened.
+			<option>All non-magical articles of clothing on target, crumble to dust.  Magic clothes receive a save.
+			<option>Target sprouts leaves (no damage cause, and they can be pruned without harm)
+			<option>Caster gains the ability to see magic for a month. The sensitivity is so great that if she looks at a +5 or greater item she is flash-blinded for d4 rounds. She should probably invest in Ray-Bans.
+			<option>Target changes colour (cancelled by dispel magic)
+			<option>Spell has a minimum duration of 1 turn (i.e. a fireball creates a ball of flame that remains for 1 turn, a lightning bolt bounces and continues, possibly rebounding, for 1 turn, on the other hand, a healing spell activates every melee for one turn.)
+			<option>Caster is metamorphosized into a goat for 2d6 days
+			<option>Spell effectiveness, increases 200%
+			<option>A passing frog stops and says "You'd better behave or I'll....." then hops off
+			<option>You drop all of your teeth in your upper left jaw.
+			<option>Your head shrinks to 1/2 of its normal size, permanently.  May be removed by a remove curse.
+			<option>Your spell takes effect and then everything goes black for a few seconds.  When you open up your eyes again you are standing in a long 20 ft wide, 100 ft long corridor which has its walls lined with strange chairs, two on each side.  Every chair has a strangely clothed human in it.  120 people in all.  They all stare at you, mouths wide open.  Though small oval windows on the walls you can see clouds and you can hear a distant humming sound.  There is a strange door to your right.  After about 10 seconds, everything goes black again and you're back where you started.
+			<option>You grow a hairy tail, 3 ft long, permanently.  May be surgically removed.
+			<option>You loose control of yourself and your brilliant DM can do as he pleases with your character for 1d4 melees.
+			<option>A bunch of flowers, different types, 24 all in all. Appear before your feet with a card. The card reads: "We humbly apologize for not telling you to duck earlier... Love: The council of most unbelievable and unpredictable accidents." If you look up when you’ve read this you see a gray stone made windmill falling directly on you from the sky. You may dodge it (14 or higher) or suffer 10d20 points of damage.
+			<option>One of your present, random companions turns into a black goat for 1d4 days unless s/he makes a save vs. spell magic of 15 or higher.
+			<option>You realize that you’re blasted on dwarven moonshine. (-4/-40%) You’re drunk for 1d12 hours and have terrible a hangover for 1d8 hours with half of the penalties.
+			<option>A star falls from the sky crashing into the nearest village. You know you’re responsible.
+			<option>A shrubbery a few yards away warns you of a nearby band of Orcs.  Actually true, but far too late.  10 Orcs step up to your party and explain that they're going to eat you for supper. (Low-level mercs.)
+			<option>You reverse your sentences for 1d3 hours.
+			<option>A random person in your vicinity permanently grows a skin coloured 1 ft long crooked horn on their forehead (ram attack does 1d6 dam, plus dam bonus.)  May be removed by a remove curse.
+			<option>The next stranger you talk to will mistake you for an old friend.
+			<option>You're attack by a whole nest of wild bees.  The attack lasts for 1d6 melees.
+			<option>Choose one, or randomly select from secondary chart.
+			<option>A rat offers to be your pet, if you're prepared to feed it with one pound of cheese a week.
+			<option>You grow pointed ears like an elf, if you are an elf, your ears grow to double size, permanently.
+			<option>Summon lesser demon (DM's discretion.)
+			<option>You permanently grow a pointed chin.
+			<option>Your eyes permanently turn wine red. (Iris only.)
+			<option>You appear to have been awarded with Armour of Ithan, but you don't know for how long.  (1d6 hours.)
+			<option>A zombie (same as spell) rises from the ground to do your bidding.
+			<option>You notice a small chest full of gold and jewelry standing a few feet from you.  The gold is real and it is worth about 25,000 gold pieces.
+			<option>A respected noble claims that you owe him 56000 gold pieces and sets a reward of 5000 gold pieces to anyone who can bring you before him alive.  You become aware of this when you see your own picture posted in the next town you enter.
+			<option>A petrification is mistakenly laid on one of your companions.  Subtract the appropriate cost.
+			<option>You find yourself in a black small room.  You can see light peeking in from a crack in what might be a door.  If you open the door you realize that a cupboard must have materialized around you.  The cupboard is of good quality and has several sets of fine tailored clothes in it.  Everything fits as if made for you.
+			<option>A raven considers itself to be your pet.
+			<option>The next sword that hits your body will simply slide through and you will not suffer any damage.  This particular sword will not be able to hit you for the next 1d10 days.
+			<option>You turn yourself into a Sulfur-Crested Cockatoo for 1d4 days, but retain your self-control.
+			<option>The spell you cast will repeat itself at the same time of the day for 3d6 days.  Spell cost will of course have to be subtracted.  If you're out of spells the spell won't repeat that day.
+			<option>The spell you just cast cost nothing; in fact, you just gained an additional spell.
+			<option>The magic energies are warped and directed at you instead and your body starts to burn taking 5d6 points of damage every melee for 1d6 melees.
+			<option>You change your eye-colour randomly through the common colours for your race.  (Lasts 1d10 weeks)
+			<option>You loose your balance and fall to the ground, which means that the spell didn't work, and you retain your spell cost, but loose the initiative.  Try again next melee.
+			<option>Sometimes a spell goes wrong, very wrong and this is one of those times.  If you are a male then you are from this day on impotent, but if you are a woman, you are pregnant, whether you want it or not.
+			<option>A strange pine tree appears in front of you.  It is highly decorated as if part of some strange ritual.  If you examine it closely you can see small dolls hanging from its branches featuring a bearded man in red clothes.  Burning candles also line the branches.  Under the tree there are some packages in multi-coloured paper, each one bearing a label...
+			<option>Somehow you didn't quite understand how it was you were supposed to pronounce those last words and the spell is certainly not the desired one, DMs choice.
+			<option>A small apple tree materializes in front of you. It is about 6 ft high and planted in a large pot. The tree has a glittery aura and if examined closer by a magic user it will radiate powerful magic, in fact the whole tree is extremely magic. The tree monthly grows 1d6 red glass-like apples each containing 50 ISP The tree has to be kept in a suitable environment or it’ll die. This plant is of a magic, practiced by the Titans and some Elves and Dragons during the elf-dwarf wars, long forgotten called; "Th’aghf Zathciuwa’gh Ghathyur’eigh" or " The way of the trees". If not treated properly the tree will die. Once the apples are picked they will last for centuries. There are no cores in the apples, once each century the tree will grow one green apple (containing 2000 ISP!!!) that can be planted to yield another 1d8 trees.  There is a 1% chance that the tree has a green apple when it materializes.
+			<option>Weight increased by 3d100 lbs for 1d6 months.
+			<option>You grow the legs of a black goat permanently.  Increase SPD by 2d4 points.  May be removed by a remove curse.
+			<option>"Just who do you think you are!!??  GET OFF MY HEAD!!!" Screams a stone from under your boot and gives you the evil eye. (Not the psionic or curse.)
+			<option>The whole party is suddenly in a desert.  You can hear the sound of a distant battle raging through the air.  If you look closer you can see a battle going on in a valley.  There are only humans that are part of this battle.  (DM: The characters have been teleported to 900 AD during the Middle Eastern Crusades.)  The group will remain in this dimension for 1d4 days and will then be teleported back to the same place and time as they left.
+			<option>A potion lies before you on the ground. (Faeries dance level 5)
+			<option>A fireball is also directed at your target.  Same level as you.  Subtract spell cost.
+			<option>You learn a new spell (Random) that of course is unstable and this also makes one of your other spells unstable (random,) the problem is just that you don't know which one.
+			<option>A snake, typical for the terrain offers to be your pet.
+			<option>You hear a whistling sound above your head.  A shell from a WWII howitzer is dimensionally teleported to this world and explodes 50 yards above your heads.  Spreading shrapnel over a 200-yard radius.  60% chance of taking 8d6 points of damage, 30% chance of starting a fire.  You are deafened for 1d6 minutes, if you survive that is.
+			<option>A voice in your head says, "You have only one question, but you may ask me anything.  I will answer truthfully."  You see an old bearded man in a red silk robe standing before you and you notice that time seems to have stopped.
+			<option>A nearby cemetery is accidentally affected by a powerful raise the dead spell producing 10d8 skeletons that set off to terrorize the countryside.  The creatures will kill all living beings that get in their way.
+			<option>A blow worm surfaces 30 yards away and dives in your direction.
+			<option>You develop blisters.  First on your hands and a few days later your arms.  After a week your entire body is covered and the blisters begin to turn into sores.  You realize only too late that you've caught the disease leprosy.  Unless magically treated you will die in 1d6 weeks.
+			<option>A bard in a nearby town writes a hit-song about your groups' heroic deeds, which results that in a year or two each existing group members' renown will be increased by 1 point.
+			<option>An order of outcast magicians in the Wolfen Empire sends you their greetings and an invitation to their annual celebration of the equinox.
+			<option>Everyone within a 150-yard radius, except you of course, is affected by the spell Faeries dance (effective level 4) and you find yourself lacking your entire spell reserve.  The affected people get a save vs magic of 14 or higher. 
+			<option>You vomit uncontrollably for 1d6 melees producing a strange green foul smelling thick liquid taking 2d4 points of damage directly to your hit points.
+			<option>You grow another pair of arms, permanently.  May be removed by a remove curse.
+			<option>A pool of boiling lead is created 10 feet above your head.  You are aware of it and may dodge it (10 or Higher) If you fail you will suffer 8d6 points of damage. 
+			<option>A rat crawls up your back and bites you in your left ear and runs off leaving you with an infected wound.  You also receive one point of damage.
+			<option>Since you weren't concentrating hard enough the spell fails and you loose half a spell cost.
+			<option>In some strange way you automatically loose the initiative for 1d8 melees.  But the spell works and has double effect.
+			<option>1d4 skeletons rise from their graves to tear your soul apart.
+			<option>You grow a 5-inch high dark crest, permanently.  May be removed by a remove curse.
+			<option>From this day on you can't remember anything from certain full-moon nights since you suffer from Lycanthrophy.  May only be removed by a remove curse.
+			<option>A peach tree starts growing in one of your bags.
+			<option>Caster is able to Fly, as the spell, at will, for one month.
+			<option>A five-mile long 200-yard wide 500-yard deep hole in the ground opens up a short distance away.  Permanent.
+			<option>The back of your skull is from this day on made of crystal, permanently.  Mind the head, please...
+			<option>You are instantly turned into a thorny shrubbery with small blue flowers and red berries.  You may think and speak.  Lasts 1d6 weeks.
+			<option>A major earth elemental decides to rid the world of you.
+			<option>Skin turns pale blue for 2d6 months
+			<option>You forget your name and profession for 1d4 weeks.  You retain your skills and may react but you are not aware of what you're capable of.
+			<option>A passing butterfly tells you to shut up.
+			<option>A god (random, of course) "awards" you with a quest (the nature of the quest is up to the DM. You may decline....
+			<option>You develop a severe allergy to the subject you were using your magic on, but you also permanently reduce the cost of your spell by 1/2.
+			<option>You find yourself to be the next victim of a secret death cult located near your home.  You are aware of this but you do not have the faintest idea of how you became aware.  Today is the perfect day for writing your testimony.
+			<option>A greater Fire elemental sees you as one of the ancient "lost" elementals and in order to help your quest it grants you resistance to all kinds of fire and heat (magical or non-magical.)  You also grow the mark of fire on your forehead and your pupils from now on glow with a deep red light.  May be removed by a remove curse at 1/3 of normal chance.
+			<option>All people, including you, within 40 feet are turned completely blue for 1d3 days. (Possessions too.)
+			<option>Your hands and lower arms are turned into an oozing yellow liquid for 1d3 minutes.  If more than a quarter ounce of it gets out of place, you will need a restoration for them to be functional again.
+			<option>You feel an itch on your back.  As you scratch yourself you become aware that something is not as it used to be.  You grow 1d12 hand sized green mushrooms on your body.  Each mushroom may be removed, but it will inflict 1d3 points of damage directly to your HP in the process.  Good Luck.  After a month they fall off naturally. (causing no damage.)
+			<option>You grow gills and cannot breath air anymore.  You must find a large body of water within 3 minutes or die from suffocation.  Luckily for you the gills work in both salt and fresh water.  Lower PB by 1d6 points.
+			<option>You find that your nose has turned into 24 carat gold.  May be removed by a remove curse, or sold.  Lower PB by 1d3 points.
+			<option>The only thing you remember is that you were about to cast a spell and that a shimmering turquoise light engulfed you.  Your friends on the other hand have a completely different tale to tell: Suddenly you disappeared and were gone until now. (1d12 days have passed.) No one knows what really happened to you during this time, but you have a strange feeling that someone else can see, hear, smell and feel all that you experience.  It seems as though you have been abducted by something or someone...Roll save vs random insanity.
+			<option>A flash, a puff of smoke and a little pink frog.  That is all that remains of your spell. (Remove it from the list, you've forgotten it.)
+			<option>In addition to your spell you conjure up a wasp's nest inside your target's mouth.
+			<option>Desired spell at twice your effective level.  (If you are multi-classed, add all your levels together and double it.)
+			<option>When you cast the spell you also notice that your left thumb is somehow stuck.  You discover a silvery thumbscrew is attached to your thumb.  It may easily be removed.
+			<option>Your hair grows an inch per turn for the next 2d10 hours.
+			<option>Drain target’s magic items (except artefacts) of all enchantments; each item gets a save
+			<option>Luck sees you as a promising piece in the game and awards you an automatic successful dodge/save against the next supernatural attack directed at you.
+			<option>Your right eye pops out of its socket and hangs swinging in its nerve thread.
+			<option>You become colour blind for 1d3 weeks.
+			<option>You instantly triple your spells/day.  Lasts 1d6 turns.
+			<option>A unicorn offers to be your steed, if you are of a good alignment.  An evil character on the other hand finds themselves covered with 2d8 hungry tinder spiders.
+			<option>You become aware of the workings of the spell "Size of the Behemoth"  It's unstable of course.
+			<option>the next priest of darkness you encounter casts a random curse upon you.
+			<option>The next arrow fired in your vicinity will hit your head.  Normal damage.
+			<option>A group of wandering pilgrims (3d6) mistakes you for a saint and starts harassing you with prayers, offerings and submission.  They will be very hard to get rid of and may act violently when the truth is revealed, depending on their religion of course.
+			<option>The world 'forgets' you for 1d4 hours and you are practically invisible during this period.
+			<option>You grow an extra set of teeth, permanently.   -19% to speak any language.
+			<option>Absolutely nothing happens and you loose the rest of your actions for this melee.
+			<option>A pack (2d6) of wild boars are accidentally summoned to a location 100 ft to your left.  There is a 75% chance that these fierce buggers will attack, if this is the case they will attack the nearest humanoid.
+			<option>You find your empathic self awakened as you suddenly become 'aware.'  You have become a latent psionic.  If you already have psionics you will find that you have 'moved up' a step (latent become minor, minor become major, major become master, master get the 00 bonus.)  If your race is not capable of psionics see 505
+			<option>200 gallons of water soak the caster.
+			<option>Some people to the left of you (1d8 randomly selected,) will be affected by the spell Words of Truth for one full day. (Save 15 or higher.) 
+			<option>You are affected by the spell Shadow meld for 3d6 melees (save at 15 or higher)
+			<option>the next noble you encounter presents a warhorse of the finest breed without any markings to you as a token of eternal friendship.
+			<option>A wall of flame, effective level 7 is instantly created 10 feet behind you.
+			<option>An active circle of protection from magic (strength +2) is created where you stand.
+			<option>A sketch of you falls to the ground beside you.
+			<option>You reverse every other word for 1d4 hours.
+			<option>Caster Multi-classes, to a random profession.  They can skip the apprenticeship and start at level 1.
+			<option>You feel something invisible giving pressure from all around your head.  Save vs 16 or pass out for 1d6 melees.  Your friends on the other hand witness your head shrink to the size of an apple.  Your eyes, nose, mouth ears, teeth, throat do not shrink.  The effect is permanent and will not affect your mental capabilities.  May be removed by a remove curse at 2/3 normal chance (round up.)  PB is halved due to the amusing look of your little "doorknob."
+			<option>You find a piglet among your gear.
+			<option>You will be aware of the next plot made against you and your friends.
+			<option>The next person of your opposite sex that you encounter will insist on mating with you.
+			<option>You are covered in a glasslike substance that tightens so much that you cannot breathe.  Make roll vs PS to shatter the glass or take 1d6 damage each melee until you are dead.  Others may also try to break the glass.  AR 12  SDC 30
+			<option>You find a kitten in one of your pockets, but the spell works normally.
+			<option>The spell has twice the effect, but also affects you with full strength.  (If you are the target, another random person is affected.)
+			<option>You are drained of all your spells, but this creates a ley-line nexus at the place you are standing, with ley-lines stretching out 500 miles north, east, south and west.  Duration: 1d8 years or permanent (?)
+			<option>Randomly roll a new race.  If it isn't the same as your current race, reroll all your stats.  Level and skills remain the same.  Remove curse or negate magic will work to restore you. (So save your stats, just in case ;)
+			<option>You, everybody and everything in a 100 ft radius will be teleported 1d100 miles in a random direction (1d4 N, E, S, W).  Each person and object gets a separate save.
+			<option>For 1d4 weeks your body contracts a strange shape-shifting disease.  Roll 1d10 every morning.  1-3 you are male; 4-6 you are female; 7-9 you are both; 10 you are none.
+			<option>You summon forth a beautiful Angel (Female Seraph if you are male; Male Ariel if you are female) which says 'I'm here to do everything you want me to do."  It stays with you for 1d4 days.
+			<option>You summon forth a beautiful Succubus (Female Succubus if you are male; Male Incubus if you are female) which says 'I'm here to do everything you want me to do."  It stays with you for 1d4 days.
+			<option>From this day on, you will always walk on a track of solid cement.  The cement will remain even after you pass.  You won't have to worry about dense forests and such, but tracking you will be very, very easy.  Remove curse and negate magic will work.
+			<option>Roll 1d10 for each of your possessions.  On a 1 this item disappears. 
+			<option>All your magic items and weapons change their special abilities, and you don't know which is which.  (For example, you have a ring of save vs magic +1, 1 pair of gloves with healing touch and a sword with 1d6 extra damage.  You now have a ring with 1d6 extra damage, a pair of gloves with +1 save vs magic and a sword with healing touch.  Or any other combination.)
+			<option>Your mind gets twisted.  You lose 1d6 skills but you gain 1d6 other skills.
+			<option>A random attribute of your character becomes a wandering effect.  You get +1 every day until it reaches 30, then it restarts with 1 until it ends with the number it started with.  A remove curse will work, but if performed when it's higher then in the beginning the attribute will drop 1 point under the starting number.  This can be used to restore lost luck, although you must have it restored on a day between what you had and your original maximum, otherwise you will lose a point from your lower score.
+			<option>You accidentally cast 'Size of the Behemoth' on yourself and everyone win a 100 ft radius.  Duration of the spell is only 1d4 melees, but all the clothes and armour you and the rest were wearing are now destroyed.
+			<option>A rain of fish starts with you in the center.  1d6 fish fall from the sky per square yard/melee.  Each does only 1 point of damage.  The duration of the rain is 1 melee/level, but the fish stay until eaten or rotten.  The 'storm' has a radius of 2 miles.
+			<option>Something smells peaceful here.  You summon a cloud of marijuana smoke, covering 100 ft radius.  Duration: 1 hour per level.  Victims will loose their thrill to fight and become very peacefully loving and dreaming.  Only a save vs poison will help, but it must be repeated every 10 minutes.
+			<option>A New Orleans Brass Band materialized from thin air plays a funeral march and dissipates into thin air again.  Every action stops during the music.  Everybody has to reroll initiative afterwards.
+			<option>A bunch (1d6) of naked Elvin maidens run in your direction.  They disappear 1 yard in front of you.  If you are male you lose initiative while they are there.
+			<option>The target of your spell will be turned to solid gold for 1d4 days.  No saving throw.
+			<option>All scrolls anyone within a 30 foot radius of you possess (even when these scrolls are not in the radius) change their heading at random. 
+			<option>Height and mass is reduced by 1/2 lasts 2d6 months
+			<option>Roll twice on this table, but any outcome will either be permanent or TEN times the indicated damage/strength/number.
+			<option>You cast a successful resurrection on all dead within a 5-mile range.  Not only on the recently dead, but also all others who died in the last 500 years come back to life, their bodies mystically restored.
+			<option>This was not quite what you thought should happen, but you conjure the one thing that you and your party needs most at this very moment, be it a piece of parchment with the layout of the dungeon you are trapped in or anything/anyone else.  Your DM will know what you need most, and will give it to you.  (DM note: The item disappears at the end of this session.)
+			<option>A white rabbit passes by.  When it gets in front of you, it stops, takes a kind of amulet out of a pocket in its vest, looks at it and mumbles, "oh-oh, I'm too late for the tea-time."  After that, it will vanish down a hole.
+			<option>Somehow, from now on you are the most notorious spell-caster in the whole universe.  Everybody everywhere will know your name and picture.  The reaction of the people, whenever you enter a community will either be respectful or hateful, depending on the view of magic they have in this community.
+			<option>Everything indestructible, everlasting, permanent (Magic items, rune weapons, eternal flames, etc.) in a 1-mile radius of you will crumble to dust, vanish, and fade out.  On the other hand, every object that is not indestructible will get this attribute and be considered magical from now on.
+			<option>Somehow you forget one of your spells, but you get a replacement.  Determine randomly, which spell you lose.  You get one spell 3 levels higher, also random, and also unstable.
+			<option>You forget 2 random skills.  But hey they are not lost for nothing.  You can distribute their percentage numbers on the rest of your skills.
+			<option>20 naked male dwarves surround you.  You have to make a Horror Factor of 18.  They disappear after 1d6 melees.
+			<option>If you have lost any SDC or hit-points, you are totally healed, if you have lost any limbs, they are restored, if you have any diseases, they are gone, if you are poisoned, you are healthy again. But if you were completely healthy, well, you’ll lose half your SDC and hit-points
+			<option>1000 healing potions appear 100 yards above your target and fall down on it.  They will make damage and heal it in the same moment, so nothing really happens, besides the mountain of shards your target is buried under
+			<option>For 1d4 melees you become completely weightless.  According to the universal laws of physics, if you make any movement, you will leave the ground and fly, but after the weightlessness wears off your body weight is increased by 100 pounds per level of your experience.  If you were flying, you now will fall back to the ground.  The increased weight lasts 4d4 melees.
+			<option>You become a toad for 3d6 melees.  Only your body changes, not your clothes nor other possessions.
+			<option>50 feet above your intended target appears a cow.  When the cow falls the target and the cow both take 10d6 damage.
+			<option>Two humans in strange dark-blue uniforms appear in front of you.  They say: "We are here to arrest you.  You have certain rights: You have the right to call an attorney; you have the right to say nothing.  If you say anything, this might and will be used against you in the court."  They walk towards you and in the very moment they touch you they disappear.  Who knows, maybe one day they'll be back to fulfill their attempt.
+			<option>If you are male, a beautiful maiden of your race comes to you with an apple in her hand.  "Be my Adam, I'm your Eve."  She gives you the apple and disappears.  If you are female a nasty little snake bites you for 1 point of damage, but luckily no poison.
+			<option>Your appearance is changed to that of a dwarf.  No stat change.  If you are already a dwarf, you now look like an elf.
+			<option>Metamorphosis into a moose for 1d6 days
+			<option>10 normal 1st level Wizards show up and cast the same spell you just tried on your intended target.  They disappear when this is done.
+			<option>A potion lies in front of you on the ground. (Shrinking, Level 15)
+			<option>You make a Timewalk.  1d6 Odd=to the future, Even=to the past.
+			<option>You just won a voyage around the world.  An invisible hand grabs you, lifts you up into the air and moves you around the world at a moderate pace.  Mystically, you have no desire to eat or drink during this trip, but you get to see the whole world.
+			<option>Your skin becomes golden.  No AR bonus.
+			<option>The spell should work occasionally, so you are encouraged to use it again.  So the spell hits its intended target just as desired.  But roll again on this table to get some extra spice.
+			<option>You decide to share the wealth.  Roll again on this table, once for each member of your party (including you.)  Everyone gets the effect you rolled for him.
+			<option>Everyone you look at in the next 20 minutes must save vs Psionics or be hit by an Evil Eye (20 points of Damage each.)
+			<option>Your head is tired of being on your shoulders and decides to take a look at the world from a different angle.  It moves down between your legs.  Duration: 1d6 months.  (Remove curse at ½ chance will restore your head to its normal resting place.)
+			<option>You somehow become a bear for 1d4 days.  But you can speak.
+			<option>An earthquake comes to visit the area surrounding you (300-yard radius, 6+ on the Richter scale.)  Buildings shake and will crumble.  I hope you are not indoors.
+			<option>You are now a beautiful (PB 29) female elf with long blond (IQ 5) hair (if you were male.)  If you were female, you are now a brute (PS 29, alignment: miscreant) male ogre also with IQ 5.  And I offer you 1000 extra XP for playing in character.  Duration 1d4 weeks.
+			<option>Your SPD is raised to 55 due to the horse-body you grew.  You are now a centaur.  Duration: permanent, Remove curse or negate magic will help.
+			<option>All your spells are now stable.  But for how long?  (DM, this is up to you to decide, I suggest 1d4 weeks maximum.)
+Illusion: " All creatures hostile to the caster in a 60’ radius are Glamoured to see each other as the caster.
+			<option>Roll to save vs curse: Cravings: Moose Dung.
+			<option>"Pleased to meet you.  Allow me to introduce myself..." You find yourself in a large damp dining hall at one end of a large oak-table facing a handsome dark-eyed young man.  He looks at you and has a sip of his wine, smiles and says: "I have a proposal to make, but first we eat hmmmm?"  The dinner you're served is the best you've had in your entire life, the man makes small talk during the meal.  After you're finished he personally serves you a glass of vintage wine and asks you to do a favour for him.  "It is of course voluntary, since I wouldn't dream of forcing you to do anything against your will."  He will not tell you the nature of the favour until you agree.  If you refuse he will simply send you back....
+			<option>A vorpal guillotine blade flies from the caster’s hands and strikes the target with a +5.  If a critical is obtained, the creature is decapitated and the head falls into a magically appearing basket. The creature gets its normal Dodge/Parry.
+			<option>Out of nowhere comes a carriage, which is unable to stop when the driver sees you.  You are trampled, taking appropriate damage.  If you are indoors see 862
+			<option>You are cured of any insanities you may have, if you have none, roll up an obsession.
+			<option>All of the caster’s stats are randomly redistributed, except their prime requisites.
+			<option>A random extra planar creature is gated in and will act appropriately.
+			<option>The next living creature the caster touches gains 1d10 HP and the caster loses the same amount permanently.  This can raise the creature's HP above the maximum.
+			<option>Target becomes immortal.  When he dies he loses 5 points of PE and rises from the dead at the next midnight.  This continues until his PE becomes 0, at which time he becomes a Revenant, which will hunt down the caster.  Remove Curse at 1/3 normal will cure the target, however the PE loss is permanent.
+			<option>Target's hit points are raised (and healed) to their racial maximum.  (Racial PE maximum plus 8 points/character level)
+			<option>The caster is imprisoned on another plane (DM choice.)  The captors may or may not be intelligent enough to care properly for their new inmate.
+			<option>The caster grows wings (50% feathered, 50% skin) and can fly at SPD 50.
+548.    Pivot The caster pivots 360 degrees, creating a vortex.  All creatures (except the caster) in the caster's original line of sight are drawn in, emerging on the ethereal plane.
+			<option>Caster is forced to speak in rhyme for 1d12 rounds.  Cannot cast spells.
+			<option>Caster gains a random harmful (for him) miscellaneous magic time, which takes effect immediately.
+			<option>The target is returned to the condition he was in before the start of the current situation.  (All ISP, HP, Spells, etc are restored; any items destroyed or used are replaced.)
+			<option>A randomly chosen wand within 50 feet of the caster (unless there is a wand of elemental anything nearby, in which case it is affected) explodes; all within 10’ of it take appropriate damage.
+			<option>Target is cured of 5d10 hit points (up to normal maximum).
+			<option>The caster is surrounded by a continual, soft glow of bluish white light; makes sneaking in the dark impossible and is frightening to children and superstitious individuals.
+			<option>The person closest to caster grows hair on their eyeballs. This is very painful and will cause blindness. A successful remove curse spell will remove the hair but not the damage.
+			<option>All spells cast by the caster in the next 24 hours will become unstable, permanently.
+			<option>A Banshee appears by the caster and Wails.
+			<option>The caster’s toes enlarge to 3x their normal size, ruining footwear and inflicting 1d10 points of damage and reduce the caster’s SPD to 50% of normal. If the caster is wearing metal footwear (or something else which wouldn’t normally be destroyed) 1d10 toes are broken. Toes return to normal size after 1d8 turns.
+			<option>Caster is attacked by 2d100 small annoying insects (50% chance they’re the biting kind).
+			<option>A meteorite streaks out of the sky and hits caster for 5d10+50 hit points. (If underground, waits until exposed to sky.)
+			<option>All of caster’s scrolls vanish.
+			<option>For the next 3d4 rounds, all of caster’s rolls are at –5.
+			<option>The caster turns into a painting of herself, until Dispelled (any Dispel will do). Any changes painted on the canvas will become part of the caster if and when she is returned to her normal form.
+			<option>A devil/angel duo appears on the caster’s shoulder, and advises them appropriately as to what to do for the next 1d10 hours.
+			<option>All of caster’s weapons turn to Cursed Friend slaying weapons, which take effect the next time they are used and then return to normal.
+			<option>Caster develops an allergy to one of her magic items. This item causes sneezing and coughing for 1d6 hours every time it is used.
+			<option>Target gains a 1d100 % resistance to magic for 1d6 turns.
+			<option>Target is able to drain Life Essence (1d8 points) at a touch for 1d4 rounds.
+			<option>Caster changes into a 4-foot diameter jellyfish unless a save vs. magic is made at –2.  If on land, the caster takes 4d10 points of damage each round unless continually doused by water.
+			<option>Reverse Spell protects Target for the next turn.
+			<option>The caster’s familiar turns against him. The animal is no longer treated as a familiar (appropriate penalties for familiar loss) and will act as a normal creature of that type will. This may include attacking the caster (usually just running away). If caster doesn’t have a familiar, he does now (GM choice. Be creative).
+			<option>The ground between the target and the caster turns to molten lava. All creatures touching the 5’ by 10’ strip of lava will take damage as per River of Lava at the caster's full level, every round they are in contact with it. 
+			<option>Caster loses all teeth. A regeneration spell/herb or suitable replacement will be needed.
+			<option>The target gains Regeneration at the rate of 1 HP/round.
+			<option>Molten lava comes out of the ground near caster, who takes 5d10 points of damage.  Roll d100 for duration: 01-50, 1d4+4 rounds; 51-70, 1d4 hours; 71-85, 1d100 days, 86-100, becomes a real, non-magical volcano.
+			<option>DM shouts “Wish!” and counts down from 10.  If the caster makes a wish within the count it is granted.  Be creative, be cruel.
+			<option>Caster permanently forgets one spell chosen randomly. It may be re-learned at the next level.
+			<option>All creatures slain by the caster in the last 24 hours rise up as Revenants and attempt to destroy him/her. All undead have their original abilities and skills.
+			<option>Caster opens a gate to another location (DM choice or random) and is pulled through.
+			<option>Caster Levitates uncontrollably, always heading upward until the spell duration (at the caster's level) is reached, then they fall.
+			<option>Caster is in great pain for 1d3 rounds.
+			<option>Caustic slime spews out of caster’s nose. Caster takes 1d10 points of damage and cannot smell for one month.
+			<option>Caster becomes a very strong magnet for 1d4 rounds.  All metal in the area will fall toward the caster.  Metal weapons will attack the caster at +2; those wearing metal armour will fall on the caster, who will take appropriate damage.
+			<option>a Greater Heal, healing all but 1d4 points of damage, affects Caster.
+			<option>Target's PS increases to 30 (Wears off in 1d4 days.)
+			<option>Caster emits a powerful fart which does 1d10 damage to the caster, propels her 10 feet forward, and remains where the caster was and acts like a Stun Cloud for 1d4 rounds. Any non-magical trousers are ruined completely.
+			<option>Area within 100’ of caster becomes a null magic zone. Magical/animated creatures become inert and items and spells will not work in this area.
+			<option>One charge from a randomly chosen Wand, Rod, Staff, or other Charged item affects the caster if she fails her save.
+			<option>Caster and target must re-roll their highest statistic that is not a Prime Requisite.
+			<option>Nearest creature friendly to the caster is replaced by a doppelganger. The original creature is imprisoned in the doppelganger’s lair (wherever that may be).
+			<option>Fireball, centered on the caster effective at caster’s level.
+			<option>All creatures in a 60’ Radius hostile to the caster are duplicated, including possessions, etc.
+			<option>Target can only be hit by a +5 weapon or greater for the next 1d10+10 rounds.
+			<option>Hostile creatures within 60’ of caster have their hit points restored to maximum.
+			<option>Caster becomes extremely drunk.
+			<option>Target permanently gains Bodybuilding at level 1.
+			<option>The caster becomes Deaf.  Remove Curse will cure this condition.
+			<option>A 30-inch Colour TV appears from another time and dimension appears in front of the caster. All who view it must make a ME check or be totally unable to do anything except watch the screen.
+			<option>A gallows appears. Caster must make a PP roll to avoid being hung. The rope can be cut down before the caster is killed in one round.
+			<option>Target is affected by Paralyze (as the spell). Duration is based on the caster’s level.
+			<option>All of caster’s statistics are raised to 30 for 1 hour.
+			<option>The intended spell backfires on the caster for good or ill.
+			<option>1d10 skeletons under the target’s control rise up out of the ground and attack the caster (this may anger the caster’s deity!).
+			<option>The caster is buried to the chest in offal that oozes from a gate that spontaneously appears.
+			<option>The caster and all of her party are transported to another site of conflict.
+			<option>The ground opens up and swallows the caster to the neck.
+			<option>Caster is affected by Confusion, as the spell.
+			<option>Caster is surrounded by hot coals. All those attempting to walk on the coals must make a PE check to stay on them.
+			<option>Caster becomes magnetically repulsive for d20 rounds. Metallic objects cannot be brought closer than 5 feet; any ferrous items on the caster are repelled and go flying.
+			<option>Target becomes invulnerable to edged weapons for 1 hour.
+			<option>Caster is affected by a Hold Person spell.
+			<option>A large bulls eye target appears on caster, giving anyone aiming at her with any kind of ranged attack a +10 to hit.  This lasts for 1 hour.
+			<option>A loud Gong sounds.
+			<option>The spell fails but the caster believes it affected the target to the maximum possible effect (if the max possible is death, the caster must choose a new target.)
+			<option>A juvenile dragon of a random type flies onto the scene and acts appropriately.
+			<option>Re-roll, but the effect doesn’t happen right now. Instead, one of caster’s fingernails falls off. The re-roll takes affect when the nail is discarded or destroyed and always affects caster, even if the surge says ‘target.’
+			<option>All of caster’s weapons jump off her to a spot 10 feet away.
+			<option>Or are they?  Caster grows an argumentative, annoying second head on her shoulder.
+			<option>Target turns Invisible as per the spell, but can be hit once before turning visible again.
+			<option>Stun Cloud centered on caster.
+			<option>The caster is picked up by an invisible hand and shaken like a rag doll for 1d6 rounds. Spellcasting under such conditions is impossible unless casting an instantaneous spell.
+			<option>Technicolour hailstorm. 1d4 icy stones of various colours, doing 1d6 HP of damage each, hit all those within 50’ of caster.  The storm lasts for 1d4 rounds.
+			<option>The caster is turned into a puddle of water for d8 rounds. Evaporation or splashing will do 1d20 hp dam. The caster returns to normal form at the end of the duration.
+			<option>Caster’s mouth is puckered for d10+10 rounds. No speech, spell casting, breath weapons, or other uses of the mouth are possible.
+			<option>Target is flattened for 10 melees.  A companion may re-inflate the target before the end of the duration by blowing into their thumb.
+			<option>Target Forgets the last 24 hours.
+			<option>The caster’s pack/robes whatever ignites for 1d4 rounds. Caster takes fire damage every round unless she removes the source of the flame or renders herself immune to natural flame/heat.
+			<option>Caster is yanked into the air 10 feet and spins around rapidly, transfixing all those who see it as per Hypnotize.  Caster will continue to spin until she fails a PE roll, at which time she falls, taking 1d6 points of damage.
+			<option>Illusion of a Fireball centered on caster. All who see this feel the heat of the Fireball but the caster is unharmed.
+			<option>All gold in the caster’s possession turns to water.
+			<option>A large mirror appears in front of the target. If the target tries to get around it his mirror image emerges from the mirror and engages him in combat.
+			<option>The caster is affected as per a Charm spell where she thinks the target is her best friend.
+			<option>Caster is covered with tar and feathers. 50% chance target will stop what he’s doing and taunt and laugh hysterically at the caster.
+			<option>Caster is Mute for the next 1d4 hours.
+			<option>Caster turned into an infant of the same race. She reverts to her original age after 1d10 rounds.
+			<option>There is an immediate random encounter with a monster hostile to the caster.
+			<option>Caster and her party affected by a Cloud of Slumber spell.
+			<option>Target gains power of speech in the caster’s native language (98%) and High Intelligence (racial maximum.) This also applies to inanimate objects (IQ on an inanimate object is same as caster's.)
+			<option>Caster is bound in High Steel straps. These will take a skilled locksmith to remove.
+			<option>Caster is teleported to the top of the highest tree in sight and must make a PP check to avoid falling.
+			<option>Area in 100 feet of caster is held in stasis 1d10 days; caster is unaffected.
+			<option>Wild surge triggers the casting of another randomly chosen spell.  Uses up it's own 'spell/day'
+			<option>Caster jerks uncontrollably for 1d4 rounds, then a hypnotic pattern appears, affecting all who see it as a Hold Person spell.
+			<option>Caster gains a stutter. Remove curse will cure it.  75% chance that spells cast while stuttering will misfire, resulting in needing to roll on this chart again.
+			<option>Caster Forgets all her spells for 1d6 rounds. Items still function.
+			<option>Caster is teleported to nearest goblinoid brothel.
+			<option>Caster is teleported home. Normal teleport error rules apply.
+			<option>One member of the caster’s party is Blinded for 1d8 rounds.
+			<option>Incapacitating green gas comes out of the caster’s ears and floats in the target’s general direction. All those between caster and target must make a save vs spell at caster’s level vs. Poison or fall unconscious.
+			<option>All magical weapons within 30’ of caster lose their magical powers for 2 rounds only.
+			<option>Small rubber balls (1 inch diameter) rain down in a 20’ radius around caster for d4 rounds. Everyone in the area must make a PP check to move or fall down. The balls remain in the area, causing a check every round of movement until cleared.
+			<option>Target affected by True Sight for 10 rounds.
+			<option>Caster’s ferrous items must make a save vs. spell or rust completely away in one round.
+			<option>Caster chained to ground; tensile strength of chains is 3000 lbs.
+			<option>Caster sprayed by 2d20 pieces of confetti, edge on. They do 1 HP of damage each and caster has annoying paper cuts that will itch maddeningly as they heal.
+			<option>All non-magical glass or crystal within 30 feet of caster shatters.
+			<option>Target’s form turns gaseous for 1d4 rounds. A good gust of wind will disperse the cloud and kill the target.
+			<option>Trees around caster fall down (if none, some grow first). Caster must make a PP check or be pinned beneath them.
+			<option>1d10 small stones shoot from the caster’s fingertips and orbit the target’s head. They are under the target’s control, as to speed and direction.  They orbit for 1d10 turns.
+			<option>A random person within 100 feet is made ethereal. Unless they are familiar with the ethereal plane they may not realize what has happened and will not be able to return unless shown the way.
+			<option>Next missile weapon used by target multiplies by 6; one arrow becomes 6, each with its own attack.
+			<option>The intended spell functions but consumes 1d6 of the caster's spells for the day. If this exceeds the caster’s available spells, they cannot cast spells for the next 1d3 days.
+			<option>A geyser erupts midway between caster and target. Anyone within 10 feet of it takes a 4d6 damage from the boiling steam.
+			<option>A random snake is teleported in to within 10 feet of caster and is under the targets control.
+			<option>Everyone within 50 feet of caster is thrown 5 months back in time.
+			<option>You accidentally summon a lesser deevil, that isn’t very happy ‘bout being dragged from his own dimension.
+			<option>Caster polymorphs into something rhyming with her name (GM choice.)
+			<option>A booming voice audible over the din of battle says “SURRENDER!” This acts as a Command Word and all who hear it must make a save at the caster’s level or surrender to anyone who makes their save.
+			<option>All the caster’s magic items are teleported to random locations within 100 feet. Items that don’t wish to be separated from the caster get a save.
+			<option>Word of Fear on the caster. No save.
+			<option>Caster hit by 1d6+4 giant staples, which do puncture damage for 1d3 each and staple the caster to the nearest surface.  This may be the ground.
+			<option>Nearest dead body within 60 yards of the caster becomes a Zombie and attacks the caster.
+			<option>All food within 50 feet spoils completely.
+			<option>A random spell of the same level as the intended spell affects caster if she fails a save.
+			<option>A net falls on the caster and they becomes so entangled they will have to be cut out.
+			<option>The target gains 15th level singing ability and can’t wait to try it out. Ever hear a troll sing?
+			<option>The caster is covered in an inert green slime that drips incessantly into her eyes. This goes on for 1d6 rounds during which time caster is at a –5 to Strike, parry, and dodge.
+			<option>Target’s skin turns to steel, giving him AR 18 for the next 1d6 rounds.
+			<option>Caster spins rapidly for 1d4 rounds and is stunned for 1d6 rounds afterward.
+			<option>Jail cell bars of the appropriate size surround the caster and her party (and anyone else in between).
+			<option>Target must make a save vs. magic or become a Wraith.
+			<option>Caster’s next spell cast at 1st level in effect.
+			<option>Target must make a save vs. magic at -2 or turn into a Lesser Mummy.
+			<option>Caster must save vs magic or be affected by Petrification for 10 hours.
+			<option>The caster’s mount is polymorphed into a goat if it fails a save vs. magic. If the caster has no mount, it affects the nearest one.
+			<option>An enormous tornado picks up caster and her associates and takes them to Kansas (or some other boring, flat, corn filled spot on the same plane.)
+			<option>The caster is teleported to the highest mountaintop in sight.  If there is no mountain visible the highest location within sight will do.
+			<option>Target Phases into and out of the ethereal plane for the next 1d10+10 rounds.
+			<option>A poisonous spider (DM choice) appears near the caster and attacks.
+			<option>Target collapses and appears to be dead. He is not, however, but you have no desire to discover this. He’ll wake up and be fine in 1d6 minutes.
+			<option>Target’s hair thickens and grows 4 yards long in 4 rounds. Target must part the hair to see. The hair is impossible to damage for d3 hours.
+			<option>All magic items within 60 feet of caster wiggle when touched for the next 1d6 days.
+			<option>A randomly chosen person near the caster has their knees reversed to bend the other way. This is permanent, and incurs a –3 to their PP. Armour will require modification. On the plus side, their base SPD is now doubled.
+			<option>The next time caster and her associates return home, they will be visited by a stern old tax collector who will demand 10% of all they own as taxes, and has the authority to enforce the collection. He will return every month demanding another 10% until dispelled.
+			<option>Caster summons a Leprechaun (or other suitable Fae).
+			<option>All non-magical clothing, weapons, armour, and similar equipment must make a save vs. magic or Enlarge to twice their normal size for 4d10 rounds.
+			<option>Caster shoots a web at the target, becoming entangled.  The caster is one (possibly the only) anchor point.
+			<option>Caster’s stomach is emptied; she becomes ravenously hungry and must stop to eat.
+			<option>Caster sweats buckets for a month, and must drink at least 3 liters of water per day or lose one point of Temporary PE for each day the water requirement is not met.
+			<option>An Imp appears, insults the caster, and disappears.
+			<option>Caster polymorphs into a mammal appropriate for the area, or a random type if no mammals are around; 40% chance for a monster type.
+			<option>Caster becomes hysterically religious for one month, believing herself to be an Avatar of some previously unknown god(dess) and will try to convert followers.
+			<option>Caster and target exchange bodies. If the target is completely non-sentient the caster’s body will fall into a coma.
+			<option>Caster and friends are teleported without error to the next place named.
+			<option>All gold on target turns to lead.
+			<option>The caster’s footwear animates and grows teeth for 3d4 rounds. These teeth will attack everything within range, causing the caster to kick the nearest person. Treat as combat.
+			<option>No one (except the caster) can hear the caster for 1d6 rounds. Caster can still hear normally.
+			<option>Caster glows a primary colour for 2d12 days. This glow has the effective light of a normal torch.
+			<option>Caster becomes immensely dirty- so much so that a dust cloud forms around her. Only natural bathing will remove the dirt. Interactions with others will suffer a penalty (unless they enjoy that kind of thing).
+			<option>Caster falls flat on her face and must stand up again.
+			<option>Caster’s hair turns florescent green (some other obnoxious colour if already green). This is permanent until new hair grows in.
+			<option>Target it teleported directly behind caster.
+			<option>Target and caster (only) are sealed behind an impenetrable force wall that only falls after one of them is dead.
+			<option>Target glows bright blue, permanently.
+			<option>The target is covered with plate armour (AR 18). Any other armour worn falls off.  This lasts for 1d4 rounds then the armour disappears (but the original armour does not reappear on the target’s body!) 
+			<option>Caster is surrounded by a giant pliable (but impenetrable) bubble for 24 hours. (Giant hamster ball, anyone?)
+			<option>The shield closest to the caster is turned into a flower basket.
+			<option>Caster and target become locked in a heated debate over the nature and use of Arcane Magic and will do nothing else for 1d6 rounds. If the two do not have a language in common, an imp appears to act as translator.  Inanimate objects animate for the duration.
+			<option>Circle of Flame, as per the spell, surrounds caster and moves with her, duration based on caster’s level.
+			<option>Caster thinks her favorite weapon/wand/other long skinny object has turned into a poisonous snake. This lasts for 1d6 rounds.
+			<option>Caster gains a level at the expense of a nearby being. The caster gains skills appropriate to the being drained.  If this reduces the being’s level to zero, the being dies and is resurrected as a revenant who hunts down the caster. The being can be anything, including small mammals, insects, etc.
+			<option>The next time the PC’s enter a town the inhabitants will try to chase them away.
+			<option>Each gold piece in the caster’s possession turns into the equivalent value in copper pieces.
+			<option>The next 10 meals the caster eats will taste like cow dung.
+			<option>Spell functions, but cannot be controlled by caster (DM determines effects).
+			<option>A skunk is conjured before the caster, who is promptly sprayed.
+			<option>A Lesser Air Elemental is summoned and promptly attacks the target.
+			<option>The ground beneath the caster becomes slippery as if icy.
+			<option>Caster polymorphs into a reptile/amphibian appropriate to the area, or a random type if no reptiles or amphibians are in the area. 40% chance for a monster type.
+			<option>A nearby bird starts singing the Star Spangled Banner in a rich baritone voice, and will follow the caster, singing at 100 decibels, for 1 month.
+			<option>Caster develops an irritating rash for 1d4 rounds and has to scratch incessantly.
+			<option>Caster polymorphs into a bird appropriate to the area, or a random type if no birds are in the area. 40% chance for a monster type.
+			<option>Caster encased in a block of lime Jello 10 feet on a side. Caster must make a PP check every round to escape. Keep rolling until she gets out or passes out from lack of oxygen.
+			<option>Target gains infravision (or some other unusual vision if he already has infravision) but loses all normal vision.  This lasts for 1 day.
+			<option>Target’s skin turns hard as a diamond and will be immune to slash and puncture attacks. This does not affect his AR or HP, but only lasts 2 turns.
+			<option>Caster’s tongue grows long enough to touch the tip of her nose. If her tongue is already that long, the surge affects some other part of her body.
+			<option>Spell Hold Person affects all creatures in a 50’ radius around caster.
+			<option>Caster’s next spell is cast at 1d4 levels lower in effectiveness.
+			<option>Caster’s feet are changed to two left feet for one day. Caster’s SPD is halved and fitted footwear becomes uncomfortable.
+			<option>2D100 pieces of gold rain down in a 30’ radius of caster. Anyone caught in the radius takes 1d20 points of damage from the falling coins until they are outside the radius.  Coins vanish after 1d10 turns.
+			<option>Caster Shrinks, as per the spell, but to 1/12th her original size, permanently.
+			<option>Target loses all hair/fur/feathers/scales etc. Reaction is determined by target’s race/outlook. Other effects determined by DM (flying will be tough without feathers). Whatever is lost grows back naturally.
+			<option>The intended spell functions, but consumes one charge from a random nearby charged magic item instead of caster's spell
+			<option>Darkness 30-foot radius, centered on caster. This is permanent unless dispelled at the level of the intended spell and moves with caster.
+			<option>Caster’s clothing and equipment turn invisible. Very embarrassing.
+			<option>Enchantments and bonuses on all weapons and armours/shields within a 50’ radius of caster have their bonuses inverted for 2d10 rounds (i.e. a +10 weapon becomes a –10 weapon)
+			<option>Caster is tied down with magically appearing rope.
+			<option>Some random body part of the caster becomes invisible. This is permanent unless dispelled at the level of the caster.
+			<option>All of casters flesh except her blood vessels and bones become transparent for 1d4 turns. Ick.
+			<option>Caster is coated in a thick layer of taffy. Damage to caster is at -2, but the taffy will solidify in one turn.  Caster will be immobile unless the taffy is removed.
+			<option>Caster and target exchange places, clothing, possessions, etc.
+			<option>The area around the caster becomes uncomfortably hot.
+			<option>A randomly chosen possession of the caster’s begins to gripe about the caster’s treatment of it, lousy working conditions, low pay, long working hours, etc.
+			<option>Caster has a vision of the players around a table, rolling dice, playing a game. This lasts for one round.  They are affected by a sense of ennui for the rest of the day.
+			<option>A barrel of syrup appears in the air above the caster’s party and empties itself on the first person to notice it.  (Person who made their PER by the most amount.)
+			<option>Target smells of roses for one month. If killed, his body will not decompose and will resurrect as though given a Resurrection spell.
+			<option>Caster and target must re-roll their PE Statistic.
+			<option>Vacuum 10’ centered on caster.
+			<option>Caster polymorphs into a fish appropriate to the area, or a random type if no fish are in the area. 40% chance for a monster type.  If caster is not near water they will suffocate in 3 minutes.
+			<option>Caster is covered in liquid chocolate.  A random passerby offers to lick it off.
+			<option>One of caster’s items teleports into the target’s hand. Target drops anything previously held in the hand. If target has no hands or is not a creature, the item just lies there.
+			<option>All moving creatures within 60 feet of caster must make a PP roll or trip and fall.
+			<option>Caster’s entire party teleported to the nearest artifact/relic (does not guarantee it is usable, and it is likely to be in the possession of someone else.)
+			<option>Caster polymorphs into a plant appropriate to the area, or a random type if no plants are in the area. 40% chance for a monster type (Huorn, Deathwoode, etc.)
+			<option>Caster finds her lungs filled with water; she must make a PE check or die.  If it is made she can do nothing but cough and sputter for 1d4 rounds.
+			<option>Every spell the caster has learned goes off, one per round, until caster is exhausted. Caster may name the target with a successful ME roll.
+			<option>All creatures within 120 feet of the caster teleport to random other positions within 120 feet of the caster.
+			<option>Caster’s associates all turn green whenever they come within 5 feet of her for the next 2d10 turns.
+			<option>Target begins whistling “Whistle While You Work.” Lasts for 1d4 rounds.
+			<option>All spells are exchanged between the minds of the caster and the target if they are both spell casters. If not, the caster Forgets all her spells for the next 24 hours.
+			<option>Caster thinks the spell has functioned as intended when it actually hasn’t. This delusion lasts for 1 round.
+			<option>The caster’s hair spontaneously combusts into blue flame and continues to burn for 6d10 turns. The hair is not consumed, and no damage is taken. The flame is actually an Illusion and can be detected as such.
+			<option>Target is cleaned. All dirt and bad smells are removed. This can actually cause damage to creatures composed of earth, DM discretion.
+			<option>2d6 chickens appear at the caster’s feet and run away at top speed.
+			<option>The caster’s clothing becomes sentient for 2 weeks, refusing to leave the caster’s warm, comfortable body and complaining loudly if treated roughly or exposed to uncomfortable elements.
+			<option>Suds flow from the ground in a 60-foot radius around the caster for 1d6 rounds at the rate of 3 cubic feet per round.  Suds are from either soap (25%) or beer (75%).
+			<option>Caster hit by a flurry of non-magical snowballs. No damage unless she is fire or heat based.
+			<option>Random plant appears and takes root at caster’s feet.
+			<option>A yellow mushroom grows out of the caster’s right ear over the course of two rounds. It is edible but tastes like wax. Caster must make a ME roll or be distracted during the process.
+			<option>Tip of caster’s nose glows red for a second. No other effect.
+			<option>A watermelon appears in the caster’s hands.
+			<option>All weapons within 60 feet of caster sing one shrill note for one round.
+			<option>Casters’ clothing is transformed into a soft, skin-tight, glossy black leather outfit studded with silver.
+			<option>Caster’s clothing changes to the outfit of a full patch Hell’s Angel biker.
+			<option>The intended spell appears to fail when cast, but will go off the next time caster uses a spell in addition to the spell they are attempting to cast.
+			<option>A field of mushrooms sprouts around caster. They are edible and will either heal 3d10 HP (50%) or cause 3d10 HP dam (50%).
+			<option>All visible areas of cloudy skies clears, and clear skies cloud over.
+			<option>One randomly chosen magic item has its enchantment changed.
+			<option>A solar eclipse occurs (or lunar if nighttime). This lasts the rest of the night/day.
+			<option>A loud ZAP is heard. No other effect.
+			<option>Fog, as per the spell, 60’ radius centered halfway between caster and target.
+			<option>A forest grows up around caster in 3d4 rounds, 1-mile radius per level of the intended spell.
+			<option>Sweet music fills the air, produced by a nearby flower (if there aren’t any one grows first). The flower will never die, even if picked, continuing to sing forever and the tune never repeats.
+			<option>The intended spell functions, but with spectacular special effects.  (Light flashes, music, etc.)
+			<option>A 10-foot diameter boulder rises from the ground directly under the caster. Footing is precarious.
+			<option>Everybody’s last meal animates and seeks the easiest way out, which will be down if more than 3 hours have passed. No damage is incurred, but combat ceases for 2 rounds and the result may be embarrassing.
+			<option>Everybody within 50 feet of caster and Target starts singing bawdy drinking songs for 1d10 rounds. Everyone affected must make a save vs. magic or become friends. Those who make their save may Ambush those who don’t.
+			<option>A randomly chosen charged item has its spell changed. The appearance, command word, and number of charges do not change. Just the spell. Owner won’t know this until the item is used again.
+			<option>An enormous glitter covered ball appears in mid-air between caster and target. The words and music to “Staying Alive” play loudly, and caster and target disco dance for the next 2 rounds.
+			<option>All blunt weapons within the caster’s sight emit loud kissing noises whenever they hit anything for the next turn.
+			<option>Nothing happens. The GM should roll many dice and chuckle a bit.
+			<option>The fingers of a nearby randomly chosen creature shrink to 1/12th their normal size for 1 hour.
+			<option>Caster summons 1=buzzard, 2=giraffe, 3=kitten.
+			<option>Caster and target exchange current HP total.
+			<option>The next time caster says the word “Blind,” “Kill,” or “Stun,” it acts as though a Power Word has been spoken with. Let the caster name the target.
+			<option>Five foot long pink flower petals with green polka dots rain from the sky in an area 50’ around the caster.  Everything in the area is buried and combat stops for 2d6 rounds while everyone fights their way to the surface.
+			<option>All soil and ground covering a 100’ radius around caster becomes invisible for 1d6 days, so that it will seem everyone is standing on air. Buried objects will be visible.
+			<option>All grass in a 160 square foot area around caster grows uncontrollably. If there was no grass previously, a well-manicured lawn sprouts.
+			<option>All copper pieces within 30 feet of caster are changed into gold pieces, and vice versa.
+			<option>A rainbow (as per the spell) appears for one-hour overhead.
+			<option>The area fills with countless butterflies, blinding everyone for 2 rounds.
+			<option>A deep lake forms in a 100’ radius of caster. Everyone in that area gets a quick swimming lesson.
+			<option>Caster summons 1=a large dove, 2=a large rabbit, or 3=large iguana.
+			<option>An empty log cabin pops up next to the caster.
+			<option>Rabbit comes out of the nearest helm/hat. It runs for its life, but not before soiling the head of the wearer.
+			<option>A desert oasis grows around the target.
+			<option>One randomly chosen creature within 50’ of caster will automatically score a critical for the next 2d4 rounds.
+			<option>Everyone within 200 feet of the caster becomes completely invulnerable for 2d6 rounds.
+			<option>A plant within 10 feet of caster swells alarmingly and then explodes in a cloud of pollen, obscuring everything in a 20-foot radius as per a Fog spell.
+			<option>Everyone in caster’s view feels cold for 5 rounds. No other effect.
+			<option>Fog, as per the spell, but only between the caster and the target, and moves with them.
+			<option>Caster summons 1=a rhino, 2=an elephant, or 3=a large mouse.
+			<option>All rock within a 20’ radius of target turns to a random metal (whatever ore is most prevalent).
+			<option>A Large oak tree with mistletoe springs up in a place where no one will be injured.
+			<option>Caster names anything desired (not more than 10th level in effect), and GM rolls a 50/50 chance it will happen to target or caster.
+			<option>Caster’s eyes become vertically slit like a cat’s. The caster gains Nightvision, if the caster already has night vision, it is extended by 10 feet.  If the caster has slit eyes already, this surge removes them.
+			<option>Caster summons an ugly painting (25%), a bellows (25%), or a giant’s boot (50%).
+			<option>Burst of fireworks (harmless but neat).
+			<option>Target’s nose grows to 10 times its normal size for d6 rounds.
+			<option>A giant sock appears in the target’s mouth.
+			<option>A ring of mushrooms appears around target (no other effect).
+			<option>A black felt hat (value 15 sp) appears on caster’s head.
+			<option>1d4 rotten tomatoes hit target (effect at DM discretion).
+			<option>1d6 raw eggs hit target from above (effect at DM discretion).
+			<option>Cream puffs fly from caster’s hands toward target.
+			<option>Target is turned into a cartoon rendition of himself and will not be able to take any action without making a short (less than 1 round, no more than 60% action) speech telling everyone exactly what he’s going to do.
+			<option>Caster learns the profession of the target.
+			<option>Caster’s shadow vanishes for d4 days.
+			<option>Graffiti reading “<caster’s name> was here!” appears on target written in ink. Ink is visible even if target is not.
+			<option>Handedness of target is reversed. Target must take time to switch hands or suffer the appropriate penalty.
+			<option>Target is the subject of a Rust spell; all non-magical metal on the target must save or be reduced to dust.
+			<option>Harmless colourful light beams radiate from caster.
+			<option>A large green worm appears and jumps at the target.
+			<option>All water within 60’ of caster turns to fine Elvin wine. Cheers!
+			<option>All claws and nails within 30 feet of caster are filed short and blunt, making them harmless.
+			<option>Target is turned upside down and right side up in the same round. Target is stunned 3 rounds and is at –3 s/p/d.
+			<option>All spells cast during the next round will last 10 times longer than normal. Do not inform caster of this.
+			<option>A stream of beer shoots from caster’s fingertips for 1d3 rounds.
+			<option>All caster’s coins are transformed into pearls (100 GP base value). They will remain pearls until 2 hours after they are sold or traded to someone else, then return to normal. They cannot be used as spell components.
+			<option>Caster jumps in a random direction d3x20 feet. Caster cannot jump more than 20 feet backwards.
+			<option>Darkness, 10’ radius, centered on target for one round. It reappears in the 3rd, 5th, etc. for 2d20 rounds.
+			<option>Target can do nothing but laugh uncontrollably for d8 rounds, but they are also healed of 1d8 HP in the process.
+			<option>Cream pie flies at target; target must waste a round wiping it off his face or fight at –2 for the next 3 rounds.
+			<option>A jinn bottle appears; target must make a save vs. spell or be forced inside and the jinn released. If target makes his save, a randomly chosen ally of target is next, one by one until one fails his save. If they all make their saves, the caster’s party is next. If everyone makes their save, the caster is automatically bottled.  The jinn is under the caster’s control if the target/ally of target fails their, if a party member gets stuck, the jinn is under the target’s control.  If the caster is alone, there will be a battle of wills.  Jinn’s ME=10.
+			<option>Target inflates like a balloon for d4 rounds and deflates for another d4 rounds. This only affects living material up to 1000 pounds and will not float.
+			<option>Caster is endowed with impressively large genitals (if male) or breasts (if female).
+			<option>The first four notes of Beethoven’s Fifth Symphony echo through the air. All creatures within hearing range hostile to caster are affected by Fear, as the spell, if they fail a save vs. magic.
+			<option>Target’s ears grow enormously huge (1 foot per round) until target falls over from the weight after 2d4 rounds.  The ears will then fall off and fly to the caster’s home, where they will mount themselves over the front door and flap for visitors. Target’s ears are otherwise unharmed.
+			<option>Target polymorphs into a reptile/amphibian appropriate for the area, or a random type if no reptiles/amphibians are around; 40% chance for a monster type.
+			<option>The first spell caster ever learned takes effect.
+			<option>Caster has an accurate vision of the future (as per Anticipations) about one hour head. Unfortunately, the vision lasts 1d4 rounds, during which time the caster can only stare straight ahead.
+			<option>Caster is healed of 10 HP if wounded.
+			<option>All weapons and armour within a 50’ radius of caster become rubbery and useless for 2d4 rounds. Weapons used during this time will be ruined, armour becomes form fitting.
+			<option>Target screams (wasting a round, though voice or breath weapon attacks take effect automatically).
+			<option>Every object on target reverses itself; armour is on backward, sword is in other hand, etc.
+			<option>All plants in a 20’radius around caster wither and die.
+			<option>Caster’s PS bonus is doubled for rounds equal to the level of the intended spell.  If they have no PS bonus, they gain a +2 for the duration.
+			<option>Target falls down and is pinned there as though under a great weight for 3 rounds.
+			<option>Caster’s aura changes randomly and continuously for the next 1d3 days.
+			<option>Thick dust covers target, 50% chance target is allergic to it and starts sneezing uncontrollably.
+			<option>Target is turned Invisible, as per Invisibility, and Paralyzed at the same moment. This lasts for 1d4 rounds.
+			<option>Target polymorphs into a plant appropriate for the area, or a random type if no plants are around; 40% chance for a monster type (Huorn, Deathwoode, etc).
+			<option>Target polymorphs into a bird appropriate for the area, or a random type if no birds are around; 40% chance for a monster type.
+			<option>Target will rise as a random undead when killed (no save), if target is already undead, all its damage is healed.
+			<option>Caster has foreknowledge of the next 3 unstable effects, but the information is only 75% correct.
+			<option>Target is sprayed with mostly harmless insecticide. Does 5d10 hits of damage to large insect/insect-like creatures, kills small insects.
+			<option>Target is Slowed (opposite of Haste) for 2 rounds.
+			<option>All spells cast during the previous round are re-cast again this round (no cost), affecting the same targets again.
+			<option>Caster Curses target if he fails a save vs. magic. Random curse. 
+			<option>Marbles appear on the floor next to the target. Target will have to make PP rolls at -3 every round to stay on his feet.
+			<option>The next time the PC’s enter a town the inhabitants will try any method available, short of imprisonment, to try to get the PC’s to live there permanently.
+			<option>Caster automatically succeeds on her next roll.
+			<option>Target drops his weapon.
+884.    Colour Dance; Shimmering colours dance and play in a 12’x9’ area directly in front of the caster. Everyone caught inside is stunned.
+			<option>The intended spell functions but any saves are made with an additional modifier of +1.
+			<option>A spray of boiling oil strikes the target and he takes a point-blank fireball attack.
+			<option>Target emits a bad odor; only the strongest perfume/cologne will cover it up.
+			<option>Target’s clothing and armour fall to the ground.
+			<option>Target jumps around wildly (as if in a mosh pit) for 2 rounds.
+			<option>One of the caster’s items pops over and draws the appropriate Circle to confine the target. Targets susceptible to summoning must resist at –2 to avoid being encircled. The item drops at the circle.
+			<option>Caster is affected by Invisibility, normal.
+			<option>Caster’s PB is raised to 30. Anyone viewing her will act appropriately.
+			<option>No gravity at the target’s location (max 5’ radius) for 1 hour.
+			<option>Target disappears, only to reappear nearby when the caster casts another spell or is killed.
+			<option>All bonuses (regardless of type i.e. + to strike, save, etc.) are negated for 2d10 rounds for all creatures within 100 feet of the caster.
+			<option>Caster can automatically identify one item in the next 24 hours with a 100% chance of success. She will know everything about the item, e.g. its properties, who made it and when, who has owned it, etc.
+			<option>All lead in the caster’s possession turns to gold.
+			<option>All creatures in a 20’ sphere centered on caster become invisible, as per Invisibility Sphere, except caster who is still visible.
+			<option>A bucket of green slime appears over target’s head and dumps the slime all over the target.
+			<option>4d10 (10 minimum) 1 gp base value uncut gems shoot from the caster’s fingertips at the target.
+			<option>The caster’s teeth turn into unbreakable white stone. She can chew through just about anything (including soft metals) and never gets a cavity again. If caster already has stone teeth this surge removes them.
+			<option>A random spell at the same level of the intended spell affects the target instead.
+			<option>Caster’s clothing changes colour to match the surrounding environment as per the Camouflage spell. If the environment changes the caster’s clothes will not change again.
+			<option>Target is mute for the next day.
+			<option>Target finds his lungs filled with water; he must make a PE check or die.  If they make it, they can do nothing but cough and sputter for 1d4 rounds
+			<option>Target is sucked into an extra-dimensional pocket for the duration of the intended spell.
+			<option>A 10’ radius area chosen by the caster becomes intensely cold (for the surrounding environment) for one hour.
+			<option>The intended spell functions as intended.
+			<option>Caster gains Mist form. Can be used once per day for 1d4 rounds.
+			<option>Normal fire springs up at the target’s feet.
+			<option>Caster’s skin turns to steel, giving her an AR of 18 for 1d6 rounds.
+			<option>Target has an urgent call from nature and must immediately retreat to relieve himself.
+			<option>Target is sent d4 rounds forward in time. To everyone else it looks like the target simply disappeared.
+			<option>Target begins to recite very bad poetry for 2d4 rounds, taking no other action unless attacked.
+			<option>The ground opens up and swallows target up to the neck. (Fore!)
+			<option>A creature of light/dark appears and will agree to become the caster’s familiar if they request it.
+			<option>Target’s weapon or other possession becomes a teddy bear (25%), leg of mutton (25%), or red herring (50%).  If target has no possessions roll again.
+			<option>Caster’s next spell is cast as though she were d4 levels higher.
+			<option>Target shot with 1d10 darts (1d4 dam each)
+			<option>Target is struck by an invisible fist (1d4 dam)
+			<option>Target’s next action automatically fumbles as though he rolled a 01.
+			<option>Target is stunned for d10 rounds.
+			<option>Caster gains a familiar if she doesn’t already have one. It will appear in 1d4 hours and no spells are necessary to affect the bond.
+			<option>Target is teleported 30 feet directly above caster and will fall the next round. +30 Fall/Crush, and caster may be hit if she fails to notice the falling target!
+			<option>1d4 flame arrows shoot at target. Use caster’s archery attack bonus, or spell strength, whichever is greater.  Roll each attack separately.  Arrows do Longbow damage.
+			<option>Water sprays from the caster’s tear ducts like a water pistol, Water type: 1=normal, 2=holy, or 3=unholy.
+			<option>The target, if able to cast spells, casts them all with random targets and normal expenditure.
+			<option>Caster gains the Midas touch. For the next d3 rounds, anything smaller than her that she lays her hands on will turn to solid gold.
+			<option>Target is fascinated by what the caster is doing and will stop whatever he is doing to watch.
+			<option>Caster gains the use of Turn Undead (at 100%) for one time only. It need not be used immediately.
+			<option>Target is covered in earwigs. These do no damage but are likely to greatly annoy the target and gross everyone else out as they drop off his body and scurry away.
+			<option>Loud horn sound. This has the effect of raising everyone’s morale, as they feel inspired.  (Priestesses and followers of Eilistraee get +2 on all attacks for the following round, believing themselves to be divinely inspired.)
+			<option>Stone to Flesh on 1d100 pounds of rock within 100 feet of the caster.
+			<option>Caster learns a randomly chosen spell. Can be from any realm (wizard, clerical, elemental, etc.) and need not fit any of her existing OCC’s.
+			<option>Small licks of flame shoot from caster’s fingertips. These do no damage but can ignite flammables.
+			<option>Caster begins singing as though she had 15th level singing. This lasts for 3 days and she hums in her sleep.
+			<option>Target is wrapped in chains of force that will give him a jolt of Electricity (1d8 dam) if he struggles.  Target is entitled to a RR at the caster’s level.
+			<option>Target bursts into flames, taking a 1d8 dam every round until the flames are extinguished.
+			<option>All metal on the target turns into wood.
+			<option>Caster is struck by a sudden bit of insight about a random skill and will succeed the next time she uses that skill as if she rolled a 01. The spell however is forgotten.
+			<option>Caster is suddenly fluent (Level 5) in a previously unknown (to her) language that is common in the area.
+			<option>A lightning bolt shoots from the caster’s fingers.  When it strikes the target (no damage) it splashes and the target is covered in slick grease.
+			<option>Caster picks an object nearby for Animation. The object must be smaller than the caster but is under the caster’s control.
+			<option>A golem is created from the nearest appropriate substance. 50/50 chance it will obey or attack the caster.
+			<option>Caster chooses one object within 100’ to heat up to 200 degrees Fahrenheit.
+			<option>A pillow (25%), small table (25%), or anvil (50%) appears over the target’s head. The pillow causes no damage; the table causes 1d10 points of damage, and the anvil 4d6 points of damage.
+			<option>Target is teleported 1d100 miles away (horizontally)
+			<option>Target is bound in High Steel straps. These will take a skilled locksmith to remove.
+			<option>Target polymorphs into something rhyming with its name (DM choice).
+			<option>Target buried to his waist or to 5’ (whichever is less) in solid concrete. He fights at –5.
+			<option>Target immediately stops what he is doing to sit down and perform some other non-combat related skill with whatever materials are at hand (e.g. making money bags out of his cloak).
+			<option>Target crumbles to dust, with a 20% chance per round he will return to normal. If the dust is scattered, the target is destroyed.
+			<option>Caster gains 5000 experience points and generates another random effect.
+			<option>Target is covered in spider webs, complete with thousands of tiny spiders that will crawl into every crevice and space in his armour.
+			<option>A nearby wand/rod/staff doubles in size (retaining its magical properties). If cut in half, both pieces become Wands of Random Spells and each has half the original number of charges.
+			<option>Target instantly coated in unlit flammable oil.
+			<option>A randomly chosen item on the target’s person sprouts wings and flies away.
+			<option>Target attempts to commit suicide for 3 rounds. Must roll normal attacks on himself.  If he inflicts a serious wound or stuns himself he stops, as it really is just a cry for help.
+			<option>All gold in the caster’s possession turns to platinum.
+			<option>Caster breathes fire as a Young Fire Drake for one breath only.
+			<option>All fluid in containers on target turn to deadly poison.
+			<option>Target turns into a block of raspberry flavored Jello; all his possessions are suspended in the Jello.
+			<option>Target is teleported home/to lair/etc. There is a possibility of error as per Teleport.
+			<option>A nearby tree becomes sentient and is under the control of the caster. It may attack immediately if the caster chooses. This lasts for 1 turn. However, if the tree dies, the caster also dies.
+			<option>Target’s weapons jump off him and bounce away out of reach.
+			<option>Target is displaced 10 feet to the right.
+			<option>Target levitates 20 feet above the ground for 3d10 rounds.
+			<option>Target gets a random disease, random.
+			<option>Caster’s arm stretches out and slaps the target across the face. This could be quite entertaining in a crowded bar when the target is 50 feet away.
+			<option>1D12 caltrops appear at the target’s feet.
+			<option>A war hammer flies at the target, strikes at +10 and does critical damage. It then disappears.
+			<option>A doppelganger of the caster appears in the caster’s place, as she is teleported to appropriate cover. The simulacrum is under the caster’s control.
+			<option>Fireball, conditional as per the spell, caster can name the condition that triggers the blast.
+			<option>Either target or caster must reduce all their statistics to the lowest one; 90% target, 10% caster.
+			<option>Targets circulatory system jumps out and runs away. Oddly, this has no ill effect on target.
+			<option>All weapons within 60 feet of caster receive a random lesser magical attribute.
+			<option>Target is cooled to absolute zero and may shatter if hit. Target must make a successful PE check at –10 to survive the thawing process.
+			<option>The next living creature the caster touches loses 3 points of PE, which is added to caster’s.
+			<option>Caster gains 2 experience levels.
+			<option>Caster may cast a spell of her choice of 14th level or less, instantaneously. Give the player 10 timed seconds to choose.  No spell cost.
+			<option>The caster drains the target of as many hit points as are required to put the caster at maximum. The target will regain these lost hit points if the caster is killed, and is aware of this fact.
+			<option>Caster’s hands turn into +5 magical melee weapons appropriate for her primary weapon. Caster may attack as per their WP.  The hands return to normal after 5 rounds.
+			<option>One of caster’s weapons flies through the air and attacks target as per a Dancing Weapon.
+			<option>Cone of Cold directed at target. Brrrrr.
+			<option>Next successful attack by target on caster heals instead of harms.
+			<option>Target sees a volley of arrows headed for him and will react appropriately. They’re not really there, though, and his allies wonder what the heck he’s doing.
+			<option>A giant (6’ tall) rubber ducky falls out of the sky to land between caster and target with a loud “SQWEEKEE.”  It vanishes after 1d6 rounds.
+			<option>The caster’s deity is summoned. This does not oblige the deity to come, but is liable to attract attention. A reasonably smart deity will recognize the summoning as unintentional, but may still watch the caster a little closer for a while.
+			<option>Target turned into an infant of the same race. He reverts to his original age after 1d10 rounds.
+			<option>A magical artefact of great power is transported into the caster’s hands. The caster is affected normally by handling it if it has detrimental effects. The previous owner will probably be missing it and be coming after it very soon.
+			<option>Caster instantly knows all sorts of information about the target; its mission, race, general history, name, profession, level, abilities, strengths, weaknesses, mother’s first name, etc.
+			<option>1d4 silver bullets fly at target. Bullets contain 1 sp worth of metal each.
+			<option>All magic items on target take effect. Target is the target as all runes are read, one charge from charged items are expended, any daily items go off, etc. Weapons and the like only cause effects if they do something other than cause damage, e.g. a haste spell, stun relief, etc.
+			<option>All non-living items in a 10-foot radius of target are sliced into 1-inch cubes by radiant force fields (except ethereal creatures). Magic Items get a save at +2.  Appropriate effects should a magic item be destroyed by this.
+			<option>Caster steals target’s reflection for 1d20 days. For that time, anytime caster looks in a mirror she will see the target instead of herself.  (Target will be ‘reflected’ doing whatever it is the target is actually doing.  If they are blocked from scrying, Caster has no reflection at all!)
+			<option>A rock launches itself from the ground and strikes target on the head. This does no damage except to skew any helm he has on and make him think he’s being attacked from someplace else.
+			<option>All of target’s actions for 2d4 turns are accompanied by theme music and pop-up balloons containing his thoughts.
+			<option>An announcer’s voice is heard, announcing everyone’s moves and offering critique when someone does something wrong. When it’s all over, the voice will give a synopsis of the event and a final opinion, good or bad.
+			<option>A spray of molten gold shoots from the caster’s hands towards the target.  This lasts 1d6 melees.  (Target may dodge at 16)  If it hits, target takes appropriate damage.  If the target dodges the caster may re-aim every melee.  If the caster hits the target for more than 4 melees target looks like a golden statue of themselves, and is most likely dead from the damage.
+			<option>Hero or other famous figure friendly to caster is summoned and remains for one turn.
+-->
+        </template>
+    </feature>
+
+</data>
+
