@@ -1,4 +1,4 @@
-
+<data>
 <descriptor>Accursed</descriptor>
 <descriptor>Ancient</descriptor>
 <descriptor>Baneful</descriptor>
@@ -34,7 +34,7 @@
 <descriptor>Vanishing</descriptor>
 <descriptor>Weird</descriptor>
 
-
+<!--
 Table II
 Dice: Result
 01-02 Abyss
@@ -122,3 +122,5 @@ Dice: Result
 95-96 the Undercity
 97-98 the Underworld
 99-00 the Unknown
+-->
+</data>
