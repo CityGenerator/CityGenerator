@@ -1,12 +1,12 @@
-#What is CityGenerator?#
+# What is CityGenerator? #
 
 CityGenerator is a suite of tools that can help generate a unique campaign setting in seconds. 
 
-#Where did it come From?#
+# Where did it come From? #
 
 CityGenerator has been a labor of love for several years. Originally a bash script used to generate population statistics, CityGenerator has grown a set of perl scripts that  encompass NPC creation, Government and Military details, weather patterns, establishments and more.
 
-#How do I use it?#
+# How do I use it? #
 
 There are three ways to use it:
 
